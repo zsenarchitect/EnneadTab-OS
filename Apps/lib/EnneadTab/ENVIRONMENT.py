@@ -23,12 +23,13 @@ RHINO_FOLDER = os.path.join(APP_FOLDER, "_rhino")
 
 
 LIB_FOLDER = os.path.join(APP_FOLDER, "lib")
-EXE_FOLDER = os.path.join(LIB_FOLDER, "exes")
 CORE_FOLDER = os.path.join(LIB_FOLDER, "EnneadTab")
 IMAGE_FOLDER = os.path.join(CORE_FOLDER, "images")
 AUDIO_FOLDER = os.path.join(CORE_FOLDER, "audios")
 DOCUMENT_FOLDER = os.path.join(CORE_FOLDER, "documents")
 
+EXE_ROOT_FOLDER = os.path.join(LIB_FOLDER, "exes")
+EXE_PRODUCT_FOLDER = os.path.join(EXE_ROOT_FOLDER, "products")
 
 DEPENDENCY_FOLDER = os.path.join(LIB_FOLDER, "dependency")
 

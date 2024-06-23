@@ -10,7 +10,7 @@ __context__ = "zero-doc"
 
 import proDUCKtion # pyright: ignore
 
-from  EnneadTab import UNIT_TEST, USER
+from EnneadTab import UNIT_TEST, USER
 
 def beer_tab():
     print (USER.USER_NAME)

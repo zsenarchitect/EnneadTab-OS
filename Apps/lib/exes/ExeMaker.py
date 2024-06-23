@@ -1,5 +1,6 @@
 import os
 import json
+import shutil
 import subprocess
 
 import sys
@@ -9,12 +10,27 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)) + "\\EnneadTab")
 # most of exe can use this logic to avoid asset folder. the configure file title can be the same as maker file
 
 
-from ENVIRONMENT import EXE_ROOT_FOLDER
+from ENVIRONMENT import EXE_ROOT_FOLDER, ROOT
 EXE_PRODUCT_FOLDER = os.path.join(EXE_ROOT_FOLDER, "products")
 EXE_MAKER_FOLDER = os.path.join(EXE_ROOT_FOLDER,"maker data")
 EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_ROOT_FOLDER,"source code")
 
 
+def move_exes():
+    src_folder = "{}\\dist".format(ROOT)
+       
+    # Copy all items from src_folder to dest_folder
+    for item in os.listdir(src_folder):
+        src_item = os.path.join(src_folder, item)
+        dest_item = os.path.join(EXE_PRODUCT_FOLDER, item)
+        
+        if os.path.isdir(src_item):
+            shutil.copytree(src_item, dest_item)
+        else:
+            shutil.copy2(src_item, dest_item)
+    
+    # Delete the original folder and its contents
+    shutil.rmtree(src_folder)
 
 def make_exe(maker_json):
  
@@ -34,12 +50,18 @@ def json_to_command(json_config):
     command = ['pyinstaller']
     
     for option in json_config['pyinstallerOptions']:
+        if option["optionDest"] == "filenames":
+            final_path = option["value"]
+            continue
+        
         if option['value'] is True:
             command.append("--{}".format(option['optionDest']))
         elif option['value'] is not False:
             command.append("--{}".format(option['optionDest']))
             command.append("{}".format(option['value']))
-    
+
+    command.append(final_path)
+    print (command)
     return command
 
 def update_all_exes():
@@ -47,7 +69,10 @@ def update_all_exes():
         if file.endswith(".json"):
             make_exe(os.path.join(EXE_MAKER_FOLDER,file))
 
+
+    move_exes()
     print ("done exe creation")
+    
 
 
 if __name__ == "__main__":

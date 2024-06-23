@@ -1,7 +1,8 @@
 
 import os
 
-
+# the downloader shall read where to url based on configure file so if I re path it can update. 
+# most of exe can use this logic to avoid asset folder. the configure file title can be the same as maker file
 
 
 def make_exe(maker_json):

@@ -1,0 +1,6 @@
+pyinstaller
+GitPython
+PyPDF2
+pillow
+playsound
+auto_py_to_exe

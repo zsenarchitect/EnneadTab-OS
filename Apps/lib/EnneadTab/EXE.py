@@ -26,7 +26,7 @@ def make_exe(maker_json):
         subprocess.run(command)
 
 def json_to_command(json_config):
-    command = [r'C:\path\to\Scripts\auto-py-to-exe.exe']
+    command = ['auto-py-to-exe.exe']
     
     for option in json_config['pyinstallerOptions']:
         if option['value'] is True:

@@ -1,14 +1,14 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+
 import os
-
-
-
-# Function to dynamically import all submodules
-def import_submodules():
-    # Get the package directory
-    package_dir = os.path.dirname(__file__)
-    
-    for module in os.listdir(package_dir):
-
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import ENVIRONMENT
+if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
+    for module in os.listdir(os.path.dirname(__file__)):
+        #print (module)
         if module == '__init__.py':
             continue
 
@@ -17,14 +17,10 @@ def import_submodules():
         try:
             __import__(module[:-3], locals(), globals())
         except Exception as e:
-            print (e)
-            print ("Cannot import {}".format(module))
-
-
-            
-# Import all submodules
-import_submodules()
-
+            pass
+            #print (e)
+            # print ("Cannot import {}".format(module))
+    del module# delete this varible becaue it is refering to last item on the for loop
 
 
 

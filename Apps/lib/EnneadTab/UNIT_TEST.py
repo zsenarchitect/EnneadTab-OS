@@ -1,7 +1,7 @@
 try:
-    import importlib
-except:
     import imp
+except:
+    pass
 import os
 import traceback
 import TEXT
@@ -18,14 +18,16 @@ def print_boolean_in_color(bool):
     else:
         return TEXT.colored_text("False", TEXT.TextColor.Red)  
 
-def print_text_in_highlight_color(text):
+def print_text_in_highlight_color(text, ok = True):
     if not ENVIRONMENT.is_terminal_environment():
         return text
 
-    return TEXT.colored_text(text, TEXT.TextColor.Blue)
+    return TEXT.colored_text(text, TEXT.TextColor.Blue if ok else TEXT.TextColor.Red)
 
 
-IGNORE_LIST = ["__pycache__"]
+IGNORE_LIST = ["__pycache__",
+               "REVIT",
+               "RHINO"]
 
 
 
@@ -41,10 +43,10 @@ class UnitTest:
                                                                  print_text_in_highlight_color(module.__name__)))
         self.count += 1
         if not hasattr(module, 'unit_test'):
-            return
+            return True
         test_func = getattr(module, 'unit_test')
         if not callable(test_func):
-            return
+            return True
         
         print(print_text_in_highlight_color('Running unit test for module <{}>'.format(module.__name__)))
         try:
@@ -62,6 +64,13 @@ class UnitTest:
 
         
         for module_file in os.listdir(folder):
+
+            # this so in terminal run not trying to test REVIT_x and RHINO_x file
+            if module_file in IGNORE_LIST:
+                return
+
+
+            
             if module_file.endswith('.pyc'):
                 continue
             module_path = os.path.join(folder, module_file)
@@ -79,9 +88,10 @@ class UnitTest:
                 module = imp.load_source(module_name, module_path)
             except:
                 try:
+                    import importlib
                     module = importlib.import_module(module_name)
                 except Exception as e:
-                    print ("\n\nSomething is worng when importing [{}] becasue:\n\n++++++{}++++++\n\n\n".format(module_name,
+                    print ("\n\nSomething is worng when importing [{}] becasue:\n\n++++++{}++++++\n\n\n".format(print_text_in_highlight_color(module_name, ok=False),
                                                                                                                 traceback.format_exc()))
                     continue
           
@@ -94,9 +104,9 @@ def test_core_module():
     tester = UnitTest()
 
     tester.process_folder(ENVIRONMENT.CORE_FOLDER)
-    if not tester.failed_module:
-        print ("below modules are failed.")
-        print ("\n".join(tester.failed_module))
+    if len( tester.failed_module) > 0:
+        print ("\n\n\nbelow modules are failed.")
+        print ("\n--".join(tester.failed_module))
         
     
 if __name__ == '__main__':

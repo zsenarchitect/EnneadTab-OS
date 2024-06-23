@@ -3,7 +3,8 @@
 import os
 
 import ENVIRONMENT
-import UNIT_TEST
+from UNIT_TEST import print_boolean_in_color
+
 
 USER_NAME = os.environ["USERPROFILE"].split("\\")[-1]
 
@@ -126,10 +127,10 @@ def unit_test():
                 print(x, " = ", content)
 
     print ("current user [{}] is a developer? {}".format(USER_NAME,
-                                                       UNIT_TEST.print_boolean_in_color(is_enneadtab_developer())))
+                                                       print_boolean_in_color(is_enneadtab_developer())))
     print ("my system name = {}".format(USER_NAME))
     print ("my autodesk name = {}".format(get_autodesk_user_name()))
-    print ("I am  developer? {}".format(UNIT_TEST.print_boolean_in_color(IS_DEVELOPER)))
+    print ("I am  developer? {}".format(print_boolean_in_color(IS_DEVELOPER)))
     
     
     system_usernames, autodesk_usernames = get_usernames_from_developers()

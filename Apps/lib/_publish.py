@@ -23,7 +23,7 @@ def time_it(func):
 
 
 @time_it
-def publish():
+def publish_duck():
 
     # locate the EA_Dist repo folder and current repo folder
     # the current repo folder is 3 parent folder up
@@ -92,4 +92,4 @@ def push_changes_to_main(repository_path):
 
 
 if __name__ == '__main__':
-    publish()
+    publish_duck()

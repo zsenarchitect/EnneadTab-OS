@@ -7,19 +7,18 @@ __doc__ = "Go get a drink!"
 __title__ = "Beer\nTab"
 __context__ = "zero-doc"
 
-from pyrevit import script #
-import proDUCKtion
 
-from Duck import Egg
+import proDUCKtion # pyright: ignore
+
+from EnneadTab import UNIT_TEST, USER
 
 def beer_tab():
+    print (USER.USER_NAME)
+    UNIT_TEST.test_core_module()
 
-    Egg.egg()
     print ("ok")
 
 ################## main code below #####################
-output = script.get_output()
-output.close_others()
 
 
 if __name__ == "__main__":

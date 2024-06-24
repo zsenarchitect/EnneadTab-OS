@@ -21,7 +21,7 @@ def main():
     config.read(file_path)
 
     # Construct the new path for userextensions
-    new_userextensions_path = os.path.join(user_profile, 'Documents', 'EnneadTab Ecosystem', 'EA_Dist', '_revit')
+    new_userextensions_path = os.path.join(user_profile, 'Documents', 'EnneadTab Ecosystem', 'EA_Dist', 'Apps', '_revit')
 
     # Modify the necessary items in the [...] section
     if 'core' in config:

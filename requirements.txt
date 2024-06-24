@@ -5,3 +5,4 @@ pillow
 playsound
 auto_py_to_exe
 pywin32
+requests

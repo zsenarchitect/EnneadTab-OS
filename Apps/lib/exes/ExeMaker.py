@@ -53,6 +53,18 @@ def json_to_command(json_config):
         if option["optionDest"] == "filenames":
             final_path = option["value"]
             continue
+
+        if option["optionDest"] == "icon_file":
+            command.append("--{}".format("icon"))
+            command.append("{}".format(option['value']))
+            continue
+        
+        if option["optionDest"] == "console":
+            if option['value'] is True:
+                command.append("--{}".format("console"))
+            else:
+                command.append("--{}".format("windowed"))
+            continue
         
         if option['value'] is True:
             command.append("--{}".format(option['optionDest']))
@@ -61,13 +73,16 @@ def json_to_command(json_config):
             command.append("{}".format(option['value']))
 
     command.append(final_path)
-    print (command)
+    print("\033[92m{}\033[00m".format(command))
+    print ("\n\n")
     return command
 
 def update_all_exes():
     for file in os.listdir(EXE_MAKER_FOLDER):
         if file.endswith(".json"):
+            print("\033[94m{}\033[00m".format(file))
             make_exe(os.path.join(EXE_MAKER_FOLDER,file))
+            print ("\n\n\n")
 
 
     move_exes()

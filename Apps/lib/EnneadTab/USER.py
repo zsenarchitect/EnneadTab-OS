@@ -28,7 +28,7 @@ ENNEADTAB_DEVELOPERS = {
 }
 
 
-def get_EA_email(user_name = USER_NAME):
+def get_EA_email_address(user_name = USER_NAME):
     return "{}@ennead.com".format(user_name.replace(".EA",""))
 
 

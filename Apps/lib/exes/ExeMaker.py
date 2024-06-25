@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)) + "\\EnneadTab")
 # most of exe can use this logic to avoid asset folder. the configure file title can be the same as maker file
 
 
-from ENVIRONMENT import EXE_ROOT_FOLDER, ROOT
+from ENVIRONMENT import EXE_ROOT_FOLDER, ROOT # pyright: ignore
 EXE_PRODUCT_FOLDER = os.path.join(EXE_ROOT_FOLDER, "products")
 EXE_MAKER_FOLDER = os.path.join(EXE_ROOT_FOLDER,"maker data")
 EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_ROOT_FOLDER,"source code")

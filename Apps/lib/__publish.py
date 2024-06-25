@@ -21,14 +21,10 @@ def time_it(func):
         return result
     return wrapper
 
-@time_it
-def publish_duck():
-    update_exes()
-    copy_to_EA_dist()
 
 def update_exes():
     sys.path.append(os.path.dirname(__file__) + "\\exes")
-    from ExeMaker import update_all_exes
+    from ExeMaker import update_all_exes # pyright: ignore
     update_all_exes()
 
 def copy_to_EA_dist():
@@ -97,6 +93,32 @@ def push_changes_to_main(repository_path):
 
     # Push to the main branch
     subprocess.call(["git", "push", "origin", "main"])
+
+
+def update_installer_folder():
+    # locate the EA_Dist repo folder and current repo folder
+    # the current repo folder is 3 parent folder up
+    current_repo_folder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    installation_folder = os.path.join(current_repo_folder, "Installation")
+    if os.path.exists(installation_folder):
+        shutil.rmtree(installation_folder)
+    os.makedirs(installation_folder)
+
+
+    # copy folder from current repo to EA_dist repo
+    for file in ["EnneadTab_OS_Installer.exe",
+                 "EnneadTab_For_Revit(Legacy)_Installer.exe"]:
+        shutil.copy(os.path.join(current_repo_folder, "Apps", "lib", "exes", "products", file), 
+                    os.path.join(current_repo_folder, "Installation", file))
+
+@time_it
+def publish_duck():
+    update_exes()
+    update_installer_folder()
+    copy_to_EA_dist()
+
+
+
 
 if __name__ == '__main__':
     publish_duck()

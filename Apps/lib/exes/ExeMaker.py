@@ -48,17 +48,26 @@ def make_exe(maker_json):
         
 def json_to_command(json_config):
     command = ['pyinstaller']
+
+
     
     for option in json_config['pyinstallerOptions']:
+
+        # the file name is usually added as the last argument
+        #  so just record and skip
         if option["optionDest"] == "filenames":
             final_path = option["value"]
             continue
 
+        # json file use key icon_file, but as command it should be icon
+        if option["optionDest"] == "icon_file":
+            continue
         if option["optionDest"] == "icon_file":
             command.append("--{}".format("icon"))
             command.append("{}".format(option['value']))
             continue
-        
+
+        # highlight as windowed(no output console) or console(yes output)
         if option["optionDest"] == "console":
             if option['value'] is True:
                 command.append("--{}".format("console"))

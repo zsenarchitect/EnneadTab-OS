@@ -43,6 +43,7 @@ class UnitTest:
                                                                  print_text_in_highlight_color(module.__name__)))
         self.count += 1
         if not hasattr(module, 'unit_test'):
+            print ("This module has no tester.")
             return True
         test_func = getattr(module, 'unit_test')
         if not callable(test_func):
@@ -67,7 +68,7 @@ class UnitTest:
 
             # this so in terminal run not trying to test REVIT_x and RHINO_x file
             if module_file in IGNORE_LIST:
-                return
+                continue
 
 
             
@@ -79,6 +80,7 @@ class UnitTest:
             if os.path.isdir(module_path):
                 self.process_folder(module_path)
                 continue
+      
             if not module_file.endswith('.py'):
                 continue
             module_name = module_file.split('.')[0]

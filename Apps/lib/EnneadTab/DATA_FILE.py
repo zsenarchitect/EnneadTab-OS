@@ -115,6 +115,9 @@ def _save_dict_to_json(dict, filepath, use_encode=False):
         return False
 
 
+
+    
+
 def _save_dict_to_json_in_dump_folder(dict, file_name, use_encode=False):
     """direct store dict to a file in dump folder
 
@@ -157,11 +160,12 @@ def pretty_print_dict(dict):
 
 
 
+
 @contextmanager
 def update_data(file_name, is_local = True):
     """
     Usage example
-    with update_data("abc.json") as data:
+    with DATA_FILE.update_data("abc.json") as data:
         data['new_key'] = 'new_value'  # Update data here
     """
 

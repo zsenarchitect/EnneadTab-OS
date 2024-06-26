@@ -3,11 +3,11 @@ import ENVIRONMENT
 import sys
 sys.path.append(ENVIRONMENT.DEPENDENCY_FOLDER)
 
-from termcolor import colored
+from termcolor import colored # pyright: ignore
 from COLOR import TextColor
     
 
-def colored_text(text, color, on_color=None, attrs=None):
+def colored_text(text, color = TextColor.Cyan, on_color=None, attrs=None):
     """Colorize text.
 
     Available text colors:
@@ -29,3 +29,15 @@ def colored_text(text, color, on_color=None, attrs=None):
         # in some terminal run, it cannot read the dependecy folder so cannot load the colored moudle
         return text
     return colored(text, color, on_color, attrs)
+
+
+
+def unit_test():
+    print (colored_text("Test dfault color text"))
+    print (colored_text("test green", TextColor.Green))#, attrs=[TextColor.Blue, 'blink']))
+
+
+
+
+if __name__ == "__main__":
+    unit_test()

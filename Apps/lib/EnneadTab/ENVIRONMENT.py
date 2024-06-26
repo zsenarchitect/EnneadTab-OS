@@ -32,6 +32,10 @@ EXE_ROOT_FOLDER = os.path.join(LIB_FOLDER, "exes")
 EXE_PRODUCT_FOLDER = os.path.join(EXE_ROOT_FOLDER, "products")
 
 DEPENDENCY_FOLDER = os.path.join(LIB_FOLDER, "dependency")
+if IS_PY2:
+    DEPENDENCY_FOLDER += "\\py2"
+else:
+    DEPENDENCY_FOLDER += "\\py3"
 
 
 

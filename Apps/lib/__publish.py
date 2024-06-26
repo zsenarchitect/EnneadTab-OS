@@ -5,6 +5,9 @@ import subprocess
 import time
 import winsound
 import sys
+sys.path.append(os.path.dirname(__file__) + "\\EnneadTab")
+
+import UNIT_TEST #pyright: ignore
 
 def time_it(func):
     def wrapper(*args, **kwargs):
@@ -113,6 +116,7 @@ def update_installer_folder():
 
 @time_it
 def publish_duck():
+    UNIT_TEST.test_core_module()
     update_exes()
     update_installer_folder()
     copy_to_EA_dist()

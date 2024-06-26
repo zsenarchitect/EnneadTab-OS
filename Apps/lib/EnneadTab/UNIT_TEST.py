@@ -107,7 +107,12 @@ def test_core_module():
     if len( tester.failed_module) > 0:
         print ("\n\n\nbelow modules are failed.")
         print ("\n--".join(tester.failed_module))
-        
+        raise EnneadTabExcepion
     
+        
+
+class EnneadTabExcepion(BaseException):
+    pass
+ 
 if __name__ == '__main__':
     test_core_module()

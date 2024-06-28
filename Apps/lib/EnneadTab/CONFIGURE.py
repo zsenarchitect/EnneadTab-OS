@@ -31,4 +31,20 @@ def set_setting_data(key, value):
     setting_file = _get_setting_file()
     with DATA_FILE.update_data(setting_file) as data:
         data[key] = value
- 
+
+
+
+
+# simply rename the addin file register file by 
+# add/remove .disabled at end of the .addin file
+# note need to search for all valid version folder
+def enable_revit_addin(addin):
+    pass
+
+    # reload pyrevit
+
+def disable_revit_addin(addin):
+    pass
+
+    # reload pyrevit
+    

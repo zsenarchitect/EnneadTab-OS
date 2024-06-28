@@ -55,7 +55,7 @@ def messenger(main_text,
 
 
 
-    EXE.try_open_app("MESSENGER.exe")
+    EXE.try_open_app("MESSENGER")
 
 
 def duck_pop(main_text = None):
@@ -70,5 +70,5 @@ def duck_pop(main_text = None):
                 "audio": SOUND.get_one_audio_path_by_prefix("duck")}
 
 
-    EXE.try_open_app("DUCK_POP.exe")
+    EXE.try_open_app("DUCK_POP")
   

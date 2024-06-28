@@ -3,6 +3,7 @@ import os
 import ENVIRONMENT
 
 def try_open_app(exe_name):
+    """extension optional"""
     
     exe = ENVIRONMENT.EXE_FOLDER + "\\{}.exe".format(exe_name)
     if os.path.exists(exe):

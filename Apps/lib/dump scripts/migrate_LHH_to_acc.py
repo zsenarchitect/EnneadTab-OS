@@ -1,6 +1,6 @@
 import os
 import shutil
-from tqdm import tqdm
+from tqdm import tqdm #pyright: ignore
 
 J_DRIVE_ACC_FOLDER = "J:\\1643"
 LHH_ACC_FOLDER = "C:\\Users\\szhang\\DC\\ACCDocs\\Ennead Architects LLP\\1643_LHH\\Project Files\\00_1643 LHH"

@@ -8,6 +8,7 @@ import sys
 sys.path.append(os.path.dirname(__file__) + "\\EnneadTab")
 
 import UNIT_TEST #pyright: ignore
+import NOTIFICATION #pyright: ignore
 
 def time_it(func):
     def wrapper(*args, **kwargs):
@@ -21,6 +22,7 @@ def time_it(func):
         
         # Print the formatted message with color
         print("{}Publish took {:.1f} seconds to complete.{}".format(blue_text, elapsed_time, reset_color))
+        NOTIFICATION.messenger("Publish took {:.1f} seconds to complete.".format(elapsed_time))
         return result
     return wrapper
 
@@ -45,14 +47,18 @@ def copy_to_EA_dist():
         # copy folder from current repo to EA_dist repo
         shutil.copytree(os.path.join(current_repo_folder, folder), os.path.join(EA_dist_repo_folder, folder))
 
-    # delete folder called "DuckMaker.extension"
-    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "_revit", "DuckMaker.extension"))
-    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "maker data"))
-    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "source code"))
-    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "ExeMaker.py"))
-    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "RunPy2Exe.py"))
-    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "__publish.py"))
-
+    # delete contents to hide for public
+    contents_to_hide_for_public = [     
+    os.path.join(EA_dist_repo_folder, "Apps", "_revit", "DuckMaker.extension"),
+    os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "maker data"),
+    os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "source code"),
+    os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "ExeMaker.py"),
+    os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "RunPy2Exe.py"),
+    os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "__publish.py"),
+    os.path.join(EA_dist_repo_folder, "Apps", "lib", "dump scripts"),
+    ]
+    for content in contents_to_hide_for_public:
+        try_remove_content(content)
     
     # pull the latest changes from remote
     pull_changes_from_main(EA_dist_repo_folder)

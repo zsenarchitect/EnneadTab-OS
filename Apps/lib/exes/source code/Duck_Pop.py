@@ -6,14 +6,25 @@ import json
 
     
 
+try:
+    import time
+    import math
+    import tkinter as tk
+    from tkinter import ttk
+    from PIL import Image as pim
+    import playsound
 
-import tkinter as tk
-import time
-import math
-from tkinter import ttk
-from PIL import Image as pim
-import playsound
-    
+except:
+    os.system("pip install tkinter")
+    os.system("pip install tkinter")
+    os.system("pip install ttkthemes")
+    os.system("pip install pillow")
+    os.system("pip install playsound")
+
+    import tkinter as tk
+    from tkinter import ttk
+    from PIL import Image as pim
+    import playsound
 
 JSON_FILE = "DUCK_POP.json"
 
@@ -39,6 +50,7 @@ def try_catch_error(func):
             with open(error_file, "w") as f:
                 f.write(error)
 
+            os.startfile(error_file)
 
     return wrapper
 

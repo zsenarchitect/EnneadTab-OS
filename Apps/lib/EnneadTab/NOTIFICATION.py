@@ -55,7 +55,7 @@ def messenger(main_text,
 
 
 
-    EXE.try_open_app("MESSENGER")
+    EXE.try_open_app("Messenger")
 
 
 def duck_pop(main_text = None):
@@ -66,9 +66,14 @@ def duck_pop(main_text = None):
     with DATA_FILE.update_data("DUCK_POP.json") as data:
         data = {"main_text":main_text,
                 "duck_image":IMAGE.get_image_path_by_name("duck_green_bg.png"), 
-                "explosion_gif": IMAGE.get_image_path_by_name("explosion.gif"), 
+                "explosion_gif": IMAGE.get_image_path_by_name("duck_explosion.gif"), 
                 "audio": SOUND.get_one_audio_path_by_prefix("duck")}
 
 
-    EXE.try_open_app("DUCK_POP")
+    EXE.try_open_app("Duck_Pop")
   
+
+
+
+if __name__ == "__main__":
+    duck_pop("Hello, world!")

@@ -2,7 +2,7 @@ import os
 import json
 import shutil
 import subprocess
-
+import traceback
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)) + "\\EnneadTab")
 
@@ -18,6 +18,10 @@ EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_ROOT_FOLDER,"source code")
 
 def move_exes():
     src_folder = "{}\\dist".format(ROOT)
+
+    # in some setup environemt we cannot run pyinstaller propperly so no src_folder will be created.
+    if not os.path.exists(src_folder):
+        return
        
     # Copy all items from src_folder to dest_folder
     for item in os.listdir(src_folder):
@@ -42,8 +46,15 @@ def make_exe(maker_json):
         # Convert JSON to command
         command = json_to_command(json_config)
 
-        # Run the command
-        subprocess.run(command)
+        try:
+            # Run the command
+            subprocess.run(command)
+        except Exception as e:
+            red_text = "\033[31m"
+            reset_color = "\033[0m"
+            print("{}Error updating exes: {} {}".format(red_text, traceback.format_exc(), reset_color))
+           
+
 
         
 def json_to_command(json_config):
@@ -60,8 +71,6 @@ def json_to_command(json_config):
             continue
 
         # json file use key icon_file, but as command it should be icon
-        if option["optionDest"] == "icon_file":
-            continue
         if option["optionDest"] == "icon_file":
             command.append("--{}".format("icon"))
             command.append("{}".format(option['value']))

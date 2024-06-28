@@ -3,6 +3,7 @@ import shutil
 import datetime
 import subprocess
 import time
+import traceback
 import winsound
 import sys
 sys.path.append(os.path.dirname(__file__) + "\\EnneadTab")
@@ -31,7 +32,7 @@ def update_exes():
     sys.path.append(os.path.dirname(__file__) + "\\exes")
     from ExeMaker import update_all_exes # pyright: ignore
     update_all_exes()
-
+ 
 def copy_to_EA_dist():
     # locate the EA_Dist repo folder and current repo folder
     # the current repo folder is 3 parent folder up

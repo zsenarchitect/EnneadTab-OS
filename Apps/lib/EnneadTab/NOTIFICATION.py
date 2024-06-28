@@ -64,11 +64,10 @@ def duck_pop(main_text = None):
 
 
     with DATA_FILE.update_data("DUCK_POP.json") as data:
-        data = {"main_text":main_text,
-                "duck_image":IMAGE.get_image_path_by_name("duck_green_bg.png"), 
-                "explosion_gif": IMAGE.get_image_path_by_name("duck_explosion.gif"), 
-                "audio": SOUND.get_one_audio_path_by_prefix("duck")}
-
+        data["main_text"] = main_text
+        data["duck_image"] = IMAGE.get_image_path_by_name("duck_green_bg.png")
+        data["explosion_gif"] = IMAGE.get_image_path_by_name("duck_explosion.gif")
+        data["audio"] = SOUND.get_one_audio_path_by_prefix("duck")
 
     EXE.try_open_app("Duck_Pop")
   

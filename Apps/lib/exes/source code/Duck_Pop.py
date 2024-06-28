@@ -1,30 +1,15 @@
 """compile this using py 3.10 run compiuler ON MAIN STATION"""
 import traceback
 import os
-
 import json
+import time
+import math
 
-    
+import tkinter as tk
+from tkinter import ttk
+from PIL import Image as pim
+import playsound
 
-try:
-    import time
-    import math
-    import tkinter as tk
-    from tkinter import ttk
-    from PIL import Image as pim
-    import playsound
-
-except:
-    os.system("pip install tkinter")
-    os.system("pip install tkinter")
-    os.system("pip install ttkthemes")
-    os.system("pip install pillow")
-    os.system("pip install playsound")
-
-    import tkinter as tk
-    from tkinter import ttk
-    from PIL import Image as pim
-    import playsound
 
 JSON_FILE = "DUCK_POP.json"
 
@@ -32,16 +17,10 @@ JSON_FILE = "DUCK_POP.json"
 def try_catch_error(func):
 
     def wrapper(*args, **kwargs):
-
-        # print_note ("Wrapper func for EA Log -- Begin: {}".format(func.__name__))
         try:
-            # print "main in wrapper"
             out = func(*args, **kwargs)
-            # print_note ( "Wrapper func for EA Log -- Finish:")
             return out
         except Exception as e:
-            # print(str(e))
-            # print("Wrapper func for EA Log -- Error: " + str(e))
             error = traceback.format_exc()
 
             error += "\n\n######If you have EnneadTab UI window open, just close the window. Do no more action, otherwise the program might crash.##########\n#########Not sure what to do? Msg Sen Zhang, you have dicovered a important bug and we need to fix it ASAP!!!!!########"

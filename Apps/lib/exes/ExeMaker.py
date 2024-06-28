@@ -90,9 +90,9 @@ def json_to_command(json_config):
             command.append("--{}".format(option['optionDest']))
             command.append("{}".format(option['value']))
 
+    command.append("--log-level=WARN") # disable output in terminal
     command.append(final_path)
     print("\033[92m{}\033[00m".format(command))
-    print ("\n\n")
     return command
 
 def update_all_exes():
@@ -100,7 +100,7 @@ def update_all_exes():
         if file.endswith(".json"):
             print("\033[94m{}\033[00m".format(file))
             make_exe(os.path.join(EXE_MAKER_FOLDER,file))
-            print ("\n\n\n")
+            print ("\n")
 
 
     move_exes()

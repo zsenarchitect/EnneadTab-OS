@@ -32,10 +32,10 @@ def messenger(main_text,
 
 
 
-    # import random
-    # if random.random() < 0.0001:
-    #     if duck_pop(main_text):
-    #         return
+    import random
+    if random.random() < 0.0001:
+        if duck_pop(main_text):
+            return
     
     if not isinstance(main_text, str):
         main_text = str(main_text)

@@ -40,14 +40,20 @@ def copy_to_EA_dist():
     # in EA_Dist folder, delete folder, then copy folder from current repo to EA_dist repo
     for folder in ["Apps", "Installation"]:
         # delete folder in EA_dist repo if exist
-        try_remove_folder(os.path.join(EA_dist_repo_folder, folder))
+        try_remove_content(os.path.join(EA_dist_repo_folder, folder))
 
         # copy folder from current repo to EA_dist repo
         shutil.copytree(os.path.join(current_repo_folder, folder), os.path.join(EA_dist_repo_folder, folder))
 
-        # delete folder called "DuckMaker.extension"
-        try_remove_folder(os.path.join(EA_dist_repo_folder, folder, "_revit", "DuckMaker.extension"))
+    # delete folder called "DuckMaker.extension"
+    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "_revit", "DuckMaker.extension"))
+    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "maker data"))
+    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "source code"))
+    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "ExeMaker.py"))
+    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "RunPy2Exe.py"))
+    try_remove_content(os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "__publish.py"))
 
+    
     # pull the latest changes from remote
     pull_changes_from_main(EA_dist_repo_folder)
     
@@ -57,9 +63,14 @@ def copy_to_EA_dist():
     # Play Windows built-in notification sound
     winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
 
-def try_remove_folder(folder_path):
+def try_remove_content(folder_path):
     if os.path.exists(folder_path):
-        shutil.rmtree(folder_path)
+        if os.path.isfile(folder_path):
+            os.remove(folder_path)
+        else:
+            shutil.rmtree(folder_path)
+
+
 
 def get_nth_commit_number():
     # Count the number of commits made today

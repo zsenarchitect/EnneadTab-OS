@@ -77,35 +77,6 @@ def run_revit_script(script_subfolder_or_fullpath, func_name,*args,**kwargs):
 #############################################################################################
 #############################################################################################
 
-def run_func_in_rhino_module(module_path, func_name, *args):
-    """Run a specified function in a specified python file.
-
-    Args:
-        module_path (str): Path to the python file.
-        func_name (str): Name of function to run.
-        *args: Positional arguments to pass to the function.
-    """
-        
-    module_name = FOLDER.get_file_name_from_path(module_path).replace(".py", "")
-    ref_module = imp.load_source(module_name, module_path)
-
-    
-    func = getattr(ref_module, func_name, None)
-    if func is None:
-        for surfix in ["_left", "_right"]:
-            func = getattr(ref_module, func_name.replace(surfix, ""), None)
-            if func is not None:
-                break
-        else:
-            NOTIFICATION.messenger(main_text="Oooops, cannot find the func <{}> in source code.\nContact SZ and let him know. Thx!".format(func_name))
-            return
-
-    @ERROR_HANDLE.try_catch_error
-    @LOG.log(module_path, func_name)
-    def runner(*args):
-        func(*args)
-
-    runner()
 
 
 
@@ -130,8 +101,27 @@ def run_Rhino_button(locator, *args):
 
     head, tail = os.path.split(module_path)
     func_name = tail.replace(".py", "")
-    run_func_in_rhino_module(module_path, func_name, *args)
+    module_name = FOLDER.get_file_name_from_path(module_path).replace(".py", "")
+    ref_module = imp.load_source(module_name, module_path)
 
+    
+    func = getattr(ref_module, func_name, None)
+    if func is None:
+        for surfix in ["_left", "_right"]:
+            func = getattr(ref_module, func_name.replace(surfix, ""), None)
+            if func is not None:
+                break
+        else:
+            NOTIFICATION.messenger(main_text="Oooops, cannot find the func <{}> in source code.\nContact SZ and let him know. Thx!".format(func_name))
+            return
 
+    @ERROR_HANDLE.try_catch_error
+    @LOG.log(module_path, func_name)
+    def runner(*args):
+        func(*args)
+
+    runner()
+
+    
     if random.random() < 0.3:
         VERSION_CONTROL.update_EA_dist()

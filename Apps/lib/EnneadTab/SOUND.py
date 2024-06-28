@@ -55,11 +55,8 @@ def play_meme_sound():
 
 def unit_test():
     print ("Playing stupid sound effect")
-    # play_sound("sound effect_mario powerup.wav")
-    play_meme_sound()
 
-
-    file = 'meme_xuehuaxiaoxiao.wav'
+    file = get_one_audio_path_by_prefix("meme")
     player = Player()
     player.start(file)
     for _ in range(10):

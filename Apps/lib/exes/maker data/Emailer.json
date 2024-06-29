@@ -18,6 +18,10 @@
    "value": false
   },
   {
+    "optionDest": "icon_file",
+    "value": "C:/Users/szhang/github/EnneadTab-OS/Apps/lib/EnneadTab/images/icon_duck.ico"
+  },
+  {
    "optionDest": "clean_build",
    "value": false
   },

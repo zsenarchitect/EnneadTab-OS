@@ -72,7 +72,9 @@ def duck_pop(main_text = None):
     EXE.try_open_app("Duck_Pop")
   
 
-
+def unit_test():
+    duck_pop("Hello, Ennead!")
+    messenger("Hello Ennead!")
 
 if __name__ == "__main__":
     duck_pop("Hello, world!")

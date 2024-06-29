@@ -46,4 +46,4 @@ def speak(text, language='en', accent='com'):
         data["accent"] = accent
  
 
-    EXE.try_open_app("EA_TEXT2SPEECH")
+    EXE.try_open_app("Speaker")

@@ -31,7 +31,7 @@ def time_it(func):
         # Print the formatted message with color
         print("{}Publish took {:.1f} seconds to complete.{}".format(blue_text, elapsed_time, reset_color))
         NOTIFICATION.duck_pop("Publish took {:.1f} seconds to complete.".format(elapsed_time))
-        SOUND.play_sound("sound effect_mario powerup")
+        SOUND.play_sound("sound_effect_mario_powerup")
 
         return result
     return wrapper
@@ -196,6 +196,8 @@ def publish_duck():
         update_exes()
         print_title ("\n\nBegin updating installation folder for public easy install...")
         update_installer_folder()
+    else:
+        NOTIFICATION.messenger("NOT compiling exes today...")
 
         
     print_title ("\n\npush uptdate to EA dist folder")

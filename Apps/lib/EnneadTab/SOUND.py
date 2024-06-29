@@ -66,7 +66,7 @@ def play_meme_sound():
     play_sound(file)
 
 def unit_test():
-    print ("Playing stupid sound effect")
+    print ("Playing stupid sounds effect")
 
     file = get_one_audio_path_by_prefix("meme")
     player = Player()

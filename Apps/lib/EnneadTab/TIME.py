@@ -32,12 +32,8 @@ def get_date_as_tuple(return_string = True):
     return int(year), int(month), int(day)
 
 def timer(func):
-
     def wrapper(*args, **kwargs):
-
         time_start = time.time()
-
-
         out = func(*args, **kwargs)
         used_time = time.time() - time_start
         try:
@@ -45,9 +41,6 @@ def timer(func):
         except:
             print (used_time)
         return out
-
-
-
     return wrapper
 
 
@@ -148,13 +141,13 @@ def get_revit_uptime():
         return "Not in Revit"
     from pyrevit.coreutils import envvars
     if not envvars.get_pyrevit_env_var("APP_UPTIME"):
-        set_revit_uptime()
+        update_revit_uptime()
     uptime = time.time() - envvars.get_pyrevit_env_var("APP_UPTIME")
     uptime = get_readable_time(uptime)
     return uptime
 
 
-def set_revit_uptime():
+def update_revit_uptime():
     from pyrevit.coreutils import envvars
     envvars.set_pyrevit_env_var("APP_UPTIME", time.time())
 

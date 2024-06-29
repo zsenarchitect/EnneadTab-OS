@@ -159,7 +159,17 @@ def pretty_print_dict(dict):
 
 
 
+def get_data(file_name, is_local = True):
+    if is_local:
+        return _read_json_as_dict_in_dump_folder(file_name, use_encode=True, create_if_not_exist=True)
+    else:
+        return _read_json_as_dict_in_shared_dump_folder(file_name, use_encode=True, create_if_not_exist=True)
 
+def set_data(data, file_name, is_local = True):
+    if is_local:
+        _save_dict_to_json_in_dump_folder(data, file_name, use_encode=True)
+    else:
+        _save_dict_to_json_in_shared_dump_folder(data, file_name, use_encode=True)
 
 @contextmanager
 def update_data(file_name, is_local = True):
@@ -171,21 +181,14 @@ def update_data(file_name, is_local = True):
 
         
     try:
-        if is_local:
-            data = _read_json_as_dict_in_dump_folder(file_name, use_encode=True, create_if_not_exist=True)
-        else:
-            data = _read_json_as_dict_in_shared_dump_folder(file_name, use_encode=True, create_if_not_exist=True)
+        data = get_data(file_name, is_local)
 
         # temporarily hands control back to the caller, allowing them to modify data.
         yield data
         # Once the block inside the with statement is complete, 
         # control returns to the context manager, which writes the modified data back to the file.
 
-
-        if is_local:
-            _save_dict_to_json_in_dump_folder(data, file_name, use_encode=True)
-        else:
-            _save_dict_to_json_in_shared_dump_folder(data, file_name, use_encode=True)
+        set_data(data, file_name, is_local)
 
     except Exception as e:
         print("An error occurred when updating data: {}".format(e))

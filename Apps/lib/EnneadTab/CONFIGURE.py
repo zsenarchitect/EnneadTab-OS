@@ -17,8 +17,8 @@ def get_setting_data(key, defaule_value=None):
 
         key_defaule_value: (key, default value), a tuple of default result, this is used to get the key of value looking for. If do not provide this tuple, then return the raw while data"""
     setting_file = _get_setting_file()
-    with DATA_FILE.update_data(setting_file) as data:
-        return data.get(key, defaule_value)
+    data = DATA_FILE.get_data(setting_file)
+    return data.get(key, defaule_value)
 
 
 def set_setting_data(key, value):

@@ -22,7 +22,7 @@ def is_hate_talkie():
     data = DATA_FILE.read_json_as_dict(setting_file)
     return not data.get("toggle_bt_is_talkie", True)
     """
-    return not CONFIGURE.get_setting_data("toggle_bt_is_talkie", True)
+    return not CONFIGURE.get_setting_data("toggle_bt_is_talkie", False)
 
 
 def speak(text, language='en', accent='com'):
@@ -39,11 +39,12 @@ def speak(text, language='en', accent='com'):
     if not text:
         return
 
-    with DATA_FILE.update_data("EA_Text2Speech.json") as data:
+    data = {}
+    data["text"] = text
+    data["language"] = language
+    data["accent"] = accent
+    DATA_FILE.set_data(data, "EA_Text2Speech.json")
     
-        data["text"] = text
-        data["language"] = language
-        data["accent"] = accent
  
 
     EXE.try_open_app("Speaker")

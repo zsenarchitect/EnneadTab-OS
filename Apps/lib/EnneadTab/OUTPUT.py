@@ -1,16 +1,3 @@
-"""to-do: make a standalone method to print long and interactive output, becasuwe the default way Rhino print output in cammand history sucks!
-
-this class need to do following:
-+singelton format, call many times, return one. Deafault to have one instance per caller, but also option to share common output.
-+buttons in line that bind a func(zoom to element(s), select elemet(s), checkbox selection, its title should be customizeblae)
-+ a search bar at the top of the web
-
-
-2023-12-16:
-this might be hard to make the button iteract back to the main software
-"""
-
-
 import os
 import io
 import webbrowser
@@ -18,15 +5,9 @@ import webbrowser
 import DATA_FILE
 import FOLDER 
 import ENVIRONMENT
-import ENVIRONMENT
 import NOTIFICATION
 import TIME 
 import EXE 
-
-# STYLE_MAP = {"main_body":"p",
-#              "title":"h1",
-#              "sub_title":"h2",
-#              "foot_note":"foot_note"}
 
 FUNCS = """
 <script>
@@ -36,6 +17,63 @@ function sample_func(btn) {
   confirm("Do you want to continue?");
 }
 
+function highlightSearch() {
+  var input, filter, body, p, h1, h2, li, i, txtValue;
+  input = document.getElementById('searchBox');
+  filter = input.value.toLowerCase();
+  body = document.getElementsByTagName('body')[0];
+  
+  // Highlight paragraphs
+  p = body.getElementsByTagName('p');
+  for (i = 0; i < p.length; i++) {
+    txtValue = p[i].textContent || p[i].innerText;
+    if (filter === "") {
+      p[i].style.backgroundColor = '';
+    } else if (txtValue.toLowerCase().indexOf(filter) > -1) {
+      p[i].style.backgroundColor = 'lightgreen';
+    } else {
+      p[i].style.backgroundColor = '';
+    }
+  }
+
+  // Highlight titles
+  h1 = body.getElementsByTagName('h1');
+  for (i = 0; i < h1.length; i++) {
+    txtValue = h1[i].textContent || h1[i].innerText;
+    if (filter === "") {
+      h1[i].style.backgroundColor = '';
+    } else if (txtValue.toLowerCase().indexOf(filter) > -1) {
+      h1[i].style.backgroundColor = 'lightgreen';
+    } else {
+      h1[i].style.backgroundColor = '';
+    }
+  }
+  
+  h2 = body.getElementsByTagName('h2');
+  for (i = 0; i < h2.length; i++) {
+    txtValue = h2[i].textContent || h2[i].innerText;
+    if (filter === "") {
+      h2[i].style.backgroundColor = '';
+    } else if (txtValue.toLowerCase().indexOf(filter) > -1) {
+      h2[i].style.backgroundColor = 'lightgreen';
+    } else {
+      h2[i].style.backgroundColor = '';
+    }
+  }
+
+  // Highlight list items
+  li = body.getElementsByTagName('li');
+  for (i = 0; i < li.length; i++) {
+    txtValue = li[i].textContent || li[i].innerText;
+    if (filter === "") {
+      li[i].style.backgroundColor = '';
+    } else if (txtValue.toLowerCase().indexOf(filter) > -1) {
+      li[i].style.backgroundColor = 'lightgreen';
+    } else {
+      li[i].style.backgroundColor = '';
+    }
+  }
+}
 </script>
 """
 
@@ -70,9 +108,8 @@ class Output:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    def write(self, content, style = None, as_str=False):
-        if not style:
-            style = Style.MainBody
+    def write(self, content, style = Style.MainBody, as_str=False):
+
         if as_str:
             content = str(content)
         Output._out.append((style, content))
@@ -104,7 +141,13 @@ class Output:
 
             report_file.write(FUNCS)
 
-            
+            # Add the search box
+            report_file.write("""
+            <div style='text-align: center;'>
+                <input type='text' id='searchBox' onkeyup='highlightSearch()' placeholder='Search...'>
+            </div>
+            """)
+
             report_file.write("<h1 style='text-align: center;'>{}</h1>".format("EnneadTab Console"))
             report_file.write("<div style='text-align: center;'>")
             report_file.write("<img src='{}\\logo_ennead-e.png' height='80'>".format(ENVIRONMENT.IMAGE_FOLDER))
@@ -113,8 +156,6 @@ class Output:
             report_file.write("<hr>") 
 
             for header_style, content in Output._out:
-        
-                
                 if isinstance(content, list):
                     report_file.write("<ul>")
                     for i, item in enumerate(content):

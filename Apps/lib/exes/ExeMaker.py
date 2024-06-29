@@ -16,6 +16,28 @@ EXE_MAKER_FOLDER = os.path.join(EXE_ROOT_FOLDER,"maker data")
 EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_ROOT_FOLDER,"source code")
 
 
+class NoGoodSetupException(Exception):
+    def __init__(self):
+        super().__init__("The setup is not complete or you are working on a new computer.")
+        print("The setup is not complete or you are working on a new computer.")
+
+PY_INSTALLER_LOCATION = None
+
+try:
+    import pyinstaller
+    PY_INSTALLER_LOCATION = "pyinstaller"  # Default location if import works
+except ModuleNotFoundError:
+    # Some computers cannot set up venv due to permission, so pyinstaller has to be installed in the global site packages.
+    possible_pyinstaller_locations = [
+        "C:\\Users\\szhang\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python310\\Scripts\\pyinstaller.exe"
+    ]
+    for location in possible_pyinstaller_locations:
+        if os.path.exists(location):
+            PY_INSTALLER_LOCATION = location
+            break
+    else:
+        raise NoGoodSetupException()
+
 def move_exes():
     src_folder = "{}\\dist".format(ROOT)
 
@@ -58,7 +80,8 @@ def make_exe(maker_json):
 
         
 def json_to_command(json_config):
-    command = ['pyinstaller']
+    command = [PY_INSTALLER_LOCATION]
+
 
 
     
@@ -92,6 +115,12 @@ def json_to_command(json_config):
 
     command.append("--log-level=WARN") # disable output in terminal
     command.append(final_path)
+    
+    # disallowing pygame, there are only a few exe that need pygame
+    # when i got there this part will be updated
+    command.append("--exclude-module")
+    command.append("pygame")  # Separate '--exclude-module' and 'pygame'
+
     print("\033[92m{}\033[00m".format(command))
     return command
 

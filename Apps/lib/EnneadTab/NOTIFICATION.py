@@ -76,3 +76,4 @@ def duck_pop(main_text = None):
 
 if __name__ == "__main__":
     duck_pop("Hello, world!")
+    messenger("Hello world")

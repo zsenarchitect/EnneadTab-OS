@@ -177,13 +177,18 @@ def update_installer_folder():
 
 @time_it
 def publish_duck():
+    RECOMPILE_EXES = False
 
     print_title("Start testing all moudle.")
     UNIT_TEST.test_core_module()
-    print_title ("\n\nBegin compiling all exes...")
-    update_exes()
-    print_title ("\n\nBegin updating install_folder...")
-    update_installer_folder()
+
+    if RECOMPILE_EXES:
+        print_title ("\n\nBegin compiling all exes...")
+        update_exes()
+        print_title ("\n\nBegin updating install_folder...")
+        update_installer_folder()
+
+        
     print_title ("\n\npush uptdate to EA dist folder")
     copy_to_EA_dist()
 

@@ -6,8 +6,11 @@ import threading
 import time
 import random
 import ENVIRONMENT
+import TEXT
 
 def get_audio_path_by_name(file_name):
+    if not file_name.endswith(".wav"):
+        file_name = file_name + ".wav"
     if os.path.exists(file_name):
         return file_name
     if os.path.exists("{}\\{}".format(ENVIRONMENT.AUDIO_FOLDER, file_name)):
@@ -21,7 +24,7 @@ def get_one_audio_path_by_prefix(prefix):
     return file
 
     
-def play_sound(file = "sound effect_popup msg3.wav"):
+def play_sound(file = "sound_effect_popup_msg3"):
     file = get_audio_path_by_name(file)
     if not file:
         return
@@ -31,7 +34,7 @@ def play_sound(file = "sound effect_popup msg3.wav"):
         sp = SoundPlayer()
         sp.SoundLocation = file
         sp.Play()
-        return
+        return True
     except Exception as e:
         # print ("Cannot use system media becasue: " + str(e))
         pass
@@ -41,12 +44,21 @@ def play_sound(file = "sound effect_popup msg3.wav"):
         sys.path.append(ENVIRONMENT.DEPENDENCY_FOLDER)
         import playsound # pyright : ignore
         playsound.playsound(file)
+        return True
     except Exception as e:
         # print ("cannot use playsound module becasue: " + str(e))
         pass
 
+    return False
 
 
+def test_play_all_sounds():
+    for file in os.listdir(ENVIRONMENT.AUDIO_FOLDER):
+        print (file)
+        
+        if not play_sound(file):
+            print (TEXT.colored_text("{} cannot be played in system".format(file)))
+            
 
 
 def play_meme_sound():
@@ -116,9 +128,11 @@ class Player:
 #############
 if __name__ == "__main__":
     print(__file__ + "   -----OK!")
-    unit_test() 
-    file = 'sound effect_xmas_hohoho.wav'
-    play_sound(file)
+    # unit_test() 
+    file = "sound_effect_hohoho"
+    # play_sound(file)
+    # play_sound()
+    test_play_all_sounds()
 
 
 

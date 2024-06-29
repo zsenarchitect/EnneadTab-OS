@@ -14,29 +14,29 @@ from ENVIRONMENT import EXE_ROOT_FOLDER, ROOT # pyright: ignore
 EXE_PRODUCT_FOLDER = os.path.join(EXE_ROOT_FOLDER, "products")
 EXE_MAKER_FOLDER = os.path.join(EXE_ROOT_FOLDER,"maker data")
 EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_ROOT_FOLDER,"source code")
-
+import NOTIFICATION
 
 class NoGoodSetupException(Exception):
     def __init__(self):
         super().__init__("The setup is not complete or you are working on a new computer.")
-        print("The setup is not complete or you are working on a new computer.")
+        
 
-PY_INSTALLER_LOCATION = None
+PY_INSTALLER_LOCATION = "pyinstaller"
 
-try:
-    import pyinstaller
-    PY_INSTALLER_LOCATION = "pyinstaller"  # Default location if import works
-except ModuleNotFoundError:
-    # Some computers cannot set up venv due to permission, so pyinstaller has to be installed in the global site packages.
-    possible_pyinstaller_locations = [
-        "C:\\Users\\szhang\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python310\\Scripts\\pyinstaller.exe"
-    ]
-    for location in possible_pyinstaller_locations:
-        if os.path.exists(location):
-            PY_INSTALLER_LOCATION = location
-            break
-    else:
-        raise NoGoodSetupException()
+# try:
+#     import pyinstaller
+#       # Default location if import works
+# except ModuleNotFoundError:
+#     # Some computers cannot set up venv due to permission, so pyinstaller has to be installed in the global site packages.
+#     possible_pyinstaller_locations = [
+#         "C:\\Users\\szhang\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python310\\Scripts\\pyinstaller.exe"
+#     ]
+#     for location in possible_pyinstaller_locations:
+#         if os.path.exists(location):
+#             PY_INSTALLER_LOCATION = location
+#             break
+#     else:
+#         raise NoGoodSetupException()
 
 def move_exes():
     src_folder = "{}\\dist".format(ROOT)
@@ -134,6 +134,7 @@ def update_all_exes():
 
     move_exes()
     print ("done exe creation")
+    NOTIFICATION.messenger("Exe finish compiling")
     
 
 

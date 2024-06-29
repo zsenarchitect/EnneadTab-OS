@@ -12,6 +12,7 @@ sys.path.append(os.path.dirname(__file__) + "\\EnneadTab")
 import UNIT_TEST #pyright: ignore
 import NOTIFICATION #pyright: ignore
 import FOLDER #pyright: ignore
+import SOUND # pyright: ignore
 
 
 # Specify the absolute path to the git executable
@@ -29,7 +30,9 @@ def time_it(func):
         
         # Print the formatted message with color
         print("{}Publish took {:.1f} seconds to complete.{}".format(blue_text, elapsed_time, reset_color))
-        NOTIFICATION.messenger("Publish took {:.1f} seconds to complete.".format(elapsed_time))
+        NOTIFICATION.duck_pop("Publish took {:.1f} seconds to complete.".format(elapsed_time))
+        SOUND.play_sound("sound effect_mario powerup")
+
         return result
     return wrapper
 
@@ -39,7 +42,7 @@ def update_exes():
     from ExeMaker import update_all_exes # pyright: ignore
     update_all_exes()
  
-def copy_to_EA_dist():
+def copy_to_EA_Dist_and_commit():
     # locate the EA_Dist repo folder and current repo folder
     # the current repo folder is 3 parent folder up
     current_repo_folder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -70,8 +73,10 @@ def copy_to_EA_dist():
     # pull the latest changes from remote
     pull_changes_from_main(EA_dist_repo_folder)
     
-    # push EA_dist to update branch
-    push_changes_to_main(EA_dist_repo_folder)
+    # push EA_dist to update branch, try max 3 times
+    for attemp in range(3):
+        if push_changes_to_main(EA_dist_repo_folder):
+            break
 
     # Play Windows built-in notification sound
     winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
@@ -158,6 +163,8 @@ def push_changes_to_main(repository_path):
     if push_result != 0:
         raise Exception("Git push command failed with return code {}".format(push_result))
 
+    return True
+
 
 def update_installer_folder():
     # locate the EA_Dist repo folder and current repo folder
@@ -171,26 +178,36 @@ def update_installer_folder():
 
     # copy folder from current repo to EA_dist repo
     for file in ["EnneadTab_OS_Installer.exe",
-                 "EnneadTab_For_Revit(Legacy)_Installer.exe"]:
+                 "EnneadTab_For_Revit(Legacy)_Installer.exe",
+                 "EnneadTab_For_Revit_UnInstaller.exe"]:
         shutil.copy(os.path.join(current_repo_folder, "Apps", "lib", "exes", "products", file), 
                     os.path.join(current_repo_folder, "Installation", file))
 
 @time_it
 def publish_duck():
-    RECOMPILE_EXES = False
+
 
     print_title("Start testing all moudle.")
     UNIT_TEST.test_core_module()
 
-    if RECOMPILE_EXES:
+    if manual_confirm_should_compile_exe():
         print_title ("\n\nBegin compiling all exes...")
+        NOTIFICATION.messenger("Recompiling all exes...kill VScode if you want to cancel..")
         update_exes()
-        print_title ("\n\nBegin updating install_folder...")
+        print_title ("\n\nBegin updating installation folder for public easy install...")
         update_installer_folder()
 
         
     print_title ("\n\npush uptdate to EA dist folder")
-    copy_to_EA_dist()
+    copy_to_EA_Dist_and_commit()
+
+
+def manual_confirm_should_compile_exe():
+    """manua change date to see if I should recompile exe
+    so each recompile is more intentional"""
+    import datetime
+    return str(datetime.date.today()) == "2024-06-29"
+    
 
 def print_title(text):
     # ANSI escape code for larger text

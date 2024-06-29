@@ -27,14 +27,7 @@ def log_usage(func,*args):
         f.writelines('\nFunction name: {}'.format(func.__name__))
         f.writelines('\nArguments: {}'.format(args))
         f.writelines('\nResult: {}'.format(res))
-    """
-    also log here some info on the usage status. Make a context manager
-    when:
-    who:
-    duration:
-    file_name:
-    error, if any:
-    """
+
 
 # with log_usage(get_log_file()) as f:
 #     f.writelines('\nYang is writing!')
@@ -60,7 +53,7 @@ def get_log_file(user_name = None):
         user_name = USER.USER_NAME
     return "{}\{}.json".format(log_folder, user_name)
 
-def log(script_path, func_name):
+def log(script_path, func_name_as_record):
     def decorator(func):
         def wrapper(*args, **kwargs):
             log_file = get_log_file()
@@ -84,7 +77,7 @@ def log(script_path, func_name):
             
             # print (func.__name__)
 
-            data["log"][TIME.get_formatted_current_time()] = {"function_name": func_name,
+            data["log"][TIME.get_formatted_current_time()] = {"function_name": func_name_as_record,
                                                                 "arguments": args,
                                                                 "result": out,
                                                                 "script_path": script_path,

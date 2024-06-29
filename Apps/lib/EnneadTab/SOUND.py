@@ -129,10 +129,10 @@ class Player:
 if __name__ == "__main__":
     print(__file__ + "   -----OK!")
     # unit_test() 
-    file = "sound_effect_hohoho"
-    # play_sound(file)
+    file = "sound_effect_spring"
+    play_sound(file)
     # play_sound()
-    test_play_all_sounds()
+    # test_play_all_sounds()
 
 
 

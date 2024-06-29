@@ -82,3 +82,8 @@ def unit_test():
 if __name__ == "__main__":
     duck_pop("Hello, world!")
     messenger("Hello world")
+    for i in range(10):
+        for _ in range(100):
+            print (_)
+        duck_pop(str(i+1))
+        messenger(str(i+1))

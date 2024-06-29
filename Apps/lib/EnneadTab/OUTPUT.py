@@ -101,7 +101,7 @@ class Output:
         }
 
     # when in Reivit, do not print to pollute the nice pyrevit console
-    _is_print_out = not ENVIRONMENT.is_Revit_environment()
+    _is_print_out = not ENVIRONMENT.IS_REVIT_ENVIRONMENT
     
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
@@ -243,7 +243,7 @@ def unit_test():
 
 
 def display_pyrevit_output_on_browser():
-    if not ENVIRONMENT.is_Revit_environment():
+    if not ENVIRONMENT.IS_REVIT_ENVIRONMENT:
         NOTIFICATION.messenger("currently only support Revit Env")
         return
     from pyrevit import script

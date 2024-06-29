@@ -115,6 +115,15 @@ IS_GRASSHOPPER_ENVIRONMENT = is_Grasshopper_environment()
 IS_REVIT_ENVIRONMENT = is_Revit_environment()
 IS_RHINOINSIDEREVIT_ENVIRONMENT = is_RhinoInsideRevit_environment()
 
+
+def get_app_name():
+    app_name = "terminal"
+    if is_Revit_environment():
+        app_name = "revit"
+    elif is_Rhino_environment():
+        app_name = "rhino"
+    return app_name
+
 ###############
 if __name__ == "__main__":
     unit_test()

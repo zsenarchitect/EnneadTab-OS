@@ -64,10 +64,10 @@ def is_enneadtab_developer():
     # declare username variables
     system_usernames, autodesk_usernames = get_usernames_from_developers()
 
-    if ENVIRONMENT.is_Rhino_environment():
+    if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
         return USER_NAME in system_usernames
 
-    if ENVIRONMENT.is_Revit_environment():
+    if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
         return get_autodesk_user_name() in autodesk_usernames
 
 
@@ -82,7 +82,7 @@ def get_autodesk_user_name():
     Returns:
         str: Autodesk username of the current user.
     """
-    if not ENVIRONMENT.is_Revit_environment():
+    if not ENVIRONMENT.IS_REVIT_ENVIRONMENT:
         return None
     import REVIT
     return REVIT.REVIT_APPLICATION.get_application().Username

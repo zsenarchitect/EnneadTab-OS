@@ -137,7 +137,7 @@ class AutoTimer:
 
 def get_revit_uptime():
     import ENVIRONMENT
-    if not ENVIRONMENT.is_Revit_environment():
+    if not ENVIRONMENT.IS_REVIT_ENVIRONMENT:
         return "Not in Revit"
     from pyrevit.coreutils import envvars
     if not envvars.get_pyrevit_env_var("APP_UPTIME"):

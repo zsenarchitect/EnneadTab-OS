@@ -4,7 +4,6 @@ import DATA_FILE
 SETTING_FILE = FOLDER.get_EA_dump_folder_file('global_setting.json')
 
 
-
 def get_setting_data(key, defaule_value=None):
     """if no key provided, will return the whole dict
         otherwise, return the value of this key, default value 
@@ -43,8 +42,3 @@ def disable_revit_addin(addin):
     # reload pyrevit
 
 
-def update_money(coin_change):
-    with DATA_FILE.update_data(SETTING_FILE) as data:
-        if "money" not in data.keys():
-            data["money"] = 100
-        data["money"] += coin_change

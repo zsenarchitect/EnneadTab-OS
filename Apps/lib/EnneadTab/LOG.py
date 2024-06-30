@@ -37,10 +37,7 @@ def log_usage(func,*args):
 
         
 def get_log_folder():
-    if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
-        log_folder = ENVIRONMENT.REVIT_USER_LOG_FOLDER
-    if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
-        log_folder = ENVIRONMENT.RHINO_USER_LOG_FOLDER
+
     if "log_folder" not in locals():
         log_folder = "{}\LOG".format(FOLDER.get_EA_setting_folder())
         os.makedirs(log_folder, exist_ok = True)

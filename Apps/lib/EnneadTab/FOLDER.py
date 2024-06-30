@@ -1,4 +1,4 @@
-
+import time
 import os
 import shutil
 import NOTIFICATION
@@ -52,3 +52,34 @@ def copy_file_to_local_dump_folder(original_path, file_name = None, ignore_warni
                 raise e
 
     return local_path
+
+
+
+def backup_data(data_file, backup_folder_title, max_time = 60*60*24*1):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+
+            out = func(*args, **kwargs)
+
+            
+            backup_folder = get_EA_dump_folder_file("backup_" + backup_folder_title)
+            if not os.path.exists(backup_folder):
+                os.mkdir(backup_folder)
+                
+            latest_backup_date = None
+            for filename in os.listdir(backup_folder):
+                if not filename.endswith(".json"):
+                    continue
+                backup_date_str = filename.split("_")[0]
+                backup_date = time.strptime(backup_date_str, "%Y-%m-%d")
+                if not latest_backup_date or backup_date > latest_backup_date:
+                    latest_backup_date = backup_date
+
+            today = time.strftime("%Y-%m-%d")
+            if not latest_backup_date or (time.mktime(time.strptime(today, "%Y-%m-%d")) - time.mktime(latest_backup_date)) > max_time:
+                backup_file_path = os.path.join(backup_folder, "{}_{}".format(today, data_file))
+                shutil.copy(get_EA_dump_folder_file(data_file), backup_file_path)
+  
+            return out
+        return wrapper
+    return decorator

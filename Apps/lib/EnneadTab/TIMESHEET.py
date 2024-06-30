@@ -9,14 +9,12 @@ import OUTPUT
 import FOLDER
 
 TIMESHEET_DATA_FILE = "TIMESHEET.json"
-BACKUP_FOLDER = FOLDER.get_EA_dump_folder_file("timesheet_backup")
-if not os.path.exists(BACKUP_FOLDER):
-    os.mkdir(BACKUP_FOLDER)
 
+
+@FOLDER.backup_data(TIMESHEET_DATA_FILE , "timesheet")
 def update_timesheet(doc_name):
     app_name = ENVIRONMENT.get_app_name()
     _update_time_sheet_by_software(doc_name, app_name)
-    backup_timesheet()
 
 def print_timesheet_detail():
     def print_in_style(text):
@@ -105,19 +103,7 @@ def print_revit_log_as_table():
             dates = all_dates[i:]
         print_table(dates)
 
-def backup_timesheet():
-    latest_backup_date = None
-    for filename in os.listdir(BACKUP_FOLDER):
-        if filename.endswith(".json"):
-            backup_date_str = filename.split("_")[0]
-            backup_date = time.strptime(backup_date_str, "%Y-%m-%d")
-            if not latest_backup_date or backup_date > latest_backup_date:
-                latest_backup_date = backup_date
 
-    today = time.strftime("%Y-%m-%d")
-    if not latest_backup_date or (time.mktime(time.strptime(today, "%Y-%m-%d")) - time.mktime(latest_backup_date)) > 60*60*24*1:
-        backup_file_path = os.path.join(BACKUP_FOLDER, "{}_{}".format(today, TIMESHEET_DATA_FILE))
-        shutil.copy(FOLDER.get_EA_dump_folder_file(TIMESHEET_DATA_FILE), backup_file_path)
 
 def _update_time_sheet_by_software(doc_name, software):
     with DATA_FILE.update_data(TIMESHEET_DATA_FILE) as data:

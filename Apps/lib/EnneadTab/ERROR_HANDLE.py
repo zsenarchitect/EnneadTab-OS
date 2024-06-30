@@ -45,7 +45,7 @@ def try_catch_error(func, is_silent=False, is_pass = False):
            
                 os.startfile(error_file)
 
-            if ENVIRONMENT.is_Revit_environment() and not is_silent:
+            if ENVIRONMENT.IS_REVIT_ENVIRONMENT and not is_silent:
                 NOTIFICATION.messenger(
                     main_text="!Critical Warning, close all Revit UI window from EnneadTab and reach to Sen Zhang.")
 

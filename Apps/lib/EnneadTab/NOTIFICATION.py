@@ -41,17 +41,18 @@ def messenger(main_text,
         main_text = str(main_text)
 
         
-    with DATA_FILE.update_data("MESSENGER.json") as data:
-        
-        data["main_text"] = main_text
-        data["animation_in_duration"] = 0.5
-        data["animation_stay_duration"] = animation_stay_duration
-        data["animation_fade_duration"] = 2
-        data["width"] = width
-        data["height"] = height or 150 + str(main_text).count("\n") * 40
-        data["image"] = image
-        data["x_offset"] = x_offset
 
+    data = {}
+    data["main_text"] = main_text
+    data["animation_in_duration"] = 0.5
+    data["animation_stay_duration"] = animation_stay_duration
+    data["animation_fade_duration"] = 2
+    data["width"] = width
+    data["height"] = height or 150 + str(main_text).count("\n") * 40
+    data["image"] = image
+    data["x_offset"] = x_offset
+
+    DATA_FILE.set_data(data, "MESSENGER.json")
 
 
 
@@ -63,17 +64,26 @@ def duck_pop(main_text = None):
         main_text = "Quack!"
 
 
-    with DATA_FILE.update_data("DUCK_POP.json") as data:
-        data["main_text"] = main_text
-        data["duck_image"] = IMAGE.get_image_path_by_name("duck_green_bg.png")
-        data["explosion_gif"] = IMAGE.get_image_path_by_name("duck_explosion.gif")
-        data["audio"] = SOUND.get_one_audio_path_by_prefix("duck")
+
+    data = {}
+    data["main_text"] = main_text
+    data["duck_image"] = IMAGE.get_image_path_by_name("duck_green_bg.png")
+    data["explosion_gif"] = IMAGE.get_image_path_by_name("duck_explosion.gif")
+    data["audio"] = SOUND.get_one_audio_path_by_prefix("duck")
+    DATA_FILE.set_data(data, "DUCK_POP.json") 
 
     EXE.try_open_app("Duck_Pop")
   
 
-
+def unit_test():
+    duck_pop("Hello, Ennead!")
+    messenger("Hello Ennead!")
 
 if __name__ == "__main__":
     duck_pop("Hello, world!")
     messenger("Hello world")
+    for i in range(10):
+        for _ in range(100):
+            print (_)
+        duck_pop(str(i+1))
+        messenger(str(i+1))

@@ -6,6 +6,7 @@ import os
 import traceback
 import TEXT
 import ENVIRONMENT
+import NOTIFICATION
 
 
 def print_boolean_in_color(bool):
@@ -57,6 +58,7 @@ class UnitTest:
         except AssertionError as e:
             print ("Assertion Error! There is some unexpected results in the test")
             print (traceback.format_exc())
+            NOTIFICATION.messenger("[{}] has failed the unit test".format(module))
             return False
         
     def process_folder(self, folder):

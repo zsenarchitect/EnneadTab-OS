@@ -10,7 +10,9 @@ import ENVIRONMENT
 import TIME
 import NOTIFICATION
 import SPEAK
-from REVIT import REVIT_APPLICATION
+
+if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
+    from REVIT import REVIT_APPLICATION
 
 
 
@@ -38,15 +40,15 @@ def email(receiver_email_list,
 
     body = body.replace("\n", "<br>")
 
-
-    with DATA_FILE.update_data("EA_EMAIL.json") as data:
-        data["receiver_email_list"] = receiver_email_list
-        data["subject"] = subject
-        data["body"] = body
-        data["body_folder_link_list"] = body_folder_link_list
-        data["body_image_link_list"] = body_image_link_list
-        data["attachment_list"] = attachment_list
-        data["logo_image_path"] = IMAGE.get_image_path_by_name("EnneadTab_Logo.png")
+    data = {}
+    data["receiver_email_list"] = receiver_email_list
+    data["subject"] = subject
+    data["body"] = body
+    data["body_folder_link_list"] = body_folder_link_list
+    data["body_image_link_list"] = body_image_link_list
+    data["attachment_list"] = attachment_list
+    data["logo_image_path"] = IMAGE.get_image_path_by_name("EnneadTab_Logo.png")
+    DATA_FILE.set_data(data, "EA_EMAIL.json")
 
 
     EXE.try_open_app("EA_EMAIL")
@@ -59,7 +61,7 @@ def email_error(traceback, tool_name, error_from_user, subject_line="EnneadTab A
     import time
     t = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(time.time())))
     try:
-        if ENVIRONMENT.is_Revit_environment():
+        if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
             app_uptime = TIME.get_revit_uptime()
             import REVIT
             
@@ -79,7 +81,7 @@ def email_error(traceback, tool_name, error_from_user, subject_line="EnneadTab A
                                                                                                                                 app.VersionName,
                                                                                                                                 doc_name,
                                                                                                                                 app_uptime)
-        elif ENVIRONMENT.is_Rhino_environment():
+        elif ENVIRONMENT.IS_RHINO_ENVIRONMENT:
             import rhinoscriptsyntax as rs
             import scriptcontext as sc
             additional_note = "File in trouble:{}\nCommand history before diaster:\n{}".format(sc.doc.Path or None,
@@ -97,13 +99,13 @@ def email_error(traceback, tool_name, error_from_user, subject_line="EnneadTab A
                                                                                              traceback,
                                                                                              additional_note)
 
-    if ENVIRONMENT.is_Revit_environment():
+    if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
         developer_emails = USER.get_revit_developer_emails()
         if "h" in app_uptime and 50 < int(app_uptime.split("h")[0]):
             email_to_self(subject="I am tired...Revit running non-stop for {}".format(app_uptime),
                           body="Hello,\nI have been running for {}.\nLet me rest and clear cache!\n\nDid you know that restarting your Revit regularly can improve performance?\nBest regard,\nYour poor Revit.". format(app_uptime))
             
-    if ENVIRONMENT.is_Rhino_environment():
+    if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
         developer_emails = USER.get_rhino_developer_emails()
 
 

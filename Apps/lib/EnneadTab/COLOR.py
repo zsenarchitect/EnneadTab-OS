@@ -14,9 +14,9 @@ except:
 
 
 import ENVIRONMENT
-if ENVIRONMENT.is_Revit_environment():
+if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
     from Autodesk.Revit.DB import Color as DB_Color # pyright: ignore
-if ENVIRONMENT.is_Rhino_environment():
+if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
     import Eto # pyright: ignore
 import NOTIFICATION
 import FOLDER
@@ -87,9 +87,9 @@ def tuple_to_color(tuple):
     """
     red,green,blue = tuple
     
-    if ENVIRONMENT.is_Revit_environment():
+    if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
         return DB_Color(red,green,blue)
-    if ENVIRONMENT.is_Rhino_environment():
+    if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
         
         Eto.Drawing.Color(red/256.0,
                         green/256.0,
@@ -156,7 +156,7 @@ def is_same_color(color1, color2):
     Returns:
         bool: _description_
     """
-    if ENVIRONMENT.is_Revit_environment():
+    if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
         return color1.Red == color2.Red and color1.Green == color2.Green and color1.Blue == color2.Blue
     
 

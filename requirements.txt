@@ -6,3 +6,5 @@ pywin32
 requests
 playsound
 GitPython
+xlrd
+xlsxwriter

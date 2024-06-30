@@ -3,7 +3,7 @@
 import random
 import DATA_FILE
 import EXE
-import CONFIGURE
+import CONFIG
 
 def random_speak(lines, chance=1.0):
     if random.random() <= chance:
@@ -22,7 +22,7 @@ def is_hate_talkie():
     data = DATA_FILE.read_json_as_dict(setting_file)
     return not data.get("toggle_bt_is_talkie", True)
     """
-    return not CONFIGURE.get_setting_data("toggle_bt_is_talkie", True)
+    return not CONFIG.get_setting_data("toggle_bt_is_talkie", True)
 
 
 def speak(text, language='en', accent='com'):

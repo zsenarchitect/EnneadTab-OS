@@ -1,14 +1,8 @@
 import FOLDER
 import DATA_FILE
 
-def _get_setting_file():
-    """this is the ui setting file for EnneadTab stored in each user local computer
+SETTING_FILE = FOLDER.get_EA_dump_folder_file('global_setting.json')
 
-    Returns:
-        _type_: _description_
-    """
-    file_name = 'global_setting.json'
-    return FOLDER.get_EA_dump_folder_file(file_name)
 
 
 def get_setting_data(key, defaule_value=None):
@@ -16,8 +10,8 @@ def get_setting_data(key, defaule_value=None):
         otherwise, return the value of this key, default value 
 
         key_defaule_value: (key, default value), a tuple of default result, this is used to get the key of value looking for. If do not provide this tuple, then return the raw while data"""
-    setting_file = _get_setting_file()
-    data = DATA_FILE.get_data(setting_file)
+
+    data = DATA_FILE.get_data(SETTING_FILE)
     return data.get(key, defaule_value)
 
 
@@ -28,8 +22,8 @@ def set_setting_data(key, value):
         key (_type_): _description_
         value (_type_): _description_
     """
-    setting_file = _get_setting_file()
-    with DATA_FILE.update_data(setting_file) as data:
+
+    with DATA_FILE.update_data(SETTING_FILE) as data:
         data[key] = value
 
 
@@ -47,4 +41,10 @@ def disable_revit_addin(addin):
     pass
 
     # reload pyrevit
-    
+
+
+def update_money(coin_change):
+    with DATA_FILE.update_data(SETTING_FILE) as data:
+        if "money" not in data.keys():
+            data["money"] = 100
+        data["money"] += coin_change

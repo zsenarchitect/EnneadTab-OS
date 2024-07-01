@@ -32,11 +32,13 @@ def log_usage(func,*args):
 # with log_usage(LOG_FILE_NAME) as f:
 #     f.writelines('\nYang is writing!')
 
-    
+
+"""log_revit and log_rhino is break down becasue rhino need a wrapper to direct run script directly
+whereas revit need to look at local func run"""
 
 
 @FOLDER.backup_data(LOG_FILE_NAME , "log")
-def OLD_log(script_path, func_name_as_record):
+def log_rhino(script_path, func_name_as_record):
     def decorator(func):
         def wrapper(*args, **kwargs):
             with DATA_FILE.update_data(LOG_FILE_NAME) as data:
@@ -44,12 +46,14 @@ def OLD_log(script_path, func_name_as_record):
                 out = func(*args, **kwargs)
                 t_end = time.time()
 
-                data[TIME.get_formatted_current_time()] = {"function_name": func_name_as_record,
-                                                            "arguments": args,
-                                                            "result": out,
-                                                            "script_path": script_path,
-                                                            "duration": TIME.get_readable_time(t_end - t_start)
-                                                            }
+                data[TIME.get_formatted_current_time()] = {
+                    "application":"rhino", 
+                    "function_name": func_name_as_record,
+                    "arguments": args,
+                    "result": str(out),
+                    "script_path": script_path,
+                    "duration": TIME.get_readable_time(t_end - t_start)
+                    }
 
             return out
         return wrapper
@@ -57,7 +61,7 @@ def OLD_log(script_path, func_name_as_record):
 
 
 @FOLDER.backup_data(LOG_FILE_NAME , "log")
-def log(func):
+def log_revit(func):
 
     def wrapper(*args, **kwargs):
       
@@ -66,11 +70,13 @@ def log(func):
             out = func(*args, **kwargs)
             t_end = time.time()
 
-            data[TIME.get_formatted_current_time()] = {"function_name": func.__name__,
-                                                        "arguments": args,
-                                                        "result": str(out),
-                                                        "duration": TIME.get_readable_time(t_end - t_start)
-                                                        }
+            data[TIME.get_formatted_current_time()] = {
+                "application":"revit", 
+                "function_name": func.__name__,
+                "arguments": args,
+                "result": str(out),
+                "duration": TIME.get_readable_time(t_end - t_start)
+                }
 
             return out
        

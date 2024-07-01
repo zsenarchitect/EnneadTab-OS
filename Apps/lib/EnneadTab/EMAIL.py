@@ -1,14 +1,13 @@
 
+import time
 import EXE
 import DATA_FILE
 import IMAGE
 import EXE
-import FOLDER
 import DATA_FILE
 import USER
 import ENVIRONMENT
 import TIME
-import NOTIFICATION
 import SPEAK
 
 if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
@@ -47,18 +46,17 @@ def email(receiver_email_list,
     data["body_folder_link_list"] = body_folder_link_list
     data["body_image_link_list"] = body_image_link_list
     data["attachment_list"] = attachment_list
-    data["logo_image_path"] = IMAGE.get_image_path_by_name("EnneadTab_Logo.png")
+    data["logo_image_path"] = IMAGE.get_image_path_by_name("icon_ennead-e.png")
     DATA_FILE.set_data(data, "EA_EMAIL.json")
 
 
-    EXE.try_open_app("EA_EMAIL")
+    EXE.try_open_app("Emailer")
     SPEAK.speak("enni-ed tab email is sent out. Subject line: {}".format(
         subject.lower().replace("ennead", "enni-ed ")))
     
 
 def email_error(traceback, tool_name, error_from_user, subject_line="EnneadTab Auto Email Error Log"):
 
-    import time
     t = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(time.time())))
     try:
         if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
@@ -84,7 +82,7 @@ def email_error(traceback, tool_name, error_from_user, subject_line="EnneadTab A
         elif ENVIRONMENT.IS_RHINO_ENVIRONMENT:
             import rhinoscriptsyntax as rs
             import scriptcontext as sc
-            additional_note = "File in trouble:{}\nCommand history before diaster:\n{}".format(sc.doc.Path or None,
+            additional_note = "File in trouble:{}\nCommand history before disaster:\n{}".format(sc.doc.Path or None,
                                                                                 rs.CommandHistory())
 
             

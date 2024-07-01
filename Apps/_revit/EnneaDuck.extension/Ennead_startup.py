@@ -21,14 +21,15 @@ if lib_dir not in sys.path:
 
 import proDUCKtion # pyright: ignore 
 
-from EnneadTab import VERSION_CONTROL
+from EnneadTab import VERSION_CONTROL, LOG, ERROR_HANDLE
 
 
-
-def main():
+@ERROR_HANDLE.try_catch_error(is_silent=True)
+@LOG.log_revit
+def enneadtab_startup():
     VERSION_CONTROL.update_EA_dist()
 
 
 
 if __name__ == "__main__":
-    main()
+    enneadtab_startup()

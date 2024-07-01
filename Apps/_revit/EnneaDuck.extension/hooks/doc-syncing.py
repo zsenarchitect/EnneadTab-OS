@@ -11,9 +11,10 @@ from EnneadTab.REVIT import REVIT_SELECTION
 
 
 
-@ERROR_HANDLE.try_catch_error_silently
-def main():
+@ERROR_HANDLE.try_catch_error(is_silent=True)
+def doc_syncing():
     VERSION_CONTROL.update_EA_dist()
+
 
   
 
@@ -21,4 +22,4 @@ def main():
 #################################################################
 
 if __name__ == "__main__":
-    main()
+    doc_syncing()

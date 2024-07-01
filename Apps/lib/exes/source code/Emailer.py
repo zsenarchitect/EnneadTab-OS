@@ -4,13 +4,12 @@ import json
 import os
 import win32com.client
 import io
+import _Exe_Util
+
 
 def send_email():
-
-
     file_name = "EA_EMAIL.json"
-    dump_folder = "{}\Documents\EnneadTab Settings".format(os.environ["USERPROFILE"])
-    file_path = "{}\{}".format(dump_folder, file_name)
+    file_path = _Exe_Util.get_file_in_dump_folder(file_name)
     if not os.path.exists(file_path):
         print ("no json")
         return
@@ -31,7 +30,7 @@ def send_email():
     body_folder_link_list = data["body_folder_link_list"]
     body_image_link_list = data["body_image_link_list"]
     attachment_list = data["attachment_list"]
-    schedule_time = data["schedule_time"]
+
 
 
     content = body
@@ -65,10 +64,6 @@ def send_email():
         for file in attachment_list:
             message.Attachments.Add(file, 1)
 
-    if schedule_time:
-        import time
-        while time.time() < schedule_time:
-            time.sleep(60)
 
     message.Send()
     # print ("finish")
@@ -83,7 +78,7 @@ if __name__ == "__main__":
     except:
 
         error = traceback.format_exc()
-        error_file = "{}\Documents\EnneadTab Settings\ERROR_LOG_email.txt".format(os.environ["USERPROFILE"])
+        error_file = _Exe_Util.get_file_in_dump_folder("error_email.txt")
         with open(error_file, "w") as f:
             f.write(error)
 

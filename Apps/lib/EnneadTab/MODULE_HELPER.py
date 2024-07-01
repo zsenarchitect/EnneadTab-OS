@@ -37,7 +37,7 @@ def run_func_in_module(module_path, func_name, *args):
 
     
 
-@ERROR_HANDLE.try_catch_error_silently
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def run_revit_script(script_subfolder_or_fullpath, func_name,*args,**kwargs):
     """_summary_
 
@@ -115,8 +115,8 @@ def run_Rhino_button(locator, *args):
             NOTIFICATION.messenger(main_text="Oooops, cannot find the func <{}> in source code.\nContact SZ and let him know. Thx!".format(func_name))
             return
 
-    @ERROR_HANDLE.try_catch_error
-    @LOG.log(module_path, func_name)
+    @ERROR_HANDLE.try_catch_error()
+    @LOG.log_rhino(module_path, func_name)
     def runner(*args):
         func(*args)
 

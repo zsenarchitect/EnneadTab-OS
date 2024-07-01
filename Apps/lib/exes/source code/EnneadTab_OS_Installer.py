@@ -6,10 +6,12 @@ import time
 import traceback
 
 
+import _Exe_Util
+
 class RepositoryUpdater:
     def __init__(self, repo_url, extract_to):
         self.repo_url = repo_url
-        self.extract_to = os.path.expanduser(extract_to)
+        self.extract_to = _Exe_Util.ESOSYSTEM_FOLDER
 
         if not os.path.exists(self.extract_to):
             os.makedirs(self.extract_to)
@@ -98,8 +100,8 @@ def save_traceback_and_open(user, error_message):
 
 def main():
     repo_url = "https://github.com/zsenarchitect/EA_Dist/archive/refs/heads/master.zip"
-    extract_to = r"~\Documents\EnneadTab Ecosystem"
-    updater = RepositoryUpdater(repo_url, extract_to)
+
+    updater = RepositoryUpdater(repo_url)
     updater.run_update()
 
 if __name__ == '__main__':

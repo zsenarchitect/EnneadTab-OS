@@ -16,9 +16,9 @@ def play_success_sound():
     SOUND.play_sound(file)
 
 
-@LOG.log
-@ERROR_HANDLE.try_catch_error_silently
-def main():
+@ERROR_HANDLE.try_catch_error(is_silent=True)
+@LOG.log_revit
+def doc_synced():
     play_success_sound()
     
 
@@ -26,4 +26,4 @@ def main():
 
 #################################################################
 if __name__ == "__main__":
-    main()
+    doc_synced()

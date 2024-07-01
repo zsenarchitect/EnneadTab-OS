@@ -2,6 +2,7 @@ import configparser
 import os
 import time
 
+import _Exe_Util
 
 def main():
     # Get the current user's profile directory
@@ -21,7 +22,7 @@ def main():
     config.read(file_path)
 
     # Construct the new path for userextensions
-    new_userextensions_path = os.path.join(user_profile, 'Documents', 'EnneadTab Ecosystem', 'EA_Dist', '_revit')
+    new_userextensions_path = os.path.join(_Exe_Util.ESOSYSTEM_FOLDER, 'EA_Dist', '_revit')
 
     # Modify the necessary items in the [...] section
     if 'core' in config:

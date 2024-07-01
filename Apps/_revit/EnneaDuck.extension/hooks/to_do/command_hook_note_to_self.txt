@@ -1,0 +1,23 @@
+
+to use command from hook script:
+uiapp.PostCommand(args.CommandId)
+
+to cast new command:
+command_id = UI.RevitCommandId.LookupPostableCommandId(UI.PostableCommand.Section)
+uiapp.PostCommand(command_id)
+
+
+the hook script name use internal command ID, that is not the same as postable command.
+to find more about ID_VIEW_NEW_SECTION similar ID for revit command, check the jounal file afte such action happned.
+the main diff between command-before-exec and command-exec is that
+
+
+
+in <before>, if i do not cancel, the original comand will play.
+in <exec>, if i do not cancel, the original command will NOT play, i will need to post my own command. THIS IS ESSENTIASLLY A COMMAND OVERRIDE FOR NATIVE REVIT FUNCTION.>
+
+
+when to use <exec>: if i need to do things before and after.
+NOTE:
+The trouble with using post command is that it will be queued and not excute immediately. So it will happen after the script is done.
+

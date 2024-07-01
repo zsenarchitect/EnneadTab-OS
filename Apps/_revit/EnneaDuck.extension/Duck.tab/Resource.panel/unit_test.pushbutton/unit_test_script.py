@@ -11,8 +11,8 @@ import proDUCKtion # pyright: ignore
 from EnneadTab import ERROR_HANDLE, UNIT_TEST, LOG
 
 
-@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error
+@LOG.log
 def unit_test():
     print (123)
     # UNIT_TEST.test_core_module()

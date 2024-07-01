@@ -36,7 +36,7 @@ def log_usage(func,*args):
 
 
 @FOLDER.backup_data(LOG_FILE_NAME , "log")
-def log(script_path, func_name_as_record):
+def OLD_log(script_path, func_name_as_record):
     def decorator(func):
         def wrapper(*args, **kwargs):
             with DATA_FILE.update_data(LOG_FILE_NAME) as data:
@@ -56,6 +56,25 @@ def log(script_path, func_name_as_record):
     return decorator
 
 
+@FOLDER.backup_data(LOG_FILE_NAME , "log")
+def log(func):
+
+    def wrapper(*args, **kwargs):
+      
+        with DATA_FILE.update_data(LOG_FILE_NAME) as data:
+            t_start = time.time()
+            out = func(*args, **kwargs)
+            t_end = time.time()
+
+            data[TIME.get_formatted_current_time()] = {"function_name": func.__name__,
+                                                        "arguments": args,
+                                                        "result": str(out),
+                                                        "duration": TIME.get_readable_time(t_end - t_start)
+                                                        }
+
+            return out
+       
+    return wrapper
 
 
 

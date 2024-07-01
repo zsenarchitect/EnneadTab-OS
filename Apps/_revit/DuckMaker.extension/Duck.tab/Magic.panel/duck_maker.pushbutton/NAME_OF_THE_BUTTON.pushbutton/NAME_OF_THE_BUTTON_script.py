@@ -14,8 +14,8 @@ from Autodesk.Revit import DB # pyright: ignore
 # DOC = REVIT_APPLICATION.get_doc()
 
 
-@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error
+@LOG.log
 def NAME_OF_THE_BUTTON():
     pass
 

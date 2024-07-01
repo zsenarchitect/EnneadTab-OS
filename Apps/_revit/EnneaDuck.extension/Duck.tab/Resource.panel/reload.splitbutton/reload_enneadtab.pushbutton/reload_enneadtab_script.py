@@ -11,8 +11,8 @@ import proDUCKtion # pyright: ignore
 from EnneadTab import ERROR_HANDLE, LOG
 from pyrevit.loader import sessionmgr
 
-@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error
+@LOG.log
 def reload_enneadtab():
 
     sessionmgr.reload_pyrevit()

@@ -3,11 +3,12 @@ import DATA_FILE
 import FOLDER
 import USER
 
-RECORD_FILE = FOLDER.get_EA_dump_folder_file('personal_record_{}.json'.format(USER.USER_NAME))
+from CONFIG import SETTING_FILE_NAME
 
-@FOLDER.backup_data(RECORD_FILE , "personal_record")
+@FOLDER.backup_data(SETTING_FILE_NAME , "setting")
 def update_money(coin_change):
-    with DATA_FILE.update_data(RECORD_FILE) as data:
+    with DATA_FILE.update_data(SETTING_FILE_NAME) as data:
+        
         if "money" not in data.keys():
             data["money"] = 100
         data["money"] += coin_change

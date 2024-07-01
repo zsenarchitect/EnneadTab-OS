@@ -55,7 +55,7 @@ def copy_file_to_local_dump_folder(original_path, file_name = None, ignore_warni
 
 
 
-def backup_data(data_file, backup_folder_title, max_time = 60*60*24*1):
+def backup_data(data_file_name, backup_folder_title, max_time = 60*60*24*1):
     def decorator(func):
         def wrapper(*args, **kwargs):
 
@@ -77,8 +77,10 @@ def backup_data(data_file, backup_folder_title, max_time = 60*60*24*1):
 
             today = time.strftime("%Y-%m-%d")
             if not latest_backup_date or (time.mktime(time.strptime(today, "%Y-%m-%d")) - time.mktime(latest_backup_date)) > max_time:
-                backup_file_path = os.path.join(backup_folder, "{}_{}".format(today, data_file))
-                shutil.copy(get_EA_dump_folder_file(data_file), backup_file_path)
+                backup_file_path = os.path.join(backup_folder, "{}_{}".format(today, data_file_name))
+            
+                if os.path.exists(get_EA_dump_folder_file(data_file_name)):
+                    shutil.copy(get_EA_dump_folder_file(data_file_name), backup_file_path)
   
             return out
         return wrapper

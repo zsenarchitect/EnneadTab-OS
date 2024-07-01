@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import traceback
 import os
-import EXE
 import ENVIRONMENT
 import FOLDER
 import EMAIL

@@ -2,6 +2,7 @@ import shutil
 import json
 import io
 import os
+import traceback
 from contextlib import contextmanager
 
 
@@ -160,10 +161,15 @@ def set_data(data, file_name, is_local = True):
 @contextmanager
 def update_data(file_name, is_local = True):
     """
+    prefer just the file_name, but full path is ok
+    
     Usage example
     with DATA_FILE.update_data("abc.json") as data:
         data['new_key'] = 'new_value'  # Update data here
     """
+
+    if os.path.exists(file_name):
+        file_name = os.path.basename(file_name)
 
         
     try:
@@ -176,5 +182,5 @@ def update_data(file_name, is_local = True):
 
         set_data(data, file_name, is_local)
 
-    except Exception as e:
-        print("An error occurred when updating data: {}".format(e))
+    except Exception:
+        print("An error occurred when updating data:\n{}".format(traceback.format_exc()))

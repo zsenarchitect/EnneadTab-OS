@@ -27,16 +27,14 @@ def try_catch_error(is_silent=False, is_pass = False):
                 if is_silent:
                     subject_line += "(Silent)"
                 try:
-                    EMAIL.email_error(error, func.__name__, USER.get_user_name(
-                    ), subject_line=subject_line)
+                    EMAIL.email_error(error, func.__name__, USER.USER_NAME, subject_line=subject_line)
                 except Exception as e:
                     print_note("Cannot send email: {}".format(e))
 
                 if not is_silent:
 
                     error += "\n\n######If you have EnneadTab UI window open, just close the original EnneadTab window(not this textnote). Do no more action, otherwise the program might crash.##########\n#########Not sure what to do? Msg Sen Zhang, you have dicovered a important bug and we need to fix it ASAP!!!!!########"
-                    error_file = "{}\general_error_log.txt".format(
-                        FOLDER.get_EA_dump_folder_file())
+                    error_file = FOLDER.get_EA_dump_folder_file("error_general_log.txt")
                     try:
                         with open(error_file, "w") as f:
                             f.write(error)

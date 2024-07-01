@@ -8,6 +8,7 @@ import TIME
 import FOLDER
 import USER
 import DATA_FILE
+import ENVIRONMENT
 LOG_FILE_NAME = 'log_{}.json'.format(USER.USER_NAME)
 
 
@@ -33,12 +34,12 @@ def log_usage(func,*args):
 #     f.writelines('\nYang is writing!')
 
 
-"""log_revit and log_rhino is break down becasue rhino need a wrapper to direct run script directly
+"""log and log is break down becasue rhino need a wrapper to direct run script directly
 whereas revit need to look at local func run"""
 
 
 @FOLDER.backup_data(LOG_FILE_NAME , "log")
-def log_rhino(script_path, func_name_as_record):
+def log(script_path, func_name_as_record):
     def decorator(func):
         def wrapper(*args, **kwargs):
             with DATA_FILE.update_data(LOG_FILE_NAME) as data:
@@ -47,8 +48,8 @@ def log_rhino(script_path, func_name_as_record):
                 t_end = time.time()
 
                 data[TIME.get_formatted_current_time()] = {
-                    "application":"rhino", 
-                    "function_name": func_name_as_record,
+                    "application":ENVIRONMENT.get_app_name(), 
+                    "function_name": func_name_as_record.replace("\n", " "),
                     "arguments": args,
                     "result": str(out),
                     "script_path": script_path,
@@ -58,29 +59,6 @@ def log_rhino(script_path, func_name_as_record):
             return out
         return wrapper
     return decorator
-
-
-@FOLDER.backup_data(LOG_FILE_NAME , "log")
-def log_revit(func):
-
-    def wrapper(*args, **kwargs):
-      
-        with DATA_FILE.update_data(LOG_FILE_NAME) as data:
-            t_start = time.time()
-            out = func(*args, **kwargs)
-            t_end = time.time()
-
-            data[TIME.get_formatted_current_time()] = {
-                "application":"revit", 
-                "function_name": func.__name__,
-                "arguments": args,
-                "result": str(out),
-                "duration": TIME.get_readable_time(t_end - t_start)
-                }
-
-            return out
-       
-    return wrapper
 
 
 

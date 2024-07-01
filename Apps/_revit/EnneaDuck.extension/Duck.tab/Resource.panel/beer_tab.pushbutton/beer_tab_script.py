@@ -13,11 +13,11 @@ import proDUCKtion # pyright: ignore
 from EnneadTab import ERROR_HANDLE, LOG
 
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
-@LOG.log_revit
 def beer_tab():
 
-
+   
     print ("ok beer")
 
 ################## main code below #####################

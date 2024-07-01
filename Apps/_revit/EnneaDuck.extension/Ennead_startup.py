@@ -25,7 +25,7 @@ from EnneadTab import VERSION_CONTROL, LOG, ERROR_HANDLE
 
 
 @ERROR_HANDLE.try_catch_error(is_silent=True)
-@LOG.log_revit
+@LOG.log
 def enneadtab_startup():
     VERSION_CONTROL.update_EA_dist()
 

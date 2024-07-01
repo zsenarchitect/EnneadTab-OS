@@ -116,7 +116,7 @@ def run_Rhino_button(locator, *args):
             return
 
     @ERROR_HANDLE.try_catch_error()
-    @LOG.log_rhino(module_path, func_name)
+    @LOG.log(module_path, func_name)
     def runner(*args):
         func(*args)
 

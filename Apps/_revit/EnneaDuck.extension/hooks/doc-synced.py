@@ -7,7 +7,7 @@ doc = EXEC_PARAMS.event_args.Document
 
 
 from EnneadTab import ERROR_HANDLE, SOUND, LOG
-
+__title__ = "Doc Synced Hook"
 
 
 
@@ -15,9 +15,8 @@ def play_success_sound():
     file = 'sound_effect_mario_1up.wav'
     SOUND.play_sound(file)
 
-
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error(is_silent=True)
-@LOG.log_revit
 def doc_synced():
     play_success_sound()
     

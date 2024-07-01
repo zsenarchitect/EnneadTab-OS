@@ -16,8 +16,10 @@ from pyrevit.loader import sessionmgr
 def create_new_button():
     # get new button name
     func_name = forms.ask_for_string(default = "New_Button_Name", 
-                                     prompt = "Type in the name for new script, seperated by '_'",
+                                     prompt = "Type in the name for new script",
                                      title="You are going to change the world...")
+
+    func_name = func_name.replace(" ", "_").lower()
 
     # pick folder location
     folder = forms.pick_folder(title = "New script location of container pushbutton", owner = None)#not sure what is owner

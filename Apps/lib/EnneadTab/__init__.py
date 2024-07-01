@@ -18,8 +18,7 @@ for module in os.listdir(os.path.dirname(__file__)):
     try:
         __import__(module[:-3], locals(), globals())
     except Exception as e:
-        print (e)
-        print ("Cannot import {}".format(module))
+        print ("Cannot import {} becasue {}".format(module, e))
 del module# delete this varible becaue it is refering to last item on the for loop
 
 

@@ -1,13 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import subprocess
-import os
+
 import SOUND
-import FOLDER
 import DATA_FILE
-import USER
 import EXE
-import ENVIRONMENT
 import IMAGE
 
 

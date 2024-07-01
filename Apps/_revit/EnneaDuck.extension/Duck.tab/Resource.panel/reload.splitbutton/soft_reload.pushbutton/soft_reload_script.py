@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 __doc__ = "Sen Zhang has not writed documentation for this tool, but he should!"
-__title__ = "Soft Reload"
+__title__ = "Soft\nReload"
 __context__ = "zero-doc"
 
 

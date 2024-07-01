@@ -39,8 +39,8 @@ def log_usage(func,*args):
 def get_log_folder():
 
     if "log_folder" not in locals():
-        log_folder = "{}\LOG".format(FOLDER.get_EA_setting_folder())
-        os.makedirs(log_folder, exist_ok = True)
+        log_folder = FOLDER.get_EA_dump_folder_file("log")
+        FOLDER.secure_folder(log_folder)
     return log_folder
 
 

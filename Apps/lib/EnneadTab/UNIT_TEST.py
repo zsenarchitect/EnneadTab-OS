@@ -7,6 +7,7 @@ import traceback
 import TEXT
 import ENVIRONMENT
 import NOTIFICATION
+import OUTPUT
 
 
 def print_boolean_in_color(bool):
@@ -15,15 +16,15 @@ def print_boolean_in_color(bool):
     
     import TEXT
     if bool:
-        return TEXT.colored_text("True", TEXT.TextColor.Green)
+        return TEXT.colored_text("True", TEXT.TextColorEnum.Green)
     else:
-        return TEXT.colored_text("False", TEXT.TextColor.Red)  
+        return TEXT.colored_text("False", TEXT.TextColorEnum.Red)  
 
 def print_text_in_highlight_color(text, ok = True):
     if not ENVIRONMENT.is_terminal_environment():
         return text
 
-    return TEXT.colored_text(text, TEXT.TextColor.Blue if ok else TEXT.TextColor.Red)
+    return TEXT.colored_text(text, TEXT.TextColorEnum.Blue if ok else TEXT.TextColorEnum.Red)
 
 
 IGNORE_LIST = ["__pycache__",
@@ -112,6 +113,8 @@ def test_core_module():
         print ("\n\n\nbelow modules are failed.")
         print ("\n--".join(tester.failed_module))
         raise EnneadTabExcepion
+    
+    OUTPUT.display_output_on_browser()
     
         
 

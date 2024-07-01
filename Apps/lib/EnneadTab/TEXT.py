@@ -4,10 +4,10 @@ import sys
 sys.path.append(ENVIRONMENT.DEPENDENCY_FOLDER)
 
 from termcolor import colored # pyright: ignore
-from COLOR import TextColor
+from COLOR import TextColorEnum
     
 
-def colored_text(text, color = TextColor.Cyan, on_color=None, attrs=None):
+def colored_text(text, color = TextColorEnum.Cyan, on_color=None, attrs=None):
     """Colorize text.
 
     Available text colors:
@@ -34,7 +34,7 @@ def colored_text(text, color = TextColor.Cyan, on_color=None, attrs=None):
 
 def unit_test():
     print (colored_text("Test dfault color text"))
-    print (colored_text("test green", TextColor.Green))#, attrs=[TextColor.Blue, 'blink']))
+    print (colored_text("test green", TextColorEnum.Green))#, attrs=[TextColorEnum.Blue, 'blink']))
 
 
 

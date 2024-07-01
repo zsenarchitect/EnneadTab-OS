@@ -57,7 +57,7 @@ def print_timesheet_detail():
     print_in_style(output)
 
     if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
-        OUTPUT.display_pyrevit_output_on_browser()
+        OUTPUT.display_output_on_browser()
     if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
         import rhinoscriptsyntax as rs
         rs.TextOut(output)

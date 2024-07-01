@@ -242,7 +242,7 @@ def unit_test():
 
 
 
-def display_pyrevit_output_on_browser():
+def display_output_on_browser():
     if not ENVIRONMENT.IS_REVIT_ENVIRONMENT:
         NOTIFICATION.messenger("currently only support Revit Env")
         return

@@ -8,8 +8,6 @@ import IMAGE
 
 
 
-
-
 def messenger(main_text,
              width = 1200,
              height = None,
@@ -59,11 +57,9 @@ def duck_pop(main_text = None):
     if not main_text:
         main_text = "Quack!"
 
-
-
     data = {}
     data["main_text"] = main_text
-    data["duck_image"] = IMAGE.get_image_path_by_name("duck_green_bg.png")
+    data["duck_image"] = IMAGE.get_one_image_path_by_prefix("duck_pop")
     data["explosion_gif"] = IMAGE.get_image_path_by_name("duck_explosion.gif")
     data["audio"] = SOUND.get_one_audio_path_by_prefix("duck")
     DATA_FILE.set_data(data, "DUCK_POP.json") 
@@ -78,8 +74,3 @@ def unit_test():
 if __name__ == "__main__":
     duck_pop("Hello, world!")
     messenger("Hello world")
-    for i in range(10):
-        for _ in range(100):
-            print (_)
-        duck_pop(str(i+1))
-        messenger(str(i+1))

@@ -1,0 +1,12 @@
+layout:
+  - randomize_block_transformation
+  - uniform_transform_blocks
+  - '---'
+  - make_block_unique
+  - package_block_layer
+  - '---'
+  - edit_distorted_block
+  - toggle_block_color_display
+  - '---'
+  - match_texture_mapping_in_block
+  - fall_geos_on_geo

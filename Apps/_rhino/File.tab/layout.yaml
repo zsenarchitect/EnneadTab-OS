@@ -1,0 +1,6 @@
+layout:
+  - archive_file
+  - save_small_and_close
+  - '---'
+  - create_worksession
+  - bind_worksession

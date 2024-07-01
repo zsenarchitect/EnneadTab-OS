@@ -1,6 +1,6 @@
 from PIL import Image
 import base64
-from constants import MAIN_FOLDER, SPECIAL_LIST_KEY
+from constants import OS_ROOT_FOLDER, SPECIAL_LIST_KEY
 import os
 import io
 import textwrap
@@ -138,7 +138,7 @@ def test_bitmap(bitmap_text, size):
     decoded_bitmap = base64.b64decode(bitmap_text)    
     print (decoded_bitmap)        
     # save the decoded bitmap to a file
-    local_bmp = "{}\decoded_bitmap_{}.bmp".format(MAIN_FOLDER,
+    local_bmp = "{}\decoded_bitmap_{}.bmp".format(OS_ROOT_FOLDER,
                                                     size)
     with open(local_bmp, "wb") as f:
         f.write(decoded_bitmap)

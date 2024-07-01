@@ -1,6 +1,6 @@
 import os
 
-from constants import MAIN_FOLDER, SPECIAL_LIST_KEY
+from constants import OS_ROOT_FOLDER, SPECIAL_LIST_KEY
 import ButtonHandler as BH
 
 from BaseHandler import BaseHandler
@@ -36,7 +36,7 @@ def get_menus():
 
     menus = []
 
-    for folder, _, files in os.walk(MAIN_FOLDER):
+    for folder, _, files in os.walk(OS_ROOT_FOLDER):
         if folder.endswith(".menu"):
             menus.append(MenuHandler(folder))
 

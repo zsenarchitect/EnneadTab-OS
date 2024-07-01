@@ -17,23 +17,33 @@ import final_save as FS
 import TabGroupHandler as TGH 
 import MenuHandler as MH
 import ButtonHandler as BH
-from constants import MAIN_FOLDER, SPECIAL_LIST_KEY, DISTIBUTION_RUI, SELF_USE_RUI, INSTALLATION_RUI
+from constants import RHINO_TOOLBAR_FOLDER, SPECIAL_LIST_KEY, DIST_RUI, INSTALLATION_RUI, INSTALLATION_FOLDER
 
 
 
-
+RUI_SETS = [
+    {
+     "search_folder": RHINO_TOOLBAR_FOLDER,
+     "out_rui": DIST_RUI
+    },
+    # {
+    #  "search_folder": INSTALLATION_FOLDER,
+    #  "out_rui": INSTALLATION_RUI
+    # },
+]
 
 class RuiWriter:
-    
 
-    def __init__(self) -> None:
+    def __init__(self, search_folder, out_rui) -> None:
         # self.main_data = OrderedDict()
+        self.search_folder = search_folder
+        self.out_rui = out_rui
         self.main_data = dict()
 
        
 
     def get_menu(self):
-        for folder, _, files in os.walk(MAIN_FOLDER):
+        for folder, _, files in os.walk(self.search_folder):
             if folder.endswith(".menu"):
                 self.menu = MH.MenuHandler(folder)
                 return self.menu.as_json()
@@ -178,7 +188,7 @@ class RuiWriter:
 
     def save_to_rui(self):
 
-        for rui in [DISTIBUTION_RUI, SELF_USE_RUI, INSTALLATION_RUI]:
+        for rui in [self.out_rui]:
                 
             FS.write_rui(self.main_data, rui)
 
@@ -186,7 +196,7 @@ class RuiWriter:
         print("\n\n\n\nXML data has been saved to '.xml' as .rui.")
 
         # open this file in default program
-        os.startfile(SELF_USE_RUI)
+        os.startfile(self.out_rui)
 
 
         # tried to use shutil copy but the copied rui is no longer reconigzed by RHino, so just creat it twice.
@@ -199,7 +209,10 @@ class RuiWriter:
 
 
 def run():
-    RuiWriter().run()
+    for item in RUI_SETS:
+        search_folder = item["search_folder"]
+        out_rui = item["out_rui"]
+        RuiWriter(search_folder, out_rui).run()
 ###################################################################
 if __name__ == "__main__":
     run()

@@ -9,7 +9,7 @@ import os
 from BaseHandler import BaseHandler
 from IconHandler import IconHandler
 from GuidHandler import GuidHandler
-from constants import MAIN_FOLDER
+from constants import OS_ROOT_FOLDER, RHINO_TOOLBAR_FOLDER
 
 
 class MacroHandler(BaseHandler):
@@ -130,7 +130,7 @@ class MacroHandler(BaseHandler):
         """
 
 
-        locator = self.script_path.split("Toolbar\\")[1]
+        locator = self.script_path.split("{}\\".format(RHINO_TOOLBAR_FOLDER))[1]
         locator = locator.replace("\\", "\\\\")
 
         #This macro is auto-generated, manual modification will be discarded;

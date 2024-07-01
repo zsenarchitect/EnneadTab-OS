@@ -4,19 +4,17 @@ this is the website to text converting XML to JSON"""
 
 #############################################################################
 # change this folder later to be the 'Source Code' folder
-MAIN_FOLDER = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-RUI_WORKING_FOLDER = os.path.join(os.path.dirname(MAIN_FOLDER), "Working")
-INSTALLATION_FOLDER = os.path.join(os.path.dirname(MAIN_FOLDER), "Installation")
-EDITOR_SAFE_FOLDER = "{}\Documents\\EnneadTab Settings".format(os.environ["USERPROFILE"])
+OS_ROOT_FOLDER = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
-if not os.path.exists(EDITOR_SAFE_FOLDER):
-    os.makedirs(EDITOR_SAFE_FOLDER)
 
-# change this later to be a special FULL path to deploy folder
-RUI_NAME = "Ennead-For-Rhino.rui"
-SELF_USE_RUI = EDITOR_SAFE_FOLDER + "\\" + RUI_NAME
-DISTIBUTION_RUI = RUI_WORKING_FOLDER + "\\" + RUI_NAME
-INSTALLATION_RUI = INSTALLATION_FOLDER + "\\" + RUI_NAME
+RHINO_TOOLBAR_FOLDER = os.path.join(OS_ROOT_FOLDER, "Apps", "_rhino")
+DIST_RUI = RHINO_TOOLBAR_FOLDER + "\\EnneadTab_For_Rhino.rui"
+
+
+INSTALLATION_FOLDER = os.path.join(OS_ROOT_FOLDER, "Installation")
+INSTALLATION_RUI = INSTALLATION_FOLDER + "\\EnneadTab_For_Rhino_Installer.rui"
+
+
 ##############################################################################
 
 

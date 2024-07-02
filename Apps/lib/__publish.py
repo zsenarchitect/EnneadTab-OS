@@ -39,8 +39,8 @@ def time_it(func):
 
 def update_exes():
     sys.path.append(os.path.dirname(__file__) + "\\exes")
-    from ExeMaker import update_all_exes # pyright: ignore
-    update_all_exes()
+    from ExeMaker import recompile_exe # pyright: ignore
+    recompile_exe()
  
 def copy_to_EA_Dist_and_commit():
     # locate the EA_Dist repo folder and current repo folder
@@ -187,9 +187,6 @@ def update_installer_folder():
 def publish_duck():
 
 
-    print_title("Start testing all moudle.")
-    UNIT_TEST.test_core_module()
-
     if manual_confirm_should_compile_exe():
         print_title ("\n\nBegin compiling all exes...")
         NOTIFICATION.messenger("Recompiling all exes...kill VScode if you want to cancel..")
@@ -199,6 +196,9 @@ def publish_duck():
     else:
         NOTIFICATION.messenger("NOT compiling exes today...")
 
+
+    print_title("Start testing all moudle.")
+    UNIT_TEST.test_core_module()
         
     print_title ("\n\npush uptdate to EA dist folder")
     copy_to_EA_Dist_and_commit()
@@ -208,7 +208,7 @@ def manual_confirm_should_compile_exe():
     """manua change date to see if I should recompile exe
     so each recompile is more intentional"""
     import datetime
-    return str(datetime.date.today()) == "2024-07-01..."
+    return str(datetime.date.today()) == "2024-07-02"
     
 
 def print_title(text):

@@ -5,9 +5,31 @@ from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
 import datetime
 import subprocess
+import traceback
+
+# Set the expiration date
+EXPIRATION_DATE = datetime.datetime(2025, 1, 31)
+WARNING_DATE = EXPIRATION_DATE - datetime.timedelta(days=15)
+
+def log_error(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            error_message = traceback.format_exc()
+            desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')  # Windows
+            error_file_path = os.path.join(desktop_path, "file_processor_error_log.txt")
+            
+            with open(error_file_path, "w") as error_file:
+                error_file.write(error_message)
+            
+            messagebox.showerror("Error", f"An error occurred. Details have been saved to {error_file_path}")
+    return wrapper
 
 class FileProcessorApp:
     def __init__(self, root):
+        self.check_expiration()
+
         self.root = root
         self.root.title("File Processor")
         self.root.configure(bg='#2e2e2e')  # Even darker grey
@@ -18,7 +40,7 @@ class FileProcessorApp:
 
         self.logo_path = os.path.join(os.path.dirname(__file__), "logo.png")  # Ensure logo.png is in the same directory as this script
         self.logo_image = Image.open(self.logo_path)
-        self.logo_image = self.logo_image.resize((self.logo_image.width // 2, self.logo_image.height // 2), Image.ANTIALIAS)
+        self.logo_image = self.logo_image.resize((self.logo_image.width // 2, self.logo_image.height // 2), Image.LANCZOS)
         self.logo_photo = ImageTk.PhotoImage(self.logo_image)
 
         self.create_widgets()
@@ -26,6 +48,15 @@ class FileProcessorApp:
         self.output_folder = ""
 
         self.root.bind("<Motion>", self.rotate_logo)
+
+        if datetime.datetime.now() >= WARNING_DATE:
+            self.warning_label = tk.Label(self.root, text=f"The tool will expire on {EXPIRATION_DATE.strftime('%B %d, %Y')}", bg='#2e2e2e', fg='red')
+            self.warning_label.grid(row=6, column=0, columnspan=3, padx=10, pady=10)
+
+    def check_expiration(self):
+        if datetime.datetime.now() > EXPIRATION_DATE:
+            messagebox.showerror("Expired", "The tool has expired, contact Sen Z. for renewal.")
+            raise SystemExit("This tool has expired.")
 
     def create_widgets(self):
         self.logo_label = tk.Label(self.root, image=self.logo_photo, bg='#2e2e2e')
@@ -52,6 +83,7 @@ class FileProcessorApp:
         self.open_output_folder_button = tk.Button(self.root, text="Open Output Folder", command=self.open_output_folder, bg='#2e2e2e', fg='white', state=tk.DISABLED)
         self.open_output_folder_button.grid(row=5, column=0, columnspan=3, padx=10, pady=10)
 
+    @log_error
     def rotate_logo(self, event):
         max_rotation = 20
         width = self.root.winfo_width()
@@ -62,10 +94,12 @@ class FileProcessorApp:
         self.logo_photo = ImageTk.PhotoImage(rotated_image)
         self.logo_label.configure(image=self.logo_photo)
 
+    @log_error
     def pick_files(self):
         files = filedialog.askopenfilenames(filetypes=[("PDF and DWG files", "*.pdf *.dwg")])
         self.selected_files = self.root.tk.splitlist(files)
 
+    @log_error
     def pick_output_folder(self):
         folder = filedialog.askdirectory()
         if folder:
@@ -74,6 +108,7 @@ class FileProcessorApp:
             os.makedirs(self.output_folder, exist_ok=True)
             self.open_output_folder_button.config(state=tk.NORMAL)
 
+    @log_error
     def open_output_folder(self):
         if self.output_folder:
             if os.name == 'nt':  # Windows
@@ -81,6 +116,7 @@ class FileProcessorApp:
             elif os.name == 'posix':  # macOS, Linux
                 subprocess.call(['open', self.output_folder])
 
+    @log_error
     def process_files(self):
         if not self.selected_files or not self.output_folder:
             messagebox.showwarning("Warning", "Please select files and output folder.")
@@ -101,6 +137,16 @@ class FileProcessorApp:
         messagebox.showinfo("Success", "Files processed successfully.")
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = FileProcessorApp(root)
-    root.mainloop()
+    try:
+        root = tk.Tk()
+        app = FileProcessorApp(root)
+        root.mainloop()
+    except Exception as e:
+        error_message = traceback.format_exc()
+        desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')  # Windows
+        error_file_path = os.path.join(desktop_path, "file_processor_error_log.txt")
+        
+        with open(error_file_path, "w") as error_file:
+            error_file.write(error_message)
+        
+        messagebox.showerror("Error", f"An error occurred. Details have been saved to {error_file_path}")

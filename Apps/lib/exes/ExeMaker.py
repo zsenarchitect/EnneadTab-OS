@@ -4,6 +4,7 @@ import shutil
 import subprocess
 import traceback
 import sys
+
 sys.path.append(os.path.dirname(os.path.dirname(__file__)) + "\\EnneadTab")
 
 # the downloader shall read where to url based on configure file so if I re path it can update. 
@@ -30,9 +31,11 @@ PY_INSTALLER_LOCATION = "pyinstaller"
 #     # Some computers cannot set up venv due to permission, so pyinstaller has to be installed in the global site packages.
 #     possible_pyinstaller_locations = [
 #         "C:\\Users\\szhang\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python310\\Scripts\\pyinstaller.exe"
+#         "C:\\Users\\szhang\\Documents\\pyenv\\pyenv-win\\shims\\pyinstaller.bat"
 #     ]
 #     for location in possible_pyinstaller_locations:
 #         if os.path.exists(location):
+#             print("additional pyinstaller found")
 #             PY_INSTALLER_LOCATION = location
 #             break
 #     else:
@@ -106,6 +109,14 @@ def json_to_command(json_config):
             else:
                 command.append("--{}".format("windowed"))
             continue
+
+        
+        # additional file
+        if option["optionDest"] == "datas":
+            command.append("--add-data")
+            command.append("{}".format(option['value']))
+            continue  
+
         
         if option['value'] is True:
             command.append("--{}".format(option['optionDest']))
@@ -124,8 +135,11 @@ def json_to_command(json_config):
     print("\033[92m{}\033[00m".format(command))
     return command
 
-def update_all_exes():
+def recompile_exe(single_exe = None):
+    
     for file in os.listdir(EXE_MAKER_FOLDER):
+        if single_exe and single_exe != file:
+            continue
         if file.endswith(".json"):
             print("\033[94m{}\033[00m".format(file))
             make_exe(os.path.join(EXE_MAKER_FOLDER,file))
@@ -139,4 +153,5 @@ def update_all_exes():
 
 
 if __name__ == "__main__":
-    update_all_exes()
+    # recompile_exe()
+    recompile_exe(single_exe="Revit_Export_Renamer.json")

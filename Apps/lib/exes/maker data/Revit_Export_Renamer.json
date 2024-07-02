@@ -15,7 +15,7 @@
   },
   {
    "optionDest": "console",
-   "value": true
+   "value": false
   },
   {
    "optionDest": "icon_file",
@@ -52,7 +52,15 @@
   {
    "optionDest": "bootloader_ignore_signals",
    "value": false
-  }
+  },
+  {
+    "optionDest": "datas", 
+    "value": "C:/Users/szhang/github/EnneadTab-OS/Apps/lib/exes/source code/Revit_Export_Renamer/logo.png;."
+   },
+  {
+    "optionDest": "datas", 
+    "value": "C:/Users/szhang/github/EnneadTab-OS/Apps/lib/exes/source code/Revit_Export_Renamer/icon_ennead-e.ico;."
+   }
  ],
  "nonPyinstallerOptions": {
   "increaseRecursionLimit": true,

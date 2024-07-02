@@ -135,8 +135,10 @@ def pop_message():
 
     
     data = read_json_as_dict_in_dump_folder(JSON_KEY)
-    if data is None or "main_text" not in data.keys():
-        print ("Nothing")
+    if not data:
+        return
+    if "main_text" not in data.keys():
+        print ("Bad data")
         return
     
     app = MessageApp(text = data["main_text"],

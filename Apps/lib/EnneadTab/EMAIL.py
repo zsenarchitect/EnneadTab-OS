@@ -126,3 +126,9 @@ def email_to_self(subject="EnneadTab Auto Email to Self",
           body_folder_link_list=body_folder_link_list,
           body_image_link_list=body_image_link_list,
           attachment_list=attachment_list)
+
+
+
+def unit_test():
+    email_to_self(subject="Test Email",
+                  body="Happy Haooy")

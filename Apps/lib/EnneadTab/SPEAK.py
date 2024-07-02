@@ -38,3 +38,11 @@ def speak(text, language='en', accent='com'):
  
 
     EXE.try_open_app("Speaker")
+
+
+def unit_test():
+    speak("I like to move it move it!")
+
+
+if __name__ == "__main__":
+    speak("This is a test?")

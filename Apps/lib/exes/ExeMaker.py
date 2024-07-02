@@ -17,6 +17,11 @@ EXE_MAKER_FOLDER = os.path.join(EXE_ROOT_FOLDER,"maker data")
 EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_ROOT_FOLDER,"source code")
 import NOTIFICATION
 
+PYGAME_ALLOWS = ["Speaker.json"]
+
+
+
+
 class NoGoodSetupException(Exception):
     def __init__(self):
         super().__init__("The setup is not complete or you are working on a new computer.")
@@ -65,11 +70,11 @@ def make_exe(maker_json):
  
     # Parse the JSON configuration
     with open(maker_json, "r") as f:
-        json_config = json.load(f)
+        
     
 
         # Convert JSON to command
-        command = json_to_command(json_config)
+        command = json_to_command(f)
 
         try:
             # Run the command
@@ -82,7 +87,8 @@ def make_exe(maker_json):
 
 
         
-def json_to_command(json_config):
+def json_to_command(json_file):
+    json_config = json.load(json_file)
     command = [PY_INSTALLER_LOCATION]
 
 
@@ -127,10 +133,13 @@ def json_to_command(json_config):
     command.append("--log-level=WARN") # disable output in terminal
     command.append(final_path)
     
-    # disallowing pygame, there are only a few exe that need pygame
-    # when i got there this part will be updated
-    command.append("--exclude-module")
-    command.append("pygame")  # Separate '--exclude-module' and 'pygame'
+
+
+    if os.path.basename(json_file.name) not in PYGAME_ALLOWS:
+        # disallowing pygame, there are only a few exe that need pygame
+        # when i got there this part will be updated
+        command.append("--exclude-module")
+        command.append("pygame")  # Separate '--exclude-module' and 'pygame'
 
     print("\033[92m{}\033[00m".format(command))
     return command
@@ -154,4 +163,5 @@ def recompile_exe(single_exe = None):
 
 if __name__ == "__main__":
     # recompile_exe()
-    recompile_exe(single_exe="Revit_Export_Renamer.json")
+    # recompile_exe(single_exe="Revit_Export_Renamer.json")
+    recompile_exe(single_exe="Speaker.json")

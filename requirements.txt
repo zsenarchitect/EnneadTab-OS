@@ -8,5 +8,8 @@ playsound
 GitPython
 xlrd
 xlsxwriter
-yaml
+pyyaml
 gtts
+simpleaudio
+pydub
+pygame

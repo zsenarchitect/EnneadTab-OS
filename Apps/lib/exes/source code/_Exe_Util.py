@@ -23,9 +23,11 @@ def try_catch_error(func):
 
     return wrapper
 
+def get_dump_folder():
+    return "{}\Documents\EnneadTab Ecosystem\Dump".format(os.environ["USERPROFILE"])
 
 def get_file_in_dump_folder(file_name):
-    return "{}\Documents\EnneadTab Ecosystem\Dump\{}".format(os.environ["USERPROFILE"], file_name)
+    return "{}\{}".format(get_dump_folder(), file_name)
 
 def read_json_as_dict_in_dump_folder(file_name):
     filepath = get_file_in_dump_folder(file_name)

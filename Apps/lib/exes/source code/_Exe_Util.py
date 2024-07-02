@@ -24,15 +24,15 @@ def try_catch_error(func):
     return wrapper
 
 
-def get_file_in_dump_folder(file):
-    return "{}\Documents\EnneadTab Ecosystem\Dump\{}".format(os.environ["USERPROFILE"], file)
+def get_file_in_dump_folder(file_name):
+    return "{}\Documents\EnneadTab Ecosystem\Dump\{}".format(os.environ["USERPROFILE"], file_name)
 
-def read_json_as_dict_in_dump_folder(file):
-    filepath = get_file_in_dump_folder(file)
+def read_json_as_dict_in_dump_folder(file_name):
+    filepath = get_file_in_dump_folder(file_name)
     
     # return empty dict if file not exist
     if not os.path.exists(filepath):
-        return {}
+        return False
     # reads it back
     with open(filepath,"r") as f:
       dict = json.load(f)

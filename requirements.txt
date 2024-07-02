@@ -9,3 +9,4 @@ GitPython
 xlrd
 xlsxwriter
 yaml
+gtts

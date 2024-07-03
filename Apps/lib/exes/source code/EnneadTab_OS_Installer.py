@@ -9,7 +9,7 @@ import traceback
 import _Exe_Util
 
 class RepositoryUpdater:
-    def __init__(self, repo_url, extract_to):
+    def __init__(self, repo_url):
         self.repo_url = repo_url
         self.extract_to = _Exe_Util.ESOSYSTEM_FOLDER
 
@@ -95,6 +95,9 @@ def save_traceback_and_open(user, error_message):
 
     with open(error_path, 'w') as f:
         f.write(error_message)
+
+    if os.environ["USERPROFILE"].split("\\")[-1] in ["szhang"]:
+        os.startfile(error_path)
 
 
 

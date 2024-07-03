@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<RhinoUI major_ver="3" minor_ver="0" guid="d054f36f-1374-43d0-a75c-0132da5aceaa" localize="False" default_language_id="1033" dpi_scale="100">
+  <extend_rhino_menus>
+    <menu guid="ced53dfd-1d59-4863-afcb-5eb3d4dd5707">
+      <text>
+        <locale_1033>Extend Rhino Menus</locale_1033>
+      </text>
+    </menu>
+  </extend_rhino_menus>
+  <menus>
+    <menu guid="554507be-4de8-4599-b199-a234671cd587">
+      <text>
+        <locale_1033>Ennead</locale_1033>
+      </text>
+      <menu_item guid="ce0c69f1-30e0-439a-b1d8-5f04b50f564e">
+        <text>
+          <locale_1033>Installation</locale_1033>
+        </text>
+        <macro_id>2a324ebc-a53d-4cbf-a42a-fdc6a1e2096b</macro_id>
+      </menu_item>
+    </menu>
+  </menus>
+  <tool_bar_groups>
+    <tool_bar_group guid="fb209b37-3a90-4551-8c5e-36d544b2b5f6" dock_bar_guid32="00000000-0000-0000-0000-000000000000" dock_bar_guid64="83ae5f77-b8e0-43b4-8f99-5e06e0d15940" active_tool_bar_group="a3a20efb-ebed-471b-9c1e-8790863dfc50" single_file="False" hide_single_tab="False" point_floating="100,300">
+      <text>
+        <locale_1033>EnneadTab Dynamic Rui</locale_1033>
+      </text>
+      <dock_bar_info dpi_scale="100" dock_bar="False" docking="True" horz="False" visible="True" floating="False" mru_float_style="8192" bar_id="59522" mru_width="868" point_pos="57,0" float_point="1454,694" rect_mru_dock_pos="57,0,118,907" dock_location_u="59420" dock_location="right" float_size="191,62"/>
+    </tool_bar_group>
+  </tool_bar_groups>
+  <tool_bars/>
+  <macros>
+    <macro_item guid="2a324ebc-a53d-4cbf-a42a-fdc6a1e2096b" bitmap_id="32cd8e6d-2df0-426e-a660-9f6782f465e5">
+      <text>
+        <locale_1033>Install EnneadTab</locale_1033>
+      </text>
+      <tooltip>
+        <locale_1033>Install EnneadTab</locale_1033>
+      </tooltip>
+      <help_text>
+        <locale_1033>Install EnneadTab</locale_1033>
+      </help_text>
+      <button_text>
+        <locale_1033>Install EnneadTab</locale_1033>
+      </button_text>
+      <menu_text>
+        <locale_1033>Install EnneadTab</locale_1033>
+      </menu_text>
+      <script>! _-RunPythonScript (
+import sys
+sys.path.append('L:\\4b_Applied Computing\\03_Rhino\\12_EnneadTab for Rhino\\Toolbar')
+import RHINO_MODULE_HELPER
+locator = 'Ennead.menu\\Installation.button\\Installation_left.py'
+RHINO_MODULE_HELPER.run_Rhino_button(locator)
+)
+</script>
+    </macro_item>
+  </macros>
+  <bitmaps>
+    <small_bitmap item_width="16" item_height="16">
+      <bitmap_item guid="32cd8e6d-2df0-426e-a660-9f6782f465e5" index="0"/>
+      <bitmap>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAChElEQVR4nI1Sz49MaRQ99/tevVJ0
+ulqmaSJT2NhbSwS72XRiUQgrkRn+ApkgeS3SC0s71iKhJPaMmWcxszJ+RSJiI2K6q7tUvapXr97v
+933Hgh6EFnd97jnnnnsAALz2Ww0Aer3J9iIJO6aMHwxWl/YBAEmFHxl6nsqG3RtpNGQ6esc47D/z
+fd8hKSKy7p5ip6N5/shp/PfH6/r9W8eTsiqrqrLG2q0H9uxxRYTW2nUZFNpt2KLYiw21rvnn3t/1
+SSBTP80qmuqF7NiRkJ4SEf7QGajVEQarL0jLcdA7R1KRdL63ogCAbWj6noMyB2iXAYExVS4iFoD4
+vu94nrd+mGtJD4fdXfG4P0gnI5OMB91o+O7A5zjP8xRJh6QmKV8RhMHqLTLnqN8t0yhgHPaZjAd/
+ppPhKTJpfUtcSCoRsUGw1HLgvFKiXEMLWgultSgQ1lrESTppNDY8VI7zl+u6rSzOHs9s2XZVARAA
+cByn5bpuvTIVlIgorYXWwlgaY2m0VlNpEh9suPVL9Ubz1ySJ9gOAWlhYIAA4pfOmKIqyVnNtURTW
+VhWU1hARXau5WinFKBoXWZ6XWRJm01PN61hTJ6lFxIyClcvNzXNnw8EKRsOgmm7OQCklo6Cvsjwz
+P7d2OY5bZxrFR2e2br/9f81JyoefQ8bByoUii/osY7JKmSchV3tLLNOQRRK9HCy//QUAfN//sh/8
+6AYAqt/bD/jEXwzTeHHy9tWd6uH9f6s8OtZ9enfTmuM17CcWzxN2HzVQz8+gt7Qsew+eBwDO7zxs
+N06f0Def3yQg7HS0iJgvmwgIcBGQyWFbFIeMdp+S1Fw8NZfP7Z43zdmSV05uAQm0j9jPnb8HPqOO
+PZ8xER4AAAAASUVORK5CYII=</bitmap>
+    </small_bitmap>
+    <normal_bitmap item_width="24" item_height="24">
+      <bitmap_item guid="32cd8e6d-2df0-426e-a660-9f6782f465e5" index="0"/>
+      <bitmap>iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEhklEQVR4nKVVW2gcVRj+/jOzO9nN
+bnZzaZIW+qDihRZqtSBWLE0rgdI3K21BEKFgsWqhUKQPPmwEL1jwVkHwpYiiYkIRKYJIJKlIpVCk
+LbQIltZYm2ya7Mzu7O7s7syc8/nQJE0a85D6wXk6Z77Lmf//j2ARSApGRtQIgMHBgQNi9GDKcf7R
+LX6Y7u6+QVJEhLgXsFBQ5z87mACAsls8TkbUrRrJiFVv+rLneXmSQlJWTw4sfMSRD7YFpclapVTU
+o9+disqlYkiGrLrF5wGAY2P2arhtAiIA+fHhx8zNyWOt0dN7sOEpMfdtlE1bNtsCiQEaQ1kHABgY
+WJV5JQD51kvPYfrv35Wp73dMK5E6fdK2S0VJ5TsBGmXCSAlx/U7gVSQAAKTbzyJw3kHUWI9Em9Gz
+M1kEtWdNR5fYtqWCIKiFCM/di8AKsg4qldLVhl9i3PTpu9O/3esPtgGAhGBou4UrvcTT/TZ+/SSu
+xdHFZCbzgIhAgMtz5y0A8f8yT9ICAN+d/ppRwDCosDw7NTq3Z5O0FlfdqlAoFBRJmZmZyfrerb+a
+NY+VUjEOgwqr7vSrdxshqVZ1bRwetgCgXJr6iKbJSqkYV0pFU/VumWbNo+9OfVWevTl4dy/MJxse
+HrbGxsbs+VsAFjcYqUTEVEtTG5WduEBSaa1FRIQkALAj1yFxFCMKw0vKsk857anTQPKiiJiVTN9x
+Mj6uABiKvJjuyNq+68UiYgOAiACAVP2qrtdqSinZlMlkNpWm/YLT1nYpKJfGY0ZnTGxuJp22QWN0
+d3uu53URMQsCQ+Pj5nYSPGHCCDLHugQiluM4CMPQeOWy0XFkR2Frc2dn1+as03GkXq8hle3EzOTE
+hfZcD0kuIREA9N3i+XQ6vaVeD4yIqOUasrCiKGKt6rPsuaant08y2Q5pBnUdBIG//v5HHhaR0gLB
+fDUYcsKybQIwAGCMwWIbJGGMAUnQGNFxrCzLslOptGW01t39axOdXd0jGBkpk1SLq0EAQCn5EqL2
+CIQiio2gKlEUoae3D3EUARDoOEKoNSCA1hq5fCcty4rbc7lExXW/yHf3H5o3vJBARDRJlc33fV8p
+u59nu9YkSMN0Os0oCjE9NQkaAxFBGIbw/TJuTFynKKVz+S7TnutM1LzyqZ9+/uUASTXHubRJ7jTN
+uFWvbDhu2ckj2k4KwxYaVZ9JxzFaa5TdWQURtGey0rd2HcJWE61W60Q2f+UoMKDnyZcVybzI/Cho
+XP1jZ/Pcj15t8lrcDHwybpBxwFrgs9mssVH16oHv/lD1ZnYsN3kby14nESEP73K455jG0d2CNX15
+Z+PWXaWDhUpcnn0oVslcavTb10TkYmP7/jdyvb1/zhErAFzVm60P7TjLQzvfXZbyhcdHuffBgwDA
+QiE5PDdi/gtLZwog2PtkG7rbdkexPqBEtsKY98mCwgk3gWY9iYkbL0PMMyaTB9/b9g0C1Pfu27ei
+6wUBEiICssvpA/FoGOlrysiQlbR6MTSu5M0zLb6yfX0cmf6gHr/dkXWIietd8unJKglZaYD/CyZV
+rnWPA5JCAAAAAElFTkSuQmCC</bitmap>
+    </normal_bitmap>
+    <large_bitmap item_width="32" item_height="32">
+      <bitmap_item guid="32cd8e6d-2df0-426e-a660-9f6782f465e5" index="0"/>
+      <bitmap>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
+9OW3emT/HxvoHARRU+jmAAAAAElFTkSuQmCC</bitmap>
+    </large_bitmap>
+  </bitmaps>
+  <scripts/>
+</RhinoUI>

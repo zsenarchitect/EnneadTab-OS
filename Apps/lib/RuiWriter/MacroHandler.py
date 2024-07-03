@@ -9,7 +9,7 @@ import os
 from BaseHandler import BaseHandler
 from IconHandler import IconHandler
 from GuidHandler import GuidHandler
-from constants import OS_ROOT_FOLDER, RHINO_TOOLBAR_FOLDER
+
 
 
 class MacroHandler(BaseHandler):
@@ -66,7 +66,13 @@ class MacroHandler(BaseHandler):
 
         # find a template to write script, tooltip, and other default info.
         self.assign_basic_info()
-        self.script = self.get_script()
+
+        for searcher in [".tab", ".menu"]:
+            if searcher in script_path:
+                search_folder = script_path.split(searcher)[0].rsplit("\\", 1)[0]
+                break
+        # print (search_folder)
+        self.script = self.get_script(search_folder)
 
 
 
@@ -121,7 +127,7 @@ class MacroHandler(BaseHandler):
 
         return IconHandler(None, caller = self.script_name)
 
-    def get_script(self):
+    def get_script(self, search_folder):
         """TO-DO:
          use a template format to fill in info. 
         [Or] create alias automatically and call that.
@@ -130,7 +136,7 @@ class MacroHandler(BaseHandler):
         """
 
 
-        locator = self.script_path.split("{}\\".format(RHINO_TOOLBAR_FOLDER))[1]
+        locator = self.script_path.split("{}\\".format(search_folder))[1]
         locator = locator.replace("\\", "\\\\")
 
         #This macro is auto-generated, manual modification will be discarded;

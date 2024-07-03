@@ -212,6 +212,9 @@ def publish_duck():
         NOTIFICATION.messenger("NOT compiling exes today...")
 
 
+    import RuiWriter
+    RuiWriter.run()
+
     print_title("Start testing all moudle.")
     UNIT_TEST.test_core_module()
         
@@ -223,7 +226,7 @@ def manual_confirm_should_compile_exe():
     """manua change date to see if I should recompile exe
     so each recompile is more intentional"""
     import datetime
-    return str(datetime.date.today()) == "2024-07-02"
+    return str(datetime.date.today()) == "2024-07-03"
     
 
 def print_title(text):

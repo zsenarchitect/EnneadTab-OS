@@ -2,7 +2,7 @@ import os
 
 import yaml
 
-from constants import OS_ROOT_FOLDER
+
 import MacroHandler as MH
 from BaseHandler import BaseHandler
 from GuidHandler import GuidHandler
@@ -108,5 +108,6 @@ def get_ordered_buttons(order, buttons, is_menu):
     return ordered_buttons
 
 if __name__ == "__main__":
-    buttons = get_buttons(OS_ROOT_FOLDER)
-    print (buttons)
+    # buttons = get_buttons(OS_ROOT_FOLDER)
+    # print (buttons)
+    pass

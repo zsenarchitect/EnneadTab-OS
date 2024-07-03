@@ -1,7 +1,7 @@
 import os
 import yaml
 
-from constants import OS_ROOT_FOLDER, SPECIAL_LIST_KEY
+from constants import SPECIAL_LIST_KEY
 import ButtonHandler as BH
 from IconHandler import IconHandler
 from BaseHandler import BaseHandler
@@ -55,15 +55,15 @@ def get_yaml(folder):
 
     return None
 
-def get_tabs():
+def get_tabs(search_folder):
 
     tabs = []
     
-    layout_file = get_yaml(OS_ROOT_FOLDER)
+    layout_file = get_yaml(search_folder)
 
 
             
-    for folder, _, files in os.walk(OS_ROOT_FOLDER):
+    for folder, _, files in os.walk(search_folder):
         if folder.endswith(".tab"):
             tabs.append(TabHandler(folder))
 

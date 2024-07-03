@@ -62,7 +62,8 @@ def write_rui(json_data, final_file):
 
 
 
-
+    # print (root_element)
+    
     # Output the XML to a file
 
     with open(final_file, "wb") as xml_file:

@@ -1,6 +1,6 @@
 from PIL import Image
 import base64
-from constants import OS_ROOT_FOLDER, SPECIAL_LIST_KEY
+from constants import SPECIAL_LIST_KEY
 import os
 import io
 import textwrap

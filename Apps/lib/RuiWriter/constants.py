@@ -3,7 +3,7 @@ import os
 this is the website to text converting XML to JSON"""
 
 #############################################################################
-# change this folder later to be the 'Source Code' folder
+# 'Source Code' folder
 OS_ROOT_FOLDER = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 
@@ -14,13 +14,9 @@ DIST_RUI = RHINO_TOOLBAR_FOLDER + "\\EnneadTab_For_Rhino.rui"
 INSTALLATION_FOLDER = os.path.join(OS_ROOT_FOLDER, "Installation")
 INSTALLATION_RUI = INSTALLATION_FOLDER + "\\EnneadTab_For_Rhino_Installer.rui"
 
+RHINO_INSTALLER_SETUP_FOLDER = os.path.dirname(os.path.realpath(__file__))
 
 ##############################################################################
-
-
-"""
-Things below are for local test only, not that important...
-"""
 
 
 

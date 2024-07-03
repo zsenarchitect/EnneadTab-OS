@@ -17,19 +17,19 @@ import final_save as FS
 import TabGroupHandler as TGH 
 import MenuHandler as MH
 import ButtonHandler as BH
-from constants import RHINO_TOOLBAR_FOLDER, SPECIAL_LIST_KEY, DIST_RUI, INSTALLATION_RUI, INSTALLATION_FOLDER
+from constants import RHINO_TOOLBAR_FOLDER, SPECIAL_LIST_KEY, DIST_RUI, INSTALLATION_RUI, RHINO_INSTALLER_SETUP_FOLDER
 
 
 
 RUI_SETS = [
     {
+     "search_folder": RHINO_INSTALLER_SETUP_FOLDER,
+     "out_rui": INSTALLATION_RUI
+    },
+    {
      "search_folder": RHINO_TOOLBAR_FOLDER,
      "out_rui": DIST_RUI
     },
-    # {
-    #  "search_folder": INSTALLATION_FOLDER,
-    #  "out_rui": INSTALLATION_RUI
-    # },
 ]
 
 class RuiWriter:
@@ -65,9 +65,10 @@ class RuiWriter:
                 if button.macro_right:
                     macros.append(button.macro_right)
 
-        for button in self.menu.buttons:
-            if button.macro_left:
-                macros.append(button.macro_left)
+        if hasattr(self, "menu"):
+            for button in self.menu.buttons:
+                if button.macro_left:
+                    macros.append(button.macro_left)
      
         return [x.as_json() for x in macros]
                     
@@ -83,9 +84,10 @@ class RuiWriter:
                 if button.macro_right:
                     icon_list.append(button.macro_right.icon)
 
-        for button in self.menu.buttons:
-            if button.macro_left:
-                icon_list.append(button.macro_left.icon)
+        if hasattr(self, "menu"):
+            for button in self.menu.buttons:
+                if button.macro_left:
+                    icon_list.append(button.macro_left.icon)
                 
         return IconHandler.chain_bitmap_text(icon_list)
        
@@ -166,7 +168,8 @@ class RuiWriter:
         self.main_data["menus"] = self.get_menu()
 
         # assign e the logic once...
-        self.tabs = TH.get_tabs()
+        self.tabs = TH.get_tabs(self.search_folder)
+
 
         
         self.main_data["tool_bar_groups"] = self.get_toolbar_group_data()
@@ -188,12 +191,14 @@ class RuiWriter:
 
     def save_to_rui(self):
 
+
         for rui in [self.out_rui]:
                 
             FS.write_rui(self.main_data, rui)
 
-            
-        print("\n\n\n\nXML data has been saved to '.xml' as .rui.")
+        red_text = "\033[31m"
+        reset_color = "\033[0m"
+        print("\nXML data has been saved to '.xml' as .rui.\n{}{}{}".format(red_text, self.out_rui, reset_color))
 
         # open this file in default program
         os.startfile(self.out_rui)

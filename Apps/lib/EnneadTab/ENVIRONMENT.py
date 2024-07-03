@@ -39,6 +39,11 @@ else:
 
 
 
+ECO_SYS_FOLDER = "{}\\Documents\\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
+DUMP_FOLDER = ECO_SYS_FOLDER + "\\Dump"
+
+
+
 
 def is_Rhino_environment():
     """Check if current environment is Rhino.

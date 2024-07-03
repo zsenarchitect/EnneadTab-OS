@@ -26,7 +26,7 @@ assert os.path.exists(DATA_FILE), "guid data file does not exist"
 
 
 def process_path(path):
-    breaker = path.split("EnneadTab-for-Rhino\\")
+    breaker = path.split("_rhino\\")
     if len(breaker) == 1:
         return path
     return breaker[1]
@@ -72,19 +72,20 @@ class GuidHandler:
 
 
 if __name__ == "__main__":
-    GuidHandler.init_databease()
-    a = GuidHandler("EnneadTab-for-Rhino\\a")
-    b = GuidHandler("EnneadTab-for-Rhino\\a")
-    print(a.guid)
-    print(b.guid)
-    GuidHandler.update_database()
-    print(GuidHandler._instances)
-    c = GuidHandler("EnneadTab-for-Rhino\\c")
-    print(c.guid)
-    GuidHandler.update_database()
-    print(GuidHandler._instances)
-    d = GuidHandler("EnneadTab-for-Rhino\\anything")
-    print(d.guid)
-    GuidHandler.update_database()
-    print(GuidHandler._instances)
+    pass
+    # GuidHandler.init_databease()
+    # a = GuidHandler("EnneadTab-for-Rhino\\a")
+    # b = GuidHandler("EnneadTab-for-Rhino\\a")
+    # print(a.guid)
+    # print(b.guid)
+    # GuidHandler.update_database()
+    # print(GuidHandler._instances)
+    # c = GuidHandler("EnneadTab-for-Rhino\\c")
+    # print(c.guid)
+    # GuidHandler.update_database()
+    # print(GuidHandler._instances)
+    # d = GuidHandler("EnneadTab-for-Rhino\\anything")
+    # print(d.guid)
+    # GuidHandler.update_database()
+    # print(GuidHandler._instances)
         

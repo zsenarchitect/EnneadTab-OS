@@ -79,6 +79,8 @@ def copy_to_EA_Dist_and_commit():
     os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "RunPy2Exe.py"),
     os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "__publish.py"),
     os.path.join(EA_dist_repo_folder, "Apps", "lib", "dump scripts"),
+    os.path.join(EA_dist_repo_folder, "Apps", "lib", "RuiWriter"),
+    os.path.join(EA_dist_repo_folder, "Apps", "lib", "__Create_Rui.py"),
     ]
     for content in contents_to_hide_for_public:
         try_remove_content(content)

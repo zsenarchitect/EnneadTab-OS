@@ -7,7 +7,7 @@
   },
   {
    "optionDest": "filenames",
-   "value": "C:/Users/szhang/github/EnneadTab-OS/Apps/lib/exes/source code/Revit_Export_Renamer/Revit_Export_Renamer.py"
+   "value": "C:\\Users\\szhang\\github\\EnneadTab-OS\\Apps\\lib\\exes\\source code\\Revit_Export_Renamer\\Revit_Export_Renamer.py"
   },
   {
    "optionDest": "onefile",
@@ -19,7 +19,7 @@
   },
   {
    "optionDest": "icon_file",
-   "value": "C:/Users/szhang/github/EnneadTab-OS/Apps/lib/EnneadTab/images/icon_duck.ico"
+   "value": "C:\\Users\\szhang\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab\\images\\icon_duck.ico"
   },
   {
    "optionDest": "clean_build",
@@ -55,11 +55,11 @@
   },
   {
     "optionDest": "datas", 
-    "value": "C:/Users/szhang/github/EnneadTab-OS/Apps/lib/exes/source code/Revit_Export_Renamer/logo.png;."
+    "value": "C:\\Users\\szhang\\github\\EnneadTab-OS\\Apps\\lib\\exes\\source code\\Revit_Export_Renamer\\logo.png;."
    },
   {
     "optionDest": "datas", 
-    "value": "C:/Users/szhang/github/EnneadTab-OS/Apps/lib/exes/source code/Revit_Export_Renamer/icon_ennead-e.ico;."
+    "value": "C:\\Users\\szhang\\github\\EnneadTab-OS\\Apps\\lib\\exes\\source code\\Revit_Export_Renamer\\icon_ennead-e.ico;."
    }
  ],
  "nonPyinstallerOptions": {

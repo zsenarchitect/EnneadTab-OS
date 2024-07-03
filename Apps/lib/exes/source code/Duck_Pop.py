@@ -14,12 +14,12 @@ import playsound
 JSON_FILE = "DUCK_POP.json"
 
 
-from _Exe_Util import try_catch_error, get_file_in_dump_folder, read_json_as_dict_in_dump_folder
+import  _Exe_Util
 
 #########################################################################################################
 
 class DuckPopApp:
-    @try_catch_error
+    @_Exe_Util.try_catch_error
     def __init__(self, text,
                  animation_in_duration,
                  animation_stay_duration,
@@ -166,7 +166,7 @@ class DuckPopApp:
     def quack(self):
         playsound.playsound(self.audio)
 
-    @try_catch_error
+    @_Exe_Util.try_catch_error
     def update(self):
         # kill the app if running for more than total s .
         time_passed = time.time() - self.begining_time
@@ -226,11 +226,13 @@ class DuckPopApp:
     def get_screen_height(self):
         return self.window.winfo_screenheight()
 
-@try_catch_error
+@_Exe_Util.try_catch_error
 def pop_message():
 
-    data = read_json_as_dict_in_dump_folder(JSON_FILE)
-    if data is None or "main_text" not in data.keys():
+    data = _Exe_Util.read_json_as_dict_in_dump_folder(JSON_FILE)
+    if not data:
+        return
+    if "main_text" not in data.keys():
         print ("Nothing")
         return
     
@@ -245,9 +247,9 @@ def pop_message():
                      explosion_gif = data.get("explosion_gif", None))
     app.run()
     
-    if os.path.exists(get_file_in_dump_folder(JSON_FILE)):
+    if os.path.exists(_Exe_Util.get_file_in_dump_folder(JSON_FILE)):
         
-        os.remove(get_file_in_dump_folder(JSON_FILE))
+        os.remove(_Exe_Util.get_file_in_dump_folder(JSON_FILE))
 
     print ("done")
 

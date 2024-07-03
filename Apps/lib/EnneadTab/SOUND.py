@@ -38,7 +38,7 @@ def play_sound(file = "sound_effect_popup_msg3"):
     except Exception as e:
         # print ("Cannot use system media becasue: " + str(e))
         pass
-
+    
     try:
         import sys
         sys.path.append(ENVIRONMENT.DEPENDENCY_FOLDER)

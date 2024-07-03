@@ -2,8 +2,8 @@ import subprocess
 
 # Activate the virtual environment and install requirements
 commands = [
-    'cd C:\\Users\\szhang\\github\\EnneadTab-OS',
     '.venv\\Scripts\\activate',
+    'pip install --upgrade wheel', # need this to make sure some moudle in requirement can install with pip(such as playsound)
     'pip install -r requirements.txt'
 ]
 

@@ -1,15 +1,15 @@
+
+
 pyinstaller
 pillow
 auto_py_to_exe
 PyPDF2
 pywin32
 requests
-playsound
 GitPython
 xlrd
 xlsxwriter
 pyyaml
 gtts
-simpleaudio
-pydub
 pygame
+# playsound

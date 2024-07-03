@@ -14,10 +14,7 @@ from tkinter import ttk
 
 
 
-from _Exe_Util import try_catch_error, get_file_in_dump_folder, read_json_as_dict_in_dump_folder
-
-
-
+import _Exe_Util
 
 class MessageApp:
     # @try_catch_error
@@ -134,7 +131,7 @@ class MessageApp:
 def pop_message():
 
     
-    data = read_json_as_dict_in_dump_folder(JSON_KEY)
+    data = _Exe_Util.read_json_as_dict_in_dump_folder(JSON_KEY)
     if not data:
         return
     if "main_text" not in data.keys():
@@ -151,9 +148,9 @@ def pop_message():
                      x_offset= data.get("x_offset", 0))
     app.run()
     
-    if os.path.exists(get_file_in_dump_folder(JSON_KEY)):
+    if os.path.exists(_Exe_Util.get_file_in_dump_folder(JSON_KEY)):
         try:
-            os.remove(get_file_in_dump_folder(JSON_KEY))
+            os.remove(_Exe_Util.get_file_in_dump_folder(JSON_KEY))
         except:
             print (traceback.format_exc())
 

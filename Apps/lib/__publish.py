@@ -14,9 +14,22 @@ import NOTIFICATION #pyright: ignore
 import FOLDER #pyright: ignore
 import SOUND # pyright: ignore
 
+class NoGoodSetupException(Exception):
+    def __init__(self):
+        super().__init__("The setup is not complete or you are working on a new computer.")
+        
 
 # Specify the absolute path to the git executable
-GIT_LOCATION = "{}\\Local\\Programs\\Git\\cmd\\git.exe".format(FOLDER.get_appdata_folder())
+locations = [
+    "{}\\Local\\Programs\\Git\\cmd\\git.exe".format(FOLDER.get_appdata_folder()),
+    "C:\Program Files\Git\cmd\git.exe"
+]
+for location in locations:
+    if os.path.exists(location):
+        GIT_LOCATION = location
+        break
+else:
+    raise NoGoodSetupException()
 
 def time_it(func):
     def wrapper(*args, **kwargs):

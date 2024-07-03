@@ -15,7 +15,7 @@ from ENVIRONMENT import EXE_ROOT_FOLDER, ROOT  # pyright: ignore
 EXE_PRODUCT_FOLDER = os.path.join(EXE_ROOT_FOLDER, "products")
 EXE_MAKER_FOLDER = os.path.join(EXE_ROOT_FOLDER,"maker data")
 EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_ROOT_FOLDER,"source code")
-import NOTIFICATION
+import NOTIFICATION  # pyright: ignore
 
 PYGAME_ALLOWS = ["Speaker.json"]
 

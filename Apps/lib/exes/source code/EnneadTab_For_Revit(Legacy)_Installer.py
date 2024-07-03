@@ -22,7 +22,8 @@ def main():
     config.read(file_path)
 
     # Construct the new path for userextensions
-    new_userextensions_path = os.path.join(_Exe_Util.ESOSYSTEM_FOLDER, 'EA_Dist', '_revit')
+    # new_userextensions_path = os.path.join(_Exe_Util.ESOSYSTEM_FOLDER, 'EA_Dist', '_revit')
+    new_userextensions_path = "L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Published_Beta_Version"
 
     # Modify the necessary items in the [...] section
     if 'core' in config:

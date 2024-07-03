@@ -4,6 +4,7 @@ import shutil
 import subprocess
 import traceback
 import sys
+import time
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)) + "\\EnneadTab")
 
@@ -58,11 +59,18 @@ def move_exes():
         src_item = os.path.join(src_folder, item)
         dest_item = os.path.join(EXE_PRODUCT_FOLDER, item)
         
-        if os.path.isdir(src_item):
-            shutil.copytree(src_item, dest_item)
-        else:
-            shutil.copy2(src_item, dest_item)
-    
+        attemp = 0
+        while attemp < 3:
+            try:
+                if os.path.isdir(src_item):
+                    shutil.copytree(src_item, dest_item)
+                else:
+                    shutil.copy2(src_item, dest_item)
+                break
+            except:
+                time.sleep(2)
+                attemp += 1
+        
     # Delete the original folder and its contents
     shutil.rmtree(src_folder)
 

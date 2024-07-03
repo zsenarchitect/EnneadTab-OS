@@ -8,15 +8,15 @@
     </menu>
   </extend_rhino_menus>
   <menus>
-    <menu guid="554507be-4de8-4599-b199-a234671cd587">
+    <menu guid="18a9b608-7a5c-4ab3-9c29-3cb50aebb6ca">
       <text>
-        <locale_1033>Ennead</locale_1033>
+        <locale_1033>Enneaaaaaaaaaaaaaaaaaaaaaaaaaaad</locale_1033>
       </text>
-      <menu_item guid="ce0c69f1-30e0-439a-b1d8-5f04b50f564e">
+      <menu_item guid="ef2f1231-5f71-492a-9305-a17bcccc3c2c">
         <text>
           <locale_1033>Installation</locale_1033>
         </text>
-        <macro_id>2a324ebc-a53d-4cbf-a42a-fdc6a1e2096b</macro_id>
+        <macro_id>864f65bd-22be-4bdf-a855-351007a0c017</macro_id>
       </menu_item>
     </menu>
   </menus>
@@ -30,7 +30,7 @@
   </tool_bar_groups>
   <tool_bars/>
   <macros>
-    <macro_item guid="2a324ebc-a53d-4cbf-a42a-fdc6a1e2096b" bitmap_id="32cd8e6d-2df0-426e-a660-9f6782f465e5">
+    <macro_item guid="864f65bd-22be-4bdf-a855-351007a0c017" bitmap_id="e4fc7bb9-ca80-4727-ae7d-2d45ec7d0efb">
       <text>
         <locale_1033>Install EnneadTab</locale_1033>
       </text>
@@ -50,7 +50,7 @@
 import sys
 sys.path.append('L:\\4b_Applied Computing\\03_Rhino\\12_EnneadTab for Rhino\\Toolbar')
 import RHINO_MODULE_HELPER
-locator = 'Ennead.menu\\Installation.button\\Installation_left.py'
+locator = 'Enneaaaaaaaaaaaaaaaaaaaaaaaaaaad.menu\\Installation.button\\Installation_left.py'
 RHINO_MODULE_HELPER.run_Rhino_button(locator)
 )
 </script>
@@ -58,7 +58,7 @@ RHINO_MODULE_HELPER.run_Rhino_button(locator)
   </macros>
   <bitmaps>
     <small_bitmap item_width="16" item_height="16">
-      <bitmap_item guid="32cd8e6d-2df0-426e-a660-9f6782f465e5" index="0"/>
+      <bitmap_item guid="e4fc7bb9-ca80-4727-ae7d-2d45ec7d0efb" index="0"/>
       <bitmap>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAChElEQVR4nI1Sz49MaRQ99/tevVJ0
 ulqmaSJT2NhbSwS72XRiUQgrkRn+ApkgeS3SC0s71iKhJPaMmWcxszJ+RSJiI2K6q7tUvapXr97v
 933Hgh6EFnd97jnnnnsAALz2Ww0Aer3J9iIJO6aMHwxWl/YBAEmFHxl6nsqG3RtpNGQ6esc47D/z
@@ -74,7 +74,7 @@ N06f0Def3yQg7HS0iJgvmwgIcBGQyWFbFIeMdp+S1Fw8NZfP7Z43zdmSV05uAQm0j9jPnb8HPqOO
 PZ8xER4AAAAASUVORK5CYII=</bitmap>
     </small_bitmap>
     <normal_bitmap item_width="24" item_height="24">
-      <bitmap_item guid="32cd8e6d-2df0-426e-a660-9f6782f465e5" index="0"/>
+      <bitmap_item guid="e4fc7bb9-ca80-4727-ae7d-2d45ec7d0efb" index="0"/>
       <bitmap>iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEhklEQVR4nKVVW2gcVRj+/jOzO9nN
 bnZzaZIW+qDihRZqtSBWLE0rgdI3K21BEKFgsWqhUKQPPmwEL1jwVkHwpYiiYkIRKYJIJKlIpVCk
 LbQIltZYm2ya7Mzu7O7s7syc8/nQJE0a85D6wXk6Z77Lmf//j2ARSApGRtQIgMHBgQNi9GDKcf7R
@@ -99,7 +99,7 @@ QiE5PDdi/gtLZwog2PtkG7rbdkexPqBEtsKY98mCwgk3gWY9iYkbL0PMMyaTB9/b9g0C1Pfu27ei
 rnWPA5JCAAAAAElFTkSuQmCC</bitmap>
     </normal_bitmap>
     <large_bitmap item_width="32" item_height="32">
-      <bitmap_item guid="32cd8e6d-2df0-426e-a660-9f6782f465e5" index="0"/>
+      <bitmap_item guid="e4fc7bb9-ca80-4727-ae7d-2d45ec7d0efb" index="0"/>
       <bitmap>iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAHAklEQVR4nK1XW2xcVxVd+5x75z2e
 cZxkktR1SkFVEwhFRFBEJfJQkKqgqD/Y4gcVITXQQEDiC8GHk/aDgESlQqkoSPSjAsEYWiCkH7zy
 EiBQCRQISdNAEjuxPeOZ8bwf955zFh8eR7Vjpy3O/rlX995z9tp7r732uYJVjKQSETc9fXV7PBr/

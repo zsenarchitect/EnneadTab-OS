@@ -85,7 +85,9 @@ def make_exe(maker_json):
             print("{}Error updating exes: {} {}".format(red_text, traceback.format_exc(), reset_color))
            
 
-
+def repath(path):
+    # this is to be able to make exe from any named repo
+    return path.replace("C:/Users/szhang/github/EnneadTab-OS", ROOT.replace("\\", "/"))
         
 def json_to_command(json_file):
     json_config = json.load(json_file)
@@ -101,13 +103,14 @@ def json_to_command(json_file):
         if option["optionDest"] == "filenames":
             final_path = option["value"]
 
-            final_path = final_path.replace("C:/Users/szhang/github/EnneadTab-OS", ROOT)
+            final_path = repath(final_path)
             continue
 
         # json file use key icon_file, but as command it should be icon
         if option["optionDest"] == "icon_file":
             command.append("--{}".format("icon"))
-            command.append("{}".format(option['value']))
+            icon_path = repath(option['value'])
+            command.append(icon_path)
             continue
 
         # highlight as windowed(no output console) or console(yes output)
@@ -122,7 +125,8 @@ def json_to_command(json_file):
         # additional file
         if option["optionDest"] == "datas":
             command.append("--add-data")
-            command.append("{}".format(option['value']))
+            path = repath(option['value'])
+            command.append(path)
             continue  
 
         
@@ -164,6 +168,6 @@ def recompile_exe(single_exe = None):
 
 
 if __name__ == "__main__":
-    # recompile_exe()
+    recompile_exe()
     # recompile_exe(single_exe="Revit_Export_Renamer.json")
-    recompile_exe(single_exe="Speaker.json")
+    # recompile_exe(single_exe="Speaker.json")

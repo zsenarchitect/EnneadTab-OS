@@ -2,10 +2,10 @@
 __alias__ = "Install EnneadTab"
 __doc__ = "Install EnneadTab"
 
+from EnneadTab import ENVIRONMENT
+import sys
+sys.path.append(ENVIRONMENT.RHINO_FOLDER + "\\Ennead+.menu\\get_latest.button")
+import get_latest_left
 
 def Installation():
-    print ("To be created")
-
-    # make a local copy of main rui and close installer rui, open main rui
-
-    # register alias, including the starter
+    get_latest_left.get_latest(is_silient = True)

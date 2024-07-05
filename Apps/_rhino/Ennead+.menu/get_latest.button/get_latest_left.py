@@ -2,14 +2,23 @@
 __alias__ = "GetLatest"
 __doc__ = "This button does GetLatest when left click"
 
-from EnneadTab import VERSION_CONTROL
-
-def get_latest():
-
-    VERSION_CONTROL.install_EA_dist()
+from EnneadTab import VERSION_CONTROL, NOTIFICATION
+from EnneadTab.RHINO import RHINO_RUI
 
 
-    # save as curent rui to temp .rui so when closed it will not try to override the one from EA_ditst
+def get_latest(is_silient = False):
 
-    # close temp rui, pick up rui from dist folder
+    VERSION_CONTROL.update_EA_dist()
+
+    RHINO_RUI.update_my_rui()
+
+    # register alias, including the starter
+
+    if not is_silient:
+        NOTIFICATION.messenger("Latest Loaded")
+
+
+ 
+
+
 

@@ -1,1 +1,0 @@
-print ("\n\nTest that python can run.\n\n")

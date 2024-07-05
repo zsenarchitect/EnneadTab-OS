@@ -8,15 +8,15 @@
     </menu>
   </extend_rhino_menus>
   <menus>
-    <menu guid="18a9b608-7a5c-4ab3-9c29-3cb50aebb6ca">
+    <menu guid="865b78a0-07b9-401b-945f-9c0ecdf2171a">
       <text>
         <locale_1033>Enneaaaaaaaaaaaaaaaaaaaaaaaaaaad</locale_1033>
       </text>
-      <menu_item guid="ef2f1231-5f71-492a-9305-a17bcccc3c2c">
+      <menu_item guid="7007d6f9-33a0-4ff8-aad9-298a72eee673">
         <text>
           <locale_1033>Installation</locale_1033>
         </text>
-        <macro_id>864f65bd-22be-4bdf-a855-351007a0c017</macro_id>
+        <macro_id>e95e50ff-c1b9-4cf5-bfe1-c699b9ef0626</macro_id>
       </menu_item>
     </menu>
   </menus>
@@ -30,7 +30,7 @@
   </tool_bar_groups>
   <tool_bars/>
   <macros>
-    <macro_item guid="864f65bd-22be-4bdf-a855-351007a0c017" bitmap_id="e4fc7bb9-ca80-4727-ae7d-2d45ec7d0efb">
+    <macro_item guid="e95e50ff-c1b9-4cf5-bfe1-c699b9ef0626" bitmap_id="340feb48-72d4-4faf-89b4-f92e025ab67c">
       <text>
         <locale_1033>Install EnneadTab</locale_1033>
       </text>
@@ -58,7 +58,7 @@ RHINO_MODULE_HELPER.run_Rhino_button(locator)
   </macros>
   <bitmaps>
     <small_bitmap item_width="16" item_height="16">
-      <bitmap_item guid="e4fc7bb9-ca80-4727-ae7d-2d45ec7d0efb" index="0"/>
+      <bitmap_item guid="340feb48-72d4-4faf-89b4-f92e025ab67c" index="0"/>
       <bitmap>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAChElEQVR4nI1Sz49MaRQ99/tevVJ0
 ulqmaSJT2NhbSwS72XRiUQgrkRn+ApkgeS3SC0s71iKhJPaMmWcxszJ+RSJiI2K6q7tUvapXr97v
 933Hgh6EFnd97jnnnnsAALz2Ww0Aer3J9iIJO6aMHwxWl/YBAEmFHxl6nsqG3RtpNGQ6esc47D/z
@@ -74,7 +74,7 @@ N06f0Def3yQg7HS0iJgvmwgIcBGQyWFbFIeMdp+S1Fw8NZfP7Z43zdmSV05uAQm0j9jPnb8HPqOO
 PZ8xER4AAAAASUVORK5CYII=</bitmap>
     </small_bitmap>
     <normal_bitmap item_width="24" item_height="24">
-      <bitmap_item guid="e4fc7bb9-ca80-4727-ae7d-2d45ec7d0efb" index="0"/>
+      <bitmap_item guid="340feb48-72d4-4faf-89b4-f92e025ab67c" index="0"/>
       <bitmap>iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEhklEQVR4nKVVW2gcVRj+/jOzO9nN
 bnZzaZIW+qDihRZqtSBWLE0rgdI3K21BEKFgsWqhUKQPPmwEL1jwVkHwpYiiYkIRKYJIJKlIpVCk
 LbQIltZYm2ya7Mzu7O7s7syc8/nQJE0a85D6wXk6Z77Lmf//j2ARSApGRtQIgMHBgQNi9GDKcf7R
@@ -99,7 +99,7 @@ QiE5PDdi/gtLZwog2PtkG7rbdkexPqBEtsKY98mCwgk3gWY9iYkbL0PMMyaTB9/b9g0C1Pfu27ei
 rnWPA5JCAAAAAElFTkSuQmCC</bitmap>
     </normal_bitmap>
     <large_bitmap item_width="32" item_height="32">
-      <bitmap_item guid="e4fc7bb9-ca80-4727-ae7d-2d45ec7d0efb" index="0"/>
+      <bitmap_item guid="340feb48-72d4-4faf-89b4-f92e025ab67c" index="0"/>
       <bitmap>iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAHAklEQVR4nK1XW2xcVxVd+5x75z2e
 cZxkktR1SkFVEwhFRFBEJfJQkKqgqD/Y4gcVITXQQEDiC8GHk/aDgESlQqkoSPSjAsEYWiCkH7zy
 EiBQCRQISdNAEjuxPeOZ8bwf955zFh8eR7Vjpy3O/rlX995z9tp7r732uYJVjKQSETc9fXV7PBr/

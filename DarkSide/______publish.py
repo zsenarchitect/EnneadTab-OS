@@ -195,10 +195,10 @@ def publish_duck():
         print_title ("\n\nBegin compiling all exes...")
         NOTIFICATION.messenger("Recompiling all exes...kill VScode if you want to cancel..")
         update_exes()
-        print_title ("\n\nBegin updating installation folder for public easy install...")
-        update_installer_folder()
     else:
         NOTIFICATION.messenger("NOT compiling exes today...")
+    print_title ("\n\nBegin updating installation folder for public easy install...")
+    update_installer_folder()
 
 
     import RuiWriter
@@ -215,7 +215,7 @@ def manual_confirm_should_compile_exe():
     """manua change date to see if I should recompile exe
     so each recompile is more intentional"""
     import datetime
-    return str(datetime.date.today()) == "2024-07-05"
+    return str(datetime.date.today()) == "2024-07-04"
     
 
 def print_title(text):

@@ -11,7 +11,6 @@ import FOLDER
 import ENVIRONMENT
 import ERROR_HANDLE
 import NOTIFICATION
-import VERSION_CONTROL
 import LOG
 
 
@@ -63,5 +62,4 @@ def run_Rhino_button(locator, *args):
     runner()
 
     
-    if random.random() < 0.3:
-        VERSION_CONTROL.update_EA_dist()
+

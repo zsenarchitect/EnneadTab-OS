@@ -19,7 +19,9 @@ def try_catch_error(func):
             with open(error_file, "w") as f:
                 f.write(error)
 
-            os.startfile(error_file)
+            username = os.environ["USERPROFILE"].split("\\")[-1]
+            if username in ["szhang"]:
+                os.startfile(error_file)
 
     return wrapper
 

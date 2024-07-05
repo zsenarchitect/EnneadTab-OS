@@ -17,7 +17,7 @@ from tkinter import ttk
 import _Exe_Util
 
 class MessageApp:
-    # @try_catch_error
+    
     def __init__(self, text,
                  animation_in_duration,
                  animation_stay_duration,
@@ -88,7 +88,7 @@ class MessageApp:
 
         self.window.after(1, self.update)
 
-    # @try_catch_error
+    
     def update(self):
         # kill the app if running for more than total s .
         time_passed = time.time() - self.begining_time
@@ -127,7 +127,7 @@ class MessageApp:
         return self.window.winfo_screenheight()
 
 
-#@try_catch_error-----------------> TO-DO: add silent email error method.
+@_Exe_Util.try_catch_error
 def pop_message():
 
     

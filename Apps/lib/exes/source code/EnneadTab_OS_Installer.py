@@ -90,17 +90,8 @@ class RepositoryUpdater:
         os.remove(self.zip_path)
         print("Cleanup completed.")
 
-def save_traceback_and_open(user, error_message):
-    error_path = os.path.expanduser("~/Desktop/EnneadTab_Installer_error.txt")  
 
-    with open(error_path, 'w') as f:
-        f.write(error_message)
-
-    if os.environ["USERPROFILE"].split("\\")[-1] in ["szhang"]:
-        os.startfile(error_path)
-
-
-
+@_Exe_Util.try_catch_error
 def main():
     repo_url = "https://github.com/zsenarchitect/EA_Dist/archive/refs/heads/master.zip"
 
@@ -109,10 +100,5 @@ def main():
 
 if __name__ == '__main__':
 
-    try:
-        main()
-    except Exception as e:
-        error_info = traceback.format_exc()
-        username = os.environ["USERPROFILE"].split("\\")[-1]
-        save_traceback_and_open(username, error_info)
+    main()
 

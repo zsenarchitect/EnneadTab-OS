@@ -62,6 +62,7 @@ def cleanup_tts_mp3():
         except Exception as e:
             print(f"Failed to delete {file_path}: {e}")
 
+@_Exe_Util.try_catch_error
 def tts():
     data = _Exe_Util.read_json_as_dict_in_dump_folder(TTS_FILE)
     if not data:

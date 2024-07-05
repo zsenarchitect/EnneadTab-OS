@@ -3,6 +3,8 @@ import os
 import time
 import _Exe_Util
 
+
+@_Exe_Util.try_catch_error
 def main():
     # Get the current user's profile directory
     user_profile = os.path.expanduser("~")

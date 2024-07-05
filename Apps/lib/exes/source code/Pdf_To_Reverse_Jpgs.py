@@ -3,6 +3,8 @@ import fitz  # PyMuPDF
 from tkinter import Tk, filedialog
 from PIL import Image
 from pathlib import Path
+import _Exe_Util
+
 
 def extract_and_save_reverse_images(pdf_path, zoom_factor=2):
     # Open the PDF file
@@ -39,6 +41,8 @@ def extract_and_save_reverse_images(pdf_path, zoom_factor=2):
     
     print(f"Extraction complete! Images saved in: {output_dir}")
 
+
+@_Exe_Util.try_catch_error
 def pick_pdf_and_extract_images():
     # Initialize tkinter GUI
     root = Tk()

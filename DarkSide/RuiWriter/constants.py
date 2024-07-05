@@ -4,7 +4,7 @@ this is the website to text converting XML to JSON"""
 
 #############################################################################
 # 'Source Code' folder
-OS_ROOT_FOLDER = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+OS_ROOT_FOLDER = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 
 RHINO_TOOLBAR_FOLDER = os.path.join(OS_ROOT_FOLDER, "Apps", "_rhino")

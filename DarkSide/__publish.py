@@ -6,7 +6,11 @@ import time
 import traceback
 import winsound
 import sys
-sys.path.append(os.path.dirname(__file__) + "\\EnneadTab")
+
+
+OS_REPO_FOLDER = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(OS_REPO_FOLDER + "\\Apps\\lib\\EnneadTab")
+
 
 
 import UNIT_TEST #pyright: ignore
@@ -58,8 +62,7 @@ def update_exes():
 def copy_to_EA_Dist_and_commit():
     # locate the EA_Dist repo folder and current repo folder
     # the current repo folder is 3 parent folder up
-    current_repo_folder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    EA_dist_repo_folder = os.path.join(os.path.dirname(current_repo_folder), "EA_Dist")
+    EA_dist_repo_folder = os.path.join(os.path.dirname(OS_REPO_FOLDER), "EA_Dist")
 
     # process those two folders "Apps" and "Installation"
     # in EA_Dist folder, delete folder, then copy folder from current repo to EA_dist repo
@@ -68,22 +71,22 @@ def copy_to_EA_Dist_and_commit():
         try_remove_content(os.path.join(EA_dist_repo_folder, folder))
 
         # copy folder from current repo to EA_dist repo
-        shutil.copytree(os.path.join(current_repo_folder, folder), os.path.join(EA_dist_repo_folder, folder))
+        shutil.copytree(os.path.join(OS_REPO_FOLDER, folder), os.path.join(EA_dist_repo_folder, folder))
 
-    # delete contents to hide for public
-    contents_to_hide_for_public = [     
-    os.path.join(EA_dist_repo_folder, "Apps", "_revit", "DuckMaker.extension"),
-    os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "maker data"),
-    os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "source code"),
-    os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "ExeMaker.py"),
-    os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "RunPy2Exe.py"),
-    os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "__publish.py"),
-    os.path.join(EA_dist_repo_folder, "Apps", "lib", "dump scripts"),
-    os.path.join(EA_dist_repo_folder, "Apps", "lib", "RuiWriter"),
-    os.path.join(EA_dist_repo_folder, "Apps", "lib", "__Create_Rui.py"),
-    ]
-    for content in contents_to_hide_for_public:
-        try_remove_content(content)
+    # # delete contents to hide for public----> this is no longer needed becasue we have the DARKSIDE!
+    # contents_to_hide_for_public = [     
+    # os.path.join(EA_dist_repo_folder, "Apps", "_revit", "DuckMaker.extension"),
+    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "maker data"),
+    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "source code"),
+    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "ExeMaker.py"),
+    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "RunPy2Exe.py"),
+    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "__publish.py"),
+    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "dump scripts"),
+    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "RuiWriter"),
+    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "__Create_Rui.py"),
+    # ]
+    # for content in contents_to_hide_for_public:
+    #     try_remove_content(content)
     
     # pull the latest changes from remote
     pull_changes_from_main(EA_dist_repo_folder)
@@ -184,8 +187,8 @@ def push_changes_to_main(repository_path):
 def update_installer_folder():
     # locate the EA_Dist repo folder and current repo folder
     # the current repo folder is 3 parent folder up
-    current_repo_folder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    installation_folder = os.path.join(current_repo_folder, "Installation")
+
+    installation_folder = os.path.join(OS_REPO_FOLDER, "Installation")
     if os.path.exists(installation_folder):
         shutil.rmtree(installation_folder)
     os.makedirs(installation_folder)
@@ -195,8 +198,8 @@ def update_installer_folder():
     for file in ["EnneadTab_OS_Installer.exe",
                  "EnneadTab_For_Revit(Legacy)_Installer.exe",
                  "EnneadTab_For_Revit_UnInstaller.exe"]:
-        shutil.copy(os.path.join(current_repo_folder, "Apps", "lib", "exes", "products", file), 
-                    os.path.join(current_repo_folder, "Installation", file))
+        shutil.copy(os.path.join(OS_REPO_FOLDER, "Apps", "lib", "ExeProducts", file), 
+                    os.path.join(OS_REPO_FOLDER, "Installation", file))
 
 @time_it
 def publish_duck():
@@ -226,7 +229,7 @@ def manual_confirm_should_compile_exe():
     """manua change date to see if I should recompile exe
     so each recompile is more intentional"""
     import datetime
-    return str(datetime.date.today()) == "2024-07-03"
+    return str(datetime.date.today()) == "2024-07-05"
     
 
 def print_title(text):

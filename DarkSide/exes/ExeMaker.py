@@ -6,17 +6,17 @@ import traceback
 import sys
 import time
 
-sys.path.append(os.path.dirname(os.path.dirname(__file__)) + "\\EnneadTab")
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))) + "\\Apps\\lib\\EnneadTab")
 
-# the downloader shall read where to url based on configure file so if I re path it can update. 
-# most of exe can use this logic to avoid asset folder. the configure file title can be the same as maker file
-
-
-from ENVIRONMENT import EXE_ROOT_FOLDER, ROOT  # pyright: ignore
-EXE_PRODUCT_FOLDER = os.path.join(EXE_ROOT_FOLDER, "products")
-EXE_MAKER_FOLDER = os.path.join(EXE_ROOT_FOLDER,"maker data")
-EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_ROOT_FOLDER,"source code")
+from ENVIRONMENT import ROOT, EXE_PRODUCT_FOLDER  # pyright: ignore
 import NOTIFICATION  # pyright: ignore
+
+
+
+DARKSIDE_FOLDER = os.path.dirname(os.path.dirname(__file__))
+
+EXE_MAKER_FOLDER = os.path.join(DARKSIDE_FOLDER,"exes", "maker data")
+EXE_SOURCE_CODE_FOLDER = os.path.join(DARKSIDE_FOLDER,"exes","source code")
 
 
 PYGAME_ALLOWS = ["Speaker.json"]

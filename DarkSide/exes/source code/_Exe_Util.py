@@ -13,7 +13,8 @@ def try_catch_error(func):
 
         except PermissionError:
             print ("[WinError 32] The process cannot access the file because it is being used by another process")
-        
+        except EOFError:
+            print ("fine.....")
         except Exception as e:
             error = traceback.format_exc()
 

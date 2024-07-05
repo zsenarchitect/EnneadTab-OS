@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RhinoUI major_ver="3" minor_ver="0" guid="06df351c-27ff-4f8f-b408-6a1898498351" localize="False" default_language_id="1033" dpi_scale="100">
+  <extend_rhino_menus>
+    <menu guid="ced53dfd-1d59-4863-afcb-5eb3d4dd5707">
+      <text>
+        <locale_1033>Extend Rhino Menus</locale_1033>
+      </text>
+    </menu>
+  </extend_rhino_menus>
+  <menus>
+    <menu guid="e29a0672-ac24-4aa0-bcee-85c8da779e03">
+      <text>
+        <locale_1033>Enneaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaad</locale_1033>
+      </text>
+      <menu_item guid="590f0572-25ba-45ca-8396-f7efa5aaed3b">
+        <text>
+          <locale_1033>Installation</locale_1033>
+        </text>
+        <macro_id>149d335c-005d-471a-bfa1-2f46a2e8f01c</macro_id>
+      </menu_item>
+    </menu>
+  </menus>
+  <tool_bar_groups />
+  <tool_bars />
+  <macros>
+    <macro_item guid="149d335c-005d-471a-bfa1-2f46a2e8f01c" bitmap_id="d167508e-f3d5-498a-bbe3-4a69d79a082b">
+      <text>
+        <locale_1033>Install EnneadTab</locale_1033>
+      </text>
+      <tooltip>
+        <locale_1033>Install EnneadTab</locale_1033>
+      </tooltip>
+      <help_text>
+        <locale_1033>Install EnneadTab</locale_1033>
+      </help_text>
+      <button_text>
+        <locale_1033>Install EnneadTab</locale_1033>
+      </button_text>
+      <menu_text>
+        <locale_1033>Install EnneadTab</locale_1033>
+      </menu_text>
+      <script>! _-RunPythonScript (
+import os
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+import MODULE_HELPER
+MODULE_HELPER.run_Rhino_button('Enneaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaad.menu\\Installation.button\\Installation_left.py')
+)
+</script>
+    </macro_item>
+  </macros>
+  <bitmaps>
+    <small_bitmap item_width="16" item_height="16">
+      <bitmap_item guid="d167508e-f3d5-498a-bbe3-4a69d79a082b" index="0" />
+      <bitmap>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJjSURBVDhPjVNNaxNRFJ0mLUJdi7iw+gf8A1Vo
+XLhQRHQRKbjS0EYQQRRFtJBVFu50p25cqVjFlRuhNQU3QhWVUqkJSJo6M5nv75lkvo73vSRWpaIH
+Lu+9ufeee9698wQGPJifYKuq+vvi0FnMkmDFUMTD3AcU2PpPoFYr9Cz5ceRZiGwNgaN/bjQa40Qw
+RhhG7QAsLhZx+2wVlelNPL8Lw9RiT5cz11JliOIkjyESHrwTyFnMrp++j0sz79IrJ976na8JkMDR
+peWBv/Z/V+CY2CU4pvIFyOGa6i12f7LxoffvQFkoolHjgY4hL1ESLE26xn3ABOtFjXrEzjuCVWKr
+ZckHA1c3It/OQteQPUsr8YAhGAlTRFYk2+7LiIDkPwP6sHU5iTyTTQJEtBz5VgUIp3jwnxglm6Y4
+5ZpKz7e0nIhyIslpEvAtBSQG8tY3z9alN66tLvRC+6GtdS+OCIpsdV3lCGWz6rlHiSzZMbrMUupH
+qkptyJ0WktChFEDabD3hBKPmhIaxnxTEgWOkhvI9szUJHv1Q9A2+rUPvdvLm+oc+kcdRYEe+oR7n
+BAwjFbbZvcPYSQXarfXEVMWE9mm7uZZvrK0mgaOhH7m5rcrlYd5gMrQZYwdAGHPN7kLc83QkAZBG
+6JNkRRWRRA7i0NswpC1emY2WJ48AQfg5lvRmeQUfG3UnCur+VvNlurr0Pu17s/Kn17uZn4pxxb+B
+PSbMn5zE5WNXcWF60CACTh04k80eesH3VIS9He74FdxREwqols5l1ZlX6VzpBquCemVvb670KK4e
+fYp75/cMrrqtVBAE4QdT4vATmnUkAgAAAABJRU5ErkJggg==</bitmap>
+    </small_bitmap>
+    <normal_bitmap item_width="24" item_height="24">
+      <bitmap_item guid="d167508e-f3d5-498a-bbe3-4a69d79a082b" index="0" />
+      <bitmap>iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAQaSURBVEhLpVVNaFxVFJ42o8FFQXAlKIrYlasKQluI6aRUu6sSxkVBhdIkTUpQJLrI
+wgGt+ANNrV2IIPgDikwNrgouAtGNtVKMKQ1JmswkmUxm3nvz/t+bN2/m/Xyec/MmLRkwP35wuffd
+c+53zj3n3PNSDwLAAeTzXXkahqEMmFo133T1CU/TnmzLheJ+gFzu4O2vBh/italLnwEBoqZLnAEc
+Q54zDONR4cB+jCCV2jqE6xM9nlZxLU2Kpn6ZDExNagEtOLp0Vsinp9NCcbdok+Pq6JHovf6f/KFM
+y5v7MzA8J1ZKBViaHADNiOYxoQfszQADlwb6MX4GGDsNDBwHPhmEs74Ex9ZhqdWIQ2Wrcr/QBbrE
+ob0AE28/jvHXPsJbL32Pkb5vw7FXJ53FmdiyNNRNhXKgOKq6/oTQBQ6KQ/8L6e4UkS83bA2hb8PW
+5Zv7TjADSB1ArjeNbLaLctGNbKrL0aRJDk3cqlOC5a8TA3uP/3YQiYgxef0jAg8tz4KpVqcSWZrl
+D1bdnpCjt8Ce1mq1Q7ahrPquQVUkhWyEbnExURMQhigfrJ9s7Qx+xTzTC/4csS/IacSU5JiN2Xr1
+B1PdOLX9LZARcTPuANMk43Uiug/2hmdHqz5Xt9TANWtU+1JMoWJDPGKEHoKGDc9SZ33XfJ/ex5H2
+uR3R9soWbaLJhAGTbxthtVSI5XJRlK8qlSLHVGY8U7tiG9IrZq3ygmfr4+Tc5Q7DHH+eifg38bCI
+bBs5KC/Q5TKk9WJUXr0XrC3PoVpagu9o1E08uCRnKBurMzR1lLX4oBvc5tonQ1GHARqUD5CHoDBy
+dcXllcXo7t83A6lcDF1LjdTqWqtUmFeJ/DHB2gZtiBtQgicp1nE7RETC3bTDEBsxlA2sLc1hfvYv
+kSfa32yMhvIlF0ybU4A+NuufYonIh63JLceoxdXSMsgjeI6ekCuCWK2WOAcoLtxBZW0pJoOCnLrv
+dwlf58tni7xpapVvgJgJI0utxIWFWazcu8uNj7yrQS6voLh4BzO3fo9pP6xbWgiE9FaUn7lU2zwJ
+7X3w5uaYTrumPNFwjdj1qVVQV6XExRSuUJPLYWH+HzYaU9zBt216JhWAfJXPtTkSyk4IhSThjeWF
+Pv/Wr4ZbKYa+Z5OTDRpULbT2fRcNx6hTWd6gW2XEYcJ/kreB0dPd/C5w5pmTOH8MuPLOy2rdOuqq
+62+YujzazH+x2Lp+LW8pyuHkyFZ4k8/dIRrO/IHhvo+Tzy3g9eenkD08KNa53MMcdyHYCRwaZI8+
+ggsn+lvne27Qzwe8BqgJchv/9NwhjJx6FxdPIhrumxLf3CB30135nyDmod6nMXTiA/fN49fCcy/m
+cCEzzP8KIRvpfTYY6LlsnT12iXQ+xEjmKbGfnO1EKvUv+40LfQpRAqYAAAAASUVORK5CYII=</bitmap>
+    </normal_bitmap>
+    <large_bitmap item_width="32" item_height="32">
+      <bitmap_item guid="d167508e-f3d5-498a-bbe3-4a69d79a082b" index="0" />
+      <bitmap>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
+VQnBEALhYjgAAAAASUVORK5CYII=</bitmap>
+    </large_bitmap>
+  </bitmaps>
+  <scripts />
+</RhinoUI>

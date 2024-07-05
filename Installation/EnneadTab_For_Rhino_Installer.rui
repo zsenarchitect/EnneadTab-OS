@@ -48,10 +48,11 @@
       </menu_text>
       <script>! _-RunPythonScript (
 import sys
-sys.path.append('L:\\4b_Applied Computing\\03_Rhino\\12_EnneadTab for Rhino\\Toolbar')
-import RHINO_MODULE_HELPER
+import os
+os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
+import MODULE_HELPER
 locator = 'Enneaaaaaaaaaaaaaaaaaaaaaaaaaaad.menu\\Installation.button\\Installation_left.py'
-RHINO_MODULE_HELPER.run_Rhino_button(locator)
+MODULE_HELPER.run_Rhino_button(locator)
 )
 </script>
     </macro_item>

@@ -73,20 +73,6 @@ def copy_to_EA_Dist_and_commit():
         # copy folder from current repo to EA_dist repo
         shutil.copytree(os.path.join(OS_REPO_FOLDER, folder), os.path.join(EA_dist_repo_folder, folder))
 
-    # # delete contents to hide for public----> this is no longer needed becasue we have the DARKSIDE!
-    # contents_to_hide_for_public = [     
-    # os.path.join(EA_dist_repo_folder, "Apps", "_revit", "DuckMaker.extension"),
-    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "maker data"),
-    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "source code"),
-    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "ExeMaker.py"),
-    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "RunPy2Exe.py"),
-    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "exes", "__publish.py"),
-    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "dump scripts"),
-    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "RuiWriter"),
-    # os.path.join(EA_dist_repo_folder, "Apps", "lib", "__Create_Rui.py"),
-    # ]
-    # for content in contents_to_hide_for_public:
-    #     try_remove_content(content)
     
     # pull the latest changes from remote
     pull_changes_from_main(EA_dist_repo_folder)

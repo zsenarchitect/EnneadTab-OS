@@ -255,7 +255,7 @@ class RuiWriter:
         print("\nXML data has been saved to '.xml' as .rui.\n{}{}{}".format(red_text, self.out_rui, reset_color))
 
         # open this file in default program
-        os.startfile(self.out_rui)
+        # os.startfile(self.out_rui)
 
 
         # tried to use shutil copy but the copied rui is no longer reconigzed by RHino, so just creat it twice.

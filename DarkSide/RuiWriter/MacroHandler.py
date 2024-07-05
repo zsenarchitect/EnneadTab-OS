@@ -144,7 +144,7 @@ class MacroHandler(BaseHandler):
         script = """! _-RunPythonScript (
 import sys
 import os
-os.path.join("{}\\\\Documents\\\\EnneadTab Ecosystem\\\\EA_Dist\\\\Apps\\\\lib\\\\EnneadTab".format(os.environ["USERPROFILE"]))
+os.path.join(os.environ['USERPROFILE'] + '\\\\Documents\\\\EnneadTab Ecosystem\\\\EA_Dist\\\\Apps\\\\lib\\\\EnneadTab')
 import MODULE_HELPER
 locator = '{}'
 MODULE_HELPER.run_Rhino_button(locator)

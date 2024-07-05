@@ -142,12 +142,11 @@ class MacroHandler(BaseHandler):
         #This macro is auto-generated, manual modification will be discarded;
         # note to self: using ; at the end of the line to simulate a one-liner python
         script = """! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\\\Documents\\\\EnneadTab Ecosystem\\\\EA_Dist\\\\Apps\\\\lib\\\\EnneadTab')
-import MODULE_HELPER
-locator = '{}'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\\\Documents\\\\EnneadTab Ecosystem\\\\EA_Dist\\\\Apps\\\\lib\\\\EnneadTab\\\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('{}')
 )
 """.format(locator)
         return script

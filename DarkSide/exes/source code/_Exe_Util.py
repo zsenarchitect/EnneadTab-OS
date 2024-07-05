@@ -10,6 +10,10 @@ def try_catch_error(func):
         try:
             out = func(*args, **kwargs)
             return out
+
+        except PermissionError:
+            print ("[WinError 32] The process cannot access the file because it is being used by another process")
+        
         except Exception as e:
             error = traceback.format_exc()
 

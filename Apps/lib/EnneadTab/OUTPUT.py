@@ -1,13 +1,14 @@
 import os
 import io
+
 import webbrowser
 
-import DATA_FILE
+
 import FOLDER 
 import ENVIRONMENT
 import NOTIFICATION
 import TIME 
-import EXE 
+import IMAGE
 
 FUNCS = """
 <script>
@@ -224,8 +225,8 @@ def unit_test():
     output.insert_division()
 
     
-    output.write("Trying to print image")
-    output.write("{}\\meme_you sync first.jpg".format(ENVIRONMENT.IMAGE_FOLDER))
+    output.write("Trying to print a random meme image")
+    output.write(IMAGE.get_one_image_path_by_prefix("meme"))
 
 
     output.insert_division()

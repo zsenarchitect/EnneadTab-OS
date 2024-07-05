@@ -14,7 +14,7 @@ DIST_RUI = RHINO_TOOLBAR_FOLDER + "\\EnneadTab_For_Rhino.rui"
 INSTALLATION_FOLDER = os.path.join(OS_ROOT_FOLDER, "Installation")
 INSTALLATION_RUI = INSTALLATION_FOLDER + "\\EnneadTab_For_Rhino_Installer.rui"
 
-RHINO_INSTALLER_SETUP_FOLDER = os.path.dirname(os.path.realpath(__file__))
+RHINO_INSTALLER_SETUP_FOLDER = os.path.join(OS_ROOT_FOLDER, "Apps", "lib", "EnneadTab", "RHINO")
 
 ##############################################################################
 

@@ -1,6 +1,7 @@
 import os
 import shutil
 import datetime
+
 import subprocess
 import time
 import traceback
@@ -201,6 +202,7 @@ def publish_duck():
     update_installer_folder()
 
 
+    # recompile the rui layout for rhino
     import RuiWriter
     RuiWriter.run()
 
@@ -214,8 +216,7 @@ def publish_duck():
 def manual_confirm_should_compile_exe():
     """manua change date to see if I should recompile exe
     so each recompile is more intentional"""
-    import datetime
-    return str(datetime.date.today()) == "2024-07-04"
+    return str(datetime.date.today()) == "2024-07-03"
     
 
 def print_title(text):

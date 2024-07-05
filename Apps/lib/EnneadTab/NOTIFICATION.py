@@ -59,6 +59,8 @@ def duck_pop(main_text = None):
 
     data = {}
     data["main_text"] = main_text
+
+    # when the ranking is ready, can progress to make better ranked duck
     data["duck_image"] = IMAGE.get_one_image_path_by_prefix("duck_pop")
     data["explosion_gif"] = IMAGE.get_image_path_by_name("duck_explosion.gif")
     data["audio"] = SOUND.get_one_audio_path_by_prefix("duck")

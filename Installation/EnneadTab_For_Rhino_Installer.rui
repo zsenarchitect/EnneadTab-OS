@@ -8,15 +8,15 @@
     </menu>
   </extend_rhino_menus>
   <menus>
-    <menu guid="a42e383f-2d62-40b0-87b5-b5e630b9ab95">
+    <menu guid="8353ccda-4a22-4829-85fe-69991d7b162c">
       <text>
         <locale_1033>Enneaaaaaaaaaaaaaaaaaaaaaaaaaaad</locale_1033>
       </text>
-      <menu_item guid="6fb77532-74bc-42e4-a5f6-2a112f25ece2">
+      <menu_item guid="bf8a5936-bb6b-47f5-8be2-37a01a22e797">
         <text>
           <locale_1033>Installation</locale_1033>
         </text>
-        <macro_id>67a0f975-0fa5-4f7e-bfe6-39c9372d0602</macro_id>
+        <macro_id>d3fbdfea-a2d0-48bc-a6c9-5f91d6515b34</macro_id>
       </menu_item>
     </menu>
   </menus>
@@ -30,7 +30,7 @@
   </tool_bar_groups>
   <tool_bars/>
   <macros>
-    <macro_item guid="67a0f975-0fa5-4f7e-bfe6-39c9372d0602" bitmap_id="e531f771-ac1b-4e81-aefa-51b69747832a">
+    <macro_item guid="d3fbdfea-a2d0-48bc-a6c9-5f91d6515b34" bitmap_id="d0e110c2-2463-4e30-9b38-cefbfae48ba0">
       <text>
         <locale_1033>Install EnneadTab</locale_1033>
       </text>
@@ -47,19 +47,18 @@
         <locale_1033>Install EnneadTab</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Enneaaaaaaaaaaaaaaaaaaaaaaaaaaad.menu\\Installation.button\\Installation_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Enneaaaaaaaaaaaaaaaaaaaaaaaaaaad.menu\\Installation.button\\Installation_left.py')
 )
 </script>
     </macro_item>
   </macros>
   <bitmaps>
     <small_bitmap item_width="16" item_height="16">
-      <bitmap_item guid="e531f771-ac1b-4e81-aefa-51b69747832a" index="0"/>
+      <bitmap_item guid="d0e110c2-2463-4e30-9b38-cefbfae48ba0" index="0"/>
       <bitmap>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAChElEQVR4nI1Sz49MaRQ99/tevVJ0
 ulqmaSJT2NhbSwS72XRiUQgrkRn+ApkgeS3SC0s71iKhJPaMmWcxszJ+RSJiI2K6q7tUvapXr97v
 933Hgh6EFnd97jnnnnsAALz2Ww0Aer3J9iIJO6aMHwxWl/YBAEmFHxl6nsqG3RtpNGQ6esc47D/z
@@ -75,7 +74,7 @@ N06f0Def3yQg7HS0iJgvmwgIcBGQyWFbFIeMdp+S1Fw8NZfP7Z43zdmSV05uAQm0j9jPnb8HPqOO
 PZ8xER4AAAAASUVORK5CYII=</bitmap>
     </small_bitmap>
     <normal_bitmap item_width="24" item_height="24">
-      <bitmap_item guid="e531f771-ac1b-4e81-aefa-51b69747832a" index="0"/>
+      <bitmap_item guid="d0e110c2-2463-4e30-9b38-cefbfae48ba0" index="0"/>
       <bitmap>iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEhklEQVR4nKVVW2gcVRj+/jOzO9nN
 bnZzaZIW+qDihRZqtSBWLE0rgdI3K21BEKFgsWqhUKQPPmwEL1jwVkHwpYiiYkIRKYJIJKlIpVCk
 LbQIltZYm2ya7Mzu7O7s7syc8/nQJE0a85D6wXk6Z77Lmf//j2ARSApGRtQIgMHBgQNi9GDKcf7R
@@ -100,7 +99,7 @@ QiE5PDdi/gtLZwog2PtkG7rbdkexPqBEtsKY98mCwgk3gWY9iYkbL0PMMyaTB9/b9g0C1Pfu27ei
 rnWPA5JCAAAAAElFTkSuQmCC</bitmap>
     </normal_bitmap>
     <large_bitmap item_width="32" item_height="32">
-      <bitmap_item guid="e531f771-ac1b-4e81-aefa-51b69747832a" index="0"/>
+      <bitmap_item guid="d0e110c2-2463-4e30-9b38-cefbfae48ba0" index="0"/>
       <bitmap>iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAHAklEQVR4nK1XW2xcVxVd+5x75z2e
 cZxkktR1SkFVEwhFRFBEJfJQkKqgqD/Y4gcVITXQQEDiC8GHk/aDgESlQqkoSPSjAsEYWiCkH7zy
 EiBQCRQISdNAEjuxPeOZ8bwf955zFh8eR7Vjpy3O/rlX995z9tp7r732uYJVjKQSETc9fXV7PBr/

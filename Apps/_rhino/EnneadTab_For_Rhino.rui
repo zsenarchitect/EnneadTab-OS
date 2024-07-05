@@ -759,12 +759,11 @@
         <locale_1033>RandomizeBlockTransformation</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\randomize_block_transformation.button\\randomize_block_transformation_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\randomize_block_transformation.button\\randomize_block_transformation_left.py')
 )
 </script>
     </macro_item>
@@ -785,12 +784,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>UniformTransformBlocks</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\uniform_transform_blocks.button\\uniform_transform_blocks_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\uniform_transform_blocks.button\\uniform_transform_blocks_left.py')
 )
 </script>
     </macro_item>
@@ -811,12 +809,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MakeBlockUnique</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\make_block_unique.button\\make_block_unique_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\make_block_unique.button\\make_block_unique_left.py')
 )
 </script>
     </macro_item>
@@ -837,12 +834,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MakeBlockUniqueToOne</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\make_block_unique.button\\make_block_unique_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\make_block_unique.button\\make_block_unique_right.py')
 )
 </script>
     </macro_item>
@@ -863,12 +859,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>PackageBlockLayer</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\package_block_layer.button\\package_block_layer_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\package_block_layer.button\\package_block_layer_left.py')
 )
 </script>
     </macro_item>
@@ -889,12 +884,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>EditDistortedBlock</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\edit_distorted_block.button\\edit_distorted_block_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\edit_distorted_block.button\\edit_distorted_block_left.py')
 )
 </script>
     </macro_item>
@@ -915,12 +909,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>EditDistortedBlockRestoreView</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\edit_distorted_block.button\\edit_distorted_block_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\edit_distorted_block.button\\edit_distorted_block_right.py')
 )
 </script>
     </macro_item>
@@ -941,12 +934,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ToggleBlockColorDisplay</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\toggle_block_color_display.button\\toggle_block_color_display_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\toggle_block_color_display.button\\toggle_block_color_display_left.py')
 )
 </script>
     </macro_item>
@@ -967,12 +959,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ToggleBlockColorDisplay_Setting</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\toggle_block_color_display.button\\display_setting_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\toggle_block_color_display.button\\display_setting_right.py')
 )
 </script>
     </macro_item>
@@ -993,12 +984,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MatchTextureMappingInBlock</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\match_texture_mapping_in_block.button\\match_texture_mapping_in_block_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\match_texture_mapping_in_block.button\\match_texture_mapping_in_block_left.py')
 )
 </script>
     </macro_item>
@@ -1019,12 +1009,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>FallGeosOnGeo</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\fall_geos_on_geo.button\\fall_geos_on_geo_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\fall_geos_on_geo.button\\fall_geos_on_geo_left.py')
 )
 </script>
     </macro_item>
@@ -1045,12 +1034,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>BatchRenameBlocks</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\batch_rename_blocks.button\\batch_rename_blocks_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\batch_rename_blocks.button\\batch_rename_blocks_left.py')
 )
 </script>
     </macro_item>
@@ -1071,12 +1059,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>FilterBlockByName</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\filter_block_by_name.button\\filter_block_by_name_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\filter_block_by_name.button\\filter_block_by_name_left.py')
 )
 </script>
     </macro_item>
@@ -1097,12 +1084,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>RandomBlocksOnSrfs</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\random_blocks_on_srfs.button\\random_blocks_on_srfs_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\random_blocks_on_srfs.button\\random_blocks_on_srfs_left.py')
 )
 </script>
     </macro_item>
@@ -1123,12 +1109,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SampleLayout</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\sample_layout.button\\sample_layout_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\sample_layout.button\\sample_layout_left.py')
 )
 </script>
     </macro_item>
@@ -1149,12 +1134,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SelectSimilarBlocks</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\similar_blocks.button\\similar_blocks_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\similar_blocks.button\\similar_blocks_left.py')
 )
 </script>
     </macro_item>
@@ -1175,12 +1159,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>IsolateSimilarBlocks</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Block.tab\\similar_blocks.button\\similar_blocks_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Block.tab\\similar_blocks.button\\similar_blocks_right.py')
 )
 </script>
     </macro_item>
@@ -1201,12 +1184,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>DestroyLayer</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Layer.tab\\destroy_layer.button\\destroy_layer_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Layer.tab\\destroy_layer.button\\destroy_layer_left.py')
 )
 </script>
     </macro_item>
@@ -1227,12 +1209,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>FindLayerInFiles</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Layer.tab\\find_layer_in_files.button\\find_layer_in_files_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Layer.tab\\find_layer_in_files.button\\find_layer_in_files_left.py')
 )
 </script>
     </macro_item>
@@ -1253,12 +1234,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>InitiateLayers</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Layer.tab\\initiate_layers.button\\initiate_layers_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Layer.tab\\initiate_layers.button\\initiate_layers_left.py')
 )
 </script>
     </macro_item>
@@ -1279,12 +1259,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>IsolateLayerBySelection</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Layer.tab\\isolate_layer_by_selection.button\\isolate_layer_by_selection_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Layer.tab\\isolate_layer_by_selection.button\\isolate_layer_by_selection_left.py')
 )
 </script>
     </macro_item>
@@ -1305,12 +1284,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SelectObjectsOnSimilarLayer</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Layer.tab\\isolate_layer_by_selection.button\\isolate_layer_by_selection_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Layer.tab\\isolate_layer_by_selection.button\\isolate_layer_by_selection_right.py')
 )
 </script>
     </macro_item>
@@ -1331,12 +1309,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>LayerNameFormat</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Layer.tab\\layer_name_format.button\\layer_name_format_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Layer.tab\\layer_name_format.button\\layer_name_format_left.py')
 )
 </script>
     </macro_item>
@@ -1357,12 +1334,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MergeLayer</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Layer.tab\\merge_layer.button\\merge_layer_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Layer.tab\\merge_layer.button\\merge_layer_left.py')
 )
 </script>
     </macro_item>
@@ -1383,12 +1359,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>NestLayer</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Layer.tab\\nest_layer.button\\nest_layer_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Layer.tab\\nest_layer.button\\nest_layer_left.py')
 )
 </script>
     </macro_item>
@@ -1409,12 +1384,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>RandomLayerColor</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Layer.tab\\random_layer_color.button\\random_layer_color_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Layer.tab\\random_layer_color.button\\random_layer_color_left.py')
 )
 </script>
     </macro_item>
@@ -1435,12 +1409,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>RandomLayerColorSetting</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Layer.tab\\random_layer_color.button\\color_setting_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Layer.tab\\random_layer_color.button\\color_setting_right.py')
 )
 </script>
     </macro_item>
@@ -1461,12 +1434,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SectionboxByBoundingBox</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'View.tab\\section_box.button\\section_box_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('View.tab\\section_box.button\\section_box_left.py')
 )
 </script>
     </macro_item>
@@ -1487,12 +1459,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SectionboxByPolysrf</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'View.tab\\section_box.button\\section_box_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('View.tab\\section_box.button\\section_box_right.py')
 )
 </script>
     </macro_item>
@@ -1513,12 +1484,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SectionBoxCleanup</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'View.tab\\section_box_cleanup.button\\section_box_cleanup_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('View.tab\\section_box_cleanup.button\\section_box_cleanup_left.py')
 )
 </script>
     </macro_item>
@@ -1539,12 +1509,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>BatchRenameCamera</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'View.tab\\batch_rename_camera.button\\batch_rename_camera_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('View.tab\\batch_rename_camera.button\\batch_rename_camera_left.py')
 )
 </script>
     </macro_item>
@@ -1565,12 +1534,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ChangeObjectDisplaySource</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'View.tab\\change_object_display_source.button\\change_object_display_source_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('View.tab\\change_object_display_source.button\\change_object_display_source_left.py')
 )
 </script>
     </macro_item>
@@ -1591,12 +1559,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ToggleLayerPointer</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'View.tab\\toggle_layer_pointer.button\\toggle_layer_pointer_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('View.tab\\toggle_layer_pointer.button\\toggle_layer_pointer_left.py')
 )
 </script>
     </macro_item>
@@ -1617,12 +1584,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>StairMaker</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Create.tab\\stair_maker.button\\stair_maker_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Create.tab\\stair_maker.button\\stair_maker_left.py')
 )
 </script>
     </macro_item>
@@ -1643,12 +1609,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>StairMaker(Spiral)</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Create.tab\\stair_maker.button\\stair_maker_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Create.tab\\stair_maker.button\\stair_maker_right.py')
 )
 </script>
     </macro_item>
@@ -1669,12 +1634,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>FlattenMeshFace</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Modify.tab\\flatten_mesh_face.button\\flatten_mesh_face_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Modify.tab\\flatten_mesh_face.button\\flatten_mesh_face_left.py')
 )
 </script>
     </macro_item>
@@ -1695,12 +1659,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MakeVoidSeam</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Modify.tab\\make_void_seam.button\\make_void_seam_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Modify.tab\\make_void_seam.button\\make_void_seam_left.py')
 )
 </script>
     </macro_item>
@@ -1721,12 +1684,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MatchCrvDir</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Modify.tab\\match_crv_dir.button\\match_crv_dir_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Modify.tab\\match_crv_dir.button\\match_crv_dir_left.py')
 )
 </script>
     </macro_item>
@@ -1747,12 +1709,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>OffsetFloorBorder</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Modify.tab\\offset_floor_border.button\\offset_floor_border_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Modify.tab\\offset_floor_border.button\\offset_floor_border_left.py')
 )
 </script>
     </macro_item>
@@ -1773,12 +1734,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>PushGlassIn</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Modify.tab\\push_glass_in.button\\push_glass_in_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Modify.tab\\push_glass_in.button\\push_glass_in_left.py')
 )
 </script>
     </macro_item>
@@ -1799,12 +1759,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>RandomDeselect</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Modify.tab\\random_deselect.button\\random_deselect_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Modify.tab\\random_deselect.button\\random_deselect_left.py')
 )
 </script>
     </macro_item>
@@ -1825,12 +1784,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>RandomDeselect</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Modify.tab\\random_deselect.button\\random_deselect_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Modify.tab\\random_deselect.button\\random_deselect_right.py')
 )
 </script>
     </macro_item>
@@ -1851,12 +1809,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ShapeMapper</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Modify.tab\\shape_mapper.button\\shape_mapper_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Modify.tab\\shape_mapper.button\\shape_mapper_left.py')
 )
 </script>
     </macro_item>
@@ -1877,12 +1834,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SrfToPanel</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Modify.tab\\srf_to_panel.button\\srf_to_panel_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Modify.tab\\srf_to_panel.button\\srf_to_panel_left.py')
 )
 </script>
     </macro_item>
@@ -1903,12 +1859,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>TimeTravel</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Modify.tab\\time_travel.button\\time_travel_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Modify.tab\\time_travel.button\\time_travel_left.py')
 )
 </script>
     </macro_item>
@@ -1929,12 +1884,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ImportSelectedMaterial</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Material.tab\\import_selected_material.button\\import_selected_material_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Material.tab\\import_selected_material.button\\import_selected_material_left.py')
 )
 </script>
     </macro_item>
@@ -1955,12 +1909,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MaterialPrefix</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Material.tab\\material_prefix.button\\material_prefix_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Material.tab\\material_prefix.button\\material_prefix_left.py')
 )
 </script>
     </macro_item>
@@ -1981,12 +1934,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MergeMaterials</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Material.tab\\merge_materials.button\\merge_materials_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Material.tab\\merge_materials.button\\merge_materials_left.py')
 )
 </script>
     </macro_item>
@@ -2007,12 +1959,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>RandomTextureWalk</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Material.tab\\random_texture_walk.button\\random_texture_walk_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Material.tab\\random_texture_walk.button\\random_texture_walk_left.py')
 )
 </script>
     </macro_item>
@@ -2033,12 +1984,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>RemoveStringInMaterialName</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Material.tab\\remove_string_in_material_name.button\\remove_string_in_material_name_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Material.tab\\remove_string_in_material_name.button\\remove_string_in_material_name_left.py')
 )
 </script>
     </macro_item>
@@ -2059,12 +2009,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>AiRenderingFromView</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Render.tab\\ai_render.button\\view2render_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Render.tab\\ai_render.button\\view2render_left.py')
 )
 </script>
     </macro_item>
@@ -2085,12 +2034,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>AiRenderUpscale</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Render.tab\\ai_render.button\\render_upscale_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Render.tab\\ai_render.button\\render_upscale_right.py')
 )
 </script>
     </macro_item>
@@ -2111,12 +2059,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ImportSelectedCamera</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Render.tab\\import_selected_camera.button\\import_selected_camera_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Render.tab\\import_selected_camera.button\\import_selected_camera_left.py')
 )
 </script>
     </macro_item>
@@ -2137,12 +2084,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>InspectEnscapeSetting</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Render.tab\\inspect_enscape_setting.button\\inspect_enscape_setting_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Render.tab\\inspect_enscape_setting.button\\inspect_enscape_setting_left.py')
 )
 </script>
     </macro_item>
@@ -2163,12 +2109,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>LoadEnscapeToPsd</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Render.tab\\load_enscape_to_psd.button\\load_enscape_to_psd_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Render.tab\\load_enscape_to_psd.button\\load_enscape_to_psd_left.py')
 )
 </script>
     </macro_item>
@@ -2189,12 +2134,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MakeCrvPipe</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Render.tab\\make_crv_pipe.button\\make_crv_pipe_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Render.tab\\make_crv_pipe.button\\make_crv_pipe_left.py')
 )
 </script>
     </macro_item>
@@ -2215,12 +2159,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>RenameEnscapeFiles</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Render.tab\\rename_enscape_files.button\\rename_enscape_files_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Render.tab\\rename_enscape_files.button\\rename_enscape_files_left.py')
 )
 </script>
     </macro_item>
@@ -2241,12 +2184,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>DuplicateLayout</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Drafting.tab\\duplicate_layout.button\\duplicate_layout_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Drafting.tab\\duplicate_layout.button\\duplicate_layout_left.py')
 )
 </script>
     </macro_item>
@@ -2267,12 +2209,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ExportSelectedLayout</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Drafting.tab\\export_selected_pages.button\\export_selected_pages_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Drafting.tab\\export_selected_pages.button\\export_selected_pages_left.py')
 )
 </script>
     </macro_item>
@@ -2293,12 +2234,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SectionCrowd</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Drafting.tab\\section_crowd.button\\section_crowd_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Drafting.tab\\section_crowd.button\\section_crowd_left.py')
 )
 </script>
     </macro_item>
@@ -2319,12 +2259,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>VisualizeExcel</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Drafting.tab\\visualize_excel.button\\visualize_excel_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Drafting.tab\\visualize_excel.button\\visualize_excel_left.py')
 )
 </script>
     </macro_item>
@@ -2345,12 +2284,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>OpenSampleExcel</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Drafting.tab\\visualize_excel.button\\visualize_excel_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Drafting.tab\\visualize_excel.button\\visualize_excel_right.py')
 )
 </script>
     </macro_item>
@@ -2371,12 +2309,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>BrepToMass</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Revit.tab\\brep_to_mass.button\\brep_to_mass_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Revit.tab\\brep_to_mass.button\\brep_to_mass_left.py')
 )
 </script>
     </macro_item>
@@ -2397,12 +2334,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SurfaceToAdaptiveComponent</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Revit.tab\\surface_to_adaptive_component.button\\surface_to_adaptive_component_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Revit.tab\\surface_to_adaptive_component.button\\surface_to_adaptive_component_left.py')
 )
 </script>
     </macro_item>
@@ -2423,12 +2359,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MapBlockTransform</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Revit.tab\\map_block_transform.button\\map_block_transform_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Revit.tab\\map_block_transform.button\\map_block_transform_left.py')
 )
 </script>
     </macro_item>
@@ -2449,12 +2384,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ExportForRhino2Revit</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Revit.tab\\export_for_rhino2revit.button\\export_for_rhino2revit_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Revit.tab\\export_for_rhino2revit.button\\export_for_rhino2revit_left.py')
 )
 </script>
     </macro_item>
@@ -2475,12 +2409,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>DraftInsulationBatting</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Revit.tab\\draft_insulation_batting.button\\draft_insulation_batting_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Revit.tab\\draft_insulation_batting.button\\draft_insulation_batting_left.py')
 )
 </script>
     </macro_item>
@@ -2501,12 +2434,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>RevitDrafterImport</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Revit.tab\\revit_drafter.button\\revit_drafter_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Revit.tab\\revit_drafter.button\\revit_drafter_left.py')
 )
 </script>
     </macro_item>
@@ -2527,12 +2459,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>RevitDrafterExport</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Revit.tab\\revit_drafter.button\\revit_drafter_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Revit.tab\\revit_drafter.button\\revit_drafter_right.py')
 )
 </script>
     </macro_item>
@@ -2553,12 +2484,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ExportCameraToRevit</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Revit.tab\\export_camera_to_revit.button\\export_camera_to_revit_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Revit.tab\\export_camera_to_revit.button\\export_camera_to_revit_left.py')
 )
 </script>
     </macro_item>
@@ -2579,12 +2509,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MapRevitSubCategoryMaterial</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Revit.tab\\map_revit_subc_material.button\\map_revit_subc_material_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Revit.tab\\map_revit_subc_material.button\\map_revit_subc_material_left.py')
 )
 </script>
     </macro_item>
@@ -2605,12 +2534,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>FloorDrafter</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Revit.tab\\floor_drafter.button\\floor_drafter_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Revit.tab\\floor_drafter.button\\floor_drafter_left.py')
 )
 </script>
     </macro_item>
@@ -2631,12 +2559,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ImportRevitCollection</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Revit.tab\\import_revit_collection.button\\import_revit_collection_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Revit.tab\\import_revit_collection.button\\import_revit_collection_left.py')
 )
 </script>
     </macro_item>
@@ -2657,12 +2584,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ListenToMiro</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Web.tab\\miro.button\\listen_to_miro_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Web.tab\\miro.button\\listen_to_miro_left.py')
 )
 </script>
     </macro_item>
@@ -2683,12 +2609,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>PushToMiro</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Web.tab\\miro.button\\push_to_miro_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Web.tab\\miro.button\\push_to_miro_right.py')
 )
 </script>
     </macro_item>
@@ -2709,12 +2634,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ArchiveFile</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'File.tab\\archive_file.button\\archive_file_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('File.tab\\archive_file.button\\archive_file_left.py')
 )
 </script>
     </macro_item>
@@ -2735,12 +2659,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SaveSmallAndClose</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'File.tab\\save_small_and_close.button\\save_small_and_close_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('File.tab\\save_small_and_close.button\\save_small_and_close_left.py')
 )
 </script>
     </macro_item>
@@ -2761,12 +2684,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>CreateWorksession</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'File.tab\\create_worksession.button\\create_worksession_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('File.tab\\create_worksession.button\\create_worksession_left.py')
 )
 </script>
     </macro_item>
@@ -2787,12 +2709,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>BindWorksession</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'File.tab\\bind_worksession.button\\bind_worksession_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('File.tab\\bind_worksession.button\\bind_worksession_left.py')
 )
 </script>
     </macro_item>
@@ -2813,12 +2734,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ExternalTrimmer</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'File.tab\\external_trimmer.button\\external_trimmer_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('File.tab\\external_trimmer.button\\external_trimmer_left.py')
 )
 </script>
     </macro_item>
@@ -2839,12 +2759,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ExternalTrimmer</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'File.tab\\external_trimmer.button\\external_trimmer_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('File.tab\\external_trimmer.button\\external_trimmer_right.py')
 )
 </script>
     </macro_item>
@@ -2865,12 +2784,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>(1634)ExportWithoutCrv</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Tailor.tab\\export_without_crv.button\\export_without_crv_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Tailor.tab\\export_without_crv.button\\export_without_crv_left.py')
 )
 </script>
     </macro_item>
@@ -2891,12 +2809,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>(1634)RelocateAll</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Tailor.tab\\relocate_file.button\\relocate_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Tailor.tab\\relocate_file.button\\relocate_left.py')
 )
 </script>
     </macro_item>
@@ -2917,12 +2834,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>Stack PSD</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Tailor.tab\\stack_enscape.button\\stack_enscape_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Tailor.tab\\stack_enscape.button\\stack_enscape_left.py')
 )
 </script>
     </macro_item>
@@ -2943,12 +2859,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>move_img_right</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Tailor.tab\\stack_enscape.button\\move_img_right.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Tailor.tab\\stack_enscape.button\\move_img_right.py')
 )
 </script>
     </macro_item>
@@ -2969,12 +2884,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>DVD</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Fun.tab\\dvd.button\\dvd_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Fun.tab\\dvd.button\\dvd_left.py')
 )
 </script>
     </macro_item>
@@ -2995,12 +2909,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>tester</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Lab.tab\\tester.button\\tester_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Lab.tab\\tester.button\\tester_left.py')
 )
 </script>
     </macro_item>
@@ -3021,12 +2934,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>UpdateFromRepo</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Lab.tab\\update_from_repo.button\\update_from_repo_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Lab.tab\\update_from_repo.button\\update_from_repo_left.py')
 )
 </script>
     </macro_item>
@@ -3047,12 +2959,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SearchCommand</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Knowledge.tab\\search_command.button\\search_command_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Knowledge.tab\\search_command.button\\search_command_left.py')
 )
 </script>
     </macro_item>
@@ -3073,12 +2984,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>AliasCheatsheet</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Knowledge.tab\\alias_cheatsheet.button\\alias_cheatsheet_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Knowledge.tab\\alias_cheatsheet.button\\alias_cheatsheet_left.py')
 )
 </script>
     </macro_item>
@@ -3099,12 +3009,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>PerforationRatio</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Knowledge.tab\\perforation_ratio.button\\perforation_ratio_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Knowledge.tab\\perforation_ratio.button\\perforation_ratio_left.py')
 )
 </script>
     </macro_item>
@@ -3125,12 +3034,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ChinaCodeRef</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Knowledge.tab\\china_code_ref.button\\china_code_ref_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Knowledge.tab\\china_code_ref.button\\china_code_ref_left.py')
 )
 </script>
     </macro_item>
@@ -3151,12 +3059,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>PlaceAsset</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Knowledge.tab\\place_asset.button\\place_asset_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Knowledge.tab\\place_asset.button\\place_asset_left.py')
 )
 </script>
     </macro_item>
@@ -3177,12 +3084,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>SlopeCalculator</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Knowledge.tab\\slope_calculator.button\\slope_calculator_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Knowledge.tab\\slope_calculator.button\\slope_calculator_left.py')
 )
 </script>
     </macro_item>
@@ -3203,12 +3109,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>Turtorial</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Knowledge.tab\\turtorial.button\\turtorial_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Knowledge.tab\\turtorial.button\\turtorial_left.py')
 )
 </script>
     </macro_item>
@@ -3229,12 +3134,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>Make A New Button</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Ennead+.menu\\create_new_button.button\\new_button_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Ennead+.menu\\create_new_button.button\\new_button_left.py')
 )
 </script>
     </macro_item>
@@ -3255,12 +3159,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ExtractPreviewImages</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Ennead+.menu\\extract_preview_images.button\\extract_preview_images_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Ennead+.menu\\extract_preview_images.button\\extract_preview_images_left.py')
 )
 </script>
     </macro_item>
@@ -3281,12 +3184,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>GetLatest</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Ennead+.menu\\get_latest.button\\get_latest_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Ennead+.menu\\get_latest.button\\get_latest_left.py')
 )
 </script>
     </macro_item>
@@ -3307,12 +3209,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>HowToInstall</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Ennead+.menu\\how_to_install.button\\how_to_install_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Ennead+.menu\\how_to_install.button\\how_to_install_left.py')
 )
 </script>
     </macro_item>
@@ -3333,12 +3234,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>ResetAllConduit</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Ennead+.menu\\reset_all_conduit.button\\reset_all_conduit_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Ennead+.menu\\reset_all_conduit.button\\reset_all_conduit_left.py')
 )
 </script>
     </macro_item>
@@ -3359,12 +3259,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>MakeStar</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Ennead+.menu\\star.button\\star_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Ennead+.menu\\star.button\\star_left.py')
 )
 </script>
     </macro_item>
@@ -3385,12 +3284,11 @@ MODULE_HELPER.run_Rhino_button(locator)
         <locale_1033>YoutubePlaylist</locale_1033>
       </menu_text>
       <script>! _-RunPythonScript (
-import sys
 import os
-os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')
-import MODULE_HELPER
-locator = 'Ennead+.menu\\youtube_playlist.button\\youtube_playlist_left.py'
-MODULE_HELPER.run_Rhino_button(locator)
+import sys
+sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab\\RHINO'))
+import RHINO_MODULE_HELPER
+RHINO_MODULE_HELPER.run_Rhino_button('Ennead+.menu\\youtube_playlist.button\\youtube_playlist_left.py')
 )
 </script>
     </macro_item>

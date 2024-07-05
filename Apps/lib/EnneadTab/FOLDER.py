@@ -4,6 +4,16 @@ import shutil
 import NOTIFICATION
 import ENVIRONMENT
 
+def get_file_name_from_path(file_path, include_extension=True):
+
+    head, tail = os.path.split(file_path)
+    if not include_extension:
+        tail = tail.split(".")[0]
+    return tail
+
+def get_file_extension_from_path(file_path):
+    return os.path.splitext(file_path)[1]
+
 
 def secure_folder(folder):
     if not os.path.exists(folder):
@@ -15,8 +25,6 @@ secure_folder(ENVIRONMENT.DUMP_FOLDER)
 
 def get_user_folder():
     return "{}\Documents".format(os.environ["USERPROFILE"])
-
-
 
 
 def get_appdata_folder():

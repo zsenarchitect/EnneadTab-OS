@@ -7,7 +7,7 @@ import scriptcontext as sc
 import random
 
 
-from EnneadTab import NOTIFICATION
+from Duckitect import NOTIFICATION
 
 
 def random_deselect():

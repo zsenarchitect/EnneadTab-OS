@@ -4,7 +4,7 @@ __doc__ = "Delete selected layers, even if there are objs in it. Helpful when la
 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
-from EnneadTab.RHINO import RHINO_LAYER
+from Duckitect.RHINO import RHINO_LAYER
 
 def destroy_layer():
     layers = RHINO_LAYER.get_layers(message="What layers to destory?")  

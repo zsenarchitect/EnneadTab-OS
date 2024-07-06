@@ -7,8 +7,8 @@ import Eto # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from EnneadTab import SOUNDS
-from EnneadTab.RHINO import RHINO_UI
+from Duckitect import SOUNDS
+from Duckitect.RHINO import RHINO_UI
 
 class rename_dialog(Eto.Forms.Dialog[bool]):
 

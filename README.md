@@ -1,4 +1,4 @@
-# EnneadTab-OS
+# Duckitect-OS
 ![alt text](landing-logo.png)
 
 working plan:

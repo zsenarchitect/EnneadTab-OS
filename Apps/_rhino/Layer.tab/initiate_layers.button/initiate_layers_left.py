@@ -7,7 +7,7 @@ import scriptcontext as sc
 import Rhino # pyright: ignore
 
 
-from EnneadTab import COLOR
+from Duckitect import COLOR
 
 LAYER_COLOR_MAP_BY_MATERIAL = {
     "Glass": (162, 195, 208),

@@ -3,8 +3,8 @@ from Autodesk.Revit import DB # pyright: ignore
 doc = EXEC_PARAMS.event_args.Document
 from pyrevit.coreutils import envvars
 
-from EnneadTab import VERSION_CONTROL, ERROR_HANDLE, LOG
-from EnneadTab.REVIT import REVIT_SELECTION
+from Duckitect import VERSION_CONTROL, ERROR_HANDLE, LOG
+from Duckitect.REVIT import REVIT_SELECTION
 
 
 

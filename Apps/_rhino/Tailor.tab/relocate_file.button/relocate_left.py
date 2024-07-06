@@ -3,7 +3,7 @@ __doc__ = "Relocate all the cameras and models to new Revit location."
 
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
-import EnneadTab
+import Duckitect
 
 def relocate_left():
     # # Ask the user to pick a point in space
@@ -56,5 +56,5 @@ def relocate_left():
     # Redraw the viewport to reflect changes
     rs.Redraw()
 
-    EnneadTab.SOUNDS.play_sound()
+    Duckitect.SOUNDS.play_sound()
 

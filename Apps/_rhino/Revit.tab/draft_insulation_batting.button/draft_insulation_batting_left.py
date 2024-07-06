@@ -6,7 +6,7 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 import os
 
-from EnneadTab import DATA_FILE, ENVIRONMENT_CONSTANTS
+from Duckitect import DATA_FILE, ENVIRONMENT_CONSTANTS
 
 
 

@@ -9,8 +9,8 @@ import traceback
 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
-from EnneadTab.RHINO import RHINO_OBJ_DATA, RHINO_FORMS, RHINO_SELECTION
-from EnneadTab import NOTIFICATION, DATA_FILE, COLOR
+from Duckitect.RHINO import RHINO_OBJ_DATA, RHINO_FORMS, RHINO_SELECTION
+from Duckitect import NOTIFICATION, DATA_FILE, COLOR
 
 
 
@@ -261,7 +261,7 @@ def offset_floor_border():
         return
 
     offset = DATA_FILE.get_sticky_longterm("SLAB_OFFSET_DIST", 300)
-    res = rs.PropertyListBox(["Offset inward(model unit):"], [offset], message = "Positive number = shrink. Negative number = expand.", title = "EnneadTab floor shrinker/expander")
+    res = rs.PropertyListBox(["Offset inward(model unit):"], [offset], message = "Positive number = shrink. Negative number = expand.", title = "Duckitect floor shrinker/expander")
     if not res:
         NOTIFICATION.toast(main_text = "Need to have valid input.", sub_text = "Cancel")
         return

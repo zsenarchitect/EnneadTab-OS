@@ -2,8 +2,8 @@ import os
 import sys
 parent_folder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.append("{}\Source Codes\lib".format(parent_folder))
-sys.path.append("{}\Source Codes\lib\Enneadtab".format(parent_folder))
-from EnneadTab import NOTIFICATION
+sys.path.append("{}\Source Codes\lib\Duckitect".format(parent_folder))
+from Duckitect import NOTIFICATION
 
 
 """

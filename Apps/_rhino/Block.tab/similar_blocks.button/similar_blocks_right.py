@@ -3,7 +3,7 @@ __alias__ = "IsolateSimilarBlocks"
 __doc__ = "Isolate blocks of similar definitions from the selected blocks"
 import rhinoscriptsyntax as rs
 
-from EnneadTab import NOTIFICATION
+from Duckitect import NOTIFICATION
 def similar_blocks():
 
 

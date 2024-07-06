@@ -4,7 +4,7 @@ __doc__ = "This button does LoadEnscapeToPsd when left click"
 
 import rhinoscriptsyntax as rs
 
-from EnneadTab import FOLDER, EXE, DATA_FILE
+from Duckitect import FOLDER, EXE, DATA_FILE
 
 def load_enscape_to_psd():
    
@@ -21,7 +21,7 @@ def load_enscape_to_psd():
         return
     res = rs.CheckListBox(items = option_list,
                             message= "Action after compiling",
-                            title="EnneadTab Enscape stacking")
+                            title="Duckitect Enscape stacking")
     if not res:
         return
     keep_ps_open, keep_doc_open = [x[-1] for x in res]
@@ -32,7 +32,7 @@ def load_enscape_to_psd():
     dump_file = "{}\EA_PSD_STACK.txt".format(FOLDER.get_EA_local_dump_folder())
     DATA_FILE.save_list_to_txt(OUT, dump_file)
 
-    exe_path = r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\Load_Enscape_Image_As_PSD_exe\Load_Enscape_Image_As_PSD_exe.exe"
+    exe_path = r"L:\4b_Applied Computing\03_Rhino\12_Duckitect for Rhino\Source Codes\lib\Load_Enscape_Image_As_PSD_exe\Load_Enscape_Image_As_PSD_exe.exe"
     EXE.open_file_in_default_application(exe_path)
     """sample
     I:\2135\1_Study\EA 2022-09-12 mushroom stem cladding study\raw render\cam 04_opt UHPC.png

@@ -8,7 +8,7 @@ from scriptcontext import doc
 import sys
 sys.path.append("..\lib")
 
-from EnneadTab import EXE, NOTIFICATION, FOLDER
+from Duckitect import EXE, NOTIFICATION, FOLDER
 
 BLOCK_NAME = "EA_EXTERNAL_LINK"
 

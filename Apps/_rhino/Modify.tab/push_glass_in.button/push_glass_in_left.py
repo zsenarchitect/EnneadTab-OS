@@ -5,7 +5,7 @@ import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from EnneadTab import COLOR
+from Duckitect import COLOR
 
 def push_glass_in():
 

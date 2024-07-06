@@ -6,7 +6,7 @@ import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 import System # pyright: ignore
-from EnneadTab.RHINO import RHINO_OBJ_DATA, RHINO_LAYER, RHINO_CONDUIT
+from Duckitect.RHINO import RHINO_OBJ_DATA, RHINO_LAYER, RHINO_CONDUIT
 
 KEY = "EA_LAYERS_DISPLAY_Conduit"
 

@@ -1,10 +1,10 @@
 
 __alias__ = "AliasCheatsheet"
-__doc__ = "Learn about ALL the EnneadTab alias."
+__doc__ = "Learn about ALL the Duckitect alias."
 
 import os
-from EnneadTab import PARSER, OUTPUT
-from EnneadTab.RHINO import RHINO_ALIAS
+from Duckitect import PARSER, OUTPUT
+from Duckitect.RHINO import RHINO_ALIAS
 
 def alias_cheatsheet():
     RHINO_ALIAS.register_alias_set()

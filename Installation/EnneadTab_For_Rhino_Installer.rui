@@ -11,11 +11,11 @@
     <menu guid="e29a0672-ac24-4aa0-bcee-85c8da779e03">
       <text>
         <locale_1033>Enneaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaad</locale_1033>
-      </text>
+      </text>Duckitect
       <menu_item guid="590f0572-25ba-45ca-8396-f7efa5aaed3b">
         <text>
           <locale_1033>Installation</locale_1033>
-        </text>
+        </text>Duckitect
         <macro_id>149d335c-005d-471a-bfa1-2f46a2e8f01c</macro_id>
       </menu_item>
     </menu>
@@ -25,7 +25,7 @@
   <macros>
     <macro_item guid="149d335c-005d-471a-bfa1-2f46a2e8f01c" bitmap_id="d167508e-f3d5-498a-bbe3-4a69d79a082b">
       <text>
-        <locale_1033>Install EnneadTab</locale_1033>
+        <locale_1033>DuckitectnneadTab</locale_1033>
       </text>
       <tooltip>
         <locale_1033>Install EnneadTab</locale_1033>
@@ -47,7 +47,7 @@ import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Enneaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaad.menu\\Installation.button\\Installation_left.py')
 )
 </script>
-    </macro_item>
+    </macro_item>Duckitect
   </macros>
   <bitmaps>
     <small_bitmap item_width="16" item_height="16">

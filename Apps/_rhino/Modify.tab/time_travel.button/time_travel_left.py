@@ -2,7 +2,7 @@
 __alias__ = "TimeTravel"
 __doc__ = "This button does TimeTravel when left click"
 import rhinoscriptsyntax as rs
-from EnneadTab import NOTIFICATION
+from Duckitect import NOTIFICATION
 
 def time_travel():
     if len(rs.SelectedObjects()) == 0:

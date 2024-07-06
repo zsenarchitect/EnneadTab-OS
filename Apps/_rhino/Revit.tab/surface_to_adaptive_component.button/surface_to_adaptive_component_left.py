@@ -7,8 +7,8 @@ import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from EnneadTab import DATA_FILE, FOLDER, SOUNDS
-from EnneadTab.RHINO import RHINO_UI, RHINO_OBJ_DATA
+from Duckitect import DATA_FILE, FOLDER, SOUNDS
+from Duckitect.RHINO import RHINO_UI, RHINO_OBJ_DATA
 
 FORM_KEY = 'srf2adp_modeless_form'
 
@@ -23,7 +23,7 @@ class Srf2AdpDialog(Eto.Forms.Form):
         self.Resizable = True
         self.Padding = Eto.Drawing.Padding(5)
         self.Spacing = Eto.Drawing.Size(5, 5)
-        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\ennead-e-logo.png")
+        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_Duckitect for Rhino\Source Codes\lib\ennead-e-logo.png")
         self.height = 400
         self.width = 400
         self.selected_srfs = None

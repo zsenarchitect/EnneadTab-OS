@@ -7,7 +7,7 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
 
-from EnneadTab import SOUNDS, FOLDER, DATA_FILE
+from Duckitect import SOUNDS, FOLDER, DATA_FILE
 
 
 def process_brep(brep):

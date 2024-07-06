@@ -8,7 +8,7 @@ __context__ = "zero-doc"
 
 import proDUCKtion # pyright: ignore 
 
-from EnneadTab import ERROR_HANDLE, UNIT_TEST, LOG
+from Duckitect import ERROR_HANDLE, UNIT_TEST, LOG
 
 
 @LOG.log(__file__, __title__)

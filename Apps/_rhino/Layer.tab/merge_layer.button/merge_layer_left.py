@@ -4,9 +4,9 @@ __doc__ = "Merge multiple layer to single layer. This process include merging la
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from EnneadTab.RHINO import RHINO_FORMS, RHINO_LAYER
-from EnneadTab import NOTIFICATION
-from EnneadTab import SOUNDS
+from Duckitect.RHINO import RHINO_FORMS, RHINO_LAYER
+from Duckitect import NOTIFICATION
+from Duckitect import SOUNDS
 
 
 def merge_layer():
@@ -23,7 +23,7 @@ def merge_layer():
 
     layers_to_modify, layer_target = RHINO_FORMS.select_from_list2list(all_layers_user,
                                                                         all_layers_user,
-                                                                        title = "EnneadTab Merge Layer",
+                                                                        title = "Duckitect Merge Layer",
                                                                         message = "Select Layers to modify, hold 'shift' to select multiple. Blocks process included.",
                                                                         search_A_text = "Source Layers(Multiple)",
                                                                         search_B_text = "Target Layer(Single) as one to keep",

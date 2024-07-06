@@ -8,8 +8,8 @@ import rhinoscriptsyntax as rs
 
 
 from datetime import date, datetime
-from EnneadTab import FOLDER
-from EnneadTab.RHINO import RHINO_FORMS
+from Duckitect import FOLDER
+from Duckitect.RHINO import RHINO_FORMS
 
 def get_date(timestamp):
     return str(datetime.fromtimestamp(timestamp)).split(" ")[0]

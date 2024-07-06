@@ -7,7 +7,7 @@ import rhinoscriptsyntax as rs
 import time
 
 
-from EnneadTab import NOTIFICATION, DATA_FILE
+from Duckitect import NOTIFICATION, DATA_FILE
 
 def srf_to_panel():
     srfs = rs.GetObjects("get base srfs", preselect = True, filter=rs.filter.surface)

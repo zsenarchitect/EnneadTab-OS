@@ -8,7 +8,7 @@ from scriptcontext import doc
 import Rhino # pyright: ignore
 import os
 
-from EnneadTab.RHINO import RHINO_FORMS, RHINO_OUTPUT
+from Duckitect.RHINO import RHINO_FORMS, RHINO_OUTPUT
 
 
 def get_page_by_name(name):

@@ -5,8 +5,8 @@ __doc__ = "Receive the drafting background from Revit and setup layer trees for 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from EnneadTab.RHINO import RHINO_CLEANUP, RHINO_LAYER
-from EnneadTab import NOTIFICATION, FOLDER, DATA_FILE, ENVIRONMENT_CONSTANTS
+from Duckitect.RHINO import RHINO_CLEANUP, RHINO_LAYER
+from Duckitect import NOTIFICATION, FOLDER, DATA_FILE, ENVIRONMENT_CONSTANTS
 
 import imp
 ref_module = imp.load_source("random_layer_color_left", '{}\\Layer.tab\\random_layer_color.button\\random_layer_color_left.py'.format(ENVIRONMENT_CONSTANTS.RHINO_SCRIPT_FOLDER))

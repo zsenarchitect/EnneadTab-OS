@@ -4,8 +4,8 @@ __doc__ = "Migrate multiple layers under same parent layer. The main benifit is 
 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
-from EnneadTab.RHINO import RHINO_FORMS, RHINO_LAYER
-from EnneadTab import NOTIFICATION
+from Duckitect.RHINO import RHINO_FORMS, RHINO_LAYER
+from Duckitect import NOTIFICATION
 
 
 
@@ -20,7 +20,7 @@ def nest_layer():
 
     layers_to_modify, parent_layer_prefix = RHINO_FORMS.select_from_list2list(all_layers_user,
                                                             all_layers_user,
-                                                            title = "EnneadTab Migrate Layer",
+                                                            title = "Duckitect Migrate Layer",
                                                             message = "Select Layers to modify, hold 'shift' to select multiple. Blocks process included.",
                                                             search_A_text = "Source Layers(Multiple)",
                                                             search_B_text = "Target Layer(Single) as new parent",

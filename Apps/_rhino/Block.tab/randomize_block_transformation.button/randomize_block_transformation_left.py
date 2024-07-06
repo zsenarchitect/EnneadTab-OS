@@ -4,8 +4,8 @@ __doc__ = "Randomly transform block transformation for rotation and scale."
 import rhinoscriptsyntax as rs
 import random
 
-from EnneadTab import DATA_FILE
-from EnneadTab import SOUNDS
+from Duckitect import DATA_FILE
+from Duckitect import SOUNDS
 
 def randomize_block_transformation():
  
@@ -30,7 +30,7 @@ def randomize_block_transformation():
                     ["Animate process (Feel the zen of watching it go...)", default_show_animation]]
     res = rs.CheckListBox(items = option_list,
                             message= "select random options from below",
-                            title="EnneadTab Random Transform")
+                            title="Duckitect Random Transform")
     print (res)
     if not res: return
     for option, state in res:

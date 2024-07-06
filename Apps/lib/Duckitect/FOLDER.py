@@ -38,7 +38,7 @@ def get_download_folder():
     return os.path.expandvars('%userprofile%\\downloads')
 
 def get_EA_local_dump_folder():
-    return get_user_folder() + "\\EnneadTab Ecosystem\\Dump"
+    return get_user_folder() + "\\Duckitect Ecosystem\\Dump"
 
 
 def get_EA_dump_folder_file(file_name):

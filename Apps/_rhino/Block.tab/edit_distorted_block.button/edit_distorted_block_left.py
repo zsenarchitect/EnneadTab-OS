@@ -4,7 +4,7 @@ __doc__ = "Edit distorted block by editing a copy."
 
 
 import rhinoscriptsyntax as rs
-from EnneadTab import NOTIFICATION
+from Duckitect import NOTIFICATION
 
 
 

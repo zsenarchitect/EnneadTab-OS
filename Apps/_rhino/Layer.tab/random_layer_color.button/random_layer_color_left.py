@@ -5,9 +5,9 @@ __doc__ = "Randomize the layer color."
 
 import rhinoscriptsyntax as rs
 import random
-from EnneadTab import SOUNDS
-from EnneadTab import DATA_FILE
-from EnneadTab import COLOR
+from Duckitect import SOUNDS
+from Duckitect import DATA_FILE
+from Duckitect import COLOR
 
 KEY_COLOR_SETTING = "EA_RANDOM_LAYER_COLOR_SETTING"
 COLOR_SETTING_DEFAULT = [("Change Pure Black", True), 

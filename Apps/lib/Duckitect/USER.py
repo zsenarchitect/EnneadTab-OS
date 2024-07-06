@@ -10,7 +10,7 @@ USER_NAME = os.environ["USERPROFILE"].split("\\")[-1]
 
 # note: why has seperate system key and autodesk keys? becasue some 
 # developer might only be handling one software, not both.
-ENNEADTAB_DEVELOPERS = {
+Duckitect_DEVELOPERS = {
     "Sen Zhang": {
         "initials": "SZ",
         "system_id": ["szhang", "sen.zhang"],
@@ -46,20 +46,20 @@ def get_usernames_from_developers():
     
     system_usernames = []
     autodesk_usernames = []
-    for key in ENNEADTAB_DEVELOPERS:
-        system_usernames += ENNEADTAB_DEVELOPERS[key]["system_id"]
-        autodesk_usernames += ENNEADTAB_DEVELOPERS[key]["autodesk_id"]
+    for key in Duckitect_DEVELOPERS:
+        system_usernames += Duckitect_DEVELOPERS[key]["system_id"]
+        autodesk_usernames += Duckitect_DEVELOPERS[key]["autodesk_id"]
     return system_usernames, autodesk_usernames
 
 
-def is_enneadtab_developer():
-    """Checks if the current user is a developer of EnneadTab.
+def is_Duckitect_developer():
+    """Checks if the current user is a developer of Duckitect.
 
     Args:
        
 
     Returns:
-        bool: True if the current user is a developer of EnneadTab, False if not.
+        bool: True if the current user is a developer of Duckitect, False if not.
     """
     # declare username variables
     system_usernames, autodesk_usernames = get_usernames_from_developers()
@@ -89,12 +89,12 @@ def get_autodesk_user_name():
     
         
 
-IS_DEVELOPER = is_enneadtab_developer()
+IS_DEVELOPER = is_Duckitect_developer()
 
 
 def get_rhino_developer_emails():
     out = []
-    for developer_data in ENNEADTAB_DEVELOPERS.values():
+    for developer_data in Duckitect_DEVELOPERS.values():
         if len(developer_data["system_id"]) == 0:
             continue
         out += developer_data["email"]
@@ -102,7 +102,7 @@ def get_rhino_developer_emails():
 
 def get_revit_developer_emails():
     out = []
-    for developer_data in ENNEADTAB_DEVELOPERS.values():
+    for developer_data in Duckitect_DEVELOPERS.values():
         if len(developer_data["autodesk_id"]) == 0:
             continue
         out += developer_data["email"]
@@ -127,7 +127,7 @@ def unit_test():
                 print(x, " = ", content)
 
     print ("current user [{}] is a developer? {}".format(USER_NAME,
-                                                       UNIT_TEST.print_boolean_in_color(is_enneadtab_developer())))
+                                                       UNIT_TEST.print_boolean_in_color(is_Duckitect_developer())))
     print ("my system name = {}".format(USER_NAME))
     print ("my autodesk name = {}".format(get_autodesk_user_name()))
     print ("I am  developer? {}".format(UNIT_TEST.print_boolean_in_color(IS_DEVELOPER)))

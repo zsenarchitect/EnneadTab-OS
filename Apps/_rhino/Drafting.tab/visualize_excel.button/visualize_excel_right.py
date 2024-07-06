@@ -3,9 +3,9 @@ __alias__ = "OpenSampleExcel"
 __doc__ = "Open the sample excel with placeholder area size info."
 
 import rhinoscriptsyntax as rs
-from EnneadTab import EXE
-from EnneadTab import FOLDER
-from EnneadTab import ENVIRONMENT_CONSTANTS
+from Duckitect import EXE
+from Duckitect import FOLDER
+from Duckitect import ENVIRONMENT_CONSTANTS
 
 
 def visualize_excel():

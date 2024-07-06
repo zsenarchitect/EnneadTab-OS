@@ -8,8 +8,8 @@ import random
 import Eto # pyright: ignore
 
 
-from EnneadTab import DATA_FILE, NOTIFICATION, SOUNDS, TIME
-from EnneadTab.RHINO import RHINO_UI, RHINO_FORMS
+from Duckitect import DATA_FILE, NOTIFICATION, SOUNDS, TIME
+from Duckitect.RHINO import RHINO_UI, RHINO_FORMS
 
 FORM_KEY = 'SCATTER_BLOCK_ON_SRF_modeless_form'
 
@@ -26,7 +26,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         self.Resizable = True
         self.Padding = Eto.Drawing.Padding(5)
         self.Spacing = Eto.Drawing.Size(5, 5)
-        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\ennead-e-logo.png")
+        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_Duckitect for Rhino\Source Codes\lib\ennead-e-logo.png")
         #self.Bounds = Eto.Drawing.Rectangle()
         self.Width = 600
         self.selected_srf = None

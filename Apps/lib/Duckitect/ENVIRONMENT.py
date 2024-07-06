@@ -23,7 +23,7 @@ RHINO_FOLDER = os.path.join(APP_FOLDER, "_rhino")
 
 
 LIB_FOLDER = os.path.join(APP_FOLDER, "lib")
-CORE_FOLDER = os.path.join(LIB_FOLDER, "EnneadTab")
+CORE_FOLDER = os.path.join(LIB_FOLDER, "Duckitect")
 IMAGE_FOLDER = os.path.join(CORE_FOLDER, "images")
 AUDIO_FOLDER = os.path.join(CORE_FOLDER, "audios")
 DOCUMENT_FOLDER = os.path.join(CORE_FOLDER, "documents")

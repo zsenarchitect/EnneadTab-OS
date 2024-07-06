@@ -8,8 +8,8 @@ from scriptcontext import doc
 import Eto # pyright: ignore
 import Rhino # pyright: ignore
 
-from EnneadTab import SOUNDS, NOTIFICATION
-from EnneadTab.RHINO import RHINO_UI
+from Duckitect import SOUNDS, NOTIFICATION
+from Duckitect.RHINO import RHINO_UI
 
 def batch_rename_blocks():
     dlg = rename_dialog()

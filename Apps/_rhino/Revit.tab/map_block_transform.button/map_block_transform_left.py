@@ -9,7 +9,7 @@ import clr # pyright: ignore
 import math
 
 
-from EnneadTab import FOLDER, NOTIFICATION, DATA_FILE
+from Duckitect import FOLDER, NOTIFICATION, DATA_FILE
 """
 use Transform.DecomposeAffine Method (Vector3d, Transform, Transform, Vector3d) to decompose trnasform to trnaltion and rotation
 for rotation, use Transform.GetEulerZYZ to get rotation angle of X,Y,Z axis(use radiun here)

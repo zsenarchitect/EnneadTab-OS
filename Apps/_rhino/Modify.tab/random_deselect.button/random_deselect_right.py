@@ -7,8 +7,8 @@ import scriptcontext as sc
 import random
 
 
-from EnneadTab import NOTIFICATION
-from EnneadTab.RHINO import RHINO_OBJ_DATA
+from Duckitect import NOTIFICATION
+from Duckitect.RHINO import RHINO_OBJ_DATA
 
 
 def random_deselect_to_group():
@@ -19,7 +19,7 @@ def random_deselect_to_group():
     X, Y, Z = RHINO_OBJ_DATA.get_boundingbox_edge_length(ids)
     rough_size = (X + Y + Z)/3
     
-    res = rs.StringBox(message = "Seperate selection to how many groups?", default_value = "4", title = "EnneadTab")
+    res = rs.StringBox(message = "Seperate selection to how many groups?", default_value = "4", title = "Duckitect")
 
     if res is None:
         return

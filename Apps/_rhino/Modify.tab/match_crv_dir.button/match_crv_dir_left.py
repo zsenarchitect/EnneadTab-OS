@@ -2,7 +2,7 @@
 __alias__ = "MatchCrvDir"
 __doc__ = "This button does MatchCrvDir when left click"
 
-from EnneadTab import NOTIFICATION
+from Duckitect import NOTIFICATION
 import rhinoscriptsyntax as rs
 
 def match_crv_dir():

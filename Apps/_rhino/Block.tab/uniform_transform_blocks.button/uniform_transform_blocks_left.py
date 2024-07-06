@@ -20,7 +20,7 @@ def uniform_transform_blocks():
     res = rs.PropertyListBox(option_list,
                             value_list,
                             message= "How much angle to rotate each block around insert point?",
-                            title="EnneadTab Uniformly Transform")
+                            title="Duckitect Uniformly Transform")
 
     if res is None:
         return

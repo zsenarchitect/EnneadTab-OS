@@ -6,8 +6,8 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 import Rhino # pyright: ignore
 
-from EnneadTab.RHINO import RHINO_FORMS
-from EnneadTab import DATA_FILE
+from Duckitect.RHINO import RHINO_FORMS
+from Duckitect import DATA_FILE
 
 
 

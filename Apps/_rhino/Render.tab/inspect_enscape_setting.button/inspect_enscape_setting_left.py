@@ -6,7 +6,7 @@ __doc__ = "This button does InspectEnscapeSetting when left click"
 import rhinoscriptsyntax as rs
 
 import json
-from EnneadTab import FOLDER
+from Duckitect import FOLDER
 
 def inspect_setting_file(path):
     OUT = []

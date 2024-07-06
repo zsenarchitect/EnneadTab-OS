@@ -6,7 +6,7 @@ __doc__ = "Make the void cut polysurface based on layer name."
 import rhinoscriptsyntax as rs
 import re
 
-from EnneadTab.RHINO import RHINO_LAYER
+from Duckitect.RHINO import RHINO_LAYER
 
 
 def make_void_seam():

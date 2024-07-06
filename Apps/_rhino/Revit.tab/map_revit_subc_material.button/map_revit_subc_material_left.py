@@ -4,8 +4,8 @@ __doc__ = "Work with ExportSubCategoryMaterialTable on revit side. After you exp
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from EnneadTab import NOTIFICATION, DATA_FILE, ENVIRONMENT
-from EnneadTab.RHINO import RHINO_MATERIAL
+from Duckitect import NOTIFICATION, DATA_FILE, ENVIRONMENT
+from Duckitect.RHINO import RHINO_MATERIAL
 
 def get_layer_with_keyword(keyword):
 
@@ -20,8 +20,8 @@ def map_revit_subc_material():
     data = DATA_FILE.read_json_as_dict_in_dump_folder("SUBC_MATERIAL_TABLE.json", use_encode= True)
     print(data)
     if not data:
-        NOTIFICATION.messenger(main_text="There are no material data exported from Revit. \nUse the \"Export SubCategory Material Table\" button in \nEnneadTab for Revit to export the data first",
-                                         image = ENVIRONMENT.get_EnneadTab_For_Rhino_root()+ "\\Source Codes\\Revit\\map_revit_subC_material_LG.png",
+        NOTIFICATION.messenger(main_text="There are no material data exported from Revit. \nUse the \"Export SubCategory Material Table\" button in \nDuckitect for Revit to export the data first",
+                                         image = ENVIRONMENT.get_Duckitect_For_Rhino_root()+ "\\Source Codes\\Revit\\map_revit_subC_material_LG.png",
                                          animation_stay_duration = 7)
         return
     

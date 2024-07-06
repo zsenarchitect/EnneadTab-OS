@@ -24,7 +24,7 @@ class ChangeObjectDisplaySource:
         option_list = [["Make all object color defined by layer", True], ["Make all object material defined by layer", True]]
         res = rs.CheckListBox(items = option_list,
                                 message= "This will affect all objects in the file!\nThis will also affect contents inside blocks",
-                                title="EnneadTab")
+                                title="Duckitect")
         if not res:
             return
         for option, state in res:

@@ -7,7 +7,7 @@ import Rhino # pyright: ignore
 import scriptcontext as sc
 import rhinoscriptsyntax as rs
 
-from EnneadTab import SOUNDS, DATA_FILE, NOTIFICATION, FOLDER
+from Duckitect import SOUNDS, DATA_FILE, NOTIFICATION, FOLDER
 
 def process_brep(brep):
 

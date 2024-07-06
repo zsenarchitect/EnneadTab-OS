@@ -6,7 +6,7 @@ import scriptcontext as sc
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
 
-from EnneadTab.RHINO import RHINO_FORMS
+from Duckitect.RHINO import RHINO_FORMS
 
 
 
@@ -33,7 +33,7 @@ def import_selected_material():
 
 
     picked_material_name = RHINO_FORMS.select_from_list(availible_materials,
-                                                    title = "EnneadTab material importer",
+                                                    title = "Duckitect material importer",
                                                     message = "select materials to import from [{}]".format(filename),
                                                     multi_select = True,
                                                     button_names = ["Select Multiple Materials"],

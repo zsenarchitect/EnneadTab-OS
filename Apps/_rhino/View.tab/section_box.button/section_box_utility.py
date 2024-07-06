@@ -1,1 +1,1 @@
-GROUP_NAME_KEYWORD = "EnneadTab_SectionBox_"
+GROUP_NAME_KEYWORD = "Duckitect_SectionBox_"

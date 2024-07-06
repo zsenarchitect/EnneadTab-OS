@@ -5,7 +5,7 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
 
-from EnneadTab.RHINO import RHINO_FORMS
+from Duckitect.RHINO import RHINO_FORMS
 
 
 def filter_block_by_name():

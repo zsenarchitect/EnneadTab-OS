@@ -4,8 +4,8 @@ __doc__ = "Similar to Revit SectionBox, this will crop the view to just around t
 
 import rhinoscriptsyntax as rs
 
-from EnneadTab import NOTIFICATION
-from EnneadTab.RHINO import RHINO_OBJ_DATA
+from Duckitect import NOTIFICATION
+from Duckitect.RHINO import RHINO_OBJ_DATA
 import section_box_right as SB
 import section_box_utility
 

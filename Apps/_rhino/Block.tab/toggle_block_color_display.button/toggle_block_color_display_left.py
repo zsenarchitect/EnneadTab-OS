@@ -8,9 +8,9 @@ import rhinoscriptsyntax as rs
 import random
 
 
-from EnneadTab.RHINO import RHINO_CONDUIT
-from EnneadTab import DATA_FILE
-from EnneadTab import COLOR
+from Duckitect.RHINO import RHINO_CONDUIT
+from Duckitect import DATA_FILE
+from Duckitect import COLOR
 
 
 

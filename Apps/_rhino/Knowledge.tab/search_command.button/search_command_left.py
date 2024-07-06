@@ -3,8 +3,8 @@ __doc__ = "Learn all the buttons functions."
 
 
 import os
-from EnneadTab import PARSER
-from EnneadTab.RHINO import RHINO_ALIAS
+from Duckitect import PARSER
+from Duckitect.RHINO import RHINO_ALIAS
 
 # this is for the interactive search UI that gives the detail explanation of evrything
 def get_all_data():

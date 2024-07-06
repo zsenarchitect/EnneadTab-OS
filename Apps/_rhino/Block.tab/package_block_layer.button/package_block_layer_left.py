@@ -4,7 +4,7 @@ __doc__ = "Package blocks content layer under a single parent layer. This is ver
 
 import rhinoscriptsyntax as rs
 
-from EnneadTab import NOTIFICATION
+from Duckitect import NOTIFICATION
 
 
 def process_block(block_name, flatten_layer = False):

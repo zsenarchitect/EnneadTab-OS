@@ -3,8 +3,8 @@ __alias__ = "RevitDrafterExport"
 __doc__ = "Send the draft content back to Revit."
 import rhinoscriptsyntax as rs
 
-from EnneadTab import FOLDER, NOTIFICATION, DATA_FILE
-from EnneadTab.RHINO import RHINO_LAYER
+from Duckitect import FOLDER, NOTIFICATION, DATA_FILE
+from Duckitect.RHINO import RHINO_LAYER
 
 def get_final_children_layer_name(layer_name):
     #layer_name = rs.LayerName(obj)

@@ -9,7 +9,7 @@ import System # pyright: ignore
 import traceback
 import math
 
-from EnneadTab import DATA_FILE, NOTIFICATION
+from Duckitect import DATA_FILE, NOTIFICATION
 
 
 def make_stair_mass_brep(e, center_pt, start_pt, end_pt, max_riser, stair_width, thread_thickness, current_pt = None):
@@ -98,7 +98,7 @@ def stair_maker():
     if not res:
         return
     max_riser, stair_width, thread_thickness = res
-    #max_riser = rs.RealBox(message = "Max riser height number", default_number = 170, title = "EnneadTab")
+    #max_riser = rs.RealBox(message = "Max riser height number", default_number = 170, title = "Duckitect")
     max_riser, stair_width, thread_thickness = float(max_riser), float(stair_width), float(thread_thickness)
     DATA_FILE.set_sticky_longterm("STAIR_SPIRAL_MAX_RISER", max_riser)
     DATA_FILE.set_sticky_longterm("STAIR_SPIRAL_RISER", stair_width)
@@ -217,7 +217,7 @@ class GetDotPoint (Rhino.Input.Custom.GetPoint):
         e.Display.DrawDot  (data_pt, note)
 
 
-        title = "EnneadTab Stair Maker Mode -- Preview Stair"
+        title = "Duckitect Stair Maker Mode -- Preview Stair"
         self.show_text_with_pointer(e,
                                     text = title,
                                     size = 30)

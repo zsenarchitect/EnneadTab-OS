@@ -6,8 +6,8 @@ __doc__ = "In a given folder, find which rhino file contains the keyword layer n
 import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 
-from EnneadTab import FOLDER, NOTIFICATION
-from EnneadTab.RHINO import RHINO_FORMS, RHINO_LAYER
+from Duckitect import FOLDER, NOTIFICATION
+from Duckitect.RHINO import RHINO_FORMS, RHINO_LAYER
 
 
 

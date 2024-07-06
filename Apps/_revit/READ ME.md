@@ -3,7 +3,7 @@ Contain button maker. Note this should not be included in the EA_Dist
 
 
 # TestDuck.extension
-Test new repo for now. To be built up and replace old enneadtab
+Test new repo for now. To be built up and replace old Duckitect
 
 
 # KingDuck.lib

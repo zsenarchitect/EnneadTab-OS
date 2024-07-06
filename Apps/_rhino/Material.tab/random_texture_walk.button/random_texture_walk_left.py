@@ -7,7 +7,7 @@ import scriptcontext as sc
 import Rhino # pyright: ignore
 import random
 import clr # pyright: ignore
-from EnneadTab import DATA_FILE, NOTIFICATION
+from Duckitect import DATA_FILE, NOTIFICATION
 
 def random_texture_walk():
     objs = rs.GetObjects("Pick objs to random texture walk", preselect=True)

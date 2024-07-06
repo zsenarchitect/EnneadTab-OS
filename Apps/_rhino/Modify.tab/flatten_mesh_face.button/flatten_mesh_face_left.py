@@ -21,7 +21,7 @@ def highlight_planar_region(mesh):
         face_corners = [Rhino.Geometry.Point3d(mesh.Vertices[x]) for x in face_corners]
         #print face_corners
 
-        face_corners = EnneadTab.DATA_CONVERSION.list_to_system_list(face_corners, type = Rhino.Geometry.Point3d)
+        face_corners = Duckitect.DATA_CONVERSION.list_to_system_list(face_corners, type = Rhino.Geometry.Point3d)
         test_crv = Rhino.Geometry.PolylineCurve(face_corners)
 
         if test_crv.IsPlanar(tolerance):

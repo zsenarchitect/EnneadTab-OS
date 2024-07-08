@@ -1,7 +1,7 @@
 
 __title__ = "Install EnneadTab"
 __doc__ = "Install EnneadTab"
-
+__FONDATION__ = True
 
 from EnneadTab import ERROR_HANDLE, LOG, ENVIRONMENT
 

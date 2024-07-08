@@ -1,8 +1,10 @@
+__title__ = "EnneadTab Startup"
+__doc__ = "Automatically run on every new rhino start session if bind to Rhino setting."
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
 
 
-from EnneadTab import ERROR_HANDLE, NOTIFICATION, LOG, FOLDER, ENVIRONMENT, VERSION_CONTROL
+from EnneadTab import ERROR_HANDLE, NOTIFICATION, LOG, ENVIRONMENT, VERSION_CONTROL
 
 
 import sys
@@ -12,6 +14,7 @@ import get_latest_left
 
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
+    VERSION_CONTROL.update_EA_dist()
     add_hook()
     
     get_latest_left.get_latest(is_silient = True)

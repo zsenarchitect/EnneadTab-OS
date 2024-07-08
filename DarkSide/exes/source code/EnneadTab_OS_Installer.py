@@ -4,8 +4,7 @@ import zipfile
 import os
 import shutil
 import time
-
-
+from datetime import datetime, timedelta
 
 import _Exe_Util
 
@@ -28,15 +27,17 @@ class RepositoryUpdater:
         return "Repository"
     
     def run_update(self):
-        self.download_zip()
         try:
+            self.download_zip()
             self.extract_zip()
+            self.update_files()
+            self.cleanup()
+            self.create_duck_file(success=True)
         except Exception as e:
-            print (traceback.format_exc())
-            return
-        self.update_files()
-        self.cleanup()
-
+            self.create_duck_file(success=False, error_details=traceback.format_exc())
+            raise e
+        finally:
+            self.cleanup_old_duck_files()
     
     def download_zip(self):
         response = requests.get(self.repo_url, stream=True)
@@ -47,7 +48,7 @@ class RepositoryUpdater:
                 if os.path.exists(self.zip_path):
                     break
                 time.sleep(1)
-                wait+= 1
+                wait += 1
             with open(self.zip_path, "wb") as f:
                 for chunk in response.iter_content(chunk_size=8192):
                     f.write(chunk)
@@ -73,10 +74,8 @@ class RepositoryUpdater:
             tgt_path = os.path.join(self.final_dir, rel_path)
             os.makedirs(os.path.dirname(tgt_path), exist_ok=True)
             shutil.copy2(src_path, tgt_path)
-
-
             
-        # Delete files older than 1 days
+        # Delete files older than 1 day
         now = time.time()
         file_age_threshold = now - 1 * 24 * 60 * 60
         for dp, dn, filenames in os.walk(self.final_dir):
@@ -91,12 +90,32 @@ class RepositoryUpdater:
         print("Files have been updated.")
     
     def cleanup(self):
-        try:
-            shutil.rmtree(self.temp_dir)
-            os.remove(self.zip_path)
-            print("Cleanup completed.")
-        except:
-            pass
+        shutil.rmtree(self.temp_dir)
+        os.remove(self.zip_path)
+        print("Cleanup completed.")
+    
+    def create_duck_file(self, success=True, error_details=None):
+        timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        duck_file_path = os.path.join(_Exe_Util.ESOSYSTEM_FOLDER, f"{timestamp}.duck")
+        if not success:
+            duck_file_path = os.path.join(_Exe_Util.ESOSYSTEM_FOLDER, f"{timestamp}_ERROR.duck")
+        with open(duck_file_path, 'w') as f:
+            if success:
+                f.write("success")
+            else:
+                f.write("Failed update.\nTraceback details:\n{}".format(error_details))
+        print("Duck file created: {}".format(duck_file_path))
+    
+    def cleanup_old_duck_files(self):
+        now = datetime.now()
+        cutoff = now - timedelta(days=2)
+        for f in os.listdir(_Exe_Util.ESOSYSTEM_FOLDER):
+            if f.endswith(".duck"):
+                file_path = os.path.join(_Exe_Util.ESOSYSTEM_FOLDER, f)
+                file_time = datetime.fromtimestamp(os.path.getmtime(file_path))
+                if file_time < cutoff:
+                    os.remove(file_path)
+                    print("Old duck file removed: {}".format(file_path))
 
 
 @_Exe_Util.try_catch_error
@@ -107,6 +126,4 @@ def main():
     updater.run_update()
 
 if __name__ == '__main__':
-
     main()
-

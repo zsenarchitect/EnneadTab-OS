@@ -7,9 +7,23 @@ if ENVIRONMENT.is_Rhino_environment():
 
 import os
 KNOWLEDGE_FILE = "{}\\knowledge_database.json".format(ENVIRONMENT.RHINO_FOLDER)
-def register_alias_set():
 
+
+def remove_invalid_alias():
     exisitng_alias = rs.AliasNames()
+    for alias in exisitng_alias:
+        exisiting_macro = rs.AliasMacro(alias)
+        if "RunPythonScript" not in exisiting_macro:
+            continue
+        exisiting_full_path = exisiting_macro.split('_-RunPythonScript "')[1].split('"')[0]
+        if not os.path.exists(exisiting_full_path):
+            rs.DeleteAlias(alias)
+
+def register_alias_set():
+    remove_invalid_alias()
+    exisitng_alias = rs.AliasNames()
+    
+            
     with open(KNOWLEDGE_FILE, "r") as f:
         data = json.load(f)
 
@@ -31,13 +45,10 @@ def register_alias_set():
                         #Skip setting alias for {} due to overlapping names, this is usually becasue user has setup their personal alias that happen to be same name as EA ones
                         continue
 
-                    # remove invalid alias due to folder change
-                    if rs.IsAlias(alias):
-                        current_macro = rs.AliasMacro(alias)
-                        current_full_path = current_macro.split('_-RunPythonScript "')[1].split('"')[0]
-                        if not os.path.exists(current_full_path):
-                            rs.DeleteAlias(alias)
                         
                     script_content = '! _-RunPythonScript "{}"'.format(full_path)
                     if os.path.exists(full_path):
-                        rs.AddAlias(alias, script_content)
+                        if alias == alias.upper():
+                            rs.AddAlias(alias, script_content)
+                        else:
+                            rs.AddAlias("EA_" + alias, script_content)

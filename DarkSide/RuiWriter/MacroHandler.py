@@ -137,11 +137,13 @@ class MacroHandler(BaseHandler):
 
         (Prefer second for long term effort. It is cleaner to read, BUT do require USER to register all alias dynamically.)
         """
-        alias = self.script_gloabl_vars_dict.get("__alias__")
-        if isinstance(alias, list):
-            alias = alias[0]
-        if alias is not None:
-            return alias
+        must_full_converter = self.script_gloabl_vars_dict.get("__FONDATION__")
+        if not must_full_converter:
+            alias = self.script_gloabl_vars_dict.get("__title__")
+            if isinstance(alias, list):
+                alias = alias[0]
+            if alias is not None:
+                return alias
 
 
         locator = self.script_path.split("{}\\".format(search_folder))[1]

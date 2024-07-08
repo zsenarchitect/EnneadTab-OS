@@ -5,7 +5,7 @@ import rhinoscriptsyntax as rs
 import random
 
 from EnneadTab import DATA_FILE
-from EnneadTab import SOUNDS
+from EnneadTab import SOUND
 
 def randomize_block_transformation():
  
@@ -58,7 +58,7 @@ def randomize_block_transformation():
     for i, id in enumerate(ids):
         if show_animation and i % 35 == 0:
             print (i)
-            SOUNDS.play_sound(file = "sound effect_dice.wav")
+            SOUND.play_sound(file = "sound effect_dice.wav")
         pt = rs.BlockInstanceInsertPoint(id)
         if use_rotation:
             ang = random.randrange(-180, 180)
@@ -92,7 +92,7 @@ def randomize_block_transformation():
     DATA_FILE.set_sticky_longterm("random_transform_scale_3d", use_3d)
     DATA_FILE.set_sticky_longterm("random_transform_show_animation", show_animation)
 
-    SOUNDS.play_sound(file = "sound effect_popup msg3.wav")
-    SOUNDS.play_sound(file = "sound effect_dice.wav")
+    SOUND.play_sound(file = "sound effect_popup msg3.wav")
+    SOUND.play_sound(file = "sound effect_dice.wav")
 
 

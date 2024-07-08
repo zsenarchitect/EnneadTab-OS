@@ -761,7 +761,11 @@
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\randomize_block_transformation.button\\randomize_block_transformation_left.py')
 )
@@ -786,7 +790,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\randomize_block_transformation.button
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\uniform_transform_blocks.button\\uniform_transform_blocks_left.py')
 )
@@ -811,7 +819,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\uniform_transform_blocks.button\\unif
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\make_block_unique.button\\make_block_unique_left.py')
 )
@@ -836,7 +848,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\make_block_unique.button\\make_block_
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\make_block_unique.button\\make_block_unique_right.py')
 )
@@ -861,7 +877,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\make_block_unique.button\\make_block_
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\package_block_layer.button\\package_block_layer_left.py')
 )
@@ -886,7 +906,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\package_block_layer.button\\package_b
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\edit_distorted_block.button\\edit_distorted_block_left.py')
 )
@@ -911,7 +935,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\edit_distorted_block.button\\edit_dis
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\edit_distorted_block.button\\edit_distorted_block_right.py')
 )
@@ -936,7 +964,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\edit_distorted_block.button\\edit_dis
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\toggle_block_color_display.button\\toggle_block_color_display_left.py')
 )
@@ -961,7 +993,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\toggle_block_color_display.button\\to
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\toggle_block_color_display.button\\display_setting_right.py')
 )
@@ -986,7 +1022,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\toggle_block_color_display.button\\di
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\match_texture_mapping_in_block.button\\match_texture_mapping_in_block_left.py')
 )
@@ -1011,7 +1051,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\match_texture_mapping_in_block.button
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\fall_geos_on_geo.button\\fall_geos_on_geo_left.py')
 )
@@ -1036,7 +1080,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\fall_geos_on_geo.button\\fall_geos_on
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\batch_rename_blocks.button\\batch_rename_blocks_left.py')
 )
@@ -1061,7 +1109,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\batch_rename_blocks.button\\batch_ren
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\filter_block_by_name.button\\filter_block_by_name_left.py')
 )
@@ -1086,7 +1138,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\filter_block_by_name.button\\filter_b
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\random_blocks_on_srfs.button\\random_blocks_on_srfs_left.py')
 )
@@ -1111,7 +1167,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\random_blocks_on_srfs.button\\random_
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\sample_layout.button\\sample_layout_left.py')
 )
@@ -1136,7 +1196,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\sample_layout.button\\sample_layout_l
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\similar_blocks.button\\similar_blocks_left.py')
 )
@@ -1161,7 +1225,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\similar_blocks.button\\similar_blocks
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Block.tab\\similar_blocks.button\\similar_blocks_right.py')
 )
@@ -1186,7 +1254,11 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\similar_blocks.button\\similar_blocks
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Layer.tab\\destroy_layer.button\\destroy_layer_left.py')
 )
@@ -1211,7 +1283,11 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\destroy_layer.button\\destroy_layer_l
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Layer.tab\\find_layer_in_files.button\\find_layer_in_files_left.py')
 )
@@ -1236,7 +1312,11 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\find_layer_in_files.button\\find_laye
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Layer.tab\\initiate_layers.button\\initiate_layers_left.py')
 )
@@ -1261,7 +1341,11 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\initiate_layers.button\\initiate_laye
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Layer.tab\\isolate_layer_by_selection.button\\isolate_layer_by_selection_left.py')
 )
@@ -1286,7 +1370,11 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\isolate_layer_by_selection.button\\is
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Layer.tab\\isolate_layer_by_selection.button\\isolate_layer_by_selection_right.py')
 )
@@ -1311,7 +1399,11 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\isolate_layer_by_selection.button\\is
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Layer.tab\\layer_name_format.button\\layer_name_format_left.py')
 )
@@ -1336,7 +1428,11 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\layer_name_format.button\\layer_name_
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Layer.tab\\merge_layer.button\\merge_layer_left.py')
 )
@@ -1361,7 +1457,11 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\merge_layer.button\\merge_layer_left.
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Layer.tab\\nest_layer.button\\nest_layer_left.py')
 )
@@ -1386,7 +1486,11 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\nest_layer.button\\nest_layer_left.py
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Layer.tab\\random_layer_color.button\\random_layer_color_left.py')
 )
@@ -1411,7 +1515,11 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\random_layer_color.button\\random_lay
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Layer.tab\\random_layer_color.button\\color_setting_right.py')
 )
@@ -1436,7 +1544,11 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\random_layer_color.button\\color_sett
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('View.tab\\section_box.button\\section_box_left.py')
 )
@@ -1461,7 +1573,11 @@ MODULE_HELPER.run_Rhino_button('View.tab\\section_box.button\\section_box_left.p
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('View.tab\\section_box.button\\section_box_right.py')
 )
@@ -1486,7 +1602,11 @@ MODULE_HELPER.run_Rhino_button('View.tab\\section_box.button\\section_box_right.
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('View.tab\\section_box_cleanup.button\\section_box_cleanup_left.py')
 )
@@ -1511,7 +1631,11 @@ MODULE_HELPER.run_Rhino_button('View.tab\\section_box_cleanup.button\\section_bo
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('View.tab\\batch_rename_camera.button\\batch_rename_camera_left.py')
 )
@@ -1536,7 +1660,11 @@ MODULE_HELPER.run_Rhino_button('View.tab\\batch_rename_camera.button\\batch_rena
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('View.tab\\change_object_display_source.button\\change_object_display_source_left.py')
 )
@@ -1561,7 +1689,11 @@ MODULE_HELPER.run_Rhino_button('View.tab\\change_object_display_source.button\\c
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('View.tab\\toggle_layer_pointer.button\\toggle_layer_pointer_left.py')
 )
@@ -1586,7 +1718,11 @@ MODULE_HELPER.run_Rhino_button('View.tab\\toggle_layer_pointer.button\\toggle_la
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Create.tab\\stair_maker.button\\stair_maker_left.py')
 )
@@ -1611,7 +1747,11 @@ MODULE_HELPER.run_Rhino_button('Create.tab\\stair_maker.button\\stair_maker_left
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Create.tab\\stair_maker.button\\stair_maker_right.py')
 )
@@ -1636,7 +1776,11 @@ MODULE_HELPER.run_Rhino_button('Create.tab\\stair_maker.button\\stair_maker_righ
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Modify.tab\\flatten_mesh_face.button\\flatten_mesh_face_left.py')
 )
@@ -1661,7 +1805,11 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\flatten_mesh_face.button\\flatten_me
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Modify.tab\\make_void_seam.button\\make_void_seam_left.py')
 )
@@ -1686,7 +1834,11 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\make_void_seam.button\\make_void_sea
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Modify.tab\\match_crv_dir.button\\match_crv_dir_left.py')
 )
@@ -1711,7 +1863,11 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\match_crv_dir.button\\match_crv_dir_
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Modify.tab\\offset_floor_border.button\\offset_floor_border_left.py')
 )
@@ -1736,7 +1892,11 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\offset_floor_border.button\\offset_f
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Modify.tab\\push_glass_in.button\\push_glass_in_left.py')
 )
@@ -1761,7 +1921,11 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\push_glass_in.button\\push_glass_in_
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Modify.tab\\random_deselect.button\\random_deselect_left.py')
 )
@@ -1786,7 +1950,11 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\random_deselect.button\\random_desel
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Modify.tab\\random_deselect.button\\random_deselect_right.py')
 )
@@ -1811,13 +1979,17 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\random_deselect.button\\random_desel
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Modify.tab\\shape_mapper.button\\shape_mapper_left.py')
 )
 </script>
     </macro_item>
-    <macro_item guid="cbb2d56c-3b36-4e5d-869b-59a04d4b1b42" bitmap_id="558d6f33-90ff-46ca-9e31-9d033afb051c">
+    <macro_item guid="cbb2d56c-3b36-4e5d-869b-59a04d4b1b42" bitmap_id="7cd8de00-4dac-481e-b62b-120147dd0872">
       <text>
         <locale_1033>SrfToPanel</locale_1033>
       </text>
@@ -1836,7 +2008,11 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\shape_mapper.button\\shape_mapper_le
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Modify.tab\\srf_to_panel.button\\srf_to_panel_left.py')
 )
@@ -1861,7 +2037,11 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\srf_to_panel.button\\srf_to_panel_le
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Modify.tab\\time_travel.button\\time_travel_left.py')
 )
@@ -1886,7 +2066,11 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\time_travel.button\\time_travel_left
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Material.tab\\import_selected_material.button\\import_selected_material_left.py')
 )
@@ -1911,7 +2095,11 @@ MODULE_HELPER.run_Rhino_button('Material.tab\\import_selected_material.button\\i
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Material.tab\\material_prefix.button\\material_prefix_left.py')
 )
@@ -1936,13 +2124,17 @@ MODULE_HELPER.run_Rhino_button('Material.tab\\material_prefix.button\\material_p
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Material.tab\\merge_materials.button\\merge_materials_left.py')
 )
 </script>
     </macro_item>
-    <macro_item guid="5eab619c-585d-44ff-8608-6212450a44e1" bitmap_id="70a0fe59-9bb7-4da2-91cd-cac592897984">
+    <macro_item guid="5eab619c-585d-44ff-8608-6212450a44e1" bitmap_id="05cc44c8-4e76-4ea0-9c63-def19de64307">
       <text>
         <locale_1033>RandomTextureWalk</locale_1033>
       </text>
@@ -1961,13 +2153,17 @@ MODULE_HELPER.run_Rhino_button('Material.tab\\merge_materials.button\\merge_mate
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Material.tab\\random_texture_walk.button\\random_texture_walk_left.py')
 )
 </script>
     </macro_item>
-    <macro_item guid="74fe2af5-4f1a-45c3-854b-3d3b73080a94" bitmap_id="c8265f21-1250-410e-b697-3defce755534">
+    <macro_item guid="74fe2af5-4f1a-45c3-854b-3d3b73080a94" bitmap_id="aac4b671-7f1d-45c1-93b8-5356e872aebc">
       <text>
         <locale_1033>RemoveStringInMaterialName</locale_1033>
       </text>
@@ -1986,7 +2182,11 @@ MODULE_HELPER.run_Rhino_button('Material.tab\\random_texture_walk.button\\random
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Material.tab\\remove_string_in_material_name.button\\remove_string_in_material_name_left.py')
 )
@@ -2011,7 +2211,11 @@ MODULE_HELPER.run_Rhino_button('Material.tab\\remove_string_in_material_name.but
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Render.tab\\ai_render.button\\view2render_left.py')
 )
@@ -2036,7 +2240,11 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\ai_render.button\\view2render_left.p
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Render.tab\\ai_render.button\\render_upscale_right.py')
 )
@@ -2061,7 +2269,11 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\ai_render.button\\render_upscale_rig
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Render.tab\\import_selected_camera.button\\import_selected_camera_left.py')
 )
@@ -2086,7 +2298,11 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\import_selected_camera.button\\impor
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Render.tab\\inspect_enscape_setting.button\\inspect_enscape_setting_left.py')
 )
@@ -2111,7 +2327,11 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\inspect_enscape_setting.button\\insp
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Render.tab\\load_enscape_to_psd.button\\load_enscape_to_psd_left.py')
 )
@@ -2136,7 +2356,11 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\load_enscape_to_psd.button\\load_ens
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Render.tab\\make_crv_pipe.button\\make_crv_pipe_left.py')
 )
@@ -2161,7 +2385,11 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\make_crv_pipe.button\\make_crv_pipe_
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Render.tab\\rename_enscape_files.button\\rename_enscape_files_left.py')
 )
@@ -2186,7 +2414,11 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\rename_enscape_files.button\\rename_
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Drafting.tab\\duplicate_layout.button\\duplicate_layout_left.py')
 )
@@ -2211,7 +2443,11 @@ MODULE_HELPER.run_Rhino_button('Drafting.tab\\duplicate_layout.button\\duplicate
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Drafting.tab\\export_selected_pages.button\\export_selected_pages_left.py')
 )
@@ -2236,7 +2472,11 @@ MODULE_HELPER.run_Rhino_button('Drafting.tab\\export_selected_pages.button\\expo
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Drafting.tab\\section_crowd.button\\section_crowd_left.py')
 )
@@ -2261,7 +2501,11 @@ MODULE_HELPER.run_Rhino_button('Drafting.tab\\section_crowd.button\\section_crow
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Drafting.tab\\visualize_excel.button\\visualize_excel_left.py')
 )
@@ -2286,7 +2530,11 @@ MODULE_HELPER.run_Rhino_button('Drafting.tab\\visualize_excel.button\\visualize_
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Drafting.tab\\visualize_excel.button\\visualize_excel_right.py')
 )
@@ -2311,7 +2559,11 @@ MODULE_HELPER.run_Rhino_button('Drafting.tab\\visualize_excel.button\\visualize_
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Revit.tab\\brep_to_mass.button\\brep_to_mass_left.py')
 )
@@ -2336,7 +2588,11 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\brep_to_mass.button\\brep_to_mass_lef
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Revit.tab\\surface_to_adaptive_component.button\\surface_to_adaptive_component_left.py')
 )
@@ -2361,7 +2617,11 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\surface_to_adaptive_component.button\
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Revit.tab\\map_block_transform.button\\map_block_transform_left.py')
 )
@@ -2386,7 +2646,11 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\map_block_transform.button\\map_block
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Revit.tab\\export_for_rhino2revit.button\\export_for_rhino2revit_left.py')
 )
@@ -2411,7 +2675,11 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\export_for_rhino2revit.button\\export
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Revit.tab\\draft_insulation_batting.button\\draft_insulation_batting_left.py')
 )
@@ -2436,7 +2704,11 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\draft_insulation_batting.button\\draf
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Revit.tab\\revit_drafter.button\\revit_drafter_left.py')
 )
@@ -2461,7 +2733,11 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\revit_drafter.button\\revit_drafter_l
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Revit.tab\\revit_drafter.button\\revit_drafter_right.py')
 )
@@ -2486,7 +2762,11 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\revit_drafter.button\\revit_drafter_r
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Revit.tab\\export_camera_to_revit.button\\export_camera_to_revit_left.py')
 )
@@ -2511,13 +2791,17 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\export_camera_to_revit.button\\export
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Revit.tab\\map_revit_subc_material.button\\map_revit_subc_material_left.py')
 )
 </script>
     </macro_item>
-    <macro_item guid="8432a60c-288f-4dd3-93f1-c3d501ec85d8" bitmap_id="25865e43-dbc8-4976-9870-cd6b0ecc5015">
+    <macro_item guid="8432a60c-288f-4dd3-93f1-c3d501ec85d8" bitmap_id="00e75194-71f1-4acd-b494-b312b5c44ce7">
       <text>
         <locale_1033>FloorDrafter</locale_1033>
       </text>
@@ -2536,7 +2820,11 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\map_revit_subc_material.button\\map_r
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Revit.tab\\floor_drafter.button\\floor_drafter_left.py')
 )
@@ -2561,7 +2849,11 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\floor_drafter.button\\floor_drafter_l
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Revit.tab\\import_revit_collection.button\\import_revit_collection_left.py')
 )
@@ -2586,7 +2878,11 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\import_revit_collection.button\\impor
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Web.tab\\miro.button\\listen_to_miro_left.py')
 )
@@ -2611,7 +2907,11 @@ MODULE_HELPER.run_Rhino_button('Web.tab\\miro.button\\listen_to_miro_left.py')
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Web.tab\\miro.button\\push_to_miro_right.py')
 )
@@ -2636,7 +2936,11 @@ MODULE_HELPER.run_Rhino_button('Web.tab\\miro.button\\push_to_miro_right.py')
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('File.tab\\archive_file.button\\archive_file_left.py')
 )
@@ -2661,7 +2965,11 @@ MODULE_HELPER.run_Rhino_button('File.tab\\archive_file.button\\archive_file_left
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('File.tab\\save_small_and_close.button\\save_small_and_close_left.py')
 )
@@ -2686,7 +2994,11 @@ MODULE_HELPER.run_Rhino_button('File.tab\\save_small_and_close.button\\save_smal
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('File.tab\\create_worksession.button\\create_worksession_left.py')
 )
@@ -2711,7 +3023,11 @@ MODULE_HELPER.run_Rhino_button('File.tab\\create_worksession.button\\create_work
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('File.tab\\bind_worksession.button\\bind_worksession_left.py')
 )
@@ -2736,7 +3052,11 @@ MODULE_HELPER.run_Rhino_button('File.tab\\bind_worksession.button\\bind_worksess
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('File.tab\\external_trimmer.button\\external_trimmer_left.py')
 )
@@ -2761,13 +3081,17 @@ MODULE_HELPER.run_Rhino_button('File.tab\\external_trimmer.button\\external_trim
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('File.tab\\external_trimmer.button\\external_trimmer_right.py')
 )
 </script>
     </macro_item>
-    <macro_item guid="01ff71df-915e-46c1-8e6b-6f503fedaac5" bitmap_id="d0bfd596-852b-4573-9906-ef5711833466">
+    <macro_item guid="01ff71df-915e-46c1-8e6b-6f503fedaac5" bitmap_id="dba23ebc-cf84-454c-a7ec-94c7dc3ecadf">
       <text>
         <locale_1033>(1634)ExportWithoutCrv</locale_1033>
       </text>
@@ -2786,13 +3110,17 @@ MODULE_HELPER.run_Rhino_button('File.tab\\external_trimmer.button\\external_trim
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Tailor.tab\\export_without_crv.button\\export_without_crv_left.py')
 )
 </script>
     </macro_item>
-    <macro_item guid="a5ece7f1-44d6-40f5-aa8f-4a483652e2aa" bitmap_id="adc42e33-2ebe-4318-8551-27f0863f1dbe">
+    <macro_item guid="a5ece7f1-44d6-40f5-aa8f-4a483652e2aa" bitmap_id="d964ec1f-c2ef-446f-bba5-cb35cea5da85">
       <text>
         <locale_1033>(1634)RelocateAll</locale_1033>
       </text>
@@ -2811,7 +3139,11 @@ MODULE_HELPER.run_Rhino_button('Tailor.tab\\export_without_crv.button\\export_wi
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Tailor.tab\\relocate_file.button\\relocate_left.py')
 )
@@ -2836,7 +3168,11 @@ MODULE_HELPER.run_Rhino_button('Tailor.tab\\relocate_file.button\\relocate_left.
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Tailor.tab\\stack_enscape.button\\stack_enscape_left.py')
 )
@@ -2861,7 +3197,11 @@ MODULE_HELPER.run_Rhino_button('Tailor.tab\\stack_enscape.button\\stack_enscape_
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Tailor.tab\\stack_enscape.button\\move_img_right.py')
 )
@@ -2886,13 +3226,17 @@ MODULE_HELPER.run_Rhino_button('Tailor.tab\\stack_enscape.button\\move_img_right
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Fun.tab\\dvd.button\\dvd_left.py')
 )
 </script>
     </macro_item>
-    <macro_item guid="10ed2ca6-8c26-45aa-ba51-35c69a28d750" bitmap_id="d5238191-d90d-4a7b-876a-50f6c76927de">
+    <macro_item guid="10ed2ca6-8c26-45aa-ba51-35c69a28d750" bitmap_id="27ad4ee8-4674-4bab-8fa8-08e1a4603a11">
       <text>
         <locale_1033>tester</locale_1033>
       </text>
@@ -2911,13 +3255,17 @@ MODULE_HELPER.run_Rhino_button('Fun.tab\\dvd.button\\dvd_left.py')
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Lab.tab\\tester.button\\tester_left.py')
 )
 </script>
     </macro_item>
-    <macro_item guid="c9055b1e-dd7a-4b0e-abe8-38123661ca0b" bitmap_id="8e0a875e-12d3-4751-8d68-680a936ec7c8">
+    <macro_item guid="c9055b1e-dd7a-4b0e-abe8-38123661ca0b" bitmap_id="4a560098-2892-4142-9957-bc2539f0ba4e">
       <text>
         <locale_1033>UpdateFromRepo</locale_1033>
       </text>
@@ -2936,7 +3284,11 @@ MODULE_HELPER.run_Rhino_button('Lab.tab\\tester.button\\tester_left.py')
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Lab.tab\\update_from_repo.button\\update_from_repo_left.py')
 )
@@ -2961,7 +3313,11 @@ MODULE_HELPER.run_Rhino_button('Lab.tab\\update_from_repo.button\\update_from_re
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Knowledge.tab\\search_command.button\\search_command_left.py')
 )
@@ -2986,7 +3342,11 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\search_command.button\\search_com
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Knowledge.tab\\alias_cheatsheet.button\\alias_cheatsheet_left.py')
 )
@@ -3011,7 +3371,11 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\alias_cheatsheet.button\\alias_ch
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Knowledge.tab\\perforation_ratio.button\\perforation_ratio_left.py')
 )
@@ -3036,7 +3400,11 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\perforation_ratio.button\\perfora
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Knowledge.tab\\china_code_ref.button\\china_code_ref_left.py')
 )
@@ -3061,7 +3429,11 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\china_code_ref.button\\china_code
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Knowledge.tab\\place_asset.button\\place_asset_left.py')
 )
@@ -3086,7 +3458,11 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\place_asset.button\\place_asset_l
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Knowledge.tab\\slope_calculator.button\\slope_calculator_left.py')
 )
@@ -3111,13 +3487,17 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\slope_calculator.button\\slope_ca
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Knowledge.tab\\turtorial.button\\turtorial_left.py')
 )
 </script>
     </macro_item>
-    <macro_item guid="a97baa90-bb3f-4691-82eb-748a4426c325" bitmap_id="5e48dc66-97ff-4ee2-8f90-699487b4618f">
+    <macro_item guid="a97baa90-bb3f-4691-82eb-748a4426c325" bitmap_id="582d708e-7578-40c4-8d15-b5b6df89a960">
       <text>
         <locale_1033>Make A New Button</locale_1033>
       </text>
@@ -3136,13 +3516,17 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\turtorial.button\\turtorial_left.
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Ennead+.menu\\create_new_button.button\\new_button_left.py')
 )
 </script>
     </macro_item>
-    <macro_item guid="a61270a8-b29d-4743-a047-2d476a3b334b" bitmap_id="50a4d949-28f6-4136-98c6-372442d5c31e">
+    <macro_item guid="a61270a8-b29d-4743-a047-2d476a3b334b" bitmap_id="cf93aa2d-a733-4893-a73c-bdc7e595ad9f">
       <text>
         <locale_1033>ExtractPreviewImages</locale_1033>
       </text>
@@ -3161,13 +3545,17 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\create_new_button.button\\new_butt
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Ennead+.menu\\extract_preview_images.button\\extract_preview_images_left.py')
 )
 </script>
     </macro_item>
-    <macro_item guid="7b6dce2a-fc6a-4adf-8d0d-c16db8c2aa12" bitmap_id="da4e4ae6-6309-46ba-99a1-a5f3850e7ab9">
+    <macro_item guid="7b6dce2a-fc6a-4adf-8d0d-c16db8c2aa12" bitmap_id="5d3864d8-2fb1-4b68-899a-844e76deca7f">
       <text>
         <locale_1033>GetLatest</locale_1033>
       </text>
@@ -3186,7 +3574,11 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\extract_preview_images.button\\ext
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Ennead+.menu\\get_latest.button\\get_latest_left.py')
 )
@@ -3211,7 +3603,11 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\get_latest.button\\get_latest_left
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Ennead+.menu\\how_to_install.button\\how_to_install_left.py')
 )
@@ -3236,7 +3632,11 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\how_to_install.button\\how_to_inst
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Ennead+.menu\\reset_all_conduit.button\\reset_all_conduit_left.py')
 )
@@ -3261,7 +3661,11 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\reset_all_conduit.button\\reset_al
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Ennead+.menu\\star.button\\star_left.py')
 )
@@ -3286,7 +3690,11 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\star.button\\star_left.py')
       <script>! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('Ennead+.menu\\youtube_playlist.button\\youtube_playlist_left.py')
 )
@@ -3343,14 +3751,14 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\youtube_playlist.button\\youtube_p
       <bitmap_item guid="1999bb72-5438-45c1-8949-d57a421deb1a" index="45"/>
       <bitmap_item guid="0f0ee8d6-9026-4dc1-9a82-2c5d880f01f2" index="46"/>
       <bitmap_item guid="a59650fc-b7b4-4943-bbeb-2187545da753" index="47"/>
-      <bitmap_item guid="558d6f33-90ff-46ca-9e31-9d033afb051c" index="48"/>
+      <bitmap_item guid="7cd8de00-4dac-481e-b62b-120147dd0872" index="48"/>
       <bitmap_item guid="2684bb56-caa0-4798-923a-4a454aff1982" index="49"/>
       <bitmap_item guid="c0705847-bc2f-4513-9d97-0c36f63408de" index="50"/>
       <bitmap_item guid="43ceef76-e7d7-4a9b-828c-0f57b9273692" index="51"/>
       <bitmap_item guid="8a60217e-59cd-4254-bde4-fd0d2938a8cc" index="52"/>
       <bitmap_item guid="8b3b0341-ced7-4974-b47e-4d67d5eed57c" index="53"/>
-      <bitmap_item guid="70a0fe59-9bb7-4da2-91cd-cac592897984" index="54"/>
-      <bitmap_item guid="c8265f21-1250-410e-b697-3defce755534" index="55"/>
+      <bitmap_item guid="05cc44c8-4e76-4ea0-9c63-def19de64307" index="54"/>
+      <bitmap_item guid="aac4b671-7f1d-45c1-93b8-5356e872aebc" index="55"/>
       <bitmap_item guid="912723f6-bf1d-4142-96f0-1b0d0b709932" index="56"/>
       <bitmap_item guid="38a9a78d-fdf6-4f6f-aa34-32981ea8a543" index="57"/>
       <bitmap_item guid="88139ca9-1195-4650-b7c3-ff9fadd7113c" index="58"/>
@@ -3375,7 +3783,7 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\youtube_playlist.button\\youtube_p
       <bitmap_item guid="02c152a0-24d0-4b2d-8a47-e6ccbc40d7b0" index="77"/>
       <bitmap_item guid="199401de-569f-430c-93d3-792421c7013b" index="78"/>
       <bitmap_item guid="b5ac8573-e11e-4aa3-84c8-cadab266bc18" index="79"/>
-      <bitmap_item guid="25865e43-dbc8-4976-9870-cd6b0ecc5015" index="80"/>
+      <bitmap_item guid="00e75194-71f1-4acd-b494-b312b5c44ce7" index="80"/>
       <bitmap_item guid="c19a53bd-236d-442e-b0ad-44659fbc8be0" index="81"/>
       <bitmap_item guid="7c05fdf4-d0d4-4f15-b499-7c42db7962df" index="82"/>
       <bitmap_item guid="3c584a22-59ba-457a-8e68-3b51bcf35451" index="83"/>
@@ -3388,15 +3796,15 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\youtube_playlist.button\\youtube_p
       <bitmap_item guid="ac7edeb1-3cd8-4316-b0c8-28df63ae17f3" index="90"/>
       <bitmap_item guid="20967963-d256-4345-922c-2b1d2b4e3ffa" index="91"/>
       <bitmap_item guid="3e6fade8-f1ae-46d3-8a6a-b1dd4835b9c9" index="92"/>
-      <bitmap_item guid="d0bfd596-852b-4573-9906-ef5711833466" index="93"/>
-      <bitmap_item guid="adc42e33-2ebe-4318-8551-27f0863f1dbe" index="94"/>
+      <bitmap_item guid="dba23ebc-cf84-454c-a7ec-94c7dc3ecadf" index="93"/>
+      <bitmap_item guid="d964ec1f-c2ef-446f-bba5-cb35cea5da85" index="94"/>
       <bitmap_item guid="a7ba635e-b6cd-4034-aaf8-7a9510a02e80" index="95"/>
       <bitmap_item guid="1acf1eb7-fa8a-4240-8bad-97a3abcca00a" index="96"/>
       <bitmap_item guid="012cb3e4-536e-4294-a34d-1d0c6177bb6d" index="97"/>
       <bitmap_item guid="ba1d3bf2-fb10-414e-bc60-766122fc74f1" index="98"/>
       <bitmap_item guid="005e2a89-e71d-4230-8878-22c26dafd2d3" index="99"/>
-      <bitmap_item guid="d5238191-d90d-4a7b-876a-50f6c76927de" index="100"/>
-      <bitmap_item guid="8e0a875e-12d3-4751-8d68-680a936ec7c8" index="101"/>
+      <bitmap_item guid="27ad4ee8-4674-4bab-8fa8-08e1a4603a11" index="100"/>
+      <bitmap_item guid="4a560098-2892-4142-9957-bc2539f0ba4e" index="101"/>
       <bitmap_item guid="0d2500b5-2497-474c-a654-f2181c197e96" index="102"/>
       <bitmap_item guid="bf73f783-3b77-4636-bc84-57d8188a1dab" index="103"/>
       <bitmap_item guid="fc4a27c6-845f-4a59-bd75-3143824af8a9" index="104"/>
@@ -3405,9 +3813,9 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\youtube_playlist.button\\youtube_p
       <bitmap_item guid="5a044074-0580-4c57-9787-1a96ad55f275" index="107"/>
       <bitmap_item guid="a210d6cc-97cd-4427-b09d-363b61df35a9" index="108"/>
       <bitmap_item guid="ac274fd3-2664-41aa-98a9-2a6f1766dc5a" index="109"/>
-      <bitmap_item guid="5e48dc66-97ff-4ee2-8f90-699487b4618f" index="110"/>
-      <bitmap_item guid="50a4d949-28f6-4136-98c6-372442d5c31e" index="111"/>
-      <bitmap_item guid="da4e4ae6-6309-46ba-99a1-a5f3850e7ab9" index="112"/>
+      <bitmap_item guid="582d708e-7578-40c4-8d15-b5b6df89a960" index="110"/>
+      <bitmap_item guid="cf93aa2d-a733-4893-a73c-bdc7e595ad9f" index="111"/>
+      <bitmap_item guid="5d3864d8-2fb1-4b68-899a-844e76deca7f" index="112"/>
       <bitmap_item guid="9b6041b0-07a4-42a6-b38e-fc9ed35021b9" index="113"/>
       <bitmap_item guid="591f9943-a295-42ab-aa9a-4810e278df5b" index="114"/>
       <bitmap_item guid="28d05fbd-5029-4531-91eb-8e0461b5912e" index="115"/>
@@ -4490,14 +4898,14 @@ o/PZInQO5wXABvQezv8Xx9dgulxp+tIAAAAASUVORK5CYII=</bitmap>
       <bitmap_item guid="1999bb72-5438-45c1-8949-d57a421deb1a" index="45"/>
       <bitmap_item guid="0f0ee8d6-9026-4dc1-9a82-2c5d880f01f2" index="46"/>
       <bitmap_item guid="a59650fc-b7b4-4943-bbeb-2187545da753" index="47"/>
-      <bitmap_item guid="558d6f33-90ff-46ca-9e31-9d033afb051c" index="48"/>
+      <bitmap_item guid="7cd8de00-4dac-481e-b62b-120147dd0872" index="48"/>
       <bitmap_item guid="2684bb56-caa0-4798-923a-4a454aff1982" index="49"/>
       <bitmap_item guid="c0705847-bc2f-4513-9d97-0c36f63408de" index="50"/>
       <bitmap_item guid="43ceef76-e7d7-4a9b-828c-0f57b9273692" index="51"/>
       <bitmap_item guid="8a60217e-59cd-4254-bde4-fd0d2938a8cc" index="52"/>
       <bitmap_item guid="8b3b0341-ced7-4974-b47e-4d67d5eed57c" index="53"/>
-      <bitmap_item guid="70a0fe59-9bb7-4da2-91cd-cac592897984" index="54"/>
-      <bitmap_item guid="c8265f21-1250-410e-b697-3defce755534" index="55"/>
+      <bitmap_item guid="05cc44c8-4e76-4ea0-9c63-def19de64307" index="54"/>
+      <bitmap_item guid="aac4b671-7f1d-45c1-93b8-5356e872aebc" index="55"/>
       <bitmap_item guid="912723f6-bf1d-4142-96f0-1b0d0b709932" index="56"/>
       <bitmap_item guid="38a9a78d-fdf6-4f6f-aa34-32981ea8a543" index="57"/>
       <bitmap_item guid="88139ca9-1195-4650-b7c3-ff9fadd7113c" index="58"/>
@@ -4522,7 +4930,7 @@ o/PZInQO5wXABvQezv8Xx9dgulxp+tIAAAAASUVORK5CYII=</bitmap>
       <bitmap_item guid="02c152a0-24d0-4b2d-8a47-e6ccbc40d7b0" index="77"/>
       <bitmap_item guid="199401de-569f-430c-93d3-792421c7013b" index="78"/>
       <bitmap_item guid="b5ac8573-e11e-4aa3-84c8-cadab266bc18" index="79"/>
-      <bitmap_item guid="25865e43-dbc8-4976-9870-cd6b0ecc5015" index="80"/>
+      <bitmap_item guid="00e75194-71f1-4acd-b494-b312b5c44ce7" index="80"/>
       <bitmap_item guid="c19a53bd-236d-442e-b0ad-44659fbc8be0" index="81"/>
       <bitmap_item guid="7c05fdf4-d0d4-4f15-b499-7c42db7962df" index="82"/>
       <bitmap_item guid="3c584a22-59ba-457a-8e68-3b51bcf35451" index="83"/>
@@ -4535,15 +4943,15 @@ o/PZInQO5wXABvQezv8Xx9dgulxp+tIAAAAASUVORK5CYII=</bitmap>
       <bitmap_item guid="ac7edeb1-3cd8-4316-b0c8-28df63ae17f3" index="90"/>
       <bitmap_item guid="20967963-d256-4345-922c-2b1d2b4e3ffa" index="91"/>
       <bitmap_item guid="3e6fade8-f1ae-46d3-8a6a-b1dd4835b9c9" index="92"/>
-      <bitmap_item guid="d0bfd596-852b-4573-9906-ef5711833466" index="93"/>
-      <bitmap_item guid="adc42e33-2ebe-4318-8551-27f0863f1dbe" index="94"/>
+      <bitmap_item guid="dba23ebc-cf84-454c-a7ec-94c7dc3ecadf" index="93"/>
+      <bitmap_item guid="d964ec1f-c2ef-446f-bba5-cb35cea5da85" index="94"/>
       <bitmap_item guid="a7ba635e-b6cd-4034-aaf8-7a9510a02e80" index="95"/>
       <bitmap_item guid="1acf1eb7-fa8a-4240-8bad-97a3abcca00a" index="96"/>
       <bitmap_item guid="012cb3e4-536e-4294-a34d-1d0c6177bb6d" index="97"/>
       <bitmap_item guid="ba1d3bf2-fb10-414e-bc60-766122fc74f1" index="98"/>
       <bitmap_item guid="005e2a89-e71d-4230-8878-22c26dafd2d3" index="99"/>
-      <bitmap_item guid="d5238191-d90d-4a7b-876a-50f6c76927de" index="100"/>
-      <bitmap_item guid="8e0a875e-12d3-4751-8d68-680a936ec7c8" index="101"/>
+      <bitmap_item guid="27ad4ee8-4674-4bab-8fa8-08e1a4603a11" index="100"/>
+      <bitmap_item guid="4a560098-2892-4142-9957-bc2539f0ba4e" index="101"/>
       <bitmap_item guid="0d2500b5-2497-474c-a654-f2181c197e96" index="102"/>
       <bitmap_item guid="bf73f783-3b77-4636-bc84-57d8188a1dab" index="103"/>
       <bitmap_item guid="fc4a27c6-845f-4a59-bd75-3143824af8a9" index="104"/>
@@ -4552,9 +4960,9 @@ o/PZInQO5wXABvQezv8Xx9dgulxp+tIAAAAASUVORK5CYII=</bitmap>
       <bitmap_item guid="5a044074-0580-4c57-9787-1a96ad55f275" index="107"/>
       <bitmap_item guid="a210d6cc-97cd-4427-b09d-363b61df35a9" index="108"/>
       <bitmap_item guid="ac274fd3-2664-41aa-98a9-2a6f1766dc5a" index="109"/>
-      <bitmap_item guid="5e48dc66-97ff-4ee2-8f90-699487b4618f" index="110"/>
-      <bitmap_item guid="50a4d949-28f6-4136-98c6-372442d5c31e" index="111"/>
-      <bitmap_item guid="da4e4ae6-6309-46ba-99a1-a5f3850e7ab9" index="112"/>
+      <bitmap_item guid="582d708e-7578-40c4-8d15-b5b6df89a960" index="110"/>
+      <bitmap_item guid="cf93aa2d-a733-4893-a73c-bdc7e595ad9f" index="111"/>
+      <bitmap_item guid="5d3864d8-2fb1-4b68-899a-844e76deca7f" index="112"/>
       <bitmap_item guid="9b6041b0-07a4-42a6-b38e-fc9ed35021b9" index="113"/>
       <bitmap_item guid="591f9943-a295-42ab-aa9a-4810e278df5b" index="114"/>
       <bitmap_item guid="28d05fbd-5029-4531-91eb-8e0461b5912e" index="115"/>
@@ -6562,14 +6970,14 @@ gg==</bitmap>
       <bitmap_item guid="1999bb72-5438-45c1-8949-d57a421deb1a" index="45"/>
       <bitmap_item guid="0f0ee8d6-9026-4dc1-9a82-2c5d880f01f2" index="46"/>
       <bitmap_item guid="a59650fc-b7b4-4943-bbeb-2187545da753" index="47"/>
-      <bitmap_item guid="558d6f33-90ff-46ca-9e31-9d033afb051c" index="48"/>
+      <bitmap_item guid="7cd8de00-4dac-481e-b62b-120147dd0872" index="48"/>
       <bitmap_item guid="2684bb56-caa0-4798-923a-4a454aff1982" index="49"/>
       <bitmap_item guid="c0705847-bc2f-4513-9d97-0c36f63408de" index="50"/>
       <bitmap_item guid="43ceef76-e7d7-4a9b-828c-0f57b9273692" index="51"/>
       <bitmap_item guid="8a60217e-59cd-4254-bde4-fd0d2938a8cc" index="52"/>
       <bitmap_item guid="8b3b0341-ced7-4974-b47e-4d67d5eed57c" index="53"/>
-      <bitmap_item guid="70a0fe59-9bb7-4da2-91cd-cac592897984" index="54"/>
-      <bitmap_item guid="c8265f21-1250-410e-b697-3defce755534" index="55"/>
+      <bitmap_item guid="05cc44c8-4e76-4ea0-9c63-def19de64307" index="54"/>
+      <bitmap_item guid="aac4b671-7f1d-45c1-93b8-5356e872aebc" index="55"/>
       <bitmap_item guid="912723f6-bf1d-4142-96f0-1b0d0b709932" index="56"/>
       <bitmap_item guid="38a9a78d-fdf6-4f6f-aa34-32981ea8a543" index="57"/>
       <bitmap_item guid="88139ca9-1195-4650-b7c3-ff9fadd7113c" index="58"/>
@@ -6594,7 +7002,7 @@ gg==</bitmap>
       <bitmap_item guid="02c152a0-24d0-4b2d-8a47-e6ccbc40d7b0" index="77"/>
       <bitmap_item guid="199401de-569f-430c-93d3-792421c7013b" index="78"/>
       <bitmap_item guid="b5ac8573-e11e-4aa3-84c8-cadab266bc18" index="79"/>
-      <bitmap_item guid="25865e43-dbc8-4976-9870-cd6b0ecc5015" index="80"/>
+      <bitmap_item guid="00e75194-71f1-4acd-b494-b312b5c44ce7" index="80"/>
       <bitmap_item guid="c19a53bd-236d-442e-b0ad-44659fbc8be0" index="81"/>
       <bitmap_item guid="7c05fdf4-d0d4-4f15-b499-7c42db7962df" index="82"/>
       <bitmap_item guid="3c584a22-59ba-457a-8e68-3b51bcf35451" index="83"/>
@@ -6607,15 +7015,15 @@ gg==</bitmap>
       <bitmap_item guid="ac7edeb1-3cd8-4316-b0c8-28df63ae17f3" index="90"/>
       <bitmap_item guid="20967963-d256-4345-922c-2b1d2b4e3ffa" index="91"/>
       <bitmap_item guid="3e6fade8-f1ae-46d3-8a6a-b1dd4835b9c9" index="92"/>
-      <bitmap_item guid="d0bfd596-852b-4573-9906-ef5711833466" index="93"/>
-      <bitmap_item guid="adc42e33-2ebe-4318-8551-27f0863f1dbe" index="94"/>
+      <bitmap_item guid="dba23ebc-cf84-454c-a7ec-94c7dc3ecadf" index="93"/>
+      <bitmap_item guid="d964ec1f-c2ef-446f-bba5-cb35cea5da85" index="94"/>
       <bitmap_item guid="a7ba635e-b6cd-4034-aaf8-7a9510a02e80" index="95"/>
       <bitmap_item guid="1acf1eb7-fa8a-4240-8bad-97a3abcca00a" index="96"/>
       <bitmap_item guid="012cb3e4-536e-4294-a34d-1d0c6177bb6d" index="97"/>
       <bitmap_item guid="ba1d3bf2-fb10-414e-bc60-766122fc74f1" index="98"/>
       <bitmap_item guid="005e2a89-e71d-4230-8878-22c26dafd2d3" index="99"/>
-      <bitmap_item guid="d5238191-d90d-4a7b-876a-50f6c76927de" index="100"/>
-      <bitmap_item guid="8e0a875e-12d3-4751-8d68-680a936ec7c8" index="101"/>
+      <bitmap_item guid="27ad4ee8-4674-4bab-8fa8-08e1a4603a11" index="100"/>
+      <bitmap_item guid="4a560098-2892-4142-9957-bc2539f0ba4e" index="101"/>
       <bitmap_item guid="0d2500b5-2497-474c-a654-f2181c197e96" index="102"/>
       <bitmap_item guid="bf73f783-3b77-4636-bc84-57d8188a1dab" index="103"/>
       <bitmap_item guid="fc4a27c6-845f-4a59-bd75-3143824af8a9" index="104"/>
@@ -6624,9 +7032,9 @@ gg==</bitmap>
       <bitmap_item guid="5a044074-0580-4c57-9787-1a96ad55f275" index="107"/>
       <bitmap_item guid="a210d6cc-97cd-4427-b09d-363b61df35a9" index="108"/>
       <bitmap_item guid="ac274fd3-2664-41aa-98a9-2a6f1766dc5a" index="109"/>
-      <bitmap_item guid="5e48dc66-97ff-4ee2-8f90-699487b4618f" index="110"/>
-      <bitmap_item guid="50a4d949-28f6-4136-98c6-372442d5c31e" index="111"/>
-      <bitmap_item guid="da4e4ae6-6309-46ba-99a1-a5f3850e7ab9" index="112"/>
+      <bitmap_item guid="582d708e-7578-40c4-8d15-b5b6df89a960" index="110"/>
+      <bitmap_item guid="cf93aa2d-a733-4893-a73c-bdc7e595ad9f" index="111"/>
+      <bitmap_item guid="5d3864d8-2fb1-4b68-899a-844e76deca7f" index="112"/>
       <bitmap_item guid="9b6041b0-07a4-42a6-b38e-fc9ed35021b9" index="113"/>
       <bitmap_item guid="591f9943-a295-42ab-aa9a-4810e278df5b" index="114"/>
       <bitmap_item guid="28d05fbd-5029-4531-91eb-8e0461b5912e" index="115"/>

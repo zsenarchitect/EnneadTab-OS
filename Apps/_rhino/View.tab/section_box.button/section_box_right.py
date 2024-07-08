@@ -5,7 +5,7 @@ __doc__ = "Use closed polysrf as input box cutter."
 import os
 import rhinoscriptsyntax as rs
 
-from EnneadTab import NOTIFICATION, SOUNDS
+from EnneadTab import NOTIFICATION, SOUND
 from EnneadTab.RHINO import RHINO_CLEANUP
 
 import sys
@@ -98,7 +98,7 @@ def section_box(group_name_key_word=section_box_utility.GROUP_NAME_KEYWORD, clea
 def play_sound():
 
     file = "sound effect_popup msg3.wav"
-    SOUNDS.play_sound(file)
+    SOUND.play_sound(file)
 
 
 

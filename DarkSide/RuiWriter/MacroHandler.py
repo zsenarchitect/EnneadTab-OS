@@ -144,7 +144,11 @@ class MacroHandler(BaseHandler):
         script = """! _-RunPythonScript (
 import os
 import sys
-sys.path.append(os.path.join(os.environ['USERPROFILE'] + '\\\\Documents\\\\EnneadTab Ecosystem\\\\EA_Dist\\\\Apps\\\\lib\\\\EnneadTab'))
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\\\github\\\\EnneadTab-OS\\\\Apps\\\\lib\\\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\\\dev-repo\\\\EnneadTab-OS\\\\Apps\\\\lib\\\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\\\Documents\\\\EnneadTab Ecosystem\\\\EA_Dist\\\\Apps\\\\lib\\\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
 import MODULE_HELPER
 MODULE_HELPER.run_Rhino_button('{}')
 )

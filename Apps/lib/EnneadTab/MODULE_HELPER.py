@@ -94,6 +94,13 @@ def run_Rhino_button(locator, *args,**kwargs):
     if module_folder not in sys.path:
         sys.path.append(module_folder)
 
+    # add core lib
+    if ENVIRONMENT.LIB_FOLDER not in sys.path:
+        sys.path.append(ENVIRONMENT.LIB_FOLDER)
+
+    # ensure core can load
+    import EnneadTab
+
     head, tail = os.path.split(module_path)
     func_name = tail.replace(".py", "")
     module_name = FOLDER.get_file_name_from_path(module_path).replace(".py", "")

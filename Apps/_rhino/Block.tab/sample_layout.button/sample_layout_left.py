@@ -9,7 +9,7 @@ import Rhino # pyright: ignore.UI
 import Eto # pyright: ignore
 
 
-from EnneadTab import DATA_FILE, NOTIFICATION, SOUNDS
+from EnneadTab import DATA_FILE, NOTIFICATION, SOUND
 from EnneadTab.RHINO import RHINO_UI, RHINO_OBJ_DATA
 
 
@@ -389,9 +389,9 @@ class SampleBlockDialog(Eto.Forms.Form):
 
         if not is_preview:
             self.obj_name = "EA_BLOCK_LAYOUT"
-            SOUNDS.play_sound("sound effect_popup msg3.wav")
+            SOUND.play_sound("sound effect_popup msg3.wav")
         else:
-            SOUNDS.play_sound("sound effect_menu_tap.wav")
+            SOUND.play_sound("sound effect_menu_tap.wav")
             
 
 

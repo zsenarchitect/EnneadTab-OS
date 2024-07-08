@@ -18,7 +18,7 @@ flatten = itertools.chain.from_iterable
 graft = itertools.combinations
 
 
-from EnneadTab import NOTIFICATION, SPEAK, DATA_FILE, SOUNDS
+from EnneadTab import NOTIFICATION, SPEAK, DATA_FILE, SOUND
 from EnneadTab.RHINO import RHINO_LAYER, RHINO_UI
 
 # make modal dialog
@@ -512,7 +512,7 @@ def export(output_folder, datas):
     NOTIFICATION.messenger(main_text = "{} layers exported!".format(len(datas)))
     announcement = "{} layers content exported".format(len(datas))
     SPEAK.speak(announcement)
-    SOUNDS.play_sound()
+    SOUND.play_sound()
 
 
 

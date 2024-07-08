@@ -8,13 +8,17 @@ from scriptcontext import doc
 import Eto # pyright: ignore
 import Rhino # pyright: ignore
 
-from EnneadTab import SOUNDS, NOTIFICATION
+from EnneadTab import SOUND, NOTIFICATION, LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_UI
 
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def batch_rename_blocks():
     dlg = rename_dialog()
     dlg.ShowModal(Rhino.UI.RhinoEtoApp.MainWindow)
-    SOUNDS.play_sound()
+    SOUND.play_sound()
 
 
 

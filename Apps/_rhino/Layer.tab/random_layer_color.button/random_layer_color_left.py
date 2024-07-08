@@ -5,7 +5,7 @@ __doc__ = "Randomize the layer color."
 
 import rhinoscriptsyntax as rs
 import random
-from EnneadTab import SOUNDS
+from EnneadTab import SOUND
 from EnneadTab import DATA_FILE
 from EnneadTab import COLOR
 
@@ -52,7 +52,7 @@ def random_layer_color(default_opt = False):
         if str(current_color) == "Color [A=255, R=0, G=0, B=0]":
             rs.LayerColor(layer, color = random_color(layer, use_desaturated_color))
         """
-    SOUNDS.play_sound(file = "sound effect_spray paint can shake_spray.wav")
+    SOUND.play_sound(file = "sound effect_spray paint can shake_spray.wav")
 
 
 

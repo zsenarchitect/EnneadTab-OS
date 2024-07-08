@@ -7,7 +7,7 @@ import Rhino # pyright: ignore
 import scriptcontext as sc
 import rhinoscriptsyntax as rs
 
-from EnneadTab import SOUNDS, DATA_FILE, NOTIFICATION, FOLDER
+from EnneadTab import SOUND, DATA_FILE, NOTIFICATION, FOLDER
 
 def process_brep(brep):
 
@@ -67,4 +67,4 @@ def brep_to_mass():
     file = FOLDER.get_EA_dump_folder_file("BREP2MASS_DATA.json")
     DATA_FILE.save_dict_to_json(out, file)
 
-    SOUNDS.play_sound("sound effect_mario message.wav")
+    SOUND.play_sound("sound effect_mario message.wav")

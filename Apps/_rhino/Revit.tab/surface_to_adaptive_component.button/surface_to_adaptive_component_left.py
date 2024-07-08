@@ -7,7 +7,7 @@ import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from EnneadTab import DATA_FILE, FOLDER, SOUNDS
+from EnneadTab import DATA_FILE, FOLDER, SOUND
 from EnneadTab.RHINO import RHINO_UI, RHINO_OBJ_DATA
 
 FORM_KEY = 'srf2adp_modeless_form'
@@ -192,7 +192,7 @@ class Srf2AdpDialog(Eto.Forms.Form):
         file = FOLDER.get_EA_dump_folder_file("SRF2ADP_DATA.json")
         DATA_FILE.save_dict_to_json(self.out_data, file)
 
-        SOUNDS.play_sound("sound effect_mario message.wav")
+        SOUND.play_sound("sound effect_mario message.wav")
         self.clear_out()
         self.Close()
 

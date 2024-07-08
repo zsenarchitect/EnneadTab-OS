@@ -107,6 +107,10 @@ def email_error(traceback, tool_name, error_from_user, subject_line="EnneadTab A
         developer_emails = USER.get_rhino_developer_emails()
 
 
+    if USER.IS_DEVELOPER:
+        developer_emails = [USER.get_EA_email_address()]
+
+
     email(receiver_email_list=developer_emails,
           body=body,
           subject=subject_line,
@@ -130,5 +134,5 @@ def email_to_self(subject="EnneadTab Auto Email to Self",
 
 
 def unit_test():
-    email_to_self(subject="Test Email",
-                  body="Happy Haooy")
+    email_to_self(subject="Test Email for compiler",
+                  body="Happy Howdy. This is a quick email test to see if the base communication still working")

@@ -6,7 +6,7 @@ import scriptcontext as sc
 
 from EnneadTab.RHINO import RHINO_FORMS, RHINO_LAYER
 from EnneadTab import NOTIFICATION
-from EnneadTab import SOUNDS
+from EnneadTab import SOUND
 
 
 def merge_layer():
@@ -67,7 +67,7 @@ def merge_layer():
         rs.MessageBox(message = display, buttons= 0 | 48, title = "Too aggresive merging...")
 
 
-    SOUNDS.play_sound(file = "sound effect_popup msg3.wav")
+    SOUND.play_sound(file = "sound effect_popup msg3.wav")
 
 
 def modify_obj_on_layer(current_layer, layer_target):

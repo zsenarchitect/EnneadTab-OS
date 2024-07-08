@@ -897,25 +897,25 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
         if self.SOUND_MUTE:
             return
         file = "sound effect_menu_page_trun_backward.wav"
-        SOUNDS.play_sound(file)
+        SOUND.play_sound(file)
 
     def sound_page_next(self):
         if self.SOUND_MUTE:
             return
         file = "sound effect_menu_page_trun_forward.wav"
-        SOUNDS.play_sound(file)
+        SOUND.play_sound(file)
 
     def sound_tag_button(self):
         if self.SOUND_MUTE:
             return
         file = "sound effect_menu_tap.wav"
-        SOUNDS.play_sound(file)
+        SOUND.play_sound(file)
 
     def sound_selected_item_changed(self):
         if self.SOUND_MUTE:
             return
         file = "sound effect_menu_flip.wav"
-        SOUNDS.play_sound(file)
+        SOUND.play_sound(file)
 """
 ####  outside dialog ################################################################################################################################
 #####################################################################################################################################################

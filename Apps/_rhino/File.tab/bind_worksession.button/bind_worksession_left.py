@@ -10,7 +10,7 @@ import os
 import sys
 import time
 
-from EnneadTab import NOTIFICATION, SOUNDS, EMAIL
+from EnneadTab import NOTIFICATION, SOUND, EMAIL
 from EnneadTab.RHINO import RHINO_CLEANUP
 
 def bind_worksession():
@@ -73,7 +73,7 @@ def bind_worksession():
     
     # rs.Command("_SaveAs  \"{}\" -enter ".format(final_path))
     sc.doc.SaveAs(final_path)
-    SOUNDS.play_sound()
+    SOUND.play_sound()
     NOTIFICATION.messenger(main_text = "Session Binding Done!")
     time_used = time.time() - begin_time
     EMAIL.email_to_self(subject="EnneadTab Auto Email: Session Binding Finished!",

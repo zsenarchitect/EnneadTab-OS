@@ -7,7 +7,7 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
 
-from EnneadTab import SOUNDS, FOLDER, DATA_FILE
+from EnneadTab import SOUND, FOLDER, DATA_FILE
 
 
 def process_brep(brep):
@@ -89,5 +89,5 @@ def floor_drafter():
     file = FOLDER.get_EA_dump_folder_file("BREP2FLOOR_DATA.json")
     DATA_FILE.save_dict_to_json(out, file)
 
-    SOUNDS.play_sound("sound effect_mario message.wav")
+    SOUND.play_sound("sound effect_mario message.wav")
 

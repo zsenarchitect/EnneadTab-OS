@@ -1,3 +1,4 @@
+import traceback
 import requests
 import zipfile
 import os
@@ -28,7 +29,11 @@ class RepositoryUpdater:
     
     def run_update(self):
         self.download_zip()
-        self.extract_zip()
+        try:
+            self.extract_zip()
+        except Exception as e:
+            print (traceback.format_exc())
+            return
         self.update_files()
         self.cleanup()
 
@@ -86,9 +91,12 @@ class RepositoryUpdater:
         print("Files have been updated.")
     
     def cleanup(self):
-        shutil.rmtree(self.temp_dir)
-        os.remove(self.zip_path)
-        print("Cleanup completed.")
+        try:
+            shutil.rmtree(self.temp_dir)
+            os.remove(self.zip_path)
+            print("Cleanup completed.")
+        except:
+            pass
 
 
 @_Exe_Util.try_catch_error

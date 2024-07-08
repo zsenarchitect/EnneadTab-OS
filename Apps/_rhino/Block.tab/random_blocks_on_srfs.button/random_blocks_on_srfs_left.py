@@ -8,7 +8,7 @@ import random
 import Eto # pyright: ignore
 
 
-from EnneadTab import DATA_FILE, NOTIFICATION, SOUNDS, TIME
+from EnneadTab import DATA_FILE, NOTIFICATION, SOUND, TIME
 from EnneadTab.RHINO import RHINO_UI, RHINO_FORMS
 
 FORM_KEY = 'SCATTER_BLOCK_ON_SRF_modeless_form'
@@ -304,7 +304,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         z_vec = rs.VectorCreate([0,0,1], [0,0,0])
 
 
-        SOUNDS.play_sound("sound effect_mario fireball.wav")
+        SOUND.play_sound("sound effect_mario fireball.wav")
         for collection in self.total_collection:
             if collection is None: continue
             # print (collection)
@@ -341,7 +341,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         self.generate_blocks_layout(is_preview = False)
         self.clear_out()
         NOTIFICATION.messenger(main_text = "Blocks added")
-        SOUNDS.play_sound("sound effect_popup msg1.wav")
+        SOUND.play_sound("sound effect_popup msg1.wav")
         #self.Close()
 
     # event handler handling clicking on the 'cancel' button
@@ -361,7 +361,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         else:
             note = "Base surface not defined!"
             NOTIFICATION.messenger(main_text = note)
-            SOUNDS.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound effect_error.wav")
             
             self.srf_label.Text = note
 
@@ -378,7 +378,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
             self.guide_crv = select_obj
         else:
             self.guide_crv_label.Text = "  Guide curve not defined!"
-            SOUNDS.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound effect_error.wav")
 
         self.generate_blocks_layout(is_preview = True)
 
@@ -450,7 +450,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
             print (str(e))
             NOTIFICATION.messenger(main_text = "data not valid",
                                             print_note = True)
-            SOUNDS.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound effect_error.wav")
             self.delete_preview_blocks()
             return
 
@@ -458,7 +458,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         if self.total_count == 0:
             NOTIFICATION.messenger(main_text =  "Cannot have total count of 0 for scatter",
                                             print_note = True)
-            SOUNDS.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound effect_error.wav")
             
             self.delete_preview_blocks()
             return
@@ -467,7 +467,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         if not self.selected_srfs:
             NOTIFICATION.messenger(main_text = "Base srfs not valid",
                                             print_note = True)
-            SOUNDS.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound effect_error.wav")
             
             self.delete_preview_blocks()
             return
@@ -477,7 +477,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
             if not self.guide_crv or not rs.IsObject(self.guide_crv):
                 NOTIFICATION.messenger(main_text = "Guide curve not valid",
                                             print_note = True)
-                SOUNDS.play_sound("sound effect_error.wav")
+                SOUND.play_sound("sound effect_error.wav")
       
                 self.delete_preview_blocks()
                 return
@@ -499,7 +499,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         if not self.user_blocks:
             
             NOTIFICATION.messenger(main_text = "User block not valid")
-            SOUNDS.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound effect_error.wav")
             
             return
         rs.UnselectAllObjects()
@@ -578,9 +578,9 @@ class ScatterBlockDialog(Eto.Forms.Form):
             count += 1
 
         if is_preview:
-            SOUNDS.play_sound("sound effect_popup msg2.wav")
+            SOUND.play_sound("sound effect_popup msg2.wav")
         else:
-            SOUNDS.play_sound("sound effect_popup msg1.wav")
+            SOUND.play_sound("sound effect_popup msg1.wav")
         rs.DeleteObjects(self.borders)
 
 

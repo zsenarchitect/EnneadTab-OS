@@ -12,7 +12,7 @@ This should be alloed to run indepdently
 
 
 def new_button():
-    tab_folders = r"C:\Users\szhang\github\EnneadTab-for-Rhino\Toolbar"
+    tab_folders = r"C:\Users\szhang\github\EnneadTab-OS\Apps\_rhino"
 
 
     try:

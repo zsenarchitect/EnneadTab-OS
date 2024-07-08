@@ -6,7 +6,7 @@ __doc__ = "Make a block unique on spot. Each unique original block become new un
 import rhinoscriptsyntax as rs
 
 from EnneadTab.RHINO import RHINO_OBJ_DATA
-from EnneadTab import SOUNDS
+from EnneadTab import SOUND
 from EnneadTab import NOTIFICATION
 
 def make_block_unique(add_name_tag = True, original_blocks = None, treat_nesting = False):
@@ -92,4 +92,4 @@ def replace_original_blocks(new_block_name, original_block):
 def play_sound():
 
     file = "sound effect_popup msg1.wav"
-    SOUNDS.play_sound(file)
+    SOUND.play_sound(file)

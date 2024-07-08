@@ -56,5 +56,5 @@ def relocate_left():
     # Redraw the viewport to reflect changes
     rs.Redraw()
 
-    EnneadTab.SOUNDS.play_sound()
+    EnneadTab.SOUND.play_sound()
 

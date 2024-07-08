@@ -125,14 +125,28 @@ class Player:
         print("Music stopped.")
         pass
 
+
+def sys_alert():
+    #play window alert sound
+    import winsound
+    duration = 100  # milliseconds
+    freqs = [440,
+            500,
+            600,
+            900]# Hz
+    for i,f in enumerate(freqs):
+        if i == len(freqs)-1:
+            duration = 400
+        winsound.Beep(f, duration)
 #############
 if __name__ == "__main__":
     print(__file__ + "   -----OK!")
     # unit_test() 
     file = "sound_effect_spring"
-    play_sound(file)
+    # play_sound(file)
     # play_sound()
     # test_play_all_sounds()
+    sys_alert()
 
 
 

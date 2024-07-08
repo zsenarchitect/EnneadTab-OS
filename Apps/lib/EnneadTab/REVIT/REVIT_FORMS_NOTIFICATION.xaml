@@ -1,0 +1,20 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EnneadTab Title" Width="300" Height ="250" ShowInTaskbar="False" Topmost="True" SizeToContent="Height"
+        WindowStartupLocation="CenterScreen" ScrollViewer.VerticalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center"
+        Background="#FF464646" FontFamily="RomanD"  Foreground="#FFDAE8FD"  OpacityMask="#FFDAE8FD"  WindowStyle="None"   >
+    <StackPanel Margin="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+        <Label x:Name="hidden_obj" Visibility="Hidden"></Label>
+        <TextBlock x:Name = "title_text" Text = "title_text's text" Grid.Column="0" HorizontalAlignment="Left"     FontWeight="Bold" FontSize="18" TextWrapping="Wrap"/>
+        <TextBlock x:Name = "simple_text" Text = "simple_text's text" Grid.Column="0" HorizontalAlignment="Left"     FontWeight="Bold" TextWrapping="Wrap" Margin="0,10"/>
+        <Button x:Name ="primary_button" Content = "primary_button's text"  Margin="0,10" Click="primary_button_click" Visibility = "Visible" Cursor="Cross">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <TextBlock x:Name = "foot_text" Text = "timer's text" Grid.Column="0" HorizontalAlignment="Right"  Visibility="Visible" />
+        <TextBlock x:Name = "logo_text" Text = "Ennead Architects" Grid.Column="0" HorizontalAlignment="Left" FontSize="9" FontWeight="Bold" TextDecorations="Underline" Padding="0,30,0,0"  />
+    </StackPanel>
+</Window>

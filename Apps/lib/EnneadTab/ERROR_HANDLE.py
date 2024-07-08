@@ -7,6 +7,7 @@ import FOLDER
 import EMAIL
 import USER
 import NOTIFICATION
+import OUTPUT
 
 
 def try_catch_error(is_silent=False, is_pass = False):
@@ -40,8 +41,11 @@ def try_catch_error(is_silent=False, is_pass = False):
                             f.write(error)
                     except IOError as e:
                         print_note(e)
-            
+
                     os.startfile(error_file)
+                    output = OUTPUT.get_output()
+                    output.write(error)
+                    output.plot()
 
                 if ENVIRONMENT.IS_REVIT_ENVIRONMENT and not is_silent:
                     NOTIFICATION.messenger(

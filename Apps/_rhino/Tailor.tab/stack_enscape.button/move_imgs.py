@@ -106,6 +106,10 @@ class FileOrganizerUI:
             rb = tk.Radiobutton(self.study_selection_frame, text=opt, variable=self.study_var, value=opt)
             rb.pack(anchor='w')  # Use anchor='w' to align the radio buttons to the left
 
+from EnneadTab import LOG, ERROR_HANDLE
+
+
+
 def main():
     root = tk.Tk()
     app = FileOrganizerUI(root)

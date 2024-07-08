@@ -2,7 +2,11 @@
 __title__ = "IsolateLayerBySelection"
 __doc__ = "This button does IsolateLayerBySelection when left click"
 import rhinoscriptsyntax as rs
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def isolate_layer_by_selection():
     ids = rs.SelectedObjects(include_lights = True, include_grips = False)
     if not ids: return
@@ -22,3 +26,7 @@ def isolate_layer_by_selection():
 
 
     rs.UnselectObjects(obj_by_layers)
+
+
+if __name__ == "__main__":
+    isolate_layer_by_selection()

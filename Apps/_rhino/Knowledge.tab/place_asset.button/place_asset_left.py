@@ -8,8 +8,8 @@ import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 
 from EnneadTab import FOLDER
+from EnneadTab import LOG, ERROR_HANDLE
 import asset_UI as ui
-
 
 def insert_ref_block(block_name, is_ref_block_method):
     if rs.IsBlock(block_name):
@@ -70,6 +70,10 @@ def get_external_filepath(block_name):
         if block_name in  file_name:
             return "{}\{}".format(folder, file_name)
 
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def place_asset():
     folder = "L:\\4b_Applied Computing\\00_Asset Library"
     files = FOLDER.get_filenames_in_folder(folder)
@@ -91,3 +95,8 @@ def place_asset():
     block_name = block_name[0]
     print("########", is_ref_block_method)
     insert_ref_block(block_name, is_ref_block_method)
+
+
+
+if __name__ == "__main__":
+    place_asset()

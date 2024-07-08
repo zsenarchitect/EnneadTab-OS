@@ -7,10 +7,14 @@ import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 
 from EnneadTab import FOLDER, NOTIFICATION
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_FORMS, RHINO_LAYER
 
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def find_layer_in_files():
 
     files = rs.OpenFileNames(title = "Select possible Rhino files",
@@ -51,4 +55,7 @@ def process_file(file, search_layer):
 
 
     return log
- 
+
+
+if __name__ == "__main__":
+    find_layer_in_files()

@@ -5,6 +5,7 @@ __doc__ = "This button does FlattenMeshFace when left click"
 import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
+from EnneadTab import LOG, ERROR_HANDLE
 
 def highlight_planar_region(mesh):
     dot_name = "EA_mesh_flat_face_marker"
@@ -91,6 +92,9 @@ def process_vertex(index, vertex, mesh):
 
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def flatten_mesh_face():
     #   get the mesh
     """
@@ -130,3 +134,5 @@ def flatten_mesh_face():
         if step % 100:
             highlight_planar_region(mesh)
 
+if __name__ == "__main__":
+    flatten_mesh_face()

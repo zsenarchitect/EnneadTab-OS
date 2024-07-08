@@ -6,11 +6,15 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 from EnneadTab.RHINO import RHINO_FORMS, RHINO_LAYER
 from EnneadTab import NOTIFICATION
+from EnneadTab import LOG, ERROR_HANDLE
 
 
 
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def nest_layer():
 
     all_layers = rs.LayerNames()
@@ -101,3 +105,8 @@ def print_list(list):
     for x in list:
         temp += str(x) + "\n"
     rs.TextOut(message = temp)
+
+
+
+if __name__ == "__main__":
+    nest_layer()

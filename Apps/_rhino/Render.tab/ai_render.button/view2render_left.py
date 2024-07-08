@@ -14,6 +14,7 @@ import System # pyright: ignore
 import random
 
 from EnneadTab import USER, FOLDER, NOTIFICATION, DATA_FILE, EXE, TIME
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_UI
 
 MODEL_DICT = {0: "runwayml/stable-diffusion-v1-5"}
@@ -580,6 +581,9 @@ class ViewCaptureDialog(Eto.Forms.Form):
 
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def view2render():
     # See if the form is already visible
     if sc.sticky.has_key('EA_AI_RENDER_CAPTURE_FORM'):
@@ -618,3 +622,9 @@ def view2render():
         EXE.open_file_in_default_application(exe_path)
     except:
         NOTIFICATION.messenger(main_text = "For SH team, the only way to access Stable\nDiffusion model is to use remoted NY computer.")
+
+
+
+
+if __name__ == "__main__":
+    view2render()

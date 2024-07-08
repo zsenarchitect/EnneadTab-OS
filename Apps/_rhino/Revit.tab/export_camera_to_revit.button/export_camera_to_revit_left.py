@@ -6,7 +6,11 @@ import Rhino # pyright: ignore
 import scriptcontext as sc
 
 from EnneadTab import FOLDER, NOTIFICATION
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def export_camera_to_revit():
     filepath = FOLDER.get_EA_dump_folder_file("EA_CAMERA_TRANSFER.3dm")
 
@@ -24,3 +28,5 @@ def export_camera_to_revit():
 
     NOTIFICATION.messenger("Camera Data Ready to be imported at Revit side.")
 
+if __name__ == "__main__":
+    export_camera_to_revit()

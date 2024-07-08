@@ -8,7 +8,7 @@ import Rhino # pyright: ignore
 
 
 from EnneadTab import COLOR
-
+from EnneadTab import LOG, ERROR_HANDLE
 LAYER_COLOR_MAP_BY_MATERIAL = {
     "Glass": (162, 195, 208),
     "Metal": (195, 162, 208),
@@ -26,6 +26,10 @@ LAYER_COLOR_MAP_BY_NAME = {
 
 
 
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def initiate_layers():
     options = ["Facade Layer Scheme", "Program Blocks Layer Scheme"]
     new_layer_scheme_options = rs.ListBox(items = options,
@@ -74,3 +78,7 @@ def has_any_keyword(input, keywords):
 def get_color(tuple):
     red, green, blue = tuple
     return COLOR.from_rgb(red,green,blue)
+
+
+if __name__ == "__main__":
+    initiate_layers()

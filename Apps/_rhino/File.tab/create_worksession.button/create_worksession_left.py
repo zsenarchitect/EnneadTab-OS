@@ -5,7 +5,11 @@ __doc__ = "Pick mutiple rhino files to create a session file instead of one afte
 
 import rhinoscriptsyntax as rs
 from EnneadTab import TIME
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def create_worksession():
 
     files = rs.OpenFileNames(title = "Pick Rhino files to attach", filter = "Rhino File (*.3dm)|*.3dm||")
@@ -26,3 +30,8 @@ def create_worksession():
     for file in files:
         file_string_link += " Attach \"{}\"".format(file)
     rs.Command("-WorkSession  {} Saveas \"{}\" Enter".format(file_string_link, session_file_path))
+
+
+
+if __name__ == "__main__":
+    create_worksession()

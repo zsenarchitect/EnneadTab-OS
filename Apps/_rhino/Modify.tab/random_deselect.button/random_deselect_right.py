@@ -8,9 +8,13 @@ import random
 
 
 from EnneadTab import NOTIFICATION
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_OBJ_DATA
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def random_deselect_to_group():
     ids = rs.SelectedObjects(False, False)
     if not ids: return
@@ -41,3 +45,9 @@ def random_deselect_to_group():
 
 
     rs.UnselectObjects(ids)
+
+
+
+
+if __name__ == "__main__":
+    random_deselect_to_group()  

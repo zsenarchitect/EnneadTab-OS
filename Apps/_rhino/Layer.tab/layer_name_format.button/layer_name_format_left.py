@@ -6,6 +6,7 @@ __doc__ = "Format the spelling of layer name on selected layers."
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_LAYER
 
 IGNORE_PATTERN = [r"\[GFA\]"]
@@ -47,6 +48,9 @@ for name in PROTECTED_NAMES:
 #     print "{} -> {}".format(key, value)
     
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def layer_name_format():
     selected_layers = RHINO_LAYER.get_layers(message = "Select layers you want to modify.")
 
@@ -102,3 +106,7 @@ def layer_name_format():
 
 def should_ignore(layer):
     return False
+
+
+if __name__ == "__main__":
+    layer_name_format()

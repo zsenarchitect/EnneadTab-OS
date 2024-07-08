@@ -7,6 +7,7 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
 
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab import SOUND, FOLDER, DATA_FILE
 
 
@@ -63,6 +64,10 @@ def process_brep(brep):
     joined_crvs = Rhino.Geometry.Curve.JoinCurves(edges, tolerance)
     print(joined_crvs)
     """
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def floor_drafter():
     breps = rs.GetObjects("Select object to export")
     if not breps:
@@ -91,3 +96,8 @@ def floor_drafter():
 
     SOUND.play_sound("sound effect_mario message.wav")
 
+
+
+
+if __name__ == "__main__":
+    floor_drafter()

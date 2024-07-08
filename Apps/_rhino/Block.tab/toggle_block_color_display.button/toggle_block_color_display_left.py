@@ -10,12 +10,13 @@ import random
 
 from EnneadTab.RHINO import RHINO_CONDUIT
 from EnneadTab import DATA_FILE
-from EnneadTab import COLOR
+from EnneadTab import COLOR, LOG, ERROR_HANDLE
 
 
 
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def toggle_block_color_display():
     global COLOR_DICT
     COLOR_DICT = DATA_FILE.get_sticky_longterm("EA_COLOR_BLOCK_DICT", dict())
@@ -126,3 +127,7 @@ def change_block_obj_display(is_apply_random_color):
 
     block_names = rs.BlockNames(sort = True)
     map(update_block_display, block_names)
+
+
+if __name__ == "__main__":
+    toggle_block_color_display()

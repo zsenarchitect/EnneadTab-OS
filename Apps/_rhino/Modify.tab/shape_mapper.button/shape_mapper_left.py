@@ -15,6 +15,7 @@ random_color_module = imp.load_source("random_layer_color", r'L:\\4b_Applied Com
 import Eto # pyright: ignore
 
 from EnneadTab.RHINO import RHINO_UI, RHINO_OBJ_DATA
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab import NOTIFICATION, DATA_FILE, ERROR_HANDLE
 FORM_KEY = 'shape_mapper_modeless_form'
 
@@ -679,6 +680,9 @@ class ShapeMapperDialog(Eto.Forms.Form):
 
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def shape_mapper():
     rs.EnableRedraw(False)
 
@@ -690,3 +694,5 @@ def shape_mapper():
     sc.sticky[FORM_KEY] = dlg
     
 
+if __name__ == "__main__":
+    shape_mapper()

@@ -6,6 +6,7 @@ import os
 import rhinoscriptsyntax as rs
 
 from EnneadTab import NOTIFICATION, SOUND
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_CLEANUP
 
 import sys
@@ -15,6 +16,9 @@ import section_box_cleanup_left as SBC
 
 import section_box_utility
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def section_box(group_name_key_word=section_box_utility.GROUP_NAME_KEYWORD, clean_up_only=False, predefined_polysurf=None):
 
 

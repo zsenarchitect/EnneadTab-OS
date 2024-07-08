@@ -3,7 +3,7 @@ __title__ = "GetLatest"
 __doc__ = "This button does GetLatest when left click"
 import os
 import EnneadTab
-reload(EnneadTab)
+reload(EnneadTab) # pyright: ignore
 from EnneadTab import VERSION_CONTROL, NOTIFICATION, LOG,ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_RUI, RHINO_ALIAS
 
@@ -41,3 +41,5 @@ def add_search_path():
             return
 
 
+if __name__ == "__main__":
+    get_latest()

@@ -8,6 +8,7 @@ import scriptcontext as sc
 import rhinoscriptsyntax as rs
 
 from EnneadTab import SOUND, DATA_FILE, NOTIFICATION, FOLDER
+from EnneadTab import LOG, ERROR_HANDLE
 
 def process_brep(brep):
 
@@ -41,6 +42,9 @@ def process_brep(brep):
     
     return out
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def brep_to_mass():
     breps = rs.GetObjects("Select object to export")
     if not breps:
@@ -68,3 +72,9 @@ def brep_to_mass():
     DATA_FILE.save_dict_to_json(out, file)
 
     SOUND.play_sound("sound effect_mario message.wav")
+
+
+
+
+if __name__ == "__main__":
+    brep_to_mass()

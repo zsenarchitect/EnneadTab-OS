@@ -8,7 +8,7 @@ import random
 import Eto # pyright: ignore
 
 
-from EnneadTab import DATA_FILE, NOTIFICATION, SOUND, TIME
+from EnneadTab import DATA_FILE, NOTIFICATION, SOUND, TIME, LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_UI, RHINO_FORMS
 
 FORM_KEY = 'SCATTER_BLOCK_ON_SRF_modeless_form'
@@ -728,8 +728,10 @@ def random_blocks_on_srfs():
     dlg.Show()
     sc.sticky[FORM_KEY] = dlg
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def make_unique_block_name(block_name):
+    
     while True:
         if block_name not in rs.BlockNames():
             break
@@ -737,3 +739,7 @@ def make_unique_block_name(block_name):
         block_name += "_new"
 
     return block_name
+
+
+if __name__ == "__main__":
+    random_blocks_on_srfs()

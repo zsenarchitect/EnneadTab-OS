@@ -19,7 +19,9 @@ graft = itertools.combinations
 
 
 from EnneadTab import NOTIFICATION, SPEAK, DATA_FILE, SOUND
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_LAYER, RHINO_UI
+
 
 # make modal dialog
 class Rhino2RevitExporterDialog(Eto.Forms.Dialog[bool]):
@@ -517,6 +519,10 @@ def export(output_folder, datas):
 
 
 
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def export_for_rhino2revit():
 
     dlg = Rhino2RevitExporterDialog()
@@ -531,3 +537,6 @@ def export_for_rhino2revit():
     else:
         print ("Dialog did not run")
         return
+
+if __name__ == "__main__":
+    export_for_rhino2revit()

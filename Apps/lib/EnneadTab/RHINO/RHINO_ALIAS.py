@@ -1,3 +1,4 @@
+import json
 
 import ENVIRONMENT
 if ENVIRONMENT.is_Rhino_environment():
@@ -5,20 +6,21 @@ if ENVIRONMENT.is_Rhino_environment():
     import rhinoscriptsyntax as rs
 
 import os
-# import sys
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import PARSER
-
+KNOWLEDGE_FILE = "{}\\knowledge_database.json".format(ENVIRONMENT.RHINO_FOLDER)
 def register_alias_set():
 
     exisitng_alias = rs.AliasNames()
+    with open(KNOWLEDGE_FILE, "r") as f:
+        data = json.load(f)
 
     for root, dirs, files in os.walk(ENVIRONMENT.RHINO_FOLDER):
         for file in files:
             if file.endswith(".py"):
                 full_path = os.path.join(root, file)
 
-                data = PARSER.extract_global_variables(full_path)
+                if full_path.split("_rhino\\")[1] not in data.keys():
+                    continue
+
 
                 alias_list = data.get('__title__')
                 if not isinstance(alias_list, list):

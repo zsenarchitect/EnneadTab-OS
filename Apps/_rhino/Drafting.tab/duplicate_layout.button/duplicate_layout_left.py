@@ -7,7 +7,7 @@ import scriptcontext as sc
 import Rhino # pyright: ignore
 
 from EnneadTab.RHINO import RHINO_FORMS
-from EnneadTab import DATA_FILE
+from EnneadTab import DATA_FILE, LOG, ERROR_HANDLE
 
 
 
@@ -19,7 +19,8 @@ def get_page_by_name(name):
     return None
 
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def duplicate_layout():
 
     page_names = [x.PageName for x in sc.doc.Views.GetPageViews()]
@@ -59,3 +60,8 @@ def duplicate_layout():
             detail_view.CommitViewportChanges()
             rs.DetailLock(detail_view, lock = original_lock_statge)
             #print rs.DetailLock(detail_view)
+
+
+
+if __name__ == "__main__":
+    duplicate_layout()

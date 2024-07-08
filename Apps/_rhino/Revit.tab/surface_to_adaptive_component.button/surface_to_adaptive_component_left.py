@@ -7,6 +7,7 @@ import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab import DATA_FILE, FOLDER, SOUND
 from EnneadTab.RHINO import RHINO_UI, RHINO_OBJ_DATA
 
@@ -344,12 +345,17 @@ class Srf2AdpDialog(Eto.Forms.Form):
 
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def surface_to_adaptive_component():
     rs.EnableRedraw(False)
     if sc.sticky.has_key(FORM_KEY):
         return
     dlg = Srf2AdpDialog()
     dlg.Owner = Rhino.UI.RhinoEtoApp.MainWindow
-    dlg.Show()
     sc.sticky[FORM_KEY] = dlg
+    dlg.Show()
 
+if __name__ == "__main__":
+    surface_to_adaptive_component()

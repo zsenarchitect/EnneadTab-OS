@@ -10,6 +10,7 @@ import Eto # pyright: ignore
 import os
 
 from EnneadTab import NOTIFICATION, EXE, DATA_FILE, FOLDER, TIME
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_UI
 
 
@@ -416,6 +417,9 @@ class RenderUpscalerDialog(Eto.Forms.Form):
         NOTIFICATION.toast(main_text = "Upscale Job Enqueued!") 
         call_exe()
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def render_upscale():
     # See if the form is already visible
     if sc.sticky.has_key('EA_AI_RENDER_UPSCALER_FORM'):
@@ -438,4 +442,5 @@ def call_exe():
 
  
 
- 
+if __name__ == "__main__":
+    render_upscale()

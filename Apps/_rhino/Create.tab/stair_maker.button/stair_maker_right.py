@@ -9,7 +9,7 @@ import System # pyright: ignore
 import traceback
 import math
 
-from EnneadTab import DATA_FILE, NOTIFICATION
+from EnneadTab import DATA_FILE, NOTIFICATION, LOG, ERROR_HANDLE
 
 
 def make_stair_mass_brep(e, center_pt, start_pt, end_pt, max_riser, stair_width, thread_thickness, current_pt = None):
@@ -88,7 +88,8 @@ def make_stair_mass_brep(e, center_pt, start_pt, end_pt, max_riser, stair_width,
     return (steps, note)
 
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def stair_maker():
     max_riser, stair_width, thread_thickness = DATA_FILE.get_sticky_longterm("STAIR_SPIRAL_MAX_RISER", 170),DATA_FILE.get_sticky_longterm("STAIR_SPIRAL_RISER", 2000), DATA_FILE.get_sticky_longterm("STAIR_SPIRAL_THREAD_THICKNESS", 50)
     res = rs.PropertyListBox(items = ["Max Riser Height(file unit)", "Run Width(file unit)", "Thread Thickness(file unit)"],
@@ -241,3 +242,5 @@ class GetDotPoint (Rhino.Input.Custom.GetPoint):
 
 
 
+if __name__ == "__main__":
+    stair_maker()

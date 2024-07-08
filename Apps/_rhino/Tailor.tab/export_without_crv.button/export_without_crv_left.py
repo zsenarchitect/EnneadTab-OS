@@ -4,8 +4,12 @@ __doc__ = "Export the rhino file as dwg but solidate all blocks and remove all c
 
 import rhinoscriptsyntax as rs
 from EnneadTab import NOTIFICATION
+from EnneadTab import LOG, ERROR_HANDLE
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def export_without_crv():
     block_collection = []
     all_block_names = rs.BlockNames( sort = False )
@@ -59,3 +63,8 @@ def export_without_crv():
     rs.UnselectAllObjects()
 
     NOTIFICATION.messenger(main_text = "special dwg exported!")
+
+
+
+if __name__ == "__main__":
+    export_without_crv()

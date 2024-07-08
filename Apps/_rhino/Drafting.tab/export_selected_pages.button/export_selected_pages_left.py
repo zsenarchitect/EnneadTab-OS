@@ -9,6 +9,7 @@ import Rhino # pyright: ignore
 import os
 
 from EnneadTab.RHINO import RHINO_FORMS, RHINO_OUTPUT
+from EnneadTab import LOG, ERROR_HANDLE
 
 
 def get_page_by_name(name):
@@ -18,7 +19,8 @@ def get_page_by_name(name):
 
     return None
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def export_selected_pages_left():
 
     page_names = [x.PageName for x in doc.Views.GetPageViews()]
@@ -57,3 +59,7 @@ def export_selected_pages_left():
 
         if should_open:
             os.startfile(filepath)
+
+
+if __name__ == "__main__":
+    export_selected_pages_left()

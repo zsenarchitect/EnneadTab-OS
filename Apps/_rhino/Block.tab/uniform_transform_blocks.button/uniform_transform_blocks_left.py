@@ -4,7 +4,11 @@ __doc__ = "Apply same rotational transformation for the blocks. Helpful when you
 
 
 import rhinoscriptsyntax as rs
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def uniform_transform_blocks():
     ids = rs.GetObjects("Select block instances to rotate", filter = 4096, preselect=True)
 
@@ -38,3 +42,5 @@ def uniform_transform_blocks():
         rs.RotateObject(id, pt,ang,vec)
 
 
+if __name__ == "__main__":
+    uniform_transform_blocks()

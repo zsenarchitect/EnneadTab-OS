@@ -3,7 +3,10 @@ __title__ = "SelectSimilarBlocks"
 __doc__ = "Select blocks of similar definitions from the selected blocks"
 import rhinoscriptsyntax as rs
 
-from EnneadTab import NOTIFICATION
+from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def similar_blocks():
 
 
@@ -21,3 +24,7 @@ def similar_blocks():
 
     rs.UnselectAllObjects()
     rs.SelectObjects( block_collection)
+
+
+if __name__ == "__main__":
+    similar_blocks()

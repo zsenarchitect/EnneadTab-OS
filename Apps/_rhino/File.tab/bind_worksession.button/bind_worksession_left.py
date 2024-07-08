@@ -11,8 +11,12 @@ import sys
 import time
 
 from EnneadTab import NOTIFICATION, SOUND, EMAIL
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_CLEANUP
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def bind_worksession():
     begin_time = time.time()
     rs.EnableRedraw(False)
@@ -158,3 +162,5 @@ def decorate_parent_layer(name):
     return "Binded Session [{}]".format(name)
 
 
+if __name__ == "__main__":
+    bind_worksession()

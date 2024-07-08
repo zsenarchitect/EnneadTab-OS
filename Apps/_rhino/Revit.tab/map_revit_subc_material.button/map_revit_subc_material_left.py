@@ -5,6 +5,7 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
 from EnneadTab import NOTIFICATION, DATA_FILE, ENVIRONMENT
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_MATERIAL
 
 def get_layer_with_keyword(keyword):
@@ -15,6 +16,9 @@ def get_layer_with_keyword(keyword):
     return None
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def map_revit_subc_material():
     rs.EnableRedraw(False)
     data = DATA_FILE.read_json_as_dict_in_dump_folder("SUBC_MATERIAL_TABLE.json", use_encode= True)
@@ -61,4 +65,5 @@ def map_revit_subc_material():
             
         
         
-        
+if __name__ == "__main__":
+    map_revit_subc_material()

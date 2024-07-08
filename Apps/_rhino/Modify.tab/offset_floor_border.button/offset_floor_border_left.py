@@ -10,6 +10,7 @@ import traceback
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 from EnneadTab.RHINO import RHINO_OBJ_DATA, RHINO_FORMS, RHINO_SELECTION
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab import NOTIFICATION, DATA_FILE, COLOR
 
 
@@ -246,6 +247,9 @@ def process_surf_expanding(srf, border, new_border, offset):
     return temp_ploy_surf
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def offset_floor_border():
         # get objs:
     objs = rs.GetObjects("Get slabs for treatment, accepting srf or polysurf.", preselect = True, filter = 8 + 16)#srf and poly srf
@@ -302,3 +306,5 @@ def offset_floor_border():
 
 
 
+if __name__ == "__main__":
+    offset_floor_border()

@@ -9,12 +9,16 @@ import rhinoscriptsyntax as rs
 
 from datetime import date, datetime
 from EnneadTab import FOLDER
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_FORMS
 
 def get_date(timestamp):
     return str(datetime.fromtimestamp(timestamp)).split(" ")[0]
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def archive_file():
 
     file_paths = rs.OpenFileNames("pick file to archive",  filter = "Rhino Files (*.3dm)|*.3dm||")
@@ -57,3 +61,7 @@ def archive_file():
         import Rhino # pyright: ignore
         Rhino.RhinoDoc.OpenFile(file)
         """
+
+
+if __name__ == "__main__":
+    archive_file()

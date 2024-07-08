@@ -6,6 +6,7 @@ __doc__ = "This button does InspectEnscapeSetting when left click"
 import rhinoscriptsyntax as rs
 
 import json
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab import FOLDER
 
 def inspect_setting_file(path):
@@ -36,6 +37,9 @@ def inspect_setting_file(path):
 
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def inspect_enscape_setting():
   
     path_1 = r"I:\2135\0_3D\00_3D Resources\Enscape\AXO DIAGRAM.json"
@@ -75,3 +79,8 @@ def inspect_enscape_setting():
             OUT += "\n\t\t[ {} ]: {}".format(file_names[i], content[1])
     
     rs.TextOut(OUT)
+
+
+
+if __name__ == "__main__":
+    inspect_enscape_setting()   

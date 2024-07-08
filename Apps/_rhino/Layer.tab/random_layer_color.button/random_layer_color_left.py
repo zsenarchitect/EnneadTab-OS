@@ -8,6 +8,7 @@ import random
 from EnneadTab import SOUND
 from EnneadTab import DATA_FILE
 from EnneadTab import COLOR
+from EnneadTab import LOG, ERROR_HANDLE
 
 KEY_COLOR_SETTING = "EA_RANDOM_LAYER_COLOR_SETTING"
 COLOR_SETTING_DEFAULT = [("Change Pure Black", True), 
@@ -15,6 +16,9 @@ COLOR_SETTING_DEFAULT = [("Change Pure Black", True),
                         ("Change ANY other color with same RGB value", False)]
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def random_layer_color(default_opt = False):
     options = ["Desaturated Colors", "Full RGB"]
     use_desaturated_color = True
@@ -113,3 +117,5 @@ def random_color(layer_name, use_desaturated_color):
     return denormalized_rgb_color
 
 
+if __name__ == "__main__":
+    random_layer_color(True)

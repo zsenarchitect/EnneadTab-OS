@@ -5,6 +5,7 @@ __doc__ = "This button does ChangeObjectDisplaySource when left click"
 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
+from EnneadTab import LOG, ERROR_HANDLE
 
 class ChangeObjectDisplaySource:
     def change_objs_display(self, objs):
@@ -42,6 +43,14 @@ class ChangeObjectDisplaySource:
         map(self.update_block_display, block_names)
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def change_object_display_source():
     ChangeObjectDisplaySource().change_source()
 
+
+
+
+if __name__ == "__main__":
+    change_object_display_source()

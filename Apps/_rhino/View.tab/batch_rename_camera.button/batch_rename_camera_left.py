@@ -8,6 +8,7 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
 from EnneadTab import SOUND
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_UI
 
 class rename_dialog(Eto.Forms.Dialog[bool]):
@@ -158,7 +159,15 @@ class rename_dialog(Eto.Forms.Dialog[bool]):
 
 
 
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def batch_rename_camera():
     dlg = rename_dialog()
     dlg.ShowModal(Rhino.UI.RhinoEtoApp.MainWindow)
     SOUND.play_sound()
+
+
+if __name__ == "__main__":
+    batch_rename_camera()

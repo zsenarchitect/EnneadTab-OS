@@ -7,8 +7,10 @@ import rhinoscriptsyntax as rs
 
 from EnneadTab.RHINO import RHINO_OBJ_DATA
 from EnneadTab import SOUND
-from EnneadTab import NOTIFICATION
+from EnneadTab import NOTIFICATION, ERROR_HANDLE, LOG
 
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def make_block_unique(add_name_tag = True, original_blocks = None, treat_nesting = False):
     
 
@@ -93,3 +95,7 @@ def play_sound():
 
     file = "sound effect_popup msg1.wav"
     SOUND.play_sound(file)
+
+
+if __name__ == "__main__":
+    make_block_unique()

@@ -6,9 +6,13 @@ __doc__ = "Make the void cut polysurface based on layer name."
 import rhinoscriptsyntax as rs
 import re
 
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_LAYER
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def make_void_seam():
     
     # get layer, msg note = pick the layer that contains seam location guide. layer name format: seam_large[20]
@@ -83,3 +87,9 @@ def process_layer(layer_name):
     rs.LayerColor(void_layer_name, color = rs.LayerColor(layer_name))
 
     pass
+
+
+
+
+if __name__ == "__main__":
+    make_void_seam()

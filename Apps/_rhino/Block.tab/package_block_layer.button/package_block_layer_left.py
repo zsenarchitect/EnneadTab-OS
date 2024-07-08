@@ -4,7 +4,7 @@ __doc__ = "Package blocks content layer under a single parent layer. This is ver
 
 import rhinoscriptsyntax as rs
 
-from EnneadTab import NOTIFICATION
+from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE
 
 
 def process_block(block_name, flatten_layer = False):
@@ -50,9 +50,8 @@ def process_block(block_name, flatten_layer = False):
     rs.DeleteLayer(parent_layer)
 
 
-
-
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def package_block_layer(blocks = None, flatten_layer = None):
     if blocks == None:
         blocks = rs.GetObjects(message = "pick blocks", custom_filter = rs.filter.instance)
@@ -68,3 +67,7 @@ def package_block_layer(blocks = None, flatten_layer = None):
     map(lambda x: process_block(x, flatten_layer), block_names)
 
     NOTIFICATION.messenger("The block(s) has been fully detached.")
+
+
+if __name__ == "__main__":
+    package_block_layer()

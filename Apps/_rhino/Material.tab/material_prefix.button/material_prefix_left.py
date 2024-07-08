@@ -5,7 +5,11 @@ __doc__ = "Add prefix to material so when sessioning rhino the enscape can treat
 
 import scriptcontext as sc
 
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def material_prefix():
     mats = sc.doc.Materials
     mat_names = []
@@ -25,3 +29,7 @@ def material_prefix():
                 mat_names.append(mat.Name)
         except:
             continue
+
+
+if __name__ == "__main__":
+    material_prefix()

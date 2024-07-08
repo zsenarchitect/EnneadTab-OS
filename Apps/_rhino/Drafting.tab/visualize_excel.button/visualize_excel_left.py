@@ -13,7 +13,11 @@ import textwrap
 from EnneadTab import NOTIFICATION
 from EnneadTab import DATA_FILE
 from EnneadTab import EXCEL
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def visualize_excel():
     ShapeWriter().write_shape()
 
@@ -301,3 +305,5 @@ class ShapeWriter:
             rs.AddText(title, big_title_location, height = 3)
         rs.AddText(str(int(area)), rs.PointAdd(big_title_location, [0, -self.row_gap*0.5, 0]), height = 3)
 
+if __name__ == "__main__":
+    visualize_excel()

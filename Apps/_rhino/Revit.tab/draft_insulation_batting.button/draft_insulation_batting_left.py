@@ -6,7 +6,8 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 import os
 
-from EnneadTab import DATA_FILE, ENVIRONMENT_CONSTANTS
+from EnneadTab import LOG, ERROR_HANDLE
+from EnneadTab import DATA_FILE, ENVIRONMENT
 
 
 
@@ -74,7 +75,15 @@ class InsulationDrafter:
 
  
 
-        
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def draft_insulation_batting():
     InsulationDrafter().main()
 
+
+
+
+if __name__ == "__main__":
+    draft_insulation_batting()

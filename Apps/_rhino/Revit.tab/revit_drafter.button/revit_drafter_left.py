@@ -5,11 +5,12 @@ __doc__ = "Receive the drafting background from Revit and setup layer trees for 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_CLEANUP, RHINO_LAYER
-from EnneadTab import NOTIFICATION, FOLDER, DATA_FILE, ENVIRONMENT_CONSTANTS
+from EnneadTab import NOTIFICATION, FOLDER, DATA_FILE, ENVIRONMENT
 
 import imp
-ref_module = imp.load_source("random_layer_color_left", '{}\\Layer.tab\\random_layer_color.button\\random_layer_color_left.py'.format(ENVIRONMENT_CONSTANTS.RHINO_SCRIPT_FOLDER))
+ref_module = imp.load_source("random_layer_color_left", '{}\\Layer.tab\\random_layer_color.button\\random_layer_color_left.py'.format(ENVIRONMENT.RHINO_SCRIPT_FOLDER))
 
 def process_dwg(file, units):
     RHINO_CLEANUP.purge_block()
@@ -87,6 +88,9 @@ def add_additional_layers(setting):
 
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def revit_drafter():
     RHINO_CLEANUP.close_note_panel()
 
@@ -142,3 +146,5 @@ def revit_drafter():
     add_additional_layers(setting)
 
 
+if __name__ == "__main__":
+    revit_drafter()

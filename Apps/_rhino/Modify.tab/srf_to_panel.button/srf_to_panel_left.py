@@ -8,7 +8,11 @@ import time
 
 
 from EnneadTab import NOTIFICATION, DATA_FILE
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def srf_to_panel():
     srfs = rs.GetObjects("get base srfs", preselect = True, filter=rs.filter.surface)
     if not srfs:
@@ -126,3 +130,5 @@ class PanelMaker:
             NOTIFICATION.messenger(main_text = "Cannot shrink surface")
         
 
+if __name__ == "__main__":
+    srf_to_panel()

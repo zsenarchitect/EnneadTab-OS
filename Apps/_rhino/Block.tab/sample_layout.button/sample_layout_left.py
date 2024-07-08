@@ -5,11 +5,11 @@ import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-import Rhino # pyright: ignore.UI
+import Rhino # pyright: ignore
 import Eto # pyright: ignore
 
 
-from EnneadTab import DATA_FILE, NOTIFICATION, SOUND
+from EnneadTab import DATA_FILE, NOTIFICATION, SOUND, LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_UI, RHINO_OBJ_DATA
 
 
@@ -650,7 +650,8 @@ def make_unique_block_name(block_name):
     return block_name
 
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def sample_layout():
     rs.EnableRedraw(False)
     if sc.sticky.has_key(FORM_KEY):
@@ -660,4 +661,5 @@ def sample_layout():
     dlg.Show()
     sc.sticky[FORM_KEY] = dlg
     
-
+if __name__ == "__main__":
+    sample_layout()

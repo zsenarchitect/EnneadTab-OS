@@ -4,14 +4,15 @@ __doc__ = "Edit distorted block by editing a copy."
 
 
 import rhinoscriptsyntax as rs
-from EnneadTab import NOTIFICATION
+from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE
 
 
 
 import edit_block_helper
 
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def edit_distorted_block_left():
 
 
@@ -45,3 +46,5 @@ def edit_distorted_block_left():
 
     NOTIFICATION.messenger("After commit, right click to restore previous camera")
 
+if __name__ == "__main__":
+    edit_distorted_block_left()

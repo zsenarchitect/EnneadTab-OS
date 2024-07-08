@@ -5,6 +5,7 @@ __doc__ = "Pick a source block, then apply the texture mapping of this block to 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
+from EnneadTab import LOG, ERROR_HANDLE
 
 class Solution:
     def __init__(self):
@@ -44,7 +45,10 @@ class Solution:
         unique_target_blocks = list(set([rs.BlockInstanceName(b) for b in target_blocks]))
         map(self.process_block, unique_target_blocks)
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def match_texture_mapping_in_block():
     Solution().match_block_map()
 
+if __name__ == "__main__":
+    match_texture_mapping_in_block()

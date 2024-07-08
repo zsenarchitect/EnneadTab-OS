@@ -6,7 +6,11 @@ __doc__ = "Import seleced camera from another file."
 import scriptcontext as sc
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def import_selected_camera():
     filename = rs.OpenFileName(title = "pick a Rhino file to import view from",
                                 filter = "Rhino 3D Models (*.3dm)|*.3dm||")
@@ -45,3 +49,9 @@ def import_selected_camera():
     for view_info in f.NamedViews:
         if view_info.Name in picked_view_name:
             sc.doc.NamedViews.Add(view_info)
+
+
+
+
+if __name__ == "__main__":
+    import_selected_camera()

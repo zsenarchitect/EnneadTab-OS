@@ -4,7 +4,11 @@ __doc__ = "Reset all conduits"
 
 import scriptcontext as sc
 
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def reset_all_conduit():
     print ("current stickys")
     print (sc.sticky.items())
@@ -18,3 +22,8 @@ def reset_all_conduit():
             if hasattr(conduit, "Enabled"):
                 conduit.Enabled = False
             sc.sticky.pop(key)
+
+
+
+if __name__ == "__main__":
+    reset_all_conduit()

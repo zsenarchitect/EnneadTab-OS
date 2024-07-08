@@ -6,7 +6,12 @@ import random
 
 from EnneadTab import DATA_FILE
 from EnneadTab import SOUND
+from EnneadTab import LOG
+from EnneadTab import ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def randomize_block_transformation():
  
 
@@ -95,4 +100,5 @@ def randomize_block_transformation():
     SOUND.play_sound(file = "sound effect_popup msg3.wav")
     SOUND.play_sound(file = "sound effect_dice.wav")
 
-
+if __name__ == "__main__":
+    randomize_block_transformation()

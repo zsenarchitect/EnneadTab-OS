@@ -8,7 +8,11 @@ import Rhino # pyright: ignore
 import random
 import clr # pyright: ignore
 from EnneadTab import DATA_FILE, NOTIFICATION
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def random_texture_walk():
     objs = rs.GetObjects("Pick objs to random texture walk", preselect=True)
     if not objs:

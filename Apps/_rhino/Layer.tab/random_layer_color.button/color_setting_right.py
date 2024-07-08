@@ -12,8 +12,11 @@ import random_layer_color_left as RLC
 
 
 from EnneadTab import DATA_FILE
+from EnneadTab import LOG, ERROR_HANDLE
 
 
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def color_setting():
 
 
@@ -34,3 +37,7 @@ def color_setting():
         
     DATA_FILE.set_sticky_longterm(RLC.KEY_COLOR_SETTING, setting)
 
+
+
+if __name__ == "__main__":
+    color_setting()

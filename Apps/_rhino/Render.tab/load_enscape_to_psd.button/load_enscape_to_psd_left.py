@@ -5,7 +5,11 @@ __doc__ = "This button does LoadEnscapeToPsd when left click"
 import rhinoscriptsyntax as rs
 
 from EnneadTab import FOLDER, EXE, DATA_FILE
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def load_enscape_to_psd():
    
     file_collection = list(rs.OpenFileNames())
@@ -42,3 +46,5 @@ def load_enscape_to_psd():
     """
 
 
+if __name__ == "__main__":
+    load_enscape_to_psd()

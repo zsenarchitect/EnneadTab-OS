@@ -21,11 +21,6 @@ def batch_rename_blocks():
     SOUND.play_sound()
 
 
-
-
-
-
-
 class rename_dialog(Eto.Forms.Dialog[bool]):
 
     # Initializer
@@ -211,4 +206,5 @@ class rename_dialog(Eto.Forms.Dialog[bool]):
         return self.update_button
 
 
-
+if __name__ == "__main__":
+    batch_rename_blocks()

@@ -3,7 +3,10 @@ __title__ = "IsolateSimilarBlocks"
 __doc__ = "Isolate blocks of similar definitions from the selected blocks"
 import rhinoscriptsyntax as rs
 
-from EnneadTab import NOTIFICATION
+from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def similar_blocks():
 
 
@@ -25,3 +28,6 @@ def similar_blocks():
     invert_objs = rs.InvertSelectedObjects(include_lights = True, include_grips = True, include_references = True)
     rs.HideObjects(invert_objs)
 
+
+if __name__ == "__main__":
+    similar_blocks()

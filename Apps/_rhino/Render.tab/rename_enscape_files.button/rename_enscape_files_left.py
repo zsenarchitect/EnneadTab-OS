@@ -4,7 +4,11 @@ __doc__ = "Rename the output of Enscape files to remove the long bit."
 
 import os
 import rhinoscriptsyntax as rs
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def rename_enscape_files():
     file_names = rs.OpenFileNames()
     for file_name in file_names:
@@ -23,3 +27,7 @@ def rename_enscape_files():
         except Exception as e:
             print( e)
             rs.MessageBox("This file rename <{}> is skipped, check for if same file name already exist.".format(new_tail))
+
+
+if __name__ == "__main__":
+    rename_enscape_files()

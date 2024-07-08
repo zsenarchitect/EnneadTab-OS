@@ -18,7 +18,8 @@ from EnneadTab import ERROR_HANDLE, LOG
 @ERROR_HANDLE.try_catch_error()
 def {2}():
     {3}
-
+if __name__ == "__main__":
+    {2}()
 """
 SAMPLE_PRINT_STATMENT ='print ("Placeholder func <{}> that does this:{}".format(__title__, __doc__))'
 

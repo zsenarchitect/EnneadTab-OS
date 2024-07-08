@@ -4,12 +4,13 @@ __doc__ = "This button does ImportRevitCollection when left click"
 
 import scriptcontext as sc
 import rhinoscriptsyntax as rs
-from EnneadTab import NOTIFICATION, FOLDER, DATA_FILE, ENVIRONMENT_CONSTANTS
+from EnneadTab import NOTIFICATION, FOLDER, DATA_FILE, ENVIRONMENT
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_LAYER, RHINO_CLEANUP, RHINO_FORMS, RHINO_MATERIAL
 
 import imp
 import os
-random_layer_color_script_folder = "{}\\Layer.tab\\random_layer_color.button".format(ENVIRONMENT_CONSTANTS.RHINO_SCRIPT_FOLDER)
+random_layer_color_script_folder = "{}\\Layer.tab\\random_layer_color.button".format(ENVIRONMENT.RHINO_SCRIPT_FOLDER)
 REF_MODULE = imp.load_source("random_layer_color_left", '{}\\random_layer_color_left.py'.format(random_layer_color_script_folder))
 
 
@@ -135,6 +136,9 @@ def change_objs_layer_in_block(block_name, parent_layer_prefix):
     change_objs_layer(objs, parent_layer_prefix)
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def import_revit_collection():
     rs.EnableRedraw(False)
     unit_opts = ["Millimeters", "Feet", "Inches"]
@@ -168,3 +172,7 @@ def import_revit_collection():
     
     
     NOTIFICATION.duck_pop("All imported!")
+
+
+if __name__ == "__main__":
+    import_revit_collection()

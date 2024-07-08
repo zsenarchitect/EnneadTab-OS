@@ -5,10 +5,14 @@ __doc__ = "Similar to Revit SectionBox, this will crop the view to just around t
 import rhinoscriptsyntax as rs
 
 from EnneadTab import NOTIFICATION
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_OBJ_DATA
 import section_box_right as SB
 import section_box_utility
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def section_box():
     #NOTIFICATION.toast(main_text = "Select the objs to do sectionbox boundingbox around")
     objs = rs.GetObjects(message = "Get objs to do sectionbox", filter = 0, group = True, preselect = True)
@@ -53,3 +57,11 @@ def section_box():
     print(bbox)
 
     SB.section_box(section_box_utility.GROUP_NAME_KEYWORD, predefined_polysurf = bbox)
+
+
+
+
+
+
+if __name__ == "__main__":
+    section_box()

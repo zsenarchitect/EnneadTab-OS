@@ -309,14 +309,6 @@
         "tab": "Fun.tab",
         "tab_icon": "Fun.tab\\icon.png"
     },
-    "Knowledge.tab\\alias_cheatsheet.button\\alias_cheatsheet_left.py": {
-        "script": "Knowledge.tab\\alias_cheatsheet.button\\alias_cheatsheet_left.py",
-        "icon": "Knowledge.tab\\alias_cheatsheet.button\\icon.png",
-        "alias": "AliasCheatsheet",
-        "doc": "Learn about ALL the EnneadTab alias.",
-        "tab": "Knowledge.tab",
-        "tab_icon": "Knowledge.tab\\icon.png"
-    },
     "Knowledge.tab\\china_code_ref.button\\china_code_ref_left.py": {
         "script": "Knowledge.tab\\china_code_ref.button\\china_code_ref_left.py",
         "icon": "Knowledge.tab\\china_code_ref.button\\icon.png",
@@ -364,22 +356,6 @@
         "doc": "This button does Turtorial when left click",
         "tab": "Knowledge.tab",
         "tab_icon": "Knowledge.tab\\icon.png"
-    },
-    "Lab.tab\\tester.button\\tester_left.py": {
-        "script": "Lab.tab\\tester.button\\tester_left.py",
-        "icon": null,
-        "alias": "tester",
-        "doc": "tester",
-        "tab": "Lab.tab",
-        "tab_icon": "Lab.tab\\icon.png"
-    },
-    "Lab.tab\\update_from_repo.button\\update_from_repo_left.py": {
-        "script": "Lab.tab\\update_from_repo.button\\update_from_repo_left.py",
-        "icon": null,
-        "alias": "UpdateFromRepo",
-        "doc": "This button does UpdateFromRepo when left click",
-        "tab": "Lab.tab",
-        "tab_icon": "Lab.tab\\icon.png"
     },
     "Layer.tab\\destroy_layer.button\\destroy_layer_left.py": {
         "script": "Layer.tab\\destroy_layer.button\\destroy_layer_left.py",

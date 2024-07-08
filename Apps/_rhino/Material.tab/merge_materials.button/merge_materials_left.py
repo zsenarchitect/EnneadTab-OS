@@ -6,9 +6,13 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
 from EnneadTab import NOTIFICATION
+from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_FORMS
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def merge_materials():
     # rs.Command("_Purge Material=Yes")
     # return
@@ -177,3 +181,8 @@ def print_list(list):
     for x in list:
         temp += str(x) + "\n"
     rs.TextOut(message = temp)
+
+
+
+if __name__ == "__main__":
+    merge_materials()

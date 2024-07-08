@@ -2,9 +2,13 @@
 __title__ = "MatchCrvDir"
 __doc__ = "This button does MatchCrvDir when left click"
 
-from EnneadTab import NOTIFICATION
 import rhinoscriptsyntax as rs
+from EnneadTab import NOTIFICATION
+from EnneadTab import LOG, ERROR_HANDLE
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def match_crv_dir():
     base_crvs = rs.GetObjects(message = "pick many base curves", custom_filter = rs.filter.curve)
     """
@@ -34,3 +38,5 @@ def match_crv_dir():
         rs.DeleteObject(srf)
 
 
+if __name__ == "__main__":
+    match_crv_dir() 

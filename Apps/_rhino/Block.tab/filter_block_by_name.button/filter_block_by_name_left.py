@@ -6,8 +6,10 @@ import scriptcontext as sc
 
 
 from EnneadTab.RHINO import RHINO_FORMS
+from EnneadTab import LOG, ERROR_HANDLE
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def filter_block_by_name():
 
     # get all block names and sort
@@ -30,3 +32,6 @@ def filter_block_by_name():
 
     rs.UnselectAllObjects()
     rs.SelectObjects(OUT)
+
+if __name__ == "__main__":
+    filter_block_by_name()

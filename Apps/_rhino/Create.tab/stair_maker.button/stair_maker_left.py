@@ -13,7 +13,7 @@ import math
 
 
 
-from EnneadTab import DATA_FILE
+from EnneadTab import DATA_FILE, LOG, ERROR_HANDLE
 
 
 def create_stair_block_from_pts(start_pt, end_pt, max_riser, stair_width, flip_pt ):
@@ -280,8 +280,8 @@ def make_stair_mass_brep(e, start_pt, end_pt, max_riser, stair_width, current_pt
     return (stair_mass, note)
 
 
-
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def stair_maker():
     max_riser, stair_width = DATA_FILE.get_sticky_longterm("MAX_RISER", 170), DATA_FILE.get_sticky_longterm("STAIR_RISER", 2000)
     res = rs.PropertyListBox(items = ["Max Riser Height(file unit)", "Run Width(file unit)"],
@@ -470,3 +470,5 @@ class GetFlipPoint (Rhino.Input.Custom.GetPoint):
 
 
 
+if __name__ == "__main__":
+    stair_maker()

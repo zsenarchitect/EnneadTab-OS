@@ -3,8 +3,11 @@ __title__ = "FallGeosOnGeo"
 __doc__ = "Drop selected objs to a receiver geo. If it is block, drop using the insertion point. Otherwise using the center of buttom face of the boundingbox."
 
 import rhinoscriptsyntax as rs
-from EnneadTab.RHINO import RHINO_OBJ_DATA
+from EnneadTab.RHINO import RHINO_OBJ_DATA, ERROR_HANDLE, LOG
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def fall_geos_on_geo():
     
     # get the blocks
@@ -26,7 +29,6 @@ def fall_geos_on_geo():
     map(lambda x: process_obj(x, landing_geo), objs)
 
 def process_obj(obj, landing_geo):
-
     # get block point insertion
     if rs.IsBlockInstance(obj):
         pt = rs.BlockInstanceInsertPoint(obj)
@@ -54,3 +56,7 @@ def process_obj(obj, landing_geo):
     # move block over
     vector = project_pt - pt
     rs.MoveObject(obj, vector)
+
+
+if __name__ == "__main__":
+    fall_geos_on_geo()

@@ -11,6 +11,7 @@ import Rhino # pyright: ignore
 import traceback
 import System # pyright: ignore
 
+from EnneadTab import LOG, ERROR_HANDLE
 
 
 """the miro app should save in json every 1 sec at a location
@@ -145,7 +146,10 @@ class RhinoMiroListener_Conduit(EnneadTab.RHINO.RHINO_CONDUIT.RhinoConduit):
 
 
 
-        
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def listen_to_miro():
 
     key = "RECENT_MIRO_URL_RHINO"

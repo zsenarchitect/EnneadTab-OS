@@ -11,7 +11,7 @@ import random
 import os
 import traceback
 from EnneadTab import DATA_FILE
-from EnneadTab import NOTIFICATION
+from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE
 
 BASIC_BLOCK_NAMES = []
 for block_file in os.listdir(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\bin\Dummy Blocks\EA_People_Elevation_Dummy"):
@@ -138,7 +138,8 @@ def get_pt(other_pt, spacing):
     return ui.Point(), ui.transform_list, ui.dummy_block_name
 
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def section_crowd():
 
 
@@ -209,3 +210,10 @@ def insert_ref_block( dummy_block_name):
     obj = Rhino.RhinoDoc.ActiveDoc.Objects.AddInstanceObject(indexOfAddedBlock,Rhino.Geometry.Transform.Identity)
 
     return
+
+
+
+
+
+if __name__ == "__main__":
+    section_crowd()

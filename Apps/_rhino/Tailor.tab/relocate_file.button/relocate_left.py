@@ -3,8 +3,12 @@ __doc__ = "Relocate all the cameras and models to new Revit location."
 
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
-import EnneadTab
 
+from EnneadTab import LOG, ERROR_HANDLE, SOUND
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def relocate_left():
     # # Ask the user to pick a point in space
     # point = rs.GetPoint("Pick a new base point")
@@ -56,5 +60,10 @@ def relocate_left():
     # Redraw the viewport to reflect changes
     rs.Redraw()
 
-    EnneadTab.SOUND.play_sound()
+    SOUND.play_sound()
 
+
+
+
+if __name__ == "__main__":
+    relocate_left() 

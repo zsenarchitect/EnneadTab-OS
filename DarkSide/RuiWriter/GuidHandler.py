@@ -37,7 +37,7 @@ class GuidHandler:
     _is_new_member = False  # Consider refactoring this logic
 
     @classmethod
-    def init_databease(cls):
+    def init_database(cls):
         with open (DATA_FILE, 'r') as f:
             storage = json.load(f)
             
@@ -73,7 +73,7 @@ class GuidHandler:
 
 if __name__ == "__main__":
     pass
-    # GuidHandler.init_databease()
+    # GuidHandler.init_database()
     # a = GuidHandler("EnneadTab-for-Rhino\\a")
     # b = GuidHandler("EnneadTab-for-Rhino\\a")
     # print(a.guid)

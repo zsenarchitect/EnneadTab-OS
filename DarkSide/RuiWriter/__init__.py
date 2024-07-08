@@ -71,6 +71,7 @@ import final_save as FS
 import TabGroupHandler as TGH 
 import MenuHandler as MH
 import ButtonHandler as BH
+from KnowledgeHandler import KnowledgeHandler
 from constants import RHINO_TOOLBAR_FOLDER, SPECIAL_LIST_KEY, DIST_RUI, INSTALLATION_RUI, RHINO_INSTALLER_SETUP_FOLDER
 
 
@@ -203,7 +204,7 @@ class RuiWriter:
 
     def run(self):
 
-        GuidHandler.init_databease()
+        GuidHandler.init_database()
         
         # process folder to setup data tree
         self.setup_data()
@@ -214,6 +215,7 @@ class RuiWriter:
 
 
         GuidHandler.update_database()
+        KnowledgeHandler.update_database()
 
 
 

@@ -2,10 +2,9 @@ import ENVIRONMENT
 import FOLDER
 
 
-try:
+if ENVIRONMENT.is_Rhino_environment():
     import rhinoscriptsyntax as rs
-except:
-    pass
+
 
 def update_my_rui():
 

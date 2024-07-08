@@ -24,7 +24,7 @@ class IconHandler:
 
         Args:
             image_path (_type_): _description_
-            caller (_type_, optional): allow additional info so icon index table will not overlap. Defaults to None.
+            caller (_type_, optional): allow additional info so icon index table will not overlap. Defaults to None. This is also the reason in guid json some key file name a re funny long
         """
         if image_path is None:
             image_path = IconHandler. default_icon

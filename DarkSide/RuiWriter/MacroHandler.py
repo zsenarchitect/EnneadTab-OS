@@ -9,7 +9,7 @@ import os
 from BaseHandler import BaseHandler
 from IconHandler import IconHandler
 from GuidHandler import GuidHandler
-
+from KnowledgeHandler import KnowledgeHandler
 
 
 class MacroHandler(BaseHandler):
@@ -63,6 +63,8 @@ class MacroHandler(BaseHandler):
         
         # parse this python by load it to extract gloabl vars by path
         self.script_gloabl_vars_dict = extract_global_variables(self.script_path)
+
+        KnowledgeHandler(self.script_path, self.icon, self.script_gloabl_vars_dict)
 
         # find a template to write script, tooltip, and other default info.
         self.assign_basic_info()

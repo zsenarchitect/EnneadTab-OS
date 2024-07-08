@@ -205,6 +205,7 @@ class RuiWriter:
     def run(self):
 
         GuidHandler.init_database()
+        KnowledgeHandler.init_database()
         
         # process folder to setup data tree
         self.setup_data()

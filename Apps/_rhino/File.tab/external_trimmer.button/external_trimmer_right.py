@@ -1,5 +1,5 @@
 
-__alias__ = "ExternalTrimmer"
+__title__ = "ExternalTrimmer"
 __doc__ = "This button does ExternalTrimmer when right click"
 
 

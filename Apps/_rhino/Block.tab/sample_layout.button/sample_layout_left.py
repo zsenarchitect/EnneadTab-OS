@@ -1,5 +1,5 @@
 
-__alias__ = "SampleLayout"
+__title__ = "SampleLayout"
 __doc__ = "Create sample block layout along crvs to quickly visualize design."
 import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
@@ -9,8 +9,8 @@ import Rhino # pyright: ignore.UI
 import Eto # pyright: ignore
 
 
-from Duckitect import DATA_FILE, NOTIFICATION, SOUNDS
-from Duckitect.RHINO import RHINO_UI, RHINO_OBJ_DATA
+from EnneadTab import DATA_FILE, NOTIFICATION, SOUNDS
+from EnneadTab.RHINO import RHINO_UI, RHINO_OBJ_DATA
 
 
 FORM_KEY = 'SAMPLE_BLOCK_modeless_form'
@@ -27,7 +27,7 @@ class SampleBlockDialog(Eto.Forms.Form):
         self.Resizable = True
         self.Padding = Eto.Drawing.Padding(5)
         self.Spacing = Eto.Drawing.Size(5, 5)
-        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_Duckitect for Rhino\Source Codes\lib\ennead-e-logo.png")
+        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\ennead-e-logo.png")
         #self.Bounds = Eto.Drawing.Rectangle()
         self.height = 400
         self.width = 400

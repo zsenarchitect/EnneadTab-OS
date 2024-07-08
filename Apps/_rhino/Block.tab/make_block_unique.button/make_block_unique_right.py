@@ -1,4 +1,4 @@
-__alias__ = "MakeBlockUniqueToOne"
+__title__ = "MakeBlockUniqueToOne"
 __doc__ = "Make a block unique on spot. All different types of block will merge to one new block"
 
 

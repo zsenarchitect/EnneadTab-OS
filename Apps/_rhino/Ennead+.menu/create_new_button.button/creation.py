@@ -1,9 +1,5 @@
 import os
-import sys
-parent_folder = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-sys.path.append("{}\Source Codes\lib".format(parent_folder))
-sys.path.append("{}\Source Codes\lib\Duckitect".format(parent_folder))
-from Duckitect import NOTIFICATION
+
 
 
 """
@@ -12,15 +8,19 @@ this has the core function that is shared between Rhino version and IDE version
 
 
 TEMPLATE = """
-__alias__ = "{0}"
+__title__ = "{0}"
 __doc__ = "{1}"
 
 
+from EnneadTab import ERROR_HANDLE, LOG
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def {2}():
     {3}
 
 """
-SAMPLE_PRINT_STATMENT ='print ("Placeholder func <{}> that does this:{}".format(__alias__, __doc__))'
+SAMPLE_PRINT_STATMENT ='print ("Placeholder func <{}> that does this:{}".format(__title__, __doc__))'
 
 def make_button(tab_folder, button_name, is_left_click = True):
     print (tab_folder)
@@ -39,7 +39,7 @@ def make_button(tab_folder, button_name, is_left_click = True):
 
     for file in os.listdir(button_folder):
         if file.endswith(".py") and clicker in file:
-            NOTIFICATION.messenger("File with this click method exist.....check the folder.")
+            print ("File with this click method exist.....check the folder.")
             return
             
     script_file = "{}\\{}_{}.py".format(button_folder, button_name, clicker )

@@ -1,9 +1,9 @@
 
-__alias__ = "FallGeosOnGeo"
+__title__ = "FallGeosOnGeo"
 __doc__ = "Drop selected objs to a receiver geo. If it is block, drop using the insertion point. Otherwise using the center of buttom face of the boundingbox."
 
 import rhinoscriptsyntax as rs
-from Duckitect.RHINO import RHINO_OBJ_DATA
+from EnneadTab.RHINO import RHINO_OBJ_DATA
 
 def fall_geos_on_geo():
     

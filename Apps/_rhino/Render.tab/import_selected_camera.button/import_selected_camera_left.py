@@ -1,5 +1,5 @@
 
-__alias__ = "ImportSelectedCamera"
+__title__ = "ImportSelectedCamera"
 __doc__ = "Import seleced camera from another file."
 
 

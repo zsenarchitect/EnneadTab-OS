@@ -1,10 +1,10 @@
 
-__alias__ = "PackageBlockLayer"
+__title__ = "PackageBlockLayer"
 __doc__ = "Package blocks content layer under a single parent layer. This is very helpful if you want to test totally new material for the layers."
 
 import rhinoscriptsyntax as rs
 
-from Duckitect import NOTIFICATION
+from EnneadTab import NOTIFICATION
 
 
 def process_block(block_name, flatten_layer = False):

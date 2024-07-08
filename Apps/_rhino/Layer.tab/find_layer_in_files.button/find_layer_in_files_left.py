@@ -1,13 +1,13 @@
 
-__alias__ = "FindLayerInFiles"
+__title__ = "FindLayerInFiles"
 __doc__ = "In a given folder, find which rhino file contains the keyword layer name. Good for traceback a illustrator file."
 
 
 import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 
-from Duckitect import FOLDER, NOTIFICATION
-from Duckitect.RHINO import RHINO_FORMS, RHINO_LAYER
+from EnneadTab import FOLDER, NOTIFICATION
+from EnneadTab.RHINO import RHINO_FORMS, RHINO_LAYER
 
 
 

@@ -1,12 +1,12 @@
 
-__alias__ = "MergeMaterials"
+__title__ = "MergeMaterials"
 __doc__ = "Merge multiple materials in the file to the same material. Work for object assigned materials as well."
 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from Duckitect import NOTIFICATION
-from Duckitect.RHINO import RHINO_FORMS
+from EnneadTab import NOTIFICATION
+from EnneadTab.RHINO import RHINO_FORMS
 
 
 def merge_materials():
@@ -22,7 +22,7 @@ def merge_materials():
 
     mats_to_modify, mat_target = RHINO_FORMS.select_from_list2list(all_mat_names,
                                                                     all_mat_names,
-                                                                    title = "Duckitect Merge Material",
+                                                                    title = "EnneadTab Merge Material",
                                                                     message = "Select Layers to modify, hold 'shift' to select multiple. Blocks process included.",
                                                                     search_A_text = "Source Materials(Multiple)",
                                                                     search_B_text = "Target Material(Single) to keep",

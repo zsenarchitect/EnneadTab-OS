@@ -1,9 +1,9 @@
 
-__alias__ = "SelectSimilarBlocks"
+__title__ = "SelectSimilarBlocks"
 __doc__ = "Select blocks of similar definitions from the selected blocks"
 import rhinoscriptsyntax as rs
 
-from Duckitect import NOTIFICATION
+from EnneadTab import NOTIFICATION
 def similar_blocks():
 
 

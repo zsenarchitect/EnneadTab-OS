@@ -1,5 +1,5 @@
 
-__alias__ = ["StairMaker", 
+__title__ = ["StairMaker", 
              "StairMaker(Linear)"]
 __doc__ = "Interactively create linear stair."
 
@@ -13,7 +13,7 @@ import math
 
 
 
-from Duckitect import DATA_FILE
+from EnneadTab import DATA_FILE
 
 
 def create_stair_block_from_pts(start_pt, end_pt, max_riser, stair_width, flip_pt ):
@@ -291,7 +291,7 @@ def stair_maker():
     if not res:
         return
     max_riser, stair_width = res
-    #max_riser = rs.RealBox(message = "Max riser height number", default_number = 170, title = "Duckitect")
+    #max_riser = rs.RealBox(message = "Max riser height number", default_number = 170, title = "EnneadTab")
     max_riser, stair_width = float(max_riser), float(stair_width)
     DATA_FILE.set_sticky_longterm("MAX_RISER", max_riser)
     DATA_FILE.set_sticky_longterm("STAIR_RISER", stair_width)
@@ -395,7 +395,7 @@ class GetDotPoint (Rhino.Input.Custom.GetPoint):
         e.Display.DrawDot  (data_pt, note)
 
 
-        title = "Duckitect Stair Maker Mode -- Preview Stair"
+        title = "EnneadTab Stair Maker Mode -- Preview Stair"
         self.show_text_with_pointer(e,
                                     text = title,
                                     size = 30)
@@ -457,7 +457,7 @@ class GetFlipPoint (Rhino.Input.Custom.GetPoint):
         position_Y_offset = 40
         bounds = e.Viewport.Bounds
         self.pointer_2d = Rhino.Geometry.Point2d(bounds.Left + position_X_offset, bounds.Top + position_Y_offset)
-        title = "Duckitect Stair Maker Mode"
+        title = "EnneadTab Stair Maker Mode"
         self.show_text_with_pointer(e,
                                     text = title,
                                     size = 30)

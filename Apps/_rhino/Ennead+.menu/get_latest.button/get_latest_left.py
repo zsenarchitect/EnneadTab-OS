@@ -1,8 +1,8 @@
 
-__alias__ = "GetLatest"
+__title__ = "GetLatest"
 __doc__ = "This button does GetLatest when left click"
 
-from Duckitect import VERSION_CONTROL, NOTIFICATION
+from EnneadTab import VERSION_CONTROL, NOTIFICATION
 from EnneadTab.RHINO import RHINO_RUI
 
 

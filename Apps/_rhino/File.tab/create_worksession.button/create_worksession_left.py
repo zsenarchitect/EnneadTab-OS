@@ -1,10 +1,10 @@
 
-__alias__ = "CreateWorksession"
+__title__ = "CreateWorksession"
 __doc__ = "Pick mutiple rhino files to create a session file instead of one after another. Good for dealing with heavy files."
 
 
 import rhinoscriptsyntax as rs
-from Duckitect import TIME
+from EnneadTab import TIME
 
 def create_worksession():
 
@@ -12,7 +12,7 @@ def create_worksession():
     #files = [r"I:\2135\0_3D\{}".format(file) for file in files]
     if not files:
         return
-    #session_name = rs.StringBox(message = "What is the name of the Rhino session file?", default_value = None, title = "Duckitect Session Creation")
+    #session_name = rs.StringBox(message = "What is the name of the Rhino session file?", default_value = None, title = "EnneadTab Session Creation")
     session_file_path = rs.SaveFileName(title  = "What is the name of the Rhino session file?",
                                         filter = "Rhino Session File (*.rws)|*.rws||",
                                         folder = None,

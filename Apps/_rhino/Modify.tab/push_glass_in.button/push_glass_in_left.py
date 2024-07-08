@@ -1,11 +1,11 @@
 
-__alias__ = "PushGlassIn"
+__title__ = "PushGlassIn"
 __doc__ = "Make pushed in glass recess from selected srfs."
 import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from Duckitect import COLOR
+from EnneadTab import COLOR
 
 def push_glass_in():
 

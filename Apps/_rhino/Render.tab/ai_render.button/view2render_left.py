@@ -1,5 +1,5 @@
 
-__alias__ = "AiRenderingFromView"
+__title__ = "AiRenderingFromView"
 __doc__ = "Render captured Rhino view with Stable Diffusion."
 
 
@@ -13,8 +13,8 @@ import os
 import System # pyright: ignore
 import random
 
-from Duckitect import USER, FOLDER, NOTIFICATION, DATA_FILE, EXE, TIME
-from Duckitect.RHINO import RHINO_UI
+from EnneadTab import USER, FOLDER, NOTIFICATION, DATA_FILE, EXE, TIME
+from EnneadTab.RHINO import RHINO_UI
 
 MODEL_DICT = {0: "runwayml/stable-diffusion-v1-5"}
 # get all file in a folder
@@ -417,7 +417,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
 
     def OnOpenFolderButtonClick(self, sender, e):
         try:
-            os.startfile("{}\Documents\Duckitect Settings\Local Copy Dump\Duckitect_Ai_Rendering".format(
+            os.startfile("{}\Documents\EnneadTab Settings\Local Copy Dump\EnneadTab_Ai_Rendering".format(
                 os.environ["USERPROFILE"]))
         except:
             print("Folder not exist, please wait")
@@ -494,7 +494,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
     def input_image_filename(self):
         main_folder = FOLDER.get_EA_local_dump_folder()
         session_folder = main_folder + \
-            "\\Duckitect_Ai_Rendering\\Session_{}".format(self.session)
+            "\\EnneadTab_Ai_Rendering\\Session_{}".format(self.session)
         if not os.path.exists(session_folder):
             os.makedirs(session_folder)
 
@@ -535,7 +535,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
         data = dict()
         data["session"] = self.session
         data["input_image"] = self.input_image_filename
-        # r"C:\Users\szhang\github\Duckitect-for-AI\output\working draft\imgs\IN\input.jpg"
+        # r"C:\Users\szhang\github\EnneadTab-for-AI\output\working draft\imgs\IN\input.jpg"
 
         # <<<<>>>><<<<>>>> change this to the address of python<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         data["controlnet_model"] = "lllyasviel/sd-controlnet-canny"

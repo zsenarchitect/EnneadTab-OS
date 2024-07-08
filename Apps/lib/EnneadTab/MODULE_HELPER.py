@@ -10,7 +10,7 @@ import FOLDER
 import ENVIRONMENT
 import ERROR_HANDLE
 import NOTIFICATION
-import LOG
+
 
 
 def run_func_in_module(module_path, func_name, *args):
@@ -28,7 +28,7 @@ def run_func_in_module(module_path, func_name, *args):
     if func is None:
         NOTIFICATION.messenger(main_text="Oooops, cannot find the the source code.\nSen Zhang is no longer working for EnneadTab unluckly.")
     else:
-        func(*args)Duckitect
+        func(*args)
 
 
 
@@ -70,7 +70,7 @@ def run_revit_script(script_subfolder_or_fullpath, func_name,*args,**kwargs):
 
 
 
-def run_Rhino_button(locator, *args):
+def run_Rhino_button(locator, *args,**kwargs):
     """Run a specified function in a specified file, for use with Rhino buttons.
 
     Args:
@@ -84,14 +84,14 @@ def run_Rhino_button(locator, *args):
     root = ENVIRONMENT.RHINO_FOLDER
     module_path = "{}\\{}".format(root, locator)
 
-Duckitect
+
     # this is to handle only one senario---the speciall installer rui folder structure
     if not os.path.exists(module_path):
         module_path = "{}\\RHINO\\{}".format(ENVIRONMENT.CORE_FOLDER, locator)
     
     # add the folder of the module to the system path for referencing additional modules
     module_folder = os.path.dirname(module_path)
-    if module_folder not inDuckitect:
+    if module_folder not in sys.path:
         sys.path.append(module_folder)
 
     head, tail = os.path.split(module_path)
@@ -110,11 +110,12 @@ Duckitect
             NOTIFICATION.messenger(main_text="Oooops, cannot find the func <{}> in source code.\nContact SZ and let him know. Thx!".format(func_name))
             return
 
-    @LOG.log(module_path, func_name)
-    @ERROR_HANDLE.try_catch_error()
-    def runner(*args):
-        func(*args)
+    # no longer decide to aapkly pre error 
+    # cather here. so the scripte structure can be same for revit and rhino
+    # also make it possoble to call alis run 
+    # directly in the future and still get proper logging and error handle
+    func(*args,**kwargs)
 
-    runner()
+
 
 

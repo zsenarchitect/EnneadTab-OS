@@ -1,12 +1,12 @@
 
-__alias__ = "MakeVoidSeam"
+__title__ = "MakeVoidSeam"
 __doc__ = "Make the void cut polysurface based on layer name."
 
 
 import rhinoscriptsyntax as rs
 import re
 
-from Duckitect.RHINO import RHINO_LAYER
+from EnneadTab.RHINO import RHINO_LAYER
 
 
 def make_void_seam():

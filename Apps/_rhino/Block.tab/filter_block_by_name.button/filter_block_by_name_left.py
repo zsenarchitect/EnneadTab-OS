@@ -1,11 +1,11 @@
 
-__alias__ = "FilterBlockByName"
+__title__ = "FilterBlockByName"
 __doc__ = "This button does FilterBlockByName when left click"
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
 
-from Duckitect.RHINO import RHINO_FORMS
+from EnneadTab.RHINO import RHINO_FORMS
 
 
 def filter_block_by_name():

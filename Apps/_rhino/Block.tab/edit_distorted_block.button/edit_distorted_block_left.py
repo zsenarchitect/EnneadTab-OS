@@ -1,10 +1,10 @@
-__alias__ = "EditDistortedBlock"
+__title__ = "EditDistortedBlock"
 __doc__ = "Edit distorted block by editing a copy."
 
 
 
 import rhinoscriptsyntax as rs
-from Duckitect import NOTIFICATION
+from EnneadTab import NOTIFICATION
 
 
 

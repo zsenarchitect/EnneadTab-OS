@@ -1,4 +1,4 @@
-__alias__ = "Stack PSD"
+__title__ = "Stack PSD"
 
 import process_data as pd
 import prepare_miro as pm

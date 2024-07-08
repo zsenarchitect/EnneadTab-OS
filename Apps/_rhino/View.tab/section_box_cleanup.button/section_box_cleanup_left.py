@@ -1,5 +1,5 @@
 
-__alias__ = "SectionBoxCleanup"
+__title__ = "SectionBoxCleanup"
 __doc__ = "Reset the view to unbounded."
 
 

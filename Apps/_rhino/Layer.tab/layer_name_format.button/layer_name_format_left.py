@@ -1,12 +1,12 @@
 
-__alias__ = "LayerNameFormat"
+__title__ = "LayerNameFormat"
 __doc__ = "Format the spelling of layer name on selected layers."
 
 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from Duckitect.RHINO import RHINO_LAYER
+from EnneadTab.RHINO import RHINO_LAYER
 
 IGNORE_PATTERN = [r"\[GFA\]"]
 

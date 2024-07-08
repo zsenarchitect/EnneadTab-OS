@@ -1,4 +1,4 @@
-__alias__ = "ToggleBlockColorDisplay_Setting"
+__title__ = "ToggleBlockColorDisplay_Setting"
 __doc__ = "Toggle the on/off of block names."
 
 

@@ -1,5 +1,5 @@
 
-__alias__ = "ExternalTrimmer"
+__title__ = "ExternalTrimmer"
 __doc__ = "This button does ExternalTrimmer when left click"
 
 import Rhino # pyright: ignore
@@ -8,7 +8,7 @@ from scriptcontext import doc
 import sys
 sys.path.append("..\lib")
 
-from Duckitect import EXE, NOTIFICATION, FOLDER
+from EnneadTab import EXE, NOTIFICATION, FOLDER
 
 BLOCK_NAME = "EA_EXTERNAL_LINK"
 

@@ -1,13 +1,13 @@
 
-__alias__ = "DuplicateLayout"
+__title__ = "DuplicateLayout"
 __doc__ = "Duplicate Layout while allowing X-Y offset, so your layout can capture something else in model space."
 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 import Rhino # pyright: ignore
 
-from Duckitect.RHINO import RHINO_FORMS
-from Duckitect import DATA_FILE
+from EnneadTab.RHINO import RHINO_FORMS
+from EnneadTab import DATA_FILE
 
 
 

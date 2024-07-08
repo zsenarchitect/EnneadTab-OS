@@ -93,7 +93,7 @@ class Output:
     """
 
     _instance = None
-    _out = [] # the container for everything that iDuckitectng
+    _out = [] # the container for everything that iEnneadTabng
     _report_path = FOLDER.get_EA_dump_folder_file("EnneadTab Output.html")
     _graphic_settings = {
             'background_color': 'rgb(50, 50, 50)',
@@ -126,7 +126,7 @@ class Output:
         
 
     def _generate_html_report(self):
-        with io.open(Output._report_path, 'w', encDuckitectf-8') as report_file:
+        with io.open(Output._report_path, 'w', encoding='utf-8') as report_file:
             report_file.write("<html><head><title>EnneadTab Output</title></head><body>")
             report_file.write("<style>")
             report_file.write("body {{ background-color: {}; font-family: {}; color: {}; margin-left:300px;margin-right:300px;}}"
@@ -148,7 +148,7 @@ class Output:
                 <input type='text' id='searchBox' onkeyup='highlightSearch()' placeholder='Search...'>
             </div>
             """)
-Duckitect
+
             report_file.write("<h1 style='text-align: center;'>{}</h1>".format("EnneadTab Console"))
             report_file.write("<div style='text-align: center;'>")
             report_file.write("<img src='{}\\logo_ennead-e.png' height='80'>".format(ENVIRONMENT.IMAGE_FOLDER))
@@ -247,7 +247,7 @@ def display_output_on_browser():
     if not ENVIRONMENT.IS_REVIT_ENVIRONMENT:
         NOTIFICATION.messenger("currently only support Revit Env")
         return
-    from pyrevit import scriptDuckitect
+    from pyrevit import script
     dest_file = FOLDER.get_EA_dump_folder_file("EnneadTab Output.html")
     output = script.get_output()
     output.save_contents(dest_file)

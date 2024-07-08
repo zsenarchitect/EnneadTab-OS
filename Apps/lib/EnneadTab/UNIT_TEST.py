@@ -112,13 +112,13 @@ def test_core_module():
     if len( tester.failed_module) > 0:
         print ("\n\n\nbelow modules are failed.")
         print ("\n--".join(tester.failed_module))
-        raise DuckitectExcepion
+        raise EnneadTabExcepion
     
     OUTPUT.display_output_on_browser()
     
         
 
-class DuckitectExcepion(BaseException):
+class EnneadTabExcepion(BaseException):
     pass
  
 if __name__ == '__main__':

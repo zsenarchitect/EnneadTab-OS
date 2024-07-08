@@ -1,5 +1,5 @@
 
-__alias__ = "RemoveStringInMaterialName"
+__title__ = "RemoveStringInMaterialName"
 __doc__ = "This button does RemoveStringInMaterialName when left click"
 
 import scriptcontext as sc

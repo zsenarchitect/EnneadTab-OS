@@ -1,5 +1,5 @@
 
-__alias__ = "BrepToMass"
+__title__ = "BrepToMass"
 __doc__ = "Using faces of the brep to recreate a freeform mass in Revit."
 
 
@@ -7,7 +7,7 @@ import Rhino # pyright: ignore
 import scriptcontext as sc
 import rhinoscriptsyntax as rs
 
-from Duckitect import SOUNDS, DATA_FILE, NOTIFICATION, FOLDER
+from EnneadTab import SOUNDS, DATA_FILE, NOTIFICATION, FOLDER
 
 def process_brep(brep):
 

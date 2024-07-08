@@ -1,5 +1,5 @@
 
-__alias__ = "PerforationRatio"
+__title__ = "PerforationRatio"
 __doc__ = "Find out how to calculate your perforation panel with precise opening ratio."
 
 import webbrowser

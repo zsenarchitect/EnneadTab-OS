@@ -1,6 +1,6 @@
 
-__alias__ = "ExportForRhino2Revit"
-__doc__ = "Export Layer Contents to 3dm and dwg for Rhino2Revit in Duckitect for Revit."
+__title__ = "ExportForRhino2Revit"
+__doc__ = "Export Layer Contents to 3dm and dwg for Rhino2Revit in EnneadTab for Revit."
 
 import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
@@ -18,8 +18,8 @@ flatten = itertools.chain.from_iterable
 graft = itertools.combinations
 
 
-from Duckitect import NOTIFICATION, SPEAK, DATA_FILE, SOUNDS
-from Duckitect.RHINO import RHINO_LAYER, RHINO_UI
+from EnneadTab import NOTIFICATION, SPEAK, DATA_FILE, SOUNDS
+from EnneadTab.RHINO import RHINO_LAYER, RHINO_UI
 
 # make modal dialog
 class Rhino2RevitExporterDialog(Eto.Forms.Dialog[bool]):
@@ -30,7 +30,7 @@ class Rhino2RevitExporterDialog(Eto.Forms.Dialog[bool]):
         self.Resizable = True
         self.Padding = Eto.Drawing.Padding(5)
         self.Spacing = Eto.Drawing.Size(5, 5)
-        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_Duckitect for Rhino\Source Codes\lib\ennead-e-logo.png")
+        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\ennead-e-logo.png")
         #self.Bounds = Eto.Drawing.Rectangle()
         self.height = 400
         self.width = 400
@@ -397,7 +397,7 @@ def get_output_folder():
     if not recent_folder:
         recent_folder = os.path.join(os.path.expanduser("~"), "Desktop")
         
-    if "Duckitect Export By Layer" in recent_folder:
+    if "EnneadTab Export By Layer" in recent_folder:
         recent_folder = os.path.dirname(recent_folder)
         
 
@@ -413,7 +413,7 @@ def get_output_folder():
         doc_name = sc.doc.Name.split(".3dm")[0]
     except:
         doc_name = "Untitled"
-    EA_export_folder = "{}\Duckitect Export By Layer from [{}]".format(target_main_folder, doc_name)
+    EA_export_folder = "{}\EnneadTab Export By Layer from [{}]".format(target_main_folder, doc_name)
     if not os.path.exists(EA_export_folder):
         os.makedirs(EA_export_folder)
 

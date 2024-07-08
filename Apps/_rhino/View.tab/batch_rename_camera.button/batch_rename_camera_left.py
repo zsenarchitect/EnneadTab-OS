@@ -1,5 +1,5 @@
 
-__alias__ = "BatchRenameCamera"
+__title__ = "BatchRenameCamera"
 __doc__ = "This button does BatchRenameCamera when left click"
 
 import Rhino # pyright: ignore
@@ -7,8 +7,8 @@ import Eto # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from Duckitect import SOUNDS
-from Duckitect.RHINO import RHINO_UI
+from EnneadTab import SOUNDS
+from EnneadTab.RHINO import RHINO_UI
 
 class rename_dialog(Eto.Forms.Dialog[bool]):
 

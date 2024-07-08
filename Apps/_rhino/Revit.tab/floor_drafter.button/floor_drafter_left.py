@@ -1,5 +1,5 @@
 
-__alias__ = "FloorDrafter"
+__title__ = "FloorDrafter"
 __doc__ = "This button does FloorDrafter when left click"
 
 import Rhino # pyright: ignore
@@ -7,7 +7,7 @@ import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
 
-from Duckitect import SOUNDS, FOLDER, DATA_FILE
+from EnneadTab import SOUNDS, FOLDER, DATA_FILE
 
 
 def process_brep(brep):

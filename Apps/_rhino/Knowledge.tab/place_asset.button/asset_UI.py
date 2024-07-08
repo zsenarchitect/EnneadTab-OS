@@ -13,8 +13,8 @@ graft = itertools.combinations
 
 
 
-from Duckitect import  NOTIFICATION, DATA_FILE
-from Duckitect.RHINO import RHINO_UI
+from EnneadTab import  NOTIFICATION, DATA_FILE
+from EnneadTab.RHINO import RHINO_UI
 
 # make modal dialog
 class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
@@ -31,7 +31,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
         self.Resizable = True
         self.Padding = Eto.Drawing.Padding(5)
         self.Spacing = Eto.Drawing.Size(5, 5)
-        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_Duckitect for Rhino\Source Codes\lib\ennead-e-logo.png")
+        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\ennead-e-logo.png")
         #self.Bounds = Eto.Drawing.Rectangle()
         self.listbox_height = 600
         self.left_layout_width = 400
@@ -48,7 +48,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
         self.IMAGE_MAX_SIZE = 800
         self.MANAGER_NAMES = ["szhang",
                             "eshaw"]
-        if Duckitect.USER.get_user_name() in self.MANAGER_NAMES or True:
+        if EnneadTab.USER.get_user_name() in self.MANAGER_NAMES or True:
             self.MANAGER_MODE = True
         else:
             self.MANAGER_MODE = False
@@ -176,7 +176,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
     # create message bar function
     def CreateMessageBar(self):
         self.msg = Eto.Forms.Label()
-        self.msg.Text = "Duckitect's Asset Search Tool. Features roadmap:\n-Simpler naming\n-Multiple selection and drop\n-Preview image listbox.\n-place asset and return to same window workflow\n-Interactive insertion.\n-Auto check and generate preview image when loading\n-exception catch for simultaneously writing\n-Make as Rhino dock panel"
+        self.msg.Text = "EnneadTab's Asset Search Tool. Features roadmap:\n-Simpler naming\n-Multiple selection and drop\n-Preview image listbox.\n-place asset and return to same window workflow\n-Interactive insertion.\n-Auto check and generate preview image when loading\n-exception catch for simultaneously writing\n-Make as Rhino dock panel"
         self.msg.Font = Eto.Drawing.Font("Arial", 5)#, TextColor = Eto.Drawing.Color(0,0,240))
         return self.msg
         #self.msg.HorizontalAlignment = Eto.Forms.HorizontalAlignment.Left
@@ -865,7 +865,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
         # close window after double click action. Otherwise, run with error
         self.update_item_tag_pool()
         self.Search()
-        Duckitect.NOTIFICATION.toast(main_text = "The tags data pool is updated.")
+        EnneadTab.NOTIFICATION.toast(main_text = "The tags data pool is updated.")
 
     def EVENT_NextListboxItemButton_Clicked(self, sender, e):
         self.set_new_listitem(increment = 1)

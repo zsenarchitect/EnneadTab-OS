@@ -1,5 +1,5 @@
 
-__alias__ = "SaveSmallAndClose"
+__title__ = "SaveSmallAndClose"
 __doc__ = "Save small file and close document. You dont need to wait."
 import rhinoscriptsyntax as rs
 

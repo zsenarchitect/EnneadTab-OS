@@ -1,12 +1,12 @@
-__alias__ = "SectionboxByPolysrf"
+__title__ = "SectionboxByPolysrf"
 __doc__ = "Use closed polysrf as input box cutter."
 
 
 import os
 import rhinoscriptsyntax as rs
 
-from Duckitect import NOTIFICATION, SOUNDS
-from Duckitect.RHINO import RHINO_CLEANUP
+from EnneadTab import NOTIFICATION, SOUNDS
+from EnneadTab.RHINO import RHINO_CLEANUP
 
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)) + "\\section_box_cleanup.button")
@@ -19,7 +19,7 @@ def section_box(group_name_key_word=section_box_utility.GROUP_NAME_KEYWORD, clea
 
 
 
-    #group_name_key_word = "Duckitect_SectionBox_"
+    #group_name_key_word = "EnneadTab_SectionBox_"
     SBC.section_box_cleanup(group_name_key_word)
     if clean_up_only:
         return

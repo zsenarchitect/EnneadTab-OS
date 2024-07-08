@@ -1,10 +1,10 @@
 
-__alias__ = "AliasCheatsheet"
-__doc__ = "Learn about ALL the Duckitect alias."
+__title__ = "AliasCheatsheet"
+__doc__ = "Learn about ALL the EnneadTab alias."
 
 import os
-from Duckitect import PARSER, OUTPUT
-from Duckitect.RHINO import RHINO_ALIAS
+from EnneadTab import PARSER, OUTPUT
+from EnneadTab.RHINO import RHINO_ALIAS
 
 def alias_cheatsheet():
     RHINO_ALIAS.register_alias_set()
@@ -30,7 +30,7 @@ def alias_cheatsheet():
             file_path = os.path.join(root, file)
             script_data = PARSER.extract_global_variables(file_path)
 
-            alias = script_data.get('__alias__')
+            alias = script_data.get('__title__')
             if not alias:
                 continue
 

@@ -1,5 +1,5 @@
 
-__alias__ = "RandomDeselect"
+__title__ = "RandomDeselect"
 __doc__ = "This button does RandomDeselect when left click"
 
 import rhinoscriptsyntax as rs
@@ -7,7 +7,7 @@ import scriptcontext as sc
 import random
 
 
-from Duckitect import NOTIFICATION
+from EnneadTab import NOTIFICATION
 
 
 def random_deselect():

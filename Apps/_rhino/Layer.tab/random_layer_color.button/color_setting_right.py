@@ -1,5 +1,5 @@
 
-__alias__ = "RandomLayerColorSetting"
+__title__ = "RandomLayerColorSetting"
 __doc__ = "Change the setting of color style."
 
 import rhinoscriptsyntax as rs
@@ -11,7 +11,7 @@ import random_layer_color_left as RLC
 
 
 
-from Duckitect import DATA_FILE
+from EnneadTab import DATA_FILE
 
 
 def color_setting():
@@ -22,7 +22,7 @@ def color_setting():
     for item in RLC.COLOR_SETTING_DEFAULT:
         title, _ = item
         current_option.append((title, current_setting[title]))
-    res = rs.CheckListBox(current_option, "After changing setting, run randomizer again.","Duckitect Random Layer Color Setting")
+    res = rs.CheckListBox(current_option, "After changing setting, run randomizer again.","EnneadTab Random Layer Color Setting")
 
     setting = {}
     if not res:

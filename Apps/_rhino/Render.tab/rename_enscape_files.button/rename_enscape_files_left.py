@@ -1,5 +1,5 @@
 
-__alias__ = "RenameEnscapeFiles"
+__title__ = "RenameEnscapeFiles"
 __doc__ = "Rename the output of Enscape files to remove the long bit."
 
 import os

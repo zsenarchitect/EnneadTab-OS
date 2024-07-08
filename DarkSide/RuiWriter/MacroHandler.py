@@ -92,16 +92,16 @@ class MacroHandler(BaseHandler):
     def assign_basic_info(self):
         
         
-        attr_dict = {"text":"__alias__", # become the macro name, not visible to user, can have duplicate
+        attr_dict = {"text":"__title__", # become the macro name, not visible to user, can have duplicate
                      "tooltip":"__doc__", # become text during mouse hovering, visible to user
                      "help_text":"__doc__", # detailed description, not visible to user
-                     "button_text":"__alias__", # become the button text when used as left click macro. Visible to user.
-                     "menu_text":"__alias__"} # become the menu text. Visible to user.
+                     "button_text":"__title__", # become the button text when used as left click macro. Visible to user.
+                     "menu_text":"__title__"} # become the menu text. Visible to user.
         for key, attr in attr_dict.items():
 
             value = self.script_gloabl_vars_dict.get(attr, "N/A")
 
-            if attr == "__alias__" and value == "N/A":
+            if attr == "__title__" and value == "N/A":
                 value = self.script_name
             if key == "__doc__" and value == "N/A":
                 value = "Documentation Pending for <" + self.script_name + ">"

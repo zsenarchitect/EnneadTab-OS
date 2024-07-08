@@ -6,7 +6,7 @@ from pyrevit.coreutils import envvars
 doc = EXEC_PARAMS.event_args.Document
 
 
-from Duckitect import ERROR_HANDLE, SOUND, LOG
+from EnneadTab import ERROR_HANDLE, SOUND, LOG
 __title__ = "Doc Synced Hook"
 
 

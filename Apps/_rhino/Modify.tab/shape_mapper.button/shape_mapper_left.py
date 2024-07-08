@@ -1,5 +1,5 @@
 
-__alias__ = "ShapeMapper"
+__title__ = "ShapeMapper"
 __doc__ = "This button does ShapeMapper when left click"
 import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
@@ -8,14 +8,14 @@ import clr # pyright: ignore
 import os
 
 import imp
-random_color_module = imp.load_source("random_layer_color", r'L:\\4b_Applied Computing\03_Rhino\12_Duckitect for Rhino\Source Codes\Layers\random_layer_color.py')
+random_color_module = imp.load_source("random_layer_color", r'L:\\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\Layers\random_layer_color.py')
 
 
 
 import Eto # pyright: ignore
 
-from Duckitect.RHINO import RHINO_UI, RHINO_OBJ_DATA
-from Duckitect import NOTIFICATION, DATA_FILE, ERROR_HANDLE
+from EnneadTab.RHINO import RHINO_UI, RHINO_OBJ_DATA
+from EnneadTab import NOTIFICATION, DATA_FILE, ERROR_HANDLE
 FORM_KEY = 'shape_mapper_modeless_form'
 
 

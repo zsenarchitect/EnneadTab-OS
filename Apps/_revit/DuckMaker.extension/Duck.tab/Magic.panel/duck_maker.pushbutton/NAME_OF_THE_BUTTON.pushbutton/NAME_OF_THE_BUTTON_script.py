@@ -6,8 +6,8 @@ __title__ = "PRETTY_NAME"
 
 import proDUCKtion # pyright: ignore 
 
-from Duckitect import ERROR_HANDLE, LOG
-# from Duckitect.REVIT import REVIT_APPLICATION
+from EnneadTab import ERROR_HANDLE, LOG
+# from EnneadTab.REVIT import REVIT_APPLICATION
 from Autodesk.Revit import DB # pyright: ignore 
 
 # UIDOC = REVIT_APPLICATION.get_uidoc()

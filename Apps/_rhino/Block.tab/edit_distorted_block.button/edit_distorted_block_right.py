@@ -1,4 +1,4 @@
-__alias__ = "EditDistortedBlockRestoreView"
+__title__ = "EditDistortedBlockRestoreView"
 __doc__ = "Go back to previous view stage"
 
 

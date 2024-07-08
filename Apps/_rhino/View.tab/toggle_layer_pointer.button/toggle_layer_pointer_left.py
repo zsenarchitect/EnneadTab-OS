@@ -1,12 +1,12 @@
 
-__alias__ = "ToggleLayerPointer"
+__title__ = "ToggleLayerPointer"
 __doc__ = "Short list layers with objs that is visible on screen. This is a good way to quickly examine the layer structure in your model space."
 
 import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 import System # pyright: ignore
-from Duckitect.RHINO import RHINO_OBJ_DATA, RHINO_LAYER, RHINO_CONDUIT
+from EnneadTab.RHINO import RHINO_OBJ_DATA, RHINO_LAYER, RHINO_CONDUIT
 
 KEY = "EA_LAYERS_DISPLAY_Conduit"
 

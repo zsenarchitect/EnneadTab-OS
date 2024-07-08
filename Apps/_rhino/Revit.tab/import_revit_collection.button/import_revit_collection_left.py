@@ -1,11 +1,11 @@
 
-__alias__ = "ImportRevitCollection"
+__title__ = "ImportRevitCollection"
 __doc__ = "This button does ImportRevitCollection when left click"
 
 import scriptcontext as sc
 import rhinoscriptsyntax as rs
-from Duckitect import NOTIFICATION, FOLDER, DATA_FILE, ENVIRONMENT_CONSTANTS
-from Duckitect.RHINO import RHINO_LAYER, RHINO_CLEANUP, RHINO_FORMS, RHINO_MATERIAL
+from EnneadTab import NOTIFICATION, FOLDER, DATA_FILE, ENVIRONMENT_CONSTANTS
+from EnneadTab.RHINO import RHINO_LAYER, RHINO_CLEANUP, RHINO_FORMS, RHINO_MATERIAL
 
 import imp
 import os
@@ -68,7 +68,7 @@ def process_dwg(file, units, is_using_default_layer_structure):
             parent_layer_prefix = default_prefix
         else:
             
-            parent_layer_prefix = rs.StringBox(message = "type in parent layer name", default_value = default_prefix, title = "Duckitect")
+            parent_layer_prefix = rs.StringBox(message = "type in parent layer name", default_value = default_prefix, title = "EnneadTab")
             if parent_layer_prefix is None:
                 return
         parent_layer_prefix = "[" + parent_layer_prefix + "]"
@@ -141,7 +141,7 @@ def import_revit_collection():
     units = rs.ListBox(unit_opts , 
                        message = "Use which unit for the DWG?" , 
                        default = unit_opts[0],
-                       title="Duckitect Import Revit Exports")
+                       title="EnneadTab Import Revit Exports")
     if units is None:
         return
     filenames = rs.OpenFileNames(title = "pick dwg files to import collection",
@@ -150,7 +150,7 @@ def import_revit_collection():
         return
     
     auto_opts = ["Yes, Use Everything Default Layer Structure", "No, Let me pick each layer structure"]
-    auto_opt = rs.ListBox(auto_opts, message = "Use auto process option for layer structure?", default = auto_opts[0], title="Duckitect Importing Revit Export Under Rhino")
+    auto_opt = rs.ListBox(auto_opts, message = "Use auto process option for layer structure?", default = auto_opts[0], title="EnneadTab Importing Revit Export Under Rhino")
     if auto_opt is None:
         return
     if auto_opt == auto_opts[0]:

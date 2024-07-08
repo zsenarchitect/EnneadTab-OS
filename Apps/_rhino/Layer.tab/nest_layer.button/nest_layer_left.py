@@ -1,11 +1,11 @@
 
-__alias__ = "NestLayer"
+__title__ = "NestLayer"
 __doc__ = "Migrate multiple layers under same parent layer. The main benifit is that it can migrate even if same sublayer name exist. This process also handle layers inside blocks."
 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
-from Duckitect.RHINO import RHINO_FORMS, RHINO_LAYER
-from Duckitect import NOTIFICATION
+from EnneadTab.RHINO import RHINO_FORMS, RHINO_LAYER
+from EnneadTab import NOTIFICATION
 
 
 
@@ -20,7 +20,7 @@ def nest_layer():
 
     layers_to_modify, parent_layer_prefix = RHINO_FORMS.select_from_list2list(all_layers_user,
                                                             all_layers_user,
-                                                            title = "Duckitect Migrate Layer",
+                                                            title = "EnneadTab Migrate Layer",
                                                             message = "Select Layers to modify, hold 'shift' to select multiple. Blocks process included.",
                                                             search_A_text = "Source Layers(Multiple)",
                                                             search_B_text = "Target Layer(Single) as new parent",

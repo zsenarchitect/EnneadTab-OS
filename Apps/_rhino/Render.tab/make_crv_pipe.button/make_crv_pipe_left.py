@@ -1,8 +1,8 @@
 
-__alias__ = "MakeCrvPipe"
+__title__ = "MakeCrvPipe"
 __doc__ = "Make/Update a small pipe along crvs in layers that has '[EDGE]' in it. So coplanar face in enscape can show edge."
 
-import Duckitect
+import EnneadTab
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 import Rhino # pyright: ignore
@@ -14,7 +14,7 @@ def make_crv_pipe():
         if "[EDGE]" in layer:
             break
     else:
-        Duckitect.NOTIFICATION.messenger("Cannot find any layer with [EDGE] in the name...")
+        EnneadTab.NOTIFICATION.messenger("Cannot find any layer with [EDGE] in the name...")
         return
 
 
@@ -40,4 +40,4 @@ def make_crv_pipe():
         mesh_obj = sc.doc.Objects.AddMesh(joined_mesh)
         rs.ObjectLayer(mesh_obj, layer)
 
-    Duckitect.NOTIFICATION.messenger("Edge Pipe updated")
+    EnneadTab.NOTIFICATION.messenger("Edge Pipe updated")

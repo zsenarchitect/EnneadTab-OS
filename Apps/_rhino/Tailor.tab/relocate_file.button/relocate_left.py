@@ -1,9 +1,9 @@
-__alias__ = "(1634)RelocateAll"
+__title__ = "(1634)RelocateAll"
 __doc__ = "Relocate all the cameras and models to new Revit location."
 
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
-import Duckitect
+import EnneadTab
 
 def relocate_left():
     # # Ask the user to pick a point in space
@@ -56,5 +56,5 @@ def relocate_left():
     # Redraw the viewport to reflect changes
     rs.Redraw()
 
-    Duckitect.SOUNDS.play_sound()
+    EnneadTab.SOUNDS.play_sound()
 

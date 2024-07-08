@@ -1,5 +1,5 @@
 
-__alias__ = "tester"
+__title__ = "tester"
 __doc__ = "tester"
 
 

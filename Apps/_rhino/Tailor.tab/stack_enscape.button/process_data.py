@@ -2,7 +2,7 @@ import os
 import win32com.client
 import sys
 sys.path.append(r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Published\ENNEAD.extension\lib")
-# from Duckitect import NOTIFICATION
+# from EnneadTab import NOTIFICATION
 import time
 
 import prepare_data

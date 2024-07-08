@@ -1,13 +1,13 @@
-__alias__ = ["MakeBlockUnique",
+__title__ = ["MakeBlockUnique",
              "MBU"]
 __doc__ = "Make a block unique on spot. Each unique original block become new unique block."
 
 
 import rhinoscriptsyntax as rs
 
-from Duckitect.RHINO import RHINO_OBJ_DATA
-from Duckitect import SOUNDS
-from Duckitect import NOTIFICATION
+from EnneadTab.RHINO import RHINO_OBJ_DATA
+from EnneadTab import SOUNDS
+from EnneadTab import NOTIFICATION
 
 def make_block_unique(add_name_tag = True, original_blocks = None, treat_nesting = False):
     
@@ -40,7 +40,7 @@ def create_unique_block(orginal_block, will_explode_nesting, add_name_tag, treat
 
     user_new_block_name = rs.StringBox("What is the new name of the block after making unique?",
                                   default_value = old_block_name + "_new",
-                                  title = "Duckitect Make Block Unique")
+                                  title = "EnneadTab Make Block Unique")
     if user_new_block_name in rs.BlockNames():
         new_block_name = old_block_name + "_new"
         while True:

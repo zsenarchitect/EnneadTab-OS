@@ -3,7 +3,7 @@
 
 
 
-__doc__ = "Make a new button in Duckitect. What would I do without you."
+__doc__ = "Make a new button in EnneadTab. What would I do without you."
 __title__ = "Duck\nMaker"
 __context__ = "zero-doc"
 

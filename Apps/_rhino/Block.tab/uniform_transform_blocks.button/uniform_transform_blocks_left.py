@@ -1,5 +1,5 @@
 
-__alias__ = "UniformTransformBlocks"
+__title__ = "UniformTransformBlocks"
 __doc__ = "Apply same rotational transformation for the blocks. Helpful when you have to reorient many directional blocks, such as changing the direction of cars on street."
 
 
@@ -20,7 +20,7 @@ def uniform_transform_blocks():
     res = rs.PropertyListBox(option_list,
                             value_list,
                             message= "How much angle to rotate each block around insert point?",
-                            title="Duckitect Uniformly Transform")
+                            title="EnneadTab Uniformly Transform")
 
     if res is None:
         return

@@ -1,5 +1,5 @@
 
-__alias__ = "ExtractPreviewImages"
+__title__ = "ExtractPreviewImages"
 __doc__ = "This button does ExtractPreviewImages when left click"
 
 import rhinoscriptsyntax as rs

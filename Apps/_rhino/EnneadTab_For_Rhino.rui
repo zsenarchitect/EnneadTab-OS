@@ -59,7 +59,7 @@
   <tool_bar_groups>
     <tool_bar_group guid="fb209b37-3a90-4551-8c5e-36d544b2b5f6" dock_bar_guid32="00000000-0000-0000-0000-000000000000" dock_bar_guid64="83ae5f77-b8e0-43b4-8f99-5e06e0d15940" active_tool_bar_group="a3a20efb-ebed-471b-9c1e-8790863dfc50" single_file="False" hide_single_tab="False" point_floating="100,300">
       <text>
-        <locale_1033>Duckitect Dynamic Rui</locale_1033>
+        <locale_1033>EnneadTab Dynamic Rui</locale_1033>
       </text>
       <tool_bar_group_item guid="e07dc6f8-2b63-4491-97d0-d8a4352eccd3" major_version="1" minor_version="1">
         <text>
@@ -782,7 +782,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\randomize_block_transformation.button
       </button_text>
       <menu_text>
         <locale_1033>UniformTransformBlocks</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -807,7 +807,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\uniform_transform_blocks.button\\unif
       </button_text>
       <menu_text>
         <locale_1033>MakeBlockUnique</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -832,7 +832,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\make_block_unique.button\\make_block_
       </button_text>
       <menu_text>
         <locale_1033>MakeBlockUniqueToOne</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -857,7 +857,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\make_block_unique.button\\make_block_
       </button_text>
       <menu_text>
         <locale_1033>PackageBlockLayer</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -882,7 +882,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\package_block_layer.button\\package_b
       </button_text>
       <menu_text>
         <locale_1033>EditDistortedBlock</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -907,7 +907,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\edit_distorted_block.button\\edit_dis
       </button_text>
       <menu_text>
         <locale_1033>EditDistortedBlockRestoreView</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -932,7 +932,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\edit_distorted_block.button\\edit_dis
       </button_text>
       <menu_text>
         <locale_1033>ToggleBlockColorDisplay</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -957,7 +957,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\toggle_block_color_display.button\\to
       </button_text>
       <menu_text>
         <locale_1033>ToggleBlockColorDisplay_Setting</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -982,7 +982,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\toggle_block_color_display.button\\di
       </button_text>
       <menu_text>
         <locale_1033>MatchTextureMappingInBlock</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1007,7 +1007,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\match_texture_mapping_in_block.button
       </button_text>
       <menu_text>
         <locale_1033>FallGeosOnGeo</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1032,7 +1032,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\fall_geos_on_geo.button\\fall_geos_on
       </button_text>
       <menu_text>
         <locale_1033>BatchRenameBlocks</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1057,7 +1057,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\batch_rename_blocks.button\\batch_ren
       </button_text>
       <menu_text>
         <locale_1033>FilterBlockByName</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1082,7 +1082,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\filter_block_by_name.button\\filter_b
       </button_text>
       <menu_text>
         <locale_1033>RandomBlocksOnSrfs</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1107,7 +1107,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\random_blocks_on_srfs.button\\random_
       </button_text>
       <menu_text>
         <locale_1033>SampleLayout</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1132,7 +1132,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\sample_layout.button\\sample_layout_l
       </button_text>
       <menu_text>
         <locale_1033>SelectSimilarBlocks</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1157,7 +1157,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\similar_blocks.button\\similar_blocks
       </button_text>
       <menu_text>
         <locale_1033>IsolateSimilarBlocks</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1182,7 +1182,7 @@ MODULE_HELPER.run_Rhino_button('Block.tab\\similar_blocks.button\\similar_blocks
       </button_text>
       <menu_text>
         <locale_1033>DestroyLayer</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1207,7 +1207,7 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\destroy_layer.button\\destroy_layer_l
       </button_text>
       <menu_text>
         <locale_1033>FindLayerInFiles</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1232,7 +1232,7 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\find_layer_in_files.button\\find_laye
       </button_text>
       <menu_text>
         <locale_1033>InitiateLayers</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1257,7 +1257,7 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\initiate_layers.button\\initiate_laye
       </button_text>
       <menu_text>
         <locale_1033>IsolateLayerBySelection</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1282,7 +1282,7 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\isolate_layer_by_selection.button\\is
       </button_text>
       <menu_text>
         <locale_1033>SelectObjectsOnSimilarLayer</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1307,7 +1307,7 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\isolate_layer_by_selection.button\\is
       </button_text>
       <menu_text>
         <locale_1033>LayerNameFormat</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1332,7 +1332,7 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\layer_name_format.button\\layer_name_
       </button_text>
       <menu_text>
         <locale_1033>MergeLayer</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1357,7 +1357,7 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\merge_layer.button\\merge_layer_left.
       </button_text>
       <menu_text>
         <locale_1033>NestLayer</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1382,7 +1382,7 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\nest_layer.button\\nest_layer_left.py
       </button_text>
       <menu_text>
         <locale_1033>RandomLayerColor</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1407,7 +1407,7 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\random_layer_color.button\\random_lay
       </button_text>
       <menu_text>
         <locale_1033>RandomLayerColorSetting</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1432,7 +1432,7 @@ MODULE_HELPER.run_Rhino_button('Layer.tab\\random_layer_color.button\\color_sett
       </button_text>
       <menu_text>
         <locale_1033>SectionboxByBoundingBox</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1457,7 +1457,7 @@ MODULE_HELPER.run_Rhino_button('View.tab\\section_box.button\\section_box_left.p
       </button_text>
       <menu_text>
         <locale_1033>SectionboxByPolysrf</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1482,7 +1482,7 @@ MODULE_HELPER.run_Rhino_button('View.tab\\section_box.button\\section_box_right.
       </button_text>
       <menu_text>
         <locale_1033>SectionBoxCleanup</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1507,7 +1507,7 @@ MODULE_HELPER.run_Rhino_button('View.tab\\section_box_cleanup.button\\section_bo
       </button_text>
       <menu_text>
         <locale_1033>BatchRenameCamera</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1532,7 +1532,7 @@ MODULE_HELPER.run_Rhino_button('View.tab\\batch_rename_camera.button\\batch_rena
       </button_text>
       <menu_text>
         <locale_1033>ChangeObjectDisplaySource</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1557,7 +1557,7 @@ MODULE_HELPER.run_Rhino_button('View.tab\\change_object_display_source.button\\c
       </button_text>
       <menu_text>
         <locale_1033>ToggleLayerPointer</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1582,7 +1582,7 @@ MODULE_HELPER.run_Rhino_button('View.tab\\toggle_layer_pointer.button\\toggle_la
       </button_text>
       <menu_text>
         <locale_1033>StairMaker</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1607,7 +1607,7 @@ MODULE_HELPER.run_Rhino_button('Create.tab\\stair_maker.button\\stair_maker_left
       </button_text>
       <menu_text>
         <locale_1033>StairMaker(Spiral)</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1632,7 +1632,7 @@ MODULE_HELPER.run_Rhino_button('Create.tab\\stair_maker.button\\stair_maker_righ
       </button_text>
       <menu_text>
         <locale_1033>FlattenMeshFace</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1657,7 +1657,7 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\flatten_mesh_face.button\\flatten_me
       </button_text>
       <menu_text>
         <locale_1033>MakeVoidSeam</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1682,7 +1682,7 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\make_void_seam.button\\make_void_sea
       </button_text>
       <menu_text>
         <locale_1033>MatchCrvDir</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1707,7 +1707,7 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\match_crv_dir.button\\match_crv_dir_
       </button_text>
       <menu_text>
         <locale_1033>OffsetFloorBorder</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1732,7 +1732,7 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\offset_floor_border.button\\offset_f
       </button_text>
       <menu_text>
         <locale_1033>PushGlassIn</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1757,7 +1757,7 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\push_glass_in.button\\push_glass_in_
       </button_text>
       <menu_text>
         <locale_1033>RandomDeselect</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1782,7 +1782,7 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\random_deselect.button\\random_desel
       </button_text>
       <menu_text>
         <locale_1033>RandomDeselect</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1807,7 +1807,7 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\random_deselect.button\\random_desel
       </button_text>
       <menu_text>
         <locale_1033>ShapeMapper</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1832,7 +1832,7 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\shape_mapper.button\\shape_mapper_le
       </button_text>
       <menu_text>
         <locale_1033>SrfToPanel</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1857,7 +1857,7 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\srf_to_panel.button\\srf_to_panel_le
       </button_text>
       <menu_text>
         <locale_1033>TimeTravel</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1882,7 +1882,7 @@ MODULE_HELPER.run_Rhino_button('Modify.tab\\time_travel.button\\time_travel_left
       </button_text>
       <menu_text>
         <locale_1033>ImportSelectedMaterial</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1907,7 +1907,7 @@ MODULE_HELPER.run_Rhino_button('Material.tab\\import_selected_material.button\\i
       </button_text>
       <menu_text>
         <locale_1033>MaterialPrefix</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1932,7 +1932,7 @@ MODULE_HELPER.run_Rhino_button('Material.tab\\material_prefix.button\\material_p
       </button_text>
       <menu_text>
         <locale_1033>MergeMaterials</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1957,7 +1957,7 @@ MODULE_HELPER.run_Rhino_button('Material.tab\\merge_materials.button\\merge_mate
       </button_text>
       <menu_text>
         <locale_1033>RandomTextureWalk</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -1982,7 +1982,7 @@ MODULE_HELPER.run_Rhino_button('Material.tab\\random_texture_walk.button\\random
       </button_text>
       <menu_text>
         <locale_1033>RemoveStringInMaterialName</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2007,7 +2007,7 @@ MODULE_HELPER.run_Rhino_button('Material.tab\\remove_string_in_material_name.but
       </button_text>
       <menu_text>
         <locale_1033>AiRenderingFromView</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2032,7 +2032,7 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\ai_render.button\\view2render_left.p
       </button_text>
       <menu_text>
         <locale_1033>AiRenderUpscale</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2057,7 +2057,7 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\ai_render.button\\render_upscale_rig
       </button_text>
       <menu_text>
         <locale_1033>ImportSelectedCamera</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2082,7 +2082,7 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\import_selected_camera.button\\impor
       </button_text>
       <menu_text>
         <locale_1033>InspectEnscapeSetting</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2107,7 +2107,7 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\inspect_enscape_setting.button\\insp
       </button_text>
       <menu_text>
         <locale_1033>LoadEnscapeToPsd</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2132,7 +2132,7 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\load_enscape_to_psd.button\\load_ens
       </button_text>
       <menu_text>
         <locale_1033>MakeCrvPipe</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2157,7 +2157,7 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\make_crv_pipe.button\\make_crv_pipe_
       </button_text>
       <menu_text>
         <locale_1033>RenameEnscapeFiles</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2182,7 +2182,7 @@ MODULE_HELPER.run_Rhino_button('Render.tab\\rename_enscape_files.button\\rename_
       </button_text>
       <menu_text>
         <locale_1033>DuplicateLayout</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2207,7 +2207,7 @@ MODULE_HELPER.run_Rhino_button('Drafting.tab\\duplicate_layout.button\\duplicate
       </button_text>
       <menu_text>
         <locale_1033>ExportSelectedLayout</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2232,7 +2232,7 @@ MODULE_HELPER.run_Rhino_button('Drafting.tab\\export_selected_pages.button\\expo
       </button_text>
       <menu_text>
         <locale_1033>SectionCrowd</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2257,7 +2257,7 @@ MODULE_HELPER.run_Rhino_button('Drafting.tab\\section_crowd.button\\section_crow
       </button_text>
       <menu_text>
         <locale_1033>VisualizeExcel</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2282,7 +2282,7 @@ MODULE_HELPER.run_Rhino_button('Drafting.tab\\visualize_excel.button\\visualize_
       </button_text>
       <menu_text>
         <locale_1033>OpenSampleExcel</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2307,7 +2307,7 @@ MODULE_HELPER.run_Rhino_button('Drafting.tab\\visualize_excel.button\\visualize_
       </button_text>
       <menu_text>
         <locale_1033>BrepToMass</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2332,7 +2332,7 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\brep_to_mass.button\\brep_to_mass_lef
       </button_text>
       <menu_text>
         <locale_1033>SurfaceToAdaptiveComponent</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2357,7 +2357,7 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\surface_to_adaptive_component.button\
       </button_text>
       <menu_text>
         <locale_1033>MapBlockTransform</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2382,7 +2382,7 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\map_block_transform.button\\map_block
       </button_text>
       <menu_text>
         <locale_1033>ExportForRhino2Revit</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2394,10 +2394,10 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\export_for_rhino2revit.button\\export
     </macro_item>
     <macro_item guid="f9bc4b65-4c7a-4134-9862-0b0592e2a2a0" bitmap_id="bbb2158a-75bd-406d-b271-321196fe57a9">
       <text>
-        <locale_1033>DraftInsulationBatting</locale_1033>Duckitect
+        <locale_1033>DraftInsulationBatting</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>Given base crvs and thickness, it makes a 2D insulation Duckitectraphic that can be any shape. </locale_1033>
+        <locale_1033>Given base crvs and thickness, it makes a 2D insulation batting graphic that can be any shape. </locale_1033>
       </tooltip>
       <help_text>
         <locale_1033>Given base crvs and thickness, it makes a 2D insulation batting graphic that can be any shape. </locale_1033>
@@ -2407,7 +2407,7 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\export_for_rhino2revit.button\\export
       </button_text>
       <menu_text>
         <locale_1033>DraftInsulationBatting</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2432,7 +2432,7 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\draft_insulation_batting.button\\draf
       </button_text>
       <menu_text>
         <locale_1033>RevitDrafterImport</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2457,7 +2457,7 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\revit_drafter.button\\revit_drafter_l
       </button_text>
       <menu_text>
         <locale_1033>RevitDrafterExport</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2482,7 +2482,7 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\revit_drafter.button\\revit_drafter_r
       </button_text>
       <menu_text>
         <locale_1033>ExportCameraToRevit</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2507,7 +2507,7 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\export_camera_to_revit.button\\export
       </button_text>
       <menu_text>
         <locale_1033>MapRevitSubCategoryMaterial</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2532,7 +2532,7 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\map_revit_subc_material.button\\map_r
       </button_text>
       <menu_text>
         <locale_1033>FloorDrafter</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2557,7 +2557,7 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\floor_drafter.button\\floor_drafter_l
       </button_text>
       <menu_text>
         <locale_1033>ImportRevitCollection</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2582,7 +2582,7 @@ MODULE_HELPER.run_Rhino_button('Revit.tab\\import_revit_collection.button\\impor
       </button_text>
       <menu_text>
         <locale_1033>ListenToMiro</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2607,7 +2607,7 @@ MODULE_HELPER.run_Rhino_button('Web.tab\\miro.button\\listen_to_miro_left.py')
       </button_text>
       <menu_text>
         <locale_1033>PushToMiro</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2632,7 +2632,7 @@ MODULE_HELPER.run_Rhino_button('Web.tab\\miro.button\\push_to_miro_right.py')
       </button_text>
       <menu_text>
         <locale_1033>ArchiveFile</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2657,7 +2657,7 @@ MODULE_HELPER.run_Rhino_button('File.tab\\archive_file.button\\archive_file_left
       </button_text>
       <menu_text>
         <locale_1033>SaveSmallAndClose</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2682,7 +2682,7 @@ MODULE_HELPER.run_Rhino_button('File.tab\\save_small_and_close.button\\save_smal
       </button_text>
       <menu_text>
         <locale_1033>CreateWorksession</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2707,7 +2707,7 @@ MODULE_HELPER.run_Rhino_button('File.tab\\create_worksession.button\\create_work
       </button_text>
       <menu_text>
         <locale_1033>BindWorksession</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2732,7 +2732,7 @@ MODULE_HELPER.run_Rhino_button('File.tab\\bind_worksession.button\\bind_worksess
       </button_text>
       <menu_text>
         <locale_1033>ExternalTrimmer</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2757,7 +2757,7 @@ MODULE_HELPER.run_Rhino_button('File.tab\\external_trimmer.button\\external_trim
       </button_text>
       <menu_text>
         <locale_1033>ExternalTrimmer</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2782,7 +2782,7 @@ MODULE_HELPER.run_Rhino_button('File.tab\\external_trimmer.button\\external_trim
       </button_text>
       <menu_text>
         <locale_1033>(1634)ExportWithoutCrv</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2807,7 +2807,7 @@ MODULE_HELPER.run_Rhino_button('Tailor.tab\\export_without_crv.button\\export_wi
       </button_text>
       <menu_text>
         <locale_1033>(1634)RelocateAll</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2832,7 +2832,7 @@ MODULE_HELPER.run_Rhino_button('Tailor.tab\\relocate_file.button\\relocate_left.
       </button_text>
       <menu_text>
         <locale_1033>Stack PSD</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2857,7 +2857,7 @@ MODULE_HELPER.run_Rhino_button('Tailor.tab\\stack_enscape.button\\stack_enscape_
       </button_text>
       <menu_text>
         <locale_1033>move_img_right</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2882,7 +2882,7 @@ MODULE_HELPER.run_Rhino_button('Tailor.tab\\stack_enscape.button\\move_img_right
       </button_text>
       <menu_text>
         <locale_1033>DVD</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2907,7 +2907,7 @@ MODULE_HELPER.run_Rhino_button('Fun.tab\\dvd.button\\dvd_left.py')
       </button_text>
       <menu_text>
         <locale_1033>tester</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2932,7 +2932,7 @@ MODULE_HELPER.run_Rhino_button('Lab.tab\\tester.button\\tester_left.py')
       </button_text>
       <menu_text>
         <locale_1033>UpdateFromRepo</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2957,7 +2957,7 @@ MODULE_HELPER.run_Rhino_button('Lab.tab\\update_from_repo.button\\update_from_re
       </button_text>
       <menu_text>
         <locale_1033>SearchCommand</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2982,7 +2982,7 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\search_command.button\\search_com
       </button_text>
       <menu_text>
         <locale_1033>AliasCheatsheet</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -2994,10 +2994,10 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\alias_cheatsheet.button\\alias_ch
     </macro_item>
     <macro_item guid="63ef9cc5-2b26-44a9-8200-1b9cff5941e6" bitmap_id="db99f412-2902-46bf-bcb5-cc2eeb9bd000">
       <text>
-        <locale_1033>PerforationRatio</loDuckitect>
+        <locale_1033>PerforationRatio</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>Find out how to calcDuckitectr perforation panel with precise opening ratio.</locale_1033>
+        <locale_1033>Find out how to calculate your perforation panel with precise opening ratio.</locale_1033>
       </tooltip>
       <help_text>
         <locale_1033>Find out how to calculate your perforation panel with precise opening ratio.</locale_1033>
@@ -3007,7 +3007,7 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\alias_cheatsheet.button\\alias_ch
       </button_text>
       <menu_text>
         <locale_1033>PerforationRatio</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3032,7 +3032,7 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\perforation_ratio.button\\perfora
       </button_text>
       <menu_text>
         <locale_1033>ChinaCodeRef</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3057,7 +3057,7 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\china_code_ref.button\\china_code
       </button_text>
       <menu_text>
         <locale_1033>PlaceAsset</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3082,7 +3082,7 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\place_asset.button\\place_asset_l
       </button_text>
       <menu_text>
         <locale_1033>SlopeCalculator</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3107,7 +3107,7 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\slope_calculator.button\\slope_ca
       </button_text>
       <menu_text>
         <locale_1033>Turtorial</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3132,7 +3132,7 @@ MODULE_HELPER.run_Rhino_button('Knowledge.tab\\turtorial.button\\turtorial_left.
       </button_text>
       <menu_text>
         <locale_1033>Make A New Button</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3157,7 +3157,7 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\create_new_button.button\\new_butt
       </button_text>
       <menu_text>
         <locale_1033>ExtractPreviewImages</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3182,7 +3182,7 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\extract_preview_images.button\\ext
       </button_text>
       <menu_text>
         <locale_1033>GetLatest</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3207,7 +3207,7 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\get_latest.button\\get_latest_left
       </button_text>
       <menu_text>
         <locale_1033>HowToInstall</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3232,7 +3232,7 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\how_to_install.button\\how_to_inst
       </button_text>
       <menu_text>
         <locale_1033>ResetAllConduit</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3257,7 +3257,7 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\reset_all_conduit.button\\reset_al
       </button_text>
       <menu_text>
         <locale_1033>MakeStar</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3282,7 +3282,7 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\star.button\\star_left.py')
       </button_text>
       <menu_text>
         <locale_1033>YoutubePlaylist</locale_1033>
-      </menu_text>Duckitect
+      </menu_text>
       <script>! _-RunPythonScript (
 import os
 import sys
@@ -3294,10 +3294,10 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\youtube_playlist.button\\youtube_p
     </macro_item>
   </macros>
   <bitmaps>
-    <small_bitmap item_width="16" item_height="16">Duckitect
+    <small_bitmap item_width="16" item_height="16">
       <bitmap_item guid="6385937c-6ea0-4d7b-a3cd-1426ebb2ea6c" index="0"/>
       <bitmap_item guid="2c8b7af2-6768-4b9e-a31e-19cf7f99e644" index="1"/>
-      <bitmap_item guid="2c871455-9be8-4369-a181-230496fe3e1a" index="Duckitect
+      <bitmap_item guid="2c871455-9be8-4369-a181-230496fe3e1a" index="2"/>
       <bitmap_item guid="1219e15f-a6a1-4b6c-8000-8b7a0a406e75" index="3"/>
       <bitmap_item guid="a1d27fa5-e154-469e-a4de-235bddf881a5" index="4"/>
       <bitmap_item guid="4f37ec1d-4fe2-45ff-ac87-74580b367e05" index="5"/>
@@ -3307,7 +3307,7 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\youtube_playlist.button\\youtube_p
       <bitmap_item guid="34d070da-f721-4237-9805-745b188446bf" index="9"/>
       <bitmap_item guid="492314ca-bf9f-4595-a39d-47a4596e9f9f" index="10"/>
       <bitmap_item guid="97cb39ac-1060-4e96-8ced-40f923a566a5" index="11"/>
-      <bitmap_item guid="29fc3343-bd65-497b-8356-5f05ed0Duckitectdex="12"/>
+      <bitmap_item guid="29fc3343-bd65-497b-8356-5f05ed031a8f" index="12"/>
       <bitmap_item guid="9ce73874-9e25-41a1-9bad-6af27bf17bc7" index="13"/>
       <bitmap_item guid="f8f6e717-7108-4f47-8ae0-e3248cbe90f0" index="14"/>
       <bitmap_item guid="496c87f6-4f8e-454e-8509-e14717196965" index="15"/>

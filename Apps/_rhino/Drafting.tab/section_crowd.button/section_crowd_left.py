@@ -1,5 +1,5 @@
 
-__alias__ = "SectionCrowd"
+__title__ = "SectionCrowd"
 __doc__ = "Populate people interactively in TOP view by providing two points."
 
 import Rhino # pyright: ignore
@@ -10,11 +10,11 @@ import sys
 import random
 import os
 import traceback
-from Duckitect import DATA_FILE
-from Duckitect import NOTIFICATION
+from EnneadTab import DATA_FILE
+from EnneadTab import NOTIFICATION
 
 BASIC_BLOCK_NAMES = []
-for block_file in os.listdir(r"L:\4b_Applied Computing\03_Rhino\12_Duckitect for Rhino\bin\Dummy Blocks\EA_People_Elevation_Dummy"):
+for block_file in os.listdir(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\bin\Dummy Blocks\EA_People_Elevation_Dummy"):
     if block_file.endswith(".3dm"):
         dummy_block_name = block_file.split(".")[0]
         BASIC_BLOCK_NAMES.append(dummy_block_name)
@@ -25,9 +25,9 @@ class GetPointUI(Rhino.Input.Custom.GetPoint):
         self.other_point = other_point
         self.spacing = spacing
         if not other_point:
-            self.title = "Duckitect Sectional Crowd: First Point"
+            self.title = "EnneadTab Sectional Crowd: First Point"
         else:
-            self.title = "Duckitect Sectional Crowd: Second Point"
+            self.title = "EnneadTab Sectional Crowd: Second Point"
         self.dummy_block_name = BASIC_BLOCK_NAMES[0]
     
     
@@ -179,12 +179,12 @@ def section_crowd():
 
 def insert_ref_block( dummy_block_name):
     if rs.IsBlock(dummy_block_name):
-        # Duckitect.NOTIFICATION.messenger(main_text = "Block Already Exists")
+        # EnneadTab.NOTIFICATION.messenger(main_text = "Block Already Exists")
         
         return
     
     NOTIFICATION.messenger(main_text = "Block Importing")
-    external_block_filepath = r"L:\4b_Applied Computing\03_Rhino\12_Duckitect for Rhino\bin\Dummy Blocks\EA_People_Elevation_Dummy\{}.3dm".format(dummy_block_name)
+    external_block_filepath = r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\bin\Dummy Blocks\EA_People_Elevation_Dummy\{}.3dm".format(dummy_block_name)
 
     dummyInitialObjects = [Rhino.Geometry.Point(Rhino.Geometry.Plane.WorldXY.Origin)]
     dummyInitialAttributes = [Rhino.DocObjects.ObjectAttributes()]

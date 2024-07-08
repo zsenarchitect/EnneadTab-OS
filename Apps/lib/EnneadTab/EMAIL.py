@@ -17,7 +17,7 @@ if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
 
 def email(receiver_email_list,
           body,
-          subject="Duckitect Auto Email",
+          subject="EnneadTab Auto Email",
           body_folder_link_list=None,
           body_image_link_list=None,
           attachment_list=None):
@@ -55,7 +55,7 @@ def email(receiver_email_list,
         subject.lower().replace("ennead", "enni-ed ")))
     
 
-def email_error(traceback, tool_name, error_from_user, subject_line="Duckitect Auto Email Error Log"):
+def email_error(traceback, tool_name, error_from_user, subject_line="EnneadTab Auto Email Error Log"):
 
     t = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(int(time.time())))
     try:
@@ -115,7 +115,7 @@ def email_error(traceback, tool_name, error_from_user, subject_line="Duckitect A
           attachment_list=None)
 
 
-def email_to_self(subject="Duckitect Auto Email to Self",
+def email_to_self(subject="EnneadTab Auto Email to Self",
                 body=None,
                 body_folder_link_list=None,
                 body_image_link_list=None,

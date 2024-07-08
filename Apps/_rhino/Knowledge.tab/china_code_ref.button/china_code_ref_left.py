@@ -1,9 +1,9 @@
 
-__alias__ = "ChinaCodeRef"
+__title__ = "ChinaCodeRef"
 __doc__ = "This button does ChinaCodeRef when left click"
 import subprocess
-from Duckitect import EXE, FOLDER
-from Duckitect.RHINO import RHINO_FORMS
+from EnneadTab import EXE, FOLDER
+from EnneadTab.RHINO import RHINO_FORMS
 
 
 def china_code_ref():

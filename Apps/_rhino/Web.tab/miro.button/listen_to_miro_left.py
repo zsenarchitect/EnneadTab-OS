@@ -1,11 +1,11 @@
 
-__alias__ = "ListenToMiro"
+__title__ = "ListenToMiro"
 __doc__ = "Listen to changes in the miro"
 
 
 import os
 import threading
-import Duckitect
+import EnneadTab
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
 import traceback
@@ -29,7 +29,7 @@ def try_catch_error(func):
           
     return wrapper
 
-class RhinoMiroListener_Conduit(Duckitect.RHINO.RHINO_CONDUIT.RhinoConduit):
+class RhinoMiroListener_Conduit(EnneadTab.RHINO.RHINO_CONDUIT.RhinoConduit):
     def __init__(self):
 
         self.life_span = 30
@@ -53,7 +53,7 @@ class RhinoMiroListener_Conduit(Duckitect.RHINO.RHINO_CONDUIT.RhinoConduit):
             # self.DrawOverlay(self.e)
 
             
-        Duckitect.EXE.open_exe("MIRO_Headless")
+        EnneadTab.EXE.open_exe("MIRO_Headless")
         rs.Redraw()
 
        
@@ -125,7 +125,7 @@ class RhinoMiroListener_Conduit(Duckitect.RHINO.RHINO_CONDUIT.RhinoConduit):
                                     text = "Right click to push select rhino element to miro.",
                                     size = 15)
         self.show_text_with_pointer(e,
-                                    text = "Lat Update Timestamp: {}".format(Duckitect.TIME.get_formatted_current_time()),
+                                    text = "Lat Update Timestamp: {}".format(EnneadTab.TIME.get_formatted_current_time()),
                                     size = 15)
         return
         self.pointer_2d += Rhino.Geometry.Vector2d(0, 20)
@@ -149,16 +149,16 @@ class RhinoMiroListener_Conduit(Duckitect.RHINO.RHINO_CONDUIT.RhinoConduit):
 def listen_to_miro():
 
     key = "RECENT_MIRO_URL_RHINO"
-    recent_url = Duckitect.DATA_FILE.get_revit_ui_setting_data(key_defaule_value=(key,"https://miro.com/app/board/uXjVNsgWNfA=/"))
+    recent_url = EnneadTab.DATA_FILE.get_revit_ui_setting_data(key_defaule_value=(key,"https://miro.com/app/board/uXjVNsgWNfA=/"))
     miro_url = rs.StringBox(
         message = "Please input the Miro board URL:",
         default_value= recent_url,
         title = "Listen To Miro")
 
     print ("Miro URL: " + miro_url)
-    Duckitect.DATA_FILE.set_revit_ui_setting_data(key, miro_url)
+    EnneadTab.DATA_FILE.set_revit_ui_setting_data(key, miro_url)
 
-    with Duckitect.DATA_FILE.update_data("miro.json") as data:
+    with EnneadTab.DATA_FILE.update_data("miro.json") as data:
         data['url'] = miro_url
         data["app"] = "rhino_listener"
         data["frequency"] = 1

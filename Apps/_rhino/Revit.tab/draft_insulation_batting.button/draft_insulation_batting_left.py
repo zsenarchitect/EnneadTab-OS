@@ -1,12 +1,12 @@
 
-__alias__ = "DraftInsulationBatting"
+__title__ = "DraftInsulationBatting"
 __doc__ = "Given base crvs and thickness, it makes a 2D insulation batting graphic that can be any shape. "
 import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 import os
 
-from Duckitect import DATA_FILE, ENVIRONMENT_CONSTANTS
+from EnneadTab import DATA_FILE, ENVIRONMENT_CONSTANTS
 
 
 

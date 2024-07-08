@@ -32,7 +32,7 @@ inside .button folder you have all the contents to make a button.
 
 inside the left/right script, you need:
     - a primary function called 'xxx' or 'xxx_left' or 'xxx_right'. Without this primary function the parser cannot find it to call.
-    - define __alias__ that become the name of the button, as well as command alias in the future
+    - define __title__ that become the name of the button, as well as command alias in the future
     - define __doc__ that describe what it does
 
 

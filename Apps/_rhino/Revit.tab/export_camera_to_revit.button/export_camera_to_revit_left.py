@@ -1,11 +1,11 @@
 
-__alias__ = "ExportCameraToRevit"
+__title__ = "ExportCameraToRevit"
 __doc__ = "You can recreate same 3D camera in Revit by exporting cameras from Rhino here first."
 
 import Rhino # pyright: ignore
 import scriptcontext as sc
 
-from Duckitect import FOLDER, NOTIFICATION
+from EnneadTab import FOLDER, NOTIFICATION
 
 def export_camera_to_revit():
     filepath = FOLDER.get_EA_dump_folder_file("EA_CAMERA_TRANSFER.3dm")

@@ -1,6 +1,6 @@
 
 
-__alias__ = "MaterialPrefix"
+__title__ = "MaterialPrefix"
 __doc__ = "Add prefix to material so when sessioning rhino the enscape can treat matreail seperately and not turn white."
 
 import scriptcontext as sc

@@ -1,5 +1,5 @@
 
-__alias__ = "ArchiveFile"
+__title__ = "ArchiveFile"
 __doc__ = "Archive files based on today's date, creation date or last modifyed date."
 
 
@@ -8,8 +8,8 @@ import rhinoscriptsyntax as rs
 
 
 from datetime import date, datetime
-from Duckitect import FOLDER
-from Duckitect.RHINO import RHINO_FORMS
+from EnneadTab import FOLDER
+from EnneadTab.RHINO import RHINO_FORMS
 
 def get_date(timestamp):
     return str(datetime.fromtimestamp(timestamp)).split(" ")[0]

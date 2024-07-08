@@ -1,9 +1,9 @@
 
-__alias__ = "(1634)ExportWithoutCrv"
+__title__ = "(1634)ExportWithoutCrv"
 __doc__ = "Export the rhino file as dwg but solidate all blocks and remove all crvs."
 
 import rhinoscriptsyntax as rs
-from Duckitect import NOTIFICATION
+from EnneadTab import NOTIFICATION
 
 
 def export_without_crv():

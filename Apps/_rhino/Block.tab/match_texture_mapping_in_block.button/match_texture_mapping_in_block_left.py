@@ -1,5 +1,5 @@
 
-__alias__ = "MatchTextureMappingInBlock"
+__title__ = "MatchTextureMappingInBlock"
 __doc__ = "Pick a source block, then apply the texture mapping of this block to other blocks selected."
 
 import rhinoscriptsyntax as rs

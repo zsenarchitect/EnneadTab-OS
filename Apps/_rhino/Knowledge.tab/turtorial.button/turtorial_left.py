@@ -1,11 +1,11 @@
 
-__alias__ = "Turtorial"
+__title__ = "Turtorial"
 __doc__ = "This button does Turtorial when left click"
 import rhinoscriptsyntax as rs
 import subprocess
 
-from Duckitect import FOLDER, EXE
-from Duckitect.RHINO import RHINO_FORMS
+from EnneadTab import FOLDER, EXE
+from EnneadTab.RHINO import RHINO_FORMS
 
 
 
@@ -20,7 +20,7 @@ def open_gh_by_selection(folder, selected_opt):
 
     import sys
     sys.path.append("..\lib")
-    from Duckitect import SHORTCUT
+    from EnneadTab import SHORTCUT
     target = SHORTCUT.parse_shortcut(shortcut_path)
 
 
@@ -29,7 +29,7 @@ def open_gh_by_selection(folder, selected_opt):
  
 
 def open_local_tutorial():
-    folder = 'L:\\4b_Applied Computing\\03_Rhino\\12_Duckitect for Rhino\\Documents\\Tutorials'
+    folder = 'L:\\4b_Applied Computing\\03_Rhino\\12_EnneadTab for Rhino\\Documents\\Tutorials'
     files = FOLDER.get_filenames_in_folder(folder)
     special_folder = "#PDF in this directory are reference only"
     files.remove(special_folder)
@@ -48,7 +48,7 @@ def open_local_tutorial():
 
     if keyword == selected_opt:
 
-        path = r"file:\\L:\4b_Applied Computing\03_Rhino\12_Duckitect for Rhino\Documents\Tutorials\#PDF in this directory are reference only"
+        path = r"file:\\L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Documents\Tutorials\#PDF in this directory are reference only"
         subprocess.Popen(r'explorer /select, {}'.format(path))
         return
 
@@ -70,7 +70,7 @@ def open_playlist():
 
 def turtorial():
 
-    opts = ["L drive contents(PDFs, Docs, GH Scripts, Videos)", "Duckitect YouTube Playlist"]
+    opts = ["L drive contents(PDFs, Docs, GH Scripts, Videos)", "EnneadTab YouTube Playlist"]
     res = rs.PopupMenu(items = opts, modes = [0, 0])
 
 

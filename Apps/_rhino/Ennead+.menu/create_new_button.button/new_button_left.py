@@ -1,5 +1,5 @@
 
-__alias__ = "Make A New Button"
+__title__ = "Make A New Button"
 from ui import UI
 """
 Use this button to create new button folder.
@@ -12,7 +12,7 @@ This should be alloed to run indepdently
 
 
 def new_button():
-    tab_folders = r"C:\Users\szhang\github\Duckitect-for-Rhino\Toolbar"
+    tab_folders = r"C:\Users\szhang\github\EnneadTab-for-Rhino\Toolbar"
 
 
     try:

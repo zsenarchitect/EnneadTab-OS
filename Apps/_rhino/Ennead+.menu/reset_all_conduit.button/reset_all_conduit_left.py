@@ -1,5 +1,5 @@
 
-__alias__ = "ResetAllConduit"
+__title__ = "ResetAllConduit"
 __doc__ = "Reset all conduits"
 
 import scriptcontext as sc

@@ -1,5 +1,5 @@
 
-__alias__ = "SrfToPanel"
+__title__ = "SrfToPanel"
 __doc__ = "Convert well defined panelization of surfs to detailed polysrfs with thickness, joint reveal to edge."
 
 
@@ -7,7 +7,7 @@ import rhinoscriptsyntax as rs
 import time
 
 
-from Duckitect import NOTIFICATION, DATA_FILE
+from EnneadTab import NOTIFICATION, DATA_FILE
 
 def srf_to_panel():
     srfs = rs.GetObjects("get base srfs", preselect = True, filter=rs.filter.surface)

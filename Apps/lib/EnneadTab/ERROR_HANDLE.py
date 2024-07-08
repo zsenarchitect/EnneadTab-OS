@@ -23,7 +23,7 @@ def try_catch_error(is_silent=False, is_pass = False):
                 print_note("Wrapper func for EA Log -- Error: " + str(e))
                 error = traceback.format_exc()
 
-                subject_line = "Duckitect Auto Error Log"
+                subject_line = "EnneadTab Auto Error Log"
                 if is_silent:
                     subject_line += "(Silent)"
                 try:
@@ -33,7 +33,7 @@ def try_catch_error(is_silent=False, is_pass = False):
 
                 if not is_silent:
 
-                    error += "\n\n######If you have Duckitect UI window open, just close the original Duckitect window(not this textnote). Do no more action, otherwise the program might crash.##########\n#########Not sure what to do? Msg Sen Zhang, you have dicovered a important bug and we need to fix it ASAP!!!!!########"
+                    error += "\n\n######If you have EnneadTab UI window open, just close the original EnneadTab window(not this textnote). Do no more action, otherwise the program might crash.##########\n#########Not sure what to do? Msg Sen Zhang, you have dicovered a important bug and we need to fix it ASAP!!!!!########"
                     error_file = FOLDER.get_EA_dump_folder_file("error_general_log.txt")
                     try:
                         with open(error_file, "w") as f:
@@ -45,7 +45,7 @@ def try_catch_error(is_silent=False, is_pass = False):
 
                 if ENVIRONMENT.IS_REVIT_ENVIRONMENT and not is_silent:
                     NOTIFICATION.messenger(
-                        main_text="!Critical Warning, close all Revit UI window from Duckitect and reach to Sen Zhang.")
+                        main_text="!Critical Warning, close all Revit UI window from EnneadTab and reach to Sen Zhang.")
         return wrapper
     return decorator
 
@@ -53,7 +53,7 @@ def try_catch_error(is_silent=False, is_pass = False):
 
 def print_note(string):
 
-    if USER.is_Duckitect_developer():
+    if USER.is_EnneadTab_developer():
         try:
             from pyrevit import script
             string = str(string)

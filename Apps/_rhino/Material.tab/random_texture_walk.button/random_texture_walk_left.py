@@ -1,5 +1,5 @@
 
-__alias__ = "RandomTextureWalk"
+__title__ = "RandomTextureWalk"
 __doc__ = "Randomly walk the texture map a bit to avoid them lineup"
 
 import rhinoscriptsyntax as rs
@@ -7,7 +7,7 @@ import scriptcontext as sc
 import Rhino # pyright: ignore
 import random
 import clr # pyright: ignore
-from Duckitect import DATA_FILE, NOTIFICATION
+from EnneadTab import DATA_FILE, NOTIFICATION
 
 def random_texture_walk():
     objs = rs.GetObjects("Pick objs to random texture walk", preselect=True)

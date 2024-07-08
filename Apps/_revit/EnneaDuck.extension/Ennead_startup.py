@@ -21,15 +21,15 @@ if lib_dir not in sys.path:
 
 import proDUCKtion # pyright: ignore 
 
-from Duckitect import VERSION_CONTROL, LOG, ERROR_HANDLE
+from EnneadTab import VERSION_CONTROL, LOG, ERROR_HANDLE
 
 
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 @LOG.log
-def Duckitect_startup():
+def EnneadTab_startup():
     VERSION_CONTROL.update_EA_dist()
 
 
 
 if __name__ == "__main__":
-    Duckitect_startup()
+    EnneadTab_startup()

@@ -1,4 +1,4 @@
-__alias__ = "MakeStar"
+__title__ = "MakeStar"
 
 
 

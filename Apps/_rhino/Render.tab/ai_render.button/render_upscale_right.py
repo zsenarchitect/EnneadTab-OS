@@ -1,5 +1,5 @@
 
-__alias__ = "AiRenderUpscale"
+__title__ = "AiRenderUpscale"
 __doc__ = "Upscale AI generated images."
 
 import time
@@ -9,8 +9,8 @@ import scriptcontext as sc
 import Eto # pyright: ignore
 import os
 
-from Duckitect import NOTIFICATION, EXE, DATA_FILE, FOLDER, TIME
-from Duckitect.RHINO import RHINO_UI
+from EnneadTab import NOTIFICATION, EXE, DATA_FILE, FOLDER, TIME
+from EnneadTab.RHINO import RHINO_UI
 
 
 class RenderUpscalerDialog(Eto.Forms.Form):
@@ -33,7 +33,7 @@ class RenderUpscalerDialog(Eto.Forms.Form):
     
     # Class initializer
     def __init__(self):
-        self.root_folder = "{}\Documents\Duckitect Settings\Local Copy Dump\Duckitect_Ai_Rendering".format(os.environ["USERPROFILE"])
+        self.root_folder = "{}\Documents\EnneadTab Settings\Local Copy Dump\EnneadTab_Ai_Rendering".format(os.environ["USERPROFILE"])
 
         # print self.root_folder
         # print self.get_all_session_folders()
@@ -240,7 +240,7 @@ class RenderUpscalerDialog(Eto.Forms.Form):
 
     @property
     def previous_data(self):
-        return DATA_FILE.read_json_as_dict(os.path.join(self.session_folder, "Duckitect AI Meta Data.json"))
+        return DATA_FILE.read_json_as_dict(os.path.join(self.session_folder, "EnneadTab AI Meta Data.json"))
 
     
     
@@ -280,7 +280,7 @@ class RenderUpscalerDialog(Eto.Forms.Form):
         try:
             os.startfile(self.session_folder)
             
-            # os.startfile("{}\Documents\Duckitect Settings\Local Copy Dump\Duckitect_Ai_Rendering".format(os.environ["USERPROFILE"]))
+            # os.startfile("{}\Documents\EnneadTab Settings\Local Copy Dump\EnneadTab_Ai_Rendering".format(os.environ["USERPROFILE"]))
         except:
             print ("Folder not exist, please wait")
 
@@ -365,7 +365,7 @@ class RenderUpscalerDialog(Eto.Forms.Form):
     @property
     def input_image_filename(self):
         main_folder = FOLDER.get_EA_local_dump_folder()
-        session_folder = main_folder + "\\Duckitect_Ai_Rendering\\Session_{}_Upscale".format(self.session)
+        session_folder = main_folder + "\\EnneadTab_Ai_Rendering\\Session_{}_Upscale".format(self.session)
         if not os.path.exists(session_folder):
             os.makedirs(session_folder)
 

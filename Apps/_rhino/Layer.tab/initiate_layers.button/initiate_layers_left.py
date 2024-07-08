@@ -1,5 +1,5 @@
 
-__alias__ = "InitiateLayers"
+__title__ = "InitiateLayers"
 __doc__ = "Initiate layer tree for quick start on programing or facade design."
 
 import rhinoscriptsyntax as rs
@@ -7,7 +7,7 @@ import scriptcontext as sc
 import Rhino # pyright: ignore
 
 
-from Duckitect import COLOR
+from EnneadTab import COLOR
 
 LAYER_COLOR_MAP_BY_MATERIAL = {
     "Glass": (162, 195, 208),

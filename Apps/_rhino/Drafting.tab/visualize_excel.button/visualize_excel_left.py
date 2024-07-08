@@ -1,5 +1,5 @@
 
-__alias__ = "VisualizeExcel"
+__title__ = "VisualizeExcel"
 __doc__ = "Convert excel data to shape diagrams."
 
 
@@ -10,9 +10,9 @@ import math
 import textwrap
 
 
-from Duckitect import NOTIFICATION
-from Duckitect import DATA_FILE
-from Duckitect import EXCEL
+from EnneadTab import NOTIFICATION
+from EnneadTab import DATA_FILE
+from EnneadTab import EXCEL
 
 def visualize_excel():
     ShapeWriter().write_shape()
@@ -41,14 +41,14 @@ class ShapeWriter:
         # print input_text
         # print type(input_text)
         
-        if Duckitect.USER.is_SZ():
-            filepath = Duckitect.FOLDER.get_EA_dump_folder_file("excel_area_data.txt")
+        if EnneadTab.USER.is_SZ():
+            filepath = EnneadTab.FOLDER.get_EA_dump_folder_file("excel_area_data.txt")
             
        
-            Duckitect.DATA_FILE.save_list_to_txt([input_text], filepath, end_with_new_line = False, use_encode = True)
-            text = Duckitect.DATA_FILE.read_txt_as_list(filepath, use_encode = True)
+            EnneadTab.DATA_FILE.save_list_to_txt([input_text], filepath, end_with_new_line = False, use_encode = True)
+            text = EnneadTab.DATA_FILE.read_txt_as_list(filepath, use_encode = True)
             return text[0]
-            return Duckitect.UNICODE.convert_unicode_to_string(input_text)
+            return EnneadTab.UNICODE.convert_unicode_to_string(input_text)
         else:
             return input_text
         # wrapper = textwrap.TextWrapper(width = 100)
@@ -92,20 +92,20 @@ class ShapeWriter:
         if not path:
             return
         all_sheets = EXCEL.get_all_worksheets(path)
-        sheet = rs.ListBox(all_sheets, "Pick the sheet for excel area data", title="Duckitect Visualize Excel")
+        sheet = rs.ListBox(all_sheets, "Pick the sheet for excel area data", title="EnneadTab Visualize Excel")
         if not sheet:
             return
         self.datas = EXCEL.read_data_from_excel(path, worksheet = sheet)
         # print self.datas
         
-        # filepath = Duckitect.FOLDER.get_EA_dump_folder_file("excel_area_data.txt")
+        # filepath = EnneadTab.FOLDER.get_EA_dump_folder_file("excel_area_data.txt")
         # for i, entry in enumerate(self.datas):
         #     text, num = entry[:2], entry[2:]
-        #     Duckitect.DATA_FILE.save_list_to_txt(text, filepath, end_with_new_line = False, use_encode = True)
-        #     text = Duckitect.DATA_FILE.read_txt_as_list(filepath, use_encode = True)
+        #     EnneadTab.DATA_FILE.save_list_to_txt(text, filepath, end_with_new_line = False, use_encode = True)
+        #     text = EnneadTab.DATA_FILE.read_txt_as_list(filepath, use_encode = True)
         #     self.datas[i] = text + num
         
-        opt = rs.ListBox(["Circle", "Square", "Bar"], "What shape to use?",  title="Duckitect Visualize Excel")
+        opt = rs.ListBox(["Circle", "Square", "Bar"], "What shape to use?",  title="EnneadTab Visualize Excel")
         self.basic_shape = opt
         if opt == "Bar":
             self.fix_bar_width = rs.RealBox("What is the width of the bar?")

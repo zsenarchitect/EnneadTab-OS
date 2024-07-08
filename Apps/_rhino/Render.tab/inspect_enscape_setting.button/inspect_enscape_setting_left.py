@@ -1,12 +1,12 @@
 
-__alias__ = "InspectEnscapeSetting"
+__title__ = "InspectEnscapeSetting"
 __doc__ = "This button does InspectEnscapeSetting when left click"
 
 
 import rhinoscriptsyntax as rs
 
 import json
-from Duckitect import FOLDER
+from EnneadTab import FOLDER
 
 def inspect_setting_file(path):
     OUT = []

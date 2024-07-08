@@ -1,5 +1,5 @@
 
-__alias__ = "IsolateLayerBySelection"
+__title__ = "IsolateLayerBySelection"
 __doc__ = "This button does IsolateLayerBySelection when left click"
 import rhinoscriptsyntax as rs
 

@@ -130,7 +130,7 @@ def read_data_from_excel(filepath, worksheet = None, by_line = True, return_dict
 
 
 
-def save_data_to_excel(data, filepath, worksheet = "Duckitect", open_after = True):
+def save_data_to_excel(data, filepath, worksheet = "EnneadTab", open_after = True):
     """_summary_
 
     Args:
@@ -139,7 +139,7 @@ def save_data_to_excel(data, filepath, worksheet = "Duckitect", open_after = Tru
         
         
         filepath (_type_): _description_
-        worksheet (str, optional): _description_. Defaults to "Duckitect".
+        worksheet (str, optional): _description_. Defaults to "EnneadTab".
         open_after (bool, optional): _description_. Defaults to True.
     """
     # note to self: rework the format method in dataitem so can construct any combonation format

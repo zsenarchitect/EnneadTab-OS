@@ -1,5 +1,4 @@
 
-
 pyinstaller
 pillow
 auto_py_to_exe
@@ -12,4 +11,4 @@ xlsxwriter
 pyyaml
 gtts
 pygame
-# playsound
+playsound

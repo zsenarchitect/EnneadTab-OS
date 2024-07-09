@@ -7,6 +7,8 @@ Download "EnneadTab_OS_Installer.exe"
 - https://github.com/zsenarchitect/EA_Dist/blob/30d7f429ab6a2a045f703008efc3b60a45e4f343/Installation/EnneadTab_OS_Installer.exe
 
 save anywhere and run it. It might takes a few seconds to unpack the contents.
+![alt text](Apps\\lib\\EnneadTab\\images\\Instruction_core.png)
+
 
 
 ## 2.1. EnneadTab-For-Revit(Legacy)

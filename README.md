@@ -1,6 +1,6 @@
 # EnneadTab-OS
-![alt text](landing-logo.png)
 
+![alt text](Apps\\lib\\EnneadTab\\images\\logo_ennead-e.png)
 working plan:
 1. start fresh, this is the new home of EVERYTHING, no external reference. All asset and exe access from within this folder
 2. working env: the dev side only live in DEV AVD to ensure rule #1. The content is pushed to EA_Dist becasue that is a public repo and are ok to be wiped as needed and limit the content for public....

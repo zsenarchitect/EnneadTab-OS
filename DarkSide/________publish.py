@@ -218,13 +218,14 @@ def publish_duck():
 def manual_confirm_should_compile_exe():
     """manua change date to see if I should recompile exe
     so each recompile is more intentional"""
-    return str(datetime.date.today()) == "2024-07-09"
+    return str(datetime.date.today()) == "2024-07-0d9"
     
 
 def print_title(text):
     # ANSI escape code for larger text
     large_text = "\033[1m" + text + "\033[0m"
     print(large_text)
+
 
 
 if __name__ == '__main__':

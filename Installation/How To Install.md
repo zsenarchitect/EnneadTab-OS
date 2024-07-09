@@ -4,10 +4,10 @@
 ## 1. Setup Basic
 Download "EnneadTab_OS_Installer.exe"
 
-- https://github.com/zsenarchitect/EA_Dist/blob/30d7f429ab6a2a045f703008efc3b60a45e4f343/Installation/EnneadTab_OS_Installer.exe
+- https://github.com/zsenarchitect/EA_Dist/blob/main/Installation/EnneadTab_OS_Installer.exe
 
 save anywhere and run it. It might takes a few seconds to unpack the contents.
-![alt text](Apps\\lib\\EnneadTab\\images\\Instruction_core.png)
+![screenshot of downloading page](/Apps/lib/EnneadTab/images/Instruction_core.png)
 
 
 
@@ -44,3 +44,7 @@ save anywhere and run it. It might takes a few seconds to unpack the contents.
 2. Have only ONE Rhino open, then drag "EnneadTab_For_Rhino_Installer.rui" into the Rhino window
 3. From the top of toolbar, find "Enneaaaaaaaaaaaad" menu and click on "Install".
 4. Restart Rhino.
+
+
+> [!IMPORTANT]
+> Rhino only remember the setting of most recent closed Rhino. Using only one rhino help to make installation stick.

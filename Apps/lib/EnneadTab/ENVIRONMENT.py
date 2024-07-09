@@ -46,9 +46,10 @@ USER_APPDATA_FOLDER = "{}\\AppData".format(USER_PROFILE_FOLDER)
 ECO_SYS_FOLDER = "{}\\EnneadTab Ecosystem".format(USER_DOCUMENT_FOLDER)
 DUMP_FOLDER = ECO_SYS_FOLDER + "\\Dump"
 
-from FOLDER import secure_folder
-secure_folder(ECO_SYS_FOLDER)
-secure_folder(DUMP_FOLDER)
+for folder in [ECO_SYS_FOLDER, DUMP_FOLDER]:
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
 
 
 

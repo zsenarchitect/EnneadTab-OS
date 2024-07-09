@@ -31,24 +31,33 @@ def register_alias_set():
         for file in files:
             if file.endswith(".py"):
                 full_path = os.path.join(root, file)
+                # print (full_path)
+                # print(full_path.split("_rhino\\")[1])
 
                 if full_path.split("_rhino\\")[1] not in data.keys():
                     continue
+                
 
 
-                alias_list = data.get('__title__')
+                alias_list = data.get(full_path.split("_rhino\\")[1]).get('alias')
+
+
                 if not isinstance(alias_list, list):
                     alias_list = [alias_list]
 
                 for alias in alias_list:
+                    if not alias:
+                        continue
+
                     if rs.IsAlias(alias) and "_rhino" not in exisitng_alias:
                         #Skip setting alias for {} due to overlapping names, this is usually becasue user has setup their personal alias that happen to be same name as EA ones
                         continue
 
-                        
+
                     script_content = '! _-RunPythonScript "{}"'.format(full_path)
                     if os.path.exists(full_path):
                         if alias == alias.upper():
                             rs.AddAlias(alias, script_content)
                         else:
                             rs.AddAlias("EA_" + alias, script_content)
+

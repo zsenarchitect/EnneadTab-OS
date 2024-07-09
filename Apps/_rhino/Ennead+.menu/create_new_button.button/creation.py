@@ -18,6 +18,8 @@ from EnneadTab import ERROR_HANDLE, LOG
 @ERROR_HANDLE.try_catch_error()
 def {2}():
     {3}
+
+    
 if __name__ == "__main__":
     {2}()
 """
@@ -34,7 +36,7 @@ def make_button(tab_folder, button_name, is_left_click = True):
 
    
 
-    button_folder = "{}\\{}.button".format(tab_folder, button_name)
+    button_folder = "{}\\{}.button".format(tab_folder, button_name.replace(" ", "_"))
     if not os.path.exists(button_folder):
         os.makedirs(button_folder)
 

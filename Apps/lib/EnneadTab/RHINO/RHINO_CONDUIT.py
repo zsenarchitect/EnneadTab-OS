@@ -1,14 +1,14 @@
 """base class for setting up display conduit"""
 
-
-try:
+import ENVIRONMENT
+if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
     import Rhino # pyright: ignore
     import rhinoscriptsyntax as rs
     import System # pyright: ignore
     import traceback
     
     REF_CLASS = Rhino.Display.DisplayConduit
-except:
+else:
     REF_CLASS = object
 
 

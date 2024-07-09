@@ -1,6 +1,7 @@
 
 import os
 import ENVIRONMENT
+import NOTIFICATION
 
 def try_open_app(exe_name):
     """extension optional"""
@@ -21,6 +22,7 @@ def try_open_app(exe_name):
         print ("[SZ only log]No exe found in the location.")
         print (exe)
         print (foldered_exe)
+        NOTIFICATION.messenger("No exe found!!!\n{}".format(exe_name))
     return False
 
 

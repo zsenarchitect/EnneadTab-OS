@@ -18,6 +18,7 @@ import UNIT_TEST #pyright: ignore
 import NOTIFICATION #pyright: ignore
 import FOLDER #pyright: ignore
 import SOUND # pyright: ignore
+import VERSION_CONTROL #pyright: ignore
 
 class NoGoodSetupException(Exception):
     def __init__(self):
@@ -211,6 +212,7 @@ def publish_duck():
         
     print_title ("\n\npush uptdate to EA dist folder")
     copy_to_EA_Dist_and_commit()
+    VERSION_CONTROL.update_EA_dist()
 
 
 def manual_confirm_should_compile_exe():

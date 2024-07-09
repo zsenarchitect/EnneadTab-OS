@@ -10,7 +10,7 @@ import ENVIRONMENT
 import ENVIRONMENT
 import COLOR
 
-if ENVIRONMENT.is_Rhino_environment():
+if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
     import rhinoscriptsyntax as rs
     import scriptcontext as sc
     import Eto # pyright: ignore

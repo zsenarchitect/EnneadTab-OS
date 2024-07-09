@@ -1,7 +1,7 @@
 import json
 
 import ENVIRONMENT
-if ENVIRONMENT.is_Rhino_environment():
+if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
     import Rhino # pyright: ignore
     import rhinoscriptsyntax as rs
 

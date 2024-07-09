@@ -1,4 +1,4 @@
-__title__ = "EnneadTab Startup"
+__title__ = "EnneadTab_Startup"
 __doc__ = "Automatically run on every new rhino start session if bind to Rhino setting."
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore

@@ -79,6 +79,12 @@ def write_rui(json_data, final_file):
         xml_file.write(pretty_xml.encode("utf-8"))
 
 
+    rui_folder = os.path.dirname(os.path.dirname(__file__))
+    for file in os.listdir(rui_folder):
+        if file.endswith(".rui_bak"):
+            os.remove(os.path.join(rui_folder, file))
+
+
 
 
 

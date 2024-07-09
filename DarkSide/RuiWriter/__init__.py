@@ -62,10 +62,11 @@ import os
 
 
 import sys
+
 sys.path.append(os.path.join(os.path.dirname(__file__), "."))
 from IconHandler import IconHandler
 from GuidHandler import GuidHandler
-import MacroHandler as MH
+import MacroHandler as MacroH
 import TabHandler as TH
 import final_save as FS
 import TabGroupHandler as TGH 
@@ -212,6 +213,9 @@ class RuiWriter:
 
         # save as rui as something new that can check and compare with real WIP
         self.save_to_rui()
+
+
+        self.handle_startup()
         
 
 
@@ -245,6 +249,13 @@ class RuiWriter:
         
         # pprint.pprint(self.main_data, indent=2)
 
+    def handle_startup(self):
+        for file in os.listdir(self.search_folder):
+            if file.endswith("startup.py"):
+                script_path = os.path.join(self.search_folder, file)
+                icon = None
+                script_gloabl_vars_dict = MacroH.extract_global_variables(script_path)
+                KnowledgeHandler(script_path, icon, script_gloabl_vars_dict)
 
     def save_to_rui(self):
 

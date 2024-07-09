@@ -171,14 +171,14 @@ def push_changes_to_main(repository_path):
     return True
 
 
-def update_installer_folder():
+def update_installer_folder_exes():
     # locate the EA_Dist repo folder and current repo folder
     # the current repo folder is 3 parent folder up
 
     installation_folder = os.path.join(OS_REPO_FOLDER, "Installation")
-    if os.path.exists(installation_folder):
-        shutil.rmtree(installation_folder)
-    os.makedirs(installation_folder)
+    for file in os.listdir(installation_folder):
+        if file.endswith(".exe"):
+            os.remove(os.path.join(installation_folder, file))
 
 
     # copy folder from current repo to EA_dist repo
@@ -199,7 +199,7 @@ def publish_duck():
     else:
         NOTIFICATION.messenger("NOT compiling exes today...")
     print_title ("\n\nBegin updating installation folder for public easy install...")
-    update_installer_folder()
+    update_installer_folder_exes()
 
 
     # recompile the rui layout for rhino
@@ -216,7 +216,7 @@ def publish_duck():
 def manual_confirm_should_compile_exe():
     """manua change date to see if I should recompile exe
     so each recompile is more intentional"""
-    return str(datetime.date.today()) == "2024-07-08"
+    return str(datetime.date.today()) == "2024-07-09"
     
 
 def print_title(text):

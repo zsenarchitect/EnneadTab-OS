@@ -796,5 +796,13 @@
         "doc": "Push selected elements in Rhino to Miro. Only support text and rect and circle.",
         "tab": "Web.tab",
         "tab_icon": "Web.tab\\icon.png"
+    },
+    "startup.py": {
+        "script": "startup.py",
+        "icon": null,
+        "alias": "EnneadTab Startup",
+        "doc": "Automatically run on every new rhino start session if bind to Rhino setting.",
+        "tab": null,
+        "tab_icon": null
     }
 }

@@ -38,7 +38,7 @@ def main():
     with open(file_path, 'w') as configfile:
         config.write(configfile)
 
-    print("EnneadTab for Revit has been attached to pyRevit.")
+    print("EnneadTab-for-Revit has been attached to pyRevit.")
     print ("You can now close this window and open Revit.")
 
 

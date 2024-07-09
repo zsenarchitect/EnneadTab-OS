@@ -14,6 +14,9 @@ assert os.path.exists(KNOWLEDGE_FILE), "knowledge data file <{}> does not exist"
 
 
 def process_path(path):
+    # when searching for starup script there is never a icon, this path is designed to be None
+    if path is None:
+        return None
     if hasattr(path, "path"):
         path = path.path
 

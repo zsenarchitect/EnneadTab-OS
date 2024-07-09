@@ -18,7 +18,11 @@ class RepositoryUpdater:
             
         self.final_folder_name = self.extract_repo_name(repo_url)
         self.final_dir = os.path.join(self.extract_to, self.final_folder_name)
-    
+        
+        self.timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        self.zip_path = os.path.join(self.extract_to, f"repo_{self.timestamp}.zip")
+        self.temp_dir = os.path.join(self.extract_to, f"temp_extract_{self.timestamp}")
+
     def extract_repo_name(self, url):
         if '/archive/' in url:
             parts = url.split('/')
@@ -42,7 +46,6 @@ class RepositoryUpdater:
     def download_zip(self):
         response = requests.get(self.repo_url, stream=True)
         if response.status_code == 200:
-            self.zip_path = os.path.join(self.extract_to, "repo.zip")
             wait = 0
             while wait < 10:
                 if os.path.exists(self.zip_path):
@@ -57,8 +60,6 @@ class RepositoryUpdater:
             raise Exception("Failed to download the repository. Status code: {}".format(response.status_code))
     
     def extract_zip(self):
-        self.temp_dir = os.path.join(self.extract_to, "temp_extract")
-        
         with zipfile.ZipFile(self.zip_path, 'r') as zip_ref:
             zip_ref.extractall(self.temp_dir)
         self.source_dir = os.path.join(self.temp_dir, os.listdir(self.temp_dir)[0])

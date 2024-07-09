@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from EnneadTab import ENVIRONMENT_CONSTANTS, NOTIFICATION, DATA_FILE
+from EnneadTab import ENVIRONMENT, NOTIFICATION, DATA_FILE
 
 
 try:
@@ -142,7 +142,7 @@ def show_in_convas_graphic(graphic_datas, doc = DOC, view = None):
     
     manager.Clear()
 
-    path = "{}\\warning_duck.bmp".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+    path = "{}\\warning_duck.bmp".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
 
     temp_data = {}
     for graphic_data_item in graphic_datas:

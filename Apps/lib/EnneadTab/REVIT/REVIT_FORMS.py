@@ -7,11 +7,153 @@ try:
     import REVIT_EVENT
 except:
     WPFWindow = object
+    # or globals()["WPFWindow"] = object # this is to trick that class can be used
 
 import ERROR_HANDLE
-import ENVIRONMENT_CONSTANTS
 import ENVIRONMENT
 import NOTIFICATION
+import IMAGE
+
+
+
+class EnneadTabModeForm():
+    """This form will pause revit and wait for action to continoue
+    overload with more function method depanden t on your targetr."""
+    pass
+
+
+
+
+
+
+
+
+# A simple WPF form used to call the ExternalEvent
+class EnneadTabModelessForm(WPFWindow):
+    """
+    this form will NOT revit, it cannot return value directly
+    overload with more function depend on what you are loading"""
+
+    def pre_actions(self, *external_funcs):
+        self.event_runner = REVIT_EVENT.ExternalEventRunner(*external_funcs)
+
+        #print "doing preaction"
+        # Now we need to make an instance of this handler. Moreover, it shows that the same class could be used to for
+        # different functions using different handler class instances
+        # self.rename_view_event_handler = SimpleEventHandler(rename_views)
+        # self.ext_event_rename_view = ExternalEvent.Create(self.rename_view_event_handler)
+
+    def __init__(self, title, summery, xaml_file_name, *external_funcs):
+        
+        self.pre_actions(*external_funcs)
+
+
+        #xaml_file_name = "general_renamer_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        # to-do: this is not very efficient,,,, consider store a lookup tab;e during startup
+        for folder, _, file in os.walk(ENVIRONMENT.ENNEADTAB_FOR_REVIT):
+            if xaml_file_name in file:
+                xaml_file_name = os.path.join(folder, xaml_file_name)
+                break
+        else:
+            NOTIFICATION.messenger(main_text="Cannot find the xaml file....")
+            return
+
+        WPFWindow.__init__(self, xaml_file_name)
+        
+        self.title.Text = title
+        self.Title = title
+        self.summery.Text = summery
+
+        logo_file = IMAGE.get_image_path_by_name("logo_vertical_light.png")
+        self.set_image_source(self.logo_img, logo_file)
+   
+        self.Show()
+
+
+    @ERROR_HANDLE.try_catch_error
+    def Sample_bt_Click(self, sender, e):
+        return
+        self.rename_view_event_handler.kwargs = sheets, is_default_format
+        self.ext_event_rename_view.Raise()
+        res = self.rename_view_event_handler.OUT
+        if res:
+            self.debug_textbox.Text = res
+        else:
+            self.debug_textbox.Text = "Debug Output:"
+
+
+    
+    def close_click(self, sender, e):
+        self.Close()
+
+    def mouse_down_main_panel(self, sender, args):
+        sender.DragMove()
+
+
+# A simple WPF form used to call the ExternalEvent
+class NotificationModelessForm(EnneadTabModelessForm):
+    """
+    Simple modeless form sample
+    """
+
+    def __init__(self,
+                main_text,
+                sub_text,
+                button_name,
+                window_title,
+                self_destruct,
+                window_width,
+                window_height):
+
+
+        xmal_template = "{}\\REVIT\\REVIT_FORMS_NOTIFICATION.xaml".format(ENVIRONMENT.CORE_FOLDER)
+        WPFWindow.__init__(self, xmal_template)
+        self.title_text.Text = main_text
+        self.simple_text.Text = sub_text
+        self.primary_button.Content = button_name
+        self.foot_text.Text = ""
+        self.Title = window_title
+        self.Height = window_height
+        self.Width = window_width
+
+        self.Show()
+
+
+        if self_destruct > 0:
+            self.timer(self_destruct)
+
+
+    def primary_button_click(self, sender, e):
+        self.close_action()
+
+
+    def timer(self, life_span):
+        #print "inside closer"
+
+        deco_1 = "<"
+        deco_2 = ">"
+        segement = 5
+        for i in range(life_span * segement,0,-1):
+
+            if i % segement != 0:
+                self.primary_button.Content = deco_1 + self.primary_button.Content + deco_2
+                try:
+                    print ("")
+                except Exception as e:
+                    pass
+                    #print_note(e)
+            else:
+                self.primary_button.Content = self.primary_button.Content.replace(deco_1, "").replace(deco_2, "")
+                try:
+                    print( i / segement)
+                except Exception as e:
+                    pass
+                    #print_note(e)
+            self.foot_text.Text = "Window will close in {} seconds".format(i / segement)
+            time.sleep(1.0/segement)
+        self.close_action()
+
+
 
 def notification(main_text = "",
                 sub_text = "",
@@ -32,11 +174,9 @@ def notification(main_text = "",
         window_height (int, optional): _description_. Defaults to 500.
     """
 
-    
-    import REVIT_FORMS_NOTIFICATION
 
     #xmal_template = remap_filepath_between_folder(xmal_template, new_folder_after_dot_extension = "lib")
-    REVIT_FORMS_NOTIFICATION.ModelessForm(main_text,
+    NotificationModelessForm.ModelessForm(main_text,
                                         sub_text,
                                         button_name,
                                         window_title,
@@ -205,66 +345,5 @@ def show_balloon(header, text, tooltip='', group='', is_favourite=False, is_new=
         result_item)
     return balloon
 
-# A simple WPF form used to call the ExternalEvent
-class EnneadTabModelessForm(WPFWindow):
-
-    def pre_actions(self, *external_funcs):
-        self.event_runner = REVIT_EVENT.ExternalEventRunner(*external_funcs)
-
-        #print "doing preaction"
-        # Now we need to make an instance of this handler. Moreover, it shows that the same class could be used to for
-        # different functions using different handler class instances
-        # self.rename_view_event_handler = SimpleEventHandler(rename_views)
-        # self.ext_event_rename_view = ExternalEvent.Create(self.rename_view_event_handler)
-
-    def __init__(self, title, summery, xaml_file_name, *external_funcs):
-        
-        self.pre_actions(*external_funcs)
 
 
-        #xaml_file_name = "general_renamer_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
-        # to-do: this is not very efficient,,,, consider store a lookup tab;e during startup
-        for folder, _, file in os.walk(ENVIRONMENT.ENNEADTAB_FOR_REVIT):
-            if xaml_file_name in file:
-                xaml_file_name = os.path.join(folder, xaml_file_name)
-                break
-        else:
-            NOTIFICATION.messenger(main_text="Cannot find the xaml file....")
-            return
-
-        WPFWindow.__init__(self, xaml_file_name)
-        
-        self.title.Text = title
-        self.Title = title
-        self.summery.Text = summery
-
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
-        else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
-        import os
-        if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
-        self.set_image_source(self.logo_img, logo_file)
-   
-        self.Show()
-
-
-    @ERROR_HANDLE.try_catch_error
-    def Sample_bt_Click(self, sender, e):
-        return
-        self.rename_view_event_handler.kwargs = sheets, is_default_format
-        self.ext_event_rename_view.Raise()
-        res = self.rename_view_event_handler.OUT
-        if res:
-            self.debug_textbox.Text = res
-        else:
-            self.debug_textbox.Text = "Debug Output:"
-
-
-    
-    def close_click(self, sender, e):
-        self.Close()
-
-    def mouse_down_main_panel(self, sender, args):
-        sender.DragMove()

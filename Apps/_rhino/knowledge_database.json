@@ -800,7 +800,7 @@
     "startup.py": {
         "script": "startup.py",
         "icon": null,
-        "alias": "EnneadTab Startup",
+        "alias": "EnneadTab_Startup",
         "doc": "Automatically run on every new rhino start session if bind to Rhino setting.",
         "tab": null,
         "tab_icon": null

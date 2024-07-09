@@ -1,0 +1,7 @@
+Option Explicit
+Sub StartupCaller()
+	Dim commandName
+	commandName = "EnneadTab_Startup"
+	Rhino.Command commandName
+End Sub
+StartupCaller

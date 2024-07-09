@@ -14,4 +14,3 @@ import get_latest_left
 @ERROR_HANDLE.try_catch_error()
 def Installation():
     get_latest_left.get_latest(is_silient = False)
-    print (11111111111111)

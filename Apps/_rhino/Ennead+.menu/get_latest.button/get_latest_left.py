@@ -1,6 +1,9 @@
 import rhinoscriptsyntax as rs
 import os
 import sys
+import Rhino # pyright: ignore
+
+
 def add_search_path():
     repos = [
         os.path.join(os.environ['USERPROFILE'] ,'github','EnneadTab-OS','Apps','lib'),
@@ -42,13 +45,21 @@ def get_latest(is_silient = False):
     RHINO_RUI.update_my_rui()
     RHINO_ALIAS.register_alias_set()
     add_search_path()
+    add_startup_script()
 
 
     if not is_silient:
         NOTIFICATION.messenger("Latest EnneadTab-For-Rhino Loaded")
 
 
-
+def add_startup_script():
+    """hear me out here:
+    python cannot add startup script directly
+   
+    i use this python script C to call rhino script B to call rhino script A, which is the command alias
+    """
+    rvb_satrtup_modifier_script = "{}\\StartupEnable.rvb".format(os.path.dirname(__file__))
+    Rhino.RhinoApp.RunScript("-LoadScript " + rvb_satrtup_modifier_script, True)
  
 
 

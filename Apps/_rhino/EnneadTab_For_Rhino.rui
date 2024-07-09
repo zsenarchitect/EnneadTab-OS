@@ -2443,7 +2443,18 @@ MODULE_HELPER.run_Rhino_button('Tailor.tab\\stack_enscape.button\\move_img_right
       <menu_text>
         <locale_1033>GetLatest</locale_1033>
       </menu_text>
-      <script>GetLatest</script>
+      <script>! _-RunPythonScript (
+import os
+import sys
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
+import MODULE_HELPER
+MODULE_HELPER.run_Rhino_button('Ennead+.menu\\get_latest.button\\get_latest_left.py')
+)
+</script>
     </macro_item>
     <macro_item guid="426bd79c-aab9-4f2f-a259-fcde358d7428" bitmap_id="9b6041b0-07a4-42a6-b38e-fc9ed35021b9">
       <text>

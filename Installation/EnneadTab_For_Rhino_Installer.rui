@@ -46,7 +46,18 @@
       <menu_text>
         <locale_1033>Install EnneadTab</locale_1033>
       </menu_text>
-      <script>Install EnneadTab</script>
+      <script>! _-RunPythonScript (
+import os
+import sys
+repos = [os.path.join(os.environ['USERPROFILE'] + '\\github\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\dev-repo\\EnneadTab-OS\\Apps\\lib\\EnneadTab'),os.path.join(os.environ['USERPROFILE'] + '\\Documents\\EnneadTab Ecosystem\\EA_Dist\\Apps\\lib\\EnneadTab')]
+for repo in repos:
+    if os.path.exists(repo):
+        sys.path.append(repo)
+        break
+import MODULE_HELPER
+MODULE_HELPER.run_Rhino_button('Enneaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaad.menu\\Installation.button\\Installation_left.py')
+)
+</script>
     </macro_item>
   </macros>
   <bitmaps>

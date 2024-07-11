@@ -19,6 +19,7 @@ class InsulationDrafter:
         
         insulation_width = DATA_FILE.get_sticky_longterm("insulation_width", 2)
         insulation_width = rs.PropertyListBox(items = ["Insulation Width(file unit)"], values = [insulation_width], message = "Enter insulation data", title = "Curved Insulation Maker")[0]
+        if not insulation_width: return
         insulation_width = float(insulation_width)
         DATA_FILE.set_sticky_longterm("insulation_width", insulation_width)
         print (insulation_width)

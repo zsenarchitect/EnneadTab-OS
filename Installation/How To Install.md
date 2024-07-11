@@ -12,7 +12,7 @@ save anywhere and run it. It might takes a few seconds to unpack the contents.
 
 
 ## 2.1. EnneadTab-For-Revit(Legacy)
-1. Make sure you have pyrevit installed.
+1. Make sure you have pyrevit installed. Revit is not open.
 
 2. Navigate to 
     - "C:\Users\\[USER_NAME]\Documents\EnneadTab Ecosystem\EA_Dist\Installation"
@@ -20,8 +20,10 @@ save anywhere and run it. It might takes a few seconds to unpack the contents.
 3. Double click on 
     - "EnneadTab-For-Revit(Legacy).exe"
 
+4. You can now open Revit.
+
 ## 2.2. EnneadTab-For-Revit
-1. Make sure you have pyrevit installed.
+1. Make sure you have pyrevit installed. Revit is not open.
 
 2. Navigate to 
     - "C:\Users\\[USER_NAME]\Documents\EnneadTab Ecosystem\EA_Dist\Installation"
@@ -29,14 +31,19 @@ save anywhere and run it. It might takes a few seconds to unpack the contents.
 3. Double click on 
     - "EnneadTab-For-Revit.exe"
 
+4. You can now open Revit.
+
 ## 2.3 Uninstall Ennead-For-Revit
 
+1. Revit is not open.
 
-1. Navigate to 
+2. Navigate to 
     - "C:\Users\\[USER_NAME]\Documents\EnneadTab Ecosystem\EA_Dist\Installation"
 
-2. Double click on 
+3. Double click on 
     - "EnneadTab_For_Revit_UnInstaller.exe"
+
+4. You can now open Revit.
 
 ## 3. EnnneaTab-For-Rhino
 1. Navigate to 

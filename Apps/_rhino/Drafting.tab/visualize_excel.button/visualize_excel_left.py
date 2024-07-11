@@ -131,6 +131,8 @@ class ShapeWriter:
                             values = [getattr(self, x) for x in para_list],
                             message = "Enter Data for Visualization Shape Control",
                             title = "Visualize Excel Area")
+        if not res:
+            return
         for i, x in enumerate(para_list):
             setattr(self, x, float(res[i]))
             

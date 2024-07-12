@@ -7,6 +7,8 @@ from PIL import Image, ImageTk
 import subprocess
 import traceback
 import time
+import threading
+import datetime
 
 def log_error(func):
     def wrapper(*args, **kwargs):
@@ -92,74 +94,101 @@ class FileProcessorApp:
     
     @log_error
     def process_file(self):
-        if not self.selected_file:
+        original_file = self.selected_file
+        if not original_file:
             messagebox.showwarning("Warning", "Please select an InDesign file.")
             return
         
         username = os.getenv('USERNAME')  # Get current user's name
-        prefix = "[{}]_".format(username)
-        file_name = os.path.basename(self.selected_file)
+        file_name = os.path.basename(original_file)
+        prefix = "[{}_editing]_".format(username)
+
+        # session_time = datetime.datetime()
+        # mark edit start when creating marker file
+        # mark edit end when create finish marker file
         
         # Check if the file already has a prefix using a regular expression
-        if re.match(r'\[\w+\]_', file_name):
-            existing_user = re.match(r'\[(\w+)\]_', file_name).group(1)
-            messagebox.showwarning("Warning", f"This file is currently edited by {existing_user}.")
-            return
+        for file in os.listdir(os.path.dirname(original_file)):
+            search = re.match(r'\[(\w+)_editing\]_{}'.format(file_name), file)
+            if search:
+                existing_user = search.group(1)
+                messagebox.showwarning("Warning", f"This file is currently edited by {existing_user}.")
+                return
         
         self.indesign_version = self.indesign_version_entry.get()
 
-        original_file = self.selected_file[:]
-        renamed_file = os.path.join(os.path.dirname(self.selected_file), "{}{}".format(prefix, file_name))
-        renamed_file = renamed_file.replace("\\", "/")
-        if os.path.exists(renamed_file):
-            messagebox.showwarning("Warning", "This file has already been opened by another user. Please try again later.")
-            return
-        shutil.copy(self.selected_file, renamed_file)
+        acc_marker_file = os.path.join(os.path.dirname(original_file), "{}{}".format(prefix, file_name))
+        acc_marker_file = acc_marker_file.replace("\\", "/")
 
-        # Copy renamed file to desktop
-        desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop', os.path.basename(original_file))
-        shutil.copy(renamed_file, desktop_path)
-        desktop_path = desktop_path.replace("\\", "/")
+        # even it is a txt file, still use .indd as extension so openning file dialog can it see there is such lock
+        with open(acc_marker_file, "w") as f:
+            f.write("This file is currently being edited by " + username + ".")
+        
 
-        # Wait for 2 seconds
-        time.sleep(2)
+        # Wait until desktop copy ready
+        desktop_file = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop', os.path.basename(original_file))
+        shutil.copy(original_file, desktop_file)
+        while True:
+            if os.path.exists(desktop_file):
+                print ("desktop file copied")
+                break
+            time.sleep(1)
 
         indesign_script_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop', "EnneadTab_Indesign_Save_Opener.jsx")
         with open(indesign_script_path, "w") as script_file:
-            script_file.write(self.generate_indesign_script(desktop_path, original_file, renamed_file))
+            script_file.write(self.generate_indesign_script(desktop_file))
 
-        self.open_indesign(indesign_script_path)
-    
-    def generate_indesign_script(self, desktop_path, original_file, renamed_file):
-        return f"""
-function handleAfterCloseEvent(myEvent) {{
-    try {{
-        var desktopPath = "{desktop_path}";
-        var originalFilePath = "{original_file}";
-        var renamedFilePath = "{renamed_file}";
+        # Run open_indesign in a separate thread
+        indesign_thread = threading.Thread(target=self.open_indesign, args=(indesign_script_path,))
+        indesign_thread.start()
 
-        var desktopFile = new File(desktopPath);
-        var originalFile = new File(originalFilePath);
-        var renamedFile = new File(renamedFilePath);
+        # Wait until file to open
+        while True:
+            native_indesign_locker_file = self.get_locker_file(desktop_file)
+            if native_indesign_locker_file:
+                print ("lock file found, document has open")
+                break
+            time.sleep(1)
+            print ("waiting")
+            
+
+        # Wait until file closed
+        while True:
+            if not os.path.exists(native_indesign_locker_file):
+                print ("lock file removed, document has been closed")
+                break
+            time.sleep(1)
+
+
+        shutil.copy(desktop_file, original_file)
+        print ("copy back to ACC")
+
+        os.remove(desktop_file)
+        print ("remove desktop file")
+
+        for _ in range(10):
+            os.remove(acc_marker_file)
+            print ("try remove marker file: " + acc_marker_file)
+            if not os.path.exists(acc_marker_file):
+                break
+            time.sleep(2)
+
+
+    def get_locker_file(self, desktop_path):
+        for file in os.listdir(os.path.dirname(desktop_path)):
+            # ~monday~jsjvbp.idlk
+            if not file.endswith(".idlk"):
+                continue
+
+            if file.lower().startswith("~" + os.path.basename(desktop_path).replace(".indd", "").lower()):
+                return os.path.join(os.path.dirname(desktop_path), file)
+            print (file)
+        return None
         
-        alert('Desktop file exists: ' + desktopFile.exists);
-        alert('Original file exists: ' + originalFile.exists);
-        alert('Renamed file exists: ' + renamedFile.exists);
-
-        if (desktopFile.exists) {{
-            desktopFile.copy(originalFile);
-            desktopFile.remove();
-        }}
-        if (renamedFile.exists) {{
-            renamedFile.remove();
-        }}
-    }} catch (e) {{
-        alert('An error occurred during the afterClose event: ' + e.message);
-    }}
-}}
-app.addEventListener("afterClose", handleAfterCloseEvent);
-
-var myDocument = app.open("{desktop_path}");
+    def generate_indesign_script(self, desktop_path):
+        desktop_path = desktop_path.replace("\\", "/")
+        return f"""
+app.open("{desktop_path}");
 """
     
     def open_indesign(self, script_path):

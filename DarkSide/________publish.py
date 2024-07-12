@@ -218,7 +218,7 @@ def publish_duck():
 def manual_confirm_should_compile_exe():
     """manua change date to see if I should recompile exe
     so each recompile is more intentional"""
-    return str(datetime.date.today()) == "2024-07-0d9"
+    return str(datetime.date.today()) == "2024-07-12"
     
 
 def print_title(text):

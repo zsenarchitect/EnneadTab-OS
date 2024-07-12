@@ -84,10 +84,14 @@ class FileProcessorApp:
         self.warning_frame.grid(row=5, column=0, columnspan=3, padx=10, pady=10)
         self.warning_frame.grid_remove()  # Initially hide the frame
 
+        self.copy_right = tk.Label(self.root, text="CopyRight @ 2024 By Ennead Architects", bg='#2e2e2e', fg='white')
+        self.copy_right.grid(row=6, column=0, padx=10, pady=10)
+        
         # Center the widgets
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_columnconfigure(1, weight=1)
         self.root.grid_columnconfigure(2, weight=1)
+
 
     @log_error
     def rotate_logo(self, event):
@@ -119,8 +123,15 @@ class FileProcessorApp:
         file_name = os.path.basename(original_file)
         prefix = "[{}_editing]_".format(username)
 
-        # Check if the file already has a prefix using a regular expression
+        
         for file in os.listdir(os.path.dirname(original_file)):
+            #  cleanup files reuqested by this user
+            search = re.match(r'\[{}_requesting\]_{}'.format(username, file_name), file)
+            if search:
+                os.remove(os.path.join(os.path.dirname(original_file), file))
+
+
+            # Check if the file is being edited by other
             search = re.match(r'\[(\w+)_editing\]_{}'.format(file_name), file)
             if search:
                 existing_user = search.group(1)
@@ -129,10 +140,6 @@ class FileProcessorApp:
                 return
 
 
-            #  cleanup files reuqested by this user
-            search = re.match(r'{}_requesting\]_{}'.format(username, file_name), file)
-            if search:
-                os.remove(os.path.join(os.path.dirname(original_file), file))
         
         self.indesign_version = self.indesign_version_entry.get()
 
@@ -143,6 +150,8 @@ class FileProcessorApp:
         with open(acc_marker_file, "w") as f:
             f.write("This file is currently being edited by " + username + ".")
         
+        # Show the warning frame
+        self.show_warning_frame(username)
 
         # Wait until desktop copy ready
         desktop_file = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop', os.path.basename(original_file))
@@ -157,12 +166,10 @@ class FileProcessorApp:
         with open(indesign_script_path, "w") as script_file:
             script_file.write(self.generate_indesign_script(desktop_file))
 
+
         # Run open_indesign in a separate thread
         indesign_thread = threading.Thread(target=self.open_indesign, args=(indesign_script_path,))
         indesign_thread.start()
-
-        # Show the warning frame
-        self.show_warning_frame(username)
 
         # Wait until file to open
         while True:

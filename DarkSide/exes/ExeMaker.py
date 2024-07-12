@@ -177,6 +177,7 @@ def recompile_exe(single_exe = None):
 
 
 if __name__ == "__main__":
-    recompile_exe()
+    # recompile_exe()
     # recompile_exe(single_exe="Revit_Export_Renamer.json")
     # recompile_exe(single_exe="Speaker.json")
+    recompile_exe(single_exe="IndesignAccOpenner.json")

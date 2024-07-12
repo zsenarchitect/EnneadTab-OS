@@ -68,6 +68,22 @@ class FileProcessorApp:
         self.process_button.grid(row=4, column=0, columnspan=3, padx=10, pady=20)
         self.process_button.config(state=tk.DISABLED)
 
+        self.warning_frame = tk.Frame(self.root, bg='#2e2e2e')
+        self.warning_label = tk.Label(self.warning_frame, text="", bg='#2e2e2e', fg='red', font=("Helvetica", 16, "bold"))
+        self.warning_label.pack(padx=20, pady=20)
+        
+        self.duck_image_path = os.path.join(os.path.dirname(__file__), "serious_duck.png")
+        self.duck_image = Image.open(self.duck_image_path)
+        self.duck_photo = ImageTk.PhotoImage(self.duck_image)
+        self.duck_label = tk.Label(self.warning_frame, image=self.duck_photo, bg='#2e2e2e')
+        self.duck_label.pack(padx=20, pady=20)
+        
+        self.request_users_label = tk.Label(self.warning_frame, text="", bg='#2e2e2e', fg='white')
+        self.request_users_label.pack(padx=20, pady=20)
+
+        self.warning_frame.grid(row=5, column=0, columnspan=3, padx=10, pady=10)
+        self.warning_frame.grid_remove()  # Initially hide the frame
+
         # Center the widgets
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_columnconfigure(1, weight=1)
@@ -103,17 +119,20 @@ class FileProcessorApp:
         file_name = os.path.basename(original_file)
         prefix = "[{}_editing]_".format(username)
 
-        # session_time = datetime.datetime()
-        # mark edit start when creating marker file
-        # mark edit end when create finish marker file
-        
         # Check if the file already has a prefix using a regular expression
         for file in os.listdir(os.path.dirname(original_file)):
             search = re.match(r'\[(\w+)_editing\]_{}'.format(file_name), file)
             if search:
                 existing_user = search.group(1)
-                messagebox.showwarning("Warning", f"This file is currently edited by {existing_user}.")
+                self.create_request_file(username, original_file)
+                messagebox.showwarning("Warning", f"This file is currently edited by {existing_user}.\n\nA request file has been placed.")
                 return
+
+
+            #  cleanup files reuqested by this user
+            search = re.match(r'{}_requesting\]_{}'.format(username, file_name), file)
+            if search:
+                os.remove(os.path.join(os.path.dirname(original_file), file))
         
         self.indesign_version = self.indesign_version_entry.get()
 
@@ -142,6 +161,9 @@ class FileProcessorApp:
         indesign_thread = threading.Thread(target=self.open_indesign, args=(indesign_script_path,))
         indesign_thread.start()
 
+        # Show the warning frame
+        self.show_warning_frame(username)
+
         # Wait until file to open
         while True:
             native_indesign_locker_file = self.get_locker_file(desktop_file)
@@ -158,7 +180,9 @@ class FileProcessorApp:
                 print ("lock file removed, document has been closed")
                 break
             time.sleep(1)
-
+            request_users = self.check_request_files(original_file)
+            if request_users:
+                self.show_warning_frame(username, request_users)
 
         shutil.copy(desktop_file, original_file)
         print ("copy back to ACC")
@@ -173,6 +197,8 @@ class FileProcessorApp:
                 break
             time.sleep(2)
 
+        # Hide the warning frame
+        self.hide_warning_frame()
 
     def get_locker_file(self, desktop_path):
         for file in os.listdir(os.path.dirname(desktop_path)):
@@ -184,12 +210,25 @@ class FileProcessorApp:
                 return os.path.join(os.path.dirname(desktop_path), file)
             print (file)
         return None
-        
+
+    def create_request_file(self, username, original_file):
+        request_file_name = "[{}_requesting]_{}".format(username, os.path.basename(original_file))
+        request_file_path = os.path.join(os.path.dirname(original_file), request_file_name)
+        with open(request_file_path, "w") as f:
+            f.write("Request to edit the file by " + username)
+
+    def check_request_files(self, original_file):
+        request_users = []
+        for file in os.listdir(os.path.dirname(original_file)):
+            if re.match(r'\[(\w+)_requesting\]_{}'.format(os.path.basename(original_file)), file):
+                request_users.append(file.split('_')[0][1:])  # Extract username from file name
+        return request_users
+
     def generate_indesign_script(self, desktop_path):
         desktop_path = desktop_path.replace("\\", "/")
-        return f"""
-app.open("{desktop_path}");
-"""
+        return """
+app.open("{}");
+""".format(desktop_path)
     
     def open_indesign(self, script_path):
         vbs_content = """
@@ -201,6 +240,20 @@ app.DoScript "{script_path}", 1246973031
             f.write(vbs_content)
         
         subprocess.call(["cscript", vbs_path])
+
+    def show_warning_frame(self, editing_user, requesting_users=None):
+        self.warning_label.config(text="{} is editing, DO NOT CLOSE THIS TOOLBOX UNTIL YOU HAVE CLOSED INDESIGN\nOk to minimize it though.".format(editing_user))
+        self.warning_frame.grid()
+        self.root.lift()
+        self.root.attributes('-topmost', True)
+        self.root.after_idle(self.root.attributes, '-topmost', False)
+
+        if requesting_users:
+            self.request_users_label.config(text="Requesting Users: " + ", ".join(requesting_users))
+
+    def hide_warning_frame(self):
+        self.warning_frame.grid_remove()
+        self.request_users_label.config(text="")
 
 @log_error
 def main():

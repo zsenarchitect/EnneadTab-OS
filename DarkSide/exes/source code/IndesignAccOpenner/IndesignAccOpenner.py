@@ -281,7 +281,7 @@ app.DoScript "{script_path}", 1246973031
         with open(vbs_path, "w") as f:
             f.write(vbs_content)
         
-        subprocess.call(["cscript", vbs_path])
+        subprocess.call(["wscript", vbs_path])
 
     def show_warning_frame(self, editing_user, requesting_users=None):
         self.warning_label.config(text="{} is editing, DO NOT CLOSE THIS TOOLBOX UNTIL YOU HAVE CLOSED INDESIGN\nOk to minimize it though.".format(editing_user))

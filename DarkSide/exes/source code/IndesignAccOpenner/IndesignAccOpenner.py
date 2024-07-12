@@ -1,3 +1,24 @@
+__description__ = """
+demo video, no audio: https://www.youtube.com/watch?v=2Sb3At124AY
+ 
+Main problem:
+Indesign only understand .idlk file extension as lock, but ACC Desktop Connector ignore .idlk file for syncing.
+ 
+Result:
+Multiple users could unintentionally open/save same indesign file over acc folder and override.
+ 
+Alternative solution:
+Customized locker file system that acc desktop connector can sync. 
+When other user is editing, you cannot open same file, but can place request.
+The request will be converted to edit lock when original editor leave the document AND if you want to edit the document.
+All lock and request file will be generated/cleaned automatically by toolbox.
+Please keep it running in the background. Close only after you close the indesign document.
+ 
+What if one of the team member is not using this toolbox to open files?
+He will not be able to quickly generate a lock file to stop other people from opening same file. He and other people are at rick overriding.
+BUT you don't need this tool to see the other lock/request file. Those are natively visible in any file explorer window.
+"""
+
 import os
 import shutil
 import re

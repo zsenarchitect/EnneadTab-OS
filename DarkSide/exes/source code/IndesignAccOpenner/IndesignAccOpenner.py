@@ -10,6 +10,8 @@ import time
 import threading
 import datetime
 
+EXPIRATION_DATE = datetime.date(2025, 1, 1)
+
 def log_error(func):
     def wrapper(*args, **kwargs):
         try:
@@ -28,8 +30,9 @@ def log_error(func):
 class FileProcessorApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("InDesign File Opener")
         self.root.configure(bg='#2e2e2e')
+
+        self.update_title_with_days_left()
 
         # Set the window icon
         icon_path = os.path.join(os.path.dirname(__file__), "icon_ennead-e.ico")
@@ -47,6 +50,16 @@ class FileProcessorApp:
 
         self.root.bind("<Motion>", self.rotate_logo)
 
+    def update_title_with_days_left(self):
+        today = datetime.date.today()
+        days_left = (EXPIRATION_DATE - today).days
+        if days_left <= 0:
+            self.root.title("InDesign File Opener - Tool Expired")
+        elif days_left <= 30:
+            self.root.title(f"InDesign File Opener - {days_left} days left")
+        else:
+            self.root.title("InDesign File Opener")
+
     def create_widgets(self):
         self.logo_label = tk.Label(self.root, image=self.logo_photo, bg='#2e2e2e')
         self.logo_label.grid(row=0, column=0, columnspan=3)
@@ -55,17 +68,17 @@ class FileProcessorApp:
         self.pick_file_button.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
 
         self.indesign_version_label = tk.Label(self.root, text="InDesign Version:", bg='#2e2e2e', fg='white')
-        self.indesign_version_label.grid(row=2, column=0, padx=10, pady=10)
+        self.indesign_version_label.grid(row=2, column=1, padx=10, pady=10)
 
         self.indesign_version_entry = tk.Entry(self.root)
         self.indesign_version_entry.insert(0, "2024")
-        self.indesign_version_entry.grid(row=2, column=1, padx=10, pady=10)
+        self.indesign_version_entry.grid(row=3, column=1, padx=10, pady=10)
 
         self.selected_file_label = tk.Label(self.root, text="", bg='#2e2e2e', fg='white')
-        self.selected_file_label.grid(row=3, column=0, columnspan=3, padx=10, pady=10)
+        self.selected_file_label.grid(row=4, column=0, columnspan=3, padx=10, pady=10)
 
         self.process_button = tk.Button(self.root, text="Open ACC InDesign Safety", command=self.process_file, bg='#2e2e2e', fg='white')
-        self.process_button.grid(row=4, column=0, columnspan=3, padx=10, pady=20)
+        self.process_button.grid(row=5, column=0, columnspan=3, padx=10, pady=20)
         self.process_button.config(state=tk.DISABLED)
 
         self.warning_frame = tk.Frame(self.root, bg='#2e2e2e')
@@ -81,12 +94,24 @@ class FileProcessorApp:
         self.request_users_label = tk.Label(self.warning_frame, text="", bg='#2e2e2e', fg='white')
         self.request_users_label.pack(padx=20, pady=20)
 
-        self.warning_frame.grid(row=5, column=0, columnspan=3, padx=10, pady=10)
+        self.warning_frame.grid(row=6, column=0, columnspan=3, padx=10, pady=10)
         self.warning_frame.grid_remove()  # Initially hide the frame
 
-        self.copy_right = tk.Label(self.root, text="CopyRight @ 2024 By Ennead Architects", bg='#2e2e2e', fg='white')
-        self.copy_right.grid(row=6, column=0, padx=10, pady=10)
-        
+        self.note = tk.Label(self.root, text="Only close this toolbox after indesign document closed.", bg='#2e2e2e', fg='white', font=("Helvetica", 12))
+        self.note.grid(row=7, column=0, columnspan=3, padx=10, pady=10)
+
+        note = """Features:
+1. Open ACC InDesign safely by setting customized locker file.
+2. Other user can see who is editing the file, and place request to open.
+3. When previous editor relinquish, requster can convert request lock to edit lock.
+4. The cleanup of locker files and request files are done automatically over ACC drive.
+"""
+        self.note2 = tk.Label(self.root, text=note, bg='#2e2e2e', fg='white', font=("Helvetica", 8), justify='left')
+        self.note2.grid(row=8, column=0, columnspan=3, padx=10, pady=10)
+
+        self.copy_right = tk.Label(self.root, text="CopyRight @ 2024 By Ennead Architects", bg='#2e2e2e', fg='white', font=("Helvetica", 6))
+        self.copy_right.grid(row=9, column=0, columnspan=3, padx=10, pady=10)
+
         # Center the widgets
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_columnconfigure(1, weight=1)
@@ -106,6 +131,11 @@ class FileProcessorApp:
 
     @log_error
     def pick_file(self):
+        today = datetime.date.today()
+        if (EXPIRATION_DATE - today).days <= 0:
+            messagebox.showerror("Error", "Your tool has expired.")
+            return
+        
         file = filedialog.askopenfilename(filetypes=[("InDesign files", "*.indd")])
         self.selected_file = file
         if file:
@@ -162,7 +192,7 @@ class FileProcessorApp:
                 break
             time.sleep(1)
 
-        indesign_script_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop', "EnneadTab_Indesign_Save_Opener.jsx")
+        indesign_script_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop', "EnneadTab_Magic.jsx")
         with open(indesign_script_path, "w") as script_file:
             script_file.write(self.generate_indesign_script(desktop_file))
 
@@ -172,13 +202,18 @@ class FileProcessorApp:
         indesign_thread.start()
 
         # Wait until file to open
-        while True:
+        max_wait = 30
+        wait = 0
+        while wait<max_wait:
             native_indesign_locker_file = self.get_locker_file(desktop_file)
             if native_indesign_locker_file:
                 print ("lock file found, document has open")
                 break
             time.sleep(1)
+            wait += 1
             print ("waiting")
+
+        if wait == max_wait: return
             
 
         # Wait until file closed
@@ -242,7 +277,7 @@ app.open("{}");
 Set app = CreateObject("InDesign.Application.{version}")
 app.DoScript "{script_path}", 1246973031
 """.format(version=self.indesign_version, script_path=script_path.replace("\\", "\\\\"))
-        vbs_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop', "run_script.vbs")
+        vbs_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop', "EnneadTab_Magic.vbs")
         with open(vbs_path, "w") as f:
             f.write(vbs_content)
         
@@ -253,7 +288,7 @@ app.DoScript "{script_path}", 1246973031
         self.warning_frame.grid()
         self.root.lift()
         self.root.attributes('-topmost', True)
-        self.root.after_idle(self.root.attributes, '-topmost', False)
+        self.root.after_idle(lambda: self.root.attributes('-topmost', False))
 
         if requesting_users:
             self.request_users_label.config(text="Requesting Users: " + ", ".join(requesting_users))

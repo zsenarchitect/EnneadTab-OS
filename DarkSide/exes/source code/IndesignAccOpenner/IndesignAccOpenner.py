@@ -97,7 +97,7 @@ class FileProcessorApp:
         self.warning_frame.grid(row=6, column=0, columnspan=3, padx=10, pady=10)
         self.warning_frame.grid_remove()  # Initially hide the frame
 
-        self.note = tk.Label(self.root, text="Only close this toolbox after indesign document closed.", bg='#2e2e2e', fg='white', font=("Helvetica", 12))
+        self.note = tk.Label(self.root, text="Only close this toolbox after indesign document closed.\nIt is OK to minimize.", bg='#2e2e2e', fg='white', font=("Helvetica", 12))
         self.note.grid(row=7, column=0, columnspan=3, padx=10, pady=10)
 
         note = """Features:

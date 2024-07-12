@@ -12,3 +12,4 @@ pyyaml
 gtts
 pygame
 playsound
+PyMuPDF

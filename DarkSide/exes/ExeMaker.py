@@ -136,9 +136,9 @@ def json_to_command(json_file):
             command.append("{}".format(option['value']))
 
     # Add the version file for copyright information
-    version_file_path = create_version_file(final_path)
-    command.append("--version-file")
-    command.append(version_file_path)
+    # version_file_path = create_version_file(final_path)
+    # command.append("--version-file")
+    # command.append(version_file_path)
 
     command.append("--log-level=WARN")  # disable output in terminal
     command.append(final_path)
@@ -211,4 +211,5 @@ if __name__ == "__main__":
     # recompile_exe()
     # recompile_exe(single_exe="Revit_Export_Renamer.json")
     # recompile_exe(single_exe="Speaker.json")
-    recompile_exe(single_exe="IndesignAccOpenner.json")
+    # recompile_exe(single_exe="IndesignAccOpenner.json")
+    recompile_exe(single_exe="Pdf2OrderedJpgs.json")

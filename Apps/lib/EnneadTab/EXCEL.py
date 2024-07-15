@@ -146,7 +146,12 @@ def save_data_to_excel(data, filepath, worksheet = "EnneadTab", open_after = Tru
     # see doc here: https://xlsxwriter.readthedocs.io/format.html#format-set-border
     def write_data_item(worksheet, data):
 
-        if any(data.cell_color, data.text_color, data.border_style, data.border_color):
+        if any([
+            data.cell_color, 
+            data.text_color, 
+            data.border_style, 
+            data.border_color
+                ]):
             format_dict = {}
             if data.cell_color:
                 format_dict['bg_color'] = COLOR.rgb_to_hex(data.cell_color)

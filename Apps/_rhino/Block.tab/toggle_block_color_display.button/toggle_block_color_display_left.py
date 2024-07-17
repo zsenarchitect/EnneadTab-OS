@@ -19,7 +19,7 @@ from EnneadTab import COLOR, LOG, ERROR_HANDLE
 @ERROR_HANDLE.try_catch_error()
 def toggle_block_color_display():
     global COLOR_DICT
-    COLOR_DICT = DATA_FILE.get_sticky_longterm("EA_COLOR_BLOCK_DICT", dict())
+    COLOR_DICT = DATA_FILE.get_sticky("EA_COLOR_BLOCK_DICT", dict())
 
     conduit = None
     key = "EA_color_block_display_conduit"
@@ -38,7 +38,7 @@ def toggle_block_color_display():
     sc.doc.Views.Redraw()
     rs.EnableRedraw(False)
     change_block_obj_display(conduit.Enabled)
-    DATA_FILE.set_sticky_longterm("EA_COLOR_BLOCK_DICT", COLOR_DICT)
+    DATA_FILE.set_sticky("EA_COLOR_BLOCK_DICT", COLOR_DICT)
     print ("Tool Finished")
 
 

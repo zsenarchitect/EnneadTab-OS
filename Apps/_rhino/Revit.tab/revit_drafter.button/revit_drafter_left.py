@@ -16,14 +16,14 @@ def process_dwg(file, units):
     RHINO_CLEANUP.purge_block()
     rs.Command("_-import \"{}\" _ModelUnits={} -enter -enter".format(file, units))
 
-    NOTIFICATION.toast(main_text = "Come Back, come back!", sub_text = "Import Finish!")
+    NOTIFICATION.messenger(main_text = "Come Back, come back!", sub_text = "Import Finish!")
     imported_objs = rs.LastCreatedObjects()
     #print imported_objs
     layers_used = set()
     new_block_name_used = set()
 
     if not imported_objs:
-        NOTIFICATION.toast(main_text = "Nothing imported!")
+        NOTIFICATION.messenger(main_text = "Nothing imported!")
         
         return
     
@@ -123,7 +123,7 @@ def revit_drafter():
     elif revit_unit in ["inches, feet & inches", "inches"]:
         units = "Inches"
     else:
-        NOTIFICATION.toast(main_text = " bad unit, talk to SZ")
+        NOTIFICATION.messenger(main_text = " bad unit, talk to SZ")
         return
 
     rs.EnableRedraw(False)

@@ -7,10 +7,10 @@ import sys
 root_folder = os.path.abspath((os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.append(root_folder)
 import ENVIRONMENT
-import ENVIRONMENT
 import COLOR
+import IMAGE
 
-if ENVIRONMENT.is_Rhino_environment():
+if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
     import rhinoscriptsyntax as rs
     import scriptcontext as sc
     import Eto # pyright: ignore
@@ -22,12 +22,12 @@ if ENVIRONMENT.is_Rhino_environment():
 
 def apply_dark_style(UI):
     
-    logo_dark_path = "{}\\bin\\images\\Ennead_Architects_Logo_DarkBackground.png".format(ENVIRONMENT.PUBLISH_FOLDER_FOR_RHINO)  
+    logo_dark_path = IMAGE.get_image_path_by_name("icon_ennead_logo_dark_background.png")
     temp_bitmap = Eto.Drawing.Bitmap(logo_dark_path)
     if hasattr(UI, "logo"):
         UI.logo.Image = temp_bitmap.WithSize(200,30)
     
-    icon_path = "{}\\bin\\images\\Form Icon.png".format(ENVIRONMENT.PUBLISH_FOLDER_FOR_RHINO)
+    icon_path = IMAGE.get_image_path_by_name("icon_form.png")
     UI.Icon = Eto.Drawing.Icon(icon_path)
     
     
@@ -43,10 +43,11 @@ def apply_styles_to_control(control):
             pass
         else:
             return
-    
-    dark_background_color = Eto.Drawing.Color(70/256.0,70/256.0,70/256.0)
-    light_dark_background_color = Eto.Drawing.Color(100/256.0,100/256.0,100/256.0)
-    text_color = Eto.Drawing.Color(218/256.0,232/256.0,253/256.0)
+
+
+    dark_background_color = COLOR.tuple_to_color(COLOR.DARKER_BACKGROUND)
+    primary_background_color = COLOR.tuple_to_color(COLOR.PRIMARY_BACKGROUND)
+    text_color = COLOR.tuple_to_color(COLOR.PRIMARY_TEXT)
 
 
     # Apply styles to buttons
@@ -61,7 +62,7 @@ def apply_styles_to_control(control):
         control.TextColor = text_color
 
     elif isinstance(control, Eto.Forms.TextBox):
-        control.BackgroundColor = light_dark_background_color
+        control.BackgroundColor = primary_background_color
         control.TextColor = text_color
 
     elif isinstance(control, Eto.Forms.RadioButtonList):
@@ -114,11 +115,12 @@ def apply_styles_to_control(control):
 
 def OnCellFormatting(self, sender, e): 
     e.ForegroundColor = Eto.Drawing.Colors.White 
-
+    dark_background_color = COLOR.tuple_to_color(COLOR.DARKER_BACKGROUND)
+    primary_background_color = COLOR.tuple_to_color(COLOR.PRIMARY_BACKGROUND)
     if e.Row % 2 == 0:
-        e.Cell.BackgroundColor = Eto.Drawing.Color(70/256.0,70/256.0,70/256.0)
+        e.Cell.BackgroundColor = dark_background_color
     else:
-        e.Cell.BackgroundColor = Eto.Drawing.Color(100/256.0,100/256.0,100/256.0)
+        e.Cell.BackgroundColor = primary_background_color
 
 
 def unit_test():

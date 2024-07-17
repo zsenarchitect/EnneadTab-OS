@@ -412,8 +412,8 @@ class ShapeMapperDialog(Eto.Forms.Form):
         self.reset_listbox()
         layout.AddSeparateRow(Eto.Forms.Label(Text = "Existing mapper sessions\nin current document:\n\n(Double click to highlight design layer)",
                                               VerticalAlign=Eto.Forms.VerticalAlign.Top ),
-                              None,
-                              self.session_name_list)
+                                                None,
+                                                self.session_name_list)
         
        
         return layout
@@ -642,13 +642,13 @@ class ShapeMapperDialog(Eto.Forms.Form):
             
             
             if "tbox" in x:
-                value = DATA_FILE.get_sticky_longterm(sticky_key, "")
+                value = DATA_FILE.get_sticky(sticky_key, "")
                 setattr(user_input_ui, "Text", value)
             elif "tbox_design" in x:
-                value = DATA_FILE.get_sticky_longterm(sticky_key, "500")
+                value = DATA_FILE.get_sticky(sticky_key, "500")
                 setattr(user_input_ui, "Text", value)
             elif "checkbox" in x:
-                value = DATA_FILE.get_sticky_longterm(sticky_key, False)
+                value = DATA_FILE.get_sticky(sticky_key, False)
                 setattr(user_input_ui, "Checked", value)
  
         return
@@ -672,9 +672,9 @@ class ShapeMapperDialog(Eto.Forms.Form):
             sticky_key = FORM_KEY + x
             #print x
             if hasattr(user_input_ui,"Text"):
-                DATA_FILE.set_sticky_longterm(sticky_key, user_input_ui.Text)
+                DATA_FILE.set_sticky(sticky_key, user_input_ui.Text)
             if hasattr(user_input_ui,"Checked"):
-                DATA_FILE.set_sticky_longterm(sticky_key, user_input_ui.Checked)
+                DATA_FILE.set_sticky(sticky_key, user_input_ui.Checked)
 
 
 

@@ -16,8 +16,10 @@ from EnneadTab.RHINO import RHINO_OBJ_DATA
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def random_deselect_to_group():
-    ids = rs.SelectedObjects(False, False)
-    if not ids: return
+    ids = rs.GetObjects("pick objs",  preselect=True)
+    if not ids: 
+        NOTIFICATION.messenger("Nothgin selected")
+        return
     if len(ids) == 1: return
     bbox_center_pt = RHINO_OBJ_DATA.get_center(ids)
     X, Y, Z = RHINO_OBJ_DATA.get_boundingbox_edge_length(ids)

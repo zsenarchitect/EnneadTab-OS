@@ -35,7 +35,7 @@ def color_setting():
         setting[title] = value
         
         
-    DATA_FILE.set_sticky_longterm(RLC.KEY_COLOR_SETTING, setting)
+    DATA_FILE.set_sticky(RLC.KEY_COLOR_SETTING, setting)
 
 
 

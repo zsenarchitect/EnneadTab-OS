@@ -1,11 +1,13 @@
 Option Explicit
+
 Sub StartupEnable()
-    Dim filePath As String
-    Dim userFolder As String
+    Dim filePath
+    Dim userFolder
     
-    userFolder = Environ("USERPROFILE")
+    userFolder = CreateObject("WScript.Shell").ExpandEnvironmentStrings("%USERPROFILE%")
     filePath = userFolder & "\Documents\EnneadTab Ecosystem\EA_Dist\Apps\_rhino\Ennead+.menu\get_latest.button\StartupCaller.rvb"
 
-	Rhino.AddStartupScript(filePath)
+    Call Rhino.AddStartupScript(filePath)
 End Sub
-StartupEnable
+
+Call StartupEnable()

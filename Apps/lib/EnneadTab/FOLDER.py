@@ -4,6 +4,18 @@ import shutil
 import NOTIFICATION
 import ENVIRONMENT
 
+def secure_folder(folder):
+    if not os.path.exists(folder):
+        os.mkdir(folder)
+    return folder
+
+
+
+def get_user_folder():
+    return "{}\\Documents".format(os.environ["USERPROFILE"])
+
+
+
 def get_file_name_from_path(file_path, include_extension=True):
 
     head, tail = os.path.split(file_path)
@@ -15,20 +27,9 @@ def get_file_extension_from_path(file_path):
     return os.path.splitext(file_path)[1]
 
 
-def secure_folder(folder):
-    if not os.path.exists(folder):
-        os.mkdir(folder)
-    return folder
-
-secure_folder(ENVIRONMENT.ECO_SYS_FOLDER)
-secure_folder(ENVIRONMENT.DUMP_FOLDER)
-
-def get_user_folder():
-    return "{}\Documents".format(os.environ["USERPROFILE"])
-
 
 def get_appdata_folder():
-    return "{}\AppData".format(os.environ["USERPROFILE"])
+    return "{}\\AppData".format(os.environ["USERPROFILE"])
 
 
 def get_desktop_folder():

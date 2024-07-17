@@ -1,9 +1,11 @@
 
 import os
 import ENVIRONMENT
+import NOTIFICATION
 
-def try_open_app(exe_name):
-    """extension optional"""
+def try_open_app(exe_name, legacy_name = None):
+    """extension optional
+    legacy_name if for legacy support just in case, but alwasys should put preferred exe_name as first arg"""
     exe_name = exe_name.replace(".exe", "")
     
     exe = ENVIRONMENT.EXE_PRODUCT_FOLDER + "\\{}.exe".format(exe_name)
@@ -15,12 +17,15 @@ def try_open_app(exe_name):
         os.startfile(foldered_exe)
         return True
     
-
+    if legacy_name:
+        if try_open_app(legacy_name):
+            return True
         
     if os.environ["USERPROFILE"].split("\\")[-1] == "szhang":
         print ("[SZ only log]No exe found in the location.")
         print (exe)
         print (foldered_exe)
+        NOTIFICATION.messenger("No exe found!!!\n{}".format(exe_name))
     return False
 
 

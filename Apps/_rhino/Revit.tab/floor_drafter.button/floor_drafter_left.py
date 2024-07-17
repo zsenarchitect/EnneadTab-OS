@@ -94,7 +94,7 @@ def floor_drafter():
     file = FOLDER.get_EA_dump_folder_file("BREP2FLOOR_DATA.json")
     DATA_FILE.save_dict_to_json(out, file)
 
-    SOUND.play_sound("sound effect_mario message.wav")
+    SOUND.play_sound("sound_effect_mario_message.wav")
 
 
 

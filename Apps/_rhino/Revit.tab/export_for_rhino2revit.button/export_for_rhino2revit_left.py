@@ -395,7 +395,7 @@ class Rhino2RevitExporterDialog(Eto.Forms.Dialog[bool]):
 
 def get_output_folder():
     print (os.path.join(os.path.expanduser("~"), "Desktop"))
-    recent_folder = DATA_FILE.get_sticky_longterm("RHINO2REVIT_FOLDER")
+    recent_folder = DATA_FILE.get_sticky("RHINO2REVIT_FOLDER")
     if not recent_folder:
         recent_folder = os.path.join(os.path.expanduser("~"), "Desktop")
         
@@ -419,7 +419,7 @@ def get_output_folder():
     if not os.path.exists(EA_export_folder):
         os.makedirs(EA_export_folder)
 
-    DATA_FILE.set_sticky_longterm("RHINO2REVIT_FOLDER", EA_export_folder)
+    DATA_FILE.set_sticky("RHINO2REVIT_FOLDER", EA_export_folder)
 
     return EA_export_folder
 

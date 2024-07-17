@@ -5,22 +5,30 @@ import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 
-from EnneadTab import COLOR
-from EnneadTab import LOG, ERROR_HANDLE
+from EnneadTab import COLOR, NOTIFICATION
+from EnneadTab import LOG, ERROR_HANDLE, DATA_FILE
 
 
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def push_glass_in():
 
-    srf = rs.GetObjects("pick surfaces", rs.filter.surface)
+    srf = rs.GetObjects("pick surfaces", rs.filter.surface, preselect=True)
     if not srf:
+        NOTIFICATION.messenger(main_text = "You didn't select anything.")
         return
-    dist = rs.RealBox("How far to push in?", default_number=1)
+    default = DATA_FILE.get_sticky("PUNCH_GLASS_DEPTH", 100)
+    dist = rs.RealBox("How far to push in?", 
+                      default_number=default,
+                      title="EnneadTab")
+    DATA_FILE.set_sticky("PUNCH_GLASS_DEPTH", dist)
 
     plural = "s" if len(srf) > 1 else ""
     opts = ["Delete input surface{}".format(plural), "Keep input surface{}".format(plural)]
-    delete_input_res = rs.ListBox(opts, "What do you want to do with the input surface{}?".format(plural), default=opts[0])
+    delete_input_res = rs.ListBox(opts, 
+                                  message="What do you want to do with the input surface{}?".format(plural), 
+                                  default=opts[0],
+                                  title="Punch that stupid glass!")
     if delete_input_res == opts[0]:
         delete_input = True
     elif delete_input_res == opts[1]:

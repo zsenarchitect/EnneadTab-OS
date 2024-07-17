@@ -304,7 +304,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         z_vec = rs.VectorCreate([0,0,1], [0,0,0])
 
 
-        SOUND.play_sound("sound effect_mario fireball.wav")
+        SOUND.play_sound("sound_effect_mario_fireball.wav")
         for collection in self.total_collection:
             if collection is None: continue
             # print (collection)
@@ -341,7 +341,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         self.generate_blocks_layout(is_preview = False)
         self.clear_out()
         NOTIFICATION.messenger(main_text = "Blocks added")
-        SOUND.play_sound("sound effect_popup msg1.wav")
+        SOUND.play_sound("sound_effect_popup_msg1.wav")
         #self.Close()
 
     # event handler handling clicking on the 'cancel' button
@@ -361,7 +361,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         else:
             note = "Base surface not defined!"
             NOTIFICATION.messenger(main_text = note)
-            SOUND.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound_effect_error.wav")
             
             self.srf_label.Text = note
 
@@ -378,7 +378,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
             self.guide_crv = select_obj
         else:
             self.guide_crv_label.Text = "  Guide curve not defined!"
-            SOUND.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound_effect_error.wav")
 
         self.generate_blocks_layout(is_preview = True)
 
@@ -450,7 +450,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
             print (str(e))
             NOTIFICATION.messenger(main_text = "data not valid",
                                             print_note = True)
-            SOUND.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound_effect_error.wav")
             self.delete_preview_blocks()
             return
 
@@ -458,7 +458,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         if self.total_count == 0:
             NOTIFICATION.messenger(main_text =  "Cannot have total count of 0 for scatter",
                                             print_note = True)
-            SOUND.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound_effect_error.wav")
             
             self.delete_preview_blocks()
             return
@@ -467,7 +467,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         if not self.selected_srfs:
             NOTIFICATION.messenger(main_text = "Base srfs not valid",
                                             print_note = True)
-            SOUND.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound_effect_error.wav")
             
             self.delete_preview_blocks()
             return
@@ -477,7 +477,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
             if not self.guide_crv or not rs.IsObject(self.guide_crv):
                 NOTIFICATION.messenger(main_text = "Guide curve not valid",
                                             print_note = True)
-                SOUND.play_sound("sound effect_error.wav")
+                SOUND.play_sound("sound_effect_error.wav")
       
                 self.delete_preview_blocks()
                 return
@@ -499,7 +499,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         if not self.user_blocks:
             
             NOTIFICATION.messenger(main_text = "User block not valid")
-            SOUND.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound_effect_error.wav")
             
             return
         rs.UnselectAllObjects()
@@ -578,9 +578,9 @@ class ScatterBlockDialog(Eto.Forms.Form):
             count += 1
 
         if is_preview:
-            SOUND.play_sound("sound effect_popup msg2.wav")
+            SOUND.play_sound("sound_effect_popup_msg2.wav")
         else:
-            SOUND.play_sound("sound effect_popup msg1.wav")
+            SOUND.play_sound("sound_effect_popup_msg1.wav")
         rs.DeleteObjects(self.borders)
 
 
@@ -678,7 +678,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         for x in self.filler_list:
             sticky_key = FORM_KEY + x
             default = 0
-            value = DATA_FILE.get_sticky_longterm(sticky_key, default_value_if_no_sticky = default)
+            value = DATA_FILE.get_sticky(sticky_key, default_value_if_no_sticky = default)
 
             #setattr(self, x , str(value))
             tbox = getattr(self, x)
@@ -702,7 +702,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
             tbox = getattr(self, x)
             sticky_key = FORM_KEY + x
             #print x
-            DATA_FILE.set_sticky_longterm(sticky_key, tbox.Text)
+            DATA_FILE.set_sticky(sticky_key, tbox.Text)
 
         self.clear_out()
 

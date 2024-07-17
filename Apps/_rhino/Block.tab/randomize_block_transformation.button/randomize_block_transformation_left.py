@@ -22,11 +22,11 @@ def randomize_block_transformation():
 
 
 
-    default_use_rotation = DATA_FILE.get_sticky_longterm("random_transform_rotation", True)
-    default_use_scale_1d_soft = DATA_FILE.get_sticky_longterm("random_transform_scale_1d_soft", True)
-    default_use_scale_1d_taller = DATA_FILE.get_sticky_longterm("random_transform_scale_1d_taller", False)
-    default_use_scale_3d = DATA_FILE.get_sticky_longterm("random_transform_scale_3d", False)
-    default_show_animation = DATA_FILE.get_sticky_longterm("random_transform_show_animation", False)
+    default_use_rotation = DATA_FILE.get_sticky("random_transform_rotation", True)
+    default_use_scale_1d_soft = DATA_FILE.get_sticky("random_transform_scale_1d_soft", True)
+    default_use_scale_1d_taller = DATA_FILE.get_sticky("random_transform_scale_1d_taller", False)
+    default_use_scale_3d = DATA_FILE.get_sticky("random_transform_scale_3d", False)
+    default_show_animation = DATA_FILE.get_sticky("random_transform_show_animation", False)
 
     option_list = [["Rotation", default_use_rotation],
                     ["Height scale 1D softly (0.9~1.1 factor)", default_use_scale_1d_soft],
@@ -63,7 +63,7 @@ def randomize_block_transformation():
     for i, id in enumerate(ids):
         if show_animation and i % 35 == 0:
             print (i)
-            SOUND.play_sound(file = "sound effect_dice.wav")
+            SOUND.play_sound(file = "sound_effect_dice.wav")
         pt = rs.BlockInstanceInsertPoint(id)
         if use_rotation:
             ang = random.randrange(-180, 180)
@@ -91,14 +91,14 @@ def randomize_block_transformation():
 
 
     # sc.sticky["random_transform_rotation"] = use_rotation
-    DATA_FILE.set_sticky_longterm("random_transform_rotation", use_rotation)
-    DATA_FILE.set_sticky_longterm("random_transform_scale_1d_soft", use_1d_H)
-    DATA_FILE.set_sticky_longterm("random_transform_scale_1d_taller", use_1d_H_tall)
-    DATA_FILE.set_sticky_longterm("random_transform_scale_3d", use_3d)
-    DATA_FILE.set_sticky_longterm("random_transform_show_animation", show_animation)
+    DATA_FILE.set_sticky("random_transform_rotation", use_rotation)
+    DATA_FILE.set_sticky("random_transform_scale_1d_soft", use_1d_H)
+    DATA_FILE.set_sticky("random_transform_scale_1d_taller", use_1d_H_tall)
+    DATA_FILE.set_sticky("random_transform_scale_3d", use_3d)
+    DATA_FILE.set_sticky("random_transform_show_animation", show_animation)
 
-    SOUND.play_sound(file = "sound effect_popup msg3.wav")
-    SOUND.play_sound(file = "sound effect_dice.wav")
+    SOUND.play_sound(file = "sound_effect_popup_msg3.wav")
+    SOUND.play_sound(file = "sound_effect_dice.wav")
 
 if __name__ == "__main__":
     randomize_block_transformation()

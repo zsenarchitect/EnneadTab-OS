@@ -38,9 +38,18 @@ else:
     DEPENDENCY_FOLDER += "\\py3"
 
 
-
-ECO_SYS_FOLDER = "{}\\Documents\\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
+USER_PROFILE_FOLDER = os.environ["USERPROFILE"]
+USER_DOCUMENT_FOLDER = "{}\\Documents".format(USER_PROFILE_FOLDER)
+USER_DOWNLOAD_FOLDER = "{}\\downloads".format(USER_PROFILE_FOLDER)
+USER_DESKTOP_FOLDER = "{}\\desktop".format(USER_PROFILE_FOLDER)
+USER_APPDATA_FOLDER = "{}\\AppData".format(USER_PROFILE_FOLDER)
+ECO_SYS_FOLDER = "{}\\EnneadTab Ecosystem".format(USER_DOCUMENT_FOLDER)
 DUMP_FOLDER = ECO_SYS_FOLDER + "\\Dump"
+
+for folder in [ECO_SYS_FOLDER, DUMP_FOLDER]:
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
 
 
 
@@ -123,9 +132,9 @@ IS_RHINOINSIDEREVIT_ENVIRONMENT = is_RhinoInsideRevit_environment()
 
 def get_app_name():
     app_name = "terminal"
-    if is_Revit_environment():
+    if IS_REVIT_ENVIRONMENT:
         app_name = "revit"
-    elif is_Rhino_environment():
+    elif IS_RHINO_ENVIRONMENT:
         app_name = "rhino"
     return app_name
 

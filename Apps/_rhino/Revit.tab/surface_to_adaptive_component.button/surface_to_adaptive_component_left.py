@@ -193,7 +193,7 @@ class Srf2AdpDialog(Eto.Forms.Form):
         file = FOLDER.get_EA_dump_folder_file("SRF2ADP_DATA.json")
         DATA_FILE.save_dict_to_json(self.out_data, file)
 
-        SOUND.play_sound("sound effect_mario message.wav")
+        SOUND.play_sound("sound_effect_mario_message.wav")
         self.clear_out()
         self.Close()
 

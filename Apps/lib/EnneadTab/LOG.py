@@ -40,6 +40,12 @@ whereas revit need to look at local func run"""
 
 @FOLDER.backup_data(LOG_FILE_NAME , "log")
 def log(script_path, func_name_as_record):
+
+    # for rhino many script have multiple title as mutiple aliasa , so in that case, only use the longest as recorder
+    if isinstance(func_name_as_record, list):
+        func_name_as_record = max(func_name_as_record, key=len)
+
+        
     def decorator(func):
         def wrapper(*args, **kwargs):
             with DATA_FILE.update_data(LOG_FILE_NAME) as data:

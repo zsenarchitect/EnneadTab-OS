@@ -389,9 +389,9 @@ class SampleBlockDialog(Eto.Forms.Form):
 
         if not is_preview:
             self.obj_name = "EA_BLOCK_LAYOUT"
-            SOUND.play_sound("sound effect_popup msg3.wav")
+            SOUND.play_sound("sound_effect_popup_msg3.wav")
         else:
-            SOUND.play_sound("sound effect_menu_tap.wav")
+            SOUND.play_sound("sound_effect_menu_tap.wav")
             
 
 
@@ -590,7 +590,7 @@ class SampleBlockDialog(Eto.Forms.Form):
         for x in self.filler_list:
             sticky_key = FORM_KEY + x
             default = 0
-            value = DATA_FILE.get_sticky_longterm(sticky_key, default_value_if_no_sticky = default)
+            value = DATA_FILE.get_sticky(sticky_key, default_value_if_no_sticky = default)
 
 
             box = getattr(self, x)
@@ -618,9 +618,9 @@ class SampleBlockDialog(Eto.Forms.Form):
             sticky_key = FORM_KEY + x
             #print x
             if "tbox" in x:
-                DATA_FILE.set_sticky_longterm(sticky_key, box.Text)
+                DATA_FILE.set_sticky(sticky_key, box.Text)
             else:
-                DATA_FILE.set_sticky_longterm(sticky_key, box.Checked)
+                DATA_FILE.set_sticky(sticky_key, box.Checked)
 
         self.clear_out()
 

@@ -15,7 +15,7 @@ from EnneadTab import LOG, ERROR_HANDLE
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def random_deselect():
-    ids = rs.SelectedObjects(False, False)
+    ids = rs.GetObjects("pick objs",  preselect=True)
     if not ids: 
         NOTIFICATION.messenger ("Currently selecting no elements.")
         return

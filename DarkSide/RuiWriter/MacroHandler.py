@@ -143,7 +143,11 @@ class MacroHandler(BaseHandler):
             if isinstance(alias, list):
                 alias = alias[0]
             if alias is not None:
-                return alias
+                if alias == alias.upper():
+                    return alias
+                else:
+                    return "EA_" + alias
+                
 
 
         locator = self.script_path.split("{}\\".format(search_folder))[1]

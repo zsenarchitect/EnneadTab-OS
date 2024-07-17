@@ -35,7 +35,7 @@ def nest_layer():
                                                             height = 500)
 
     if not layers_to_modify or not parent_layer_prefix:
-        NOTIFICATION.toast(main_text = "Cannot deal with empty selection.")
+        NOTIFICATION.messenger(main_text = "Cannot deal with empty selection.")
         return
 
 

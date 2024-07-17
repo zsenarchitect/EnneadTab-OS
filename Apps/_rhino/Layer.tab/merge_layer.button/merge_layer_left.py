@@ -42,7 +42,7 @@ def merge_layer():
 
 
     if not layers_to_modify or not layer_target:
-        NOTIFICATION.toast(main_text = "Cannot deal with empty selection.")
+        NOTIFICATION.messenger(main_text = "Cannot deal with empty selection.")
         return
 
     rs.EnableRedraw(False)
@@ -71,7 +71,7 @@ def merge_layer():
         rs.MessageBox(message = display, buttons= 0 | 48, title = "Too aggresive merging...")
 
 
-    SOUND.play_sound(file = "sound effect_popup msg3.wav")
+    SOUND.play_sound(file = "sound_effect_popup_msg3.wav")
 
 
 def modify_obj_on_layer(current_layer, layer_target):

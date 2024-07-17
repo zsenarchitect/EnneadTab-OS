@@ -24,6 +24,7 @@ class TextColorEnum:
     White = "white"
 ACCENT_COLOR = 70,70,70
 PRIMARY_BACKGROUND = 100, 100, 100
+DARKER_BACKGROUND = 70,70,70
 PRIMARY_TEXT = 218,232,253
 
 
@@ -93,9 +94,9 @@ def tuple_to_color(tuple):
         return DB_Color(red,green,blue)
     if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
         
-        Eto.Drawing.Color(red/256.0,
-                        green/256.0,
-                        blue/256.0)
+        return Eto.Drawing.Color(red/256.0,
+                                green/256.0,
+                                blue/256.0)
     
     return Color.FromArgb(red,green,blue)
 

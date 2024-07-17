@@ -11,7 +11,7 @@ def add_search_path():
         os.path.join(os.environ['USERPROFILE'] , 'Documents','EnneadTab Ecosystem','EA_Dist','Apps','lib')
         ]
     for path in rs.SearchPathList():
-        print ("Rhion sarch path", path)
+        # print ("Rhion sarch path", path)
         if path in repos:
             rs.DeleteSearchPath(path)
             
@@ -53,6 +53,7 @@ def get_latest(is_silient = False):
 
 
 def add_startup_script():
+    
     """hear me out here:
     python cannot add startup script directly
    

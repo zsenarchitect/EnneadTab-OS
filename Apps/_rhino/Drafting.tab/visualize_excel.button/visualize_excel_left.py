@@ -118,12 +118,12 @@ class ShapeWriter:
 
     
         self.pointer = [0,0,0]
-        self.big_title_offset = DATA_FILE.get_sticky_longterm("viz_excel_big_title_offset", 100)
-        self.small_title_offset = DATA_FILE.get_sticky_longterm("viz_excel_small_title_offset", 50)
-        self.caption_text_drop = DATA_FILE.get_sticky_longterm("viz_excel_caption_text_drop", 10)
-        self.row_gap = DATA_FILE.get_sticky_longterm("viz_excel_row_gap", 60)
-        self.column_gap = DATA_FILE.get_sticky_longterm("viz_excel_column_gap", 40)
-        self.use_hori = DATA_FILE.get_sticky_longterm("viz_excel_use_hori", 1)
+        self.big_title_offset = DATA_FILE.get_sticky("viz_excel_big_title_offset", 100)
+        self.small_title_offset = DATA_FILE.get_sticky("viz_excel_small_title_offset", 50)
+        self.caption_text_drop = DATA_FILE.get_sticky("viz_excel_caption_text_drop", 10)
+        self.row_gap = DATA_FILE.get_sticky("viz_excel_row_gap", 60)
+        self.column_gap = DATA_FILE.get_sticky("viz_excel_column_gap", 40)
+        self.use_hori = DATA_FILE.get_sticky("viz_excel_use_hori", 1)
         
         para_list = ["big_title_offset", "small_title_offset", "caption_text_drop", "row_gap", "column_gap", "use_hori"]
         
@@ -131,10 +131,12 @@ class ShapeWriter:
                             values = [getattr(self, x) for x in para_list],
                             message = "Enter Data for Visualization Shape Control",
                             title = "Visualize Excel Area")
+        if not res:
+            return
         for i, x in enumerate(para_list):
             setattr(self, x, float(res[i]))
             
-            DATA_FILE.set_sticky_longterm("viz_excel_" + x , float(res[i]))
+            DATA_FILE.set_sticky("viz_excel_" + x , float(res[i]))
         
         
         self.current_small_category = None

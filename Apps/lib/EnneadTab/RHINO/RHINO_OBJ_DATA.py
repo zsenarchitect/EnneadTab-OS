@@ -7,7 +7,7 @@ sys.path.append(root_folder)
 import ENVIRONMENT
 import ENVIRONMENT
 
-if ENVIRONMENT.is_Rhino_environment():
+if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
     import rhinoscriptsyntax as rs
     import scriptcontext as sc
 

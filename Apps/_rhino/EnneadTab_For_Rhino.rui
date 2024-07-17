@@ -961,10 +961,10 @@
         <locale_1033>FilterBlockByName</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does FilterBlockByName when left click</locale_1033>
+        <locale_1033>Quick select multiple block by block names</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does FilterBlockByName when left click</locale_1033>
+        <locale_1033>Quick select multiple block by block names</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>FilterBlockByName</locale_1033>
@@ -1105,10 +1105,10 @@
         <locale_1033>IsolateLayerBySelection</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does IsolateLayerBySelection when left click</locale_1033>
+        <locale_1033>Isolcate objs from similar layers</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does IsolateLayerBySelection when left click</locale_1033>
+        <locale_1033>Isolcate objs from similar layers</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>IsolateLayerBySelection</locale_1033>
@@ -1123,10 +1123,10 @@
         <locale_1033>SelectObjectsOnSimilarLayer</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does SelectObjsOnSimilarLayer when right click</locale_1033>
+        <locale_1033>Selection objects on the similar layers.</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does SelectObjsOnSimilarLayer when right click</locale_1033>
+        <locale_1033>Selection objects on the similar layers.</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>SelectObjectsOnSimilarLayer</locale_1033>
@@ -1285,10 +1285,10 @@
         <locale_1033>ToggleGFADisplay</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does ToggleGFA when left click</locale_1033>
+        <locale_1033>Dynamically display GFA area by simply changing layer name.</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does ToggleGFA when left click</locale_1033>
+        <locale_1033>Dynamically display GFA area by simply changing layer name.</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>ToggleGFADisplay</locale_1033>
@@ -1321,10 +1321,10 @@
         <locale_1033>BatchRenameCamera</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does BatchRenameCamera when left click</locale_1033>
+        <locale_1033>Rename multiple cameras without activating them.</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does BatchRenameCamera when left click</locale_1033>
+        <locale_1033>Rename multiple cameras without activating them.</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>BatchRenameCamera</locale_1033>
@@ -1339,10 +1339,10 @@
         <locale_1033>ChangeObjectDisplaySource</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does ChangeObjectDisplaySource when left click</locale_1033>
+        <locale_1033>Change the display source of the object for display color and/or material</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does ChangeObjectDisplaySource when left click</locale_1033>
+        <locale_1033>Change the display source of the object for display color and/or material</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>ChangeObjectDisplaySource</locale_1033>
@@ -1372,7 +1372,7 @@
     </macro_item>
     <macro_item guid="d81c6060-c4d0-4e6e-9cf5-308c35b597e2" bitmap_id="4475561b-89b4-46a3-b73b-c08f7ca1890e">
       <text>
-        <locale_1033>StairMakerLinear</locale_1033>
+        <locale_1033>StairMaker</locale_1033>
       </text>
       <tooltip>
         <locale_1033>Interactively create linear stair.</locale_1033>
@@ -1381,12 +1381,12 @@
         <locale_1033>Interactively create linear stair.</locale_1033>
       </help_text>
       <button_text>
-        <locale_1033>StairMakerLinear</locale_1033>
+        <locale_1033>StairMaker</locale_1033>
       </button_text>
       <menu_text>
-        <locale_1033>StairMakerLinear</locale_1033>
+        <locale_1033>StairMaker</locale_1033>
       </menu_text>
-      <script>EA_StairMakerLinear</script>
+      <script>EA_StairMaker</script>
     </macro_item>
     <macro_item guid="e268fbef-15b7-4387-9532-256bd3c4d82f" bitmap_id="371e837d-7f9c-42c1-823c-303399dc7116">
       <text>
@@ -1447,10 +1447,10 @@
         <locale_1033>MatchCrvDir</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does MatchCrvDir when left click</locale_1033>
+        <locale_1033>Match multiple crvs direction.</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does MatchCrvDir when left click</locale_1033>
+        <locale_1033>Match multiple crvs direction.</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>MatchCrvDir</locale_1033>
@@ -1501,10 +1501,10 @@
         <locale_1033>RandomDeselect</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does RandomDeselect when left click</locale_1033>
+        <locale_1033>Ramdonly deselect objs by percentage</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does RandomDeselect when left click</locale_1033>
+        <locale_1033>Ramdonly deselect objs by percentage</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>RandomDeselect</locale_1033>
@@ -1516,31 +1516,31 @@
     </macro_item>
     <macro_item guid="72c59bbf-42a9-49d0-a674-020108489b23" bitmap_id="0f0ee8d6-9026-4dc1-9a82-2c5d880f01f2">
       <text>
-        <locale_1033>RandomDeselect</locale_1033>
+        <locale_1033>RandomGroupPacking</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does RandomDeselect when left click</locale_1033>
+        <locale_1033>Ramdonly package objs to groups, great if you are going to set slight different shade for them in rendering</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does RandomDeselect when left click</locale_1033>
+        <locale_1033>Ramdonly package objs to groups, great if you are going to set slight different shade for them in rendering</locale_1033>
       </help_text>
       <button_text>
-        <locale_1033>RandomDeselect</locale_1033>
+        <locale_1033>RandomGroupPacking</locale_1033>
       </button_text>
       <menu_text>
-        <locale_1033>RandomDeselect</locale_1033>
+        <locale_1033>RandomGroupPacking</locale_1033>
       </menu_text>
-      <script>EA_RandomDeselect</script>
+      <script>EA_RandomGroupPacking</script>
     </macro_item>
     <macro_item guid="2fcdd032-73e2-4865-8b8e-c6486d0af400" bitmap_id="a59650fc-b7b4-4943-bbeb-2187545da753">
       <text>
         <locale_1033>ShapeMapper</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does ShapeMapper when left click</locale_1033>
+        <locale_1033>Help you map complex design over surface. Consider this as a improved flowAlongSurface</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does ShapeMapper when left click</locale_1033>
+        <locale_1033>Help you map complex design over surface. Consider this as a improved flowAlongSurface</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>ShapeMapper</locale_1033>
@@ -1663,10 +1663,10 @@
         <locale_1033>RemoveStringInMaterialName</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does RemoveStringInMaterialName when left click</locale_1033>
+        <locale_1033>Remove the specific string in material name. Handy if trying to remove file name prefix.</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does RemoveStringInMaterialName when left click</locale_1033>
+        <locale_1033>Remove the specific string in material name. Handy if trying to remove file name prefix.</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>RemoveStringInMaterialName</locale_1033>
@@ -2077,10 +2077,10 @@
         <locale_1033>ImportRevitCollection</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does ImportRevitCollection when left click</locale_1033>
+        <locale_1033>Organize dwgs export from Revit to readable Rhino layer tree.</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does ImportRevitCollection when left click</locale_1033>
+        <locale_1033>Organize dwgs export from Revit to readable Rhino layer tree.</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>ImportRevitCollection</locale_1033>
@@ -2322,10 +2322,10 @@ MODULE_HELPER.run_Rhino_button('Tailor.tab\\stack_enscape.button\\move_img_right
         <locale_1033>DVD</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does Dvd when left click</locale_1033>
+        <locale_1033>When you are bored...</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does Dvd when left click</locale_1033>
+        <locale_1033>When you are bored...</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>DVD</locale_1033>
@@ -2448,10 +2448,10 @@ MODULE_HELPER.run_Rhino_button('Tailor.tab\\stack_enscape.button\\move_img_right
         <locale_1033>GetLatest</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does GetLatest when left click</locale_1033>
+        <locale_1033>Get the lastest version of EnneadTab</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does GetLatest when left click</locale_1033>
+        <locale_1033>Get the lastest version of EnneadTab</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>GetLatest</locale_1033>
@@ -2477,10 +2477,10 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\get_latest.button\\get_latest_left
         <locale_1033>RestartRhino</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does RestartRhino when left click</locale_1033>
+        <locale_1033>Restart Rhino to test new core.</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does RestartRhino when left click</locale_1033>
+        <locale_1033>Restart Rhino to test new core.</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>RestartRhino</locale_1033>
@@ -2513,10 +2513,10 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\get_latest.button\\get_latest_left
         <locale_1033>HowToInstall</locale_1033>
       </text>
       <tooltip>
-        <locale_1033>This button does HowToInstall when left click</locale_1033>
+        <locale_1033>Pull up installation guide for the rest of your team.</locale_1033>
       </tooltip>
       <help_text>
-        <locale_1033>This button does HowToInstall when left click</locale_1033>
+        <locale_1033>Pull up installation guide for the rest of your team.</locale_1033>
       </help_text>
       <button_text>
         <locale_1033>HowToInstall</locale_1033>

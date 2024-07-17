@@ -1,5 +1,5 @@
 
-
+__title__ = "Startup"
 import os
 import sys
 
@@ -24,8 +24,8 @@ import proDUCKtion # pyright: ignore
 from EnneadTab import VERSION_CONTROL, LOG, ERROR_HANDLE
 
 
-@ERROR_HANDLE.try_catch_error(is_silent=True)
-@LOG.log
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def EnneadTab_startup():
     VERSION_CONTROL.update_EA_dist()
 

@@ -19,7 +19,7 @@
         "script": "Ennead+.menu\\get_latest.button\\get_latest_left.py",
         "icon": "Ennead+.menu\\get_latest.button\\icon.png",
         "alias": "GetLatest",
-        "doc": "This button does GetLatest when left click",
+        "doc": "Get the lastest version of EnneadTab",
         "tab": "Ennead+.menu",
         "tab_icon": null
     },
@@ -27,7 +27,7 @@
         "script": "Ennead+.menu\\how_to_install.button\\how_to_install_left.py",
         "icon": "Ennead+.menu\\how_to_install.button\\icon.png",
         "alias": "HowToInstall",
-        "doc": "This button does HowToInstall when left click",
+        "doc": "Pull up installation guide for the rest of your team.",
         "tab": "Ennead+.menu",
         "tab_icon": null
     },
@@ -43,7 +43,7 @@
         "script": "Ennead+.menu\\restart_rhino.button\\restart_rhino_left.py",
         "icon": "Ennead+.menu\\restart_rhino.button\\icon.png",
         "alias": "RestartRhino",
-        "doc": "This button does RestartRhino when left click",
+        "doc": "Restart Rhino to test new core.",
         "tab": "Ennead+.menu",
         "tab_icon": null
     },
@@ -99,7 +99,7 @@
         "script": "Block.tab\\filter_block_by_name.button\\filter_block_by_name_left.py",
         "icon": "Block.tab\\filter_block_by_name.button\\icon.png",
         "alias": "FilterBlockByName",
-        "doc": "This button does FilterBlockByName when left click",
+        "doc": "Quick select multiple block by block names",
         "tab": "Block.tab",
         "tab_icon": "Block.tab\\icon.png"
     },
@@ -205,7 +205,7 @@
     "Create.tab\\stair_maker.button\\stair_maker_left.py": {
         "script": "Create.tab\\stair_maker.button\\stair_maker_left.py",
         "icon": "Create.tab\\stair_maker.button\\icon.png",
-        "alias": "StairMakerLinear",
+        "alias": "StairMaker",
         "doc": "Interactively create linear stair.",
         "tab": "Create.tab",
         "tab_icon": "Create.tab\\icon.png"
@@ -310,7 +310,7 @@
         "script": "Fun.tab\\dvd.button\\dvd_left.py",
         "icon": "Fun.tab\\dvd.button\\icon.png",
         "alias": "DVD",
-        "doc": "This button does Dvd when left click",
+        "doc": "When you are bored...",
         "tab": "Fun.tab",
         "tab_icon": "Fun.tab\\icon.png"
     },
@@ -390,7 +390,7 @@
         "script": "Layer.tab\\isolate_layer_by_selection.button\\isolate_layer_by_selection_left.py",
         "icon": "Layer.tab\\isolate_layer_by_selection.button\\icon.png",
         "alias": "IsolateLayerBySelection",
-        "doc": "This button does IsolateLayerBySelection when left click",
+        "doc": "Isolcate objs from similar layers",
         "tab": "Layer.tab",
         "tab_icon": "Layer.tab\\icon.png"
     },
@@ -398,7 +398,7 @@
         "script": "Layer.tab\\isolate_layer_by_selection.button\\isolate_layer_by_selection_right.py",
         "icon": "Layer.tab\\isolate_layer_by_selection.button\\icon.png",
         "alias": "SelectObjectsOnSimilarLayer",
-        "doc": "This button does SelectObjsOnSimilarLayer when right click",
+        "doc": "Selection objects on the similar layers.",
         "tab": "Layer.tab",
         "tab_icon": "Layer.tab\\icon.png"
     },
@@ -478,7 +478,7 @@
         "script": "Material.tab\\remove_string_in_material_name.button\\remove_string_in_material_name_left.py",
         "icon": "Material.tab\\remove_string_in_material_name.button\\icon.png",
         "alias": "RemoveStringInMaterialName",
-        "doc": "This button does RemoveStringInMaterialName when left click",
+        "doc": "Remove the specific string in material name. Handy if trying to remove file name prefix.",
         "tab": "Material.tab",
         "tab_icon": "Material.tab\\icon.png"
     },
@@ -502,7 +502,7 @@
         "script": "Modify.tab\\match_crv_dir.button\\match_crv_dir_left.py",
         "icon": "Modify.tab\\match_crv_dir.button\\icon.png",
         "alias": "MatchCrvDir",
-        "doc": "This button does MatchCrvDir when left click",
+        "doc": "Match multiple crvs direction.",
         "tab": "Modify.tab",
         "tab_icon": "Modify.tab\\icon.png"
     },
@@ -526,15 +526,15 @@
         "script": "Modify.tab\\random_deselect.button\\random_deselect_left.py",
         "icon": "Modify.tab\\random_deselect.button\\icon.png",
         "alias": "RandomDeselect",
-        "doc": "This button does RandomDeselect when left click",
+        "doc": "Ramdonly deselect objs by percentage",
         "tab": "Modify.tab",
         "tab_icon": "Modify.tab\\icon.png"
     },
     "Modify.tab\\random_deselect.button\\random_deselect_right.py": {
         "script": "Modify.tab\\random_deselect.button\\random_deselect_right.py",
         "icon": "Modify.tab\\random_deselect.button\\icon.png",
-        "alias": "RandomDeselect",
-        "doc": "This button does RandomDeselect when left click",
+        "alias": "RandomGroupPacking",
+        "doc": "Ramdonly package objs to groups, great if you are going to set slight different shade for them in rendering",
         "tab": "Modify.tab",
         "tab_icon": "Modify.tab\\icon.png"
     },
@@ -542,7 +542,7 @@
         "script": "Modify.tab\\shape_mapper.button\\shape_mapper_left.py",
         "icon": "Modify.tab\\shape_mapper.button\\icon.png",
         "alias": "ShapeMapper",
-        "doc": "This button does ShapeMapper when left click",
+        "doc": "Help you map complex design over surface. Consider this as a improved flowAlongSurface",
         "tab": "Modify.tab",
         "tab_icon": "Modify.tab\\icon.png"
     },
@@ -662,7 +662,7 @@
         "script": "Revit.tab\\import_revit_collection.button\\import_revit_collection_left.py",
         "icon": "Revit.tab\\import_revit_collection.button\\icon.png",
         "alias": "ImportRevitCollection",
-        "doc": "This button does ImportRevitCollection when left click",
+        "doc": "Organize dwgs export from Revit to readable Rhino layer tree.",
         "tab": "Revit.tab",
         "tab_icon": "Revit.tab\\icon.png"
     },
@@ -742,7 +742,7 @@
         "script": "View.tab\\batch_rename_camera.button\\batch_rename_camera_left.py",
         "icon": "View.tab\\batch_rename_camera.button\\icon.png",
         "alias": "BatchRenameCamera",
-        "doc": "This button does BatchRenameCamera when left click",
+        "doc": "Rename multiple cameras without activating them.",
         "tab": "View.tab",
         "tab_icon": "View.tab\\icon.png"
     },
@@ -750,7 +750,7 @@
         "script": "View.tab\\change_object_display_source.button\\change_object_display_source_left.py",
         "icon": "View.tab\\change_object_display_source.button\\icon.png",
         "alias": "ChangeObjectDisplaySource",
-        "doc": "This button does ChangeObjectDisplaySource when left click",
+        "doc": "Change the display source of the object for display color and/or material",
         "tab": "View.tab",
         "tab_icon": "View.tab\\icon.png"
     },
@@ -782,7 +782,7 @@
         "script": "View.tab\\toggle_GFA.button\\toggle_GFA_left.py",
         "icon": "View.tab\\toggle_GFA.button\\icon.png",
         "alias": "ToggleGFADisplay",
-        "doc": "This button does ToggleGFA when left click",
+        "doc": "Dynamically display GFA area by simply changing layer name.",
         "tab": "View.tab",
         "tab_icon": "View.tab\\icon.png"
     },

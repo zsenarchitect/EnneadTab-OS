@@ -5,12 +5,4 @@ layout:
   - Import Export
   - Manage
   - UI
-  - ACE #advanced_only
-
-
-# for future. Can consider control basic and beta tier by changing layout yaml file
-# after publish to L drive in basic tier. When find #beta in line, comment out the
-# line to disbale that tool. This can be either in panels or button organization.
-
-# Eventually do not need Ennead+. Don't know how good this idea is for long term
-# manage because it is largely invisible for me, and basic tier can be too much again.
+  - ACE

@@ -123,6 +123,9 @@ class RuiWriter:
 
         if hasattr(self, "menu"):
             for button in self.menu.buttons:
+                if isinstance(button, BH.DividerHandler):
+                    continue
+                
                 if button.macro_left:
                     macros.append(button.macro_left)
      
@@ -142,6 +145,8 @@ class RuiWriter:
 
         if hasattr(self, "menu"):
             for button in self.menu.buttons:
+                if isinstance(button, BH.DividerHandler):
+                    continue
                 if button.macro_left:
                     icon_list.append(button.macro_left.icon)
                 

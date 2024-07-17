@@ -548,7 +548,7 @@ def export_ost_material_map():
                                        "transparency": int(material.Transparency),
                                        "shininess": int(material.Shininess)}
             material_map[sub_c.Name] = material_data
-    DATA_FILE.save_dict_to_json_in_dump_folder(material_map, "EA_OST_MATERIAL_MAP.json", True)
+    DATA_FILE.set_data(material_map, "EA_OST_MATERIAL_MAP.json", True)
     
 ################## main code below #####################
 output = script.get_output()

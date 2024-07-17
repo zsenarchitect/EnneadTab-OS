@@ -50,7 +50,7 @@ def create_user_data(name):
     data["recent_projects"] = []
     file = "{}\{}.json".format(get_user_root_folder(), name)
     # try:
-    DATA_FILE.save_dict_to_json(data, file)
+    DATA_FILE.set_data(data, file)
     return data
 
     # except:
@@ -144,7 +144,7 @@ def get_data_by_name(user_name=get_current_user_name()):
 
 def set_data_by_name(user_name, data):
     file_name = get_user_data_file_by_name(user_name)
-    DATA_FILE.save_dict_to_json(
+    DATA_FILE.set_data(
         data, get_absolute_path(file_name), use_encode=True)
 
 
@@ -425,7 +425,7 @@ def get_user_root_folder():
     folder = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Users"
     folder = FOLDER.secure_folder(folder)
     try:
-        res = DATA_FILE.save_dict_to_json(
+        res = DATA_FILE.set_data(
             dict(), folder + "\\SH_tester_account.json")
         if not res:
             folder = FOLDER.get_EA_local_dump_folder()
@@ -684,7 +684,7 @@ def get_data_from_error_log():
 
 
 def set_data_to_error_loge(data):
-    DATA_FILE.save_dict_to_json(
+    DATA_FILE.set_data(
         data, r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Users\Error_Log.json")
 
 

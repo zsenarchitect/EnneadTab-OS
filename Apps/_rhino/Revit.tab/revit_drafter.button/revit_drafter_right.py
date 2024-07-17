@@ -209,7 +209,7 @@ def revit_drafter():
     # save data to dump folder\
     file_path = "{}\\{}".format(FOLDER.get_EA_local_dump_folder() , "EA_DRAFTING_TRANSFER.json")
     print (file_path)
-    DATA_FILE.save_dict_to_json(OUT_Data, file_path)
+    DATA_FILE.set_data(OUT_Data, file_path)
 
     NOTIFICATION.messenger(main_text = "Draft Data recorded. You can return to Revit now")
 

@@ -66,7 +66,7 @@ def main():
     else:
         return
     data["open_time"] = schedule_time.isoformat()
-    res = DATA_FILE. save_dict_to_json_in_dump_folder(
+    res = DATA_FILE. set_data(
         data, data_file, use_encode=True)
     # print (res)
     

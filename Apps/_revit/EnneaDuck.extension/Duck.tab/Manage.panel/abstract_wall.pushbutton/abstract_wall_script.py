@@ -113,7 +113,7 @@ class Solution:
         for key in list(set(self.removable_keys_in_dict)):
             del self.data[key]
             
-        DATA_FILE.save_dict_to_json_in_shared_dump_folder(self.data, self.data_file_name)
+        DATA_FILE.set_data_in_shared_dump_folder(self.data, self.data_file_name)
     
     
     
@@ -164,7 +164,7 @@ class Solution:
             
         
         #  store the data in L drive? in project custoe schema?
-        DATA_FILE.save_dict_to_json_in_shared_dump_folder(self.data, self.data_file_name)
+        DATA_FILE.set_data_in_shared_dump_folder(self.data, self.data_file_name)
         
         
         NOTIFICATION.messenger(main_text = "You can start checking/updating the abstract walls in\n[{}].".format(working_view.Name))

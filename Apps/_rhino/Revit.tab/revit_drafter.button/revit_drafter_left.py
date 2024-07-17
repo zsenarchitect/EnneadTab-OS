@@ -101,7 +101,7 @@ def revit_drafter():
 
     # import and bundle layer
     file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.json")
-    setting = DATA_FILE.read_json_as_dict(file, use_encode = True)
+    setting = DATA_FILE.read_json_as_dict(file)
     if not setting:
         NOTIFICATION.messenger(main_text = "No setting file found, please check your revit side.")
         return

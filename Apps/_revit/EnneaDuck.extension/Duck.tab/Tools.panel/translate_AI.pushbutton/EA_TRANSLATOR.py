@@ -47,7 +47,7 @@ def get_EA_local_dump_folder():
     return get_special_folder_in_EA_setting("Local Copy Dump")
 
 
-def read_json_as_dict(filepath, use_encode = True):
+def read_json_as_dict(filepath):
 
     if use_encode:
         with io.open(filepath, encoding='utf8') as f:
@@ -60,7 +60,7 @@ def read_json_as_dict(filepath, use_encode = True):
         return data
 
 
-def save_dict_to_json(dict, filepath, use_encode = True):
+def set_data(dict, filepath):
 
     if use_encode:
         with io.open(filepath, 'w', encoding='utf-8') as f:
@@ -131,7 +131,7 @@ class PromptData:
         """
 
 
-        save_dict_to_json(data, file_path)
+        set_data(data, file_path)
 
     def process(self):
 

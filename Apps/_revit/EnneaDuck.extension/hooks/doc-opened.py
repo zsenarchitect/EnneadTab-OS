@@ -281,7 +281,7 @@ def register_silient_open(doc):
                         model_path.Region)
 
     try:
-        EnneadTab.DATA_FILE.save_dict_to_json(data, filepath)
+        EnneadTab.DATA_FILE.set_data(data, filepath)
     except:
         print ("Cannot register model due to L drive access limit.")
     #print "\n\nYour model is regiestered."
@@ -344,13 +344,13 @@ def warn_ignorance(doc, warning_cate):
     if len(record.keys()) == 0:
         record[0] = {"timestamp":time.time(),
                     "user":EnneadTab.USER.get_user_name()}
-        EnneadTab.DATA_FILE.save_dict_to_json_in_shared_dump_folder(record, record_file)
+        EnneadTab.DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
         return
     
     this_record_index = len(record.keys())
     record[this_record_index] = {"timestamp":time.time(),
                                 "user":EnneadTab.USER.get_user_name()}
-    EnneadTab.DATA_FILE.save_dict_to_json_in_shared_dump_folder(record, record_file)
+    EnneadTab.DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
     
     day_delta = (time.time() - record["0"].get("timestamp"))/86400 # there is 86400 secons in one day
     return int(day_delta)

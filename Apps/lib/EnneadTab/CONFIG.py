@@ -3,7 +3,7 @@ import DATA_FILE
 import USER
 
 
-SETTING_FILE_NAME = 'setting_{}.json'.format(USER.USER_NAME)
+SETTING_FILE_NAME = 'setting_{}.sexyDuck'.format(USER.USER_NAME)
 
 def get_setting(key, defaule_value=None):
     """if no key provided, will return the whole dict

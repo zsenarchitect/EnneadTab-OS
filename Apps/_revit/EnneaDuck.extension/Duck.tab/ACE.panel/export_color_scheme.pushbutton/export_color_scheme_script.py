@@ -102,7 +102,7 @@ def export_color_scheme_to_excel(color_scheme, is_ignore_non_used):
         worksheet.write(i,5,entry.Color.Blue)
         
         
-    DATA_FILE.save_dict_to_json_in_dump_folder(alt_dict, "color_scheme_dict.json", use_encode = True)
+    DATA_FILE.set_data(alt_dict, "color_scheme_dict.json")
 
     
     

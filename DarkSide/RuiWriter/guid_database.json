@@ -408,5 +408,10 @@
     "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\RuiWriter\\.\\default_icon.pngrestart_rhino_left": "50d5693a-8444-44cd-80d7-21d35ad3dab9",
     "Ennead+.menu\\restart_rhino.button": "8bfae752-04b8-4252-b17f-b2261d1bb171",
     "Ennead+.menu\\restart_rhino.button\\restart_rhino_left.py": "f1be39b4-f432-4cac-b4f9-d743a957039d",
-    "Ennead+.menu\\restart_rhino.button\\icon.pngrestart_rhino_left": "61ad2120-1bc5-4662-aa45-ea2891e77685"
+    "Ennead+.menu\\restart_rhino.button\\icon.pngrestart_rhino_left": "61ad2120-1bc5-4662-aa45-ea2891e77685",
+    "Ennead+.menu\\get_latest.button\\icon.pngget_latest_left": "886da644-887f-4a18-8eef-eb79e53668a7",
+    "Material.tab\\random_texture_walk.button\\icon.pngrandom_texture_walk_left": "19c380e3-05d1-4b04-9331-02b001e4a2e8",
+    "Material.tab\\remove_string_in_material_name.button\\icon.pngremove_string_in_material_name_left": "6fabf4f5-e3f5-4b8a-9f91-d9df67a2fafb",
+    "Modify.tab\\srf_to_panel.button\\icon.pngsrf_to_panel_left": "1e902d78-9c14-4d31-8b5e-9302b72d3a55",
+    "Revit.tab\\floor_drafter.button\\icon.pngfloor_drafter_left": "3049e325-8c39-4656-a2b8-edaf4e17567f"
 }

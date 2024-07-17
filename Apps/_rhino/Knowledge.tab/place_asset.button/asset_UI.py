@@ -31,7 +31,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
         self.Resizable = True
         self.Padding = Eto.Drawing.Padding(5)
         self.Spacing = Eto.Drawing.Size(5, 5)
-        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\ennead-e-logo.png")
+        
         #self.Bounds = Eto.Drawing.Rectangle()
         self.listbox_height = 600
         self.left_layout_width = 400

@@ -218,7 +218,7 @@ class EA_Printer_UI(WPFWindow):
         EA_UTILITY.secure_folder(self.output_folder)
         self.record_folder = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exporter_Record".format(ENVIRONMENT.HOSTER_FOLDER)
         try:
-            DATA_FILE.save_dict_to_json(dict(), self.record_folder + "\\SH_Access_test.json")
+            DATA_FILE.set_data(dict(), self.record_folder + "\\SH_Access_test.json")
         except:
             self.record_folder = FOLDER.get_EA_local_dump_folder()
 
@@ -285,7 +285,7 @@ class EA_Printer_UI(WPFWindow):
         self.email_sender.Text = "{}@ennead.com".format(os.environ["USERPROFILE"].split("sers\\")[1])
 
         if not EA_UTILITY.is_file_exist_in_folder(setting_file, EA_UTILITY.get_EA_local_dump_folder()):
-            EA_UTILITY.save_dict_to_json(dict(), self.setting_file_path)
+            EA_UTILITY.set_data(dict(), self.setting_file_path)
 
 
 
@@ -478,7 +478,7 @@ class EA_Printer_UI(WPFWindow):
 
 
 
-        EA_UTILITY.save_dict_to_json(out_data, self.setting_file_path)
+        EA_UTILITY.set_data(out_data, self.setting_file_path)
 
     def initiate_default_email_data(self):
         self.email_data = EmailData(receiver_list = self.email_receivers.Text,
@@ -493,7 +493,7 @@ class EA_Printer_UI(WPFWindow):
         except:
             #REVIT_FORMS.notification(main_text = "Creating setting file for first-time user. ", sub_text = "Open exporter tool again to start exporting!", self_destruct = 15)
             data = dict()
-            EA_UTILITY.save_dict_to_json(data, self.setting_file_path)
+            EA_UTILITY.set_data(data, self.setting_file_path)
 
 
 
@@ -1501,7 +1501,7 @@ class EA_Printer_UI(WPFWindow):
                     continue
                 self.record["{}#{}".format(item.item.UniqueId, item.extension)] = item.time_estimate
 
-            EA_UTILITY.save_dict_to_json(self.record, self.get_record_path_by_doc(doc))
+            EA_UTILITY.set_data(self.record, self.get_record_path_by_doc(doc))
 
 
     def get_time_estimate_from_record(self, doc):

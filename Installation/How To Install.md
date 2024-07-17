@@ -6,7 +6,7 @@ Download "EnneadTab_OS_Installer.exe"
 
 - https://github.com/zsenarchitect/EA_Dist/blob/main/Installation/EnneadTab_OS_Installer.exe
 
-save anywhere and run it. It might takes a few seconds to unpack the contents.
+save anywhere and run it. It might takes a few seconds to unpack the contents. When you can see "C:\Users\\[USER_NAME]\Documents\EnneadTab Ecosystem\EA_Dist\Installation" then it is ready to move on installing Rhino and Revit Version.
 ![screenshot of downloading page](/Apps/lib/EnneadTab/images/Instruction_core.png)
 
 

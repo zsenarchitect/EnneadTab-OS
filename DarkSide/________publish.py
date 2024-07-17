@@ -163,7 +163,8 @@ def update_installer_folder_exes():
     # copy folder from current repo to EA_dist repo
     for file in ["EnneadTab_OS_Installer.exe",
                  "EnneadTab_For_Revit(Legacy)_Installer.exe",
-                 "EnneadTab_For_Revit_UnInstaller.exe"]:
+                 "EnneadTab_For_Revit_UnInstaller.exe",
+                 "RevitIniDeployer.exe"]:
         shutil.copy(os.path.join(OS_REPO_FOLDER, "Apps", "lib", "ExeProducts", file),
                     os.path.join(OS_REPO_FOLDER, "Installation", file))
 

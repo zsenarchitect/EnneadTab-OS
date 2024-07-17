@@ -17,7 +17,7 @@
     },
     "Ennead+.menu\\get_latest.button\\get_latest_left.py": {
         "script": "Ennead+.menu\\get_latest.button\\get_latest_left.py",
-        "icon": null,
+        "icon": "Ennead+.menu\\get_latest.button\\icon.png",
         "alias": "GetLatest",
         "doc": "This button does GetLatest when left click",
         "tab": "Ennead+.menu",
@@ -28,14 +28,6 @@
         "icon": "Ennead+.menu\\how_to_install.button\\icon.png",
         "alias": "HowToInstall",
         "doc": "This button does HowToInstall when left click",
-        "tab": "Ennead+.menu",
-        "tab_icon": null
-    },
-    "Ennead+.menu\\reload_python.button\\reload_python_left.py": {
-        "script": "Ennead+.menu\\reload_python.button\\reload_python_left.py",
-        "icon": null,
-        "alias": "Reload Python",
-        "doc": "Checkout pre-recorded turtorials and demos about EnneadTab.",
         "tab": "Ennead+.menu",
         "tab_icon": null
     },
@@ -476,7 +468,7 @@
     },
     "Material.tab\\random_texture_walk.button\\random_texture_walk_left.py": {
         "script": "Material.tab\\random_texture_walk.button\\random_texture_walk_left.py",
-        "icon": null,
+        "icon": "Material.tab\\random_texture_walk.button\\icon.png",
         "alias": "RandomTextureWalk",
         "doc": "Randomly walk the texture map a bit to avoid them lineup",
         "tab": "Material.tab",
@@ -484,7 +476,7 @@
     },
     "Material.tab\\remove_string_in_material_name.button\\remove_string_in_material_name_left.py": {
         "script": "Material.tab\\remove_string_in_material_name.button\\remove_string_in_material_name_left.py",
-        "icon": null,
+        "icon": "Material.tab\\remove_string_in_material_name.button\\icon.png",
         "alias": "RemoveStringInMaterialName",
         "doc": "This button does RemoveStringInMaterialName when left click",
         "tab": "Material.tab",
@@ -556,7 +548,7 @@
     },
     "Modify.tab\\srf_to_panel.button\\srf_to_panel_left.py": {
         "script": "Modify.tab\\srf_to_panel.button\\srf_to_panel_left.py",
-        "icon": null,
+        "icon": "Modify.tab\\srf_to_panel.button\\icon.png",
         "alias": "SrfToPanel",
         "doc": "Convert well defined panelization of surfs to detailed polysrfs with thickness, joint reveal to edge.",
         "tab": "Modify.tab",
@@ -660,7 +652,7 @@
     },
     "Revit.tab\\floor_drafter.button\\floor_drafter_left.py": {
         "script": "Revit.tab\\floor_drafter.button\\floor_drafter_left.py",
-        "icon": null,
+        "icon": "Revit.tab\\floor_drafter.button\\icon.png",
         "alias": "FloorDrafter",
         "doc": "This button does FloorDrafter when left click",
         "tab": "Revit.tab",

@@ -184,7 +184,7 @@ class AI_Report_modelessForm(WPFWindow):
         data["response"] = "No results."
         
         self.data_file = FOLDER.get_EA_dump_folder_file("QAQC_REPORT_DATA.json")
-        DATA_FILE.save_dict_to_json(data, self.data_file)
+        DATA_FILE.set_data(data, self.data_file)
         
         run_exe()
         self.debug_textbox.Text = "Thinking..."
@@ -249,7 +249,7 @@ class AI_Report_modelessForm(WPFWindow):
     def save_conversation(self):
         record = dict()
         record["conversation_history"] = self.tbox_conversation.Text
-        DATA_FILE.save_dict_to_json_in_dump_folder(record, self.log_file)
+        DATA_FILE.set_data(record, self.log_file)
 
     @ERROR_HANDLE.try_catch_error()
     def generate_report_click(self, sender, args):

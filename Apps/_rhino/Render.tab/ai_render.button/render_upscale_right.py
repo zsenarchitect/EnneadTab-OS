@@ -86,11 +86,6 @@ class RenderUpscalerDialog(Eto.Forms.Form):
     def CreateLogoImage(self):
         self.logo = Eto.Forms.ImageView()
 
-        self.FOLDER_PRIMARY = r"L:\4b_Applied Computing\00_Asset Library"
-        self.FOLDER_APP_IMAGES = r"{}\Database\app images".format(self.FOLDER_PRIMARY)
-        self.LOGO_IMAGE = r"{}\Ennead_Architects_Logo.png".format(self.FOLDER_APP_IMAGES)
-        temp_bitmap = Eto.Drawing.Bitmap(self.LOGO_IMAGE)
-        self.logo.Image = temp_bitmap.WithSize(200,30)
         return self.logo
     
 
@@ -412,7 +407,7 @@ class RenderUpscalerDialog(Eto.Forms.Form):
         data["direction"] = "IN"
 
 
-        DATA_FILE.save_dict_to_json_in_dump_folder(data, "AI_RENDER_SCALER_{}.json".format(TIME.get_formatted_current_time()))
+        DATA_FILE.set_data(data, "AI_RENDER_SCALER_{}.json".format(TIME.get_formatted_current_time()))
 
         NOTIFICATION.messenger(main_text = "Upscale Job Enqueued!") 
         call_exe()

@@ -584,7 +584,7 @@ class AI_translate_ModelessForm(WPFWindow):
 
 
 
-        EnneadTab.DATA_FILE.save_dict_to_json(data, file_path, use_encode = True)
+        EnneadTab.DATA_FILE.set_data(data, file_path)
 
         run_exe()
 
@@ -610,7 +610,7 @@ class AI_translate_ModelessForm(WPFWindow):
             attempt += 1
             time.sleep(1)
             try:
-                record = EnneadTab.DATA_FILE.read_json_as_dict(file_path, use_encode = True)
+                record = EnneadTab.DATA_FILE.read_json_as_dict(file_path)
             except Exception as e:
                 print (e)
 

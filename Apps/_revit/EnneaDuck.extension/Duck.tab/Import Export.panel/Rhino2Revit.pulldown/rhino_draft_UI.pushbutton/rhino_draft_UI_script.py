@@ -344,7 +344,7 @@ def transfer_in_draft(rhino_unit, is_grouping):
 
     # get dump data
     file_path = FOLDER.get_filepath_in_special_folder_in_EA_setting("Local Copy Dump", "EA_DRAFTING_TRANSFER.json")
-    datas = DATA_FILE.read_json_as_dict(file_path, use_encode = True)
+    datas = DATA_FILE.read_json_as_dict(file_path)
     if not datas:
         NOTIFICATION.messenger ("There is no data saved. Have you exported from the Rhino?")
         return
@@ -615,7 +615,7 @@ class RhinoDraft_UI(forms.WPFWindow):
         OUT["revit_unit"] = self.revit_unit
         OUT["final_file"] = self.final_file
         file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.json")
-        DATA_FILE.save_dict_to_json(OUT, file, use_encode = True)
+        DATA_FILE.set_data(OUT, file)
 
 
     @ERROR_HANDLE.try_catch_error()

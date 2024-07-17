@@ -194,7 +194,7 @@ class main_setting_UI(forms.WPFWindow):
 
         setting_file = FOLDER.get_EA_dump_folder_file('revit_ui_setting.json')
         if not FOLDER.is_path_exist(setting_file):
-            DATA_FILE.save_dict_to_json(dict(), setting_file)
+            DATA_FILE.set_data(dict(), setting_file)
             self.checkbox_tab_tailor.IsChecked = True
             self.checkbox_tab_library.IsChecked = True
             self.checkbox_tab_beta.IsChecked = True
@@ -249,7 +249,7 @@ class main_setting_UI(forms.WPFWindow):
 
 
 
-        DATA_FILE.save_dict_to_json(data, setting_file)
+        DATA_FILE.set_data(data, setting_file)
 
         self.update_TTS()
 

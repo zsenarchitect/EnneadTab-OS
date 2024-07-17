@@ -193,7 +193,7 @@ def update_data(file_name, is_local = True):
 #######################################
 
 
-
+STCIKY_FILE = "sticky.SexyDuck"
 
 def get_sticky(sticky_name, default_value_if_no_sticky=None):
     """get longterm sticky information
@@ -205,8 +205,8 @@ def get_sticky(sticky_name, default_value_if_no_sticky=None):
     Returns:
         any : get the value of the longterm sticky
     """
-    file = _get_sticky_file()
-    data = _read_json_file_safely(file)
+   
+    data = get_data(STCIKY_FILE)
     if sticky_name not in data.keys():
         set_sticky(sticky_name, default_value_if_no_sticky)
         return default_value_if_no_sticky
@@ -220,17 +220,9 @@ def set_sticky(sticky_name, value_to_write):
         sticky_name (str): _description_
         value_to_write (any): value to write
     """
-    file = _get_sticky_file()
-    data = _read_json_file_safely(file)
-    data[sticky_name] = value_to_write
-    _save_dict_to_json(data, file, use_encode=True)
+    with update_data(STCIKY_FILE) as data:
+        data[sticky_name] = value_to_write
 
 
-def _get_sticky_file():
-    file_name = "longterm_sticky.STICKY"
-    file = FOLDER.get_EA_dump_folder_file(file_name)
-    if not os.path.exists(file):
-        _save_dict_to_json(dict(), file)
-        # add a sleeping time to avoid writing file  and read file to quickly
-        time.sleep(1)
-    return file
+
+

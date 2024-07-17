@@ -212,4 +212,5 @@ if __name__ == "__main__":
     # recompile_exe(single_exe="Revit_Export_Renamer.json")
     # recompile_exe(single_exe="Speaker.json")
     # recompile_exe(single_exe="IndesignAccOpenner.json")
-    recompile_exe(single_exe="Pdf2OrderedJpgs.json")
+    # recompile_exe(single_exe="Pdf2OrderedJpgs.json")
+    recompile_exe(single_exe="RevitIniDeployer.json")

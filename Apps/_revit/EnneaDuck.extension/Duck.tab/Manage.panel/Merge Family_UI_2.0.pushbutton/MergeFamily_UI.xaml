@@ -1,0 +1,273 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        >
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Cross"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+
+        <Style TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="Foreground" Value="#FF9C8CBF" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20"
+            Cursor="ScrollAll">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646"/>
+        </Border.Background>
+        <Border.Effect>
+
+            <DropShadowEffect Color="#FFF1DC53" BlurRadius="15" Opacity="1"/>
+
+        </Border.Effect>
+
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="750"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0"
+                   Height="100"
+                   x:Name="logo_img"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Left" />
+
+
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center">
+                <TextBlock x:Name="title"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        FontSize="40">
+                <Run Text="Merge Family"/><Run x:Name="short_version_info"
+                                            FontSize="20"
+                                            Text="EnneadTab"/>
+                </TextBlock>
+                <TextBlock x:Name="subtitle"
+                           HorizontalAlignment="Left"
+                           TextAlignment="Left"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Top"
+                           FontSize="10"
+                           LineHeight="20"
+                           Text="Merge bad type into good type, check for type parameter difference, migrate type definition and much more."/>
+
+                <TextBlock FontSize="10"
+                           Margin="0,10,0,10"
+                           HorizontalAlignment="center"
+                           TextAlignment="Center"
+                           Text="Click here for Youtube Demo"
+                           Cursor="Arrow"
+                           MouseDown="open_youtube"
+                           TextDecorations="Underline"/>
+
+
+                <Expander Header="Instruction"
+                          Foreground="White"
+                          IsExpanded="False"
+                          Cursor="Arrow">
+                    <TextBlock Text="abcd"
+                               x:Name="instruction_textblock"
+                               TextWrapping="Wrap"/>
+                </Expander>
+                <Separator/>
+                <Button Content="Instruction"
+                        HorizontalAlignment="Center"
+                            Click="open_details_describtion" Background="{x:Null}"
+                            Foreground="#FF8A8A8A"
+                            BorderThickness="1,0,1,0" FontStyle="Italic"
+                        Visibility="Collapsed"/>
+
+
+                <CheckBox Content="Process in current view only."
+                          x:Name="checkbox_current_view_only"
+                          Cursor="Arrow"
+                          Margin="5"
+                          Foreground="{StaticResource AboutWindowTextColor}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Family Name:"
+                               VerticalAlignment="Center"
+                               Grid.Column="1"
+                               Grid.Row="0" TextDecorations="Underline"/>
+                    <TextBlock Text="Type Name:"
+                               VerticalAlignment="Center"
+                               Grid.Column="2"
+                               Grid.Row="0" TextDecorations="Underline"/>
+                    <TextBlock Text="See Sample"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Grid.Column="3"
+                               Grid.Row="0" TextDecorations="Underline"/>
+
+                    <Button Content="Pick Bad Family"
+                            Click="pick_type_bad"
+                            Grid.Column="0"
+                            Grid.Row="1"/>
+                    <TextBlock Text="Waiting Family"
+                               x:Name="family_name_bad"
+                               VerticalAlignment="Center"
+                               Grid.Column="1"
+                               Grid.Row="1"/>
+                    <ComboBox  x:Name="type_list_bad"
+                               SelectionChanged="dropdown_list_value_changed"
+                               DisplayMemberPath="display_text"
+                               SelectedValuePath="item"
+                               SelectedIndex="0"
+                               Grid.Column="2"
+                               Grid.Row="1"/>
+
+                    <Button Content="Zoom"
+                            Click="zoom_bad_click"
+                            Grid.Column="3"
+                               Grid.Row="1"/>
+
+
+
+
+
+
+                    <Button Content="Pick Target Family"
+                            Click="pick_type_target"
+                            Grid.Column="0"
+                               Grid.Row="2"/>
+                    <TextBlock Text="Waiting Family"
+                               x:Name="family_name_target"
+                               VerticalAlignment="Center"
+                               Grid.Column="1"
+                               Grid.Row="2"/>
+                    <ComboBox  x:Name="type_list_target"
+                               SelectionChanged="dropdown_list_value_changed"
+                               DisplayMemberPath="display_text"
+                               SelectedValuePath="item"
+                               SelectedIndex="0"
+                               Grid.Column="2"
+                               Grid.Row="2"/>
+                    <Button Content="Zoom"
+                            Click="zoom_target_click"
+                            Grid.Column="3"
+                               Grid.Row="2"/>
+
+
+
+
+
+                </Grid>
+
+                <WrapPanel HorizontalAlignment="Left">
+
+                </WrapPanel>
+
+
+                <WrapPanel HorizontalAlignment="Center">
+
+                    <TextBlock x:Name="debug_textbox"
+                               Margin="0,10,0,0"
+                               FontSize="8"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="Debug Output:" />
+                </WrapPanel>
+
+
+
+
+
+
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Content="Merge Type"
+                            x:Name="button_convert"
+                            Click="merge_clicked"
+                            BorderThickness="1"/>
+                    <Button Content="Close This Window"
+                        Click="close_click"
+                        HorizontalAlignment="Center"/>
+                </WrapPanel>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

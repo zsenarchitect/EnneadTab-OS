@@ -1,0 +1,239 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        Cursor="ScrollAll">
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Height" Value="20"/>
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646" Opacity="1"/>
+        </Border.Background>
+        <Border.Effect>
+
+            <DropShadowEffect Color="#FFFFE59C" BlurRadius="15" Opacity="0.8"/>
+
+        </Border.Effect>
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0" 
+                   Height="100" 
+                   x:Name="logo_img"   
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left" />
+
+            <StackPanel Margin="0, 20, 0, 0"
+                        Grid.Column ="1">
+                <TextBlock x:Name = "title_text" Text="AAAAAAAAAAAAAAAAAAAAA" Foreground="#FFFFE59C" FontSize="20" TextWrapping="Wrap" FontWeight="Bold" />
+                <TextBlock x:Name = "sub_text" Text="aaaaaaaaaaaaaaaaaa" Foreground="#FFCBCBCB" TextWrapping="Wrap"  MaxWidth="500" HorizontalAlignment="Left"/>
+
+                <TabControl Background="{x:Null}" Margin="0,5,0,0" TabStripPlacement="Top" HorizontalContentAlignment="Center">
+
+
+                    <TabItem Header="View Name"  Background="{x:Null}">
+                        <StackPanel>
+                            <TextBlock Text="Make more readable project browser by format the view names to inlcude detail number and sheet number, as well as using actual view title to make view name more meaningful." 
+                                       TextWrapping="Wrap" MaxWidth="330"/>
+                            <TextBlock Text="Examples:" TextWrapping="Wrap" MaxWidth="330" Margin="0,10,0,0"/>
+                            <Image x:Name="sample_img_project_browser" HorizontalAlignment="Center" MaxWidth="330"/>
+                            <Separator/>
+                            <StackPanel HorizontalAlignment="Center">
+                                <RadioButton x:Name="radial_bt_is_sheetnum_detailnum_title"  Content="SheetNum+DetailNum+ViewTitle(Recommand)" IsChecked="True"/>
+                                <RadioButton x:Name="radial_bt_is_detailnum_sheetnum_title" Content="DetailNum+SheetNum+ViewTitle" />
+                                <RadioButton x:Name="radial_bt_is_original_flavor" Content="Original Flavor" />
+                            </StackPanel>
+
+                            <Button Content="Rename View Names" Click="rename_view_Click" HorizontalAlignment="Center"/>
+    
+
+                        </StackPanel>
+
+
+                    </TabItem>
+                    <TabItem Header="View Name Prefix"  Background="{x:Null}">
+                        <StackPanel>
+                            <TextBlock Text="Add/Remove Prefix for selected views in project browser." 
+                                       TextWrapping="Wrap" MaxWidth="330"/>
+                            
+                            <Separator/>
+                            
+
+                            <TextBox  x:Name="tbox_view_prefix" Text="Prefix_" HorizontalAlignment="Center" Width="400" HorizontalContentAlignment="Center"/>
+                            <StackPanel HorizontalAlignment="Center" >
+                                <RadioButton x:Name="radial_bt_prefix_add" Content="Adding Prefix" IsChecked="True"/>
+                                <RadioButton Content="Removing Prefix" />
+                            </StackPanel>
+
+                            <Separator/>
+                            <Button Content="Rename Selected Views in Project Browser" Click="view_prefix_modifier_click" HorizontalAlignment="Center"/>
+
+                        </StackPanel>
+
+
+                    </TabItem>
+                    <TabItem Header="All Cap Name"  Background="{x:Null}">
+                        <StackPanel>
+                            <TextBlock Text="Make sheet names and views names as full cap." 
+                                       TextWrapping="Wrap" MaxWidth="330"/>
+                            
+                            <Separator/>
+                            
+
+                            <Button Content="All Cap View Names and Sheet Names" Click="all_cap_view_name_click" HorizontalAlignment="Center"/>
+                            <Separator/>
+                            <Button Content="All Cap Room Names and Area Names" Click="all_cap_spatical_element_name_click" HorizontalAlignment="Center"/>
+
+                        </StackPanel>
+
+
+                    </TabItem>
+                    <TabItem Header="Family Name" Background="{x:Null}">
+
+                        <StackPanel>
+                            <TextBlock Text="Select family in viewport and rename on spot." TextWrapping="Wrap"/>
+                            
+                            <Separator/>
+
+                            <Button Content="Rename Family" 
+                                    BorderThickness="2"
+                                    BorderBrush="Orange"
+                                    Click="rename_family_click"/>
+
+
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Grid and Level" Background="{x:Null}" x:Name="tab_grid_level">
+
+                        <StackPanel>
+                            <TextBlock Text="Apply or remove prefixs in name." TextWrapping="Wrap"/>
+                            <WrapPanel>
+                                <RadioButton x:Name="radial_bt_is_grid"  Content="Grids " IsChecked="True"/>
+                                <RadioButton Content="Levels" />
+                            </WrapPanel>
+
+
+                            <Button Content="Modify prefix" />
+
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="SubC Names" Background="{x:Null}" x:Name="tab_subC_name">
+
+                        <StackPanel>
+                            <TextBlock Text="Apply or remove prefixs in subC name." TextWrapping="Wrap"/>
+
+
+
+                            <Button Content="Modify SubC Name" />
+
+
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+
+
+                
+            
+
+
+               
+               
+                <TextBlock x:Name="debug_textbox" Text="debug text" Foreground="#FFCBCBCB" />
+                <Button Content="Close Renamer" Click="close_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"  Margin="0,5,0,5"/>
+
+
+            </StackPanel>
+        </Grid>
+    </Border>
+    
+</Window>

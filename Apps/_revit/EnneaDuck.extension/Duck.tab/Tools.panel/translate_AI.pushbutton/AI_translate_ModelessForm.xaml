@@ -1,0 +1,333 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="800"
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        Cursor="ScrollAll">
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="BorderThickness" Value="3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Height" Value="20"/>
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646" />
+        </Border.Background>
+        <Border.Effect>
+
+            <DropShadowEffect Color="#FF53D0F1" BlurRadius="15" Opacity="0.5"/>
+
+        </Border.Effect>
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0" 
+                   Height="100" 
+                   x:Name="logo_img"   
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left" />
+
+            <StackPanel Margin="0, 20, 0, 0"
+                        Grid.Column ="1">
+                <TextBlock x:Name = "title_text" Text="AAAAAAAAAAAAAAAAAAAAA" Foreground="#FFDB6AF5" FontSize="20" TextWrapping="Wrap" FontWeight="Bold" />
+                <TextBlock x:Name = "sub_text" Text="aaaaaaaaaaaaaaaaaa" Foreground="#FFCBCBCB" TextWrapping="Wrap"  MaxWidth="800" HorizontalAlignment="Left"/>
+                <Expander Header="Instruction(Click to expand)"
+                          Foreground="#FFCBCBCB"
+                          Cursor="Help">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name = "instruction_text" Text="xxxxxxxxxxxxxxxxxxxx" Grid.Column="1" Foreground="#FFCBCBCB" TextWrapping="Wrap"  MaxWidth="800" HorizontalAlignment="Left"/>
+                        <TextBlock x:Name = "instruction_step_text" Text="Step 1:" Grid.Column="0" Foreground="#FFCBCBCB" TextWrapping="Wrap"  MaxWidth="800" HorizontalAlignment="Left"/>
+                    </Grid>
+                    
+                    
+                </Expander>
+                
+
+                <Grid >
+                    <WrapPanel >
+                        <Button Content='Pick Sheets'  
+                        Click="pick_views_sheets_Click" 
+                        Width="150"
+                        HorizontalAlignment="Left"
+                         x:Name="bt_pick"/>
+
+                        <Expander Visibility="Visible"
+                                  Header="Translator Settings"
+                                  IsExpanded="False"
+                                   Foreground="#FFCBCBCB"
+                                  Padding="5"
+                                  Cursor="Arrow"
+                                  >
+                            <StackPanel>
+                                <GroupBox Header="To translate sheets or views?">
+                                    <WrapPanel>
+                                        <RadioButton Content="Sheets" x:Name="radial_bt_do_sheets" Click="change_UI_translate_mode" />
+                                        <RadioButton Content="Views" Click="change_UI_translate_mode"/>
+                                        <TextBlock Text="(Views will use title on sheet as English name if available.)" VerticalAlignment="Center"/>
+                                    </WrapPanel>
+
+                                </GroupBox>
+
+                                <GroupBox Header="Include Existing Translation as Sample?" Margin="0,10,0,0">
+                                    <StackPanel>
+                                        <CheckBox Content="AI mimic existing translation. Increase consistency but reduce capacity." 
+                                                  IsChecked="False"
+                                                  x:Name="is_including_user_sample"/>
+                                        <WrapPanel>
+                                            <TextBlock Text="The additional views/sheets you picked as sample will take some token capacity." VerticalAlignment="Center" Margin="10, 0,10,0"/>
+                                            <Button Content="Selective" Click="selective_user_sample_Click"/>
+                                        </WrapPanel>
+                                       
+                                    </StackPanel>
+
+                                </GroupBox>
+                                
+                                <GroupBox Header="What kinds of samples translations to include?" Margin="0,10,0,0">
+                                    <StackPanel>
+                                        <TextBlock Text="Limit your sample translation can help increase capacity." VerticalAlignment="Center" x:Name="category_header" Margin="10, 0,10,0"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <StackPanel Grid.Column="0">
+                                                <CheckBox Content="G,T-Series." 
+                                                      IsChecked="True"
+                                                      x:Name="is_include_sample_G_series"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                                <CheckBox Content="Schedules." 
+                                                      IsChecked="True"
+                                                      x:Name="is_include_sample_schedules"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                                <CheckBox Content="Geometry Plans." 
+                                                      IsChecked="True"
+                                                      x:Name="is_include_sample_geo_plans"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                            </StackPanel>
+                                            
+                                            <StackPanel Grid.Column="1">
+                                                <CheckBox Content="Floor Plans." 
+                                                      IsChecked="True"
+                                                      x:Name="is_include_sample_plans"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                                <CheckBox Content="Elevations." 
+                                                      IsChecked="True"
+                                                      x:Name="is_include_sample_elevations"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                                <CheckBox Content="Sections." 
+                                                      IsChecked="True"
+                                                      x:Name="is_include_sample_sections"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                            </StackPanel>
+
+
+                                            
+                                            <StackPanel Grid.Column="2">
+                                                <CheckBox Content="System Drawings." 
+                                                      IsChecked="True"
+                                                      x:Name="is_include_sample_systems"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                                <CheckBox Content="Details." 
+                                                      IsChecked="True"
+                                                      x:Name="is_include_sample_details"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                                <CheckBox Content="RCPs." 
+                                                      IsChecked="True"
+                                                      x:Name="is_include_sample_rcps"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="3">
+                                                <CheckBox Content="Floor Plans(Extra)." 
+                                                      IsChecked="False"
+                                                      x:Name="is_include_sample_plans_additional"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                                <CheckBox Content="Elevations(Extra)." 
+                                                      IsChecked="False"
+                                                      x:Name="is_include_sample_elevations_additional"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                                <CheckBox Content="System Drawing(Extra)." 
+                                                      IsChecked="False"
+                                                      x:Name="is_include_sample_systems_additional"
+                                                      Margin="5,0,0,0"
+                                                      Click="change_UI_sample_category"/>
+                                            </StackPanel>
+
+
+                                        </Grid>
+                                        <TextBlock Text="Note: 'System drawing' category will activate 'plans', 'elevations' and 'sections' category." VerticalAlignment="Center" Margin="10, 0,10,0"/>
+                                        <TextBlock Text="Note: 'G-Series' category will activate 'schedules' category." VerticalAlignment="Center" Margin="10, 0,10,0"/>
+
+                                    </StackPanel>
+
+                                </GroupBox>
+                            </StackPanel>
+
+                        </Expander>
+                    </WrapPanel>
+
+
+
+                    <WrapPanel HorizontalAlignment="Right">
+                        <Button 
+                            Content="Reject Selected" 
+                            Click="unapprove_selected_Click" 
+                            x:Name="bt_unapprove_selected"
+                            Visibility="Hidden"/>
+
+                        <Button  
+                            Content="Approve Selected" 
+                            Click="approve_selected_Click" 
+                            x:Name="bt_approve_selected"
+                            Visibility="Hidden"/>
+                    </WrapPanel>
+
+                </Grid>
+
+
+                <DataGrid
+                    x:Name="data_grid"
+                    AutoGenerateColumns="False" 
+                    MaxHeight="600" 
+                    Width="900"
+                    Cursor="Arrow"
+                    Background="#FF707070" 
+                    
+                    HorizontalGridLinesBrush="#FFBFBFBF" 
+                    VerticalGridLinesBrush="#FFBFBFBF" 
+                    AlternatingRowBackground="#FFDADADA" 
+                    RowBackground="#FFF3F3F3" 
+                    Visibility= "Collapsed">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn  IsReadOnly="True" Header="SheetNum" Width="100" Binding="{Binding sheet_num}"/>
+                        <DataGridTextColumn  IsReadOnly="True" Header="English Names" Width="3*" Binding="{Binding english_name}"/>
+                        <DataGridTextColumn  IsReadOnly="False" 
+                                                 Header="Chinese Names (Editable in Table)" 
+                                                 Width="2*" 
+                                                 Binding="{Binding chinese_name}"/>
+                        <DataGridCheckBoxColumn IsReadOnly="False"
+                                                Header="Approved?"
+                                                Width="100"
+                                                Binding="{Binding is_approved}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+
+
+                <TextBlock x:Name="debug_textbox" Text="debug text" Foreground="#FFCBCBCB" TextWrapping="Wrap"/>
+                
+                <WrapPanel HorizontalAlignment="Right">
+                    <TextBlock Text="Parameter used to hold translation:  "/>
+                    <TextBox Text="xxxxx" x:Name="translation_para_name" Background="#FF8C8C8C" BorderThickness="2"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Content="  Translate UnApproved Sheets  " Click="translate_views_sheets_Click" x:Name="bt_translate_sheet" Visibility="Collapsed"/>
+                    <Button Content="  Applied Approved Translation To Sheets  " Click="apply_translation_Click" x:Name="bt_apply_translation" Visibility="Collapsed"/>
+                    <Button Content="  Open Recent Translation  " Click="open_recent_Click" x:Name="bt_open_recent" Visibility="Collapsed"/>
+                </WrapPanel>
+                <Button Content="  Close Translator  " Click="close_Click" HorizontalAlignment="Center" />
+                
+
+
+            </StackPanel>
+        </Grid>
+    </Border>
+    
+</Window>

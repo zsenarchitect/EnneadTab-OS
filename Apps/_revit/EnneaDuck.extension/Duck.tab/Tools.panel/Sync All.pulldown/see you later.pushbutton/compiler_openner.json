@@ -1,0 +1,85 @@
+{
+ "version": "auto-py-to-exe-configuration_v1", 
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm", 
+   "value": true
+  }, 
+  {
+   "optionDest": "filenames", 
+   "value": "C:/Users/szhang/github/EnneadTab-for-Revit/ENNEAD.extension/Ennead.tab/Tools.panel/Sync All.pulldown/see you later.pushbutton/SCHEDULE_OPENER/SCHEDULE_OPENER.py"
+  }, 
+  {
+   "optionDest": "onefile", 
+   "value": false
+  }, 
+  {
+   "optionDest": "console", 
+   "value": false
+  }, 
+  {
+   "optionDest": "icon_file", 
+   "value": "C:/Users/szhang/github/EnneadTab-for-Revit/ENNEAD.extension/Ennead.tab/Tools.panel/Sync All.pulldown/see you later.pushbutton/SCHEDULE_OPENER/icon.ico"
+  }, 
+  {
+   "optionDest": "ascii", 
+   "value": false
+  }, 
+  {
+   "optionDest": "clean_build", 
+   "value": false
+  }, 
+  {
+   "optionDest": "strip", 
+   "value": false
+  }, 
+  {
+   "optionDest": "noupx", 
+   "value": false
+  }, 
+  {
+   "optionDest": "uac_admin", 
+   "value": false
+  }, 
+  {
+   "optionDest": "uac_uiaccess", 
+   "value": false
+  }, 
+  {
+   "optionDest": "win_private_assemblies", 
+   "value": false
+  }, 
+  {
+   "optionDest": "win_no_prefer_redirects", 
+   "value": false
+  }, 
+  {
+   "optionDest": "bootloader_ignore_signals", 
+   "value": false
+  }, 
+  {
+   "optionDest": "datas", 
+   "value": "L:/4b_Applied Computing/03_Rhino/12_EnneadTab for Rhino/Source Codes/lib/EnneadTab;EnneadTab/"
+  }, 
+  {
+   "optionDest": "datas", 
+   "value": "C:/Users/szhang/github/EnneadTab-for-Revit/ENNEAD.extension/Ennead.tab/Tools.panel/Sync All.pulldown/see you later.pushbutton/SCHEDULE_OPENER/images;images/"
+  }, 
+  {
+   "optionDest": "datas", 
+   "value": "C:/Users/szhang/github/EnneadTab-for-Revit/ENNEAD.extension/Ennead.tab/Tools.panel/Sync All.pulldown/see you later.pushbutton/SCHEDULE_OPENER/icon.png;."
+  }, 
+  {
+   "optionDest": "datas", 
+   "value": "C:/Users/szhang/github/EnneadTab-for-Revit/ENNEAD.extension/Ennead.tab/Tools.panel/Sync All.pulldown/see you later.pushbutton/SCHEDULE_OPENER/button.py;."
+  }, 
+  {
+   "optionDest": "datas", 
+   "value": "C:/Users/szhang/github/EnneadTab-for-Revit/ENNEAD.extension/Ennead.tab/Tools.panel/Sync All.pulldown/see you later.pushbutton/SCHEDULE_OPENER/icon.ico;."
+  }
+ ], 
+ "nonPyinstallerOptions": {
+  "manualArguments": "", 
+  "increaseRecursionLimit": true
+ }
+}

@@ -1,0 +1,329 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        Cursor="ScrollAll">
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Height" Value="20"/>
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646" Opacity="1"/>
+        </Border.Background>
+        <Border.Effect>
+
+            <DropShadowEffect Color="#FFFFE59C" BlurRadius="15" Opacity="0.8"/>
+
+        </Border.Effect>
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0" 
+                   Height="100" 
+                   x:Name="logo_img"   
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left" />
+
+            <StackPanel Margin="0, 20, 0, 0"
+                        Grid.Column ="1">
+                <TextBlock x:Name = "title_text" Text="AAAAAAAAAAAAAAAAAAAAA" Foreground="#FFFFE59C" FontSize="20" TextWrapping="Wrap" FontWeight="Bold" />
+                <TextBlock x:Name = "sub_text" Text="aaaaaaaaaaaaaaaaaa" Foreground="#FFCBCBCB" TextWrapping="Wrap"  MaxWidth="500" HorizontalAlignment="Left"/>
+
+                <TabControl Background="{x:Null}" Margin="0,5,0,0" TabStripPlacement="Top" HorizontalContentAlignment="Center">
+
+
+                    <TabItem Header="Proj. Info"  Background="{x:Null}">
+                        <StackPanel>
+                            <TextBlock Text="Set some basic project info for the new project. If you are not sure, just leave it blank." 
+                                       TextWrapping="Wrap" MaxWidth="400"/>
+
+                            <Separator/>
+
+                            <Grid Margin="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                   
+                                    <RowDefinition/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Project Name:" Grid.Column="0" Grid.Row="0"/>
+                                <TextBox x:Name ="proj_info_proj_name" Grid.Column="1" Grid.Row="0"/>
+                                <TextBlock Text="Project Number:" Grid.Column="0" Grid.Row="1"/>
+                                <TextBox x:Name ="proj_info_proj_number" Grid.Column="1" Grid.Row="1"/>
+                                <TextBlock Text="Client Name:" Grid.Column="0" Grid.Row="2"/>
+                                <TextBox x:Name ="proj_info_client_name" Grid.Column="1" Grid.Row="2"/>
+                                <TextBlock Text="Building Name:" Grid.Column="0" Grid.Row="3"/>
+                                <TextBox x:Name ="proj_info_building_name" Grid.Column="1" Grid.Row="3"/>
+                                <TextBlock Text="Project Address:" Grid.Column="0" Grid.Row="4"/>
+                                <TextBox x:Name ="proj_info_proj_address" Grid.Column="1" Grid.Row="4"/>
+                                <TextBlock Text="File Name:" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center"/>
+                                <WrapPanel Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <TextBox x:Name ="proj_info_file_name"  MinWidth="350" />
+                                    <TextBlock Text=".rvt"  />
+                                </WrapPanel>
+                                
+                            </Grid>
+                       
+                            <Button Content="Set Project Info" Click="set_proj_para_Click" HorizontalAlignment="Center"/>
+                           
+
+
+                        </StackPanel>
+
+
+                    </TabItem>
+                    <TabItem Header="Workshare"  Background="{x:Null}">
+                        <StackPanel>
+                            <TextBlock Text="Convert the current file to a workshare model. You do not need to make it workshared if you only plan to use the file as a middle file to transfer content." 
+                                       TextWrapping="Wrap" MaxWidth="400"/>
+
+                            <Separator/>
+
+                            <WrapPanel HorizontalAlignment="Center" >
+                                <RadioButton Content="BIM 360   " IsChecked="True" x:Name="raddial_bim360"/>
+                                <RadioButton Content="Server"/>
+                            </WrapPanel>
+
+                            <Button Content="Enable Workshare" Click="enable_workshare_Click" HorizontalAlignment="Center"/>
+
+
+
+                        </StackPanel>
+
+
+                    </TabItem>
+                    <TabItem Header="Create Workset"  Background="{x:Null}">
+                        <StackPanel>
+                            <TextBlock Text="Create Ennead suggested workset table." 
+                                       TextWrapping="Wrap" MaxWidth="330"/>
+
+                            <Separator/>
+
+
+                            <Button Content="Create Worksets" Click="create_workset_Click" HorizontalAlignment="Center"/>
+    
+
+                        </StackPanel>
+
+
+                    </TabItem>
+                    <TabItem Header="Create Sheets From Excel"  Background="{x:Null}">
+                        <StackPanel>
+                            <TextBlock Text="Fill the sample excel about all the new sheets to add. The data will be read from the following header. Only line marked with 'YES' will be accorded so you can use other row for comments and notes. Please also note if Chinese translation is expected, please save the excel in correct extension." 
+                                       TextWrapping="Wrap" MaxWidth="330"/>
+                            
+                            <Separator/>
+
+                            <Grid Margin="20" Width="300">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Parameter:" Grid.Column="0" Grid.Row="0" FontWeight="Bold" />
+                                <TextBlock Text="Column Header Letter In Excel:" TextWrapping="Wrap" Grid.Column="1" Grid.Row="0" FontWeight="Bold"/>
+                                
+                                <TextBlock Text="Sheet Group Prefix:" Grid.Column="0" Grid.Row="1" Visibility="Hidden"/>
+                                <TextBox  x:Name ="excel_header_sheet_group_prefix" Grid.Column="1" Grid.Row="1" Text="B" HorizontalContentAlignment="Center" Visibility="Hidden"/>
+                                
+                                
+                                <TextBlock Text="Sheet Group:" Grid.Column="0" Grid.Row="2"/>
+                                <TextBox  x:Name ="excel_header_sheet_group_name" Grid.Column="1" Grid.Row="2" Text="C" HorizontalContentAlignment="Center"/>
+                                <TextBlock Text="Sheet Number:" Grid.Column="0" Grid.Row="3"/>
+                                <TextBox x:Name ="excel_header_sheet_number" Grid.Column="1" Grid.Row="3" Text="D" HorizontalContentAlignment="Center"/>
+                                <TextBlock Text="Sheet Name:" Grid.Column="0" Grid.Row="4"/>
+                                <TextBox x:Name ="excel_header_sheet_name" Grid.Column="1" Grid.Row="4" Text="F" HorizontalContentAlignment="Center"/>
+                                <TextBlock Text="Sheet Translation:" Grid.Column="0" Grid.Row="5"/>
+                                <TextBox x:Name ="excel_header_translation" Grid.Column="1" Grid.Row="5" Text="G" HorizontalContentAlignment="Center"/>
+
+
+
+                            </Grid>
+
+                            <Separator/>
+
+
+                            <Button Content="Create Sheets From Excel" Click="create_sheet_from_excel_click" HorizontalAlignment="Center"/>
+                            <Separator/>
+                            <TextBlock Text="If you are not sure what format to follow, use below sample excel to prepare your sheet data.." TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                            <Button Content="Open Sample Excel" Click="open_sample_excel_click" HorizontalAlignment="Center"/>
+
+                        </StackPanel>
+
+
+                    </TabItem>
+
+                    <TabItem Header="Levels" Background="{x:Null}" x:Name="tab_levels">
+
+                        <StackPanel Margin="30">
+                            <TextBlock Text="Make new levels to the project. In this demo version it uses metric as unit." TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                            <WrapPanel HorizontalAlignment="Center">
+                                <TextBlock Text="Level Gap: "/>
+                                <TextBox Text="4500" x:Name="tbox_level_gap"/>
+                                <TextBlock Text=" mm"/>
+                            </WrapPanel>
+                            <WrapPanel HorizontalAlignment="Center">
+                                <TextBlock Text="Building Prefix: "/>
+                                <TextBox Text="" x:Name="tbox_building_prefix" MinWidth="80"/>
+                            </WrapPanel>
+                            <WrapPanel HorizontalAlignment="Center">
+                                <Button Content="Add Level" Click="level_data_add_Click"/>
+                                <Button Content="Remove Level" Click="level_data_remove_Click"/>
+                            </WrapPanel>
+                            <DataGrid x:Name="level_data_grid" 
+                                        AutoGenerateColumns="False" 
+                                        Cursor="Cross"  
+                                        MaxWidth="600"
+                                        AlternatingRowBackground="#FFDADADA"
+                                        RowBackground="#FFF3F3F3"
+                                        >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn  IsReadOnly="False" Header="Level Name(Editable)" Width="1.5*"  Binding="{Binding level_name}"/>
+                                    <DataGridTextColumn  IsReadOnly="True" Header="Elevation"  Width="*" Binding="{Binding level_elevation}"/>
+                                    <DataGridTextColumn  IsReadOnly="False" Header="FTF(To Level Above)(Editable)"  Width="1.5*" Binding="{Binding level_gap_formated}"/>
+                  
+                                   
+
+
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                  
+                            
+                            <Button Content="Regenerate Table" Click="regenerate_level_Click"/>
+                            <Button Content="Create Levels" Click="create_level_Click"/>
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Plans" Background="{x:Null}" x:Name="tab_plans">
+
+                        <StackPanel>
+                            <TextBlock Text="make floor plans and area plans and RCP and slab edge plan." TextWrapping="Wrap"/>
+
+
+
+                            <Button Content="Create Plans" Click="create_plan_Click"/>
+
+
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+
+
+                
+            
+
+
+               
+               
+                <TextBlock x:Name="debug_textbox" Text="debug text" Foreground="#FFCBCBCB" />
+                <Button Content="Close Project Initiator" Click="close_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"  Margin="0,5,0,5"/>
+
+
+            </StackPanel>
+        </Grid>
+    </Border>
+    
+</Window>

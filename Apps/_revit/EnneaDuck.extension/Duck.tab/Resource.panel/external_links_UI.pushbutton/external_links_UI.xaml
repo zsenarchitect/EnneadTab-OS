@@ -1,0 +1,378 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        >
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Cross"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type Expander}">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="Foreground" Value="#FF9C8CBF" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AnimatedSwitch" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="#FAFAFB" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Viewbox Stretch="Uniform">
+                            <Canvas Name="Layer_1" Width="20" Height="20" Canvas.Left="10" Canvas.Top="0">
+                                <Ellipse  Canvas.Left="0" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                <Ellipse  Canvas.Left="15" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                <Border Canvas.Left="10" Width="15" Height="20" Name="rect416927" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,1,0,1"/>
+                                <Ellipse x:Name="ellipse"  Canvas.Left="0" Width="20" Height="20" Fill="White" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1">
+                                    <Ellipse.RenderTransform>
+                                        <TranslateTransform X="0" Y="0" />
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                            </Canvas>
+                        </Viewbox>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True" >
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#f39c12" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#1e2b38" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="15" KeySpline="0, 1, 0.6, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FAFAFB" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#CCCCCC" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="15"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" KeySpline="0, 0.5, 0.5, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20"
+            Cursor="ScrollAll">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646"/>
+        </Border.Background>
+        <Border.Effect>
+
+            <DropShadowEffect Color="Red" BlurRadius="15" Opacity="1"/>
+
+        </Border.Effect>
+
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0" 
+                   Height="100" 
+                   x:Name="logo_img"   
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left" />
+
+
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center">
+                <TextBlock x:Name="title"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        FontSize="40"
+                        Text="Assistant">
+
+                </TextBlock>
+                <TextBlock x:Name="subtitle"
+                           HorizontalAlignment="Left"
+                           TextAlignment="Left"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Top"
+                           FontSize="10"
+                           LineHeight="20"
+                           Text="xxxxxxxxxxxxxxxxxxxxx."/>
+
+                <Separator/>
+                <TabControl Background="{x:Null}" Margin="0,5,0,0" TabStripPlacement="Top" HorizontalContentAlignment="Center">
+
+                    <TabItem Header="Websites" Background="{x:Null}">
+
+                        <StackPanel>
+                            <TextBlock Text="Some helpful websites." TextWrapping="Wrap"/>
+                            <Button Content="EI Wiki" Click="ei_wiki_click"/>
+
+                            <Separator/>
+                            <Image x:Name="autodesk_health_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="When Revit cloud model behave strangely, here is the first place you should check Autodesk server health." TextWrapping="Wrap"/>
+                            <Button Content="Open Autodesk Health Dashbaord" Click="autodesk_health_click"/>
+
+                            <Separator/>
+                            <Image x:Name="meme_generator_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="Quick access meme generater to express your frustration to your team." TextWrapping="Wrap"/>
+                            <Button Content="Meme Generator" Click="meme_generator_click"/>
+
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="How to Install"  Background="{x:Null}">
+                        <StackPanel Margin="20">
+                            <TextBlock Text="It is great you have EnneadTab for Revit. Please use resource below to help your team install the full EnneadTab EcoSystem." TextWrapping="Wrap"/>
+
+
+                            <Button Content="Install EnneadTab for Rhino"   Click="how_to_rhino_click"/>
+                            <Button Content="Install EnneadTab for Revit"  Click="how_to_revit_click"/>
+                            <Button Content="Install EnneadTab for CAD" Click="how_to_cad_click" />
+
+                        </StackPanel>
+                    
+                        
+                    </TabItem>
+                    
+                    <TabItem Header="Tutorials" Background="{x:Null}">
+
+                        <StackPanel Margin="20">
+                            <Image x:Name="youtube_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="New to EnneadTab? Find out some basic functions documentation below." TextWrapping="Wrap"/>
+                            <Button Content="Checkout Youtube Playlist" Click="youtube_click"/>
+                           
+                            <Separator/>
+                            <Image x:Name="search_command_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="Did you know you can search command for most of the EnneadTab functions? This is a great way to learn EnneadTab for Revit." TextWrapping="Wrap"/>
+                            <Button Content="Learn about Command Search" Click="learn_command_search_click"/>
+                            
+                            <Separator/>
+                            <Image x:Name="family_fomula_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="To master the fomula editor in family, you need to be familiar with the Revit syntax first." TextWrapping="Wrap"/>
+                            <Button Content="Family Fomula Cheat Sheet" Click="family_fomula_click"/>
+                            
+                            
+                            <Separator/>
+                            <Image x:Name="documentation_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="You can check all the [Did you know] tips from here." TextWrapping="Wrap"/>
+                            <Button Content="Open All Documentation" Click="open_all_documentation_click"/>
+
+      
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Sync Monitor" Background="{x:Null}">
+                        <StackPanel Margin="20">
+                            <Image x:Name="kill_monitor_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="If you want to force remove a record from the sync monitor..." TextWrapping="Wrap"/>
+                            <Button Content="Foce Kill Sync Record" Click="force_kill_sync_record_click"/>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="References" Background="{x:Null}">
+
+                        <StackPanel Margin="20">
+                            <TextBlock Text="See some precedent projects for graphical reference." TextWrapping="Wrap"/>
+                            <Button Content="See SD Sample Projects" Click="SD_reference_click" />
+                            <Button Content="See DD Sample Projects" Click="DD_reference_click" />
+                            <Separator/>
+                            <Image x:Name="code_book_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="Common Q+A about SH building code, great place to get familiar with local code." TextWrapping="Wrap"/>
+                            <Button Content="Search Sample SH Building Code" Click="SH_code_click" />
+                            <Separator/>
+                            <Image x:Name="jianbiaoku_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="JianBiaoKu is popular Chinese IBC All-In-One code check website." TextWrapping="Wrap"/>
+                            <Button Content="Jian Biao Ku" x:Name="bt_jianbiaoku" Click="jianbiaoku_click" />
+
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Feedback" Background="{x:Null}">
+
+                        <StackPanel Margin="20">
+                            <Image x:Name="bug_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="Bugs detected? Feature request? Typos reports? General comments? All feedback are welcomed!" TextWrapping="Wrap"/>
+                            <Button Content="Feedback"  Click="feedback_click"/>
+   
+
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Training" Background="{x:Null}">
+
+                        <StackPanel Margin="20">
+                            <Image x:Name="training_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="Get the Revit Essential Trainings By Scott, Gayatri and Angela." TextWrapping="Wrap"/>
+                            <Button Content="Open Folder"  Click="training_click"/>
+   
+
+
+                        </StackPanel>
+                    </TabItem>
+
+                    <TabItem Header="Time Sheet" Background="{x:Null}">
+
+                        <StackPanel Margin="20">
+                            <Image x:Name="timesheet_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="Get the timesheet data on projects you have worked on. All those usage data are saved in your current computer only, available only to you. When you login into a new computer, you will not see any previous record." TextWrapping="Wrap"/>
+                            <Button Content="Get Time Sheet Helper"  Click="print_time_sheet_detail_click"/>
+   
+
+
+                        </StackPanel>
+                    </TabItem>
+
+
+                    <TabItem Header="Cache Folder"  Background="{x:Null}">
+                        <StackPanel Margin="20">
+                            
+                            <Image x:Name="cache_folder_icon" HorizontalAlignment="Center" Height="50"/>
+                            <TextBlock Text="Clear cache file regularly to save computer disk space. Please note that depending nessasary cache will still be downloaded automatically. This cleaning process is aimed to remove older cache files that is not in use." TextWrapping="Wrap"/>
+                            <Button Content="Open Revit Cache Folders" Click="open_cache_revit_click"/>
+                            <Button Content="Open Rhino Cache Folders" Click="open_cache_rhino_click"/>
+                            <Separator/>
+                            <TextBlock Text="Autodesk 360 cache folder is named by project Guid and file Guid. This is not human readable, it looks like this below:" TextWrapping="Wrap"/>
+                            <TextBlock Text="7bb487db-c370-408e-9a97-9441ef91c51c" HorizontalAlignment="Center" Margin="10"/>
+                            <TextBlock Text="But you can try to decode them by provoding that Guid in below textbox. If EnneadTab has it in its database, it will tell you the details." TextWrapping="Wrap"/>
+                            <TextBox x:Name="textbox_cache_decoder" Text="...paste Guid here..." HorizontalContentAlignment="Center" Margin="0,10,0,0"/>
+                            <Button Content="Decode GUID" HorizontalAlignment="Center" Click="decode_guid_click"/>
+                            <TextBlock x:Name="textbox_decoder" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" />
+
+                        </StackPanel>
+
+
+                    </TabItem>
+                </TabControl>
+
+
+
+                <WrapPanel HorizontalAlignment="Center">
+
+                    <TextBlock x:Name="debug_textbox"
+                               Margin="0,10,0,0"
+                               FontSize="8"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="Debug Output:" />
+                </WrapPanel>
+
+
+
+
+
+
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Content="Close This Window" 
+                        Click="close_click"
+                        HorizontalAlignment="Center"/>
+                </WrapPanel>
+
+
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

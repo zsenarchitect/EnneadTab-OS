@@ -1,0 +1,261 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        Cursor="ScrollAll">
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Height" Value="20"/>
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20"
+            Width="550">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646" Opacity="1"/>
+        </Border.Background>
+        <Border.Effect>
+
+            <DropShadowEffect Color="#FFFFE59C" BlurRadius="15" Opacity="0.8"/>
+
+        </Border.Effect>
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0" 
+                   Height="100" 
+                   x:Name="logo_img"   
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left" />
+
+            <StackPanel Margin="0, 20, 0, 0"
+                        Grid.Column ="1">
+                <TextBlock x:Name = "title_text" Text="AAAAAAAAAAAAAAAAAAAAA" Foreground="#FFFFE59C" FontSize="20" TextWrapping="Wrap" FontWeight="Bold" />
+                <TextBlock x:Name = "sub_text" Text="aaaaaaaaaaaaaaaaaa" Foreground="#FFCBCBCB" TextWrapping="Wrap"  MaxWidth="500" HorizontalAlignment="Left"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=" *"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <Button Content="Pick source doc" Grid.Column="0" Grid.Row="0" Click="pick_source_doc_click"/>
+                    <Button Content="Pick target docs" Grid.Column="0" Grid.Row="1" Click="pick_target_docs_click"/>
+                    <TextBlock Text="Any opened docs, link docs or families." Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"/>
+                    <TextBlock Text="Opened docs or family only." Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=" *"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="textblock_source_display" Grid.Column="0" TextWrapping="Wrap" Background="#FF525252"/>
+                    <TextBlock Text=">>>" Grid.Column="1" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="textblock_target_display"  Grid.Column="2" TextWrapping="Wrap" Background="#FF525252" HorizontalAlignment="Stretch" TextAlignment="Right" />
+                 </Grid>
+                
+                <Separator Margin="0,15,0,15"/>
+                <TabControl Background="{x:Null}"  TabStripPlacement="Top" HorizontalContentAlignment="Center">
+                    <TabItem Header="View Templates" Background="{x:Null}" >
+
+                        <StackPanel>
+                            <TextBlock Text="Transfer selective view templates between documents." TextWrapping="Wrap"/>
+                            <Button Content="Pick Template" Click="pick_template_click"/>
+                            <TextBlock x:Name="textbox_template_name" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" />
+                            <StackPanel Margin="25,10,25,15">
+                                <RadioButton Content="Use surfix to avoid template name overlap." FontFamily="Bold" IsChecked="True" x:Name="radio_bt_template_prefix" FontWeight="Bold"/>
+                                <TextBlock Text="You can use Ideate to merge templates with better intention." TextWrapping="Wrap" Margin="20,0,0,15"/>
+                                <RadioButton Content="No surfix." FontFamily="Bold" FontWeight="Bold"/>
+                                <TextBlock Text="Allow default sequencing if same template name is found. Use this if you are confident there is no overlap template names." Margin="20,0,0,0" TextWrapping="Wrap"/>
+                            </StackPanel>
+            
+                            <Separator/>
+                            <Button Content="Transfer Template" Click="transfer_template_click" BorderBrush="#FFFFE59C" BorderThickness="2"/>
+
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Object Style" Background="{x:Null}" >
+
+                        <StackPanel>
+                            <TextBlock Text="Transfer selective object styles between documents. Object style are also known as SubCategory."  TextWrapping="Wrap"/>
+
+
+
+                       
+                            <Button Content="Pick Object Style" Click="pick_OST_click" />
+                            <TextBlock x:Name="textbox_OST_name" TextWrapping="Wrap" HorizontalAlignment="Center" />
+                            <Separator/>
+                            <TextBlock Text="Note: Transfer will be skipped if same name object style is found in target document. To match existing object style graphic to other source, check below" TextWrapping="Wrap"/>
+                            <CheckBox Content="Update Object Style definition if finding same name." IsChecked="False" Margin="10,5,0,0" FontWeight="Bold" x:Name="checkbox_update_OST_definition"/>
+                            <Separator/>
+                            <Button Content="Transfer Object Style" Click="transfer_OST_click" BorderBrush="#FFFFE59C" BorderThickness="2"/>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Materials" Background="{x:Null}" >
+
+                        <StackPanel>
+                            <TextBlock Text="Transfer selective materials between documents." TextWrapping="Wrap"/>
+                            <Button Content="Pick Materials" Click="pick_material_click"/>
+                            <TextBlock x:Name="textbox_material_name" TextWrapping="Wrap" HorizontalAlignment="Center" />
+
+                            <TextBlock Text="Notes: When encountering same name material, all definition will be overriden to match the source, including the material keynote info. For some projects this might be un-desirable. In such case, check below." TextWrapping="Wrap"/>
+                            <CheckBox Content="Preserve material's Keynote information." IsChecked="True" Margin="10,5,0,0" FontWeight="Bold" x:Name="checkbox_preserve_mat_keynote"/>
+                            <Separator/>
+                            <Button Content="Transfer Materials" Click="transfer_material_click" BorderBrush="#FFFFE59C" BorderThickness="2"/>
+
+
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Section Views" Background="{x:Null}" >
+
+                        <StackPanel>
+                            <TextBlock Text="Transfer selective views between documents." TextWrapping="Wrap"/>
+                            <TextBlock Text="THIS WILL NOT TRANSFER GEO CONTENTS. This will only recreate a view object." TextWrapping="Wrap"/>
+                            <Button Content="Pick Section Views" Click="pick_view_click"/>
+                            <TextBlock x:Name="textbox_views_name" TextWrapping="Wrap" HorizontalAlignment="Center" />
+
+                           
+                            
+                            <Separator/>
+                            <Button Content="Transfer Views" Click="transfer_view_click" BorderBrush="#FFFFE59C" BorderThickness="2"/>
+
+
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Family" Background="{x:Null}" >
+
+                        <StackPanel>
+                            <TextBlock Text="Transfer selective families between documents." TextWrapping="Wrap"/>
+                            
+                            <Button Content="Pick Family" Click="pick_family_click"/>
+                            <TextBlock x:Name="textbox_family_name" TextWrapping="Wrap" HorizontalAlignment="Center" />
+
+                            <StackPanel Margin="20,0,20,0">
+                                <TextBlock Text="When encountering shared family, which version would you want to use?" TextWrapping="Wrap" Margin="0,0,0,10"/>
+                                <RadioButton Content="Use Project Version" FontWeight="Bold" IsChecked="True" x:Name="radio_bt_shared_use_project"/>
+                                <RadioButton Content="User Family Version" FontWeight="Bold" />
+                            </StackPanel>
+                    
+                            <Separator/>
+                            <Button Content="Transfer Families" Click="transfer_family_click" BorderBrush="#FFFFE59C" BorderThickness="2"/>
+
+
+
+                        </StackPanel>
+                    </TabItem>
+
+                </TabControl>
+
+
+                
+            
+
+
+               
+           
+                <TextBlock x:Name="debug_textbox" Text="debug text" Foreground="#FFCBCBCB" />
+                <Button Content="Close Transfer Assistant" Click="close_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"  Margin="0,5,0,5"/>
+
+
+            </StackPanel>
+        </Grid>
+    </Border>
+    
+</Window>

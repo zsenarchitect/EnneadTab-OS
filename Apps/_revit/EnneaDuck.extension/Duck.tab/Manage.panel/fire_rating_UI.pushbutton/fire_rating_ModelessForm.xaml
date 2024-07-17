@@ -1,0 +1,188 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        Cursor="ScrollAll">
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Height" Value="20"/>
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646" Opacity="1"/>
+        </Border.Background>
+        <Border.Effect>
+
+            <DropShadowEffect Color="#FFFFE59C" BlurRadius="15" Opacity="0.8"/>
+
+        </Border.Effect>
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0"
+                   Height="100"
+                   x:Name="logo_img"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Left" />
+
+            <StackPanel Margin="0, 20, 0, 0"
+                        Grid.Column ="1">
+                <TextBlock x:Name = "title_text" Text="AAAAAAAAAAAAAAAAAAAAA" Foreground="#FFFFE59C" FontSize="20" TextWrapping="Wrap" FontWeight="Bold" />
+
+                <TextBlock x:Name = "sub_text" 
+                            Text="aaaaaaaaaaaaaaaaaa" 
+                            Foreground="#FFCBCBCB" 
+                            TextWrapping="Wrap"  
+                            MaxWidth="500" 
+                            HorizontalAlignment="Left"
+                            Grid.Column="0"/>
+                    
+                     
+                <Separator/>
+
+
+                <DataGrid x:Name="main_data_grid" 
+                        AutoGenerateColumns="False" 
+                        MaxHeight="600" Cursor="Cross"  
+                          MaxWidth="600"
+                        HorizontalAlignment ="Stretch"
+                        SelectedCellsChanged="preview_selection_changed"
+                        Margin="0,10,0,0"
+                        HorizontalContentAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn  IsReadOnly="True" 
+                                             Header="Wall Type"  
+                                             Width="2*"
+                                             Binding="{Binding format_name}"/>
+
+                        <DataGridComboBoxColumn   Header="Fire Rating(DropDown)"  
+                                                 x:Name="rating_combos" 
+                                                 Width="1*"
+                                                 
+                                                 SelectedItemBinding="{Binding selected_rating}">
+                            <DataGridComboBoxColumn.ElementStyle>
+                                <Style TargetType="{x:Type ComboBox}">
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                </Style>
+                            </DataGridComboBoxColumn.ElementStyle>
+                        </DataGridComboBoxColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Content="Update Wall Type Property" HorizontalAlignment="Right" Margin="0,0,0,10" Click="update_wall_type_data_click"/>
+                <CheckBox Content="Auto update wall count." IsChecked="True" Click="UI_setting_changed" 
+                          x:Name="checkbox_auto_update"/>
+                <TextBlock x:Name="textblock_wall_detail" Text="Wall Details:" />
+                    
+              
+
+
+                <Separator/>
+                <TextBlock Text="Fire Rating Graphic will be updated on those views:" TextWrapping="Wrap"  />
+                <TextBlock Text="--Not Picked--" TextWrapping="Wrap" x:Name="textblock_view_list" />
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Content="Pick Views." Click="pick_view_click" />
+                    <Button Content="Update Fire Rating Graphic." Click="update_graphic_click"/>
+                </WrapPanel>
+    
+
+                <Separator/>
+
+                <TextBlock x:Name="debug_textbox" Text="debug text"  />
+                <Button Content="Close Fire Rating Helper" Click="close_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30"  Margin="0,5,0,5"/>
+
+
+            </StackPanel>
+        </Grid>
+    </Border>
+
+</Window>

@@ -1,0 +1,24 @@
+# background:
+#   panel: 'e9c6d6'
+#   title: 'e9c6d6'
+#   slideout: 'e9c6d6'
+
+
+
+
+layout:
+
+  - dwg_manager
+  - fire_rating_UI
+  - Merge Family_UI_2.0
+  - working_view_cleanup 
+  - workset_fixer
+  - ">>>"
+  - fix_warnings
+  - load family to many docs 
+  - Shake All Tags 
+  - remove not placed area 
+  - Keynote Tags
+  - track_detail_group
+  - parameter_manager 
+  - abstract_wall

@@ -1,0 +1,451 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
+        Background="#FF464646" 
+        FontFamily="RomanD" ResizeMode="NoResize"   
+        SizeToContent="WidthAndHeight" Title="EnneadTab Exporter" 
+        Topmost="False" BorderBrush="#FF3F96FF" 
+        MouseLeftButtonDown="mouse_down_main_panel"
+        
+        Foreground="#FFDAE8FD" OpacityMask="#FFDAE8FD" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <StackPanel  Margin="20,20,20,20" >
+
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="450"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width ="10"/>
+                <ColumnDefinition Width ="800"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1">
+                <TextBlock Text="[EnneadTab Exporter][RVT 2022/23/24]" FontSize="16" FontWeight="Bold"/>
+                <Button Content="Show features." Click="show_feature_Clicked" FontSize="9" BorderBrush="#FF707070" Foreground="#FF7B7B7B" Background="{x:Null}" FontWeight="Bold">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+
+            </StackPanel>
+            <StackPanel Grid.Column="3" Margin="0,0,0,5">
+                <TextBlock Text="Note:" x:Name="note" FontSize="9" TextWrapping="Wrap"/>
+
+                <TextBlock Text="Debug Output:" x:Name="debug_panel" FontSize="9" TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <Image Grid.Column ="0" Grid.Row="6" Grid.RowSpan="2" Height="100" x:Name="logo_img"   VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+            <GroupBox Header="Step 1: [Pick Docs.]"  Grid.Column = "1" Grid.Row = "1"  Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="0,10,0,0" >
+                <StackPanel>
+                    <Button Content="Pick Loaded Revit Links" Click="button_pick_docs_Clicked" Foreground="#FFD8D8D8" Background="Gray">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <TextBlock Text="Doc File Id Map. Edit Id by double-clicking. " ></TextBlock>
+                    <DataGrid x:Name="data_grid_doc_id_map"  AutoGenerateColumns="False" Cursor="IBeam" Background="#FF707070" FontSize="9" HorizontalGridLinesBrush="#FFBFBFBF" VerticalGridLinesBrush="#FFBFBFBF"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  IsReadOnly="True" Header="Doc Names" Width="4*" Binding="{Binding doc_name}"/>
+                            <DataGridTextColumn  IsReadOnly="False" Header="File Id" Width="*" Binding="{Binding map_id}"   />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Grid>
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0" Height="20" x:Name="update_icon"  HorizontalAlignment="Left" />
+                        <Button Grid.Column="1" Content ="Apply File Id changes." Click="update_doc_id_pair_Changed"  BorderBrush="#FFD2D2D2" Foreground="#FFD6D6D6" Background="{x:Null}">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                    </Grid>
+
+
+
+                </StackPanel>
+
+            </GroupBox>
+            <GroupBox Header="Step 2: [Pick Issue.]" Grid.Column = "3" Grid.Row = "1" Margin="0,10,0,0">
+                <StackPanel>
+
+                    <TextBlock Text="Search Rule: [Issue (Any Text)]"></TextBlock>
+                    <TextBlock Text="  Example 1: [Issue 2023/04/05]" FontSize="10"></TextBlock>
+                    <TextBlock Text="  Example 2: [Issue Internal Print]" FontSize="10"></TextBlock>
+                    <Separator Background="#FFBBBBBB" Margin="5"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="5"/>
+                            <ColumnDefinition/>
+
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Issue:" Grid.Column="0" Foreground="#FFDAE8FD" ></Label>
+                        <ComboBox Grid.Column="2" x:Name="issue_para_list" Height="20" SelectionChanged="dropdown_issue_para_list_value_changed" SelectedIndex="0" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+
+                    </Grid>
+                    <TextBlock Text="When no valid issue parameter is found in the picked docs, the export does not schedule from those docs. Or you can ..." TextWrapping="Wrap" FontSize="9"/>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Button Content=" Generate New Issue parameter "  Click="generate_issue_Clicked" BorderBrush="#FF707070" Foreground="#FF7B7B7B" Background="{x:Null}" FontSize="9"/>
+                        <Button Content=" Sample Marker "  Click="show_sample_marker_Clicked" BorderBrush="#FF707070" Foreground="#FF7B7B7B" Background="{x:Null}" FontSize="9" />
+                    </WrapPanel>
+                    
+                    <TextBlock Text="...or you can use locally defined issue parameter:" TextWrapping="Wrap" FontSize="9"/>
+                    <TextBox x:Name="textbox_local_isse_para_name" Text="Sheet_$Issue_SD" Height="20"  TextChanged="local_issue_para_text_changed" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#FFD6D6D6" Background="#FF3C3C3C" BorderBrush="#FFA4A4A4" >
+                        <TextBox.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+
+                </StackPanel>
+
+            </GroupBox>
+            <GroupBox Header="Step 4: [File Type Options]" Grid.Column="3" Grid.Row="2"  BorderBrush="#FFD5DFE5" Foreground="#FFDAE8FD" Margin="0,10,0,0">
+                <StackPanel HorizontalAlignment="Left" Margin="5,0,0,0"  >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition />
+
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Extension Options:"  TextWrapping="Wrap" TextAlignment="Left"/>
+                            <CheckBox x:Name ="checkbox_pdf" Content=".PDFs" Click ="extension_options_changed" Foreground="#FFDAE8FD" IsChecked="True" BorderBrush="#FF707070" Cursor="Hand" Background="#FFBBBBBB"/>
+                            <CheckBox x:Name ="checkbox_dwg" Content=".DWGs" Click ="extension_options_changed" Foreground="#FFDAE8FD" IsChecked="True" BorderBrush="#FF707070" Background="#FFBBBBBB" Cursor="Hand"/>
+
+                            <CheckBox x:Name ="checkbox_jpg" Content=".JPGs" Click ="extension_options_changed" Foreground="#FFDAE8FD" IsChecked="True" BorderBrush="#FFFF4141" Background="#FFBBBBBB" Cursor="Hand"/>
+                        </StackPanel>
+                        <!--<TextBlock Grid.Column="1" Text="Note: JPG only export in color." VerticalAlignment="Bottom" TextWrapping="WrapWithOverflow" HorizontalAlignment="Left"></TextBlock>-->
+                    </Grid>
+
+
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Step 3: [Naming Format]" Grid.Column = "1" Grid.Row = "2" Grid.ColumnSpan="1" Margin="0,10,0,0">
+                <StackPanel>
+                    <TextBlock Text="This affects all file extension." TextWrapping="Wrap"/>
+                    <RadioButton Content="[FileId]__[Index]_[SheetNum]-[SheetName]" Background="#FFBBBBBB" x:Name="radio_button_plotId_sheetNum_sheetName" Click="name_format_changed" IsChecked="True" Foreground="#FFDAE8FD"></RadioButton>
+                    <RadioButton Content="[SheetNum]-[SheetName]" Background="#FFBBBBBB" x:Name="radio_button_sheetNum_sheetName" Click="name_format_changed" Foreground="#FFDAE8FD"></RadioButton>
+                    <RadioButton Content="[Sheet__$Group]__[Sheet_$Series]_[SheetNum]-[SheetName]" Background="#FFBBBBBB" x:Name="radio_button_sheetGroup_sheetSeries_sheetNum_sheetName" Click="name_format_changed" Foreground="#FFDAE8FD"></RadioButton>
+                </StackPanel>
+
+
+            </GroupBox>
+            <GroupBox Header="Step 5: [Email]" Grid.Column = "1" Grid.Row = "4" Grid.RowSpan="2" Margin="0,10,0,0" >
+                <StackPanel>
+
+
+                    <TextBlock Text="Compile your email here if you want to send. Your outlook account will be used to send." TextWrapping="WrapWithOverflow"></TextBlock>
+                    <Separator Background="#FFBBBBBB" Margin="5"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition  Height="25"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition Height="70"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Sender Email:" Grid.Column="0" Grid.Row="0" Foreground="#FFDAE8FD" />
+                        <TextBlock x:Name="email_sender" Text="xxx@ennead.com" Grid.Column="1" Grid.Row="0" Foreground="#FFDAE8FD" />
+                        <TextBlock Text="Receiver Emails, seperated by semi-colon(;)"  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Foreground="#FFDAE8FD" />
+                        <TextBox x:Name="email_receivers" Text="xxx1@ennead.com; xxx2@ennead.com" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Foreground="#FFC5C5C5" VerticalContentAlignment="Center" Background="#FF5D5D5D" TextWrapping="Wrap"/>
+                        <TextBlock Text="Subject Line:" Grid.Column="0" Grid.Row="3"  Foreground="#FFDAE8FD" VerticalAlignment="Center" />
+                        <TextBox x:Name="email_subject_line" Text="EnneadTab Exporter Notification" Margin="0,5,0,0" Grid.Column="1" Grid.Row="3" Foreground="#FFC5C5C5" VerticalContentAlignment="Center" Background="#FF5D5D5D" TextWrapping="Wrap"/>
+                        <TextBlock Text="Body:" Grid.Column="0" Grid.Row="4"  Foreground="#FFDAE8FD" />
+                        <TextBox x:Name="email_body" Text="Your export is finished. The print log is in the attachement." Margin="0,0,0,5" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Foreground="#FFC5C5C5" VerticalContentAlignment="Top" Background="#FF5D5D5D" TextWrapping="Wrap" AcceptsReturn="True"/>
+                        <CheckBox x:Name ="checkbox_add_folder_link" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Content="Add Final Copy Folder Link" Click ="checkbox_additional_setting_changed" Background="#FFBBBBBB" IsChecked="True" BorderBrush="#FFFBD629" Foreground="#FFDAE8FD" Cursor="Hand"/>
+                        <Button Content="Additionial Images In Body(Beat)" Visibility="Collapsed" Margin="0,5,0,3" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" BorderBrush="#FF707070" Background="{x:Null}" FontSize="9" Foreground="#FFD0CFCF"/>
+                        <Button Content="Additionial Attachments(Beta)" Visibility="Collapsed" Margin="0,0,0,5" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" BorderBrush="#FF707070" Background="{x:Null}" FontSize="9" Foreground="#FFD0CFCF"/>
+
+                    </Grid>
+
+                </StackPanel>
+
+            </GroupBox>
+            <GroupBox Header="Step 7: [Export Setting](DWG Only)" Grid.Column = "3" Grid.Row = "5" Margin="0,10,0,0">
+                <StackPanel>
+                    <CheckBox x:Name ="checkbox_dwg_view_export"  Content="Isolate View Export" Click ="checkbox_additional_setting_changed" Foreground="#FFDAE8FD" IsChecked="False" BorderBrush="#FF63F146" Background="#FFBBBBBB" Cursor="Hand"></CheckBox>
+                    <Separator Background="#FFBBBBBB" Margin="5"/>
+                    <TextBlock Text="Make sure you have below name setting in every docs picked." TextWrapping="WrapWithOverflow"></TextBlock>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+
+                            <ColumnDefinition/>
+
+                        </Grid.ColumnDefinitions>
+                        <Label Content="DWG Setting:" Grid.Column="0" Foreground="#FFDAE8FD" ></Label>
+                        <ComboBox Grid.Column="1" HorizontalContentAlignment="Center" Height="20" VerticalContentAlignment="Center" x:Name="dwg_setting_list" SelectionChanged="dropdown_dwg_setting_value_changed" SelectedIndex="0" FontWeight="Bold" Background="#FFED3A3A"/>
+
+                    </Grid>
+
+                </StackPanel>
+
+            </GroupBox>
+            <GroupBox Header="Step 6: [Color Setting](PDF Only)" Grid.Column = "3" Grid.Row = "4" Grid.ColumnSpan="1" Margin="0,10,0,0">
+
+                <StackPanel>
+                    <TextBlock Text="Do you want to ignore local defined 'Print_In_Color' setting?" TextWrapping="Wrap"/>
+
+                    <RadioButton x:Name="radio_button_color_by_sheet" Background="#FFBBBBBB" Content="Follow &lt;Print__In__Color&gt; Setting" Click="color_setting_changed" IsChecked="True" Foreground="#FFDAE8FD"></RadioButton>
+                    <RadioButton x:Name="radio_button_color_BW_globally" Background="#FFBBBBBB" Content="Force B&amp;W Color" Click="color_setting_changed" Foreground="#FFDAE8FD"></RadioButton>
+                    <Separator Background="#FFBBBBBB" Margin="5"/>
+                    <TextBlock Text="When no 'Print_In_Color' parameter is found, the export use no color as default. Or you can ..." TextWrapping="Wrap" FontSize="9"/>
+                    <Button Content="Generate 'Print__In__Color' parameter"  Click="generate_print_in_color_Clicked" BorderBrush="#FF707070" Foreground="#FF7B7B7B" Background="{x:Null}" FontSize="9"/>
+                </StackPanel>
+
+            </GroupBox>
+            <GroupBox Header="Step 8: [After Finishing...]" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" BorderThickness="0.8" Margin="0,10,0,0" BorderBrush="{x:Null}">
+                <StackPanel Margin="10,3,10,0" Grid.Column="1">
+                    <CheckBox x:Name="checkbox_copy_folder" Content="Copy to Folder with structured subfolders as below." Background="#FFBBBBBB" Click ="checkbox_additional_setting_changed" Foreground="#FFDAE8FD"></CheckBox>
+                    <TextBlock x:Name="copy_folder_note_A" Text="xxxxx" FontSize="9" Margin="20, 0,0, 0"></TextBlock>
+                    <TextBlock x:Name="copy_folder_note_B" Text="xxxxx" FontSize="9" Margin="20, 0,0, 0" TextDecorations="Underline" Foreground="#FFFB958A"></TextBlock>
+                    <TextBlock Text="Pick the folder to copy into:"  TextWrapping="Wrap" TextAlignment="Left" Margin="25, 10, 0, 0"/>
+
+                    <Grid Margin="20, 0,0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="3"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Grid.Column="0" Content="..." Click="pick_copy_folder_Clicked" Background="#FFC7C7C7">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <TextBox x:Name="textbox_folder"  Grid.Row="0" Grid.Column="2" TextWrapping="Wrap" Text="Folder Path..." Background="#FF464646" Cursor="Pen" ForceCursor="True" TextAlignment="Left" IsReadOnly="True" Foreground="#FFCBCBCB">
+                            <TextBox.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="3"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <Label x:Name ="folder_status_display" Grid.Column="2" Grid.Row="1" Content="Display" Foreground="#FFDAE8FD"/>
+                        <Image Height="20" x:Name="status_icon" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" />
+                    </Grid>
+                    <Separator Background="#FFBBBBBB" Margin="5"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <CheckBox x:Name="checkbox_play_sound" Grid.Column="0" Grid.Row="0" Content="Play sound when tool is finished." Background="#FFBBBBBB" Click ="checkbox_additional_setting_changed" Foreground="#FFDAE8FD" IsChecked="True"></CheckBox>
+                        <CheckBox x:Name="checkbox_sync_and_close" Grid.Column="0" Grid.Row="1" Content="Sync and Close all open docs." Background="#FFBBBBBB" BorderBrush="#FF0A89FF" Click ="checkbox_additional_setting_changed" Foreground="#FFDAE8FD"></CheckBox>
+                        <CheckBox x:Name="checkbox_combine_pdf" Grid.Column="1" Grid.Row="0" Content="Create additional combined PDF." Background="#FFBBBBBB" Click ="checkbox_additional_setting_changed" Foreground="#FFDAE8FD"></CheckBox>
+                        <CheckBox x:Name ="checkbox_send_email" Grid.Column="0" Grid.Row="2" Content="Send Email" Click ="checkbox_additional_setting_changed" Background="#FFBBBBBB" IsChecked="False" BorderBrush="#FFE846F1" Foreground="#FFDAE8FD" Cursor="Hand"></CheckBox>
+                        <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="15,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="85"/>
+                                <ColumnDefinition Width="1"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="40"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Label Content="PDF name:" Grid.Column="0" Foreground="#FFDAE8FD" ></Label>
+                            <TextBox Grid.Column="2" x:Name="textbox_combined_pdf_name" Text="Combined" Height="20"   VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Foreground="#FFD6D6D6" Background="#FF3C3C3C" BorderBrush="#FFA4A4A4" >
+                                <TextBox.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10, 0, 0,10"/>
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+                            <Label Content=".pdf" Grid.Column="3" Foreground="#FFDAE8FD" ></Label>
+                        </Grid>
+                    </Grid>
+
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="[Output Preview]" Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="5" Grid.RowSpan="7"  BorderBrush="#FFD5DFE5" Foreground="#FFDAE8FD" >
+
+                <StackPanel Margin="10,20,10,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=" 200"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock x:Name="data_grid_preview_title" Grid.Column="0" Text="something something:"  TextWrapping="Wrap" TextAlignment="Left"/>
+
+                        <Button x:Name="button_selective_export" Content="Go Selective" Grid.Column="1"  Height="20"  Click="selective_export_Clicked" BorderBrush="#FFD2D2D2" Foreground="#FFD6D6D6" Background="{x:Null}"    >
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </Grid>
+                    <GroupBox  Margin="0,10,0,0" x:Name="monitor_group" Visibility="Collapsed" BorderBrush="#FF1999E6" BorderThickness="2,2,2,2" >
+                        <GroupBox.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Image x:Name="monitor_icon" Margin="3,0" />
+                                <TextBlock Text ="[Export Monitor]" FontWeight="Bold"/>
+                            </StackPanel>
+                        </GroupBox.Header>
+                        <StackPanel Margin="10,5,10,5">
+                            <Image x:Name="preview_image" />
+                            <TextBlock x:Name="textblock_export_status" Text="Estimated Time use: xxx" TextWrapping="WrapWithOverflow" FontSize="9"/>
+                            <TextBlock x:Name="textblock_load_screen" Text="..." TextWrapping="WrapWithOverflow"  FontWeight="Bold" FontSize="16"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <DataGrid x:Name="data_grid_preview"  AutoGenerateColumns="False" MaxHeight="640" Margin="0,5,0,0" Background="#FF707070" FontSize="9" HorizontalGridLinesBrush="#FFBFBFBF" VerticalGridLinesBrush="#FFBFBFBF" AlternatingRowBackground="#FFDADADA" RowBackground="#FFF3F3F3" Visibility= "Visible">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  IsReadOnly="True" Header="Output Names" Width="4*" Binding="{Binding format_name}"/>
+                            <DataGridTextColumn  IsReadOnly="True" Header="Estimated Export Time" Width="*" Binding="{Binding time_estimate_format}"  />
+
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button x:Name="button_main" Content="Export!!!" Width="400" HorizontalAlignment="Center" Height="40" Margin="0,10,0,5" Click="main_export_Clicked" BorderBrush="#FF66E43A" Foreground="#FF4D4D4D" Background="#FFA2BCC7" FontWeight="Bold" IsEnabled="False" Visibility="Visible" FontSize="16" BorderThickness="3,3,3,3" >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="20"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button x:Name="button_cancel_export" Content="Cancel Export.." Width="400" HorizontalAlignment="Center" Height="30" Margin="0,10,0,10" Click="cancel_export_Clicked" BorderBrush="#FF555032" Foreground="#FF4D4D4D" Background="#FFA2BCC7" FontWeight="Bold" Visibility="Collapsed" FontSize="18"  >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Separator/>
+                    <Button x:Name="button_check_recent_log" Content="Open Recent Log" Width="400" HorizontalAlignment="Center" Height="20" Margin="0,10,0,5" Click="open_log_Clicked" BorderBrush="#FF707070" Foreground="#FF7B7B7B" Background="{x:Null}" FontWeight="Bold"   >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button x:Name="button_open_output_folder" Content="Open Local Output Folder" Width="400" HorizontalAlignment="Center" Height="20" Margin="0,3,0,5" Click="open_local_folder_Clicked" BorderBrush="#FF707070" Foreground="#FF7B7B7B" Background="{x:Null}" FontWeight="Bold"   >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button x:Name="button_open_copy_folder" Content="Open Final Copy Folder" Width="400" HorizontalAlignment="Center" Height="20" Margin="0,3,0,5" Click="open_copy_folder_Clicked" BorderBrush="#FF707070" Foreground="#FF7B7B7B" Background="{x:Null}" FontWeight="Bold"   >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+
+            </GroupBox>
+            <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,10,0,0" Height="30" VerticalAlignment="Bottom">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+
+                    </Grid.RowDefinitions>
+                    <Label Content="Created by Sen Zhang" Foreground="#FF6F6F6F"></Label>
+                    <Label x:Name="sample_color_disabled"  Height="1" Foreground="#FF888888" Grid.Column="2" Visibility="Hidden"/>
+                    <Label x:Name="sample_color_enabled" Height="1" Foreground="#FFDAE8FD" Grid.Column="2"  Visibility="Collapsed"/>
+                    <Label x:Name="sample_color_green"  Height="1"  Grid.Column="2" Visibility="Hidden" Foreground="#FF74E85D"/>
+                    <Button Content="Just Close Window..." Grid.Column="3" Grid.Row="0" Click="button_close_window_Clicked"  Foreground="#FFBDBDBD" Background="#FF717171">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="3, 15, 15,3"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Content="Save Setting and Close Window..." Grid.Column="1" Grid.Row="0" Click="button_save_setting_Clicked"  Foreground="#FFBDBDBD" Background="#FF717171" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="15, 3, 3,15"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Grid>
+
+
+            </StackPanel>
+            <StackPanel Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="3" Margin="0,10,0,0">
+                <ProgressBar x:Name ="progress_bar" Visibility ="Visible"  Margin="0,0,0,2" Height="2" VerticalAlignment="Bottom" Background="{x:Null}" Value="75" >
+                    <ProgressBar.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <LinearGradientBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                                </TransformGroup>
+                            </LinearGradientBrush.RelativeTransform>
+                            <GradientStop Color="#FF464646" Offset="1"/>
+                            <GradientStop Color="#FFD8D8D8"/>
+                        </LinearGradientBrush>
+                    </ProgressBar.BorderBrush>
+                    <ProgressBar.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <LinearGradientBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                                </TransformGroup>
+                            </LinearGradientBrush.RelativeTransform>
+                            <GradientStop Color="#FF464646" Offset="1"/>
+                            <GradientStop Color="#FF06BB2E" Offset="0.597"/>
+                        </LinearGradientBrush>
+                    </ProgressBar.Foreground>
+                </ProgressBar>
+                <TextBlock x:Name ="progress_bar_display" HorizontalAlignment="Right"  TextWrapping="Wrap" Text="progressbar" VerticalAlignment="Top" FontSize="12" TextAlignment="Right"/>
+            </StackPanel>
+
+        </Grid>
+
+
+    </StackPanel>
+
+</Window>

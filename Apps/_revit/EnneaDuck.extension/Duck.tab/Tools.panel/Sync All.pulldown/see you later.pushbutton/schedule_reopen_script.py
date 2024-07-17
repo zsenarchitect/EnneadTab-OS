@@ -31,10 +31,7 @@ def main():
 
     data_file = "EA_SCHEDULE_OPENER.json"
 
-    data = None
-    if FOLDER.is_file_exist_in_dump_folder(data_file):
-        data = DATA_FILE.read_json_as_dict_in_dump_folder(
-            data_file, True)
+    data = DATA_FILE.get_data(data_file)
         
     if data is None:
         data = dict()

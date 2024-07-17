@@ -10,7 +10,7 @@ from EnneadTab.RHINO import RHINO_CLEANUP, RHINO_LAYER
 from EnneadTab import NOTIFICATION, FOLDER, DATA_FILE, ENVIRONMENT
 
 import imp
-ref_module = imp.load_source("random_layer_color_left", '{}\\Layer.tab\\random_layer_color.button\\random_layer_color_left.py'.format(ENVIRONMENT.RHINO_SCRIPT_FOLDER))
+ref_module = imp.load_source("random_layer_color_left", '{}\\Layer.tab\\random_layer_color.button\\random_layer_color_left.py'.format(ENVIRONMENT.RHINO_FOLDER))
 
 def process_dwg(file, units):
     RHINO_CLEANUP.purge_block()

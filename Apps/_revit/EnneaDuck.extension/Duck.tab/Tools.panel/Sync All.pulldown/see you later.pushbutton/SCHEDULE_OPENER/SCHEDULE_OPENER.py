@@ -210,7 +210,7 @@ def main():
          
         if life_count % (1 * FPS) == 0:
             data_file = "EA_SCHEDULE_OPENER.json"
-            data = DATA_FILE.read_json_as_dict_in_dump_folder(data_file)
+            data = DATA_FILE.get_data(data_file)
         if data:
             res = display_data(data)
             if res:

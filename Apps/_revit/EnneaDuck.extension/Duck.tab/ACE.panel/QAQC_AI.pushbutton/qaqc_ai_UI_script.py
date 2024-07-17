@@ -152,7 +152,7 @@ class AI_Report_modelessForm(WPFWindow):
     def get_previous_conversation(self):
  
         if FOLDER.is_file_exist_in_dump_folder(self.log_file):
-            record = DATA_FILE.read_json_as_dict_in_dump_folder(self.log_file)
+            record = DATA_FILE.get_data(self.log_file)
             self.tbox_conversation.Text = record["conversation_history"]
         else:
             self.tbox_conversation.Text = ""

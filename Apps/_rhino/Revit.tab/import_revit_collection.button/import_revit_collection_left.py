@@ -10,7 +10,7 @@ from EnneadTab.RHINO import RHINO_LAYER, RHINO_CLEANUP, RHINO_FORMS, RHINO_MATER
 
 import imp
 import os
-random_layer_color_script_folder = "{}\\Layer.tab\\random_layer_color.button".format(ENVIRONMENT.RHINO_SCRIPT_FOLDER)
+random_layer_color_script_folder = "{}\\Layer.tab\\random_layer_color.button".format(ENVIRONMENT.RHINO_FOLDER)
 REF_MODULE = imp.load_source("random_layer_color_left", '{}\\random_layer_color_left.py'.format(random_layer_color_script_folder))
 
 
@@ -164,7 +164,7 @@ def import_revit_collection():
     rs.EnableRedraw(False)
     
     global OST_MATERIAL_MAP
-    OST_MATERIAL_MAP  = DATA_FILE.read_json_as_dict_in_dump_folder("EA_OST_MATERIAL_MAP.json", use_encode=True, create_if_not_exist=True)
+    OST_MATERIAL_MAP  = DATA_FILE.get_data("EA_OST_MATERIAL_MAP.json")
     if not OST_MATERIAL_MAP:
         NOTIFICATION.messenger("No mapping data found. Did you export setting from Revit side?")
         return

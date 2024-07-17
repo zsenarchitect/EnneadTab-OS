@@ -249,9 +249,7 @@ class SampleBlockDialog(Eto.Forms.Form):
         self.btn_Run = Eto.Forms.Button()
         self.btn_Run.Height = 30
         self.btn_Run.Text = "Update Preview"
-        temp_bitmap = Eto.Drawing.Bitmap(r"{}\update_data.png".format(self.FOLDER_APP_IMAGES))
-        #self.btn_Run.Image = temp_bitmap.WithSize(200,50)
-        #self.btn_Run.Image = temp_bitmap
+
         self.btn_Run.ImagePosition = Eto.Forms.ButtonImagePosition.Right
         self.btn_Run.Click += self.btn_preview_Clicked
         user_buttons.append(self.btn_Run)

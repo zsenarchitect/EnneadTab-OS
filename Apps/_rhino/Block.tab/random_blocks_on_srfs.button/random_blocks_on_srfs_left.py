@@ -5,6 +5,7 @@ import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 import random
+import time
 import Eto # pyright: ignore
 
 
@@ -269,9 +270,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         self.btn_Run = Eto.Forms.Button()
         self.btn_Run.Height = 30
         self.btn_Run.Text = "(Re)Generate"
-        temp_bitmap = Eto.Drawing.Bitmap(r"{}\update_data.png".format(self.FOLDER_APP_IMAGES))
-        #self.btn_Run.Image = temp_bitmap.WithSize(200,50)
-        #self.btn_Run.Image = temp_bitmap
+
         self.btn_Run.ImagePosition = Eto.Forms.ButtonImagePosition.Right
         self.btn_Run.Click += self.btn_preview_Clicked
         user_buttons.append(self.btn_Run)
@@ -432,7 +431,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         rs.DeleteObjects(old_blocks)
         
         
-
+    @ERROR_HANDLE.try_catch_error()
     def generate_blocks_layout(self, is_preview):
         
    
@@ -443,16 +442,14 @@ class ScatterBlockDialog(Eto.Forms.Form):
             self.total_count = int(self.tbox_total_count.Text)
         except Exception as e:
             print (str(e))
-            NOTIFICATION.messenger(main_text = "data not valid",
-                                            print_note = True)
+            NOTIFICATION.messenger(main_text = "data not valid")
             SOUND.play_sound("sound_effect_error.wav")
             self.delete_preview_blocks()
             return
 
 
         if self.total_count == 0:
-            NOTIFICATION.messenger(main_text =  "Cannot have total count of 0 for scatter",
-                                            print_note = True)
+            NOTIFICATION.messenger(main_text =  "Cannot have total count of 0 for scatter")
             SOUND.play_sound("sound_effect_error.wav")
             
             self.delete_preview_blocks()
@@ -460,8 +457,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
 
 
         if not self.selected_srfs:
-            NOTIFICATION.messenger(main_text = "Base srfs not valid",
-                                            print_note = True)
+            NOTIFICATION.messenger(main_text = "Base srfs not valid")
             SOUND.play_sound("sound_effect_error.wav")
             
             self.delete_preview_blocks()
@@ -470,8 +466,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
 
         if self.scatter_mode_list.SelectedValue == self.scatter_mode_list.DataStore[1]:
             if not self.guide_crv or not rs.IsObject(self.guide_crv):
-                NOTIFICATION.messenger(main_text = "Guide curve not valid",
-                                            print_note = True)
+                NOTIFICATION.messenger(main_text = "Guide curve not valid")
                 SOUND.play_sound("sound_effect_error.wav")
       
                 self.delete_preview_blocks()
@@ -528,10 +523,10 @@ class ScatterBlockDialog(Eto.Forms.Form):
         with some near threhold setting, it might be immposobile to find max count pts. So a timer is needed to stop loop since last pts add to list.
         """
         self.pt_collection = []
-        success_time_mark = TIME.mark_time()
+        success_time_mark = time.time()
         count = 0
         while count < self.total_count:
-            time_span = TIME.time_span(success_time_mark)
+            time_span = time.time() - success_time_mark
             # if count%20 == 0:
             #     sc.doc.Views.Redraw()
             #     Rhino.RhinoApp.Wait()
@@ -569,7 +564,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
             add rhino progress bar here,
             add time stamp reset for the last susceeful appending of pt. If too long since last addition, there might be problem in the thresshold setting.
             """
-            success_time_mark = TIME.mark_time()
+            success_time_mark = time.time()
             count += 1
 
         if is_preview:

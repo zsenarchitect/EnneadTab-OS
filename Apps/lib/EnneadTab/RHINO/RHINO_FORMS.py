@@ -14,7 +14,7 @@ def notification(title = "EnneadTab For Rhino",
 
 
 
-    import RHINO_FORMS_NOTIFICATION as FORMS_NTF
+    import _RHINO_FORMS_NOTIFICATION as FORMS_NTF
     return FORMS_NTF.show_NotificationDialog(title,
                                             main_text,
                                             sub_text,
@@ -33,7 +33,7 @@ def select_from_list(options,
 
 
 
-    import RHINO_FORMS_LIST_SELECTION as FORMS_L
+    import _RHINO_FORMS_LIST_SELECTION as FORMS_L
     return FORMS_L.show_ListSelectionDialog(options,
                                             title,
                                             message,
@@ -59,7 +59,7 @@ def select_from_list2list(options_A,
 
 
 
-    import RHINO_FORMS_LIST2LIST_SELECTION as FORMS_L2L
+    import _RHINO_FORMS_LIST2LIST_SELECTION as FORMS_L2L
     return FORMS_L2L.ShowList2ListSelectionDialog(options_A,
                                                 options_B,
                                                 title,

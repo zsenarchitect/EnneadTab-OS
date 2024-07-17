@@ -30,6 +30,7 @@ import ERROR_HANDLE
 import NOTIFICATION
 import ENVIRONMENT
 
+
 # make modal dialog
 class ListSelectionDialog(REF_CLASS):
     # Initializer
@@ -39,7 +40,7 @@ class ListSelectionDialog(REF_CLASS):
         self.Resizable = True
         self.Padding = Eto.Drawing.Padding(5)
         self.Spacing = Eto.Drawing.Size(5, 5)
-        self.Icon = Eto.Drawing.Icon("{}\Source Codes\lib\ennead-e-logo.png".format(ENVIRONMENT.PUBLISH_FOLDER_FOR_RHINO))
+        # self.Icon = Eto.Drawing.Icon("{}\Source Codes\lib\ennead-e-logo.png".format(ENVIRONMENT.PUBLISH_FOLDER_FOR_RHINO))
         #self.Bounds = Eto.Drawing.Rectangle()
         self.height = height
         self.width = width
@@ -90,18 +91,13 @@ class ListSelectionDialog(REF_CLASS):
 
     # collect data for list
     def InitializeScriptList(self):
-        return allDocLayers
+        pass
+        # return allDocLayers()
         #return sorted(allDocLayers)
 
 
     def CreateLogoImage(self):
         self.logo = Eto.Forms.ImageView()
-
-        self.FOLDER_PRIMARY = r"L:\4b_Applied Computing\00_Asset Library"
-        self.FOLDER_APP_IMAGES = r"{}\Database\app images".format(self.FOLDER_PRIMARY)
-        self.LOGO_IMAGE = r"{}\Ennead_Architects_Logo.png".format(self.FOLDER_APP_IMAGES)
-        temp_bitmap = Eto.Drawing.Bitmap(self.LOGO_IMAGE)
-        self.logo.Image = temp_bitmap.WithSize(200,30)
         return self.logo
 
     # create message bar function

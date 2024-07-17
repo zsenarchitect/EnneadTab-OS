@@ -69,11 +69,46 @@ def copy_to_EA_Dist_and_commit():
         # copy folder from current repo to EA_dist repo
         shutil.copytree(os.path.join(OS_REPO_FOLDER, folder), os.path.join(EA_dist_repo_folder, folder))
 
+    # Add and commit changes
+    commit_changes(EA_dist_repo_folder)
+
     # Reset and force push to remote
     reset_and_force_push(EA_dist_repo_folder)
 
     # Play Windows built-in notification sound
     winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
+
+
+def commit_changes(repository_path):
+    try:
+        # Change to the Git repository directory
+        print("Changing directory to:", repository_path)
+        os.chdir(repository_path)
+
+        # Add all changes
+        print("Running git add .")
+        add_result = subprocess.call([GIT_LOCATION, "add", "."])
+        if add_result != 0:
+            raise Exception("Git add command failed with return code {}".format(add_result))
+
+        # Generate commit message with current date and time
+        current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        commit_message = "Auto Commit {}".format(current_time)
+        print(f"Running git commit -m '{commit_message}'")
+        commit_result = subprocess.call([GIT_LOCATION, "commit", "-m", commit_message])
+        if commit_result != 0:
+            if commit_result == 1:  # No changes to commit
+                print("No changes to commit.")
+                return
+            raise Exception("Git commit command failed with return code {}".format(commit_result))
+        else:
+            print("Git commit successful.")
+
+    except Exception as e:
+        print("An error occurred while committing changes")
+        print(traceback.format_exc())
+        raise e
+
 
 def try_remove_content(folder_path):
     if os.path.exists(folder_path):
@@ -139,17 +174,30 @@ def reset_and_force_push(repository_path):
         reset_result = subprocess.call([GIT_LOCATION, "reset", "--hard"])
         if reset_result != 0:
             raise Exception("Git reset command failed with return code {}".format(reset_result))
+        
+        # Verify the current branch
+        print("Verifying current branch")
+        branch_result = subprocess.run([GIT_LOCATION, "branch"], capture_output=True, text=True)
+        print("Current branch:\n", branch_result.stdout)
+        
+        # Verify the remote URL
+        print("Verifying remote URL")
+        remote_result = subprocess.run([GIT_LOCATION, "remote", "-v"], capture_output=True, text=True)
+        print("Remote URL:\n", remote_result.stdout)
 
         # Force push to the main branch
         print("Running git push --force origin main")
         push_result = subprocess.call([GIT_LOCATION, "push", "--force", "origin", "main"])
         if push_result != 0:
             raise Exception("Git push command failed with return code {}".format(push_result))
+        else:
+            print("Git push successful.")
 
     except Exception as e:
         print("An error occurred while force pushing changes to the main branch")
         print(traceback.format_exc())
         raise e
+
 
 def update_installer_folder_exes():
     # locate the EA_Dist repo folder and current repo folder

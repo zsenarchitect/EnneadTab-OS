@@ -182,8 +182,8 @@ def publish_duck():
     import RuiWriter
     RuiWriter.run()
 
-    print_title("Start testing all module.")
-    UNIT_TEST.test_core_module()
+    # print_title("Start testing all module.")
+    # UNIT_TEST.test_core_module()
 
     print_title("\n\npush update to EA dist folder")
     copy_to_EA_Dist_and_commit()

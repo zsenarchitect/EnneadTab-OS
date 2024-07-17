@@ -29,7 +29,7 @@ add_search_path()
 
 
 __title__ = "GetLatest"
-__doc__ = "This button does GetLatest when left click"
+__doc__ = "Get the lastest version of EnneadTab"
 __FONDATION__ = True
 import EnneadTab
 reload(EnneadTab) # pyright: ignore

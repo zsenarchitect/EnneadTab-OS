@@ -1,6 +1,6 @@
 
 __title__ = "ShapeMapper"
-__doc__ = "This button does ShapeMapper when left click"
+__doc__ = "Help you map complex design over surface. Consider this as a improved flowAlongSurface"
 import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc

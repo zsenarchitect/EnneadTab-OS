@@ -1,6 +1,6 @@
 
 __title__ = "HowToInstall"
-__doc__ = "This button does HowToInstall when left click"
+__doc__ = "Pull up installation guide for the rest of your team."
 
 import webbrowser
 

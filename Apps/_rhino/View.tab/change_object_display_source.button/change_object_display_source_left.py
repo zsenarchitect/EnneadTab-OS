@@ -1,6 +1,6 @@
 
 __title__ = "ChangeObjectDisplaySource"
-__doc__ = "This button does ChangeObjectDisplaySource when left click"
+__doc__ = "Change the display source of the object for display color and/or material"
 
 
 import rhinoscriptsyntax as rs

@@ -1,6 +1,6 @@
 
 __title__ = "FilterBlockByName"
-__doc__ = "This button does FilterBlockByName when left click"
+__doc__ = "Quick select multiple block by block names"
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 

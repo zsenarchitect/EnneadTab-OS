@@ -1,6 +1,6 @@
 
 __title__ = "ToggleGFADisplay"
-__doc__ = "This button does ToggleGFA when left click"
+__doc__ = "Dynamically display GFA area by simply changing layer name."
 
 import re
 import Rhino # pyright: ignore

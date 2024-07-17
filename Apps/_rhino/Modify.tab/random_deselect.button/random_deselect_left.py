@@ -1,6 +1,6 @@
 
 __title__ = "RandomDeselect"
-__doc__ = "This button does RandomDeselect when left click"
+__doc__ = "Ramdonly deselect objs by percentage"
 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc

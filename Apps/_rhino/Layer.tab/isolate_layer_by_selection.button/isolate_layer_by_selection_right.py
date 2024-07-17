@@ -1,6 +1,6 @@
 
 __title__ = "SelectObjectsOnSimilarLayer"
-__doc__ = "This button does SelectObjsOnSimilarLayer when right click"
+__doc__ = "Selection objects on the similar layers."
 
 import rhinoscriptsyntax as rs
 

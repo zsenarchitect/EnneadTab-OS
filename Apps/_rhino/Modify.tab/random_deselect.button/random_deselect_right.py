@@ -1,6 +1,6 @@
 
-__title__ = "RandomDeselect"
-__doc__ = "This button does RandomDeselect when left click"
+__title__ = "RandomGroupPacking"
+__doc__ = "Ramdonly package objs to groups, great if you are going to set slight different shade for them in rendering"
 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc

@@ -1,6 +1,6 @@
 
 __title__ = "BatchRenameCamera"
-__doc__ = "This button does BatchRenameCamera when left click"
+__doc__ = "Rename multiple cameras without activating them."
 
 import Rhino # pyright: ignore
 import Eto # pyright: ignore

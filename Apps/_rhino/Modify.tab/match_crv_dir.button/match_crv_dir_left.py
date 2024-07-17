@@ -1,6 +1,6 @@
 
 __title__ = "MatchCrvDir"
-__doc__ = "This button does MatchCrvDir when left click"
+__doc__ = "Match multiple crvs direction."
 
 import rhinoscriptsyntax as rs
 from EnneadTab import NOTIFICATION

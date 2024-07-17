@@ -1,6 +1,6 @@
 
 __title__ = "DVD"
-__doc__ = "This button does Dvd when left click"
+__doc__ = "When you are bored..."
 
 from EnneadTab.FUN import JOKES
 from EnneadTab import LOG, ERROR_HANDLE

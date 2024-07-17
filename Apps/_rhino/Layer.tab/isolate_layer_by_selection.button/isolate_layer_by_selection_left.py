@@ -1,6 +1,6 @@
 
 __title__ = "IsolateLayerBySelection"
-__doc__ = "This button does IsolateLayerBySelection when left click"
+__doc__ = "Isolcate objs from similar layers"
 import rhinoscriptsyntax as rs
 from EnneadTab import LOG, ERROR_HANDLE, NOTIFICATION
 

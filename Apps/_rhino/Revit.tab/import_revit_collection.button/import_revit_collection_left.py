@@ -1,6 +1,6 @@
 
 __title__ = "ImportRevitCollection"
-__doc__ = "This button does ImportRevitCollection when left click"
+__doc__ = "Organize dwgs export from Revit to readable Rhino layer tree."
 
 import scriptcontext as sc
 import rhinoscriptsyntax as rs

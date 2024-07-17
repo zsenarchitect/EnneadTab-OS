@@ -1,6 +1,6 @@
 
 __title__ = "RemoveStringInMaterialName"
-__doc__ = "This button does RemoveStringInMaterialName when left click"
+__doc__ = "Remove the specific string in material name. Handy if trying to remove file name prefix."
 
 import scriptcontext as sc
 import rhinoscriptsyntax as rs

@@ -778,6 +778,22 @@
         "tab": "View.tab",
         "tab_icon": "View.tab\\icon.png"
     },
+    "View.tab\\toggle_GFA.button\\toggle_GFA_left.py": {
+        "script": "View.tab\\toggle_GFA.button\\toggle_GFA_left.py",
+        "icon": "View.tab\\toggle_GFA.button\\icon.png",
+        "alias": "ToggleGFADisplay",
+        "doc": "This button does ToggleGFA when left click",
+        "tab": "View.tab",
+        "tab_icon": "View.tab\\icon.png"
+    },
+    "View.tab\\toggle_GFA.button\\toggle_GFA_right.py": {
+        "script": "View.tab\\toggle_GFA.button\\toggle_GFA_right.py",
+        "icon": "View.tab\\toggle_GFA.button\\icon.png",
+        "alias": "BakeGFADataToExcel",
+        "doc": "Export displayed GFA area to excel. Also you can set checker geo.",
+        "tab": "View.tab",
+        "tab_icon": "View.tab\\icon.png"
+    },
     "View.tab\\toggle_layer_pointer.button\\toggle_layer_pointer_left.py": {
         "script": "View.tab\\toggle_layer_pointer.button\\toggle_layer_pointer_left.py",
         "icon": "View.tab\\toggle_layer_pointer.button\\icon.png",

@@ -1,3 +1,5 @@
 layout:
   - section_box
   - section_box_cleanup
+  - "---"
+  - toggle_GFA

@@ -413,5 +413,10 @@
     "Material.tab\\random_texture_walk.button\\icon.pngrandom_texture_walk_left": "19c380e3-05d1-4b04-9331-02b001e4a2e8",
     "Material.tab\\remove_string_in_material_name.button\\icon.pngremove_string_in_material_name_left": "6fabf4f5-e3f5-4b8a-9f91-d9df67a2fafb",
     "Modify.tab\\srf_to_panel.button\\icon.pngsrf_to_panel_left": "1e902d78-9c14-4d31-8b5e-9302b72d3a55",
-    "Revit.tab\\floor_drafter.button\\icon.pngfloor_drafter_left": "3049e325-8c39-4656-a2b8-edaf4e17567f"
+    "Revit.tab\\floor_drafter.button\\icon.pngfloor_drafter_left": "3049e325-8c39-4656-a2b8-edaf4e17567f",
+    "View.tab\\toggle_GFA.button": "e94e97f9-b59a-4cc0-908f-9d2ffd610131",
+    "View.tab\\toggle_GFA.button\\toggle_GFA_left.py": "7a2c25ca-94cc-4cbf-a722-55902132f209",
+    "View.tab\\toggle_GFA.button\\icon.pngtoggle_GFA_left": "7c13b273-cdeb-4c2b-886d-56d9aa0e6f04",
+    "View.tab\\toggle_GFA.button\\toggle_GFA_right.py": "c923771e-5246-4f35-9149-7859154fc8ad",
+    "View.tab\\toggle_GFA.button\\icon.pngtoggle_GFA_right": "d52faed1-220d-4d3d-812e-d33a99722487"
 }

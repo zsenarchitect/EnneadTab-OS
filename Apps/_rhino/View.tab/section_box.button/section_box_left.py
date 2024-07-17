@@ -18,7 +18,7 @@ def section_box():
     objs = rs.GetObjects(message = "Get objs to do sectionbox", filter = 0, group = True, preselect = True)
     rs.EnableRedraw(False)
     if objs is None:
-        NOTIFICATION.messenger(main_text = "You didn't select anything.", sub_text = "Boundingbox cannot generate around emptyness...")
+        NOTIFICATION.messenger(main_text = "You didn't select anything.\nBoundingbox cannot generate around emptyness...")
         return
 
     bbox_pts = rs.BoundingBox(objs, view_or_plane = rs.CurrentView(return_name = False))
@@ -29,7 +29,7 @@ def section_box():
         #rs.DeleteObjects(bbox_pts)
         rs.DeleteObjects( [crv, base_srf])
     except Exception as e:
-        NOTIFICATION.messenger(main_text = "Cannot find valid boundingbox", sub_text = "Might be a 1D or 2D element in current CPlane.")
+        NOTIFICATION.messenger(main_text = "Cannot find valid boundingbox\nMight be a 1D or 2D element in current CPlane.")
         if "crv" in locals():
             try:
                 rs.DeleteObject( crv )

@@ -678,7 +678,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         for x in self.filler_list:
             sticky_key = FORM_KEY + x
             default = 0
-            value = DATA_FILE.get_sticky_longterm(sticky_key, default_value_if_no_sticky = default)
+            value = DATA_FILE.get_sticky(sticky_key, default_value_if_no_sticky = default)
 
             #setattr(self, x , str(value))
             tbox = getattr(self, x)
@@ -702,7 +702,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
             tbox = getattr(self, x)
             sticky_key = FORM_KEY + x
             #print x
-            DATA_FILE.set_sticky_longterm(sticky_key, tbox.Text)
+            DATA_FILE.set_sticky(sticky_key, tbox.Text)
 
         self.clear_out()
 

@@ -264,13 +264,13 @@ def offset_floor_border():
         NOTIFICATION.toast(main_text = "Cannot find surface or polysurface.", sub_text = "Cancel")
         return
 
-    offset = DATA_FILE.get_sticky_longterm("SLAB_OFFSET_DIST", 300)
+    offset = DATA_FILE.get_sticky("SLAB_OFFSET_DIST", 300)
     res = rs.PropertyListBox(["Offset inward(model unit):"], [offset], message = "Positive number = shrink. Negative number = expand.", title = "EnneadTab floor shrinker/expander")
     if not res:
         NOTIFICATION.toast(main_text = "Need to have valid input.", sub_text = "Cancel")
         return
     offset = float(res[0])
-    DATA_FILE.set_sticky_longterm("SLAB_OFFSET_DIST", offset)
+    DATA_FILE.set_sticky("SLAB_OFFSET_DIST", offset)
 
     #print offset
     rs.EnableRedraw(False)

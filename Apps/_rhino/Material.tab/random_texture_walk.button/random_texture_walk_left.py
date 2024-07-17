@@ -21,7 +21,7 @@ def random_texture_walk():
 
     default_mapping = None
 
-    default_factor = DATA_FILE.get_sticky_longterm("TEXTURE_RANDOM_WALK", 1)
+    default_factor = DATA_FILE.get_sticky("TEXTURE_RANDOM_WALK", 1)
     limit = rs.RealBox("range from -? to ?", default_number=default_factor) # from -1 to 1
     for obj in objs:
         original_transform =  clr.StrongBox[Rhino.Geometry.Transform](Rhino.Geometry.Transform.Identity)
@@ -45,7 +45,7 @@ def random_texture_walk():
         else:
             sc.doc.Objects.ModifyTextureMapping(obj, 1, mapping)
 
-    DATA_FILE.set_sticky_longterm("TEXTURE_RANDOM_WALK", limit)
+    DATA_FILE.set_sticky("TEXTURE_RANDOM_WALK", limit)
     NOTIFICATION.messenger("texture random walk done.")
 
 if __name__ == "__main__":

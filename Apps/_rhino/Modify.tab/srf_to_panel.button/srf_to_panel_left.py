@@ -25,8 +25,8 @@ class PanelMaker:
         self.srfs = srfs
         self.is_valid = True
 
-        default_thickness = DATA_FILE.get_sticky_longterm("SRF2PANEL_THICKNESS", 50)
-        default_joint_width = DATA_FILE.get_sticky_longterm("SRF2PANEL_JOINT_WIDTH", 7.5)
+        default_thickness = DATA_FILE.get_sticky("SRF2PANEL_THICKNESS", 50)
+        default_joint_width = DATA_FILE.get_sticky("SRF2PANEL_JOINT_WIDTH", 7.5)
         res = rs.PropertyListBox(["Panel Overall Thickness", "Joint Width"],
                                 [default_thickness, default_joint_width],
                                 "Enter Panel Dimensions")
@@ -60,8 +60,8 @@ class PanelMaker:
         rs.Command("savesmall")
         rs.MessageBox("time used = {} seconds = {}mins".format(used_time, used_time/60))
 
-        DATA_FILE.set_sticky_longterm("SRF2PANEL_THICKNESS", self.overall_thickness)
-        DATA_FILE.set_sticky_longterm("SRF2PANEL_JOINT_WIDTH", self.open_joint_width)
+        DATA_FILE.set_sticky("SRF2PANEL_THICKNESS", self.overall_thickness)
+        DATA_FILE.set_sticky("SRF2PANEL_JOINT_WIDTH", self.open_joint_width)
 
 
     def process_srf(self, srf):

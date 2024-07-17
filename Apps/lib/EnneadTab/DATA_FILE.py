@@ -1,3 +1,4 @@
+import time
 import shutil
 import json
 import io
@@ -184,3 +185,52 @@ def update_data(file_name, is_local = True):
 
     except Exception:
         print("An error occurred when updating data:\n{}".format(traceback.format_exc()))
+
+
+
+
+
+#######################################
+
+
+
+
+def get_sticky(sticky_name, default_value_if_no_sticky=None):
+    """get longterm sticky information
+
+    Args:
+        sticky_name (str): name of the sticky
+        default_value_if_no_sticky (_type_, optional): _description_. Defaults to None.
+
+    Returns:
+        any : get the value of the longterm sticky
+    """
+    file = _get_sticky_file()
+    data = _read_json_file_safely(file)
+    if sticky_name not in data.keys():
+        set_sticky(sticky_name, default_value_if_no_sticky)
+        return default_value_if_no_sticky
+    return data[sticky_name]
+
+
+def set_sticky(sticky_name, value_to_write):
+    """set a long term sticky. The long term sticky will not be cleared after the application is closed.
+
+    Args:
+        sticky_name (str): _description_
+        value_to_write (any): value to write
+    """
+    file = _get_sticky_file()
+    data = _read_json_file_safely(file)
+    data[sticky_name] = value_to_write
+    _save_dict_to_json(data, file, use_encode=True)
+
+
+def _get_sticky_file():
+    file_name = "longterm_sticky.STICKY"
+    file = FOLDER.get_EA_dump_folder_file(file_name)
+    if not os.path.exists(file):
+        _save_dict_to_json(dict(), file)
+        # add a sleeping time to avoid writing file  and read file to quickly
+        time.sleep(1)
+    return file

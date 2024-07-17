@@ -70,7 +70,7 @@ def get_default_setting():
 
 
 def get_current_setting():
-    current_setting = DATA_FILE.get_sticky_longterm(KEY_COLOR_SETTING, get_default_setting())
+    current_setting = DATA_FILE.get_sticky(KEY_COLOR_SETTING, get_default_setting())
     return current_setting
 
 def random_color(layer_name, use_desaturated_color):

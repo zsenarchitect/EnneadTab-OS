@@ -6,6 +6,7 @@ import ENVIRONMENT
 import FOLDER
 import EMAIL
 import USER
+import TIME
 import NOTIFICATION
 import OUTPUT
 
@@ -22,7 +23,8 @@ def try_catch_error(is_silent=False, is_pass = False):
                     return
                 print_note(str(e))
                 print_note("Wrapper func for EA Log -- Error: " + str(e))
-                error = traceback.format_exc()
+                error = "Oops at {}\n".format(TIME.get_formatted_current_time())
+                error += traceback.format_exc()
 
                 subject_line = "EnneadTab Auto Error Log"
                 if is_silent:
@@ -42,9 +44,10 @@ def try_catch_error(is_silent=False, is_pass = False):
                     except IOError as e:
                         print_note(e)
 
-                    os.startfile(error_file)
+                    # os.startfile(error_file)
                     output = OUTPUT.get_output()
                     output.write(error)
+                    output.insert_division()
                     output.plot()
 
                 if ENVIRONMENT.IS_REVIT_ENVIRONMENT and not is_silent:

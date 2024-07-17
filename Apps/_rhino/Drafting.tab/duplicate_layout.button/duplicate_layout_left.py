@@ -32,12 +32,12 @@ def duplicate_layout():
     if selected_layout_names is None:
         return
 
-    default_X = DATA_FILE.get_sticky_longterm("DUPLICATE_PAGE_CAMERA_SHIFT_X", 100)
-    default_Y = DATA_FILE.get_sticky_longterm("DUPLICATE_PAGE_CAMERA_SHIFT_Y", 0)
+    default_X = DATA_FILE.get_sticky("DUPLICATE_PAGE_CAMERA_SHIFT_X", 100)
+    default_Y = DATA_FILE.get_sticky("DUPLICATE_PAGE_CAMERA_SHIFT_Y", 0)
     X, Y = rs.PropertyListBox(["X increment(file unit)", "Y increment(file unit)"], [default_X,default_Y], message = "For duplicated sheet's viewport, how do you want to shift camera?")
     X, Y = float(X), float(Y)
-    DATA_FILE.set_sticky_longterm("DUPLICATE_PAGE_CAMERA_SHIFT_X", X)
-    DATA_FILE.set_sticky_longterm("DUPLICATE_PAGE_CAMERA_SHIFT_Y", Y)
+    DATA_FILE.set_sticky("DUPLICATE_PAGE_CAMERA_SHIFT_X", X)
+    DATA_FILE.set_sticky("DUPLICATE_PAGE_CAMERA_SHIFT_Y", Y)
 
     for page_name in selected_layout_names:
         page = get_page_by_name(page_name)

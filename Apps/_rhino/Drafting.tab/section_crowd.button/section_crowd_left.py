@@ -143,7 +143,7 @@ def get_pt(other_pt, spacing):
 def section_crowd():
 
 
-    people_density = DATA_FILE.get_sticky_longterm("DUMMY_PEOPLE_DENSITY", 800)
+    people_density = DATA_FILE.get_sticky("DUMMY_PEOPLE_DENSITY", 800)
     res = rs.PropertyListBox(items = ["Social Distance(file unit)"],
                             values = [ people_density],
                             message = "Enter section draft crowd setting",
@@ -152,7 +152,7 @@ def section_crowd():
         return
     people_density = res[0]
     people_density = float(people_density)
-    DATA_FILE.set_sticky_longterm("DUMMY_PEOPLE_DENSITY", people_density)
+    DATA_FILE.set_sticky("DUMMY_PEOPLE_DENSITY", people_density)
     
     for dummy_block_name in BASIC_BLOCK_NAMES:
         

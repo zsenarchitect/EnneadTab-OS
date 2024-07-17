@@ -17,7 +17,7 @@ import os
 import time
 
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import USER, NOTIFICATION, DATA_CONVERSION, ENVIRONMENT_CONSTANTS, ERROR_HANDLE, FOLDER
+from EnneadTab import USER, NOTIFICATION, DATA_CONVERSION, ENVIRONMENT, ERROR_HANDLE, FOLDER
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 import random
@@ -26,11 +26,11 @@ uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
-import ENNEAD_LOG
 
 
 
-@ERROR_HANDLE.try_catch_error
+
+@ERROR_HANDLE.try_catch_error()
 def delete_views(view):
 
     t = DB.Transaction(doc, "Delete Views")
@@ -48,7 +48,7 @@ def delete_views(view):
 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def modify_creator_in_view_name(views, is_adding_creator):
     views = REVIT_SELECTION.filter_elements_changable(views)
 
@@ -254,13 +254,13 @@ class manage_working_view_ModelessForm(WPFWindow):
 
         self.Title = "EnneadTab Manage Working Views"
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
         self.set_image_source(self.monitor_icon, "monitor_icon.png")
         self.set_image_source(self.preview_image, "DEFAULT PREVIEW_CANNOT FIND PREVIEW IMAGE.png")
@@ -290,7 +290,7 @@ class manage_working_view_ModelessForm(WPFWindow):
             no_sheet_views = filter(lambda x: DB.WorksharingUtils.GetWorksharingTooltipInfo(doc, x.Id).Creator == USER.get_autodesk_user_name(), no_sheet_views)
         return no_sheet_views
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def export_working_views_Click(self, sender, e):
         will_close = REVIT_APPLICATION.do_you_want_to_sync_and_close_after_done()
         total = len(self.data_grid.ItemsSource)
@@ -312,7 +312,7 @@ class manage_working_view_ModelessForm(WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def preview_selection_changed(self, sender, e):
         if len(self.data_grid.ItemsSource) == 0:
             return
@@ -332,22 +332,22 @@ class manage_working_view_ModelessForm(WPFWindow):
             self.set_image_source(self.preview_image, "DEFAULT PREVIEW_CANNOT FIND PREVIEW IMAGE.png")
             self.textblock_export_status.Text = ""
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def UI_changed(self, sender, e):
         self.update_preview_grid()
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def refresh_table_Click(self, sender, e):
         self.update_preview_grid()
         self.debug_textbox.Text = "Currently showing {} views.".format(len(self.data_grid.ItemsSource))
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def update_preview_grid(self):
         is_me_only = self.checkbox_me_only.IsChecked
         self.data_grid.ItemsSource = [DataGrid_Preview_Obj(x) for x in self.get_non_sheet_views(is_me_only)]
         pass
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def open_view_click(self, sender, e):
         obj = self.data_grid.SelectedItem
         if not obj:
@@ -358,7 +358,7 @@ class manage_working_view_ModelessForm(WPFWindow):
         uidoc.ActiveView = obj.view
         pass
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def delete_view_click(self, sender, e):
         obj = self.data_grid.SelectedItem
         if not obj:
@@ -386,12 +386,12 @@ class manage_working_view_ModelessForm(WPFWindow):
         preview_image = "{}\{}".format(self.output_folder, file)
         return preview_image
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def append_creator_name_click(self, sender, e):
         self.view_name_change(is_adding_creator = True)
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def remove_creator_name_click(self, sender, e):
         self.view_name_change(is_adding_creator = False)
 
@@ -499,6 +499,5 @@ if __name__ == "__main__":
     # Let's launch our beautiful and useful form !
     try:
         modeless_form = manage_working_view_ModelessForm()
-        ENNEAD_LOG.use_enneadtab(coin_change = 99, tool_used = __title__.replace("\n", " "), show_toast = True)
     except:
         print (traceback.format_exc())

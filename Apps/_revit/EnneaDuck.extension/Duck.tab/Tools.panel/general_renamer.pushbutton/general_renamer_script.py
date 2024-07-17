@@ -19,7 +19,7 @@ from pyrevit import script #
 
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT_CONSTANTS, USER, NOTIFICATION, ERROR_HANDLE
+from EnneadTab import ENVIRONMENT, USER, NOTIFICATION, ERROR_HANDLE
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 import random
@@ -29,10 +29,10 @@ uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
-import ENNEAD_LOG
 
 
-@ERROR_HANDLE.try_catch_error
+
+@ERROR_HANDLE.try_catch_error()
 def view_prefix_modifier(is_adding_prefix, prefix ):
     views = forms.select_views(title="Select views to modify",
                                use_selection=True)
@@ -51,7 +51,7 @@ def view_prefix_modifier(is_adding_prefix, prefix ):
     t.Commit()
     NOTIFICATION.messenger (main_text = "All views name prefix modified!")
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def all_cap_view_name(will_cap_sheet, will_cap_view):
     t = DB.Transaction(doc, "Cap View/Sheet Names")
     t.Start()
@@ -69,7 +69,7 @@ def all_cap_view_name(will_cap_sheet, will_cap_view):
     NOTIFICATION.messenger (main_text = "All views/sheets name reformated!")
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def all_cap_spatial_element_name(will_cap_room, will_cap_area):
     t = DB.Transaction(doc, "Cap Rooms and Areas")
     t.Start()
@@ -99,7 +99,7 @@ def remove_creator_mark(name):
 
     return name
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def rename_views(doc, sheets, is_default_format, is_original_flavor, attempt = 0, show_log = True):
 
     if attempt > 3:
@@ -234,7 +234,7 @@ def rename_views(doc, sheets, is_default_format, is_original_flavor, attempt = 0
     if not t.HasEnded():
         t.Commit()
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def rename_family(selected_element):
     current_family_name = selected_element.Symbol.Family.Name
     t = DB.Transaction(doc, "Rename Views")
@@ -348,13 +348,13 @@ class general_renamer_ModelessForm(WPFWindow):
 
         self.Title = "EnneadTab Renamer UI"
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
         self.set_image_source(self.sample_img_project_browser, "sample project browser.png")
         if not USER.is_SZ() or True:
@@ -366,7 +366,7 @@ class general_renamer_ModelessForm(WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def rename_view_Click(self, sender, e):
         sheets = forms.select_sheets(title = "Pick sheets that has the views to modify.")
         if not sheets:
@@ -382,7 +382,7 @@ class general_renamer_ModelessForm(WPFWindow):
             self.debug_textbox.Text = "Debug Output:"
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def rename_family_click(self, sender, e):
         selection_ids = uidoc.Selection.GetElementIds ()
         if len(selection_ids) != 1:
@@ -404,7 +404,7 @@ class general_renamer_ModelessForm(WPFWindow):
         else:
             self.debug_textbox.Text = "Debug Output:"
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def view_prefix_modifier_click(self, sender, e):
         
         is_adding_prefix = self.radial_bt_prefix_add.IsChecked
@@ -418,7 +418,7 @@ class general_renamer_ModelessForm(WPFWindow):
             self.debug_textbox.Text = "Debug Output:"
 
             
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def all_cap_view_name_click(self, sender, e):
         
         will_cap_sheet, will_cap_view =  True, True
@@ -431,7 +431,7 @@ class general_renamer_ModelessForm(WPFWindow):
             self.debug_textbox.Text = "Debug Output:"
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def all_cap_spatical_element_name_click(self, sender, e):
         will_cap_room, will_cap_area =  True, True
         self.all_cap_spatical_element_event_handler.kwargs = will_cap_room, will_cap_area 
@@ -464,6 +464,6 @@ if __name__ == "__main__":
     # Let's launch our beautiful and useful form !
     try:
         modeless_form = general_renamer_ModelessForm()
-        ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+        
     except:
         print (traceback.format_exc())

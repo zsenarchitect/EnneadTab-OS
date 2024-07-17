@@ -10,10 +10,10 @@ from pyrevit import forms #
 from pyrevit import script #
 
 import traceback
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_UNIT, REVIT_APPLICATION
-from EnneadTab import SOUNDS, DATA_FILE, FOLDER, ERROR_HANDLE
+from EnneadTab import SOUND, DATA_FILE, FOLDER, ERROR_HANDLE
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -31,7 +31,7 @@ class Solution:
             return
         
         
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def main(self, brep_data):
 
         print(brep_data)
@@ -82,7 +82,7 @@ class Solution:
         t.Commit()
 
 
-        SOUNDS.play_sound("sound effect_mario message.wav")
+        SOUND.play_sound("sound_effect_mario_message.wav")
         return
 
     def make_revit_pt(self, x):
@@ -162,7 +162,7 @@ if __name__ == "__main__":
     for brep_name, brep_data in data.items():
         
         solution.main(brep_data)
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

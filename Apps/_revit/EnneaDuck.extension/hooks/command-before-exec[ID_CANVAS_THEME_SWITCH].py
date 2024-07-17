@@ -1,7 +1,7 @@
 
 # from pyrevit import  EXEC_PARAMS, script
 
-from EnneadTab import ERROR_HANDLE, NOTIFICATION, SOUNDS
+from EnneadTab import ERROR_HANDLE, NOTIFICATION, SOUND
 # from Autodesk.Revit import DB # pyright: ignore
 from Autodesk.Revit import UI # pyright: ignore
 # args = EXEC_PARAMS.event_args
@@ -10,7 +10,7 @@ from Autodesk.Revit import UI # pyright: ignore
 # uiapp = UI.UIApplication(doc.Application)
 # uiapp.PostCommand(args.CommandId)
 
-@ERROR_HANDLE.try_catch_error_silently
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     
     if UI.UIThemeManager.CurrentCanvasTheme == UI.UITheme.Dark:
@@ -18,7 +18,7 @@ def main():
     else:
         NOTIFICATION.duck_pop("Go to sleep!!!")
     
-    SOUNDS.play_sound("sound effect_notification new.wav")
+    SOUND.play_sound("sound_effect_notification_new.wav")
     
 ############################
 

@@ -9,7 +9,7 @@ __title__ = 'Collect\nTextures'
 __doc__ = 'Choose a new destination for texture images. Then Collect Textures copies all material texture images to this new location, and updates texture image path.\n'
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     materials = get_materials()
     # new_folder = create_folder()

@@ -10,7 +10,7 @@ __tip__ = True
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
@@ -19,7 +19,7 @@ from Autodesk.Revit import DB # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
             
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def parameter_manager(doc):
     definitions = REVIT_SELECTION.pick_shared_para_definition(doc, select_multiple = True)
 
@@ -95,6 +95,3 @@ output.close_others()
 
 if __name__ == "__main__":
     parameter_manager(doc)
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, 
-                             tool_used = __title__.replace("\n", " "), 
-                             show_toast = True)

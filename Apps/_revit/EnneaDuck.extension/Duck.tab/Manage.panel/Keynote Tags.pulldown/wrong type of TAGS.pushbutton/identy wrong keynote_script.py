@@ -54,7 +54,7 @@ def override_2D_element(element,is_user_tag = False,is_wrong_tag_type = False, r
     view.SetElementOverrides(element.Id, OG_setting)
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
 
     key_note_tags = DB.FilteredElementCollector(revit.doc).OfCategory(DB.BuiltInCategory.OST_KeynoteTags).WhereElementIsNotElementType().ToElements()

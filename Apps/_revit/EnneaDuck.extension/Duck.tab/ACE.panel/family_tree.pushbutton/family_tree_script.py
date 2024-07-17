@@ -10,7 +10,7 @@ __tip__ = True
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE, EXE, FOLDER
@@ -24,7 +24,7 @@ class Solution:
         self.docs_to_be_closed = []
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def family_tree(self):
         output.print_md("#The family tree of [{}]#".format(doc.Title))
         indent = ""
@@ -81,4 +81,4 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     Solution().family_tree()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    

@@ -9,7 +9,7 @@ __tip__ = True
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import NOTIFICATION, ERROR_HANDLE, EXCEL
@@ -41,7 +41,7 @@ def is_new_sheet_number_ok(new_sheet_numbers):
     
 
      
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def excel_sheet_creator():
     excel_path = forms.pick_excel_file(title="Where is the excel thjat has the new sheet data?")   
     # this is the sample excel for reference. 
@@ -88,7 +88,7 @@ output.close_others()
 
 if __name__ == "__main__":
     excel_sheet_creator()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

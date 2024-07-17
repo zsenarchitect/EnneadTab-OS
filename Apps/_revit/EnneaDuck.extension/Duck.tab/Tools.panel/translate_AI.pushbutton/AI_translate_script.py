@@ -27,7 +27,7 @@ uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
 doc = EnneadTab.REVIT.REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
-import ENNEAD_LOG
+
 
 
 def OLD_clock_work(window):
@@ -175,7 +175,7 @@ class AI_translate_ModelessForm(WPFWindow):
 
         self.Title = self.title_text.Text
 
-        self.set_image_source(self.logo_img, "{}\logo_vertical_light.png".format(EnneadTab.ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT))
+        self.set_image_source(self.logo_img, "{}\logo_vertical_light.png".format(EnneadTab.ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT))
         self.translation_para_name.Text = "MC_$Translate"
         self.radial_bt_do_sheets.IsChecked = True
         self.mode = "Sheets"
@@ -617,7 +617,7 @@ class AI_translate_ModelessForm(WPFWindow):
             if record["direction"] == "output":
                 #print record["conversation_history"].split(record["key_prompt"])[-1]
                 #print "Figured out!!!!!!!!!!!!!!"
-                EnneadTab.SOUNDS.play_sound("sound effect_popup msg3.wav")
+                EnneadTab.SOUND.play_sound("sound_effect_popup_msg3.wav")
                 self.debug_textbox.Text = "Translation finished. AI thinking time = {}s".format(attempt)
                 #print "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
                 #print record["conversation_history"]
@@ -802,4 +802,4 @@ if __name__ == "__main__":
     # Let's launch our beautiful and useful form !
 
     modeless_form = AI_translate_ModelessForm()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    

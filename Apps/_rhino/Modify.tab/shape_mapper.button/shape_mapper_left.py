@@ -7,8 +7,6 @@ import scriptcontext as sc
 import clr # pyright: ignore
 import os
 
-import imp
-random_color_module = imp.load_source("random_layer_color", r'L:\\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\Layers\random_layer_color.py')
 
 
 
@@ -16,7 +14,13 @@ import Eto # pyright: ignore
 
 from EnneadTab.RHINO import RHINO_UI, RHINO_OBJ_DATA
 from EnneadTab import LOG, ERROR_HANDLE
-from EnneadTab import NOTIFICATION, DATA_FILE, ERROR_HANDLE
+from EnneadTab import NOTIFICATION, DATA_FILE, ENVIRONMENT
+
+
+
+
+import imp
+random_color_module = imp.load_source("random_layer_color_left", "{}\\Layer.tab\\random_layer_color.button\\random_layer_color_left.py".format(ENVIRONMENT.RHINO_FOLDER))
 FORM_KEY = 'shape_mapper_modeless_form'
 
 
@@ -380,7 +384,7 @@ class ShapeMapperDialog(Eto.Forms.Form):
         return layout
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def create_ui_control(self):
         
         # control for hide unhide all tagger dot(will handle both user input and conduit dot)
@@ -424,7 +428,7 @@ class ShapeMapperDialog(Eto.Forms.Form):
         
         
     # Listbox.SelectedIndexChanged event handler
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def on_selected_index_changed(self, sender, e):
         if not self.selected_session_name:
             return
@@ -440,7 +444,7 @@ class ShapeMapperDialog(Eto.Forms.Form):
         rs.EnableRedraw(True)
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def delete_session_click(self, sender, e):
         if not self.selected_session_name:
             NOTIFICATION.messenger(main_text= "No session selected")
@@ -502,13 +506,13 @@ class ShapeMapperDialog(Eto.Forms.Form):
         rs.EnableRedraw(True)
             
            
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def on_zoom_design_area_click(self, sender, e):
         focus_layers = [x for x in rs.LayerNames() if x.startswith("EA_Facade Mapping_[{}]::design_geos".format(self.selected_session_name))]
 
         self.zoom_objs_by_layers(focus_layers)
         
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def on_zoom_mapped_area_click(self, sender, e):
         focus_layers = [x for x in rs.LayerNames() if x.startswith("Mapped_Facade_[{}]".format(self.selected_session_name))]
 
@@ -535,7 +539,7 @@ class ShapeMapperDialog(Eto.Forms.Form):
         self.btn_morph.Text = " Morph! "
         
   
-        temp_bitmap = Eto.Drawing.Bitmap("{}\\morph.png".format(os.path.dirname(os.path.realpath(__file__))))
+        temp_bitmap = Eto.Drawing.Bitmap("{}\\icon.png".format(os.path.dirname(os.path.realpath(__file__))))
         self.btn_morph.Image = temp_bitmap.WithSize(200,50)
         self.btn_morph.Image = temp_bitmap
         self.btn_morph.ImagePosition = Eto.Forms.ButtonImagePosition.Left
@@ -559,7 +563,7 @@ class ShapeMapperDialog(Eto.Forms.Form):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def btn_morph_action(self, sender, e):
         if not self.selected_session_name:
             NOTIFICATION.messenger(main_text = "Need a selected session name.")
@@ -576,7 +580,7 @@ class ShapeMapperDialog(Eto.Forms.Form):
     
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def btn_pick_new_srf(self, sender, e):
         session_name = self.tbox_session_name.Text
         if not session_name:
@@ -624,12 +628,12 @@ class ShapeMapperDialog(Eto.Forms.Form):
             return None
         
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def OnFormClosed(self, sender, e):
         self.Close()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def InitiateFiller(self):
         # use this filler to control what to record and preload for UI setting
 
@@ -654,7 +658,7 @@ class ShapeMapperDialog(Eto.Forms.Form):
         return
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def Close(self):
       
         # Dispose of the form and remove it from the sticky dictionary

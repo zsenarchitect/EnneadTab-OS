@@ -14,7 +14,7 @@ from pyrevit import script #
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
 from EnneadTab import NOTIFICATION
-import ENNEAD_LOG
+
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 import clr
@@ -112,7 +112,7 @@ def process_wall(wall, crvs):
         #DB.Transform.CreateTranslation (vecter)
         DB.ElementTransformUtils.MoveElement(doc, grid.Id,vecter)
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def move_curtain_grid():
 
     walls = uidoc.Selection.PickObjects(UI.Selection.ObjectType.Element, "Pick walls")
@@ -149,4 +149,4 @@ output.close_others()
 
 if __name__ == "__main__":
     move_curtain_grid()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    

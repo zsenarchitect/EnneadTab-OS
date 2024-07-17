@@ -5,8 +5,8 @@ from pyrevit import forms, DB, UI, script
 import EA_UTILITY
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import SOUNDS, ERROR_HANDLE
-import ENNEAD_LOG
+from EnneadTab import SOUND, ERROR_HANDLE
+
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
@@ -97,7 +97,7 @@ def pick_family_from_folder():
     return opened_docs
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def process_family():
 
     
@@ -205,8 +205,8 @@ def close_family(family_doc):
 def main():
     process_family()
     # action finished
-    SOUNDS.play_sound("sound effect_notification position.wav")
-    ENNEAD_LOG.use_enneadtab(coin_change = 100, tool_used = __title__.replace("\n", " "), show_toast = True)
+    SOUND.play_sound("sound_effect_notification_position.wav")
+
 ################## main code below #####################
 
 output = script.get_output()

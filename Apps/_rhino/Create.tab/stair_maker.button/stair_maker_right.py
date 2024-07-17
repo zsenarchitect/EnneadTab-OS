@@ -176,7 +176,7 @@ class GetDotPoint (Rhino.Input.Custom.GetPoint):
         self.stair_width = stair_width
         self.default_color = rs.CreateColor([87, 85, 83])
         #self.viewport = sc.doc.Views.ActiveView.ActiveViewport
-    #@ERROR_HANDLE.try_catch_error
+    #@ERROR_HANDLE.try_catch_error()
 
 
     def show_text_with_pointer(self, e, text, size, color = None, is_middle_justified = False):

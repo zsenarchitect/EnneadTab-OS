@@ -17,7 +17,7 @@ from Autodesk.Revit import DB # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def inspect_local_graphic_override():
 
     sheets = forms.select_sheets(title = "sheets with views to check")

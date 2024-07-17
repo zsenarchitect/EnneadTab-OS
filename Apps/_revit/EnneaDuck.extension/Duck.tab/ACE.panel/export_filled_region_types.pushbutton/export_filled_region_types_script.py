@@ -10,7 +10,7 @@ __tip__ = True
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, FOLDER, EXCEL
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
@@ -22,7 +22,7 @@ doc = REVIT_APPLICATION.get_doc()
 from EXCEL import ExcelDataItem # pyright: ignore 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def export_filled_region_types():
     
     solid_pattern_id = REVIT_SELECTION.get_solid_fill_pattern_id()
@@ -112,7 +112,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     export_filled_region_types()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

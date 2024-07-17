@@ -13,11 +13,11 @@ from pyrevit import script #
 from pyrevit.revit import ErrorSwallower
 # from pyrevit import revit #
 import EA_UTILITY
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab.FUN import JOKES
-from EnneadTab import EXE, DATA_FILE, NOTIFICATION, ENVIRONMENT_CONSTANTS, SOUNDS, SPEAK, ERROR_HANDLE, FOLDER
+from EnneadTab import EXE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, ERROR_HANDLE, FOLDER
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 import traceback
@@ -202,8 +202,8 @@ class ExportRecordData(object):
         self.time_span = time_span
 
 class EA_Printer_UI(WPFWindow):
-    #@ERROR_HANDLE.try_catch_error
-    @ERROR_HANDLE.try_catch_error
+    #@ERROR_HANDLE.try_catch_error()
+    @ERROR_HANDLE.try_catch_error()
     def __init__(self):
         xamlfile = script.get_bundle_file('EA_Printer_Form.xaml')
         #print xamlfile
@@ -216,7 +216,7 @@ class EA_Printer_UI(WPFWindow):
         self.setting_file_path = "{}\{}".format(EA_UTILITY.get_EA_local_dump_folder(), setting_file)
         self.output_folder = "{}\EnneadTab Exporter".format(EA_UTILITY.get_user_folder())
         EA_UTILITY.secure_folder(self.output_folder)
-        self.record_folder = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exporter_Record".format(ENVIRONMENT_CONSTANTS.HOSTER_FOLDER)
+        self.record_folder = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exporter_Record".format(ENVIRONMENT.HOSTER_FOLDER)
         try:
             DATA_FILE.save_dict_to_json(dict(), self.record_folder + "\\SH_Access_test.json")
         except:
@@ -263,13 +263,13 @@ class EA_Printer_UI(WPFWindow):
         self.copy_folder_note_A.Text = "Folder you pick (example: I:/2135/2_Record/2022-09-30 50% DD)\n    -FileId\n       -PDFs\n         -A101_xx.pdf\n         -A102_xx.pdf\n       -DWGs\n         -A101_xx.dwg\n         -A102_xx.dwg"
         self.copy_folder_note_B.Text = "For example above, the final selection folder should say '2022-09-30 50% DD', not '2022-09-30 50% DD/FileId'"
         self.button_main.Content = "Setting Incomplete"
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
         self.set_image_source(self.update_icon, "update_icon.png")
         self.set_image_source(self.monitor_icon, "monitor_icon.png")
@@ -486,7 +486,7 @@ class EA_Printer_UI(WPFWindow):
                                     body = self.email_body.Text,
                                     is_adding_final_folder_link = self.checkbox_add_folder_link.IsChecked)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def load_setting(self):
         try:
             data = EA_UTILITY.read_json_as_dict(self.setting_file_path)
@@ -870,7 +870,7 @@ class EA_Printer_UI(WPFWindow):
         #output.print_md( "background open file {}".format(doc_name))
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def main_export_Clicked(self, sender, args):###sender and args must be here even when not used to pass data between GUI and python
 
         if "export finish" in self.button_main.Content.lower():
@@ -1087,7 +1087,7 @@ class EA_Printer_UI(WPFWindow):
             EXPORT_ACTION.combine_final_pdf(self.output_folder, self.files_exported_for_this_issue, combined_pdf_name, copy_folder)
 
         if self.is_play_sound:
-            SOUNDS.play_sound("sound effect_mario stage clear.wav")
+            SOUND.play_sound("sound_effect_mario_stage_clear.wav")
 
 
 
@@ -1250,7 +1250,7 @@ class EA_Printer_UI(WPFWindow):
         self.checkbox_add_folder_link.IsEnabled = self.checkbox_send_email.IsChecked
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def local_issue_para_text_changed(self, sender, args):
         self.issue = self.textbox_local_isse_para_name.Text
         if len(self.issue_name) == 0:
@@ -1576,4 +1576,4 @@ output.close_others()
 
 if __name__ == "__main__":
     ennead_printer()
-    ENNEAD_LOG.use_enneadtab(coin_change = 60, tool_used = __title__.replace("\n", " "), show_toast = True)
+    

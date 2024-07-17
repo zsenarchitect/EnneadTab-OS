@@ -19,8 +19,8 @@ from pyrevit import script, forms
 
 
 from EnneadTab.REVIT import REVIT_EXPORT, REVIT_FORMS, REVIT_UNIT, REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import EXE, DATA_FILE, DATA_CONVERSION, NOTIFICATION, ENVIRONMENT_CONSTANTS, SOUNDS, TIME, ERROR_HANDLE, FOLDER
-import ENNEAD_LOG
+from EnneadTab import EXE, DATA_FILE, DATA_CONVERSION, NOTIFICATION, ENVIRONMENT, SOUND, TIME, ERROR_HANDLE, FOLDER
+
 
 import traceback
 
@@ -333,7 +333,7 @@ def create_filled_region_from_srf(filled_region_name, obj_info):
                                             crv_loops)
     return filled_region
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def transfer_in_draft(rhino_unit, is_grouping):
 
     # global RHINO_UNIT
@@ -371,9 +371,9 @@ def transfer_in_draft(rhino_unit, is_grouping):
 
 
     NOTIFICATION.toast(main_text = "Draft content created!")
-    import ENNEAD_LOG
-    ENNEAD_LOG.use_enneadtab(coin_change = 30, tool_used = "Rhino2Revit_Rhino Draft Import", show_toast = True)
-    SOUNDS.play_sound("sound effect_popup msg1.wav")
+    
+   
+    SOUND.play_sound("sound_effect_popup_msg1.wav")
 
 
 # Create a subclass of IExternalEventHandler
@@ -438,13 +438,13 @@ class RhinoDraft_UI(forms.WPFWindow):
         forms.WPFWindow.__init__(self, xaml_file_name)
         self.subtitle.Text = "A helper window that transfer draft content between Rhino and Revit. You might do any combination of lines, polylines, arcs and freeform nurbs for detail lines, area boundary lines, room seperation lines and edges of filled regions."
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
         self.set_image_source(self.rhino_button_icon_1, "drafting.png")
         self.set_image_source(self.rhino_button_icon_2, "drafting.png")
@@ -455,7 +455,7 @@ class RhinoDraft_UI(forms.WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def get_dwg_settings(self, setting_name = None):
         existing_dwg_settings = DB.FilteredElementCollector(doc).OfClass(DB.ExportDWGSettings).WhereElementIsNotElementType().ToElements()
 
@@ -470,7 +470,7 @@ class RhinoDraft_UI(forms.WPFWindow):
                     return x
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def export_view_click(self, sender, args):
         if str(doc.ActiveView.ViewType) not in ["Detail", 
                                                 "Section", 
@@ -618,7 +618,7 @@ class RhinoDraft_UI(forms.WPFWindow):
         DATA_FILE.save_dict_to_json(OUT, file, use_encode = True)
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def transfer_in_click(self, sender, args):
 
 
@@ -662,7 +662,7 @@ class RhinoDraft_UI(forms.WPFWindow):
         
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
 
     modeless_form = RhinoDraft_UI()
@@ -676,4 +676,4 @@ output.close_others()
 
 if __name__ == "__main__":
     main()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    

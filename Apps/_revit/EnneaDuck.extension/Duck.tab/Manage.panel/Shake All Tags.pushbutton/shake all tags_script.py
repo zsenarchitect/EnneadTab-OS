@@ -91,7 +91,7 @@ def shake_tags(view):
         """
         #print(str(tag.Id)+ " moved back")
         
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     #selection = revit.get_selection()
     sel_sheets = forms.select_sheets(title='Select Sheets That Have The Tags You Want To ~~Shake~~')

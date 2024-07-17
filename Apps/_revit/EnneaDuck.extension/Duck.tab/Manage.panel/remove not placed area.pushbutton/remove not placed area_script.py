@@ -96,7 +96,7 @@ def get_element_phase(element):
 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     phase = select_phase()
     if not phase:
@@ -230,9 +230,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     main()
-    #get_rooms_in_phase(phase_name = "Learning Content")
-    import ENNEAD_LOG
-    ENNEAD_LOG.use_enneadtab(coin_change = 30, tool_used = __title__.replace("\n", " "), show_toast = True)
+
     # output.center()
     output.set_width(1100)
     output.set_height(800)

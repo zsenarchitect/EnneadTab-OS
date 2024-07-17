@@ -25,7 +25,7 @@ from pyrevit import HOST_APP
 
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT_CONSTANTS, SOUNDS, USER, ERROR_HANDLE
+from EnneadTab import ENVIRONMENT, SOUND, USER, ERROR_HANDLE
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -34,7 +34,7 @@ __persistentengine__ = True
 
 
 
-import ENNEAD_LOG
+
 
 def get_element_workset(element):
     return doc.GetWorksetTable().GetWorkset(element.WorksetId)
@@ -146,7 +146,7 @@ def get_all_of_this(claimer):
     return list(all_elements)
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def update_worksets(changed_cates):
 
     t = DB.Transaction(doc, "Update Worksets")
@@ -199,7 +199,7 @@ def update_worksets(changed_cates):
 
         
 
-        SOUNDS.play_sound("sound effect_happy bell.wav")
+        SOUND.play_sound("sound_effect_happy_bell.wav")
         REVIT_FORMS.notification(main_text = "For {}, {} elements found.\n{} of them in wrong workset.".format(obj.format_name, len(all_elements),in_wrong_workset_count, is_fail_convert_count ),
                                                   sub_text = note) #self_destruct = 10
 
@@ -283,7 +283,7 @@ class workset_manage_ModelessForm(WPFWindow):
         return
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def __init__(self):
         self.pre_actions()
 
@@ -297,13 +297,13 @@ class workset_manage_ModelessForm(WPFWindow):
 
         self.Title = self.title_text.Text
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
 
 
@@ -322,7 +322,7 @@ class workset_manage_ModelessForm(WPFWindow):
             self.workset_combos.ItemsSource = ["...Unchange..."] + [x.Name for x in REVIT_SELECTION.get_all_userworkset(doc)]
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def init_data_grid(self):
         if self.radio_bt_by_cate.IsChecked:
 
@@ -360,7 +360,7 @@ class workset_manage_ModelessForm(WPFWindow):
             self.main_data_grid.ItemsSource = [data_grid_obj(type) for type in type_list]
         
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def preview_selection_changed(self, sender, args):
         obj = self.main_data_grid.SelectedItem
         if not obj:
@@ -371,7 +371,7 @@ class workset_manage_ModelessForm(WPFWindow):
         self.textblock_workset_detail.Text = "{} of {} in this project.".format(len(get_all_of_this(obj.claimer)), obj.format_name)
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def setting_changed(self, sender, args):
         self.update_UI()
 
@@ -387,7 +387,7 @@ class workset_manage_ModelessForm(WPFWindow):
         self.init_data_grid()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def update_worksets_click(self, sender, args):
         cates = self.main_data_grid.ItemsSource
         changed_cates = [obj for obj in cates if obj.selected_workset != "...Unchange..."]
@@ -405,7 +405,7 @@ class workset_manage_ModelessForm(WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def close_Click(self, sender, e):
         # This Raise() method launch a signal to Revit to tell him you want to do something in the API context
         self.Close()
@@ -430,6 +430,6 @@ if __name__ == "__main__":
     try:
 
         modeless_form = workset_manage_ModelessForm()
-        ENNEAD_LOG.use_enneadtab(coin_change = 100, tool_used = __title__.replace("\n", " "), show_toast = True)
+
     except:
         print (traceback.format_exc())

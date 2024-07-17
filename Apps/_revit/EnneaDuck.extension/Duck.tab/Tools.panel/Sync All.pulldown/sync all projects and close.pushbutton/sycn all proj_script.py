@@ -11,11 +11,11 @@ from pyrevit import script
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     REVIT_APPLICATION.sync_and_close()
-    import ENNEAD_LOG
-    ENNEAD_LOG.use_enneadtab(coin_change = 30, tool_used = "Sync All Projs. and Close", show_toast = True)
+    
+
     output = script.get_output()
     killtime = 30
     output.self_destruct(killtime)

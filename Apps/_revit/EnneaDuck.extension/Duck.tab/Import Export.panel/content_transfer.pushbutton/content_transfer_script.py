@@ -15,7 +15,7 @@ from pyrevit import script #
 
 
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT_CONSTANTS, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
+from EnneadTab import ENVIRONMENT, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 
@@ -25,7 +25,7 @@ uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
-import ENNEAD_LOG
+
 
 class CopyUseDestination(DB.IDuplicateTypeNamesHandler):
     """Handle copy and paste errors."""
@@ -44,7 +44,7 @@ class CopyUseDestination(DB.IDuplicateTypeNamesHandler):
 
 
 #############universal transfer between files by id
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def copy_elements(element_ids, src_doc, dest_doc, is_strict):
     cp_options = DB.CopyPasteOptions()
     cp_options.SetDuplicateTypeNamesHandler(CopyUseDestination(is_strict = is_strict))
@@ -68,7 +68,7 @@ def copy_elements(element_ids, src_doc, dest_doc, is_strict):
 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def transfer_templates(templates, src_doc, dest_docs, use_prefix):
 
         
@@ -98,7 +98,7 @@ def get_elevation_marker(doc, elevation_view):
         if marker.GetViewId() == elevation_view.Id.IntegerValue:
             return marker
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def transfer_views(views, src_doc, dest_docs):
 
         
@@ -138,7 +138,7 @@ def transfer_views(views, src_doc, dest_docs):
 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def transfer_OSTs(subCs, src_doc, dest_docs, update_OST_definition):
 
         
@@ -208,7 +208,7 @@ def get_material_by_name(doc, name):
     else:
         return material[0]
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def transfer_materials(materials, src_doc, dest_docs, preserve_keynote):
 
         
@@ -251,7 +251,7 @@ def transfer_materials(materials, src_doc, dest_docs, preserve_keynote):
     NOTIFICATION.messenger(main_text = "Transfer material finished.")
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def transfer_family(families, src_doc, dest_docs, shared_using_project):
     LOG = ""
     for family in families:
@@ -368,13 +368,13 @@ class content_transfer_ModelessForm(WPFWindow):
 
         self.Title = self.title_text.Text
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
 
 
@@ -390,7 +390,7 @@ class content_transfer_ModelessForm(WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pick_source_doc_click(self, sender, e):
         """self doc + opened docs + links docs"""
         all_top_docs = REVIT_APPLICATION.get_top_revit_docs()
@@ -411,7 +411,7 @@ class content_transfer_ModelessForm(WPFWindow):
         self.varify_UI()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pick_target_docs_click(self, sender, e):
         """self doc + opened doc """
         all_top_docs = REVIT_APPLICATION.get_top_revit_docs()
@@ -427,7 +427,7 @@ class content_transfer_ModelessForm(WPFWindow):
         self.varify_UI()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pick_template_click(self, sender, e):
         if not self.varify_UI():
             return
@@ -442,7 +442,7 @@ class content_transfer_ModelessForm(WPFWindow):
         self.textbox_template_name.Text = note +"\n".join([x.Name for x in self.selected_templates])
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def transfer_template_click(self, sender, e):
         if not self.varify_UI():
             return
@@ -455,7 +455,7 @@ class content_transfer_ModelessForm(WPFWindow):
         self.ext_event_transfer_templates.Raise()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pick_OST_click(self, sender, e):
         if not self.varify_UI():
             return
@@ -487,7 +487,7 @@ class content_transfer_ModelessForm(WPFWindow):
         self.textbox_OST_name.Text = note +"\n".join(["[{}]{}".format(x.Parent.Name, x.Name) for x in self.selected_categories])
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def transfer_OST_click(self, sender, e):
         if not self.varify_UI():
             return
@@ -513,7 +513,7 @@ class content_transfer_ModelessForm(WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pick_material_click(self, sender, e):
         if not self.varify_UI():
             return
@@ -536,7 +536,7 @@ class content_transfer_ModelessForm(WPFWindow):
         self.textbox_material_name.Text = note +"\n".join(x.Name for x in self.selected_materials)
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def transfer_material_click(self, sender, e):
         if not self.varify_UI():
             return
@@ -561,7 +561,7 @@ class content_transfer_ModelessForm(WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pick_view_click(self, sender, e):
         if not self.varify_UI():
             return
@@ -587,7 +587,7 @@ class content_transfer_ModelessForm(WPFWindow):
         self.textbox_views_name.Text = note +"\n".join(x.Name for x in self.selected_views)
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def transfer_view_click(self, sender, e):
         if not self.varify_UI():
             return
@@ -607,7 +607,7 @@ class content_transfer_ModelessForm(WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pick_family_click(self, sender, e):
         if not self.varify_UI():
             return
@@ -645,7 +645,7 @@ class content_transfer_ModelessForm(WPFWindow):
         self.textbox_family_name.Text = note +"\n".join(x.Name for x in self.selected_family_docs)
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def transfer_family_click(self, sender, e):
         if not self.varify_UI():
             return
@@ -695,6 +695,6 @@ if __name__ == "__main__":
     # Let's launch our beautiful and useful form !
     try:
         modeless_form = content_transfer_ModelessForm()
-        ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+        
     except:
         print (traceback.format_exc())

@@ -22,7 +22,7 @@ uidoc = __revit__.ActiveUIDocument
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
 __persistentengine__ = True
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def make_3D_views_for_warning_cleaning():
     t = DB.Transaction(doc, "preaction view setting")
     t.Start()
@@ -69,7 +69,7 @@ def get_threeD_view_type():
 def get_current_warning_count():
     return len(doc.GetWarnings())
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def random_pick(error_element_ids):
 
     try:
@@ -157,7 +157,7 @@ class generic_warning_fixer_ModelessForm(WPFWindow):
     """
     Simple modeless form sample
     """
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pre_actions(self):
 
         #print "doing preaction"
@@ -198,7 +198,7 @@ class generic_warning_fixer_ModelessForm(WPFWindow):
         self.Show()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def primary_button_click(self, sender, e):
         # This Raise() method launch a signal to Revit to tell him you want to do something in the API context
         #print "primary button clicked"
@@ -227,7 +227,7 @@ class generic_warning_fixer_ModelessForm(WPFWindow):
         # default_run_event.Raise()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def close_button_click(self, sender, e):
 
         #print "close button clicked"
@@ -237,7 +237,7 @@ class generic_warning_fixer_ModelessForm(WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pick_warning_category(self, sender, e):
         all_warnings = doc.GetWarnings()
 

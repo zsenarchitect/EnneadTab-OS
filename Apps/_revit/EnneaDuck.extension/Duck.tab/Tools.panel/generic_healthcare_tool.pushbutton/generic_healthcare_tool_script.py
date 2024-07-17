@@ -9,7 +9,7 @@ __tip__ = True
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import USER, ERROR_HANDLE
@@ -18,7 +18,7 @@ from Autodesk.Revit import DB # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
             
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def generic_healthcare_tool(doc, show_log):
     if not USER.is_SZ():
         return
@@ -65,6 +65,6 @@ output.close_others()
 
 if __name__ == "__main__":
     generic_healthcare_tool(doc, show_log=True)
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 

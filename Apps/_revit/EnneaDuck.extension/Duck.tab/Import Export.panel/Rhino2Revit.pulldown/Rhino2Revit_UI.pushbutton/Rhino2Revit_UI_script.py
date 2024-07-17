@@ -14,8 +14,8 @@ from pyrevit.revit import ErrorSwallower
 
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import DATA_FILE, NOTIFICATION, ENVIRONMENT_CONSTANTS, ERROR_HANDLE, FOLDER
-import ENNEAD_LOG
+from EnneadTab import DATA_FILE, NOTIFICATION, ENVIRONMENT, ERROR_HANDLE, FOLDER
+
 from Autodesk.Revit import DB # pyright: ignore  
 import clr
 import os
@@ -71,13 +71,13 @@ class Rhino2Revit_UI(forms.WPFWindow):
         forms.WPFWindow.__init__(self, xaml_file_name)
 
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
         self.button_convert.Visibility = System.Windows.Visibility.Collapsed
         self.Height = 800
@@ -519,7 +519,7 @@ def clean_import_object_style(existing_OSTs):
     # print "\n\nCleaning finish."
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     if not doc.IsFamilyDocument:
         NOTIFICATION.toast(sub_text="For effective subCategory",

@@ -19,7 +19,7 @@ uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
 doc = EnneadTab.REVIT.REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
-import ENNEAD_LOG
+
 
 
 
@@ -51,7 +51,7 @@ class mini_bank_ModelessForm(WPFWindow):
 
         self.Title = "EnneadTab MiniBank UI"
 
-        self.set_image_source(self.logo_img, "{}\logo_vertical_light.png".format(EnneadTab.ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT))
+        self.set_image_source(self.logo_img, "{}\logo_vertical_light.png".format(EnneadTab.ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT))
         self.set_image_source(self.duck_img, "happy_duck.png")
         self.manual_click = 0
 
@@ -85,10 +85,10 @@ class mini_bank_ModelessForm(WPFWindow):
 
         if self.manual_click % 10 == 0:
             EnneadTab.NOTIFICATION.messenger(main_text = " +1UP\n经验+1")
-            EnneadTab.SOUNDS.play_sound("sound effect_mario 1up.wav")
+            EnneadTab.SOUND.play_sound("sound_effect_mario_1up.wav")
             return
         EnneadTab.NOTIFICATION.messenger(main_text = " +$1\n金钱+1")
-        EnneadTab.SOUNDS.play_sound("sound effect_mario coin.wav")
+        EnneadTab.SOUND.play_sound("sound_effect_mario_coin.wav")
     
     
     @EnneadTab.ERROR_HANDLE.try_catch_error
@@ -127,6 +127,6 @@ if __name__ == "__main__":
     # Let's launch our beautiful and useful form !
     try:
         modeless_form = mini_bank_ModelessForm()
-        ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+        
     except:
         print (traceback.format_exc())

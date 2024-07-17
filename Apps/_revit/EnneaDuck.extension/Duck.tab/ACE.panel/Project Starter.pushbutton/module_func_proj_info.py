@@ -5,7 +5,7 @@ from pyrevit import forms
 from EnneadTab import NOTIFICATION, ERROR_HANDLE
 import os
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def set_proj_info(doc, data):
 
     t = DB.Transaction(doc, "Set Project Info")

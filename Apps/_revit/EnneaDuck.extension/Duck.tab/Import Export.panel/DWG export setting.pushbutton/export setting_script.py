@@ -113,7 +113,7 @@ def process_setting(sel_setting):
     sel_setting.Name = old_name
     t.Commit()
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
 
     existing_dwg_settings = DB.FilteredElementCollector(doc)\

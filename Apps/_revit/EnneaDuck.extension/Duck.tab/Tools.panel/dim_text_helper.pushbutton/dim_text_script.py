@@ -16,7 +16,7 @@ from pyrevit import script #
 
 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT_CONSTANTS, ERROR_HANDLE
+from EnneadTab import ENVIRONMENT, ERROR_HANDLE
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 
@@ -25,10 +25,10 @@ uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
-import ENNEAD_LOG
 
 
-@ERROR_HANDLE.try_catch_error
+
+@ERROR_HANDLE.try_catch_error()
 def mark_dim_text(target_text, position):
 
 
@@ -134,13 +134,13 @@ class dim_text_ModelessForm(WPFWindow):
 
         self.Title = "EnneadTab DimText Helper"
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
         self.radial_button_below.IsChecked = True
 
@@ -208,7 +208,7 @@ class dim_text_ModelessForm(WPFWindow):
         if self.radial_button_suffix.IsChecked:
             return "Suffix"
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def generic_click(self, keyword):
         #print "Clicking " + keyword
         self.simple_event_handler.kwargs = keyword, self.text_position
@@ -299,7 +299,7 @@ if __name__ == "__main__":
     # Let's launch our beautiful and useful form !
     try:
         modeless_form = dim_text_ModelessForm()
-        ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+        
     except:
         print (traceback.format_exc())
 

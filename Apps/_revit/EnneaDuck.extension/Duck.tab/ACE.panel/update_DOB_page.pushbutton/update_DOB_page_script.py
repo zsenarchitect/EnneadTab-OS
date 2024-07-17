@@ -9,7 +9,7 @@ __title__ = "Update DOB\nPage Number"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
@@ -17,7 +17,7 @@ from Autodesk.Revit import DB # pyright: ignore
 # uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def update_DOB_page(doc, show_log = True):
     all_link_docs = REVIT_APPLICATION.get_revit_link_docs(link_only = True)
     all_link_docs.append(doc)
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     update_DOB_page(doc)
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

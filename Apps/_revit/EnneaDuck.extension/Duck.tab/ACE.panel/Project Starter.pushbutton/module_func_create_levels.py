@@ -69,7 +69,7 @@ def get_level_data(raw_data):
         
     return level_data
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def create_levels(doc, level_data, prefix):
 
     is_mm = REVIT_UNIT.is_doc_unit_mm(doc)

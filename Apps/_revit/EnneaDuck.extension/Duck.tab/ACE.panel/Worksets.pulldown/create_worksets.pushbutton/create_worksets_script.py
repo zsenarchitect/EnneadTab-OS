@@ -31,7 +31,7 @@ __tip__ = True
 doc = REVIT_APPLICATION.get_doc()
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     # # get all existing workset names
     # names = [ws.Name for ws in DB.FilteredWorksetCollector(doc) if ws.Kind == DB.WorksetKind.UserWorkset]

@@ -15,7 +15,7 @@ import os
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_HISTORY
 from EnneadTab import ENVIRONMENT, OUTPUT, NOTIFICATION, ERROR_HANDLE
@@ -24,7 +24,7 @@ from Autodesk.Revit import DB # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
             
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def display_warning_history(using_current = True):
 
     if using_current and doc.IsFamilyDocument:
@@ -49,7 +49,7 @@ def display_warning_history(using_current = True):
         @property
         def name(self):
             return self.item.replace("REVIT_WARNING_HISTORY_", "").replace(".json", "")
-    folder = ENVIRONMENT_CONSTANTS.SHARED_DATA_DUMP_FOLDER
+    folder = ENVIRONMENT.SHARED_DATA_DUMP_FOLDER
 
     file_list = [MyOption(x) for x in os.listdir(folder) if x.startswith("REVIT_WARNING_HISTORY_")]
     file_list.sort(key=lambda x: x.name)
@@ -83,6 +83,6 @@ if __name__ == "__main__":
         display_warning_history(using_current=False)
     else:
         display_warning_history()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 

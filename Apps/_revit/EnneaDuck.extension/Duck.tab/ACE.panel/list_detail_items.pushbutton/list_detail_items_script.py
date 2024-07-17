@@ -12,7 +12,7 @@ from EnneadTab import NOTIFICATION
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
@@ -137,7 +137,7 @@ class Deployer:
         
 
     
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def list_detail_items():
     detail_families = REVIT_SELECTION.pick_detail_componenet(multi_select=True)
 
@@ -198,7 +198,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     list_detail_items()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

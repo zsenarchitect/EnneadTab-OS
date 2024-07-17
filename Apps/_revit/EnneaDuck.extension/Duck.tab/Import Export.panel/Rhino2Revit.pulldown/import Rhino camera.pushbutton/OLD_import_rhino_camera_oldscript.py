@@ -13,7 +13,7 @@ import EA_UTILITY
 
 from EnneadTab.REVIT import REVIT_FORMS
 from EnneadTab import ERROR_HANDLE
-import ENNEAD_LOG
+
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -88,7 +88,7 @@ def import_camera_action(view_info):
 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def import_rhino_camera():
     #filepath = r"C:\Users\szhang\Desktop\temp1.3dm"
     filepath = EA_UTILITY.get_EA_dump_folder_file("EA_CAMERA_TRANSFER.3dm")
@@ -158,4 +158,4 @@ output.close_others()
 
 if __name__ == "__main__":
     import_rhino_camera()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    

@@ -19,8 +19,8 @@ from pyrevit import script, forms
 
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT_CONSTANTS, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
-import ENNEAD_LOG
+from EnneadTab import ENVIRONMENT, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
+
 
 import traceback
 import random
@@ -31,7 +31,7 @@ doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def get_all_instance_of_type(type, active_view_only):
 
     if active_view_only:
@@ -69,7 +69,7 @@ def get_all_instance_of_type(type, active_view_only):
     return instances
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def merge_action(window):
     t = DB.Transaction(doc, __title__)
     t.Start()
@@ -376,13 +376,13 @@ class MergeFamily_UI(forms.WPFWindow):
         forms.WPFWindow.__init__(self, xaml_file_name)
         
         
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
         self.Height = 800
         self.family_bad = None
@@ -516,7 +516,7 @@ class MergeFamily_UI(forms.WPFWindow):
         return True
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def merge_clicked(self, sender, args):
         if not self.bad_type:
             return
@@ -590,7 +590,7 @@ class MergeFamily_UI(forms.WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def get_family(self, is_picking_bad_type):
 
         families = DB.FilteredElementCollector(doc).OfClass(DB.Family).WhereElementIsNotElementType().ToElements()
@@ -693,7 +693,7 @@ class MergeFamily_UI(forms.WPFWindow):
     def zoom_bad_click(self, sender, args):
         self.handle_zoom(is_bad_type = True)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def handle_zoom(self, is_bad_type):
         try:
             if is_bad_type:
@@ -728,7 +728,7 @@ class MergeFamily_UI(forms.WPFWindow):
 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     modeless_form = MergeFamily_UI()
 
@@ -741,4 +741,4 @@ output.close_others()
 if __name__ == "__main__":
     
     main()
-    ENNEAD_LOG.use_enneadtab(coin_change = 320, tool_used = __title__.replace("\n", " "), show_toast = True)
+   

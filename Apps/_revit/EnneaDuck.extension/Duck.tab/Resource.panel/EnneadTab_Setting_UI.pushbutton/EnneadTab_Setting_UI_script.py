@@ -21,7 +21,7 @@ from Autodesk.Revit.Exceptions import InvalidOperationException
 
 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT_CONSTANTS, SPEAK, ERROR_HANDLE, FOLDER
+from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER
 from EnneadTab.FUN import EnneaDuck
 
 from pyrevit import script, forms
@@ -31,7 +31,7 @@ try:
 except:
     NOTIFICATION.messenger("Please update pyrevit to 4.8+.")
 
-import ENNEAD_LOG
+
 
 import System
 import traceback
@@ -43,7 +43,7 @@ __persistentengine__ = True
 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def change_extension_folder(is_force_tester, include_game):
     """this arg has no effect"""
 
@@ -161,13 +161,13 @@ class main_setting_UI(forms.WPFWindow):
         xaml_file_name = 'EnneadTab_Setting_UI.xaml'
         forms.WPFWindow.__init__(self, xaml_file_name)
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
         self.Height = 800
         """
@@ -189,7 +189,7 @@ class main_setting_UI(forms.WPFWindow):
         self.Show()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def load_setting(self):
 
         setting_file = FOLDER.get_EA_dump_folder_file('revit_ui_setting.json')
@@ -218,7 +218,7 @@ class main_setting_UI(forms.WPFWindow):
         self.update_UI()
             
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def save_setting(self):
         setting_file = FOLDER.get_EA_dump_folder_file('revit_ui_setting.json')
         data = DATA_FILE.read_json_as_dict(setting_file)
@@ -254,12 +254,12 @@ class main_setting_UI(forms.WPFWindow):
         self.update_TTS()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def send_duck_click(self, sender, args):
         EnneaDuck.quack()
  
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def tab_setting_changed(self, sender, args):
         for tab in ribbon.get_current_ui():
             #print tab.name
@@ -279,7 +279,7 @@ class main_setting_UI(forms.WPFWindow):
                 # not new state since the visible value is reverse
                 tab.visible = self.checkbox_tab_beta.IsChecked
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def apply_setting_click(self, sender, args):
         self.save_setting()
         is_tester = self.toggle_bt_is_beta_tester.IsChecked
@@ -295,7 +295,7 @@ class main_setting_UI(forms.WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def toggle_tab_color_click(self, sender, args):
         
         TABS.toggle_doc_colorizer()
@@ -305,11 +305,11 @@ class main_setting_UI(forms.WPFWindow):
         should also add function to display color legend for what current tabs color refer to what files
         """
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def radio_bt_sync_monitor_click(self, sender, args):
         self.update_UI()
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def update_UI(self):
         if  self.radio_bt_sync_monitor_is_checking.IsChecked:
             self.textbox_sync_monitor_interval.IsEnabled = True
@@ -320,7 +320,7 @@ class main_setting_UI(forms.WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def update_TTS(self):
         file_name = "EA_TALKIE_KILL.kill"
         
@@ -348,7 +348,7 @@ class main_setting_UI(forms.WPFWindow):
 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
 
     modeless_form = main_setting_UI()
@@ -361,4 +361,4 @@ output.close_others()
 
 if __name__ == "__main__":
     main()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    

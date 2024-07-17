@@ -19,8 +19,8 @@ from pyrevit import script, forms
 
 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT_CONSTANTS, DATA_CONVERSION, ERROR_HANDLE
-import ENNEAD_LOG
+from EnneadTab import ENVIRONMENT, DATA_CONVERSION, ERROR_HANDLE
+
 
 import traceback
 
@@ -32,7 +32,7 @@ __persistentengine__ = True
 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def toggle_bubble(is_grid):
     selection_ids = uidoc.Selection.GetElementIds ()
     selection = [doc.GetElement(x) for x in selection_ids]
@@ -76,7 +76,7 @@ def toggle_bubble(is_grid):
     t.Commit()
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def toggle_pin(category, to_pin, is_active_view_only):
     """to_pin:bool"""
 
@@ -151,7 +151,7 @@ def hide_OST(sheets, categories, to_hide, is_temp_view_property_only):
     return count
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def toggle_hide(sheets, categories, to_hide, is_temp_view_property_only):
     """to_hide:bool"""
 
@@ -167,7 +167,7 @@ def toggle_hide(sheets, categories, to_hide, is_temp_view_property_only):
     t.Commit()
     return count
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def reset_temp_template(sheets):
 
 
@@ -263,13 +263,13 @@ class ToggleContent_UI(forms.WPFWindow):
         forms.WPFWindow.__init__(self, xaml_file_name)
         self.subtitle.Text = "A floating window that helps with several common toggle actions."
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
         self.Height = 800
 
@@ -280,35 +280,35 @@ class ToggleContent_UI(forms.WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_pin_dim_click(self, sender, args):
         self.pin_click(DB.BuiltInCategory.OST_Dimensions)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_pin_keynote_tag_click(self, sender, args):
         self.pin_click(DB.BuiltInCategory.OST_KeynoteTags)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_pin_viewport_click(self, sender, args):
         self.pin_click(DB.BuiltInCategory.OST_Viewports)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_pin_titleblock_click(self, sender, args):
         self.pin_click(DB.BuiltInCategory.OST_TitleBlocks)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_pin_cw_click(self, sender, args):
         self.pin_click("Curtain Wall")
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_pin_grid_click(self, sender, args):
         self.pin_click(DB.BuiltInCategory.OST_Grids)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_pin_level_click(self, sender, args):
         self.pin_click(DB.BuiltInCategory.OST_Levels)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pin_click(self, category):
         """pin unpin"""
         to_pin = self.radial_bt_is_pin.IsChecked
@@ -334,7 +334,7 @@ class ToggleContent_UI(forms.WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_pick_sheets_click(self, sender, args):
         self.selected_sheets = forms.select_sheets()
         if not self.selected_sheets:
@@ -342,7 +342,7 @@ class ToggleContent_UI(forms.WPFWindow):
         self.txtbk_pick_sheet.Text = "{} sheets picked".format(len(self.selected_sheets))
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_hide_pick_category_click(self, sender, args):
         all_categories = [x for x in doc.Settings.Categories if ".dwg" not in x.Name.lower()]
         all_categories.sort(key = lambda x: x.Name)
@@ -362,40 +362,40 @@ class ToggleContent_UI(forms.WPFWindow):
         self.label_selected_OST.Text = "Selected OST: " + note
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_hide_run_click(self, sender, args):
         if not self.selected_categories:
             return
         self.hide_click(self.selected_categories)
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_viewport_border_click(self, sender, args):
         self.hide_click("viewport_border")
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_hide_rm_sp_line_click(self, sender, args):
         self.hide_click(DB.BuiltInCategory.OST_RoomSeparationLines)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_hide_area_sp_line_click(self, sender, args):
         self.hide_click(DB.BuiltInCategory.OST_AreaSchemeLines)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_hide_sectionbox_click(self, sender, args):
         self.hide_click(DB.BuiltInCategory.OST_SectionBox)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_hide_scopebox_click(self, sender, args):
         self.hide_click(DB.BuiltInCategory.OST_VolumeOfInterest)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_hide_level_click(self, sender, args):
         self.hide_click(DB.BuiltInCategory.OST_Levels)
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def hide_click(self, category):
         """hide unhide"""
         sheets = self.selected_sheets
@@ -419,7 +419,7 @@ class ToggleContent_UI(forms.WPFWindow):
         verb = "hided" if to_hide else "unhided"
         self.debug_textbox.Text = "{} elements {}.".format(res, verb)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_reset_temp_template_click(self, sender, args):
         sheets = self.selected_sheets
         if not sheets:
@@ -445,7 +445,7 @@ class ToggleContent_UI(forms.WPFWindow):
 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
 
     modeless_form = ToggleContent_UI()
@@ -458,4 +458,4 @@ output.close_others()
 
 if __name__ == "__main__":
     main()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    

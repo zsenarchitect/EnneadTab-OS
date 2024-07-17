@@ -3,7 +3,7 @@ import os
 
 from EnneadTab import EXE, FOLDER, ERROR_HANDLE
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def show_instruction(output):
     #output = script.get_output()
     #output.close_others()

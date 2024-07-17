@@ -9,7 +9,7 @@ __title__ = "Set FilledRegion\nBorder Style"
 from pyrevit import forms #
 from pyrevit import script #
 from pyrevit.revit import ErrorSwallower
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
@@ -51,7 +51,7 @@ output.close_others()
 
 if __name__ == "__main__":
     set_filled_region_border_line()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

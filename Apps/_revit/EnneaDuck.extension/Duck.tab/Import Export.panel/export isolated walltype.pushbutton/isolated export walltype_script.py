@@ -16,7 +16,7 @@ import EA_UTILITY
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab import DATA_FILE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
 import time
-import ENNEAD_LOG
+
 from Autodesk.Revit import DB # pyright: ignore 
 import traceback
 import sys
@@ -399,7 +399,7 @@ def get_elements_by_OST(OST):
     return all_els
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     if any([doc.ActiveView.IsInTemporaryViewMode (DB.TemporaryViewMode .RevealHiddenElements),
             doc.ActiveView.IsInTemporaryViewMode (DB.TemporaryViewMode .TemporaryHideIsolate),
@@ -562,4 +562,4 @@ if __name__ == "__main__":
         export_doc = doc
         IS_FROM_LINK = False
     main()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    

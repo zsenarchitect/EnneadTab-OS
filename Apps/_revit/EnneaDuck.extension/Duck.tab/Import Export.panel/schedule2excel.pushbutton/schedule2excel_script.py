@@ -14,7 +14,7 @@ import os
 import xlsxwriter
 import csv
 import re
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
@@ -24,7 +24,7 @@ from Autodesk.Revit import DB # pyright: ignore
 doc = REVIT_APPLICATION.get_doc()
 from EnneadTab.REVIT import REVIT_FORMS
             
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def schedule2excel():
 
     schedules = forms.select_schedules()
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     schedule2excel()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

@@ -212,7 +212,7 @@ class FamilyRePath:
         famDoc.Close(False)
 
 
-    @ERROR_HANDLE.try_catch_error_silently
+    @ERROR_HANDLE.try_catch_error(is_silent=True)
     def display_results(self):
         if not self.is_valid_input():
             return
@@ -284,7 +284,7 @@ def main():
         
 ####################################
 if __name__ == "__main__":
-    import ENNEAD_LOG
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
+    
     main()
 

@@ -252,7 +252,7 @@ class ListSelectionDialog(REF_CLASS):
         self.Close(False)
 
 
-#@ERROR_HANDLE.try_catch_error
+#@ERROR_HANDLE.try_catch_error()
 def show_ListSelectionDialog(options,
                             title = "EnneadTab",
                             message = "",

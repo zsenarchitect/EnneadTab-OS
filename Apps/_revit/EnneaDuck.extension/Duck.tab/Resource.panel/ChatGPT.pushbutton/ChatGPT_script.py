@@ -13,7 +13,7 @@ from pyrevit import script #
 # from pyrevit import revit #
 
 from EnneadTab import ENVIRONMENT, MODULE_HELPER
-import ENNEAD_LOG
+
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -32,4 +32,4 @@ output.close_others()
 
 if __name__ == "__main__":
     ChatGPT()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    

@@ -20,7 +20,7 @@ __tip__ = True
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_SELECTION, REVIT_APPLICATION, REVIT_VIEW
 from EnneadTab import DATA_FILE, NOTIFICATION, ERROR_HANDLE
@@ -30,7 +30,7 @@ uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def abstract_wall(current_only):
     solution = Solution()
     if not solution.res:
@@ -411,6 +411,6 @@ if __name__ == "__main__":
         abstract_wall(current_only=False)
     else:
         abstract_wall(current_only=True)
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 

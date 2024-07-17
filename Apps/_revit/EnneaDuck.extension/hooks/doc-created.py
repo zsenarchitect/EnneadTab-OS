@@ -6,7 +6,7 @@ import EnneadTab
 
 
 def proj_initiation():
-    if EnneadTab.ENVIRONMENT_CONSTANTS.is_RhinoInsideRevit_environment():
+    if EnneadTab.ENVIRONMENT.is_RhinoInsideRevit_environment():
         return
 
     

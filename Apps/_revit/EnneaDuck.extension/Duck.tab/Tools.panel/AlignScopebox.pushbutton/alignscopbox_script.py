@@ -89,7 +89,7 @@ def update_display_text(scopeboxs):
     else:
         return  "Not all scopeboxs are ready.\nPlease try oritent option continously."
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     selection = list(revit.get_selection())
     if not selection:

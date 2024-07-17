@@ -7,7 +7,7 @@ import EA_UTILITY
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
-import ENNEAD_LOG
+
 from Autodesk.Revit import DB # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
@@ -92,11 +92,11 @@ class CameraImporter:
         
         
         
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     importer = CameraImporter()
     importer.import_rhino_camera()
-    ENNEAD_LOG.use_enneadtab(coin_change=20, tool_used="Import Rhino Camera", show_toast=True)
+
 
 
 ########################################################

@@ -20,7 +20,7 @@ from pyrevit import HOST_APP
 
 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT_CONSTANTS, ERROR_HANDLE
+from EnneadTab import ENVIRONMENT, ERROR_HANDLE
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 
@@ -29,7 +29,7 @@ uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
-import ENNEAD_LOG
+
 
 
 
@@ -80,7 +80,7 @@ def process_tag(ref_tag, bad_tag, is_V):
             pass
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def align_tags(ref_tag, bad_tags, is_V):
 
     t = DB.Transaction(doc, "tag align")
@@ -149,7 +149,7 @@ class tag_align_ModelessForm(WPFWindow):
         return
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def __init__(self):
         self.pre_actions()
 
@@ -163,13 +163,13 @@ class tag_align_ModelessForm(WPFWindow):
 
         self.Title = "EnneadTab TagAlign UI"
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
 
         self.ref_tag = None
@@ -180,7 +180,7 @@ class tag_align_ModelessForm(WPFWindow):
         self.Show()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def selection_update_event_handler_function(self,sender, args):
 
 
@@ -203,7 +203,7 @@ class tag_align_ModelessForm(WPFWindow):
                 note += "{}\n".format(x)
         self.debug_textbox.Text = note
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pick_ref_tag_Click(self, sender, e):
         # This Raise() method launch a signal to Revit to tell him you want to do something in the API context
         selection_ids = uidoc.Selection.GetElementIds ()
@@ -247,7 +247,7 @@ class tag_align_ModelessForm(WPFWindow):
         selection = filter(lambda x: "tag" in x.Category.Name.lower(), selection )
         return selection
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def generic_click(self, is_V):
         #print "Clicking " + keyword
         if not self.ref_tag:
@@ -264,7 +264,7 @@ class tag_align_ModelessForm(WPFWindow):
             self.debug_textbox.Text = "Debug Output:"
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def close_Click(self, sender, e):
         # This Raise() method launch a signal to Revit to tell him you want to do something in the API context
         self.Close()
@@ -290,6 +290,6 @@ if __name__ == "__main__":
     # Let's launch our beautiful and useful form !
     try:
         modeless_form = tag_align_ModelessForm()
-        ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+        
     except:
         print (traceback.format_exc())

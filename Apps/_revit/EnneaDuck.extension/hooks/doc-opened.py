@@ -10,7 +10,7 @@ from pyrevit import EXEC_PARAMS
 from pyrevit.coreutils import envvars
 from pyrevit.coreutils import ribbon
 import EA_UTILITY
-import ENNEAD_LOG
+
 import EnneadTab
 
 
@@ -415,8 +415,8 @@ def main():
         script.get_output().close()
         return
     else:
-        EnneadTab.SOUNDS.play_sound("sound effect_popup msg1.wav")
-        if EnneadTab.ENVIRONMENT_CONSTANTS.is_Revit_limited():
+        EnneadTab.SOUND.play_sound("sound_effect_popup_msg1.wav")
+        if EnneadTab.ENVIRONMENT.is_Revit_limited():
             return
         output = script.get_output()
         global killtime

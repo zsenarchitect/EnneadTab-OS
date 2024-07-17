@@ -33,7 +33,7 @@ def difference_list(L1, L2):
 
 @EnneadTab.ERROR_HANDLE.try_catch_error
 def main():
-    EnneadTab.SOUNDS.play_sound("sound effect_mario coin.wav")
+    EnneadTab.SOUND.play_sound("sound_effect_mario_coin.wav")
 
 
     doc = EXEC_PARAMS.event_args.Document

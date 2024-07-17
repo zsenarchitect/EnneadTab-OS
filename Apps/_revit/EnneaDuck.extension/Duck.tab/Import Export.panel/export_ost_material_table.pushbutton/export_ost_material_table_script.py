@@ -14,7 +14,7 @@ __tip__ = True
 import pprint
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from  EnneadTab import NOTIFICATION, DATA_FILE
 from EnneadTab.REVIT import REVIT_APPLICATION
 
@@ -89,7 +89,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     Solution().export_ost_material_table()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

@@ -14,7 +14,7 @@ from pyrevit import forms #
 from pyrevit import script #
 import System
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
@@ -35,7 +35,7 @@ CATEGORY_OPTIONS = {"Sheet":DB.BuiltInCategory.OST_Sheets,
                     "Area":DB.BuiltInCategory.OST_Areas,
                     "Room":DB.BuiltInCategory.OST_Rooms}
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def transfer_parameter_data():
     category = forms.SelectFromList.show(CATEGORY_OPTIONS.keys(),
                                          multiselect=False,
@@ -152,7 +152,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     transfer_parameter_data()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

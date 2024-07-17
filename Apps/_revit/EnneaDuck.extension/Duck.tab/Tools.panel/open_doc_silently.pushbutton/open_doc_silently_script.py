@@ -10,7 +10,7 @@ __tip__ = True
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab import DATA_FILE, ERROR_HANDLE
@@ -59,7 +59,7 @@ class Solution:
         except Exception as e:
             print ("{} cannot be opened becasue {}".format(doc_name, e))
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def main(self, doc_names = None):
         if not doc_names:
         
@@ -136,4 +136,4 @@ output.close_others()
 
 if __name__ == "__main__":
     Solution().main()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    

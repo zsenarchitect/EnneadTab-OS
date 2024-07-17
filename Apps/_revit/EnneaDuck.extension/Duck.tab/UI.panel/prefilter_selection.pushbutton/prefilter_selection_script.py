@@ -20,7 +20,7 @@ __tip__ = True
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_SELECTION, REVIT_APPLICATION
 from EnneadTab import NOTIFICATION, ERROR_HANDLE
@@ -48,7 +48,7 @@ class PrefilterUI(REVIT_FORMS.EnneadTabModelessForm):
 
         # print (self.selection_cate_setting)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def select_click(self, sender, e):
                 
         from EnneadTab.REVIT import REVIT_FORMS, REVIT_SELECTION, REVIT_APPLICATION
@@ -91,19 +91,19 @@ class PrefilterUI(REVIT_FORMS.EnneadTabModelessForm):
 
             
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def reset_filter_click(self, sender, e):
         for item in self.get_filter_toggle_bt():
             item.IsChecked = False
 
-    @ERROR_HANDLE.try_catch_error        
+    @ERROR_HANDLE.try_catch_error()     
     def toggle_enabler_click(self, sender, e):
         self.tblock_enabler.Text = "Filter is now Enabled " if self._toggle_bt_enabled.IsChecked else "Filter is now Disabled "
         for item in self.get_filter_toggle_bt():
             item.IsEnabled = self._toggle_bt_enabled.IsChecked
 
             
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def prefilter_selection():
 
     external_funcs = []
@@ -119,6 +119,6 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     prefilter_selection()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 

@@ -10,7 +10,7 @@ import DATA_FILE
 import time
 import FOLDER
 try:
-    import ENNEAD_LOG
+    
     from Autodesk.Revit import DB # pyright: ignore
 except:
     pass

@@ -31,7 +31,7 @@ class Solution:
             self.dicts[name] = [item]
             
             
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def main(self):
         onsheet_schedule_names = set()
         on_sheet_schedules = DB.FilteredElementCollector(doc).OfClass(DB.ScheduleSheetInstance).WhereElementIsNotElementType().ToElements()

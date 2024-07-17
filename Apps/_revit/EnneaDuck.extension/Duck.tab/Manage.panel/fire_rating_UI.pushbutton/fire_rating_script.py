@@ -23,14 +23,14 @@ from pyrevit import script #
 
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import NOTIFICATION, DATA_CONVERSION, ENVIRONMENT_CONSTANTS, ERROR_HANDLE, FOLDER
+from EnneadTab import NOTIFICATION, DATA_CONVERSION, ENVIRONMENT, ERROR_HANDLE, FOLDER
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
-import ENNEAD_LOG
+
 
 
 class FireRatingGraphicMaker:
@@ -196,7 +196,7 @@ class FireRatingGraphicMaker:
                
         self.update_log( "-------")
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def update_fire_rating_graphic( views, rating_list):
 
     # t = DB.Transaction(doc, "Update fire rating graphic.")
@@ -205,7 +205,7 @@ def update_fire_rating_graphic( views, rating_list):
     # t.Commit()
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def update_wall_data(data_grid_source):
 
     t = DB.Transaction(doc, "Update wall rating data.")
@@ -218,9 +218,9 @@ def update_wall_data(data_grid_source):
 
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def load_EA_family(title):
-    lib_family = "{}\\ENNEAD.extension\\Ennead Library.tab\\Contents.panel\\2D Contents.pulldown\\EA_Fire Rating.content\\EA_Fire Rating_content.rfa".format(ENVIRONMENT_CONSTANTS.PUBLISH_BETA_FOLDER_FOR_REVIT)
+    lib_family = "{}\\ENNEAD.extension\\Ennead Library.tab\\Contents.panel\\2D Contents.pulldown\\EA_Fire Rating.content\\EA_Fire Rating_content.rfa".format(ENVIRONMENT.PUBLISH_BETA_FOLDER_FOR_REVIT)
     local_copy = FOLDER.copy_file_to_local_dump_folder(lib_family, "EA_Fire Rating.rfa")
     try:
         t = DB.Transaction(doc, __title__)
@@ -301,7 +301,7 @@ class fire_rating_ModelessForm(WPFWindow):
         return
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def __init__(self):
         self.pre_actions()
 
@@ -315,13 +315,13 @@ class fire_rating_ModelessForm(WPFWindow):
 
         self.Title = self.title_text.Text
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
 
 
@@ -332,7 +332,7 @@ class fire_rating_ModelessForm(WPFWindow):
 
         self.Show()
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def init_data_grid(self):
         self.rating_list = ["Unrated",
                             "1 HR",
@@ -349,7 +349,7 @@ class fire_rating_ModelessForm(WPFWindow):
 
         
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def preview_selection_changed(self, sender, args):
         obj = self.main_data_grid.SelectedItem
         if not obj:
@@ -383,14 +383,14 @@ class fire_rating_ModelessForm(WPFWindow):
                                                                                                         len(project_walls))
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def UI_setting_changed(self, sender, args):
         if self.checkbox_auto_update.IsChecked:
             self.textblock_wall_detail.Visibility = System.Windows.Visibility.Visible
         else:
             self.textblock_wall_detail.Visibility = System.Windows.Visibility.Collapsed
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def update_graphic_click(self, sender, args):
 
         # push update for current wall data first
@@ -431,7 +431,7 @@ class fire_rating_ModelessForm(WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def update_wall_type_data_click(self, sender, args):
 
         self.update_wall_data_event_handler.kwargs = self.main_data_grid.ItemsSource,
@@ -443,7 +443,7 @@ class fire_rating_ModelessForm(WPFWindow):
             self.debug_textbox.Text = "Debug Output:"
   
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pick_view_click(self, sender, args):
         self.selected_views = PYFORM_SELECT_VIEWS(filterfunc = lambda x: x.ViewType == DB.ViewType.FloorPlan or  x.ViewType == DB.ViewType.AreaPlan)
         if not self.selected_views:
@@ -466,7 +466,7 @@ class fire_rating_ModelessForm(WPFWindow):
         return False
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def close_Click(self, sender, e):
         # This Raise() method launch a signal to Revit to tell him you want to do something in the API context
         self.Close()
@@ -491,6 +491,6 @@ if __name__ == "__main__":
     try:
 
         modeless_form = fire_rating_ModelessForm()
-        ENNEAD_LOG.use_enneadtab(coin_change = 220, tool_used = __title__.replace("\n", " "), show_toast = True)
+      
     except:
         print (traceback.format_exc())

@@ -20,7 +20,7 @@ import shutil
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_EXPORT, REVIT_APPLICATION
 from EnneadTab import EXE, DATA_FILE, NOTIFICATION, ERROR_HANDLE, FOLDER
@@ -30,7 +30,7 @@ import os
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
             
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def update_miro():
 
     print ("Note: At the moment CBI does not allow me to connect to Miro, so your team can ask me for a board on my personal account.")
@@ -97,7 +97,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     update_miro()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

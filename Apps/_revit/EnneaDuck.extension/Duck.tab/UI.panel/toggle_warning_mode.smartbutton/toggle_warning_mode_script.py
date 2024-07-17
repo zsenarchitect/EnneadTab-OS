@@ -11,7 +11,7 @@ from pyrevit import script
 from pyrevit.coreutils.ribbon import ICON_LARGE
 
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_VIEW
 from Autodesk.Revit import DB # pyright: ignore 
@@ -36,7 +36,7 @@ def __selfinit__(script_cmp, ui_button_cmp, __rvt__):
 
 
 
-@ERROR_HANDLE.try_catch_error_silently
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def show_warnings(sender, args):
     active_view = args.CurrentActiveView
     doc = args.Document
@@ -49,7 +49,7 @@ def show_warnings(sender, args):
 
     
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def toggle_warning_mode():
     new_state = not script.get_envvar(KEY_NAME)
     """
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     toggle_warning_mode()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

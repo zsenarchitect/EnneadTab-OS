@@ -20,7 +20,7 @@ def update_tab():
     if updater.check_for_updates():
         updater.update_pyrevit()
 
-@ERROR_HANDLE.try_catch_error_silently
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     remove_last_sync_data_file(doc)
     update_tab()

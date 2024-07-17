@@ -9,7 +9,7 @@ __tip__ = True
 from pyrevit import forms #
 from pyrevit import script #
 import xlsxwriter as xw
-import ENNEAD_LOG
+
 
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_FORMS
 from EnneadTab import ERROR_HANDLE, NOTIFICATION, COLOR, EXE, DATA_FILE
@@ -18,7 +18,7 @@ from Autodesk.Revit import DB # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
             
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def export_color_scheme():
     
     color_schemes = DB.FilteredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_ColorFillSchema).WhereElementIsNotElementType().ToElements()
@@ -148,7 +148,7 @@ output.close_others()
 
 if __name__ == "__main__":
     export_color_scheme()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

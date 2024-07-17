@@ -189,7 +189,7 @@ def map_block():
         place_new_instance(block_name, transform, rotation_tuple, reflection)
 
     
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     t = DB.Transaction(doc, "map blocks")
     t.Start()

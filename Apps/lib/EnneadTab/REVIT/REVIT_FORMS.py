@@ -70,7 +70,7 @@ class EnneadTabModelessForm(WPFWindow):
         self.Show()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def Sample_bt_Click(self, sender, e):
         return
         self.rename_view_event_handler.kwargs = sheets, is_default_format

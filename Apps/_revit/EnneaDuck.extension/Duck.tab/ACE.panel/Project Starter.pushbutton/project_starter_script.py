@@ -21,7 +21,7 @@ from pyrevit import script #
 
 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT, USER, NOTIFICATION, ENVIRONMENT_CONSTANTS, ERROR_HANDLE, EXCEL, FOLDER
+from EnneadTab import ENVIRONMENT, USER, NOTIFICATION, ENVIRONMENT, ERROR_HANDLE, EXCEL, FOLDER
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 import random
@@ -33,7 +33,7 @@ uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
-import ENNEAD_LOG
+
 import sys
 import os
 
@@ -131,14 +131,14 @@ class project_starter_ModelessForm(WPFWindow):
 
         self.Title = "EnneadTab Project Initiator UI"
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
            
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
        
    
@@ -170,7 +170,7 @@ class project_starter_ModelessForm(WPFWindow):
             ext_event = getattr(self, "ext_event_{}".format(func_name))
             return handler, ext_event
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def create_workset_Click(self, sender, e):
             
         # # get all existing workset names
@@ -211,7 +211,7 @@ class project_starter_ModelessForm(WPFWindow):
             self.debug_textbox.Text = "Debug Output:"
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def create_sheet_from_excel_click(self, sender, e):
         # chaneg this to a path picker UI, also allow samepl excel to open
         # excel_path = forms.pick_excel_file(title="Where is the excel thjat has the new sheet data?")   
@@ -250,13 +250,13 @@ class project_starter_ModelessForm(WPFWindow):
         else:
             self.debug_textbox.Text = "Debug Output:"
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def open_sample_excel_click(self, sender, e):
         import module_func_excel_sheet
         module_func_excel_sheet.open_sample_excel()
         
         
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def enable_workshare_Click(self, sender, e):
         
         handler, ext_event = self.get_handler_event_by_keyword("workshare")
@@ -266,7 +266,7 @@ class project_starter_ModelessForm(WPFWindow):
         res = handler.OUT
          
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def set_proj_para_Click(self, sender, e):
         handler, ext_event = self.get_handler_event_by_keyword("proj_info")
         data = {}
@@ -285,7 +285,7 @@ class project_starter_ModelessForm(WPFWindow):
          
        
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def create_level_Click(self, sender, e):
         handler, ext_event = self.get_handler_event_by_keyword("create_levels")
        
@@ -293,7 +293,7 @@ class project_starter_ModelessForm(WPFWindow):
         ext_event.Raise()
         res = handler.OUT
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def level_data_add_Click(self, sender, e):
         # print sender
         # print (e)
@@ -301,7 +301,7 @@ class project_starter_ModelessForm(WPFWindow):
         # print self.data_grid.all_levels
         self.update_data_grid()
         
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def level_data_remove_Click(self, sender, e):
         # print sender
         # print (e)
@@ -322,7 +322,7 @@ class project_starter_ModelessForm(WPFWindow):
         pass
     
     
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def regenerate_level_Click(self, sender, e):
         self.level_data_class.all_levels = []
         for item in self.level_data_grid.ItemsSource[::-1]:
@@ -337,7 +337,7 @@ class project_starter_ModelessForm(WPFWindow):
         self.update_data_grid()  
     
     
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def create_plan_Click(self, sender, e):
         NOTIFICATION.messenger (main_text =  "To be done: create plans.")
 
@@ -364,6 +364,6 @@ if __name__ == "__main__":
     # Let's launch our beautiful and useful form !
     try:
         project_starter(doc)
-        ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+        
     except:
         print (traceback.format_exc())

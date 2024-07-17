@@ -6,7 +6,7 @@ from pyrevit import script
 
 from EnneadTab import ERROR_HANDLE
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def give_me_cheat_sheet():
     data_table = []
     def data(name, description, note):
@@ -110,5 +110,4 @@ def give_me_cheat_sheet():
 
 if __name__ == "__main__":
     give_me_cheat_sheet()
-    import ENNEAD_LOG
-    ENNEAD_LOG.use_enneadtab(coin_change = 10, tool_used = "Family formula cheat sheet.", show_toast = True)
+  

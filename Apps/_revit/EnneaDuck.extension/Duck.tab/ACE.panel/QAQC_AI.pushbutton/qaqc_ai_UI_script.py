@@ -25,7 +25,7 @@ from pyrevit.forms import WPFWindow
 
 from EnneadTab.REVIT import REVIT_FORMS
 from EnneadTab.FUN import JOKES
-from EnneadTab import EXE, DATA_FILE, SOUNDS, TIME, ERROR_HANDLE, FOLDER, ENVIRONMENT_CONSTANTS
+from EnneadTab import EXE, DATA_FILE, SOUND, TIME, ERROR_HANDLE, FOLDER, ENVIRONMENT
 import traceback
 
 from Autodesk.Revit import DB # pyright: ignore 
@@ -110,7 +110,7 @@ class AI_Report_modelessForm(WPFWindow):
     
         return
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def __init__(self):
         run_exe()
         self.pre_actions()
@@ -125,13 +125,13 @@ class AI_Report_modelessForm(WPFWindow):
         self.Title = "EnneadTab QAQC Reporter"
         #self.Width = 800
         self.Height = 1000
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
         self.set_image_source(self.pop_warning_img, "pop_warning.png")
     
@@ -157,7 +157,7 @@ class AI_Report_modelessForm(WPFWindow):
         else:
             self.tbox_conversation.Text = ""
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def ask_Click(self, sender, e):
         # if not USER.is_SZ():
         #     self.debug_textbox.Text = "WIP function."
@@ -207,7 +207,7 @@ class AI_Report_modelessForm(WPFWindow):
             temp_data = DATA_FILE.read_json_file_safely(self.data_file)
             if temp_data["direction"] == "OUT":
                  
-                SOUNDS.play_sound("sound effect_popup msg3.wav")
+                SOUND.play_sound("sound_effect_popup_msg3.wav")
 
                 self.tbox_conversation.Text += "\n\nQ: {}\nA:{}".format(query, temp_data["response"])
                 #self.tbox_conversation.Text = temp_data["response"]
@@ -221,7 +221,7 @@ class AI_Report_modelessForm(WPFWindow):
 
             
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def clear_history_Click(self, sender, e):
         if FOLDER.is_file_exist_in_dump_folder(self.log_file):
             FOLDER.remove_file_from_dump_folder(self.log_file)
@@ -251,7 +251,7 @@ class AI_Report_modelessForm(WPFWindow):
         record["conversation_history"] = self.tbox_conversation.Text
         DATA_FILE.save_dict_to_json_in_dump_folder(record, self.log_file)
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def generate_report_click(self, sender, args):
         import QAQC_runner
         self.report = QAQC_runner.QAQC(script.get_output()).get_report(pdf_file = None, save_html = self.is_saving_html.IsChecked)
@@ -260,7 +260,7 @@ class AI_Report_modelessForm(WPFWindow):
             REVIT_FORMS.notification(main_text = "You have closed your last report window.", sub_text = "Please restart the QAQC reporter if you want to see the report again.")
             self.Close()
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bt_pick_pdf_clicked(self, sender, args):
         self.pdf = forms.pick_file(file_ext='*.pdf')
         if not self.pdf:
@@ -268,7 +268,7 @@ class AI_Report_modelessForm(WPFWindow):
         self.pdf_display.Text = self.pdf
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def radial_bt_source_changed(self, sender, args):
         if self.radio_bt_is_reading_pdf.IsChecked:
             self.pdf_source_panel.Visibility = System.Windows.Visibility.Visible

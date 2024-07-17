@@ -21,7 +21,7 @@ from pyrevit import HOST_APP
 
 
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE, ENVIRONMENT_CONSTANTS
+from EnneadTab import ERROR_HANDLE, ENVIRONMENT
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
@@ -29,12 +29,12 @@ uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
-import ENNEAD_LOG
 
 
 
 
-@ERROR_HANDLE.try_catch_error
+
+@ERROR_HANDLE.try_catch_error()
 def placeholder(ref_tag, bad_tags, is_V):
 
     t = DB.Transaction(doc, "tag align")
@@ -103,7 +103,7 @@ class who_did_that_ModelessForm(WPFWindow):
         return
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def __init__(self):
         self.pre_actions()
 
@@ -117,13 +117,13 @@ class who_did_that_ModelessForm(WPFWindow):
 
         self.Title = self.title_text.Text
 
-        if ENVIRONMENT_CONSTANTS.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.OS_CORE_IMAGES_FOLDER)
+        if ENVIRONMENT.IS_LOCAL_OS:
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
         else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
+            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
         import os
         if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
         self.set_image_source(self.logo_img, logo_file)
         self.selection = None
 
@@ -143,11 +143,11 @@ class who_did_that_ModelessForm(WPFWindow):
 
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def view_update_event_handler_function(self,sender, args):
         self.update_active_view_info()
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def update_active_view_info(self):
         try:
             doc.ActiveView
@@ -162,7 +162,7 @@ class who_did_that_ModelessForm(WPFWindow):
         self.active_view_info_textbox.Text = note
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def selection_update_event_handler_function(self,sender, args):
 
         """
@@ -188,7 +188,7 @@ class who_did_that_ModelessForm(WPFWindow):
             return
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def update_selection_info(self):
         if not self.selection or len(self.selection) == 0:
             self.selection_info_textbox.Text = "No selection"
@@ -210,7 +210,7 @@ class who_did_that_ModelessForm(WPFWindow):
         self.selection_info_textbox.Text = note.rstrip("\n\n")
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def show_main_info_click(self, sender, args):
             
         selection_ids = uidoc.Selection.GetElementIds ()
@@ -218,7 +218,7 @@ class who_did_that_ModelessForm(WPFWindow):
         self.update_selection_info()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def pick_template_click(self, sender, args):
         from pyrevit import forms
         templates = forms.select_viewtemplates()
@@ -233,7 +233,7 @@ class who_did_that_ModelessForm(WPFWindow):
         
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def close_Click(self, sender, e):
         # This Raise() method launch a signal to Revit to tell him you want to do something in the API context
         self.Close()
@@ -268,6 +268,6 @@ if __name__ == "__main__":
     # Let's launch our beautiful and useful form !
     try:
         modeless_form = who_did_that_ModelessForm()
-        ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+        
     except:
         print (traceback.format_exc())

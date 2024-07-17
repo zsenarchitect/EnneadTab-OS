@@ -4,7 +4,7 @@ from pyrevit import forms
 
 from EnneadTab import NOTIFICATION, ERROR_HANDLE
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def enable_workshare(doc, is_cloud):
     if is_cloud:
         enable_cloud_worksharing(doc)
@@ -12,7 +12,7 @@ def enable_workshare(doc, is_cloud):
         enable_server_worksharing(doc)
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def enable_server_worksharing(doc):
     if doc.IsWorkshared:
         
@@ -27,7 +27,7 @@ def enable_server_worksharing(doc):
         return
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def enable_cloud_worksharing(doc):
 
 

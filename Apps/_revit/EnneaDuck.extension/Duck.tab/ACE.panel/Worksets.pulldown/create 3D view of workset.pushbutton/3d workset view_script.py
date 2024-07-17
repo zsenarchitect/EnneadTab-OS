@@ -9,7 +9,7 @@ __tip__ = True
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 import EnneadTab
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
@@ -81,7 +81,7 @@ def main():
     t.Start()
     make_3D_views_from_workset()
     t.Commit()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 ################## main code below #####################

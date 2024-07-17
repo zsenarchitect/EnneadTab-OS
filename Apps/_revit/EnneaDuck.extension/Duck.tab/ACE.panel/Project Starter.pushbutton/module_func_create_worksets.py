@@ -3,7 +3,7 @@ from Autodesk.Revit import DB # pyright: ignore
 
 from EnneadTab import ERROR_HANDLE
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def create_worksets(doc, workset_names):
     t = DB.Transaction(doc, 'Create Worksets')
     t.Start()

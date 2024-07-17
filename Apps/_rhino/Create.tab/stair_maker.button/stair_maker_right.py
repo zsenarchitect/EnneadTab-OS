@@ -1,5 +1,5 @@
 
-__title__ = "StairMaker(Spiral)"
+__title__ = "StairMakerSpiral"
 __doc__ = "Interactively create spiral stair."
 
 import Rhino # pyright: ignore

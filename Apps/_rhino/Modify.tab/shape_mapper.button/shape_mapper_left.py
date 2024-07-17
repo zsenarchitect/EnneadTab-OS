@@ -412,8 +412,8 @@ class ShapeMapperDialog(Eto.Forms.Form):
         self.reset_listbox()
         layout.AddSeparateRow(Eto.Forms.Label(Text = "Existing mapper sessions\nin current document:\n\n(Double click to highlight design layer)",
                                               VerticalAlign=Eto.Forms.VerticalAlign.Top ),
-                              None,
-                              self.session_name_list)
+                                                None,
+                                                self.session_name_list)
         
        
         return layout

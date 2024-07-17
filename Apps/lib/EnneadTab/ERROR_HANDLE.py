@@ -23,20 +23,20 @@ def try_catch_error(is_silent=False, is_pass = False):
                     return
                 print_note(str(e))
                 print_note("Wrapper func for EA Log -- Error: " + str(e))
-                error = "Oops at {}\n".format(TIME.get_formatted_current_time())
-                error += traceback.format_exc()
+                error_time = "Oops at {}\n\n".format(TIME.get_formatted_current_time())
+                error = traceback.format_exc()
 
                 subject_line = "EnneadTab Auto Error Log"
                 if is_silent:
                     subject_line += "(Silent)"
                 try:
-                    EMAIL.email_error(error, func.__name__, USER.USER_NAME, subject_line=subject_line)
+                    EMAIL.email_error(error_time + error, func.__name__, USER.USER_NAME, subject_line=subject_line)
                 except Exception as e:
                     print_note("Cannot send email: {}".format(e))
 
                 if not is_silent:
 
-                    error += "\n\n######If you have EnneadTab UI window open, just close the original EnneadTab window(not this textnote). Do no more action, otherwise the program might crash.##########\n#########Not sure what to do? Msg Sen Zhang, you have dicovered a important bug and we need to fix it ASAP!!!!!########"
+                    error += "\n\n######If you have EnneadTab UI window open, just close the original EnneadTab window. Do no more action, otherwise the program might crash.##########\n#########Not sure what to do? Msg Sen Zhang, you have dicovered a important bug and we need to fix it ASAP!!!!!########"
                     error_file = FOLDER.get_EA_dump_folder_file("error_general_log.txt")
                     try:
                         with open(error_file, "w") as f:
@@ -46,6 +46,7 @@ def try_catch_error(is_silent=False, is_pass = False):
 
                     # os.startfile(error_file)
                     output = OUTPUT.get_output()
+                    output.write(error_time, OUTPUT.Style.SubTitle)
                     output.write(error)
                     output.insert_division()
                     output.plot()

@@ -47,7 +47,7 @@ def section_box(group_name_key_word=section_box_utility.GROUP_NAME_KEYWORD, clea
     print (input_polysurf)
     rs.UnselectAllObjects()
     if input_polysurf is None:
-        NOTIFICATION.toast(main_text = "you didn't selection a predefined polysurface")
+        NOTIFICATION.messenger(main_text = "you didn't selection a predefined polysurface")
         return
 
     # create clip plane for each face
@@ -101,7 +101,7 @@ def section_box(group_name_key_word=section_box_utility.GROUP_NAME_KEYWORD, clea
 
 def play_sound():
 
-    file = "sound effect_popup msg3.wav"
+    file = "sound_effect_popup_msg3.wav"
     SOUND.play_sound(file)
 
 
@@ -110,4 +110,4 @@ def play_sound():
 
 if __name__ == "__main__":
     rs.EnableRedraw(False)
-    section_box(GROUP_NAME_KEYWORD)
+    section_box(section_box_utility.GROUP_NAME_KEYWORD)

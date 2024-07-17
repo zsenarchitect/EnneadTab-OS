@@ -42,7 +42,7 @@ def merge_materials():
 
 
     if not mat_target or not mats_to_modify:
-        NOTIFICATION.toast(main_text = "Cannot deal with empty selection.")
+        NOTIFICATION.messenger(main_text = "Cannot deal with empty selection.")
         return
 
     # print mats_to_modify

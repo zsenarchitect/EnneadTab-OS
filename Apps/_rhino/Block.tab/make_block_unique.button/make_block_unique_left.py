@@ -93,7 +93,7 @@ def replace_original_blocks(new_block_name, original_block):
 
 def play_sound():
 
-    file = "sound effect_popup msg1.wav"
+    file = "sound_effect_popup_msg1.wav"
     SOUND.play_sound(file)
 
 

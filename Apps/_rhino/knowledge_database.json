@@ -213,10 +213,7 @@
     "Create.tab\\stair_maker.button\\stair_maker_left.py": {
         "script": "Create.tab\\stair_maker.button\\stair_maker_left.py",
         "icon": "Create.tab\\stair_maker.button\\icon.png",
-        "alias": [
-            "StairMaker",
-            "StairMaker(Linear)"
-        ],
+        "alias": "StairMakerLinear",
         "doc": "Interactively create linear stair.",
         "tab": "Create.tab",
         "tab_icon": "Create.tab\\icon.png"
@@ -224,7 +221,7 @@
     "Create.tab\\stair_maker.button\\stair_maker_right.py": {
         "script": "Create.tab\\stair_maker.button\\stair_maker_right.py",
         "icon": "Create.tab\\stair_maker.button\\icon.png",
-        "alias": "StairMaker(Spiral)",
+        "alias": "StairMakerSpiral",
         "doc": "Interactively create spiral stair.",
         "tab": "Create.tab",
         "tab_icon": "Create.tab\\icon.png"

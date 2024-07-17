@@ -1,6 +1,5 @@
 
-__title__ = ["StairMaker", 
-             "StairMaker(Linear)"]
+__title__ = "StairMakerLinear"
 __doc__ = "Interactively create linear stair."
 
 

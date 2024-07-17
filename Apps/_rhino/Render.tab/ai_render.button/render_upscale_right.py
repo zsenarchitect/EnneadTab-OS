@@ -414,7 +414,7 @@ class RenderUpscalerDialog(Eto.Forms.Form):
 
         DATA_FILE.save_dict_to_json_in_dump_folder(data, "AI_RENDER_SCALER_{}.json".format(TIME.get_formatted_current_time()))
 
-        NOTIFICATION.toast(main_text = "Upscale Job Enqueued!") 
+        NOTIFICATION.messenger(main_text = "Upscale Job Enqueued!") 
         call_exe()
 
 

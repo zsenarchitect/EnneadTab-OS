@@ -43,14 +43,14 @@ def find_layer_in_files():
 def process_file(file, search_layer):
     f = Rhino.FileIO.File3dm.Read(file)
     file_name = FOLDER.get_file_name_from_path(file)
-    NOTIFICATION.toast(main_text = "Opening {}..".format(file_name))
+    NOTIFICATION.messenger(main_text = "Opening {}..".format(file_name))
     log = ""
     for layer in f.AllLayers:
         print (layer)
         if search_layer.lower() in str(layer).lower():
             message = "Find layer <{}> in file: {}".format(RHINO_LAYER.rhino_layer_to_user_layer(str(layer)), file_name)
             log += "\n{}".format(message)
-            NOTIFICATION.toast(main_text = message)
+            NOTIFICATION.messenger(main_text = message)
 
 
 

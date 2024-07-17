@@ -254,20 +254,20 @@ def offset_floor_border():
         # get objs:
     objs = rs.GetObjects("Get slabs for treatment, accepting srf or polysurf.", preselect = True, filter = 8 + 16)#srf and poly srf
     if not objs:
-        NOTIFICATION.toast(main_text = "Nothing is selected.", sub_text = "Cancel")
+        NOTIFICATION.messenger(main_text = "Nothing is selected.", sub_text = "Cancel")
         return
     #print objs
     objs = filter(lambda x: rs.IsPolysurface(x) or rs.IsSurface(x), objs)
 
 
     if not objs or len(objs) == 0:
-        NOTIFICATION.toast(main_text = "Cannot find surface or polysurface.", sub_text = "Cancel")
+        NOTIFICATION.messenger(main_text = "Cannot find surface or polysurface.", sub_text = "Cancel")
         return
 
     offset = DATA_FILE.get_sticky("SLAB_OFFSET_DIST", 300)
     res = rs.PropertyListBox(["Offset inward(model unit):"], [offset], message = "Positive number = shrink. Negative number = expand.", title = "EnneadTab floor shrinker/expander")
     if not res:
-        NOTIFICATION.toast(main_text = "Need to have valid input.", sub_text = "Cancel")
+        NOTIFICATION.messenger(main_text = "Need to have valid input.", sub_text = "Cancel")
         return
     offset = float(res[0])
     DATA_FILE.set_sticky("SLAB_OFFSET_DIST", offset)

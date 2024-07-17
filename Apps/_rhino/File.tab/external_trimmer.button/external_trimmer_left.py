@@ -151,7 +151,7 @@ def process_and_export_selected():
 def external_trimmer():
     print(doc.Name)
     if len(rs.SelectedObjects()) == 0:
-        NOTIFICATION.toast(main_text = "Need to select at least one obj")
+        NOTIFICATION.messenger(main_text = "Need to select at least one obj")
         return
 
     opts = ["Yes(for simple file)", "No(for complex file, trimming manually)"]
@@ -164,7 +164,7 @@ def external_trimmer():
         filepath = get_external_filepath()
         doc.ExportSelected (filepath)
         EXE.open_file_in_default_application(filepath)
-        NOTIFICATION.toast(main_text = "Opening External link file now.")
+        NOTIFICATION.messenger(main_text = "Opening External link file now.")
 
     #process_link()
 

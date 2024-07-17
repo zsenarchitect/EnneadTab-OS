@@ -1332,7 +1332,7 @@
     </macro_item>
     <macro_item guid="d81c6060-c4d0-4e6e-9cf5-308c35b597e2" bitmap_id="4475561b-89b4-46a3-b73b-c08f7ca1890e">
       <text>
-        <locale_1033>StairMaker</locale_1033>
+        <locale_1033>StairMakerLinear</locale_1033>
       </text>
       <tooltip>
         <locale_1033>Interactively create linear stair.</locale_1033>
@@ -1341,16 +1341,16 @@
         <locale_1033>Interactively create linear stair.</locale_1033>
       </help_text>
       <button_text>
-        <locale_1033>StairMaker</locale_1033>
+        <locale_1033>StairMakerLinear</locale_1033>
       </button_text>
       <menu_text>
-        <locale_1033>StairMaker</locale_1033>
+        <locale_1033>StairMakerLinear</locale_1033>
       </menu_text>
-      <script>EA_StairMaker</script>
+      <script>EA_StairMakerLinear</script>
     </macro_item>
     <macro_item guid="e268fbef-15b7-4387-9532-256bd3c4d82f" bitmap_id="371e837d-7f9c-42c1-823c-303399dc7116">
       <text>
-        <locale_1033>StairMaker(Spiral)</locale_1033>
+        <locale_1033>StairMakerSpiral</locale_1033>
       </text>
       <tooltip>
         <locale_1033>Interactively create spiral stair.</locale_1033>
@@ -1359,12 +1359,12 @@
         <locale_1033>Interactively create spiral stair.</locale_1033>
       </help_text>
       <button_text>
-        <locale_1033>StairMaker(Spiral)</locale_1033>
+        <locale_1033>StairMakerSpiral</locale_1033>
       </button_text>
       <menu_text>
-        <locale_1033>StairMaker(Spiral)</locale_1033>
+        <locale_1033>StairMakerSpiral</locale_1033>
       </menu_text>
-      <script>EA_StairMaker(Spiral)</script>
+      <script>EA_StairMakerSpiral</script>
     </macro_item>
     <macro_item guid="87e5ebd7-a5c2-409f-bdf8-b5e21541ca3d" bitmap_id="32b67bdb-7faa-45e5-920a-5f298d883f06">
       <text>

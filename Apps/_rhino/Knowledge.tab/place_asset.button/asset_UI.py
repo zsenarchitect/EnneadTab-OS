@@ -13,7 +13,7 @@ graft = itertools.combinations
 
 
 
-from EnneadTab import  NOTIFICATION, DATA_FILE
+from EnneadTab import  NOTIFICATION, DATA_FILE, SOUND
 from EnneadTab.RHINO import RHINO_UI
 
 # make modal dialog
@@ -727,7 +727,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
         try:
             DATA_FILE.save_dict_to_txt(self.META_DATA, meta_data_file, end_with_new_line = False)
         except Exception as e:
-            NOTIFICATION.toast(main_text = str(e))
+            NOTIFICATION.messenger(main_text = str(e))
 
 
     def meta_data_read(self):
@@ -759,7 +759,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
             print(next_item)
             self.lb.SelectedRow = i + increment
         except IndexError:
-            NOTIFICATION.toast(main_text = "End of list.")
+            NOTIFICATION.messenger(main_text = "End of list.")
             self.lb.SelectedRow = 0
     """
     ####  event call ##############################################################################################################################
@@ -865,7 +865,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
         # close window after double click action. Otherwise, run with error
         self.update_item_tag_pool()
         self.Search()
-        EnneadTab.NOTIFICATION.toast(main_text = "The tags data pool is updated.")
+        EnneadTab.NOTIFICATION.messenger(main_text = "The tags data pool is updated.")
 
     def EVENT_NextListboxItemButton_Clicked(self, sender, e):
         self.set_new_listitem(increment = 1)
@@ -896,25 +896,25 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
     def sound_page_prev(self):
         if self.SOUND_MUTE:
             return
-        file = "sound effect_menu_page_trun_backward.wav"
+        file = "sound_effect_menu_page_trun_backward.wav"
         SOUND.play_sound(file)
 
     def sound_page_next(self):
         if self.SOUND_MUTE:
             return
-        file = "sound effect_menu_page_trun_forward.wav"
+        file = "sound_effect_menu_page_trun_forward.wav"
         SOUND.play_sound(file)
 
     def sound_tag_button(self):
         if self.SOUND_MUTE:
             return
-        file = "sound effect_menu_tap.wav"
+        file = "sound_effect_menu_tap.wav"
         SOUND.play_sound(file)
 
     def sound_selected_item_changed(self):
         if self.SOUND_MUTE:
             return
-        file = "sound effect_menu_flip.wav"
+        file = "sound_effect_menu_flip.wav"
         SOUND.play_sound(file)
 """
 ####  outside dialog ################################################################################################################################

@@ -29,14 +29,14 @@ def process_dwg(file, units, is_using_default_layer_structure):
     #units = "Millimeters"
     rs.Command("_-import \"{}\" _ModelUnits={} -enter -enter".format(file, units))
 
-    NOTIFICATION.toast(sub_text = "Come Back, come back!", main_text = "Import Finish!")
+    NOTIFICATION.messenger(sub_text = "Come Back, come back!", main_text = "Import Finish!")
     imported_objs = rs.LastCreatedObjects()
     #print imported_objs
     layers_used = set()
 
 
     if not imported_objs:
-        # NOTIFICATION.toast(main_text = "Cannot find impoted objs.")
+        # NOTIFICATION.messenger(main_text = "Cannot find impoted objs.")
         NOTIFICATION.messenger(main_text = "Cannot find impoted objs in file\n{}.".format(file))
         return
 

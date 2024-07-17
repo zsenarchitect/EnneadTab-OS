@@ -577,7 +577,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
         DATA_FILE.save_dict_to_json_in_dump_folder(
             data, "AI_RENDER_DATA_{}.json".format(TIME.get_formatted_current_time()))
 
-        NOTIFICATION.toast(main_text="Render Job Enqueued!")
+        NOTIFICATION.messenger(main_text="Render Job Enqueued!")
 
 
 

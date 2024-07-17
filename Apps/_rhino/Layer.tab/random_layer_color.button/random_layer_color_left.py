@@ -56,7 +56,7 @@ def random_layer_color(default_opt = False):
         if str(current_color) == "Color [A=255, R=0, G=0, B=0]":
             rs.LayerColor(layer, color = random_color(layer, use_desaturated_color))
         """
-    SOUND.play_sound(file = "sound effect_spray paint can shake_spray.wav")
+    SOUND.play_sound(file = "sound_effect_spray_paint_can_shake_spray.wav")
 
 
 

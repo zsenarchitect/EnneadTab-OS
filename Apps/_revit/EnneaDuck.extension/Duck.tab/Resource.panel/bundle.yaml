@@ -9,6 +9,7 @@
 layout:
   - EnneadTab_Setting_UI
   - ">>>"
+  - tell_me_version
   - reload
   - external_links_UI
   - print_all_documentation

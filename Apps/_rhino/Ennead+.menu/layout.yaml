@@ -1,5 +1,6 @@
 layout:
   - get_latest
+  - tell_me_version
   - restart_rhino
   - reset_all_conduit
   - '---'

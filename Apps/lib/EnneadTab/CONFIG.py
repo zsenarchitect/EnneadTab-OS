@@ -1,9 +1,9 @@
-import FOLDER
+
 import DATA_FILE
 import USER
 
 
-SETTING_FILE_NAME = 'setting_{}.sexyDuck'.format(USER.USER_NAME)
+GLOBAL_SETTING_FILE = 'setting_{}.sexyDuck'.format(USER.USER_NAME)
 
 def get_setting(key, defaule_value=None):
     """if no key provided, will return the whole dict
@@ -11,7 +11,7 @@ def get_setting(key, defaule_value=None):
 
         key_defaule_value: (key, default value), a tuple of default result, this is used to get the key of value looking for. If do not provide this tuple, then return the raw while data"""
 
-    data = DATA_FILE.get_data(SETTING_FILE_NAME)
+    data = DATA_FILE.get_data(GLOBAL_SETTING_FILE)
     return data.get(key, defaule_value)
 
 
@@ -23,7 +23,7 @@ def set_setting(key, value):
         value (_type_): _description_
     """
 
-    with DATA_FILE.update_data(SETTING_FILE_NAME) as data:
+    with DATA_FILE.update_data(GLOBAL_SETTING_FILE) as data:
         data[key] = value
 
 

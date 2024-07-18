@@ -7,6 +7,12 @@ import sys
 import time
 import re
 
+
+# this will disable all pygame talk
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "True"
+
+
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))) + "\\Apps\\lib\\EnneadTab")
 
 from ENVIRONMENT import ROOT, EXE_PRODUCT_FOLDER  # pyright: ignore

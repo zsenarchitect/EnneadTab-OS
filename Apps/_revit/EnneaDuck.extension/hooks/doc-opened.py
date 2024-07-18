@@ -4,18 +4,18 @@ import random
 
 from Autodesk.Revit import DB # pyright: ignore
 
-from EnneadTab import NOTIFICATION
+from EnneadTab import NOTIFICATION, LOG
 from pyrevit import forms, script
 from pyrevit import EXEC_PARAMS
-from pyrevit.coreutils import envvars
-from pyrevit.coreutils import ribbon
+from pycoreutils import envvars
+from pycoreutils import ribbon
 
 
-import EnneadTab
+
 
 
 def log_time_sheet(doc):
-    EnneadTab.LOG.update_time_sheet_revit(doc.Title)
+    LOG.update_time_sheet_revit(doc.Title)
 
 
 
@@ -47,26 +47,26 @@ def pop_up_window(doc):
 
 
         revit_name = str(doc.Title)
-        revit_name = EnneadTab.REVIT.REVIT_HISTORY.name_fix(revit_name)
+        revit_name = REVIT_HISTORY.name_fix(revit_name)
         file = script.get_universal_data_file(revit_name,file_ext = "txt")
         
-        current_data = EnneadTab.REVIT.REVIT_HISTORY.read_data(file, doc)
+        current_data = REVIT_HISTORY.read_data(file, doc)
         if current_data is None:
             data_entry = "{}:{}".format(date.today(), warning_count)
-            EnneadTab.REVIT.REVIT_HISTORY.append_data(file,data_entry)
-            current_data = EnneadTab.REVIT.REVIT_HISTORY.read_data(file, doc)
+            REVIT_HISTORY.append_data(file,data_entry)
+            current_data = REVIT_HISTORY.read_data(file, doc)
         
         last_item = current_data[-1]
       
         if warning_count >= 50 and last_item != None:
-            main_text = "{}\n\n".format(EnneadTab.REVIT.REVIT_HISTORY.compare_data(last_item, warning_count, doc)) + main_text
+            main_text = "{}\n\n".format(REVIT_HISTORY.compare_data(last_item, warning_count, doc)) + main_text
 
 
 
         NOTIFICATION.messenger(main_text)
-        # EnneadTab.REVIT.REVIT_FORMS.notification(main_text = main_text, sub_text = display_text, self_destruct = 10) # make sure this self destruct time is shorter than the script kill time defined below
+        # REVIT_FORMS.notification(main_text = main_text, sub_text = display_text, self_destruct = 10) # make sure this self destruct time is shorter than the script kill time defined below
         data_entry = "{}:{}".format(date.today(), warning_count)
-        EnneadTab.REVIT.REVIT_HISTORY.append_data(file,data_entry)
+        REVIT_HISTORY.append_data(file,data_entry)
 
 
     except Exception as e:
@@ -75,27 +75,26 @@ def pop_up_window(doc):
 
 
     output = script.get_output()
-    if EnneadTab.REVIT.REVIT_EXTERNAL_FILE.get_import_CAD(doc, output):
+    if REVIT_EXTERNAL_FILE.get_import_CAD(doc, output):
         day_delta = warn_ignorance(doc,
                                     warning_cate="WARNING_IGNORANCE_IMPORT_CAD_RECORD")
         if day_delta > 10:
             addition_note = "Your team have been ignoring this import CAD warning for {} days.\nI will be happy if you fix it soon! Quack!".format(int(day_delta))
-            EnneadTab.NOTIFICATION.messenger(main_text = addition_note, importance_level=2)
+            NOTIFICATION.messenger(main_text = addition_note, importance_level=2)
         if day_delta > 30:
-            EnneadTab.EMAIL.email(receiver_email_list=["gayatri.desai@ennead.com"],
+            EMAIL.email(receiver_email_list=["gayatri.desai@ennead.com"],
                                 subject="Help!!!!!!",
                                 body="I need new pair of glass becasue I cannot see very well.\n\nThere are imported CAD in the file, I have been warned for {} days but I cannot see the message well. Do you know some good optometrists?\n\nBest,\n{}".format(day_delta,
-                                                                                                                                                                                                                                                                 EnneadTab.USER.get_user_name()))
+                                                                                                                                                                                                                                                                 USER.get_user_name()))
     else:
         remove_ignorance(doc,
                         warning_cate="WARNING_IGNORANCE_IMPORT_CAD_RECORD")
         
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error(is_pass=True)
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def basic_info(doc):
-    if EA_UTILITY.get_user_name() in ["achiHXDF8"]:
-        return
+
 
     if hasattr(doc,"GetCloudModelUrn") and doc.GetCloudModelUrn () is None:
         # The document is a BIM360 project.
@@ -122,7 +121,7 @@ def basic_info(doc):
     if doc.IsDetached:
         output.print_md("#This is a detached central file.")
         # forms.alert("EA Alert: \nThis is a detached central file.\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.")
-        EnneadTab.REVIT.REVIT_FORMS.notification(main_text = "EA Alert: \nThis is a detached central file.", sub_text = "\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.", self_destruct = 10)
+        REVIT_FORMS.notification(main_text = "EA Alert: \nThis is a detached central file.", sub_text = "\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.", self_destruct = 10)
         #EA_UTILITY.dialogue(icon = "warning", main_text = "EA Alert: \nThis is a detached central file.\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.")
 
 
@@ -144,7 +143,7 @@ def basic_info(doc):
             print (line)
     
     if "1643.old" in file_info.CentralPath:
-        EnneadTab.NITIFICATION.duck_pop(main_text="STOP! DO NOT WORK IN OLD FOLDER")
+        NITIFICATION.duck_pop(main_text="STOP! DO NOT WORK IN OLD FOLDER")
 
 
 
@@ -212,25 +211,25 @@ def ask_to_unload_locally(doc):
 def append_sync_time_record(doc):
     script_subfolder = "Ennead.tab\\Utility.panel\\exe_1.stack\\LAST_SYNC_MONITOR.pushbutton\\update_last_sync_datafile_script.py"
     func_name = "update_last_sync_data_file"
-    EnneadTab.MODULE_HELPER.run_revit_script(script_subfolder, func_name, doc)
+    MODULE_HELPER.run_revit_script(script_subfolder, func_name, doc)
     
     func_name = "run_exe"
-    EnneadTab.MODULE_HELPER.run_revit_script(script_subfolder, func_name)
+    MODULE_HELPER.run_revit_script(script_subfolder, func_name)
 
 def check_if_file_opened(doc):
     script_subfolder = "Ennead.tab\\Utility.panel\\exe_1.stack\\LAST_SYNC_MONITOR.pushbutton\\update_last_sync_datafile_script.py"
     func_name = "is_doc_opened"
-    EnneadTab.MODULE_HELPER.run_revit_script(script_subfolder, func_name, doc)
+    MODULE_HELPER.run_revit_script(script_subfolder, func_name, doc)
     
 
 
 def hide_user_tab():
-    setting_file = EnneadTab.FOLDER.get_EA_dump_folder_file('revit_ui_setting.json')
-    if not EnneadTab.FOLDER.is_path_exist(setting_file):
+    setting_file = FOLDER.get_EA_dump_folder_file('revit_ui_setting.json')
+    if not FOLDER.is_path_exist(setting_file):
         return
 
 
-    data = EnneadTab.DATA_FILE.read_json_as_dict(setting_file)
+    data = DATA_FILE.read_json_as_dict(setting_file)
 
     for tab in ribbon.get_current_ui():
         #print tab.name
@@ -263,10 +262,10 @@ def register_silient_open(doc):
 
     
 
-    filepath = "{}\doc_opener.json".format(EnneadTab.ENVIRONMENT.MISC_FOLDER)
+    filepath = "{}\doc_opener.json".format(ENVIRONMENT.MISC_FOLDER)
 
     try:
-        data = EnneadTab.DATA_FILE.read_json_file_safely(filepath)
+        data = DATA_FILE.read_json_file_safely(filepath)
         if doc.Title in data.keys():
             return
     except:
@@ -281,7 +280,7 @@ def register_silient_open(doc):
                         model_path.Region)
 
     try:
-        EnneadTab.DATA_FILE.set_data(data, filepath)
+        DATA_FILE.set_data(data, filepath)
     except:
         print ("Cannot register model due to L drive access limit.")
     #print "\n\nYour model is regiestered."
@@ -301,18 +300,18 @@ def check_if_keynote_file_pointing_to_library(doc):
         file_path =  DB.ModelPathUtils.ConvertModelPathToUserVisiblePath(knote_table_ref.GetAbsolutePath())
         if "Applied Computing" in file_path:
 
-            EnneadTab.NOTIFICATION.messenger(main_text = "Your model keynote file is pointing to Applied Computing folder.\nPlease move it to your project folder to avoid conflicting other projects!")
+            NOTIFICATION.messenger(main_text = "Your model keynote file is pointing to Applied Computing folder.\nPlease move it to your project folder to avoid conflicting other projects!")
             
             day_delta = warn_ignorance(doc,
                                         warning_cate="WARNING_IGNORANCE_KEYNOTE_FILE_RECORD")
             if day_delta > 3:
                 addition_note = "Your team have been ignoring this keynote file warning for {} days.\nI will be happy if you fix it soon! Quack!".format(int(day_delta))
-                EnneadTab.NOTIFICATION.duck_pop(main_text = addition_note)
+                NOTIFICATION.duck_pop(main_text = addition_note)
             if day_delta > 10:
-                EnneadTab.EMAIL.email(receiver_email_list=["gayatri.desai@ennead.com"],
+                EMAIL.email(receiver_email_list=["gayatri.desai@ennead.com"],
                                     subject="Help!!!!!!",
                                     body="I need new pair of glass becasue I cannot see very well.\n\nThe keynote file is pointing to the shared L drive location, I have been warned for {} days but I cannot see the message well. Do you know some good optometrists?\n\nBest,\n{}".format(day_delta,
-                                                                                                                                                                                                                                                                                              EnneadTab.USER.get_user_name()))
+                                                                                                                                                                                                                                                                                              USER.get_user_name()))
 
         
     # if knote_table.RefersToExternalResourceReferences():
@@ -329,7 +328,7 @@ def warn_ignorance(doc, warning_cate):
     ignore_list = ["gayatri.desai",
                    "achi",
                    "scott.mackenzie"]
-    if EnneadTab.USER.get_user_name() in ignore_list:
+    if USER.get_user_name() in ignore_list:
         return 0
     
     
@@ -338,19 +337,19 @@ def warn_ignorance(doc, warning_cate):
     if not os.path.exists(record_file):
         record = dict()
     else:
-        record = EnneadTab.DATA_FILE.read_json_as_dict_in_shared_dump_folder(record_file, create_if_not_exist=True)
+        record = DATA_FILE.read_json_as_dict_in_shared_dump_folder(record_file, create_if_not_exist=True)
     
     import time
     if len(record.keys()) == 0:
         record[0] = {"timestamp":time.time(),
-                    "user":EnneadTab.USER.get_user_name()}
-        EnneadTab.DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
+                    "user":USER.get_user_name()}
+        DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
         return
     
     this_record_index = len(record.keys())
     record[this_record_index] = {"timestamp":time.time(),
-                                "user":EnneadTab.USER.get_user_name()}
-    EnneadTab.DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
+                                "user":USER.get_user_name()}
+    DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
     
     day_delta = (time.time() - record["0"].get("timestamp"))/86400 # there is 86400 secons in one day
     return int(day_delta)
@@ -358,7 +357,7 @@ def warn_ignorance(doc, warning_cate):
 def remove_ignorance(doc, warning_cate):
     record_file = "{}_{}.json".format(warning_cate,
                                       doc.Title)
-    file = EnneadTab.FOLDER.get_shared_dump_folder_file(record_file)
+    file = FOLDER.get_shared_dump_folder_file(record_file)
     if os.path.exists(file):
         os.remove(file)
 
@@ -383,14 +382,14 @@ def check_group_usage(doc):
         
         if group_type.Groups.Size == 0:
             count += 1
-            EnneadTab.NOTIFICATION.messenger(main_text = "Group type <{}> is defined but has no instances used in the project.\nConsider purging?".format(group_name)) 
+            NOTIFICATION.messenger(main_text = "Group type <{}> is defined but has no instances used in the project.\nConsider purging?".format(group_name)) 
             print ("\nFound group definition but not placed in project. GroupName: {}".format(group_name))
             continue
         
         sample_group = list(group_type.Groups)[0]
         if len(list(sample_group.GetMemberIds ())) == 1:
             count += 1
-            EnneadTab.NOTIFICATION.messenger(main_text = "Group type <{}> has only 1 element inside the group.\nThis is not the best use of the group.".format(group_name)) 
+            NOTIFICATION.messenger(main_text = "Group type <{}> has only 1 element inside the group.\nThis is not the best use of the group.".format(group_name)) 
             
             print ("\nFound group with only 1 elements.")
             print ("Sample Group: {}".format(output.linkify(sample_group.Id, title="Sample Group Instance")))
@@ -401,7 +400,7 @@ def check_group_usage(doc):
 
 ########## main code below ############
 
-@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     # this varaible is set to True only after    use sync and close all is run ealier. So if user open new docs, we shoudl resume default False,
     envvars.set_pyrevit_env_var("IS_AFTER_SYNC_WARNING_DISABLED", False)
@@ -415,8 +414,8 @@ def main():
         script.get_output().close()
         return
     else:
-        EnneadTab.SOUND.play_sound("sound_effect_popup_msg1.wav")
-        if EnneadTab.ENVIRONMENT.is_Revit_limited():
+        SOUND.play_sound("sound_effect_popup_msg1.wav")
+        if ENVIRONMENT.is_Revit_limited():
             return
         output = script.get_output()
         global killtime
@@ -433,7 +432,7 @@ def main():
         if doc.IsFamilyDocument:
             return
 
-        EnneadTab.REVIT.REVIT_HISTORY.record_warning(doc)
+        REVIT_HISTORY.record_warning(doc)
         log_time_sheet(doc)
         
 
@@ -469,11 +468,11 @@ def main():
     from EnneadTab import USER
     if not USER.is_enneadtab_developer():
         return
-    from EnneadTab.REVIT import REVIT_AUTO
+    from REVIT import REVIT_AUTO
     
 
     def my_func():
-        from EnneadTab.REVIT import REVIT_APPLICATION
+        from REVIT import REVIT_APPLICATION
         doc = REVIT_APPLICATION.get_doc()
         all_sheets = DB.FilteredElementCollector(doc).OfClass(DB.ViewSheet).ToElements()
         # print (len(all_sheets))

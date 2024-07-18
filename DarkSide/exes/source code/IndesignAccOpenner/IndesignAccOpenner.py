@@ -31,22 +31,11 @@ import time
 import threading
 import datetime
 
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+import _Exe_Util
 EXPIRATION_DATE = datetime.date(2025, 1, 1)
 
-def log_error(func):
-    def wrapper(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except Exception as e:
-            error_message = traceback.format_exc()
-            desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')  # Windows
-            error_file_path = os.path.join(desktop_path, "file_processor_error_log.txt")
-            
-            with open(error_file_path, "w") as error_file:
-                error_file.write(error_message)
-            
-            os.startfile(error_file_path)
-    return wrapper
 
 class FileProcessorApp:
     def __init__(self, root):
@@ -139,7 +128,7 @@ class FileProcessorApp:
         self.root.grid_columnconfigure(2, weight=1)
 
 
-    @log_error
+    @_Exe_Util.try_catch_error
     def rotate_logo(self, event):
         max_rotation = 20
         width = self.root.winfo_width()
@@ -150,7 +139,7 @@ class FileProcessorApp:
         self.logo_photo = ImageTk.PhotoImage(rotated_image)
         self.logo_label.configure(image=self.logo_photo)
 
-    @log_error
+    @_Exe_Util.try_catch_error
     def pick_file(self):
         today = datetime.date.today()
         if (EXPIRATION_DATE - today).days <= 0:
@@ -163,7 +152,7 @@ class FileProcessorApp:
             self.selected_file_label.config(text=f"Selected File: {os.path.basename(file)}")
             self.process_button.config(state=tk.NORMAL)
     
-    @log_error
+    @_Exe_Util.try_catch_error
     def process_file(self):
         original_file = self.selected_file
         if not original_file:
@@ -318,7 +307,7 @@ app.DoScript "{script_path}", 1246973031
         self.warning_frame.grid_remove()
         self.request_users_label.config(text="")
 
-@log_error
+@_Exe_Util.try_catch_error
 def main():
     root = tk.Tk()
     app = FileProcessorApp(root)

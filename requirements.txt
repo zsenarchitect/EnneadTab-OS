@@ -13,3 +13,4 @@ gtts
 pygame
 playsound
 PyMuPDF
+pyautogui

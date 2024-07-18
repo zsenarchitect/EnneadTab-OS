@@ -1,6 +1,8 @@
 import os
 import traceback
 import json
+import math
+
 ESOSYSTEM_FOLDER = "{}\Documents\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
 
 
@@ -41,8 +43,26 @@ def read_json_as_dict_in_dump_folder(file_name):
     
     # return empty dict if file not exist
     if not os.path.exists(filepath):
-        return False
+        return {}
     # reads it back
     with open(filepath,"r") as f:
       dict = json.load(f)
     return dict
+
+
+
+
+
+GLOBAL_SETTING_FILE = 'setting_{}.sexyDuck'.format(os.environ["USERPROFILE"].split("\\")[-1])
+
+def get_setting(key, defaule_value=None):
+    data = read_json_as_dict_in_dump_folder(GLOBAL_SETTING_FILE)
+    return data.get(key, defaule_value)
+
+
+
+
+
+
+
+

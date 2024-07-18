@@ -6,25 +6,13 @@ from PIL import Image, ImageTk
 import datetime
 import subprocess
 import traceback
-
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+import _Exe_Util
 # Set the expiration date
 EXPIRATION_DATE = datetime.datetime(2025, 1, 31)
 WARNING_DATE = EXPIRATION_DATE - datetime.timedelta(days=15)
 
-def log_error(func):
-    def wrapper(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except Exception as e:
-            error_message = traceback.format_exc()
-            desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')  # Windows
-            error_file_path = os.path.join(desktop_path, "file_processor_error_log.txt")
-            
-            with open(error_file_path, "w") as error_file:
-                error_file.write(error_message)
-            
-            messagebox.showerror("Error", f"An error occurred. Details have been saved to {error_file_path}")
-    return wrapper
 
 class FileProcessorApp:
     def __init__(self, root):
@@ -83,7 +71,7 @@ class FileProcessorApp:
         self.open_output_folder_button = tk.Button(self.root, text="Open Output Folder", command=self.open_output_folder, bg='#2e2e2e', fg='white', state=tk.DISABLED)
         self.open_output_folder_button.grid(row=5, column=0, columnspan=3, padx=10, pady=10)
 
-    @log_error
+    @_Exe_Util.try_catch_error
     def rotate_logo(self, event):
         max_rotation = 20
         width = self.root.winfo_width()
@@ -94,12 +82,12 @@ class FileProcessorApp:
         self.logo_photo = ImageTk.PhotoImage(rotated_image)
         self.logo_label.configure(image=self.logo_photo)
 
-    @log_error
+    @_Exe_Util.try_catch_error
     def pick_files(self):
         files = filedialog.askopenfilenames(filetypes=[("PDF and DWG files", "*.pdf *.dwg")])
         self.selected_files = self.root.tk.splitlist(files)
 
-    @log_error
+    @_Exe_Util.try_catch_error
     def pick_output_folder(self):
         folder = filedialog.askdirectory()
         if folder:
@@ -108,7 +96,7 @@ class FileProcessorApp:
             os.makedirs(self.output_folder, exist_ok=True)
             self.open_output_folder_button.config(state=tk.NORMAL)
 
-    @log_error
+    @_Exe_Util.try_catch_error
     def open_output_folder(self):
         if self.output_folder:
             if os.name == 'nt':  # Windows
@@ -116,7 +104,7 @@ class FileProcessorApp:
             elif os.name == 'posix':  # macOS, Linux
                 subprocess.call(['open', self.output_folder])
 
-    @log_error
+    @_Exe_Util.try_catch_error
     def process_files(self):
         if not self.selected_files or not self.output_folder:
             messagebox.showwarning("Warning", "Please select files and output folder.")

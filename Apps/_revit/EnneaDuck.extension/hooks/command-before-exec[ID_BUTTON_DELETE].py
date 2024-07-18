@@ -10,7 +10,7 @@ uidoc = UI.UIDocument(doc)
 uiapp = UI.UIApplication(doc.Application)
 # uiapp.PostCommand(args.CommandId)
 
-@EnneadTab.ERROR_HANDLE.try_catch_error_silently
+@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     should_cancel_1 = check_depedent_views()
     should_cancel_2 = check_rvt_link()

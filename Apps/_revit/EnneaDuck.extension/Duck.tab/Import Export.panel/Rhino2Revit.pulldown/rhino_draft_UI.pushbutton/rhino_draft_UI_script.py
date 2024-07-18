@@ -438,13 +438,7 @@ class RhinoDraft_UI(forms.WPFWindow):
         forms.WPFWindow.__init__(self, xaml_file_name)
         self.subtitle.Text = "A helper window that transfer draft content between Rhino and Revit. You might do any combination of lines, polylines, arcs and freeform nurbs for detail lines, area boundary lines, room seperation lines and edges of filled regions."
 
-        if ENVIRONMENT.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
-        else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
-        import os
-        if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+        logo_file = IMAGE.get_image_path_by_name("logo_vertical_light.png")
         self.set_image_source(self.logo_img, logo_file)
         self.set_image_source(self.rhino_button_icon_1, "drafting.png")
         self.set_image_source(self.rhino_button_icon_2, "drafting.png")

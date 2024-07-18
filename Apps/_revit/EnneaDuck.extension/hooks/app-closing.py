@@ -17,7 +17,7 @@ def play_closing_sound():
     file = "sound_effect_mario_game_over.wav"
     EnneadTab.SOUND.play_sound(file)
 
-@EnneadTab.ERROR_HANDLE.try_catch_error_silently
+@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     #general_annoucement()
 

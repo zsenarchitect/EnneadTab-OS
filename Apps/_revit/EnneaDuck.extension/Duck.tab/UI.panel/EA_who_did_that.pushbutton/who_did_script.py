@@ -21,7 +21,7 @@ from pyrevit import HOST_APP
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE, ENVIRONMENT
+from EnneadTab import ERROR_HANDLE, IMAGE
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
@@ -117,13 +117,7 @@ class who_did_that_ModelessForm(WPFWindow):
 
         self.Title = self.title_text.Text
 
-        if ENVIRONMENT.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
-        else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
-        import os
-        if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+        logo_file = IMAGE.get_image_path_by_name("logo_vertical_light.png")
         self.set_image_source(self.logo_img, logo_file)
         self.selection = None
 

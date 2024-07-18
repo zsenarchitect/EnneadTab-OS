@@ -401,7 +401,7 @@ def check_group_usage(doc):
 
 ########## main code below ############
 
-@EnneadTab.ERROR_HANDLE.try_catch_error_silently
+@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     # this varaible is set to True only after    use sync and close all is run ealier. So if user open new docs, we shoudl resume default False,
     envvars.set_pyrevit_env_var("IS_AFTER_SYNC_WARNING_DISABLED", False)

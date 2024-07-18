@@ -11,7 +11,7 @@ uiapp = UI.UIApplication(doc.Application)
 # uiapp.PostCommand(args.CommandId)
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error_silently
+@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
 
     import imp

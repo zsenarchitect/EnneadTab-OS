@@ -15,7 +15,7 @@ def check_is_template_folder():
     if r"L:\4b_Applied Computing\01_Revit\02_Template" in path or r"L:\4b_Applied Computing\01_Revit\03_Library" in path:
         EnneadTab.REVIT.REVIT_FORMS.notification(self_destruct = 5,main_text = "This family is currently saved in L drive\nRepath to your project folder to avoid affecting the original.", sub_text = path)
 
-@EnneadTab.ERROR_HANDLE.try_catch_error_silently
+@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     check_is_template_folder()
 

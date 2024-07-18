@@ -263,13 +263,7 @@ class EA_Printer_UI(WPFWindow):
         self.copy_folder_note_A.Text = "Folder you pick (example: I:/2135/2_Record/2022-09-30 50% DD)\n    -FileId\n       -PDFs\n         -A101_xx.pdf\n         -A102_xx.pdf\n       -DWGs\n         -A101_xx.dwg\n         -A102_xx.dwg"
         self.copy_folder_note_B.Text = "For example above, the final selection folder should say '2022-09-30 50% DD', not '2022-09-30 50% DD/FileId'"
         self.button_main.Content = "Setting Incomplete"
-        if ENVIRONMENT.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
-        else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
-        import os
-        if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+        logo_file = IMAGE.get_image_path_by_name("logo_vertical_light.png")
         self.set_image_source(self.logo_img, logo_file)
         self.set_image_source(self.update_icon, "update_icon.png")
         self.set_image_source(self.monitor_icon, "monitor_icon.png")

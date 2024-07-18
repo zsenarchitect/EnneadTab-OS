@@ -2,7 +2,7 @@
 from pyrevit import EXEC_PARAMS
 
 from EnneadTab.MODULE_HELPER import run_revit_script
-from EnneadTab.ERROR_HANDLE import try_catch_error_silently
+from EnneadTab.ERROR_HANDLE import try_catch_error(is_silent=True)
 
 
 def update_sync_time_record(doc):
@@ -16,7 +16,7 @@ def update_sync_time_record(doc):
 # this varaible is set to True only after    use sync and close all is run ealier. So if user open new docs, we shoudl resume default False,
 
 
-@try_catch_error_silently
+@try_catch_error(is_silent=True)
 def main():
 
     doc = EXEC_PARAMS.event_args.Document

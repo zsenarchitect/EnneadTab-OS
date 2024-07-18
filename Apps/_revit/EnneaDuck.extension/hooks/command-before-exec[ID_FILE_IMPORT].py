@@ -9,7 +9,7 @@ doc = args.ActiveDocument
 uiapp = UI.UIApplication(doc.Application)
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error_silently
+@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     # if not EnneadTab.USER.is_SZ():
     #     return

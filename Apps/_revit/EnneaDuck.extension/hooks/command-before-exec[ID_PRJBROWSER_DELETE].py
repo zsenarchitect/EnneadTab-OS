@@ -11,7 +11,7 @@ uiapp = UI.UIApplication(doc.Application)
 import os
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error_silently
+@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     import imp
     module_name = "command-before-exec[ID_BUTTON_DELETE]"

@@ -21,7 +21,7 @@ from Autodesk.Revit.Exceptions import InvalidOperationException
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER
+from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER, IMAGE
 from EnneadTab.FUN import EnneaDuck
 
 from pyrevit import script, forms
@@ -161,13 +161,8 @@ class main_setting_UI(forms.WPFWindow):
         xaml_file_name = 'EnneadTab_Setting_UI.xaml'
         forms.WPFWindow.__init__(self, xaml_file_name)
 
-        if ENVIRONMENT.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
-        else:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
-        import os
-        if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+        logo_file = IMAGE.get_image_path_by_name("logo_vertical_light.png")
+
         self.set_image_source(self.logo_img, logo_file)
         self.Height = 800
         """

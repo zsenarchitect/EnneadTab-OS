@@ -27,7 +27,8 @@ EXE_MAKER_FOLDER = os.path.join(EXE_FOLDER, "maker data")
 EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_FOLDER,"source code")
 TEMP_SPEC_FOLDER = os.path.join(EXE_FOLDER, "temp_specs")
 
-PYGAME_ALLOWS = ["Speaker.json"]
+PYGAME_ALLOWS = ["Speaker.json",
+                 "LastSyncMonitor.json"]
 
 
 

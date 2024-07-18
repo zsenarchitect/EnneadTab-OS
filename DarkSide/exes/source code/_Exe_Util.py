@@ -3,8 +3,8 @@ import traceback
 import json
 import math
 
-ESOSYSTEM_FOLDER = "{}\Documents\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
-
+ESOSYSTEM_FOLDER = "{}\\Documents\\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
+DUMP_FOLDER = "{}\\Dump".format(ESOSYSTEM_FOLDER)
 
 def try_catch_error(func):
 
@@ -32,11 +32,9 @@ def try_catch_error(func):
 
     return wrapper
 
-def get_dump_folder():
-    return "{}\Documents\EnneadTab Ecosystem\Dump".format(os.environ["USERPROFILE"])
 
 def get_file_in_dump_folder(file_name):
-    return "{}\{}".format(get_dump_folder(), file_name)
+    return "{}\\{}".format(DUMP_FOLDER, file_name)
 
 def read_json_as_dict_in_dump_folder(file_name):
     filepath = get_file_in_dump_folder(file_name)

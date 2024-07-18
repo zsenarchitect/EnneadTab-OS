@@ -13,8 +13,10 @@ class RepositoryUpdater:
         self.repo_url = repo_url
         self.extract_to = _Exe_Util.ESOSYSTEM_FOLDER
 
-        if not os.path.exists(self.extract_to):
-            os.makedirs(self.extract_to)
+        if not os.path.exists(_Exe_Util.ESOSYSTEM_FOLDER):
+            os.makedirs(_Exe_Util.ESOSYSTEM_FOLDER)
+        if not os.path.exists(_Exe_Util.DUMP_FOLDER):
+            os.makedirs(_Exe_Util.DUMP_FOLDER) 
             
         self.final_folder_name = self.extract_repo_name(repo_url)
         self.final_dir = os.path.join(self.extract_to, self.final_folder_name)

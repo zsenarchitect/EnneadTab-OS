@@ -55,6 +55,14 @@
         "tab": "Ennead+.menu",
         "tab_icon": null
     },
+    "Ennead+.menu\\tell_me_version.button\\tell_me_version_left.py": {
+        "script": "Ennead+.menu\\tell_me_version.button\\tell_me_version_left.py",
+        "icon": "Ennead+.menu\\tell_me_version.button\\icon.png",
+        "alias": "TellMeVersion",
+        "doc": "This button does TellMeVersion when left click",
+        "tab": "Ennead+.menu",
+        "tab_icon": null
+    },
     "Ennead+.menu\\youtube_playlist.button\\youtube_playlist_left.py": {
         "script": "Ennead+.menu\\youtube_playlist.button\\youtube_playlist_left.py",
         "icon": "Ennead+.menu\\youtube_playlist.button\\icon.png",

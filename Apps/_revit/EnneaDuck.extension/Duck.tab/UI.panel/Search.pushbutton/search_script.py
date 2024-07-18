@@ -29,7 +29,7 @@ from pyrevit import coreutils
 import pyrevit.extensions as py_extensions
 from pyrevit import HOST_APP
 
-
+import proDUCKtion # pyright: ignore 
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab import USER, ENVIRONMENT, SOUND, TIME, ERROR_HANDLE, FOLDER
@@ -134,7 +134,7 @@ class EA_search_UI(forms.WPFWindow):
     def __init__(self):
 
         self.pre_actions()
-        xaml_file_name = 'EA_search_UI_2.1.xaml'
+        xaml_file_name = 'EA_search_UI.xaml'
         try:
             forms.WPFWindow.__init__(self, xaml_file_name)
         except:

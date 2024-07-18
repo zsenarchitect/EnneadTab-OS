@@ -12,9 +12,9 @@ __tip__ = True
 from pyrevit import script #
 from pyrevit.revit import ErrorSwallower
 # from pyrevit import revit #
-import EA_UTILITY
 
 
+import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab.FUN import JOKES
 from EnneadTab import EXE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, ERROR_HANDLE, FOLDER

@@ -9,7 +9,7 @@ from pyrevit import forms, script
 from pyrevit import EXEC_PARAMS
 from pyrevit.coreutils import envvars
 from pyrevit.coreutils import ribbon
-import EA_UTILITY
+
 
 import EnneadTab
 

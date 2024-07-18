@@ -8,17 +8,17 @@ __title__ = "List\nDetail Items"
 
 
 import os
-from EnneadTab import NOTIFICATION
 # from pyrevit import forms #
 from pyrevit import script #
 
 
-
+import proDUCKtion # pyright: ignore 
+from EnneadTab import NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_VIEW, REVIT_FAMILY
 from Autodesk.Revit import DB # pyright: ignore
-from rpw.db import family 
+# from rpw.db import family 
 # from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()

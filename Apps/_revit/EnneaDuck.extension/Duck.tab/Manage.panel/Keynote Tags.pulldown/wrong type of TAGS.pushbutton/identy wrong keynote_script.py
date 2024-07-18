@@ -9,6 +9,8 @@ __title__ = "Identify Wrong Type\nOf KeynoteTAG"
 __tip__ = True
 from pyrevit import DB, revit, script
 
+
+import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
 uidoc = REVIT_APPLICATION.get_uidoc()

@@ -16,6 +16,8 @@ from pyrevit import script #
 import os
 import time
 
+
+import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
 from EnneadTab import USER, NOTIFICATION, DATA_CONVERSION, ENVIRONMENT, ERROR_HANDLE, FOLDER
 import traceback

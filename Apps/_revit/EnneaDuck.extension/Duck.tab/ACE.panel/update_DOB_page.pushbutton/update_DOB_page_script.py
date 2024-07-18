@@ -9,7 +9,7 @@ __title__ = "Update DOB\nPage Number"
 # from pyrevit import forms #
 from pyrevit import script #
 
-
+import proDUCKtion # pyright: ignore 
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 

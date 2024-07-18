@@ -8,6 +8,7 @@ __title__ = "Align V. Curtain Grid To Detail Lines/Grids(Plan)"
 __youtube__ = "https://youtu.be/iiAy-Gxl5ZU"
 __tip__ = True
 # from pyrevit import forms #
+import proDUCKtion # pyright: ignore 
 from EnneadTab import NOTIFICATION
 from pyrevit import script #
 

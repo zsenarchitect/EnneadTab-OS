@@ -1,5 +1,5 @@
 import time
-import EA_UTILITY
+
 
 from EnneadTab import NOTIFICATION
 from EnneadTab import FOLDER

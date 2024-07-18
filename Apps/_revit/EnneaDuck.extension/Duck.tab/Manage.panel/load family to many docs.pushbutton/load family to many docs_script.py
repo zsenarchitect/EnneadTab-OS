@@ -2,8 +2,9 @@ __doc__ = "Pick many families, and load them to many projects. You can:\n\t- 1 f
 __title__ = "Load Multiple Families\nTo Multiple Docs"
 __tip__ = True
 from pyrevit import forms, DB, UI, script
-import EA_UTILITY
 
+
+import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab import SOUND, ERROR_HANDLE
 

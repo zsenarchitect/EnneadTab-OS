@@ -9,7 +9,7 @@ https://pyrevit.readthedocs.io/en/latest/pyrevit/coreutils/envvars.html
 """
 from pyrevit import script
 from pyrevit import EXEC_PARAMS
-import EA_UTILITY
+
 import EnneadTab
 #from pyrevit.coreutils import appdata
 import pickle

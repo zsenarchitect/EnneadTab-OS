@@ -418,5 +418,8 @@
     "View.tab\\toggle_GFA.button\\toggle_GFA_left.py": "7a2c25ca-94cc-4cbf-a722-55902132f209",
     "View.tab\\toggle_GFA.button\\icon.pngtoggle_GFA_left": "7c13b273-cdeb-4c2b-886d-56d9aa0e6f04",
     "View.tab\\toggle_GFA.button\\toggle_GFA_right.py": "c923771e-5246-4f35-9149-7859154fc8ad",
-    "View.tab\\toggle_GFA.button\\icon.pngtoggle_GFA_right": "d52faed1-220d-4d3d-812e-d33a99722487"
+    "View.tab\\toggle_GFA.button\\icon.pngtoggle_GFA_right": "d52faed1-220d-4d3d-812e-d33a99722487",
+    "Ennead+.menu\\tell_me_version.button": "c27140dc-43cf-4fcb-8801-305c7e8dbf16",
+    "Ennead+.menu\\tell_me_version.button\\tell_me_version_left.py": "8f9a21cf-43dc-4224-8bcc-8de7ab6449aa",
+    "Ennead+.menu\\tell_me_version.button\\icon.pngtell_me_version_left": "f87ae61e-d61d-4c4b-941e-a8fdb9ad8129"
 }

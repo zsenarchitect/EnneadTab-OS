@@ -5,8 +5,9 @@ __tip__ = True
 from pyrevit import forms
 from pyrevit import script
 from EA_UTILITY import dialogue
-import EA_UTILITY
 
+
+import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_UNIT, REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
 from EnneadTab import NOTIFICATION 

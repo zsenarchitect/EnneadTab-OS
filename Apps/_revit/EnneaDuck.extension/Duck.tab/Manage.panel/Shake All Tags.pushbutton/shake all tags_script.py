@@ -3,6 +3,7 @@ from pyrevit import revit, DB
 from pyrevit import script
 from pyrevit import forms
 
+import proDUCKtion # pyright: ignore 
 from EnneadTab import ERROR_HANDLE
 
 __doc__ = 'Sometimes the tag will not update after updating the component info. This can be resolved by shifting the tags up and down to force them to update.\nThis tool moved all tags on the selected sheets back-and-forth by a tiny amount to force Revit to regenerate the tag and update the display. This makes sure the tags are all reading something.'

@@ -9,7 +9,7 @@ __youtube__ = "https://youtu.be/vBPvwEmu584"
 from pyrevit import forms #
 from pyrevit import script #
 # from pyrevit import revit #
-import EA_UTILITY
+
 
 from EnneadTab.REVIT import REVIT_FORMS
 from EnneadTab import ERROR_HANDLE

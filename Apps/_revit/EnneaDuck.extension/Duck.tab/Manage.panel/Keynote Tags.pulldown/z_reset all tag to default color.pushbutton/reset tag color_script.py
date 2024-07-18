@@ -1,8 +1,9 @@
 __doc__ = "Reset all keynote tag local override color to default. It might got its color from the other checking type button."
 __title__ = "KeynoteTAG Reset Color"
 __tip__ = True
-import EA_UTILITY
 
+
+import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
 from pyrevit import forms, DB, revit, script

@@ -18,11 +18,13 @@ from pyrevit.forms import WPFWindow
 from pyrevit import script, forms
 
 import traceback
-import EnneadTab
-from EnneadTab.FUN import JOKES
 import System
 import time
 import difflib
+
+import proDUCKtion # pyright: ignore 
+import EnneadTab
+from EnneadTab.FUN import JOKES
 uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
 doc = EnneadTab.REVIT.REVIT_APPLICATION.get_doc()
 __persistentengine__ = True

@@ -18,6 +18,7 @@ from pyrevit import script #
 # from pyrevit import _HostApplication
 from pyrevit import HOST_APP
 
+import proDUCKtion # pyright: ignore 
 
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import ENVIRONMENT, ERROR_HANDLE

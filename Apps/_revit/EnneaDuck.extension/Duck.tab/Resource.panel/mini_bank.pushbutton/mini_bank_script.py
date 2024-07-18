@@ -12,6 +12,8 @@ from pyrevit.forms import WPFWindow
 # from pyrevit import forms #
 from pyrevit import script #
 
+
+import proDUCKtion # pyright: ignore 
 import EnneadTab
 import traceback
 

@@ -3,7 +3,7 @@ __title__ = "Sync All Open Proj and Close"
 __post_link__ = "https://ei.ennead.com/_layouts/15/Updates/ViewPost.aspx?ItemID=28744"
 __tip__ = True
 
-
+import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
 from pyrevit import script

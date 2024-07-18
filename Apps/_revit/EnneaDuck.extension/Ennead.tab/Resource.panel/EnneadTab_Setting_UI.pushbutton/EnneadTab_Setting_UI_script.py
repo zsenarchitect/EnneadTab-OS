@@ -18,6 +18,10 @@ from Autodesk.Revit import DB # pyright: ignore
 from Autodesk.Revit.UI import IExternalEventHandler, ExternalEvent
 from Autodesk.Revit.Exceptions import InvalidOperationException
 
+import os
+import System
+import traceback
+
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_APPLICATION
@@ -33,8 +37,6 @@ except:
 
 
 
-import System
-import traceback
 
 
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -188,7 +190,7 @@ class main_setting_UI(forms.WPFWindow):
     def load_setting(self):
 
         setting_file = FOLDER.get_EA_dump_folder_file('revit_ui_setting.json')
-        if not FOLDER.is_path_exist(setting_file):
+        if not os.path.exists(setting_file):
             DATA_FILE.set_data(dict(), setting_file)
             self.checkbox_tab_tailor.IsChecked = True
             self.checkbox_tab_library.IsChecked = True

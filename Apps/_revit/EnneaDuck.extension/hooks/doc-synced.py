@@ -7,6 +7,7 @@ doc = EXEC_PARAMS.event_args.Document
 
 
 from EnneadTab import ERROR_HANDLE, SOUND, LOG
+from EnneadTab.REVIT import REVIT_SYNC
 __title__ = "Doc Synced Hook"
 
 
@@ -19,6 +20,8 @@ def play_success_sound():
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 def doc_synced():
     play_success_sound()
+
+    REVIT_SYNC.update_last_sync_data_file(doc)
     
 
 

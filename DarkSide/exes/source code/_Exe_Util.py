@@ -1,7 +1,7 @@
 import os
 import traceback
 import json
-import math
+
 
 ESOSYSTEM_FOLDER = "{}\\Documents\\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
 DUMP_FOLDER = "{}\\Dump".format(ESOSYSTEM_FOLDER)

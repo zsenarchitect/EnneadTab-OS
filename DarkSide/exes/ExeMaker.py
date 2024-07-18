@@ -8,6 +8,12 @@ import time
 import re
 
 
+# print("Python executable:", sys.executable)
+# print("Python version:", sys.version)
+# print("sys.path:", sys.path)
+# print("Environment variables:", os.environ)
+
+
 # this will disable all pygame talk
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "True"
 
@@ -147,6 +153,7 @@ def json_to_command(json_file):
     # command.append("--version-file")
     # command.append(version_file_path)
 
+    
     command.append("--log-level=WARN")  # disable output in terminal
     command.append(final_path)
 
@@ -216,8 +223,9 @@ def recompile_exe(single_exe = None):
 
 if __name__ == "__main__":
     # recompile_exe()
-    # recompile_exe(single_exe="Revit_Export_Renamer.json")
+    recompile_exe(single_exe="RevitExportRenamer.json")
     # recompile_exe(single_exe="Speaker.json")
     # recompile_exe(single_exe="IndesignAccOpenner.json")
     # recompile_exe(single_exe="Pdf2OrderedJpgs.json")
-    recompile_exe(single_exe="RevitIniDeployer.json")
+    # recompile_exe(single_exe="RevitIniDeployer.json")
+    # recompile_exe(single_exe="LastSyncMonitor.json")

@@ -92,7 +92,7 @@ def pop_up_window(doc):
         
 
 
-@EnneadTab.ERROR_HANDLE.try_pass
+@EnneadTab.ERROR_HANDLE.try_catch_error(is_pass=True)
 def basic_info(doc):
     if EA_UTILITY.get_user_name() in ["achiHXDF8"]:
         return

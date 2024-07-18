@@ -1,14 +1,14 @@
 from pyrevit import EXEC_PARAMS
 
-from EnneadTab import VERSION_CONTROL, MODULE_HELPER, ERROR_HANDLE
+from EnneadTab import VERSION_CONTROL, ERROR_HANDLE
+from EnneadTab.REVIT import REVIT_SYNC
 import random
 
 doc = EXEC_PARAMS.event_args.Document
 
 def remove_last_sync_data_file(doc):
-    script_subfolder = 'Ennead.tab\\Utility.panel\\exe_1.stack\\LAST_SYNC_MONITOR.pushbutton\\update_last_sync_datafile_script.py'
-    func_name = 'remove_last_sync_data_file'
-    MODULE_HELPER.run_revit_script(script_subfolder, func_name,doc)
+    REVIT_SYNC.remove_last_sync_data_file(doc)
+
 
 
 def update_tab():

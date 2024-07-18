@@ -60,7 +60,7 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
         self.draw_text("- Manually kill a monitor progress from EnneadTab.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
         self.draw_text("Footnote *: This interval can be set in your EnneadTab setting.", self.FONT_BODY, self.TEXT_COLOR_FADE)
         self.draw_text("Footnote**: Unless you have killed the talkie lady:)", self.FONT_BODY, self.TEXT_COLOR_FADE)
-        self.POINTER_Y += 10
+        self.POINTER_Y += 20
         frame_upper_left_H = self.POINTER_Y
         bad_docs = ""
 
@@ -68,19 +68,19 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
             text = "{} >>> {}".format(key, self.format_seconds(now - value))
             if now - value > check_interval * 60:
                 self.draw_text(text, self.FONT_BODY, self.TEXT_COLOR_WARNING)
-                if now - value > yell_interval * 60:
-                    self.draw_text(text, self.FONT_BODY, self.TEXT_COLOR_BIG_WARNING)
-                    if len(bad_docs) == 0:
-                        bad_docs += "{}".format(key)
-                    else:
-                        bad_docs += ", and {}".format(key)
+            elif now - value > yell_interval * 60:
+                self.draw_text(text, self.FONT_BODY, self.TEXT_COLOR_BIG_WARNING)
+                if len(bad_docs) == 0:
+                    bad_docs += "{}".format(key)
+                else:
+                    bad_docs += ", and {}".format(key)
 
-                    if int(now - value) % (60 * 5) == 0:
-                        pass
+                if int(now - value) % (60 * 5) == 0:
+                    pass
 
             else:
                 self.draw_text(text, self.FONT_BODY, self.TEXT_COLOR)
-            self.POINTER_Y += 20
+
 
         # draw soft corner box
         pygame.draw.rect(self.screen, 

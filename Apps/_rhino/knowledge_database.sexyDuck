@@ -2,7 +2,7 @@
     "Ennead+.menu\\create_new_button.button\\new_button_left.py": {
         "script": "Ennead+.menu\\create_new_button.button\\new_button_left.py",
         "icon": null,
-        "alias": "Make A New Button",
+        "alias": "MakeANewButton",
         "doc": null,
         "tab": "Ennead+.menu",
         "tab_icon": null

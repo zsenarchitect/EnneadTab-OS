@@ -1,5 +1,5 @@
 
-__title__ = "Make A New Button"
+__title__ = "MakeANewButton"
 import os
 from ui import UI
 """
@@ -17,7 +17,7 @@ def new_button():
 
     try:
         import rhinoscriptsyntax as rs
-        print ("At the moment, plase make new button from the IDE. Later can make a compatible version that work with ironpython")
+        os.startfile(__file__)
     except:
         tab_folders = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
         UI(tab_folders)

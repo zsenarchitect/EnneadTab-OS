@@ -2570,7 +2570,7 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\get_latest.button\\get_latest_left
     </macro_item>
     <macro_item guid="2cb518cd-2945-4822-a945-161c26d64f27" bitmap_id="f06be28c-e8dc-4a69-8027-19f0a1dff930">
       <text>
-        <locale_1033>Make A New Button</locale_1033>
+        <locale_1033>MakeANewButton</locale_1033>
       </text>
       <tooltip>
         <locale_1033>N/A</locale_1033>
@@ -2579,12 +2579,12 @@ MODULE_HELPER.run_Rhino_button('Ennead+.menu\\get_latest.button\\get_latest_left
         <locale_1033>N/A</locale_1033>
       </help_text>
       <button_text>
-        <locale_1033>Make A New Button</locale_1033>
+        <locale_1033>MakeANewButton</locale_1033>
       </button_text>
       <menu_text>
-        <locale_1033>Make A New Button</locale_1033>
+        <locale_1033>MakeANewButton</locale_1033>
       </menu_text>
-      <script>EA_Make A New Button</script>
+      <script>EA_MakeANewButton</script>
     </macro_item>
     <macro_item guid="c38b0873-3a17-4158-aadb-6aeef2a221f7" bitmap_id="8f1888a4-bad2-42f2-a182-a1d5c5663793">
       <text>

@@ -35,7 +35,7 @@ from pyrevit import script, forms
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import DOCUMENTATION, EXE, DATA_FILE, USER, ENVIRONMENT, ERROR_HANDLE, LOG, FOLDER
+from EnneadTab import DOCUMENTATION, EXE, DATA_FILE, USER, IMAGE, ERROR_HANDLE, LOG, FOLDER
 
 
 import traceback

@@ -25,7 +25,7 @@ from pyrevit import HOST_APP
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT, SOUND, USER, ERROR_HANDLE
+from EnneadTab import IMAGE, SOUND, USER, ERROR_HANDLE
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()

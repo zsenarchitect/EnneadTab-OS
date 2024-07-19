@@ -30,7 +30,7 @@ from pyrevit import HOST_APP
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import EXE, NOTIFICATION, ENVIRONMENT, ERROR_HANDLE, FOLDER
+from EnneadTab import EXE, NOTIFICATION, IMAGE, ERROR_HANDLE, FOLDER
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()

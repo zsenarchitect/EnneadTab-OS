@@ -10,12 +10,14 @@ https://pyrevit.readthedocs.io/en/latest/pyrevit/coreutils/envvars.html
 from pyrevit import script
 from pyrevit import EXEC_PARAMS
 
-import EnneadTab
+
 #from pyrevit.coreutils import appdata
 import pickle
 from pyrevit.coreutils import envvars
 import time
-import traceback
+
+from EnneadTab import ERROR_HANDLE, SOUND, NOTIFICATION, TIME
+from EnneadTab.REVIT import REVIT_FORMS
 
 def get_subc(category):
     temp = []
@@ -31,9 +33,9 @@ def difference_list(L1, L2):
     temp.extend( list(set(L2) - set(L1)) )
     return temp
 
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
-    EnneadTab.SOUND.play_sound("sound_effect_mario_coin.wav")
+    SOUND.play_sound("sound_effect_mario_coin.wav")
 
 
     doc = EXEC_PARAMS.event_args.Document
@@ -47,7 +49,7 @@ def main():
 
     start_time = envvars.get_pyrevit_env_var("FAMILY_LOAD_BEGIN")
     time_pass = time.time() - start_time
-    EnneadTab.NOTIFICATION.toast(main_text = "Family load finished!!", sub_text = "<{}> Uses {} secs = {} mins".format(EXEC_PARAMS.event_args.FamilyName, time_pass, time_pass/60))
+    NOTIFICATION.messenger("Family load finished!!\n<{}> Uses {}".format(EXEC_PARAMS.event_args.FamilyName, TIME.get_readable_time(time_pass)))
 
     """
     lines = ["Family loaded in {} mins".format(int(time_pass/60)),
@@ -89,10 +91,10 @@ def main():
         display_text += "{0} \n".format(item)
     sub_display_text = "It happens when new sub-category is created intentionally, but also when you load a family:\n\n--from other project;\n--from manufacture website;\n--with a typo to an existing sub-category name.\n\nIf this is unintensional, please take notes and use Ideate 'StyleManager' tool to manage object style later."
 
-    EnneadTab.REVIT.REVIT_FORMS.notification(main_text = display_text,
-                                            sub_text = sub_display_text,
-                                            self_destruct = 5,
-                                            window_width = 650)
+    REVIT_FORMS.notification(main_text = display_text,
+                            sub_text = sub_display_text,
+                            self_destruct = 5,
+                            window_width = 650)
 
 #############  main    ###########
 if __name__ == "__main__":

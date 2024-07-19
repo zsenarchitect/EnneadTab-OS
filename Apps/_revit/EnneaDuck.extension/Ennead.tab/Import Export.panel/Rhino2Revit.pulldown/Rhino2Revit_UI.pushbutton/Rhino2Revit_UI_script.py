@@ -14,7 +14,7 @@ from pyrevit.revit import ErrorSwallower
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import DATA_FILE, NOTIFICATION, ENVIRONMENT, ERROR_HANDLE, FOLDER
+from EnneadTab import DATA_FILE, NOTIFICATION, IMAGE, ERROR_HANDLE, FOLDER
 
 from Autodesk.Revit import DB # pyright: ignore  
 import clr

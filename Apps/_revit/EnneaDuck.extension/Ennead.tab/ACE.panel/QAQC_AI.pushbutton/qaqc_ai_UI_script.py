@@ -25,7 +25,7 @@ from pyrevit.forms import WPFWindow
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_FORMS
 from EnneadTab.FUN import JOKES
-from EnneadTab import EXE, DATA_FILE, SOUND, TIME, ERROR_HANDLE, FOLDER, ENVIRONMENT
+from EnneadTab import EXE, DATA_FILE, SOUND, TIME, ERROR_HANDLE, FOLDER, IMAGE
 import traceback
 
 from Autodesk.Revit import DB # pyright: ignore 

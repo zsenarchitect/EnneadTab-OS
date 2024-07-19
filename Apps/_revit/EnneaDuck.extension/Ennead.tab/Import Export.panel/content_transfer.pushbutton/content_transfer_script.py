@@ -15,7 +15,7 @@ from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
+from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 

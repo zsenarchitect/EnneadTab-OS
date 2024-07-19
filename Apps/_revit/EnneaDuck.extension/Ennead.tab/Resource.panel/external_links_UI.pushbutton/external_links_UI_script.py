@@ -34,7 +34,7 @@ from pyrevit import script, forms
 
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_SYNC
 from EnneadTab import DOCUMENTATION, EXE, DATA_FILE, USER, IMAGE, ERROR_HANDLE, LOG, FOLDER
 
 
@@ -135,10 +135,10 @@ class ExternalLinks_UI(forms.WPFWindow):
 
     @ERROR_HANDLE.try_catch_error()
     def how_to_rhino_click(self, sender, args):
-        script.open_url("https://ei.ennead.com/toolbox/BIMManual_01/20.1.9_EnneadTab%20For%20Rhino.aspx")
+        script.open_url('https://github.com/zsenarchitect/EA_Dist/blob/main/Installation/How%20To%20Install.md')
     @ERROR_HANDLE.try_catch_error()
     def how_to_revit_click(self, sender, args):
-        script.open_url("https://ei.ennead.com/toolbox/BIMManual_01/44.09_EnneadTab%20for%20Revit.aspx")
+        script.open_url('https://github.com/zsenarchitect/EA_Dist/blob/main/Installation/How%20To%20Install.md')
     @ERROR_HANDLE.try_catch_error()
     def how_to_cad_click(self, sender, args):
         path = r"file:\\L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Library Docs\CAD LISP\CAD Command list.txt"
@@ -258,13 +258,7 @@ class ExternalLinks_UI(forms.WPFWindow):
 
     @ERROR_HANDLE.try_catch_error()
     def force_kill_sync_record_click(self, sender, args):
-        import imp
-        full_file_path = r'C:\Users\szhang\github\EnneadTab-OS\Apps\_revit\EnneaDuck.extension\Ennead.tab\Utility.panel\exe_1.stack\LAST_SYNC_MONITOR.pushbutton\update_last_sync_datafile_script.py'
-        if not USER.IS_DEVELOPER:
-            full_file_path = FOLDER.remap_filepath_to_folder(full_file_path)
-        ref_module = imp.load_source("update_last_sync_datafile_script", full_file_path)
-
-        ref_module.kill_record()
+        REVIT_SYNC.kill_record()
 
     @ERROR_HANDLE.try_catch_error()
     def open_all_documentation_click(self, sender, args):

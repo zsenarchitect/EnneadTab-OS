@@ -290,34 +290,3 @@ def show_ListSelectionDialog(options,
         print ("Dialog did not run")
         return None
 
-
-    
-def test():
-    docLayers = rs.LayerNames()
-
-    to_do = []
-    i = 0
-    while i < len(docLayers):
-        to_do.append(docLayers[i:i+1])
-        i += 1
-    #show_ListSelectionDialog(to_do)
-    print (docLayers)
-    import traceback
-    try:
-        res = show_ListSelectionDialog(docLayers,
-                                        title = "new title",
-                                        message = "test message",
-                                        multi_select = False)
-        print (res)
-    except Exception as e:
-
-        error =  traceback.format_exc()
-        print (error)
-
-        NOTIFICATION.messenger(main_text = "error")
-        filepath = r"C:\Users\szhang\Desktop\error.txt"
-        import DATA_FILE
-        DATA_FILE.save_list_to_txt([error], filepath, end_with_new_line = False)
-
-if __name__ == "__main__":
-    test()

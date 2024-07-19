@@ -22,7 +22,13 @@ working plan:
 > # How to help testing:
 > There are many rewrite on the core moudle, so new system is not stable...yet.
 > In the order of piority, please help test those functions periodically.
-> Instalation/Update > Notification/Report > Hooks > Popular Tools > Tailor Tools > Less Popular Tools > Fun Tools
+> 1. Instalation/Update
+> 2. Notification/Report
+> 3. Hooks 
+> 4. Popular Tools 
+> 5. Tailor Tools 
+> 6. Less Popular Tools 
+> 7. Fun Tools
 
 
 # What computer to use for Sen Zhang

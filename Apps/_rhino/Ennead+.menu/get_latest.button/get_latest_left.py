@@ -45,6 +45,7 @@ def get_latest(is_silient = False):
     RHINO_ALIAS.register_alias_set()
     add_search_path()
     add_startup_script()
+    update_GH_folders()
 
 
     if not is_silient:
@@ -61,6 +62,13 @@ def add_startup_script():
     rvb_satrtup_modifier_script = "{}\\StartupEnable.rvb".format(os.path.dirname(__file__))
     Rhino.RhinoApp.RunScript("-LoadScript " + rvb_satrtup_modifier_script, True)
  
+def update_GH_folders():
+    pass
+
+    # check local component folder, compare to EA GH requirement list
+    # if not exist, copy over.
+    
+
 
 
 if __name__ == "__main__":

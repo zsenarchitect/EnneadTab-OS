@@ -23,10 +23,11 @@ import time
 import difflib
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE
-from EnneadTab.FUN import JOKES
-uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
-doc = EnneadTab.REVIT.REVIT_APPLICATION.get_doc()
+from EnneadTab import ERROR_HANDLE, EXE, IMAGE, ENVIRONMENT, NOTIFICATION, DATA_FILE, FOLDER, SOUND
+from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_FORMS
+
+uidoc = REVIT_APPLICATION.get_uidoc()
+doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
 
@@ -80,7 +81,7 @@ def translate_contents(data, para_name):
         sheet.LookupParameter(para_name).Set(item.chinese_name)
         success_count += 1
     t.Commit()
-    EnneadTab.REVIT.REVIT_FORMS.notification(main_text = "Approved translation added to sheets.\nYou may add other sheets or exit the window.",
+    REVIT_FORMS.notification(main_text = "Approved translation added to sheets.\nYou may add other sheets or exit the window.",
                                             sub_text = "{} translation added/modified.\n{} sheet skipped due to existing translation matching approved version, or tranlation parameter locked by template.".format(success_count, failed_count))
 
 
@@ -177,7 +178,7 @@ class AI_translate_ModelessForm(WPFWindow):
 
         self.Title = self.title_text.Text
 
-        self.set_image_source(self.logo_img, "{}\logo_vertical_light.png".format(EnneadTab.ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT))
+        self.set_image_source(self.logo_img, "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT))
         self.translation_para_name.Text = "MC_$Translate"
         self.radial_bt_do_sheets.IsChecked = True
         self.mode = "Sheets"
@@ -188,7 +189,7 @@ class AI_translate_ModelessForm(WPFWindow):
 
 
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error()
+    @ERROR_HANDLE.try_catch_error()
     def pick_views_sheets_Click(self, sender, e):
 
         if not self.is_translation_para_valid():
@@ -284,7 +285,7 @@ class AI_translate_ModelessForm(WPFWindow):
 
 
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error()
+    @ERROR_HANDLE.try_catch_error()
     def translate_views_sheets_Click(self, sender, e):
         # This Raise() method launch a signal to Revit to tell him you want to do something in the API context
         """dummy"""
@@ -310,7 +311,7 @@ class AI_translate_ModelessForm(WPFWindow):
 
         if len(lookup_map) == 0:
             self.debug_textbox.Text = "There is nothing to translate."
-            EnneadTab.REVIT.REVIT_FORMS.notification(main_text = "There is nothing to translate.", sub_text = "Everything is approved.")
+            REVIT_FORMS.notification(main_text = "There is nothing to translate.", sub_text = "Everything is approved.")
             return
 
         result = self.fire_AI_translator(new_prompt, len(lookup_map))
@@ -374,10 +375,10 @@ class AI_translate_ModelessForm(WPFWindow):
         self.data_grid.ItemsSource = temp
         if failed_count:
             self.debug_textbox.Text = "It seems some of the items are not translated, you can ask to translate again.\nNote: It might be helpful to limit the amount of translation by approving as you iterate."
-            EnneadTab.REVIT.REVIT_FORMS.notification(main_text = "Translation success = {}\nTranslation skipped = {}\nDon't worry.".format(success_count, failed_count), sub_text = "You can ask to translate again.\nThis time, it might be helpful to limit the amount of translation by approving the ones you like so far as you iterate. This put less pressure on the AI.")
+            REVIT_FORMS.notification(main_text = "Translation success = {}\nTranslation skipped = {}\nDon't worry.".format(success_count, failed_count), sub_text = "You can ask to translate again.\nThis time, it might be helpful to limit the amount of translation by approving the ones you like so far as you iterate. This put less pressure on the AI.")
 
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error()
+    @ERROR_HANDLE.try_catch_error()
     def is_translation_para_valid(self):
         para_name = self.translation_para_name.Text
 
@@ -391,12 +392,12 @@ class AI_translate_ModelessForm(WPFWindow):
 
 
         if not element.LookupParameter(para_name):
-            EnneadTab.REVIT.REVIT_FORMS.notification(main_text = "Cannot find parameter with this name.",
+            REVIT_FORMS.notification(main_text = "Cannot find parameter with this name.",
                                                     sub_text = "Are you sure <{}> if a valid parameter for sheets? You can modify what is used to store translation in the lower-right textbox".format(para_name))
             return False
         return True
 
-    #@EnneadTab.ERROR_HANDLE.try_catch_error()
+    #@ERROR_HANDLE.try_catch_error()
     def apply_translation_Click(self, sender, e):
         para_name = self.translation_para_name.Text
 
@@ -416,11 +417,11 @@ class AI_translate_ModelessForm(WPFWindow):
 
     def open_recent_Click(self, sender, e):
         if not hasattr(self, "recent_translation"):
-            EnneadTab.NOTIFICATION.messenger(main_text = "No recent translation found.")
+            NOTIFICATION.messenger(main_text = "No recent translation found.")
             return
         
-        filepath = EnneadTab.FOLDER.get_EA_dump_folder_file("EA Recent Translation.txt")
-        EnneadTab.DATA_FILE.save_list_to_txt(self.recent_translation, filepath, end_with_new_line = False, use_encode = False)
+        filepath = FOLDER.get_EA_dump_folder_file("EA Recent Translation.txt")
+        DATA_FILE.save_list_to_txt(self.recent_translation, filepath, end_with_new_line = False, use_encode = False)
         import os
         os.startfile(filepath)
 
@@ -443,7 +444,7 @@ class AI_translate_ModelessForm(WPFWindow):
             temp.append( DataGridObj(item.id, item.chinese_name, approve))
         self.data_grid.ItemsSource = temp
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error()
+    @ERROR_HANDLE.try_catch_error()
     def change_UI_translate_mode(self, sender, e):
 
 
@@ -467,7 +468,7 @@ class AI_translate_ModelessForm(WPFWindow):
         self.bt_apply_translation.Content = "  Applied Approved Translation To {}  ".format(self.mode)
         self.data_grid.ItemsSource = []
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error()
+    @ERROR_HANDLE.try_catch_error()
     def change_UI_sample_category(self, sender, e):
         if self.is_include_sample_systems.IsChecked:
             self.is_include_sample_plans.IsChecked = True
@@ -499,7 +500,7 @@ class AI_translate_ModelessForm(WPFWindow):
         #print "mouse down"
         sender.DragMove()
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error()
+    @ERROR_HANDLE.try_catch_error()
     def selective_user_sample_Click(self, sender, e):
         # This Raise() method launch a signal to Revit to tell him you want to do something in the API context
         samples = self.get_sample_translation_dict_from_user(use_predefined = False)
@@ -528,14 +529,14 @@ class AI_translate_ModelessForm(WPFWindow):
 
     def get_api_key(self):
 
-        file_path = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\EA_API_KEY.json"
+        file_path = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\EA_API_KEY.sexyDuck"
 
 
 
-        data = EnneadTab.DATA_FILE.read_json_as_dict(file_path)
+        data = DATA_FILE.read_json_as_dict(file_path)
         return data["translator_api_key"]
 
-    #@EnneadTab.ERROR_HANDLE.try_catch_error()
+    #@ERROR_HANDLE.try_catch_error()
     def fire_AI_translator(self, new_prompt, request_count):
 
         session_token = self.get_api_key()
@@ -545,10 +546,10 @@ class AI_translate_ModelessForm(WPFWindow):
         human_name = "You: "
         #print human_name
 
-        file_name = "EA_TRANSLATE.json"
+        file_name = "EA_TRANSLATE.sexyDuck"
         #print file_name
 
-        dump_folder = EnneadTab.FOLDER.get_EA_local_dump_folder()
+        dump_folder = FOLDER.get_EA_local_dump_folder()
 
         #print dump_folder
         file_path = "{}\{}".format(dump_folder, file_name)
@@ -586,7 +587,7 @@ class AI_translate_ModelessForm(WPFWindow):
 
 
 
-        EnneadTab.DATA_FILE.set_data(data, file_path)
+        DATA_FILE.set_data(data, file_path)
 
         run_exe()
 
@@ -607,19 +608,19 @@ class AI_translate_ModelessForm(WPFWindow):
 
             if attempt >= max_attempt:
                 self.debug_textbox.Text = "Cannot get response from the EnneadTab Server."
-                EnneadTab.REVIT.REVIT_FORMS.notification(main_text = "AI translation times out. The number of translation exceed allowed number.", sub_text = "Current translation request = {}\n\nConsider reducing the number of things to translate.".format(request_count))
+                REVIT_FORMS.notification(main_text = "AI translation times out. The number of translation exceed allowed number.", sub_text = "Current translation request = {}\n\nConsider reducing the number of things to translate.".format(request_count))
                 break
             attempt += 1
             time.sleep(1)
             try:
-                record = EnneadTab.DATA_FILE.read_json_as_dict(file_path)
+                record = DATA_FILE.read_json_as_dict(file_path)
             except Exception as e:
                 print (e)
 
             if record["direction"] == "output":
                 #print record["conversation_history"].split(record["key_prompt"])[-1]
                 #print "Figured out!!!!!!!!!!!!!!"
-                EnneadTab.SOUND.play_sound("sound_effect_popup_msg3.wav")
+                SOUND.play_sound("sound_effect_popup_msg3.wav")
                 self.debug_textbox.Text = "Translation finished. AI thinking time = {}s".format(attempt)
                 #print "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
                 #print record["conversation_history"]
@@ -778,15 +779,9 @@ class AI_translate_ModelessForm(WPFWindow):
         samples["xxx"] = u"xxx"
 
 def run_exe():
-    exe_location = r"L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\Project Settings\Exe\EA_TRANSLATOR\EA_TRANSLATOR.exe - Shortcut"
 
+    EXE.try_open_app("EA_TRANSLATOR")
 
-    try:
-        EnneadTab.EXE.open_file_in_default_application(exe_location)
-
-    except Exception as e:
-        print ("$$$$$$$$$$$$$")
-        print (e)
 
 
 

@@ -34,7 +34,7 @@ class Solution:
         dest_file = FOLDER.get_EA_dump_folder_file("Family Tree of {}.html".format(doc.Title))
         output.save_contents(dest_file)
         output.close()
-        EXE.open_file_in_default_application(dest_file)
+        EXE.try_open_app(dest_file)
 
 
         for family_doc in self.docs_to_be_closed:

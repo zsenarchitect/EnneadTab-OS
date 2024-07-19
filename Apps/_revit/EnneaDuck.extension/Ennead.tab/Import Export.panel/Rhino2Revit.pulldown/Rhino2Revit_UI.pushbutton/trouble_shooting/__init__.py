@@ -65,7 +65,7 @@ def show_instruction(output):
     output.center()
     temp_file = FOLDER.get_EA_dump_folder_file("Rhino2Revit_instruction.html")
     output.save_contents(temp_file)
-    EXE.open_file_in_default_application(temp_file)
+    EXE.try_open_app(temp_file)
 
 
 # print "Final note: use Revit-->Rhino-->Revit workflow and reconstruct your geometry with much more care, limit the amount of external geometry because even after conversion their parametric ability is in no way native Revit element. This is true for both EnneadTab converter and Rhino. Inside. It will relate to the Revit file performance."

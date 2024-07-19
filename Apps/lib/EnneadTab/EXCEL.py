@@ -220,7 +220,7 @@ def save_data_to_excel(data, filepath, worksheet = "EnneadTab", open_after = Tru
         return
 
     if open_after:
-        EXE.open_file_in_default_application(filepath)
+        EXE.try_open_app(filepath)
 
 
 def unit_test():
@@ -284,7 +284,7 @@ def check_formula(excel, worksheet, highlight_formula = True):
 
 
     if highlight_formula:
-        EXE.open_file_in_default_application(excel)
+        EXE.try_open_app(excel)
         
 
 #############

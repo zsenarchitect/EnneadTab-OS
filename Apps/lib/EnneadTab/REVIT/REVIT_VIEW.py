@@ -161,7 +161,7 @@ def show_in_convas_graphic(graphic_datas, doc = DOC, view = None):
              }
 
     # should not use shared data record because the index is locally created persession.
-    with DATA_FILE.update_data("CANVAS_TEMP_GRAPHIC_DATA_{}.json".format(doc.Title), is_local=True) as temp_graphic_data:
+    with DATA_FILE.update_data("CANVAS_TEMP_GRAPHIC_DATA_{}.sexyDuck".format(doc.Title), is_local=True) as temp_graphic_data:
         temp_graphic_data.update(temp_data)
 
 

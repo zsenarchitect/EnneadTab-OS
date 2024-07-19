@@ -120,7 +120,7 @@ class WarningHistory:
         else:
             self.doc = doc
             self.doc_name = doc.Title
-        self.file = "REVIT_WARNING_HISTORY_{}.json".format(self.doc_name)
+        self.file = "REVIT_WARNING_HISTORY_{}.sexyDuck".format(self.doc_name)
 
         
         if os.path.exists(FOLDER.get_shared_dump_folder_file(self.file)):

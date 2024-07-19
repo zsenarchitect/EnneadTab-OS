@@ -575,7 +575,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
         data["direction"] = "IN"
 
         DATA_FILE.set_data(
-            data, "AI_RENDER_DATA_{}.json".format(TIME.get_formatted_current_time()))
+            data, "AI_RENDER_DATA_{}.sexyDuck".format(TIME.get_formatted_current_time()))
 
         NOTIFICATION.messenger(main_text="Render Job Enqueued!")
 
@@ -604,25 +604,7 @@ def view2render():
         if is_testing_new_engine:
             return
 
-    version = "EA_AI_CONVERTER_0.2.4"
-    # exe_location = "L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exe\\{}\\{}.exe".format(
-    #     version, version)  # - Shortcut
-    # print(exe_location)
-
-    # res = rs.ListBox(["No", "Yes"], "Are you operating from SH office?")
-    # if res == "Yes":
-    #     version += "_SH"
-
-    exe_folder = "L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exe"
-    exe_path = exe_folder + "\\" + version + "\\" + version + ".exe"
-    exe_path += " - Shortcut"
-    # print exe_path
-
-    try:
-        EXE.open_file_in_default_application(exe_path)
-    except:
-        NOTIFICATION.messenger(main_text = "For SH team, the only way to access Stable\nDiffusion model is to use remoted NY computer.")
-
+    EXE.try_open_app("EA_AI_CONVERTER")
 
 
 

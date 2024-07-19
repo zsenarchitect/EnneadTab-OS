@@ -1,4 +1,4 @@
-JSON_KEY = "MESSENGER.json"
+JSON_KEY = "MESSENGER.sexyDuck"
 
 import traceback
 import os

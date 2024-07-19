@@ -46,7 +46,7 @@ def messenger(main_text,
     data["image"] = image
     data["x_offset"] = x_offset
 
-    DATA_FILE.set_data(data, "MESSENGER.json")
+    DATA_FILE.set_data(data, "MESSENGER.sexyDuck")
 
 
 
@@ -64,7 +64,7 @@ def duck_pop(main_text = None):
     data["duck_image"] = IMAGE.get_one_image_path_by_prefix("duck_pop")
     data["explosion_gif"] = IMAGE.get_image_path_by_name("duck_explosion.gif")
     data["audio"] = SOUND.get_one_audio_path_by_prefix("duck")
-    DATA_FILE.set_data(data, "DUCK_POP.json") 
+    DATA_FILE.set_data(data, "DUCK_POP.sexyDuck") 
 
     EXE.try_open_app("DuckPop", legacy_name="Duck_Pop")
   

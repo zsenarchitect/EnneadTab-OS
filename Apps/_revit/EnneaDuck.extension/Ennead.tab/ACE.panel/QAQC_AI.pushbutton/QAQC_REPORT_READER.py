@@ -104,7 +104,7 @@ class Solution:
         return response
 
     def get_data_file(self):
-        return self.get_file_in_dump_folder("QAQC_REPORT_DATA.json")
+        return self.get_file_in_dump_folder("QAQC_REPORT_DATA.sexyDuck")
 
     def get_file_in_dump_folder(self, file):
 
@@ -114,7 +114,7 @@ class Solution:
         file = self.get_data_file()
 
         file = shutil.copyfile(
-            file, self.get_file_in_dump_folder("QAQC_READER.json"))
+            file, self.get_file_in_dump_folder("QAQC_READER.sexyDuck"))
         with open(file, 'r') as f:
             # get dictionary from json file
             data = json.load(f)

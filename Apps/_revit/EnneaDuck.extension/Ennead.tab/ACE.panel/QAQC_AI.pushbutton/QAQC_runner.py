@@ -526,7 +526,7 @@ class QAQC:
         if save_html:
             file = FOLDER.get_EA_dump_folder_file("QAQC_REPORT_LOCAL.html")
             script.get_output().save_contents(file)
-            EXE.open_file_in_default_application(file)
+            EXE.try_open_app(file)
 
 
 

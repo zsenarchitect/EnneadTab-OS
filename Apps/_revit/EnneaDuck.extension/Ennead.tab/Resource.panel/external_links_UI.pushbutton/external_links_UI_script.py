@@ -203,7 +203,7 @@ class ExternalLinks_UI(forms.WPFWindow):
             return
 
         filepath = folder + "\\" + selected_opt
-        EXE.open_file_in_default_application(filepath)
+        EXE.try_open_app(filepath)
 
     @ERROR_HANDLE.try_catch_error()
     def jianbiaoku_click(self, sender, args):
@@ -240,7 +240,7 @@ class ExternalLinks_UI(forms.WPFWindow):
         # to-do: make also a selection list so user can decide which folder to delete cahe or restore recent crash local
         
         guid = self.textbox_cache_decoder.Text
-        filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.json"
+        filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.sexyDuck"
         data = DATA_FILE.read_json_as_dict(filepath)
         note = "This Guid has not been recored in EnneadTab DataBase."
         for doc_title, value in data.items():

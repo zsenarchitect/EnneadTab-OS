@@ -354,7 +354,7 @@ class dwg_manage_ModelessForm(WPFWindow):
             self.debug_textbox.Text = "This DWG file path does not exist."
             NOTIFICATION.messenger("This dwg path is not valid.")
             return
-        EXE.open_file_in_default_application(obj.file_path)
+        EXE.try_open_app(obj.file_path)
 
 
 

@@ -6,7 +6,7 @@ if ENVIRONMENT.IS_RHINO_ENVIRONMENT:
     import rhinoscriptsyntax as rs
 
 import os
-KNOWLEDGE_FILE = "{}\\knowledge_database.json".format(ENVIRONMENT.RHINO_FOLDER)
+KNOWLEDGE_FILE = "{}\\knowledge_database.sexyDuck".format(ENVIRONMENT.RHINO_FOLDER)
 
 
 def remove_invalid_alias():

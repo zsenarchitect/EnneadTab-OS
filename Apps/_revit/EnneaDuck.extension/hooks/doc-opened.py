@@ -254,7 +254,7 @@ def register_silient_open(doc):
 
     
 
-    filepath = "{}\doc_opener.json".format(ENVIRONMENT.MISC_FOLDER)
+    filepath = "{}\doc_opener.sexyDuck".format(ENVIRONMENT.MISC_FOLDER)
 
     try:
         data = DATA_FILE.read_json_file_safely(filepath)
@@ -324,7 +324,7 @@ def warn_ignorance(doc, warning_cate):
         return 0
     
     
-    record_file = "{}_{}.json".format(warning_cate,
+    record_file = "{}_{}.sexyDuck".format(warning_cate,
                                       doc.Title)
     if not os.path.exists(record_file):
         record = dict()
@@ -347,7 +347,7 @@ def warn_ignorance(doc, warning_cate):
     return int(day_delta)
 
 def remove_ignorance(doc, warning_cate):
-    record_file = "{}_{}.json".format(warning_cate,
+    record_file = "{}_{}.sexyDuck".format(warning_cate,
                                       doc.Title)
     file = FOLDER.get_shared_dump_folder_file(record_file)
     if os.path.exists(file):

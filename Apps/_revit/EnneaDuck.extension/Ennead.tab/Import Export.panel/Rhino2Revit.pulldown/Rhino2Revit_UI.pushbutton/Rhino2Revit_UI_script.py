@@ -86,7 +86,7 @@ class Rhino2Revit_UI(forms.WPFWindow):
                 self.button_convert.BorderBrush = System.Windows.Media.Brushes.Black
                 self.button_convert.BorderThickness = System.Windows.Thickness(
                     1)
-                # NOTIFICATION.toast(main_text = "Not all object style is assigned")
+                # NOTIFICATION.messenger(main_text = "Not all object style is assigned")
                 self.button_convert.Content = "ObjectStyle Test Not Passed"
                 # self.button_convert.Width = 300
                 self.button_convert.IsEnabled = False
@@ -129,7 +129,7 @@ class Rhino2Revit_UI(forms.WPFWindow):
                 self.DWG_convert(item)
 
             time_span = time.time() - start_time
-            NOTIFICATION.toast(main_text="{} import finished!!".format(item.display_name),
+            NOTIFICATION.messenger(main_text="{} import finished!!".format(item.display_name),
                                          sub_text="Import used {} seconds = {} mins".format(time_span, time_span/60))
         t.Commit()
         tool_time_span = time.time() - tool_start_time
@@ -516,7 +516,7 @@ def clean_import_object_style(existing_OSTs):
 @ERROR_HANDLE.try_catch_error()
 def main():
     if not doc.IsFamilyDocument:
-        NOTIFICATION.toast(sub_text="For effective subCategory",
+        NOTIFICATION.messenger(sub_text="For effective subCategory",
                                      main_text="Must be in a family environment")
         REVIT_FORMS.notification(main_text="Must be in a family environment for subCategory to be useful.",
                                                  sub_text="DirectShape is never a good solution, so dont do it in project environment.",

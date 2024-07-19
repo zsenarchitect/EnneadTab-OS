@@ -26,7 +26,7 @@ def try_catch_error(func):
                 "Wrapper func for EA Log -- Error: " + str(e))
             update_error_log(traceback.format_exc())
             try:
-                data_file = "{}\{}.json".format(get_user_root_folder(), get_current_user_name())
+                data_file = "{}\{}.sexyDuck".format(get_user_root_folder(), get_current_user_name())
                 EMAIL.email(receiver_email_list=["szhang@ennead.com"],
                                       subject="EnneadTab Auto Email: EnneadLog feels sick",
                                       body=traceback.format_exc(),
@@ -48,7 +48,7 @@ def create_user_data(name):
     data["time_stamp"] = [time.time()]
     data["Autodesk_ID"] = USER.get_autodesk_user_name()
     data["recent_projects"] = []
-    file = "{}\{}.json".format(get_user_root_folder(), name)
+    file = "{}\{}.sexyDuck".format(get_user_root_folder(), name)
     # try:
     DATA_FILE.set_data(data, file)
     return data
@@ -66,7 +66,7 @@ def force_clear_user(target_user_names = []):
         
 def clear_user_data():
     
-    file = "{}\{}.json".format(get_user_root_folder(), get_current_user_name())
+    file = "{}\{}.sexyDuck".format(get_user_root_folder(), get_current_user_name())
     # try:
     if FOLDER.is_path_exist(file):
         os.remove(file)
@@ -78,7 +78,7 @@ def get_all_user_datas():
 
 
 def get_user_name_from_meta_file(file):
-    name = FOLDER.get_file_name_from_path(file).split(".json")[0]
+    name = FOLDER.get_file_name_from_path(file).split(".sexyDuck")[0]
     return name
 
 
@@ -99,11 +99,11 @@ def get_all_user_meta_files():
     if not os.path.exists(folder):
         return []
     file_names = FOLDER.get_filenames_in_folder(folder)
-    if "Error_Log.json" in file_names:
-        file_names.remove("Error_Log.json")
+    if "Error_Log.sexyDuck" in file_names:
+        file_names.remove("Error_Log.sexyDuck")
 
-    if "SH_tester_account.json" in file_names:
-        file_names.remove("SH_tester_account.json")
+    if "SH_tester_account.sexyDuck" in file_names:
+        file_names.remove("SH_tester_account.sexyDuck")
     # print (file_names)
     return file_names
 
@@ -426,7 +426,7 @@ def get_user_root_folder():
     folder = FOLDER.secure_folder(folder)
     try:
         res = DATA_FILE.set_data(
-            dict(), folder + "\\SH_tester_account.json")
+            dict(), folder + "\\SH_tester_account.sexyDuck")
         if not res:
             folder = FOLDER.get_EA_local_dump_folder()
     except:
@@ -449,7 +449,7 @@ def is_money_negative(user_name=get_current_user_name()):
         folder = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc"
         image = "LOG_BANKRUPT.png"
 
-        NOTIFICATION.toast(main_text="Woahaha! You don't have enough EA Coins...",
+        NOTIFICATION.messenger(main_text="Woahaha! You don't have enough EA Coins...",
                                      sub_text="Current Balance = {} EA Coins".format(
                                          get_current_money()),
                                      icon="{}\{}".format(folder, image),
@@ -480,7 +480,7 @@ def log_money_change_toast(title, message, gain_money=True):
     else:
         image = "LOG_TOAST_MONEY_LOST.png"
 
-    NOTIFICATION.toast(main_text=title,
+    NOTIFICATION.messenger(main_text=title,
                                  sub_text=message,
                                  icon="{}\{}".format(folder, image),
                                  app_name="Current Balance = ${} @EnneadTab Mini Bank".format(
@@ -679,13 +679,13 @@ def update_error_log(error, user_name=get_current_user_name()):
 
 def get_data_from_error_log():
     data = DATA_FILE.read_json_as_dict(
-        r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Users\Error_Log.json")
+        r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Users\Error_Log.sexyDuck")
     return data
 
 
 def set_data_to_error_loge(data):
     DATA_FILE.set_data(
-        data, r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Users\Error_Log.json")
+        data, r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Users\Error_Log.sexyDuck")
 
 
 def is_recently_recorded(tool_used, search_length=5):

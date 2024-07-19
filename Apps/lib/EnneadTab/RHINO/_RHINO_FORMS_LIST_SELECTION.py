@@ -234,7 +234,7 @@ class ListSelectionDialog(REF_CLASS):
         #print len(list(self.lb.SelectedItems))
         #print len(list(self.lb.SelectedRows))
         if len(list(self.lb.SelectedItems)) == 0:
-            NOTIFICATION.toast(main_text = "Need to select at least something")
+            NOTIFICATION.messenger(main_text = "Need to select at least something")
             return
         self.Close(True)
         self.RunScript()
@@ -244,7 +244,7 @@ class ListSelectionDialog(REF_CLASS):
     def btn_select_all_Clicked(self, sender, e):
         # close window after double click action. Otherwise, run with error
         self.lb.SelectAll()
-        NOTIFICATION.toast(main_text = "{} items slected".format(len(self.SearchedScriptList)))
+        NOTIFICATION.messenger(main_text = "{} items slected".format(len(self.SearchedScriptList)))
 
 
     # event handler handling clicking on the 'cancel' button

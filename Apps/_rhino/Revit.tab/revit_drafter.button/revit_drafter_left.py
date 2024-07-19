@@ -100,7 +100,7 @@ def revit_drafter():
     transfer_dwg = r"{}\{}".format(FOLDER.get_EA_local_dump_folder() , "EA_TRANSFER_DRAFT_BACKGROUND.dwg")
 
     # import and bundle layer
-    file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.json")
+    file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.sexyDuck")
     setting = DATA_FILE.read_json_as_dict(file)
     if not setting:
         NOTIFICATION.messenger(main_text = "No setting file found, please check your revit side.")

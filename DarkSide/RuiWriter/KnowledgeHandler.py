@@ -7,7 +7,7 @@ import os
 from TabHandler import TabHandler
 
 
-KNOWLEDGE_FILE = "{}\\Apps\\_rhino\\knowledge_database.json".format(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+KNOWLEDGE_FILE = "{}\\Apps\\_rhino\\knowledge_database.sexyDuck".format(os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 assert os.path.exists(KNOWLEDGE_FILE), "knowledge data file <{}> does not exist".format(KNOWLEDGE_FILE)
 

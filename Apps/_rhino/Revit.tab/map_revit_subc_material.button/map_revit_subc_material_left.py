@@ -21,7 +21,7 @@ def get_layer_with_keyword(keyword):
 @ERROR_HANDLE.try_catch_error()
 def map_revit_subc_material():
     rs.EnableRedraw(False)
-    data = DATA_FILE.get_data("SUBC_MATERIAL_TABLE.json")
+    data = DATA_FILE.get_data("SUBC_MATERIAL_TABLE.sexyDuck")
     print(data)
     if not data:
         NOTIFICATION.messenger(main_text="There are no material data exported from Revit. \nUse the \"Export SubCategory Material Table\" button in \nEnneadTab for Revit to export the data first",

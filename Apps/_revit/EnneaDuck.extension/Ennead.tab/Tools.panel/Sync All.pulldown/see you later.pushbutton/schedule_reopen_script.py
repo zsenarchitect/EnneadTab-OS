@@ -29,7 +29,7 @@ def main():
     docs = [doc for doc in docs if not doc.IsLinked]
     docs = [doc.Title for doc in docs if not doc.IsFamilyDocument]
 
-    data_file = "EA_SCHEDULE_OPENER.json"
+    data_file = "EA_SCHEDULE_OPENER.sexyDuck"
 
     data = DATA_FILE.get_data(data_file)
         
@@ -73,11 +73,11 @@ def main():
     
     
     exe = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Exe\SCHEDULE_OPENER_0.2\SCHEDULE_OPENER.EXE"
-    EXE.open_file_in_default_application(exe)
+    EXE.try_open_app(exe)
     
     if USER.get_user_name() in ["paula.gronda"]:
         auto_clicker_exe = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Exe\GENERAL_AUTO_CLICKER\GENERAL_AUTO_CLICKER.exe"
-        EXE.open_file_in_default_application(auto_clicker_exe)
+        EXE.try_open_app(auto_clicker_exe)
     
     REVIT_APPLICATION.sync_and_close()
     

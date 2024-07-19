@@ -209,7 +209,7 @@ def main():
         
          
         if life_count % (1 * FPS) == 0:
-            data_file = "EA_SCHEDULE_OPENER.json"
+            data_file = "EA_SCHEDULE_OPENER.sexyDuck"
             data = DATA_FILE.get_data(data_file)
         if data:
             res = display_data(data)
@@ -270,4 +270,4 @@ if __name__ == "__main__":
         exe_folder = os.path.abspath( os.path.dirname( __file__ ) )
         with open(r"{}\error_log.txt".format(exe_folder), "w") as f:
             f.write(error)
-            EXE.open_file_in_default_application(r"{}\error_log.txt".format(exe_folder))
+            EXE.try_open_app(r"{}\error_log.txt".format(exe_folder))

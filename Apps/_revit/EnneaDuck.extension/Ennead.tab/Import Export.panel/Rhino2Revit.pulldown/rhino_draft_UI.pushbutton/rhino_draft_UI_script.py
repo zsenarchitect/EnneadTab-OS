@@ -343,7 +343,7 @@ def transfer_in_draft(rhino_unit, is_grouping):
 
 
     # get dump data
-    file_path = FOLDER.get_filepath_in_special_folder_in_EA_setting("Local Copy Dump", "EA_DRAFTING_TRANSFER.json")
+    file_path = FOLDER.get_filepath_in_special_folder_in_EA_setting("Local Copy Dump", "EA_DRAFTING_TRANSFER.sexyDuck")
     datas = DATA_FILE.read_json_as_dict(file_path)
     if not datas:
         NOTIFICATION.messenger ("There is no data saved. Have you exported from the Rhino?")
@@ -370,7 +370,7 @@ def transfer_in_draft(rhino_unit, is_grouping):
 
 
 
-    NOTIFICATION.toast(main_text = "Draft content created!")
+    NOTIFICATION.messenger(main_text = "Draft content created!")
     
    
     SOUND.play_sound("sound_effect_popup_msg1.wav")
@@ -597,8 +597,8 @@ class RhinoDraft_UI(forms.WPFWindow):
             NOTIFICATION.duck_pop(main_text = "..Or your previous export for rhino of same view is not closed.")
             return
         
-        EXE.open_file_in_default_application(final_file)
-        NOTIFICATION.toast(main_text = "New empty Rhino is starting...")
+        EXE.try_open_app(final_file)
+        NOTIFICATION.messenger(main_text = "New empty Rhino is starting...")
 
     def save_export_setting(self):
         line_style_names = REVIT_SELECTION.get_all_linestyles(doc)
@@ -608,7 +608,7 @@ class RhinoDraft_UI(forms.WPFWindow):
         OUT["filled_region_type_names"] = filled_region_type_names
         OUT["revit_unit"] = self.revit_unit
         OUT["final_file"] = self.final_file
-        file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.json")
+        file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.sexyDuck")
         DATA_FILE.set_data(OUT, file)
 
 
@@ -623,7 +623,7 @@ class RhinoDraft_UI(forms.WPFWindow):
         elif self.revit_unit in ["inches, feet & inches", "inches"]:
             rhino_unit = "Inches"
         else:
-            NOTIFICATION.toast(main_text = " bad unit, talk to SZ")
+            NOTIFICATION.messenger(main_text = " bad unit, talk to SZ")
             return
 
 

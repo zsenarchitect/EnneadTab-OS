@@ -33,8 +33,8 @@ EXE_MAKER_FOLDER = os.path.join(EXE_FOLDER, "maker data")
 EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_FOLDER,"source code")
 TEMP_SPEC_FOLDER = os.path.join(EXE_FOLDER, "temp_specs")
 
-PYGAME_ALLOWS = ["Speaker.json",
-                 "LastSyncMonitor.json"]
+PYGAME_ALLOWS = ["Speaker.sexyDuck",
+                 "LastSyncMonitor.sexyDuck"]
 
 
 
@@ -209,7 +209,7 @@ def recompile_exe(single_exe = None):
     for file in os.listdir(EXE_MAKER_FOLDER):
         if single_exe and single_exe != file:
             continue
-        if file.endswith(".json"):
+        if file.endswith(".sexyDuck"):
             print("\033[94m{}\033[00m".format(file))
             make_exe(os.path.join(EXE_MAKER_FOLDER,file))
             print ("\n")
@@ -223,9 +223,9 @@ def recompile_exe(single_exe = None):
 
 if __name__ == "__main__":
     # recompile_exe()
-    # recompile_exe(single_exe="RevitExportRenamer.json")
-    # recompile_exe(single_exe="Speaker.json")
-    # recompile_exe(single_exe="IndesignAccOpenner.json")
-    # recompile_exe(single_exe="Pdf2OrderedJpgs.json")
-    # recompile_exe(single_exe="RevitIniDeployer.json")
-    recompile_exe(single_exe="LastSyncMonitor.json")
+    # recompile_exe(single_exe="RevitExportRenamer.sexyDuck")
+    # recompile_exe(single_exe="Speaker.sexyDuck")
+    # recompile_exe(single_exe="IndesignAccOpenner.sexyDuck")
+    # recompile_exe(single_exe="Pdf2OrderedJpgs.sexyDuck")
+    # recompile_exe(single_exe="RevitIniDeployer.sexyDuck")
+    recompile_exe(single_exe="LastSyncMonitor.sexyDuck")

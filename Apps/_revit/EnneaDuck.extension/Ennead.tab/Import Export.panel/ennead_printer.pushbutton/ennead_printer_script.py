@@ -212,13 +212,13 @@ class EA_Printer_UI(WPFWindow):
 
 
         # important data setup
-        setting_file = "EA_PRINTER_SETTING.json"
+        setting_file = "EA_PRINTER_SETTING.sexyDuck"
         self.setting_file_path = "{}\{}".format(EA_UTILITY.get_EA_local_dump_folder(), setting_file)
         self.output_folder = "{}\EnneadTab Exporter".format(EA_UTILITY.get_user_folder())
         EA_UTILITY.secure_folder(self.output_folder)
         self.record_folder = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exporter_Record".format(ENVIRONMENT.HOSTER_FOLDER)
         try:
-            DATA_FILE.set_data(dict(), self.record_folder + "\\SH_Access_test.json")
+            DATA_FILE.set_data(dict(), self.record_folder + "\\SH_Access_test.sexyDuck")
         except:
             self.record_folder = FOLDER.get_EA_local_dump_folder()
 
@@ -1310,7 +1310,7 @@ class EA_Printer_UI(WPFWindow):
                                         sub_text = self.feature_sum_note)
         """
         file_path = script.get_bundle_file("fix bluebeam setting.pdf")
-        EA_UTILITY.open_file_in_default_application(file_path)
+        EA_UTILITY.try_open_app(file_path)
         output.show()
         output.print_md( "open your **bluebeam administrator**(not the bluebeam viewer)")
         print("on the printer tab, \n\t-disable 'prompt for file name'\n\t-disable 'open in viewer\n\t-Set default output folder as ('User/Documents') in 'folder option'\n\nShould look like this below.")
@@ -1381,12 +1381,12 @@ class EA_Printer_UI(WPFWindow):
             return
 
         file = "{}\{}".format(self.output_folder, sel)
-        EA_UTILITY.open_file_in_default_application(file)
+        EA_UTILITY.try_open_app(file)
 
 
     def show_sample_marker_Clicked(self, sender, args):
         filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Published\ENNEAD.extension\lib\MARKER.txt"
-        EXE.open_file_in_default_application(filepath)
+        EXE.try_open_app(filepath)
         
         
     def generate_issue_Clicked(self, sender, args):
@@ -1500,13 +1500,13 @@ class EA_Printer_UI(WPFWindow):
 
     def get_time_estimate_from_record(self, doc):
         record_path = self.get_record_path_by_doc(doc)
-        if EA_UTILITY.is_file_exist_in_folder(self.central_doc_name(doc) + ".json", self.record_folder):
+        if EA_UTILITY.is_file_exist_in_folder(self.central_doc_name(doc) + ".sexyDuck", self.record_folder):
             return EA_UTILITY.read_json_as_dict(record_path)
         return dict()
 
 
     def get_record_path_by_doc(self, doc):
-        return "{}\{}.json".format(self.record_folder, self.central_doc_name(doc))
+        return "{}\{}.sexyDuck".format(self.record_folder, self.central_doc_name(doc))
 
 
     def mouse_down_main_panel(self, sender, args):
@@ -1537,7 +1537,7 @@ def ennead_printer():
         error_file = "{}\error.txt".format(EA_UTILITY.get_user_folder())
         with open(error_file, "w") as f:
             f.write(traceback.format_exc())
-        EA_UTILITY.open_file_in_default_application(error_file)
+        EA_UTILITY.try_open_app(error_file)
         EA_UTILITY.show_toast(title = "Send the output window to Sen Zhang", message = "Oops..Something is wrong.")
         output.print_md( "##Print send the below screenshot to Sen Zhang##")
         print("\n\n\n\n")

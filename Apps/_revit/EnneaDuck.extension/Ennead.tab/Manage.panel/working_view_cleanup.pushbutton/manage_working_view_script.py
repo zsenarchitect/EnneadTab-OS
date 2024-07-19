@@ -464,7 +464,7 @@ class manage_working_view_ModelessForm(WPFWindow):
         print ("view to Jpg takes {} seconds".format( time_end - time_start))
 
         #add_to_log(file_name + ".jpg", time_end - time_start)
-        NOTIFICATION.toast(app_name = "EnneadTab Exporter",
+        NOTIFICATION.messenger(app_name = "EnneadTab Exporter",
                                 main_text = "[{}.jpg] saved.".format(view.Name))
 
         """clean jpg name"""

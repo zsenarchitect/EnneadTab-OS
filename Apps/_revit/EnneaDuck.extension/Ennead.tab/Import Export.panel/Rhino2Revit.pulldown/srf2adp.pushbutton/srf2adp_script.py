@@ -119,7 +119,7 @@ if __name__ == "__main__":
     solution = Solution()
     T = DB.TransactionGroup(doc, __title__)
     T.Start()
-    file = FOLDER.get_EA_dump_folder_file("SRF2ADP_DATA.json")
+    file = FOLDER.get_EA_dump_folder_file("SRF2ADP_DATA.sexyDuck")
     data = DATA_FILE.read_json_as_dict(file)
     index = 1
     for brep_name, brep_data in data.items():

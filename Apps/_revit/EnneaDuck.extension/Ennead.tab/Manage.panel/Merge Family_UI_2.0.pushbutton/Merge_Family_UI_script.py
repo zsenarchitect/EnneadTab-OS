@@ -116,7 +116,7 @@ def merge_action(window):
     solution.cleanup_type()
 
 
-    NOTIFICATION.toast(sub_text = "",
+    NOTIFICATION.messenger(sub_text = "",
                                 main_text = "Family Merge Finished!")
 
 
@@ -702,7 +702,7 @@ class MergeFamily_UI(forms.WPFWindow):
 
         instances = get_all_instance_of_type(type, self.is_current_view_only)
         if len(instances) == 0:
-            NOTIFICATION.toast(main_text = "Found no elements of this type.", force_toast = True)
+            NOTIFICATION.messenger(main_text = "Found no elements of this type.", force_toast = True)
             return
         random.shuffle(instances)
         instance = instances[0]

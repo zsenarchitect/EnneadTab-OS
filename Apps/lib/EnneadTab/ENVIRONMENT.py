@@ -27,7 +27,7 @@ REVIT_LIBRARY_TAB = os.path.join(REVIT_PRIMARY_EXTENSION, "Ennead Library.tab")
 REVIT_TAILOR_TAB = os.path.join(REVIT_PRIMARY_EXTENSION, "Ennead Tailor.tab")
 
 DB_FOLDER = "L:\\4b_Applied Computing\\EnneadTab-DB"
-SHAERD_DUMP_FOLDER = DB_FOLDER + "\\Dump"
+SHAERD_DUMP_FOLDER = DB_FOLDER + "\\Shared Data Dump"
 
 
 LIB_FOLDER = os.path.join(APP_FOLDER, "lib")

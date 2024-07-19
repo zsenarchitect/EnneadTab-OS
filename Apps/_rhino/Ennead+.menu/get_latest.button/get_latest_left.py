@@ -1,6 +1,6 @@
-import rhinoscriptsyntax as rs
 import os
 import sys
+import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
 
 
@@ -23,7 +23,7 @@ def add_search_path():
 
 
 add_search_path()
-
+print ("\n".join(sys.path))
 
 
 
@@ -32,7 +32,6 @@ __title__ = "GetLatest"
 __doc__ = "Get the lastest version of EnneadTab"
 __FONDATION__ = True
 from EnneadTab import ERROR_HANDLE
-reload(EnneadTab) # pyright: ignore
 from EnneadTab import VERSION_CONTROL, NOTIFICATION, LOG,ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_RUI, RHINO_ALIAS
 

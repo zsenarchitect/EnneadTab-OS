@@ -20,7 +20,7 @@ doc = REVIT_APPLICATION.get_doc()
             
 @ERROR_HANDLE.try_catch_error()
 def generic_healthcare_tool(doc, show_log):
-    if not USER.is_SZ():
+    if not USER.IS_DEVELOPER:
         return
     
     note = """TO-DO:

@@ -21,7 +21,7 @@ from Autodesk.Revit import DB # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
 
 def ChatGPT():
-    #C:\Users\szhang\github\EnneadTab-for-Revit\ENNEAD.extension\Ennead.tab\Utility.panel\exe_2.stack\chatGPT.pushbutton\chatGPT_script.py
+    #C:\Users\szhang\github\EnneadTab-OS\Apps\_revit\EnneaDuck.extension\Ennead.tab\Utility.panel\exe_2.stack\chatGPT.pushbutton\chatGPT_script.py
     module_path = "{}\ENNEAD.extension\Ennead.tab\Utility.panel\exe_2.stack\chatGPT.pushbutton\chatGPT_script.py".format(ENVIRONMENT.get_EnneadTab_For_Revit_root())
     func_name = "main"
     MODULE_HELPER.run_func_in_module(module_path, func_name)

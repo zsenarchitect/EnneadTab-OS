@@ -223,9 +223,9 @@ def recompile_exe(single_exe = None):
 
 if __name__ == "__main__":
     # recompile_exe()
-    recompile_exe(single_exe="RevitExportRenamer.json")
+    # recompile_exe(single_exe="RevitExportRenamer.json")
     # recompile_exe(single_exe="Speaker.json")
     # recompile_exe(single_exe="IndesignAccOpenner.json")
     # recompile_exe(single_exe="Pdf2OrderedJpgs.json")
     # recompile_exe(single_exe="RevitIniDeployer.json")
-    # recompile_exe(single_exe="LastSyncMonitor.json")
+    recompile_exe(single_exe="LastSyncMonitor.json")

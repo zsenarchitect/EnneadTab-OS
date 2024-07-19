@@ -123,7 +123,7 @@ class Solution:
         selection = [doc.GetElement(x) for x in uidoc.Selection.GetElementIds()]
         if len(selection) < 1:
             """
-            if not EA_UTILITY.is_SZ():
+            if not EA_UTILITY.IS_DEVELOPER:
                 dialogue(main_text = "No fmaily instance selected.")
                 return
             """

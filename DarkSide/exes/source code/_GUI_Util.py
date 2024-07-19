@@ -7,6 +7,7 @@ import pygame
 
 class BasePyGameGUI:
     BACKGROUND_COLOR = (52, 78, 91)
+    BACKGROUND_COLOR = (80, 97, 81)
     TEXT_COLOR = (255, 255, 255)
     TEXT_COLOR_FADE = (150, 150, 150)
     TEXT_COLOR_WARNING = (252, 127, 3)
@@ -30,6 +31,8 @@ class BasePyGameGUI:
         pygame.init()
         self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
         pygame.display.set_caption(self.app_title)
+        icon = pygame.image.load(self.taskbar_icon)
+        pygame.display.set_icon(icon)
 
         self.FONT_TITLE = pygame.font.SysFont(*BasePyGameGUI.FONT_TITLE)
         self.FONT_SUBTITLE = pygame.font.SysFont(*BasePyGameGUI.FONT_SUBTITLE)

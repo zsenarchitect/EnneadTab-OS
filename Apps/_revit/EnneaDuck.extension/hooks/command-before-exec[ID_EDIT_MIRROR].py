@@ -1,7 +1,7 @@
 
 from pyrevit import  EXEC_PARAMS, script
 
-import EnneadTab
+from EnneadTab import NOTIFICATION, ERROR_HANDLE
 from Autodesk.Revit import DB # pyright: ignore
 from Autodesk.Revit import UI # pyright: ignore
 args = EXEC_PARAMS.event_args
@@ -10,7 +10,7 @@ uiapp = UI.UIApplication(doc.Application)
 # uiapp.PostCommand(args.CommandId)
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     uidoc = UI.UIDocument(doc)
     selection_ids = uidoc.Selection.GetElementIds()
@@ -19,7 +19,7 @@ def main():
         if not x.Category:
             continue
         if "group" in x.Category.Name.lower():
-            EnneadTab.NOTIFICATION.messenger("Mirroring group might lead to corrupted group later.")
+            NOTIFICATION.messenger("Mirroring group might lead to corrupted group later.")
             return
  
 ############################

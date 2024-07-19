@@ -1523,7 +1523,7 @@ class EA_Printer_UI(WPFWindow):
 
 def ennead_printer():
     """
-    if not EA_UTILITY.is_SZ():
+    if not EA_UTILITY.IS_DEVELOPER:
         EA_UTILITY.dialogue(main_text = "This tool is under construction, and will be ready in a few weeks.")
         return
     """

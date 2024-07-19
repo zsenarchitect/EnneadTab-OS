@@ -33,6 +33,8 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
         
         self.life_max = 12 * 60 * 60 * 20
         self.life_count = self.life_max
+
+        self.taskbar_icon = "{}\\images\\icon.png".format(self.content_folder)
         
 
 

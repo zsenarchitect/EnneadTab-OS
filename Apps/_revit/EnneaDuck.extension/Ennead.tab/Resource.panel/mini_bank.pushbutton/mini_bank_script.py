@@ -69,7 +69,7 @@ class mini_bank_ModelessForm(WPFWindow):
         
     @EnneadTab.ERROR_HANDLE.try_catch_error
     def bank_manager_Click(self, sender, e):
-        if not EnneadTab.USER.is_SZ():
+        if not EnneadTab.USER.IS_DEVELOPER:
             EnneadTab.REVIT.REVIT_FORMS.notification(main_text = "This function is only available to Sen Zhang.")
             return
 

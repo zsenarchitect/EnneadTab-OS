@@ -347,7 +347,7 @@ def update_account_by_local_warning_diff(doc):
                        history_added=tool_used, doc=doc)
 
     """
-    if not EA_UTILITY,is_SZ():
+    if not EA_UTILITY,IS_DEVELOPER:
         return
     """
 

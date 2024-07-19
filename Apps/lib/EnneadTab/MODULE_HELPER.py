@@ -58,8 +58,8 @@ def run_revit_script(script_subfolder_or_fullpath, func_name,*args,**kwargs):
         
         
     if not os.path.exists(full_file_path):
-        NOTIFICATION.messenger(main_text = "File not found: {}".format(full_file_path))
-        print ("File not found: {}".format(full_file_path))
+        NOTIFICATION.messenger(main_text = "File not found:\n{}".format(full_file_path))
+        print ("File not found:\n{}".format(full_file_path))
         return
     
     ref_module = imp.load_source("{}_script".format(func_name), full_file_path)

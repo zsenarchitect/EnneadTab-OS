@@ -153,7 +153,7 @@ class AI_Report_modelessForm(WPFWindow):
 
     @ERROR_HANDLE.try_catch_error()
     def ask_Click(self, sender, e):
-        # if not USER.is_SZ():
+        # if not USER.IS_DEVELOPER:
         #     self.debug_textbox.Text = "WIP function."
         #     return
         query = self.tbox_input.Text

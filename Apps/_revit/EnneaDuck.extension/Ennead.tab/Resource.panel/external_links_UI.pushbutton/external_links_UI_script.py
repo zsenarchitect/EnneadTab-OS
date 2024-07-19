@@ -259,8 +259,8 @@ class ExternalLinks_UI(forms.WPFWindow):
     @ERROR_HANDLE.try_catch_error()
     def force_kill_sync_record_click(self, sender, args):
         import imp
-        full_file_path = r'C:\Users\szhang\github\EnneadTab-for-Revit\ENNEAD.extension\Ennead.tab\Utility.panel\exe_1.stack\LAST_SYNC_MONITOR.pushbutton\update_last_sync_datafile_script.py'
-        if not USER.is_SZ():
+        full_file_path = r'C:\Users\szhang\github\EnneadTab-OS\Apps\_revit\EnneaDuck.extension\Ennead.tab\Utility.panel\exe_1.stack\LAST_SYNC_MONITOR.pushbutton\update_last_sync_datafile_script.py'
+        if not USER.IS_DEVELOPER:
             full_file_path = FOLDER.remap_filepath_to_folder(full_file_path)
         ref_module = imp.load_source("update_last_sync_datafile_script", full_file_path)
 

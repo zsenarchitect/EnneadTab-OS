@@ -58,7 +58,7 @@ Note to furture
 """
 
 
-if not USER.is_SZ():
+if not USER.IS_DEVELOPER:
     files = [file for file in files if file in APPROVED_MODEL]
 for i, model in enumerate(files):
 
@@ -277,7 +277,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
 
         bt_test_model = Eto.Forms.Button(Text="Test Unapproved Models")
         bt_test_model.Click += self.OnTestModelButtonClick
-        if USER.is_SZ():
+        if USER.IS_DEVELOPER:
             layout.AddSeparateRow(None, bt_test_model,  self.bt_open_folder)
         else:
             layout.AddSeparateRow(None, self.bt_open_folder)
@@ -380,7 +380,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
         layout.AddSeparateRow(None, Eto.Forms.Label(
             Text="Note: If you want to export in high resolution, set output count to 1.\nIf you want to export more output options, set the resolution to below 1000 in either direction."), None)
 
-        if USER.is_SZ():
+        if USER.IS_DEVELOPER:
             self.foundation_pipeline_list = Eto.Forms.RadioButtonList()
             self.foundation_pipeline_list.Orientation = Eto.Forms.Orientation.Vertical
             self.foundation_pipeline_list.DataStore = [
@@ -560,7 +560,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
         data["iteration"] = int(self.tbox_iteration.Text)
         data["control_net_weight"] = self.weight_slider.Value/100.0
 
-        if USER.is_SZ():
+        if USER.IS_DEVELOPER:
             if self.foundation_pipeline_list.SelectedIndex == 0:
                 data["foundation_pipeline"] = "control_net"
             elif self.foundation_pipeline_list.SelectedIndex == 1:
@@ -598,7 +598,7 @@ def view2render():
     # survives when the main function ends.
     sc.sticky['EA_AI_RENDER_CAPTURE_FORM'] = form
 
-    if USER.is_SZ():
+    if USER.IS_DEVELOPER:
         is_testing_new_engine = False
 
         if is_testing_new_engine:

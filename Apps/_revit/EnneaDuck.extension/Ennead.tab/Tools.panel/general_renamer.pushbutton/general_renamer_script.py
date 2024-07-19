@@ -351,7 +351,7 @@ class general_renamer_ModelessForm(WPFWindow):
         logo_file = IMAGE.get_image_path_by_name("logo_vertical_light.png")
         self.set_image_source(self.logo_img, logo_file)
         self.set_image_source(self.sample_img_project_browser, "sample project browser.png")
-        if not USER.is_SZ() or True:
+        if not USER.IS_DEVELOPER or True:
             self.tab_grid_level.Visibility = System.Windows.Visibility.Collapsed
             self.tab_subC_name.Visibility = System.Windows.Visibility.Collapsed
 

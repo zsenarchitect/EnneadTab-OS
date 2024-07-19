@@ -3,7 +3,8 @@ __title__ = "Startup"
 import os
 import sys
 
-"""need to navigate to duckking lib first before it can auto detect further. This is special treatment for te startup script only"""
+"""need to navigate to duckking lib first before it can auto detect further. 
+This is special treatment for te startup script only"""
 # Define the relative path to the "lib" directory (2 levels up, then into "lib")
 relative_lib_path = os.path.join('..',  'KingDuck.lib')
 

@@ -673,7 +673,7 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # if not USER.is_SZ():
+    # if not USER.IS_DEVELOPER:
     #     REVIT_FORMS.notification(main_text = "This is a work in progress tool.")
     main()
     

@@ -18,7 +18,11 @@ working plan:
 > 5. To distribute the current stage of EnneadTab-OS, run ____publish.py in the DarkSide. This will recompile new .rui, recompile all exes(optional), and update __Apps__ and __Installation__ folder in EA_Dist, then push to remote. You are done.
 
 
-
+> [!IMPORTANT]
+> # How to help testing:
+> There are many rewrite on the core moudle, so new system is not stable...yet.
+> In the order of piority, please help test those functions periodically.
+> Instalation/Update > Notification/Report > Hooks > Popular Tools > Tailor Tools > Less Popular Tools > Fun Tools
 
 
 # What computer to use for Sen Zhang

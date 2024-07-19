@@ -123,7 +123,7 @@ def basic_info(doc):
         output.print_md("#This is a detached central file.")
         # forms.alert("EA Alert: \nThis is a detached central file.\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.")
         REVIT_FORMS.notification(main_text = "EA Alert: \nThis is a detached central file.", sub_text = "\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.", self_destruct = 10)
-        #EA_UTILITY.dialogue(icon = "warning", main_text = "EA Alert: \nThis is a detached central file.\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.")
+        #REVIT_FORMS.dialogue(icon = "warning", main_text = "EA Alert: \nThis is a detached central file.\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.")
 
 
     elif file_info.CentralPath == doc.PathName:

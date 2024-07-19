@@ -47,7 +47,7 @@ def run_revit_script(script_subfolder_or_fullpath, func_name,*args,**kwargs):
         func_name (str): name of the func to run
     """
     
-    folder_or_fullpath = "{}\\EnneaDuck.extension\\{}".format(ENVIRONMENT.REVIT_FOLDER, script_subfolder_or_fullpath)
+    folder_or_fullpath = "{}\\{}".format(ENVIRONMENT.REVIT_PRIMARY_EXTENSION, script_subfolder_or_fullpath)
 
     if script_subfolder_or_fullpath.endswith(".py"):
         full_file_path = folder_or_fullpath
@@ -99,7 +99,7 @@ def run_Rhino_button(locator, *args,**kwargs):
         sys.path.append(ENVIRONMENT.LIB_FOLDER)
 
     # ensure core can load
-    import EnneadTab
+    from EnneadTab import ERROR_HANDLE
 
     head, tail = os.path.split(module_path)
     func_name = tail.replace(".py", "")

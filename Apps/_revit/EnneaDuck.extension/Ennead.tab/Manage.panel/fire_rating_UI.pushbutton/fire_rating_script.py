@@ -220,7 +220,7 @@ def update_wall_data(data_grid_source):
 
 @ERROR_HANDLE.try_catch_error()
 def load_EA_family(title):
-    lib_family = "{}\\ENNEAD.extension\\Ennead Library.tab\\Contents.panel\\2D Contents.pulldown\\EA_Fire Rating.content\\EA_Fire Rating_content.rfa".format(ENVIRONMENT.PUBLISH_BETA_FOLDER_FOR_REVIT)
+    lib_family = "{}\\Contents.panel\\2D Contents.pulldown\\EA_Fire Rating.content\\EA_Fire Rating_content.rfa".format(ENVIRONMENT.REVIT_LIBRARY_TAB)
     local_copy = FOLDER.copy_file_to_local_dump_folder(lib_family, "EA_Fire Rating.rfa")
     try:
         t = DB.Transaction(doc, __title__)

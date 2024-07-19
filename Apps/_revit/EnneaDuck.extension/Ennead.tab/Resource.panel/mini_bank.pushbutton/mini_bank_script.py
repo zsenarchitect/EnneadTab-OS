@@ -14,11 +14,12 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
-import EnneadTab
+from EnneadTab import ERROR_HANDLE, SOUND, NOTIFICATION
+from EnneadTab.REVIT import REVIT_APPLICATION
 import traceback
 
-uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
-doc = EnneadTab.REVIT.REVIT_APPLICATION.get_doc()
+uidoc = REVIT_APPLICATION.get_uidoc()
+doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
 
 
@@ -39,7 +40,7 @@ class mini_bank_ModelessForm(WPFWindow):
         return
 
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def __init__(self):
         self.pre_actions()
 
@@ -53,7 +54,7 @@ class mini_bank_ModelessForm(WPFWindow):
 
         self.Title = "EnneadTab MiniBank UI"
 
-        self.set_image_source(self.logo_img, "{}\logo_vertical_light.png".format(EnneadTab.ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT))
+        self.set_image_source(self.logo_img, "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT))
         self.set_image_source(self.duck_img, "happy_duck.png")
         self.manual_click = 0
 
@@ -63,42 +64,42 @@ class mini_bank_ModelessForm(WPFWindow):
 
 
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def display_ranking(self):
         ENNEAD_LOG.print_leader_board()
         
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def bank_manager_Click(self, sender, e):
-        if not EnneadTab.USER.IS_DEVELOPER:
-            EnneadTab.REVIT.REVIT_FORMS.notification(main_text = "This function is only available to Sen Zhang.")
+        if not USER.IS_DEVELOPER:
+            REVIT.REVIT_FORMS.notification(main_text = "This function is only available to Sen Zhang.")
             return
 
         ENNEAD_LOG.manual_transaction()
     
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def check_account_click(self, sender, e):
 
         ENNEAD_LOG.print_history()
         
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def manual_coin_Click(self, sender, e):
         self.manual_click += 1
         
 
         if self.manual_click % 10 == 0:
-            EnneadTab.NOTIFICATION.messenger(main_text = " +1UP\n经验+1")
-            EnneadTab.SOUND.play_sound("sound_effect_mario_1up.wav")
+            NOTIFICATION.messenger(main_text = " +1UP\n经验+1")
+            SOUND.play_sound("sound_effect_mario_1up.wav")
             return
-        EnneadTab.NOTIFICATION.messenger(main_text = " +$1\n金钱+1")
-        EnneadTab.SOUND.play_sound("sound_effect_mario_coin.wav")
+        NOTIFICATION.messenger(main_text = " +$1\n金钱+1")
+        SOUND.play_sound("sound_effect_mario_coin.wav")
     
     
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def clear_data_click(self, sender, e):
         ENNEAD_LOG.clear_user_data()
-        EnneadTab.NOTIFICATION.messenger(main_text = "Data has been cleared.")
+        NOTIFICATION.messenger(main_text = "Data has been cleared.")
     
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def close_Click(self, sender, e):
         # This Raise() method launch a signal to Revit to tell him you want to do something in the API context
         self.Close()

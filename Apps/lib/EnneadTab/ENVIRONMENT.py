@@ -20,6 +20,11 @@ INSTALLATION_FOLDER = os.path.join(ROOT, "Installation")
 APP_FOLDER = os.path.join(ROOT, "Apps")
 REVIT_FOLDER = os.path.join(APP_FOLDER, "_revit")
 RHINO_FOLDER = os.path.join(APP_FOLDER, "_rhino")
+PRIMARY_EXTENSION_NAME = "EnneaDuck"
+REVIT_PRIMARY_EXTENSION = os.path.join(REVIT_FOLDER, "{}.extension".format(PRIMARY_EXTENSION_NAME))
+REVIT_PRIMARY_TAB = os.path.join(REVIT_PRIMARY_EXTENSION, "Ennead.tab")
+REVIT_LIBRARY_TAB = os.path.join(REVIT_PRIMARY_EXTENSION, "Ennead Library.tab")
+REVIT_TAILOR_TAB = os.path.join(REVIT_PRIMARY_EXTENSION, "Ennead Tailor.tab")
 
 
 LIB_FOLDER = os.path.join(APP_FOLDER, "lib")

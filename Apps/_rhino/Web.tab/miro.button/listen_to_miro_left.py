@@ -5,7 +5,7 @@ __doc__ = "Listen to changes in the miro"
 
 import os
 import threading
-import EnneadTab
+from EnneadTab import ERROR_HANDLE
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
 import traceback

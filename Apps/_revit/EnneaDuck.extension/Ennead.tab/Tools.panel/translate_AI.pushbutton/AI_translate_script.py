@@ -23,7 +23,7 @@ import time
 import difflib
 
 import proDUCKtion # pyright: ignore 
-import EnneadTab
+from EnneadTab import ERROR_HANDLE
 from EnneadTab.FUN import JOKES
 uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
 doc = EnneadTab.REVIT.REVIT_APPLICATION.get_doc()
@@ -188,7 +188,7 @@ class AI_translate_ModelessForm(WPFWindow):
 
 
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def pick_views_sheets_Click(self, sender, e):
 
         if not self.is_translation_para_valid():
@@ -284,7 +284,7 @@ class AI_translate_ModelessForm(WPFWindow):
 
 
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def translate_views_sheets_Click(self, sender, e):
         # This Raise() method launch a signal to Revit to tell him you want to do something in the API context
         """dummy"""
@@ -377,7 +377,7 @@ class AI_translate_ModelessForm(WPFWindow):
             EnneadTab.REVIT.REVIT_FORMS.notification(main_text = "Translation success = {}\nTranslation skipped = {}\nDon't worry.".format(success_count, failed_count), sub_text = "You can ask to translate again.\nThis time, it might be helpful to limit the amount of translation by approving the ones you like so far as you iterate. This put less pressure on the AI.")
 
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def is_translation_para_valid(self):
         para_name = self.translation_para_name.Text
 
@@ -396,7 +396,7 @@ class AI_translate_ModelessForm(WPFWindow):
             return False
         return True
 
-    #@EnneadTab.ERROR_HANDLE.try_catch_error
+    #@EnneadTab.ERROR_HANDLE.try_catch_error()
     def apply_translation_Click(self, sender, e):
         para_name = self.translation_para_name.Text
 
@@ -443,7 +443,7 @@ class AI_translate_ModelessForm(WPFWindow):
             temp.append( DataGridObj(item.id, item.chinese_name, approve))
         self.data_grid.ItemsSource = temp
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def change_UI_translate_mode(self, sender, e):
 
 
@@ -467,7 +467,7 @@ class AI_translate_ModelessForm(WPFWindow):
         self.bt_apply_translation.Content = "  Applied Approved Translation To {}  ".format(self.mode)
         self.data_grid.ItemsSource = []
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def change_UI_sample_category(self, sender, e):
         if self.is_include_sample_systems.IsChecked:
             self.is_include_sample_plans.IsChecked = True
@@ -499,7 +499,7 @@ class AI_translate_ModelessForm(WPFWindow):
         #print "mouse down"
         sender.DragMove()
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def selective_user_sample_Click(self, sender, e):
         # This Raise() method launch a signal to Revit to tell him you want to do something in the API context
         samples = self.get_sample_translation_dict_from_user(use_predefined = False)
@@ -535,7 +535,7 @@ class AI_translate_ModelessForm(WPFWindow):
         data = EnneadTab.DATA_FILE.read_json_as_dict(file_path)
         return data["translator_api_key"]
 
-    #@EnneadTab.ERROR_HANDLE.try_catch_error
+    #@EnneadTab.ERROR_HANDLE.try_catch_error()
     def fire_AI_translator(self, new_prompt, request_count):
 
         session_token = self.get_api_key()

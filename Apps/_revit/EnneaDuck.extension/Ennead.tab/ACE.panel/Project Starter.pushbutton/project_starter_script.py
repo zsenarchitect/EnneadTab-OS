@@ -78,11 +78,10 @@ class SimpleEventHandler(IExternalEventHandler):
 
 def get_moudle(module_name):
     
-    folder = r"C:\Users\szhang\github\EnneadTab-OS\Apps\_revit\EnneaDuck.extension\Ennead.tab\ACE.panel\Project Starter.pushbutton"
+    folder = "{}\\ACE.panel\\Project Starter.pushbutton".format(ENVIRONMENT.REVIT_PRIMARY_TAB)
     
-    full_file_path = r"{}\{}.py".format(folder, module_name)
-    if not  USER.IS_DEVELOPER:
-        full_file_path =  FOLDER.remap_filepath_to_folder(full_file_path)
+    full_file_path = "{}\\{}.py".format(folder, module_name)
+
         
     return imp.load_source(module_name, full_file_path)
 
@@ -117,11 +116,8 @@ class project_starter_ModelessForm(WPFWindow):
         self.doc = doc
         self.pre_actions()
 
-        xaml_file_name = r"C:\Users\szhang\github\EnneadTab-OS\Apps\_revit\EnneaDuck.extension\Ennead.tab\ACE.panel\Project Starter.pushbutton\project_starter_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
-        if not USER.IS_DEVELOPER:
-            xaml_file_name =  FOLDER.remap_filepath_to_folder(xaml_file_name)
-            
-            
+        xaml_file_name = "{}\\ACE.panel\\Project Starter.pushbutton\\project_starter_ModelessForm.xaml".format(ENVIRONMENT.REVIT_PRIMARY_TAB)
+
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab Project Initiator"

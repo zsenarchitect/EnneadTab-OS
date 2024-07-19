@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import time
 try:
     from pyrevit.forms import WPFWindow
     import REVIT_EVENT
@@ -124,7 +125,7 @@ class NotificationModelessForm(EnneadTabModelessForm):
 
 
     def primary_button_click(self, sender, e):
-        self.close_action()
+        self.Close()
 
 
     def timer(self, life_span):
@@ -151,7 +152,7 @@ class NotificationModelessForm(EnneadTabModelessForm):
                     #print_note(e)
             self.foot_text.Text = "Window will close in {} seconds".format(i / segement)
             time.sleep(1.0/segement)
-        self.close_action()
+        self.Close()
 
 
 
@@ -176,13 +177,13 @@ def notification(main_text = "",
 
 
     #xmal_template = remap_filepath_between_folder(xmal_template, new_folder_after_dot_extension = "lib")
-    NotificationModelessForm.ModelessForm(main_text,
-                                        sub_text,
-                                        button_name,
-                                        window_title,
-                                        self_destruct,
-                                        window_width,
-                                        window_height)
+    NotificationModelessForm(main_text,
+                            sub_text,
+                            button_name,
+                            window_title,
+                            self_destruct,
+                            window_width,
+                            window_height)
 
 
 def dialogue( title = "EnneadTab",

@@ -86,7 +86,7 @@ def is_file_exist_in_folder(check_file_name, folder):
 class PromptData:
 
     def __init__(self):
-        file_name = "EA_TRANSLATE.json"
+        file_name = "EA_TRANSLATE.sexyDuck"
         dump_folder = get_EA_local_dump_folder()
         file_path = "{}\{}".format(dump_folder, file_name)
         if not is_file_exist_in_folder(file_name, dump_folder):
@@ -107,7 +107,7 @@ class PromptData:
         self.max_tokens = data["max_tokens"]
 
     def store(self):
-        file_name = "EA_TRANSLATE.json"
+        file_name = "EA_TRANSLATE.sexyDuck"
         dump_folder = get_EA_local_dump_folder()
         file_path = "{}\{}".format(dump_folder, file_name)
         data = read_json_as_dict(file_path)

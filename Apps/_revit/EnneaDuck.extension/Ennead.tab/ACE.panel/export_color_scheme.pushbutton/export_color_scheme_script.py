@@ -102,14 +102,14 @@ def export_color_scheme_to_excel(color_scheme, is_ignore_non_used):
         worksheet.write(i,5,entry.Color.Blue)
         
         
-    DATA_FILE.set_data(alt_dict, "color_scheme_dict.json")
+    DATA_FILE.set_data(alt_dict, "color_scheme_dict.sexyDuck")
 
     
     
     try:
         workbook.close()
         NOTIFICATION.messenger("Excel saved at '{}'".format(file_location))
-        EXE.open_file_in_default_application(file_location)
+        EXE.try_open_app(file_location)
     except:
         NOTIFICATION.messenger("the excel file you picked is still open, cannot override. Writing cancelled.")
     

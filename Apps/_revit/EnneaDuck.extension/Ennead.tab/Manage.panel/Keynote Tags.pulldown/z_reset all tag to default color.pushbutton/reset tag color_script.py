@@ -4,7 +4,7 @@ __tip__ = True
 
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab.REVIT import REVIT_APPLICATION
+from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_SELECTION
 from EnneadTab import ERROR_HANDLE
 from pyrevit import forms, DB, revit, script
 
@@ -19,11 +19,11 @@ def main():
     processed_element_count = 0
     with revit.Transaction("reset keynote tag"):
         for tag in key_note_tags:
-            if EA_UTILITY.is_owned(tag):
+            if REVIT_SELECTION.is_changable(tag):
                 print ("---tag being owned, skip reset")
                 continue
             view = revit.doc.GetElement(tag.OwnerViewId)
-            if EA_UTILITY.is_owned(view):
+            if REVIT_SELECTION.is_changable(view):
                 print ("---view [{}] being owned, skip reset".format(view.Name))
                 continue
             OG_setting = DB.OverrideGraphicSettings()

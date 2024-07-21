@@ -11,7 +11,7 @@ from PIL import Image as pim
 import playsound
 
 
-JSON_FILE = "DUCK_POP.json"
+JSON_FILE = "DUCK_POP.sexyDuck"
 
 
 import  _Exe_Util

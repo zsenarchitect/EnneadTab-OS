@@ -17,7 +17,7 @@ from pyrevit.revit import ErrorSwallower
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab.FUN import JOKES
-from EnneadTab import EXE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, ERROR_HANDLE, FOLDER
+from EnneadTab import EXE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, ERROR_HANDLE, FOLDER, IMAGE
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 import traceback
@@ -212,13 +212,13 @@ class EA_Printer_UI(WPFWindow):
 
 
         # important data setup
-        setting_file = "EA_PRINTER_SETTING.json"
+        setting_file = "EA_PRINTER_SETTING.sexyDuck"
         self.setting_file_path = "{}\{}".format(EA_UTILITY.get_EA_local_dump_folder(), setting_file)
         self.output_folder = "{}\EnneadTab Exporter".format(EA_UTILITY.get_user_folder())
         EA_UTILITY.secure_folder(self.output_folder)
         self.record_folder = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exporter_Record".format(ENVIRONMENT.HOSTER_FOLDER)
         try:
-            DATA_FILE.set_data(dict(), self.record_folder + "\\SH_Access_test.json")
+            DATA_FILE.set_data(dict(), self.record_folder + "\\SH_Access_test.sexyDuck")
         except:
             self.record_folder = FOLDER.get_EA_local_dump_folder()
 
@@ -847,7 +847,7 @@ class EA_Printer_UI(WPFWindow):
         open_options = DB.OpenOptions()
         #EA_UTILITY.print_note( "setting active doc as {}".format(data[0]))
         try:
-            return UI.UIApplication(REVIT_APPLICATION.get_application()).OpenAndActivateDocument (model_path,
+            return UI.UIApplication(REVIT_APPLICATION.get_app()).OpenAndActivateDocument (model_path,
                                                                                             open_options,
                                                                                             False)
         except Exception as e:
@@ -858,7 +858,7 @@ class EA_Printer_UI(WPFWindow):
         #print "!!!Opening {} in background".format(doc_name)
         model_path = self.doc_model_path_pair[doc_name]
         open_options = DB.OpenOptions()
-        new_doc = EA_UTILITY.get_application().OpenDocumentFile(model_path,
+        new_doc = EA_UTILITY.get_app().OpenDocumentFile(model_path,
                                                                 open_options)
 
         #output.print_md( "background open file {}".format(doc_name))
@@ -881,7 +881,7 @@ class EA_Printer_UI(WPFWindow):
 
 
 
-        self.doc_names_already_open = [self.central_doc_name(x) for x in EA_UTILITY.get_top_revit_docs()]
+        self.doc_names_already_open = [self.central_doc_name(x) for x in REVIT_APPLICATION.get_top_revit_docs()]
         self.docs_to_be_opened_by_API = [x for x in self.docs_to_process if self.central_doc_name(x) not in self.doc_names_already_open]
 
         #depress open hook
@@ -1264,9 +1264,9 @@ class EA_Printer_UI(WPFWindow):
         self.is_color_by_sheet = self.radio_button_color_by_sheet.IsChecked
 
     def button_pick_docs_Clicked(self, sender, args):
-        if len([doc for doc in EA_UTILITY.get_top_revit_docs() if not doc.IsFamilyDocument]) > 1:
+        if len([doc for doc in REVIT_APPLICATION.get_top_revit_docs() if not doc.IsFamilyDocument]) > 1:
             # too many top doc
-            EA_UTILITY.dialogue(main_text = "I notice you have other document opened right now in this session.",
+            REVIT_FORMS.dialogue(main_text = "I notice you have other document opened right now in this session.",
                                 sub_text = "In order to avoid version conflicting, EnneadTab Exporter try to export opened docs only, no export from link.\n\nTo export from links, close all other files and only leave one open.")
             docs = EA_UTILITY.select_top_level_docs(select_multiple = True)
 
@@ -1310,7 +1310,7 @@ class EA_Printer_UI(WPFWindow):
                                         sub_text = self.feature_sum_note)
         """
         file_path = script.get_bundle_file("fix bluebeam setting.pdf")
-        EA_UTILITY.open_file_in_default_application(file_path)
+        EA_UTILITY.try_open_app(file_path)
         output.show()
         output.print_md( "open your **bluebeam administrator**(not the bluebeam viewer)")
         print("on the printer tab, \n\t-disable 'prompt for file name'\n\t-disable 'open in viewer\n\t-Set default output folder as ('User/Documents') in 'folder option'\n\nShould look like this below.")
@@ -1381,12 +1381,12 @@ class EA_Printer_UI(WPFWindow):
             return
 
         file = "{}\{}".format(self.output_folder, sel)
-        EA_UTILITY.open_file_in_default_application(file)
+        EA_UTILITY.try_open_app(file)
 
 
     def show_sample_marker_Clicked(self, sender, args):
         filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Published\ENNEAD.extension\lib\MARKER.txt"
-        EXE.open_file_in_default_application(filepath)
+        EXE.try_open_app(filepath)
         
         
     def generate_issue_Clicked(self, sender, args):
@@ -1500,13 +1500,13 @@ class EA_Printer_UI(WPFWindow):
 
     def get_time_estimate_from_record(self, doc):
         record_path = self.get_record_path_by_doc(doc)
-        if EA_UTILITY.is_file_exist_in_folder(self.central_doc_name(doc) + ".json", self.record_folder):
+        if EA_UTILITY.is_file_exist_in_folder(self.central_doc_name(doc) + ".sexyDuck", self.record_folder):
             return EA_UTILITY.read_json_as_dict(record_path)
         return dict()
 
 
     def get_record_path_by_doc(self, doc):
-        return "{}\{}.json".format(self.record_folder, self.central_doc_name(doc))
+        return "{}\{}.sexyDuck".format(self.record_folder, self.central_doc_name(doc))
 
 
     def mouse_down_main_panel(self, sender, args):
@@ -1523,8 +1523,8 @@ class EA_Printer_UI(WPFWindow):
 
 def ennead_printer():
     """
-    if not EA_UTILITY.is_SZ():
-        EA_UTILITY.dialogue(main_text = "This tool is under construction, and will be ready in a few weeks.")
+    if not EA_UTILITY.IS_DEVELOPER:
+        REVIT_FORMS.dialogue(main_text = "This tool is under construction, and will be ready in a few weeks.")
         return
     """
     try:
@@ -1537,7 +1537,7 @@ def ennead_printer():
         error_file = "{}\error.txt".format(EA_UTILITY.get_user_folder())
         with open(error_file, "w") as f:
             f.write(traceback.format_exc())
-        EA_UTILITY.open_file_in_default_application(error_file)
+        EA_UTILITY.try_open_app(error_file)
         EA_UTILITY.show_toast(title = "Send the output window to Sen Zhang", message = "Oops..Something is wrong.")
         output.print_md( "##Print send the below screenshot to Sen Zhang##")
         print("\n\n\n\n")

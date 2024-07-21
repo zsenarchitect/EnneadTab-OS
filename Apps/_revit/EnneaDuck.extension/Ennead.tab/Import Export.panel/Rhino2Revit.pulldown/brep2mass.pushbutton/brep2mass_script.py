@@ -157,7 +157,7 @@ if __name__ == "__main__":
 
     solution = Solution()
 
-    file = FOLDER.get_EA_dump_folder_file("BREP2MASS_DATA.json")
+    file = FOLDER.get_EA_dump_folder_file("BREP2MASS_DATA.sexyDuck")
     data = DATA_FILE.read_json_as_dict(file)
     for brep_name, brep_data in data.items():
         

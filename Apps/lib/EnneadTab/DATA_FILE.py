@@ -18,11 +18,11 @@ def _read_json_file_safely(filepath, use_encode=False, create_if_not_exist = Fal
     Returns:
         dict | None: the content of the json file
     """
-    local_path = FOLDER.get_EA_dump_folder_file("temp.json")
+    local_path = FOLDER.get_EA_dump_folder_file("temp.sexyDuck")
     try:
         shutil.copyfile(filepath, local_path)
     except IOError:
-        local_path = FOLDER.get_EA_dump_folder_file("temp_additional.json")
+        local_path = FOLDER.get_EA_dump_folder_file("temp_additional.sexyDuck")
         shutil.copyfile(filepath, local_path)
 
     content = _read_json_as_dict(local_path, use_encode, create_if_not_exist)
@@ -165,7 +165,7 @@ def update_data(file_name, is_local = True):
     prefer just the file_name, but full path is ok
     
     Usage example
-    with DATA_FILE.update_data("abc.json") as data:
+    with DATA_FILE.update_data("abc.sexyDuck") as data:
         data['new_key'] = 'new_value'  # Update data here
     """
 

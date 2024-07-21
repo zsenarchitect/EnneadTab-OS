@@ -30,9 +30,9 @@ class CameraImporter:
 
     def get_XYZ_from_data(self, data):
         if self.UNIT_MM:
-            data = [EA_UTILITY.mm_to_internal(x) for x in data]
+            data = [REVIT_UNIT.mm_to_internal(x) for x in data]
         elif self.UNIT_M:
-            data = [EA_UTILITY.mm_to_internal(x / 1000.0) for x in data]
+            data = [REVIT_UNIT.mm_to_internal(x / 1000.0) for x in data]
         elif self.UNIT_FT:
             pass
         elif self.UNIT_INCH:

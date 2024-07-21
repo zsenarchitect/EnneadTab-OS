@@ -48,8 +48,8 @@ def display_warning_history(using_current = True):
     class MyOption(forms.TemplateListItem):
         @property
         def name(self):
-            return self.item.replace("REVIT_WARNING_HISTORY_", "").replace(".json", "")
-    folder = ENVIRONMENT.SHARED_DATA_DUMP_FOLDER
+            return self.item.replace("REVIT_WARNING_HISTORY_", "").replace(".sexyDuck", "")
+    folder = ENVIRONMENT.DUMP_FOLDER or ENVIRONMENT.SHARED_DATA_DUMP_FOLDER
 
     file_list = [MyOption(x) for x in os.listdir(folder) if x.startswith("REVIT_WARNING_HISTORY_")]
     file_list.sort(key=lambda x: x.name)
@@ -62,7 +62,7 @@ def display_warning_history(using_current = True):
 
     hint_chart_js()
     for item in res:
-        REVIT_HISTORY.display_warning(item.replace("REVIT_WARNING_HISTORY_", "").replace(".json", ""),
+        REVIT_HISTORY.display_warning(item.replace("REVIT_WARNING_HISTORY_", "").replace(".sexyDuck", ""),
                                                       show_detail=show_detail)
     
     # OUTPUT.display_output_on_browser()

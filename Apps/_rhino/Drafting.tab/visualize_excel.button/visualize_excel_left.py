@@ -45,7 +45,7 @@ class ShapeWriter:
         # print input_text
         # print type(input_text)
         
-        if EnneadTab.USER.is_SZ():
+        if EnneadTab.USER.IS_DEVELOPER:
             filepath = EnneadTab.FOLDER.get_EA_dump_folder_file("excel_area_data.txt")
             
        

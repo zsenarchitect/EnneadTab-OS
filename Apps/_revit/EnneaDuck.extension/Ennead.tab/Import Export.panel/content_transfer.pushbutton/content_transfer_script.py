@@ -15,7 +15,7 @@ from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
+from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 
@@ -607,7 +607,7 @@ class content_transfer_ModelessForm(WPFWindow):
             return
 
 
-        #docs = REVIT_APPLICATION.get_application().Documents
+        #docs = REVIT_APPLICATION.get_app().Documents
         #family_docs = [doc for doc in docs if doc.IsFamilyDocument]
         all_families = DB.FilteredElementCollector(self.source_doc).OfClass(DB.Family).ToElements()
         class MyOption(forms.TemplateListItem):

@@ -1,7 +1,9 @@
 
 from pyrevit import  EXEC_PARAMS, script
 import os
-import EnneadTab
+
+
+from EnneadTab import ERROR_HANDLE
 
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore  
@@ -11,7 +13,7 @@ uiapp = UI.UIApplication(doc.Application)
 # uiapp.PostCommand(args.CommandId)
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
 
     import imp

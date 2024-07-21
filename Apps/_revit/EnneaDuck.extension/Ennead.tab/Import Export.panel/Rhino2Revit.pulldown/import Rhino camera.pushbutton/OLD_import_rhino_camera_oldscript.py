@@ -11,8 +11,8 @@ from pyrevit import script #
 # from pyrevit import revit #
 
 
-from EnneadTab.REVIT import REVIT_FORMS
-from EnneadTab import ERROR_HANDLE
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_UNIT
+from EnneadTab import ERROR_HANDLE, FOLDER
 
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
@@ -50,9 +50,9 @@ def get_XYZ_from_data(data):
     global UNIT_M
     global UNIT_INCH
     if UNIT_MM:
-        data = [EA_UTILITY.mm_to_internal(x) for x in data]
+        data = [REVIT_UNIT.mm_to_internal(x) for x in data]
     elif UNIT_M:
-        data = [EA_UTILITY.mm_to_internal(x / 1000.0) for x in data]
+        data = [REVIT_UNIT.mm_to_internal(x / 1000.0) for x in data]
     elif UNIT_FT:
         pass
     elif UNIT_INCH:
@@ -91,7 +91,7 @@ def import_camera_action(view_info):
 @ERROR_HANDLE.try_catch_error()
 def import_rhino_camera():
     #filepath = r"C:\Users\szhang\Desktop\temp1.3dm"
-    filepath = EA_UTILITY.get_EA_dump_folder_file("EA_CAMERA_TRANSFER.3dm")
+    filepath = FOLDER.get_EA_dump_folder_file("EA_CAMERA_TRANSFER.3dm")
     #filepath = forms.pick_file(file_ext = "3dm")
     #print filepath
     file3dm = Rhino.FileIO.File3dm()

@@ -1,7 +1,8 @@
 
 from pyrevit import  EXEC_PARAMS, script
 
-import EnneadTab
+from EnneadTab import ERROR_HANDLE
+from EnneadTab.REVIT import REVIT_FORMS
 from Autodesk.Revit import DB # pyright: ignore
 from Autodesk.Revit import UI # pyright: ignore
 args = EXEC_PARAMS.event_args
@@ -10,7 +11,7 @@ uidoc = UI.UIDocument(doc)
 uiapp = UI.UIApplication(doc.Application)
 # uiapp.PostCommand(args.CommandId)
 
-@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     should_cancel_1 = check_depedent_views()
     should_cancel_2 = check_rvt_link()
@@ -48,7 +49,7 @@ def check_rvt_link():
 
     note += "\n\nYou might want to consider 'Unload for me only' from link manager if you do not want to see them."
         
-    res = EnneadTab.REVIT.REVIT_FORMS.dialogue(main_text = "There are revit link(s) in current selection.",
+    res = REVIT_FORMS.dialogue(main_text = "There are revit link(s) in current selection.",
                                                 sub_text = note,
                                                 options = options)
     if res == options[0]:
@@ -87,7 +88,7 @@ def check_level_grid():
     note = "Are you sure you want to delete grid/level(s)?"
 
         
-    res = EnneadTab.REVIT.REVIT_FORMS.dialogue(main_text = "There are grid/level(s) in current selection.",
+    res = REVIT_FORMS.dialogue(main_text = "There are grid/level(s) in current selection.",
                                                 sub_text = note,
                                                 options = options)
     if res == options[0]:
@@ -103,10 +104,10 @@ def check_level_grid():
 def check_depedent_views():
     selection_ids = uidoc.Selection.GetElementIds()
     selection = [doc.GetElement(x) for x in selection_ids]
-    # for x in EnneadTab.REVIT.REVIT_SELECTION.get_selection():
+    # for x in REVIT.REVIT_SELECTION.get_selection():
     #     print (x )
     #     print (type(x))
-    # selected_views = [x for x in EnneadTab.REVIT.REVIT_SELECTION.get_selection() if hasattr(x, "GetDependentViewIds")]
+    # selected_views = [x for x in REVIT.REVIT_SELECTION.get_selection() if hasattr(x, "GetDependentViewIds")]
     # parent_views = [x for x in selected_views if len(x.GetDependentViewIds ()) != 0]
     
     def is_primary_view(x):
@@ -132,7 +133,7 @@ def check_depedent_views():
         note +=  "\n  + " + view.Name
         for child in view.GetDependentViewIds():
             note += "\n       - " + doc.GetElement(child).Name
-    res = EnneadTab.REVIT.REVIT_FORMS.dialogue(main_text = "One or more views you are trying to delete has depedent views. Deleting parent will also delete the children.",
+    res = REVIT_FORMS.dialogue(main_text = "One or more views you are trying to delete has depedent views. Deleting parent will also delete the children.",
                                                 sub_text = note,
                                                 options = options)
     if res == options[0]:

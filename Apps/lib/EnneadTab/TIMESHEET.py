@@ -9,7 +9,7 @@ import OUTPUT
 import FOLDER
 import USER
 
-TIMESHEET_DATA_FILE = "timesheet_{}.json".format(USER.USER_NAME)
+TIMESHEET_DATA_FILE = "timesheet_{}.sexyDuck".format(USER.USER_NAME)
 
 
 @FOLDER.backup_data(TIMESHEET_DATA_FILE , "timesheet")

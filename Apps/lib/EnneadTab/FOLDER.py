@@ -49,7 +49,7 @@ def get_EA_dump_folder_file(file_name):
 
 def get_shared_dump_folder_file(file_name):
     """include extension"""
-    return "{}\\{}".format(ENVIRONMENT.SHARED_DATA_DUMP_FOLDER, file_name)
+    return "{}\\{}".format(ENVIRONMENT.SHAERD_DUMP_FOLDER, file_name)
 
 
 
@@ -85,7 +85,7 @@ def backup_data(data_file_name, backup_folder_title, max_time = 60*60*24*1):
                 
             latest_backup_date = None
             for filename in os.listdir(backup_folder):
-                if not filename.endswith(".json"):
+                if not filename.endswith(".sexyDuck"):
                     continue
                 backup_date_str = filename.split("_")[0]
                 backup_date = time.strptime(backup_date_str, "%Y-%m-%d")

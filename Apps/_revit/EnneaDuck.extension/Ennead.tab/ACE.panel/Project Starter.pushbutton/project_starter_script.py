@@ -21,7 +21,7 @@ from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT, USER, NOTIFICATION, ENVIRONMENT, ERROR_HANDLE, EXCEL, FOLDER
+from EnneadTab import ENVIRONMENT, USER, NOTIFICATION,  ERROR_HANDLE, EXCEL, FOLDER, IMAGE
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 import random
@@ -78,11 +78,10 @@ class SimpleEventHandler(IExternalEventHandler):
 
 def get_moudle(module_name):
     
-    folder = r"C:\Users\szhang\github\EnneadTab-for-Revit\ENNEAD.extension\Ennead.tab\ACE.panel\Project Starter.pushbutton"
+    folder = "{}\\ACE.panel\\Project Starter.pushbutton".format(ENVIRONMENT.REVIT_PRIMARY_TAB)
     
-    full_file_path = r"{}\{}.py".format(folder, module_name)
-    if not  USER.is_SZ():
-        full_file_path =  FOLDER.remap_filepath_to_folder(full_file_path)
+    full_file_path = "{}\\{}.py".format(folder, module_name)
+
         
     return imp.load_source(module_name, full_file_path)
 
@@ -117,11 +116,8 @@ class project_starter_ModelessForm(WPFWindow):
         self.doc = doc
         self.pre_actions()
 
-        xaml_file_name = r"C:\Users\szhang\github\EnneadTab-for-Revit\ENNEAD.extension\Ennead.tab\ACE.panel\Project Starter.pushbutton\project_starter_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
-        if not USER.is_SZ():
-            xaml_file_name =  FOLDER.remap_filepath_to_folder(xaml_file_name)
-            
-            
+        xaml_file_name = "{}\\ACE.panel\\Project Starter.pushbutton\\project_starter_ModelessForm.xaml".format(ENVIRONMENT.REVIT_PRIMARY_TAB)
+
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab Project Initiator"
@@ -131,18 +127,12 @@ class project_starter_ModelessForm(WPFWindow):
 
         self.Title = "EnneadTab Project Initiator UI"
 
-        if ENVIRONMENT.IS_LOCAL_OS:
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.OS_CORE_IMAGES_FOLDER)
-        else:
-           
-            logo_file = "{}\logo_vertical_light.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT)
-        import os
-        if not os.path.exists(logo_file):
-            logo_file = "{}\logo_vertical_light_temp.png".format(ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT) # note to self, remove this line so not to confuse later after IT fix peer link
+        
+        logo_file = IMAGE.get_image_path_by_name("logo_vertical_light.png")
         self.set_image_source(self.logo_img, logo_file)
        
    
-        if not USER.is_SZ():
+        if not USER.IS_DEVELOPER:
             self.tab_plans.Visibility = System.Windows.Visibility.Collapsed
             # )\nrepath default family to new project folder(Future)\n
             # pick shared parameter file(Future)\n

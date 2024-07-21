@@ -4,11 +4,12 @@ import random
 
 from Autodesk.Revit import DB # pyright: ignore
 
-from EnneadTab import NOTIFICATION, LOG
+from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE, EMAIL, NOTIFICATION, USER, FOLDER, DATA_FILE, ENVIRONMENT, SOUND
+from EnneadTab.REVIT import REVIT_HISTORY, REVIT_EXTERNAL_FILE, REVIT_FORMS, REVIT_SYNC
 from pyrevit import forms, script
 from pyrevit import EXEC_PARAMS
-from pycoreutils import envvars
-from pycoreutils import ribbon
+from pyrevit.coreutils import envvars
+from pyrevit.coreutils import ribbon
 
 
 
@@ -122,11 +123,11 @@ def basic_info(doc):
         output.print_md("#This is a detached central file.")
         # forms.alert("EA Alert: \nThis is a detached central file.\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.")
         REVIT_FORMS.notification(main_text = "EA Alert: \nThis is a detached central file.", sub_text = "\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.", self_destruct = 10)
-        #EA_UTILITY.dialogue(icon = "warning", main_text = "EA Alert: \nThis is a detached central file.\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.")
+        #REVIT_FORMS.dialogue(icon = "warning", main_text = "EA Alert: \nThis is a detached central file.\nUnless you are not planning edit further, please close document right after you save it to Ennead server and create new local before any edit work.")
 
 
     elif file_info.CentralPath == doc.PathName:
-        EA_UTILITY.dialogue(icon = "warning", main_text = "EA Alert: \nYou are working on a central model.\nIf this is not intentional, please close and creat new local.")
+        REVIT_FORMS.dialogue(icon = "warning", main_text = "EA Alert: \nYou are working on a central model.\nIf this is not intentional, please close and creat new local.")
         # forms.alert("EA Alert: \nYou are working on a central model.\nIf this is not intentional, please close and creat new local.")
     else:
         print ("Safe, working in local.")
@@ -143,7 +144,7 @@ def basic_info(doc):
             print (line)
     
     if "1643.old" in file_info.CentralPath:
-        NITIFICATION.duck_pop(main_text="STOP! DO NOT WORK IN OLD FOLDER")
+        NOTIFICATION.duck_pop(main_text="STOP! DO NOT WORK IN OLD FOLDER")
 
 
 
@@ -174,7 +175,7 @@ def ask_to_unload_locally(doc):
         return False
 
     #print are_there_unloaded_links()
-    res = EA_UTILITY.dialogue(main_text = "Team BiliBili, Do you want to locally offload links to save memory?",
+    res = REVIT_FORMS.dialogue(main_text = "Team BiliBili, Do you want to locally offload links to save memory?",
                                 sub_text = "This will not affect workset setting nor other people's load status, just unload for the current user",
                                 options = ["Offload some links", "Keep them on"])
     if "Keep" in res or res is None:
@@ -209,27 +210,18 @@ def ask_to_unload_locally(doc):
     # x.UnloadLocally ()
 
 def append_sync_time_record(doc):
-    script_subfolder = "Ennead.tab\\Utility.panel\\exe_1.stack\\LAST_SYNC_MONITOR.pushbutton\\update_last_sync_datafile_script.py"
-    func_name = "update_last_sync_data_file"
-    MODULE_HELPER.run_revit_script(script_subfolder, func_name, doc)
-    
-    func_name = "run_exe"
-    MODULE_HELPER.run_revit_script(script_subfolder, func_name)
+    REVIT_SYNC.update_last_sync_data_file(doc)
+    REVIT_SYNC.start_monitor()
+
 
 def check_if_file_opened(doc):
-    script_subfolder = "Ennead.tab\\Utility.panel\\exe_1.stack\\LAST_SYNC_MONITOR.pushbutton\\update_last_sync_datafile_script.py"
-    func_name = "is_doc_opened"
-    MODULE_HELPER.run_revit_script(script_subfolder, func_name, doc)
-    
+    REVIT_SYNC.is_doc_opened(doc)
 
 
 def hide_user_tab():
-    setting_file = FOLDER.get_EA_dump_folder_file('revit_ui_setting.json')
-    if not FOLDER.is_path_exist(setting_file):
-        return
+    setting_file = 'revit_ui_setting.json'
 
-
-    data = DATA_FILE.read_json_as_dict(setting_file)
+    data = DATA_FILE.get_data(setting_file)
 
     for tab in ribbon.get_current_ui():
         #print tab.name
@@ -262,7 +254,7 @@ def register_silient_open(doc):
 
     
 
-    filepath = "{}\doc_opener.json".format(ENVIRONMENT.MISC_FOLDER)
+    filepath = "{}\doc_opener.sexyDuck".format(ENVIRONMENT.MISC_FOLDER)
 
     try:
         data = DATA_FILE.read_json_file_safely(filepath)
@@ -332,7 +324,7 @@ def warn_ignorance(doc, warning_cate):
         return 0
     
     
-    record_file = "{}_{}.json".format(warning_cate,
+    record_file = "{}_{}.sexyDuck".format(warning_cate,
                                       doc.Title)
     if not os.path.exists(record_file):
         record = dict()
@@ -355,7 +347,7 @@ def warn_ignorance(doc, warning_cate):
     return int(day_delta)
 
 def remove_ignorance(doc, warning_cate):
-    record_file = "{}_{}.json".format(warning_cate,
+    record_file = "{}_{}.sexyDuck".format(warning_cate,
                                       doc.Title)
     file = FOLDER.get_shared_dump_folder_file(record_file)
     if os.path.exists(file):
@@ -409,14 +401,13 @@ def main():
 
 
 
-    if EA_UTILITY.is_open_hook_depressed():
+    if False and EA_UTILITY.is_open_hook_depressed():
         print ("not running doc-opening hook")
         script.get_output().close()
         return
     else:
         SOUND.play_sound("sound_effect_popup_msg1.wav")
-        if ENVIRONMENT.is_Revit_limited():
-            return
+
         output = script.get_output()
         global killtime
         killtime = 90
@@ -432,6 +423,11 @@ def main():
         if doc.IsFamilyDocument:
             return
 
+        check_if_file_opened(doc)
+        append_sync_time_record(doc)
+
+        return
+        
         REVIT_HISTORY.record_warning(doc)
         log_time_sheet(doc)
         
@@ -446,8 +442,6 @@ def main():
 
         ask_to_unload_locally(doc)
     
-        check_if_file_opened(doc)
-        append_sync_time_record(doc)
 
         #ENNEAD_LOG.open_doc_with_warning_count(warning_count = len(doc.GetWarnings()))
         basic_info(doc)
@@ -455,9 +449,9 @@ def main():
         
 
         
-        ENNEAD_LOG.warn_revit_session_too_long(non_interuptive = True)
+        # ENNEAD_LOG.warn_revit_session_too_long(non_interuptive = True)
         
-        ENNEAD_LOG.update_local_warning(doc)
+        # ENNEAD_LOG.update_local_warning(doc)
 
         register_silient_open(doc)
 

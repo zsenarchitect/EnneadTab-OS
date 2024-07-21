@@ -14,7 +14,7 @@ from pyrevit.revit import ErrorSwallower
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import DATA_FILE, NOTIFICATION, ENVIRONMENT, ERROR_HANDLE, FOLDER
+from EnneadTab import DATA_FILE, NOTIFICATION, IMAGE, ERROR_HANDLE, FOLDER, TIME
 
 from Autodesk.Revit import DB # pyright: ignore  
 import clr
@@ -86,7 +86,7 @@ class Rhino2Revit_UI(forms.WPFWindow):
                 self.button_convert.BorderBrush = System.Windows.Media.Brushes.Black
                 self.button_convert.BorderThickness = System.Windows.Thickness(
                     1)
-                # NOTIFICATION.toast(main_text = "Not all object style is assigned")
+                # NOTIFICATION.messenger(main_text = "Not all object style is assigned")
                 self.button_convert.Content = "ObjectStyle Test Not Passed"
                 # self.button_convert.Width = 300
                 self.button_convert.IsEnabled = False
@@ -100,6 +100,7 @@ class Rhino2Revit_UI(forms.WPFWindow):
 
         return True
 
+    @ERROR_HANDLE.try_catch_error()
     def convert_clicked(self, sender, args):
         if not self.is_pass_convert_precheck():
             return
@@ -129,12 +130,11 @@ class Rhino2Revit_UI(forms.WPFWindow):
                 self.DWG_convert(item)
 
             time_span = time.time() - start_time
-            NOTIFICATION.toast(main_text="{} import finished!!".format(item.display_name),
-                                         sub_text="Import used {} seconds = {} mins".format(time_span, time_span/60))
+            NOTIFICATION.messenger(main_text="{} import finished!!\nImport used {}".format(item.display_name, TIME.get_readable_time(time_span))
         t.Commit()
         tool_time_span = time.time() - tool_start_time
         REVIT_FORMS.notification(main_text="Rhino2Revit Finished.",
-                                                 sub_text="Files processeds:\n{}\nTotal time = {} seconds = {} mins".format(detail_list, tool_time_span, tool_time_span/60))
+                                sub_text="Files processeds:\n{}\nTotal time:\n{}".format(detail_list, TIME.get_readable_time(tool_time_span)))
         self.Close()
 
     def free_form_convert(self, data_item):
@@ -255,6 +255,7 @@ class Rhino2Revit_UI(forms.WPFWindow):
         except Exception as e:
             print("fail to clean up imported category SubC becasue " + str(e))
 
+    @ERROR_HANDLE.try_catch_error()
     def add_OST_clicked(self, sender, args):
         parent_category = doc.OwnerFamily.FamilyCategory
         new_subc_name = forms.ask_for_unique_string(reserved_values=get_all_subC_names(),
@@ -285,6 +286,7 @@ class Rhino2Revit_UI(forms.WPFWindow):
             get_all_subC_names() + ["<Use Source File Name as SubC>"]
         self.object_style_combos.ItemsSource = raw_subC_names
 
+    @ERROR_HANDLE.try_catch_error()
     def open_details_describtion(self, sender, args):
         REVIT_FORMS.notification(main_text="<.3dm Files>\nPros:\n\tStable, feel more similar to native Revit elements.\n\tIndividual control on Boolean, Subc, Visibility, Dimension Control\nCons:\n\tRequire Higer Standard of Cleaness in model.\n\tCannot handle curves.\n\n<.DWG Files>\nPros:\n\tMore tolerance on imperfection in models\n\tCan deal with lines, arcs and circle. Can also deal with Nurbs if all control points on same CPlane.\nCons:\n\tNo individual control for multiple elements, each import from same source file is glued.\n\tIntroduce Import SubC (which can be fixed automatically)",
                                                  sub_text="With the exception of curve elements, .3dm is always prefered format, if it fails to convert, try some fix source model as far as you can. You can see the help from the output window.\nUse .dwg as your last resort.",
@@ -296,17 +298,15 @@ class Rhino2Revit_UI(forms.WPFWindow):
         import trouble_shooting
         trouble_shooting.show_instruction(output)
 
+    @ERROR_HANDLE.try_catch_error()
     def open_youtube(self, sender, args):
         script.open_url(r"https://youtu.be/gb2rG6ZteP8")
 
+    @ERROR_HANDLE.try_catch_error()
     def pick_files(self, sender, args):
         # print "pick files"
-        recent_output_folder = DATA_FILE.get_sticky_longterm("RHINO2REVIT_FOLDER")
-        if not recent_output_folder:
-            recent_output_folder = os.path.join(os.path.expanduser("~"), "Desktop")
+        recent_output_folder = os.path.join(os.path.expanduser("~"), "Desktop")
             
-        if "EnneadTab Export By Layer" in recent_output_folder:
-            recent_output_folder = os.path.dirname(recent_output_folder)
             
         files = forms.pick_file(files_filter='Rhino and AutoCAD (*.3dm; *.dwg)|*.3dm; *.dwg|'
                                 'Rhino (*.3dm)|*.3dm|'
@@ -316,6 +316,7 @@ class Rhino2Revit_UI(forms.WPFWindow):
                                 title="Pick your files, Rhino and/or CAD")
         # print files
         if not files:
+            NOTIFICATION.messenger("There are no files selected.")
             return
 
         # make this to ost list
@@ -333,9 +334,11 @@ class Rhino2Revit_UI(forms.WPFWindow):
     def data_grid_value_changed(self, sender, args):
         self.is_pass_convert_precheck()
 
+    @ERROR_HANDLE.try_catch_error()
     def test_assignment_clicked(self, sender, args):
         self.is_pass_convert_precheck()
 
+    @ERROR_HANDLE.try_catch_error()
     def force_file_name_OST_clicked(self, sender, args):
         for item in self.data_grid.ItemsSource:
             if item.selected_OST_name == self.object_style_combos.ItemsSource[0]:
@@ -516,7 +519,7 @@ def clean_import_object_style(existing_OSTs):
 @ERROR_HANDLE.try_catch_error()
 def main():
     if not doc.IsFamilyDocument:
-        NOTIFICATION.toast(sub_text="For effective subCategory",
+        NOTIFICATION.messenger(sub_text="For effective subCategory",
                                      main_text="Must be in a family environment")
         REVIT_FORMS.notification(main_text="Must be in a family environment for subCategory to be useful.",
                                                  sub_text="DirectShape is never a good solution, so dont do it in project environment.",
@@ -527,8 +530,7 @@ def main():
                                                  window_height=500)
         return
     Rhino2Revit_UI().show_dialog()
-    ENNEAD_LOG.use_enneadtab(
-        coin_change=20, tool_used=__title__.replace("\n", " "), show_toast=True)
+
 
 
 ################## main code below #####################

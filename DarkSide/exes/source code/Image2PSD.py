@@ -2,7 +2,7 @@
 
 import sys
 sys.path.append("..\lib")
-import EnneadTab
+from EnneadTab import ERROR_HANDLE
 
 sys.path.append(EnneadTab.ENVIRONMENT.DEPENDENCY_FOLDER_LEGACY)
 sys.path.append(r'L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Dependency Modules\win32ctypes')
@@ -25,7 +25,7 @@ def JavaScript(app, js_code):
 
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def process_PSD():
     # opens ps
     global psApp

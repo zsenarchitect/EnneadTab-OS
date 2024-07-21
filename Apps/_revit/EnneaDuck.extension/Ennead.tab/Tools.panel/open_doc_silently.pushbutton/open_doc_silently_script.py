@@ -54,7 +54,7 @@ class Solution:
         try:
             __revit__.OpenAndActivateDocument (cloud_path, open_options, False)
             return
-            new_doc = REVIT_APPLICATION.get_application().OpenDocumentFile(cloud_path,
+            new_doc = REVIT_APPLICATION.get_app().OpenDocumentFile(cloud_path,
                                                                                             open_options)
         except Exception as e:
             print ("{} cannot be opened becasue {}".format(doc_name, e))
@@ -79,7 +79,7 @@ class Solution:
             self.open_without_workset = False
 
         # to-do: replace with ENVIRONEMENT MISC_FOLDER
-        filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.json"
+        filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.sexyDuck"
 
         self.data = DATA_FILE.read_json_as_dict(filepath)
 

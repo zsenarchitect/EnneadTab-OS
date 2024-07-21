@@ -4,11 +4,10 @@ __tip__ = True
 
 from pyrevit import forms
 from pyrevit import script
-from EA_UTILITY import dialogue
 
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab.REVIT import REVIT_UNIT, REVIT_APPLICATION
+from EnneadTab.REVIT import REVIT_UNIT, REVIT_APPLICATION, REVIT_FORMS
 from EnneadTab import ERROR_HANDLE
 from EnneadTab import NOTIFICATION 
 #forms.alert( "Work in progress. Coming in the next version")
@@ -105,10 +104,8 @@ class Solution:
                                                     DB.Structure.StructuralType.NonStructural )
         except Exception as e:
             t.RollBack()
-            EA_UTILITY.dialogue(main_text = str(e), sub_text = "WIP")
+            REVIT_FORMS.dialogue(main_text = str(e), sub_text = "WIP")
             return
-            #EA_UTILITY.dialogue(main_text = "{}\nHas this family been placed in project at least once?",
-                                #sub_text = "Not need to be in the right location yet, a random location is fine. This tool need to ")
 
         if level.Elevation != 0:
             offset = level.Elevation
@@ -122,11 +119,7 @@ class Solution:
     def move_to_origin(self):
         selection = [doc.GetElement(x) for x in uidoc.Selection.GetElementIds()]
         if len(selection) < 1:
-            """
-            if not EA_UTILITY.is_SZ():
-                dialogue(main_text = "No fmaily instance selected.")
-                return
-            """
+  
             selection = self.pick_instances()
 
 
@@ -138,13 +131,7 @@ class Solution:
             #maybe here it can direct to Youtube demo video.
 
 
-        """
-        if isinstance(doc.ActiveView, DB.View3D):
-            pass
-        else:
-            dialogue(main_text = 'You should be doing this in a 3D view.')
-            return
-        """
+
 
 
 
@@ -155,7 +142,7 @@ class Solution:
             if not element:
                 continue
             if element.Pinned == True:
-                res1 = dialogue(main_text = "It is currently pinned.", title = "wait...", options = ["Unpin this element and move it." , "Leave it as it is."])
+                res1 = REVIT_FORMS.dialogue(main_text = "It is currently pinned.", title = "wait...", options = ["Unpin this element and move it." , "Leave it as it is."])
                 # res1 = forms.alert(options = ["Unpin this element and move it." , "Leave it as it is."], msg = "It is currently pinned.", title = "wait...")
                 if res1 == "Unpin this element and move it.":
                     element.Pinned = False
@@ -182,7 +169,7 @@ class Solution:
             """
             and it can pin it afterward
             """
-            res = dialogue(main_text = "It has moved to the origin point.\nNow I want to ...", title = "good news!", options = ["Pin this element." , "Don't Pin this element."])
+            res = REVIT_FORMS.dialogue(main_text = "It has moved to the origin point.\nNow I want to ...", title = "good news!", options = ["Pin this element." , "Don't Pin this element."])
             # res = forms.alert(options = ["Pin this element." , "Don't Pin this element."], msg = "It has moved to the origin point.\nNow I want to ...", title = "good news!")
             if res == "Pin this element.":
                 element.Pinned = True

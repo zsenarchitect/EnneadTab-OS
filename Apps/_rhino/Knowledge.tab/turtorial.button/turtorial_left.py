@@ -15,7 +15,7 @@ from EnneadTab.RHINO import RHINO_FORMS
 
 def open_file_by_selection(folder, selected_opt):
     filepath = folder + "\\" + selected_opt
-    EXE.open_file_in_default_application(filepath)
+    EXE.try_open_app(filepath)
 
 def open_gh_by_selection(folder, selected_opt):
     shortcut_path = folder + "\\" + selected_opt

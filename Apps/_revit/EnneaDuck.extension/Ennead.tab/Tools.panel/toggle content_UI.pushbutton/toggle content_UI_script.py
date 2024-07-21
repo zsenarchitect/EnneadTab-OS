@@ -19,7 +19,7 @@ from pyrevit import script, forms
 import proDUCKtion # pyright: ignore 
 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT, DATA_CONVERSION, ERROR_HANDLE
+from EnneadTab import IMAGE, DATA_CONVERSION, ERROR_HANDLE
 
 
 import traceback

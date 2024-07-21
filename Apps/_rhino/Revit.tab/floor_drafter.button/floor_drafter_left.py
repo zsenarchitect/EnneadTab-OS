@@ -91,7 +91,7 @@ def floor_drafter():
             out[brep.ToString()] = data
     
 
-    file = FOLDER.get_EA_dump_folder_file("BREP2FLOOR_DATA.json")
+    file = FOLDER.get_EA_dump_folder_file("BREP2FLOOR_DATA.sexyDuck")
     DATA_FILE.set_data(out, file)
 
     SOUND.play_sound("sound_effect_mario_message.wav")

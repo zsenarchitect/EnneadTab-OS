@@ -21,7 +21,7 @@ from pyrevit import HOST_APP
 import proDUCKtion # pyright: ignore 
 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT, ERROR_HANDLE
+from EnneadTab import IMAGE, ERROR_HANDLE
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 

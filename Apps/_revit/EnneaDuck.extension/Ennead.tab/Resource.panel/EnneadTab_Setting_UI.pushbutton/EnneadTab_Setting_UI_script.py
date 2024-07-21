@@ -74,7 +74,7 @@ def change_extension_folder(is_force_tester, include_game):
     from EnneadTab.REVIT import REVIT_APPLICATION
     from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER
 
-    if not USER.is_SZ():
+    if not USER.IS_DEVELOPER:
             
         if USER.is_revit_beta_tester():
             if enneadtab_beta_tester_version_folder not in current_external_folders:
@@ -168,7 +168,7 @@ class main_setting_UI(forms.WPFWindow):
         self.set_image_source(self.logo_img, logo_file)
         self.Height = 800
         """
-        if not USER.is_SZ():
+        if not USER.IS_DEVELOPER:
             self.reminder_level_setting.Visibility = System.Windows.Visibility.Collapsed
             #self.ribbon_tab_setting.Visibility = System.Windows.Visibility.Collapsed
         """

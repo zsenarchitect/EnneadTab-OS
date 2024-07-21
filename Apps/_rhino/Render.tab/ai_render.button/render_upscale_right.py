@@ -236,7 +236,7 @@ class RenderUpscalerDialog(Eto.Forms.Form):
 
     @property
     def previous_data(self):
-        return DATA_FILE.read_json_as_dict(os.path.join(self.session_folder, "EnneadTab AI Meta Data.json"))
+        return DATA_FILE.read_json_as_dict(os.path.join(self.session_folder, "EnneadTab AI Meta Data.sexyDuck"))
 
     
     
@@ -407,7 +407,7 @@ class RenderUpscalerDialog(Eto.Forms.Form):
         data["direction"] = "IN"
 
 
-        DATA_FILE.set_data(data, "AI_RENDER_SCALER_{}.json".format(TIME.get_formatted_current_time()))
+        DATA_FILE.set_data(data, "AI_RENDER_SCALER_{}.sexyDuck".format(TIME.get_formatted_current_time()))
 
         NOTIFICATION.messenger(main_text = "Upscale Job Enqueued!") 
         call_exe()
@@ -430,10 +430,8 @@ def render_upscale():
 
 
 def call_exe():
-    version = "EA_AI_SCALER_0.2.2"
-    exe_location = "L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exe\\{}\\{}.exe - Shortcut".format(version, version)
-    
-    EXE.open_file_in_default_application(exe_location)
+
+    EXE.try_open_app("EA_AI_SCALER")
 
  
 

@@ -209,7 +209,7 @@ def get_color_template_data(template = None):
     else:
         safe_template = "OFFICE STANDARD FILE TO BE MADE"
     
-    if safe_template.endswith(".json"):
+    if safe_template.endswith(".sexyDuck"):
         with open(safe_template, "r") as f:
             return json.load(f)
         

@@ -163,7 +163,7 @@ def external_trimmer():
     else:
         filepath = get_external_filepath()
         doc.ExportSelected (filepath)
-        EXE.open_file_in_default_application(filepath)
+        EXE.try_open_app(filepath)
         NOTIFICATION.messenger(main_text = "Opening External link file now.")
 
     #process_link()

@@ -234,7 +234,7 @@ class ListSelectionDialog(REF_CLASS):
         #print len(list(self.lb.SelectedItems))
         #print len(list(self.lb.SelectedRows))
         if len(list(self.lb.SelectedItems)) == 0:
-            NOTIFICATION.toast(main_text = "Need to select at least something")
+            NOTIFICATION.messenger(main_text = "Need to select at least something")
             return
         self.Close(True)
         self.RunScript()
@@ -244,7 +244,7 @@ class ListSelectionDialog(REF_CLASS):
     def btn_select_all_Clicked(self, sender, e):
         # close window after double click action. Otherwise, run with error
         self.lb.SelectAll()
-        NOTIFICATION.toast(main_text = "{} items slected".format(len(self.SearchedScriptList)))
+        NOTIFICATION.messenger(main_text = "{} items slected".format(len(self.SearchedScriptList)))
 
 
     # event handler handling clicking on the 'cancel' button
@@ -290,34 +290,3 @@ def show_ListSelectionDialog(options,
         print ("Dialog did not run")
         return None
 
-
-    
-def test():
-    docLayers = rs.LayerNames()
-
-    to_do = []
-    i = 0
-    while i < len(docLayers):
-        to_do.append(docLayers[i:i+1])
-        i += 1
-    #show_ListSelectionDialog(to_do)
-    print (docLayers)
-    import traceback
-    try:
-        res = show_ListSelectionDialog(docLayers,
-                                        title = "new title",
-                                        message = "test message",
-                                        multi_select = False)
-        print (res)
-    except Exception as e:
-
-        error =  traceback.format_exc()
-        print (error)
-
-        NOTIFICATION.messenger(main_text = "error")
-        filepath = r"C:\Users\szhang\Desktop\error.txt"
-        import DATA_FILE
-        DATA_FILE.save_list_to_txt([error], filepath, end_with_new_line = False)
-
-if __name__ == "__main__":
-    test()

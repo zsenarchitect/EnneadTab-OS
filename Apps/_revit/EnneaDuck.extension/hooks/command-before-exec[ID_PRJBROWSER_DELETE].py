@@ -1,7 +1,7 @@
 
 from pyrevit import  EXEC_PARAMS, script
 
-import EnneadTab
+from EnneadTab import ERROR_HANDLE
 from Autodesk.Revit import DB # pyright: ignore
 from Autodesk.Revit import UI # pyright: ignore
 args = EXEC_PARAMS.event_args
@@ -11,7 +11,7 @@ uiapp = UI.UIApplication(doc.Application)
 import os
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error(is_silent=True)
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     import imp
     module_name = "command-before-exec[ID_BUTTON_DELETE]"

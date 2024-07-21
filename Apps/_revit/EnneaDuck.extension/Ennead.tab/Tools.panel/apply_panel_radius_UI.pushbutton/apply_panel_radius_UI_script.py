@@ -18,7 +18,7 @@ from pyrevit import script, forms
 
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
+from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
 
 
 import traceback
@@ -73,7 +73,7 @@ def apply_radius_action(window):
 
 
 
-    NOTIFICATION.toast(sub_text = "",
+    NOTIFICATION.messenger(sub_text = "",
                                 main_text = "Radius Applied Finished!")
 
 
@@ -337,7 +337,7 @@ class apply_panel_radius_UI(forms.WPFWindow):
 
         instances = get_all_instance_of_type(self.bad_type)
         if len(instances) == 0:
-            NOTIFICATION.toast(main_text = "Found no elements of this type.", force_toast = True)
+            NOTIFICATION.messenger(main_text = "Found no elements of this type.", force_toast = True)
             return
         random.shuffle(instances)
         instance = instances[0]

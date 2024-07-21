@@ -5,7 +5,7 @@ __doc__ = "Listen to changes in the miro"
 
 import os
 import threading
-import EnneadTab
+from EnneadTab import ERROR_HANDLE
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
 import traceback
@@ -162,7 +162,7 @@ def listen_to_miro():
     print ("Miro URL: " + miro_url)
     EnneadTab.DATA_FILE.set_revit_ui_setting_data(key, miro_url)
 
-    with EnneadTab.DATA_FILE.update_data("miro.json") as data:
+    with EnneadTab.DATA_FILE.update_data("miro.sexyDuck") as data:
         data['url'] = miro_url
         data["app"] = "rhino_listener"
         data["frequency"] = 1

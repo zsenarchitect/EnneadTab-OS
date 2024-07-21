@@ -14,7 +14,7 @@ from EnneadTab import ERROR_HANDLE
 def visualize_excel():
     original = "{}\\Demo Files\\Progam Spreadsheet.xlsx".format(ENVIRONMENT.PUBLISH_FOLDER_FOR_RHINO)
     copy = FOLDER.copy_file_to_local_dump_folder(original)
-    EXE.open_file_in_default_application(copy)
+    EXE.try_open_app(copy)
     rs.TextOut("You can modify this excel to your like and saveas.\nFrom left to right, the fileds are: \nCategory, Area Name, Area Size, Color R, Color, G, Color B, Cateogry Area Sum")
 
 if __name__ == "__main__":

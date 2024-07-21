@@ -33,7 +33,7 @@ def speak(text, language='en', accent='com'):
     data["text"] = text
     data["language"] = language
     data["accent"] = accent
-    DATA_FILE.set_data(data, "EA_Text2Speech.json")
+    DATA_FILE.set_data(data, "EA_Text2Speech.sexyDuck")
     
  
 

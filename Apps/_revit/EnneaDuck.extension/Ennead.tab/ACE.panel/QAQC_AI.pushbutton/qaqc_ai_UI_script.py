@@ -25,7 +25,7 @@ from pyrevit.forms import WPFWindow
 import proDUCKtion # pyright: ignore 
 from EnneadTab.REVIT import REVIT_FORMS
 from EnneadTab.FUN import JOKES
-from EnneadTab import EXE, DATA_FILE, SOUND, TIME, ERROR_HANDLE, FOLDER, ENVIRONMENT
+from EnneadTab import EXE, DATA_FILE, SOUND, TIME, ERROR_HANDLE, FOLDER, IMAGE
 import traceback
 
 from Autodesk.Revit import DB # pyright: ignore 
@@ -40,7 +40,7 @@ __persistentengine__ = True
 
 def get_api_key():
 
-    file_path = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\EA_API_KEY.json"
+    file_path = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\EA_API_KEY.sexyDuck"
 
 
 
@@ -137,7 +137,7 @@ class AI_Report_modelessForm(WPFWindow):
 
     @property
     def log_file(self):
-        file_name = "EA_QAQC_REPORT_LOG.json"
+        file_name = "EA_QAQC_REPORT_LOG.sexyDuck"
         return file_name
 
         return FOLDER.get_EA_dump_folder_file(file_name)
@@ -153,7 +153,7 @@ class AI_Report_modelessForm(WPFWindow):
 
     @ERROR_HANDLE.try_catch_error()
     def ask_Click(self, sender, e):
-        # if not USER.is_SZ():
+        # if not USER.IS_DEVELOPER:
         #     self.debug_textbox.Text = "WIP function."
         #     return
         query = self.tbox_input.Text
@@ -177,7 +177,7 @@ class AI_Report_modelessForm(WPFWindow):
         data["store_name"] = self.session_name
         data["response"] = "No results."
         
-        self.data_file = FOLDER.get_EA_dump_folder_file("QAQC_REPORT_DATA.json")
+        self.data_file = FOLDER.get_EA_dump_folder_file("QAQC_REPORT_DATA.sexyDuck")
         DATA_FILE.set_data(data, self.data_file)
         
         run_exe()
@@ -271,12 +271,8 @@ class AI_Report_modelessForm(WPFWindow):
 
 
 def run_exe():
-
-    exe_location = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Exe\QAQC_REPORT_READER\1.2\QAQC_REPORT_READER\QAQC_REPORT_READER.exe - Shortcut"
-
-
-    
-    EXE.open_file_in_default_application(exe_location)
+   
+    EXE.try_open_app('QAQC_REPORT_READER')
 
 
 

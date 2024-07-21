@@ -1,6 +1,7 @@
 
 import os
 import ENVIRONMENT
+import USER
 import NOTIFICATION
 
 def try_open_app(exe_name, legacy_name = None):
@@ -21,8 +22,8 @@ def try_open_app(exe_name, legacy_name = None):
         if try_open_app(legacy_name):
             return True
         
-    if os.environ["USERPROFILE"].split("\\")[-1] == "szhang":
-        print ("[SZ only log]No exe found in the location.")
+    if USER.IS_DEVELOPER:
+        print ("[Developer only log]No exe found in the location.")
         print (exe)
         print (foldered_exe)
         NOTIFICATION.messenger("No exe found!!!\n{}".format(exe_name))

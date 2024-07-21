@@ -32,7 +32,7 @@ from pyrevit import HOST_APP
 import proDUCKtion # pyright: ignore 
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import USER, ENVIRONMENT, SOUND, TIME, ERROR_HANDLE, FOLDER
+from EnneadTab import USER, ENVIRONMENT, SOUND, TIME, ERROR_HANDLE, FOLDER, IMAGE
 
 
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -165,7 +165,7 @@ class EA_search_UI(forms.WPFWindow):
 
 
     def is_enneadtab_command(self, command):
-        if command.name and command.extension == "ENNEAD":
+        if command.name and command.extension == ENVIRONMENT.PRIMARY_EXTENSION_NAME:
             if command.tooltip:
                 tooltips = command.tooltip.lower()
                 if "legacy" in tooltips or "not in use" in tooltips:
@@ -173,14 +173,7 @@ class EA_search_UI(forms.WPFWindow):
             return True
         return False
 
-    def is_native_command(self, command):
-        if command.name and command.extension == "ENNEAD":
-            if command.tooltip:
-                tooltips = command.tooltip.lower()
-                if "legacy" in tooltips or "not in use" in tooltips:
-                    return False
-            return True
-        return False
+
 
     @ERROR_HANDLE.try_catch_error()
     def load_commands(self):
@@ -213,6 +206,7 @@ class EA_search_UI(forms.WPFWindow):
         if self.checkbox_enneadtab.IsChecked:
             from pyrevit.loader import sessionmgr
             for command in filter(self.is_enneadtab_command, sessionmgr.find_all_available_commands()):
+                
                 title, doc_string, script_path, youtube_link, post_link = self.get_command_title_and_docstring_and_panel_location(command)
                 self.search_datas[title] = (doc_string, script_path, youtube_link, post_link)
         """
@@ -367,8 +361,8 @@ class EA_search_UI(forms.WPFWindow):
         
         from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
         from EnneadTab import USER, ENVIRONMENT, SOUND, TIME, ERROR_HANDLE, FOLDER
-        folder = FOLDER.get_folder_path_from_path(script_path)
-        for file in FOLDER.get_filenames_in_folder(folder):
+        folder = os.path.dirname(script_path)
+        for file in os.listdir(folder):
             if "icon.png" in file.lower():
                 break
         icon_path = "{}\{}".format(folder, file)
@@ -648,10 +642,7 @@ class EA_search_UI(forms.WPFWindow):
 
 @ERROR_HANDLE.try_catch_error()
 def main():
-    #print_dir(__file__)
-
-
-    modeless_form = EA_search_UI()
+    EA_search_UI()
 
 def list_imported_modules():
     print("Currently imported modules:")
@@ -673,7 +664,7 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # if not USER.is_SZ():
+    # if not USER.IS_DEVELOPER:
     #     REVIT_FORMS.notification(main_text = "This is a work in progress tool.")
     main()
     

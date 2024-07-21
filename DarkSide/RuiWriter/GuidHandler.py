@@ -19,7 +19,7 @@ import uuid
 import json
 import os
 
-DATA_FILE = "{}\\guid_database.json".format(os.path.dirname(os.path.realpath(__file__)))
+DATA_FILE = "{}\\guid_database.sexyDuck".format(os.path.dirname(os.path.realpath(__file__)))
 
 assert os.path.exists(DATA_FILE), "guid data file does not exist"
 

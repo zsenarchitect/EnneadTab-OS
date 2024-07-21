@@ -6,6 +6,7 @@ import math
 ESOSYSTEM_FOLDER = "{}\\Documents\\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
 DUMP_FOLDER = "{}\\Dump".format(ESOSYSTEM_FOLDER)
 
+
 def try_catch_error(func):
 
     def wrapper(*args, **kwargs):

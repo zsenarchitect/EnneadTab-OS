@@ -1,0 +1,1 @@
+"""add joke related function"""

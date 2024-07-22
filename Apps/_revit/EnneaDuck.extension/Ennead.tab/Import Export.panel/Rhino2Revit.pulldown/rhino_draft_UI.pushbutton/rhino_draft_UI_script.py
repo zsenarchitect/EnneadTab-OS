@@ -52,10 +52,10 @@ def convert_unit(x):
 
 def get_doc_create():
     if doc.IsFamilyDocument:
-        #EA_UTILITY.print_note("it is family doc")
+   
         doc_create = doc.FamilyCreate
     else:
-        #EA_UTILITY.print_note("it is project doc")
+ 
         doc_create = doc.Create
 
     return doc_create

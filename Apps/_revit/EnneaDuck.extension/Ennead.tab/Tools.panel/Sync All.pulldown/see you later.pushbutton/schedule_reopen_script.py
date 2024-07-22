@@ -25,7 +25,7 @@ doc = REVIT_APPLICATION.get_doc()
 def main():
 
     # get all open docs
-    docs = REVIT_APPLICATION.get_application().Documents
+    docs = REVIT_APPLICATION.get_app().Documents
     docs = [doc for doc in docs if not doc.IsLinked]
     docs = [doc.Title for doc in docs if not doc.IsFamilyDocument]
 
@@ -36,7 +36,7 @@ def main():
     if data is None:
         data = dict()
 
-    data["revit_version"] = REVIT_APPLICATION.get_application().VersionNumber
+    data["revit_version"] = REVIT_APPLICATION.get_app().VersionNumber
     recorded_docs = data.get("docs", [])
     for doc in docs:
         recorded_docs.append(doc)

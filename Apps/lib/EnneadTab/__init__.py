@@ -1,5 +1,5 @@
 
-package_name = "SexyDuck"
+package_name = "EnneadTab"
 version = "0.1"
 
 import os

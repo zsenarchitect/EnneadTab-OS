@@ -607,7 +607,7 @@ class content_transfer_ModelessForm(WPFWindow):
             return
 
 
-        #docs = REVIT_APPLICATION.get_application().Documents
+        #docs = REVIT_APPLICATION.get_app().Documents
         #family_docs = [doc for doc in docs if doc.IsFamilyDocument]
         all_families = DB.FilteredElementCollector(self.source_doc).OfClass(DB.Family).ToElements()
         class MyOption(forms.TemplateListItem):

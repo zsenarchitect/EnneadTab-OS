@@ -913,7 +913,7 @@ def warn_revit_session_too_long(non_interuptive = True):
 
 
     if TIME.time_has_passed_too_long(envvars.get_pyrevit_env_var("APP_UPTIME"), tolerence = 60 * 60 * 24):
-        #EA_UTILITY.dialogue(main_text = "This Revit session has been running for more than 24Hours.\n\nPlease consider restarting Revit to release memory and improve performance.")
+        #REVIT_FORMS.dialogue(main_text = "This Revit session has been running for more than 24Hours.\n\nPlease consider restarting Revit to release memory and improve performance.")
         session_too_long()
         if non_interuptive:
             NOTIFICATION.messenger(main_text = "Your Revit seesion has been running for more than 24Hours.")

@@ -38,7 +38,22 @@ def play_sound(file = "sound_effect_popup_msg3"):
     except Exception as e:
         # print ("Cannot use system media becasue: " + str(e))
         pass
-    
+
+    try:
+        import playsound # pyright : ignore
+        playsound.playsound(file)
+        return True
+    except Exception as e:
+        # print ("Cannot use native playsound  becasue: " + str(e))
+        pass
+    try:
+        # Assuming you're using os.system to play sounds
+        os.system('powershell -c (New-Object Media.SoundPlayer "{}").PlaySync();'.format(file))
+        return True
+    except Exception as e:
+        # print(f"An error occurred: {e}")
+        pass
+        
     try:
         import sys
         sys.path.append(ENVIRONMENT.DEPENDENCY_FOLDER)
@@ -145,8 +160,8 @@ if __name__ == "__main__":
     file = "sound_effect_spring"
     # play_sound(file)
     # play_sound()
-    # test_play_all_sounds()
-    sys_alert()
+    test_play_all_sounds()
+    # sys_alert()
 
 
 

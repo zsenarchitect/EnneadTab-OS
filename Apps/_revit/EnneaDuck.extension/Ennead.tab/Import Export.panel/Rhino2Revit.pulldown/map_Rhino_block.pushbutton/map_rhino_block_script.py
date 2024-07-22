@@ -16,7 +16,8 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, FOLDER
+from EnneadTab.REVIT import REVIT_UNIT
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -51,7 +52,7 @@ def place_new_instance(type_name, transform, rotation_tuple, reflection):
     X = transform[0][-1]
     Y = transform[1][-1]
     Z = transform[2][-1]
-    #print EA_UTILITY.internal_to_mm(Z)
+
     #temp_instance = doc.Create.NewFamilyInstance (DB.XYZ(X,Y,Z), type, DB.Structure .StructuralType.NonStructural) #--->use for conventional generic family
     temp_instance = DB.AdaptiveComponentInstanceUtils.CreateAdaptiveComponentInstance(doc, type)
     insert_pt = DB.AdaptiveComponentInstanceUtils.GetInstancePlacementPointElementRefIds(temp_instance)[0]
@@ -123,7 +124,7 @@ def place_new_instance(type_name, transform, rotation_tuple, reflection):
     #DB.ElementTransformUtils(doc, temp_instance.Id, translation)
     #temp_instance = doc.Create.NewFamilyInstance(face, insert_pt, local_x_axis, type)
 
-    #translation = DB.Transform.CreateTranslation(DB.XYZ(X, Y, Z + EA_UTILITY.mm_to_internal(21800)))
+    #translation = DB.Transform.CreateTranslation(DB.XYZ(X, Y, Z + REVIT_UNIT.mm_to_internal(21800)))
     translation = DB.Transform.CreateTranslation(DB.XYZ(X, Y, Z))
     #print X, Y, Z
     #print translation
@@ -132,11 +133,11 @@ def place_new_instance(type_name, transform, rotation_tuple, reflection):
 
 
     actual_Z = doc.GetElement(DB.AdaptiveComponentInstanceUtils.GetInstancePlacementPointElementRefIds(temp_instance)[0]).Position.Z
-    #print EA_UTILITY.internal_to_mm(actual_Z)
+
     #return
     z_diff = Z - actual_Z
     #print z_diff
-    #translation = DB.Transform.CreateTranslation(DB.XYZ(0, 0, EA_UTILITY.mm_to_internal(21800)))
+    #translation = DB.Transform.CreateTranslation(DB.XYZ(0, 0, REVIT_UNIT.mm_to_internal(21800)))
     additional_translation = DB.Transform.CreateTranslation(DB.XYZ(0, 0, z_diff))
     total_transform = additional_translation * total_transform
     DB.AdaptiveComponentInstanceUtils.MoveAdaptiveComponentInstance (temp_instance , total_transform, True)
@@ -165,7 +166,7 @@ def read_data(data):
 
         if i % 4 == 0:
             temp = []
-        temp.append(EA_UTILITY.mm_to_internal(float(item.replace("(","").replace(")",""))))
+        temp.append(REVIT_UNIT.mm_to_internal(float(item.replace("(","").replace(")",""))))
         if i % 4 == 3:
             transform.append(temp)
     #print "*******"
@@ -178,7 +179,7 @@ def read_data(data):
     return block_name, transform, rotation_tuple, reflection
 
 def map_block():
-    file_path = EA_UTILITY.get_filepath_in_special_folder_in_EA_setting("Local Copy Dump", "map_block_transform.txt")
+    file_path = FOLDER.get_EA_dump_folder_file("map_block_transform.txt")
 
     raw_data = EA_UTILITY.read_txt_as_list(file_path)
     #for data in raw_data[0:10]:

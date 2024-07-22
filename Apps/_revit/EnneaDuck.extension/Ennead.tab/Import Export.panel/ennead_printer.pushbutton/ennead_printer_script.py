@@ -847,7 +847,7 @@ class EA_Printer_UI(WPFWindow):
         open_options = DB.OpenOptions()
         #EA_UTILITY.print_note( "setting active doc as {}".format(data[0]))
         try:
-            return UI.UIApplication(REVIT_APPLICATION.get_application()).OpenAndActivateDocument (model_path,
+            return UI.UIApplication(REVIT_APPLICATION.get_app()).OpenAndActivateDocument (model_path,
                                                                                             open_options,
                                                                                             False)
         except Exception as e:
@@ -858,7 +858,7 @@ class EA_Printer_UI(WPFWindow):
         #print "!!!Opening {} in background".format(doc_name)
         model_path = self.doc_model_path_pair[doc_name]
         open_options = DB.OpenOptions()
-        new_doc = EA_UTILITY.get_application().OpenDocumentFile(model_path,
+        new_doc = EA_UTILITY.get_app().OpenDocumentFile(model_path,
                                                                 open_options)
 
         #output.print_md( "background open file {}".format(doc_name))
@@ -881,7 +881,7 @@ class EA_Printer_UI(WPFWindow):
 
 
 
-        self.doc_names_already_open = [self.central_doc_name(x) for x in EA_UTILITY.get_top_revit_docs()]
+        self.doc_names_already_open = [self.central_doc_name(x) for x in REVIT_APPLICATION.get_top_revit_docs()]
         self.docs_to_be_opened_by_API = [x for x in self.docs_to_process if self.central_doc_name(x) not in self.doc_names_already_open]
 
         #depress open hook
@@ -1264,9 +1264,9 @@ class EA_Printer_UI(WPFWindow):
         self.is_color_by_sheet = self.radio_button_color_by_sheet.IsChecked
 
     def button_pick_docs_Clicked(self, sender, args):
-        if len([doc for doc in EA_UTILITY.get_top_revit_docs() if not doc.IsFamilyDocument]) > 1:
+        if len([doc for doc in REVIT_APPLICATION.get_top_revit_docs() if not doc.IsFamilyDocument]) > 1:
             # too many top doc
-            EA_UTILITY.dialogue(main_text = "I notice you have other document opened right now in this session.",
+            REVIT_FORMS.dialogue(main_text = "I notice you have other document opened right now in this session.",
                                 sub_text = "In order to avoid version conflicting, EnneadTab Exporter try to export opened docs only, no export from link.\n\nTo export from links, close all other files and only leave one open.")
             docs = EA_UTILITY.select_top_level_docs(select_multiple = True)
 
@@ -1524,7 +1524,7 @@ class EA_Printer_UI(WPFWindow):
 def ennead_printer():
     """
     if not EA_UTILITY.IS_DEVELOPER:
-        EA_UTILITY.dialogue(main_text = "This tool is under construction, and will be ready in a few weeks.")
+        REVIT_FORMS.dialogue(main_text = "This tool is under construction, and will be ready in a few weeks.")
         return
     """
     try:

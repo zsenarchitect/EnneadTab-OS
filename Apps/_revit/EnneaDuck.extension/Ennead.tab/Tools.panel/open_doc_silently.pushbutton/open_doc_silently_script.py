@@ -54,7 +54,7 @@ class Solution:
         try:
             __revit__.OpenAndActivateDocument (cloud_path, open_options, False)
             return
-            new_doc = REVIT_APPLICATION.get_application().OpenDocumentFile(cloud_path,
+            new_doc = REVIT_APPLICATION.get_app().OpenDocumentFile(cloud_path,
                                                                                             open_options)
         except Exception as e:
             print ("{} cannot be opened becasue {}".format(doc_name, e))

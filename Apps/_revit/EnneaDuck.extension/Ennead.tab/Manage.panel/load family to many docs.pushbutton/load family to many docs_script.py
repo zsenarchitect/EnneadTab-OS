@@ -5,7 +5,7 @@ from pyrevit import forms, DB, UI, script
 
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_SELECTION
 from EnneadTab import SOUND, ERROR_HANDLE
 
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -70,7 +70,7 @@ def update_log(string):
 
 
 def pick_open_family_docs():
-    docs = EA_UTILITY.get_application().Documents
+    docs = REVIT_APPLICATION.get_app().Documents
     OUT = []
     for doc in docs:
         if doc.IsFamilyDocument:
@@ -92,7 +92,7 @@ def pick_family_from_folder():
         return None
     opened_docs = []
     for source_file in source_files:
-        uidoc = UI.UIApplication(REVIT_APPLICATION.get_application()).OpenAndActivateDocument (source_file)
+        uidoc = UI.UIApplication(REVIT_APPLICATION.get_app()).OpenAndActivateDocument (source_file)
         opened_docs.append(uidoc.Document)
         
     return opened_docs
@@ -103,7 +103,7 @@ def process_family():
 
     
 
-    open_docs = EA_UTILITY.get_top_revit_docs()
+    open_docs = REVIT_APPLICATION.get_top_revit_docs()
     selected_docs = forms.SelectFromList.show(open_docs,
                                             name_attr = "Title",
                                             multiselect = True,
@@ -111,7 +111,7 @@ def process_family():
                                             button_name='Load To Those Docs')
 
     options = [["Project Version",""], ["Family Doc Version","(Recommanded)"]]
-    res = EA_UTILITY.dialogue(main_text = "When shared component is disovered, which version to use?", sub_text = "If there are no shared family, you can click on any option to processed.\n\nIf not sure, consault with your ACE first on how your project should treat shared family normally.", options = options)
+    res = REVIT_FORMS.dialogue(main_text = "When shared component is disovered, which version to use?", sub_text = "If there are no shared family, you can click on any option to processed.\n\nIf not sure, consault with your ACE first on how your project should treat shared family normally.", options = options)
     global LOADING_SOURCE
     if res == options[0][0]:
         LOADING_SOURCE = DB.FamilySource.Project
@@ -156,7 +156,6 @@ def process_family():
             load_family_to_docs(doc, selected_family_doc)
 
 
-        EA_UTILITY.tool_has_ended()
 
 
         doc_list = ""
@@ -177,7 +176,7 @@ def process_family():
         REVIT_APPLICATION.sync_and_close()
     """
     options = ["Yes", "No"]
-    res = EA_UTILITY.dialogue(main_text = "Loading finish, you want to close family doc?", options = options)
+    res = REVIT_FORMS.dialogue(main_text = "Loading finish, you want to close family doc?", options = options)
     if res == options[0]:
         try:
 

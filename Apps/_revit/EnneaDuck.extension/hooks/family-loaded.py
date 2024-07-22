@@ -40,22 +40,13 @@ def main():
 
     doc = EXEC_PARAMS.event_args.Document
     if doc.IsFamilyDocument:
-        """
-        lines = ["Family loaded.",
-                "Loaded into {}".format(doc.Title)]
-        EA_UTILITY.random_speak(lines)
-        """
+
         return
 
     start_time = envvars.get_pyrevit_env_var("FAMILY_LOAD_BEGIN")
     time_pass = time.time() - start_time
     NOTIFICATION.messenger("Family load finished!!\n<{}> Uses {}".format(EXEC_PARAMS.event_args.FamilyName, TIME.get_readable_time(time_pass)))
 
-    """
-    lines = ["Family loaded in {} mins".format(int(time_pass/60)),
-            "Loaded into {}".format(doc.Title)]
-    EA_UTILITY.random_speak(lines)
-    """
 
 
     #output.print_md("this loaded script")
@@ -75,13 +66,7 @@ def main():
     #print "\n\n\n\n**************************"
     new_sub_c_list =  difference_list(current_sub_c_list, old_sub_c_list)
 
-    """
-    output = script.get_output()
-    #output.self_destruct(150)
-    output.print_md("#The following subCategory(s) brought to the project does not exist before family loaded. Please take screenshot and use Ideate tool to manage object style properly.")
-    for item in new_sub_c_list:
-        print(item)
-    """
+
 
     if len(new_sub_c_list) == 0:
         return

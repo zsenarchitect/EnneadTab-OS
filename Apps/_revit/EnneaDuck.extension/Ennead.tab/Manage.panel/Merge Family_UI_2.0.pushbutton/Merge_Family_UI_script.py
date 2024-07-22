@@ -702,7 +702,7 @@ class MergeFamily_UI(forms.WPFWindow):
 
         instances = get_all_instance_of_type(type, self.is_current_view_only)
         if len(instances) == 0:
-            NOTIFICATION.messenger(main_text = "Found no elements of this type.", force_toast = True)
+            NOTIFICATION.messenger(main_text = "Found no elements of this type.")
             return
         random.shuffle(instances)
         instance = instances[0]

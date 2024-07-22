@@ -19,6 +19,7 @@ def beer_tab():
 
     UNIT_TEST.test_core_module()
     print ("ok beer")
+    
 
 ################## main code below #####################
 

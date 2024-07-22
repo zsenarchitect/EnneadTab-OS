@@ -1,9 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from Autodesk.Revit import UI # pyright: ignore
-from Autodesk.Revit import DB # pyright: ignore
-import REVIT_FORMS, REVIT_VIEW
+try:
+    from Autodesk.Revit import UI # pyright: ignore
+    from Autodesk.Revit import DB # pyright: ignore
+    import REVIT_FORMS, REVIT_VIEW
+except:
+    pass
+
+
 import FOLDER, SAMPLE_FILE
 
 
@@ -347,3 +352,5 @@ def close_revit_app():
     CmndID = RevitCommandId.LookupPostableCommandId (PostableCommand .ExitRevit)
     CmId = CmndID.Id
     uiapp.PostCommand(CmndID)
+
+

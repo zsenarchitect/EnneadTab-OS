@@ -15,6 +15,7 @@ import NOTIFICATION  # pyright: ignore
 import FOLDER  # pyright: ignore
 import SOUND  # pyright: ignore
 import VERSION_CONTROL  # pyright: ignore
+import ENVIRONMENT  # pyright: ignore
 
 class NoGoodSetupException(Exception):
     def __init__(self):
@@ -22,7 +23,7 @@ class NoGoodSetupException(Exception):
 
 # Specify the absolute path to the git executable
 locations = [
-    "{}\\Local\\Programs\\Git\\cmd\\git.exe".format(FOLDER.get_appdata_folder()),
+    "{}\\Local\\Programs\\Git\\cmd\\git.exe".format(ENVIRONMENT.USER_APPDATA_FOLDER),
     "C:\\Program Files\\Git\\cmd\\git.exe"
 ]
 for location in locations:

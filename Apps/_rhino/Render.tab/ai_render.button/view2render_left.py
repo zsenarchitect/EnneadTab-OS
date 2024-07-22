@@ -493,7 +493,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
 
     @property
     def input_image_filename(self):
-        main_folder = FOLDER.get_EA_local_dump_folder()
+        main_folder = NOTIFICATION.DUMP_FOLDER
         session_folder = main_folder + \
             "\\EnneadTab_Ai_Rendering\\Session_{}".format(self.session)
         if not os.path.exists(session_folder):

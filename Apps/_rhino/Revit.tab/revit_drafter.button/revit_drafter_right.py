@@ -207,7 +207,7 @@ def revit_drafter():
     DATA_FILE.pretty_print_dict(OUT_Data)
 
     # save data to dump folder\
-    file_path = "{}\\{}".format(FOLDER.get_EA_local_dump_folder() , "EA_DRAFTING_TRANSFER.sexyDuck")
+    file_path = "{}\\{}".format(NOTIFICATION.DUMP_FOLDER , "EA_DRAFTING_TRANSFER.sexyDuck")
     print (file_path)
     DATA_FILE.set_data(OUT_Data, file_path)
 

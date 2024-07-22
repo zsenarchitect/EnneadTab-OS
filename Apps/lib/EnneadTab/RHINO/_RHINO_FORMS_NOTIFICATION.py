@@ -192,29 +192,4 @@ def show_NotificationDialog(title = "EnneadTab",
 
 
 
-def test():
-    import traceback
-    try:
-        res = show_NotificationDialog(title = "new title",
-                                        main_text = "Some main text " * 10,
-                                        sub_text = "some sub text\n" * 5,
-                                        self_destruct = 3,
-                                        height = 500)
-        print (res)
-    except Exception as e:
 
-        error =  traceback.format_exc()
-        print (error)
-
-        import NOTIFICATION
-        NOTIFICATION.messenger(main_text = "error")
-        filepath = r"C:\Users\szhang\Desktop\error.txt"
-        import DATA_FILE
-        DATA_FILE.save_list_to_txt([error], filepath, end_with_new_line = False)
-
-
-
-
-#############################################################################################
-if __name__ == "__main__":
-    test()

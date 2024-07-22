@@ -2,7 +2,7 @@
 from pyrevit import EXEC_PARAMS
 from pyrevit.coreutils import envvars
 
-
+import proDUCKtion # pyright: ignore 
 from EnneadTab import ENVIRONMENT, USER, FOLDER, MODULE_HELPER
 
 

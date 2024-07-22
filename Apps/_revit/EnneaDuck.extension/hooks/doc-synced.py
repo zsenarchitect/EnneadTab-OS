@@ -1,11 +1,11 @@
 from pyrevit import EXEC_PARAMS
 from Autodesk.Revit import DB # pyright: ignore
 
-
 from pyrevit.coreutils import envvars
 doc = EXEC_PARAMS.event_args.Document
 
 
+import proDUCKtion # pyright: ignore 
 from EnneadTab import ERROR_HANDLE, SOUND, LOG
 from EnneadTab.REVIT import REVIT_SYNC
 __title__ = "Doc Synced Hook"

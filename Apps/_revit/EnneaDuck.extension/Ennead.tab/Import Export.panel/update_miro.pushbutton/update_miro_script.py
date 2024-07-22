@@ -52,7 +52,7 @@ def update_miro():
 
     res = REVIT_APPLICATION.do_you_want_to_sync_and_close_after_done()
 
-    dump_folder = "{}\\miro_dump".format(FOLDER.get_EA_local_dump_folder())
+    dump_folder = "{}\\miro_dump".format(NOTIFICATION.DUMP_FOLDER)
 
     # make sure everytig is the lastest in this folder
 

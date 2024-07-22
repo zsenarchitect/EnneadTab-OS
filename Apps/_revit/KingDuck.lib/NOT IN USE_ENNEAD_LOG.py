@@ -420,7 +420,7 @@ def get_central_name(doc=None):
 def get_user_root_folder():
     """ wait for the new home in AVD"""
     if not ENVIRONMENT.IS_L_DRIVE_ACCESSIBLE:
-        return FOLDER.get_EA_local_dump_folder()
+        return NOTIFICATION.DUMP_FOLDER
     
     folder = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Users"
     folder = FOLDER.secure_folder(folder)
@@ -428,9 +428,9 @@ def get_user_root_folder():
         res = DATA_FILE.set_data(
             dict(), folder + "\\SH_tester_account.sexyDuck")
         if not res:
-            folder = FOLDER.get_EA_local_dump_folder()
+            folder = NOTIFICATION.DUMP_FOLDER
     except:
-        folder = FOLDER.get_EA_local_dump_folder()
+        folder = NOTIFICATION.DUMP_FOLDER
     finally:
         return folder
 

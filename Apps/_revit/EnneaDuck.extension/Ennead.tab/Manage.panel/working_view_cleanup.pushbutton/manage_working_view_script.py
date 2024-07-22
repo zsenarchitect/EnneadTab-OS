@@ -468,14 +468,14 @@ class manage_working_view_ModelessForm(WPFWindow):
                                 main_text = "[{}.jpg] saved.".format(view.Name))
 
         """clean jpg name"""
-        file_names = os.listdir(FOLDER.get_EA_local_dump_folder())
+        file_names = os.listdir(NOTIFICATION.DUMP_FOLDER)
         desired_name = file_name
 
         for file_name in file_names:
             if desired_name in file_name and ".jpg" in file_name.lower():
                 try:
                     # os.path.join(output_folder, file_name)
-                    os.rename("{}\{}".format(FOLDER.get_EA_local_dump_folder(), file_name),os.path.join(FOLDER.get_EA_local_dump_folder(), desired_name + ".jpg"))
+                    os.rename("{}\{}".format(NOTIFICATION.DUMP_FOLDER, file_name),os.path.join(NOTIFICATION.DUMP_FOLDER, desired_name + ".jpg"))
                 except Exception as e:
                     print ("skip {} becasue: {}".format(file_name, e))
 

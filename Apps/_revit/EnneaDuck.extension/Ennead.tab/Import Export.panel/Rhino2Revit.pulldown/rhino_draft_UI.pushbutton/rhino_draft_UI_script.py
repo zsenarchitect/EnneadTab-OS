@@ -501,7 +501,7 @@ class RhinoDraft_UI(forms.WPFWindow):
 
         file_name = "EA_TRANSFER_DRAFT_BACKGROUND"
         view = doc.ActiveView
-        output_folder = FOLDER.get_EA_local_dump_folder()
+        output_folder = NOTIFICATION.DUMP_FOLDER
         REVIT_EXPORT.export_dwg(view, file_name, output_folder, self.combobox_dwg_setting.SelectedItem)
 
         self.update_global_unit()
@@ -580,8 +580,8 @@ class RhinoDraft_UI(forms.WPFWindow):
 
         self.template_file_path = rhino_template_folder + "\\" + template
 
-        #FOLDER.copy_file_to_folder(file_path, FOLDER.get_EA_local_dump_folder())
-        file_path = FOLDER.get_EA_local_dump_folder() + "\\" + template
+        #FOLDER.copy_file_to_folder(file_path, NOTIFICATION.DUMP_FOLDER)
+        file_path = NOTIFICATION.DUMP_FOLDER + "\\" + template
         final_file = file_path.replace(".3dm", "_{}.3dm".format(doc.ActiveView.Name
                                                                 .replace("/","-")))
 

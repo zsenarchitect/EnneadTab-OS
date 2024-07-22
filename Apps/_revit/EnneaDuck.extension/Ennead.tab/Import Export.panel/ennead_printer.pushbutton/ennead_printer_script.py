@@ -220,7 +220,7 @@ class EA_Printer_UI(WPFWindow):
         try:
             DATA_FILE.set_data(dict(), self.record_folder + "\\SH_Access_test.sexyDuck")
         except:
-            self.record_folder = FOLDER.get_EA_local_dump_folder()
+            self.record_folder = NOTIFICATION.DUMP_FOLDER
 
 
         self.export_queue = []

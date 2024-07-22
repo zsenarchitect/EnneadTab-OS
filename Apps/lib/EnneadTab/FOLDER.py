@@ -2,7 +2,6 @@ import time
 import os
 import shutil
 import NOTIFICATION
-import ENVIRONMENT
 
 def secure_folder(folder):
     if not os.path.exists(folder):
@@ -49,7 +48,9 @@ def get_EA_dump_folder_file(file_name):
 
 def get_shared_dump_folder_file(file_name):
     """include extension"""
-    return "{}\\{}".format(ENVIRONMENT.SHAERD_DUMP_FOLDER, file_name)
+    DB_FOLDER = "L:\\4b_Applied Computing\\EnneadTab-DB"
+    SHAERD_DUMP_FOLDER = DB_FOLDER + "\\Shared Data Dump"
+    return "{}\\{}".format(SHAERD_DUMP_FOLDER, file_name)
 
 
 

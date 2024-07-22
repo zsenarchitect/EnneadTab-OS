@@ -85,7 +85,11 @@ def get_autodesk_user_name():
     if not ENVIRONMENT.IS_REVIT_ENVIRONMENT:
         return None
     import REVIT
-    return REVIT.REVIT_APPLICATION.get_app().Username
+    try:
+        return REVIT.REVIT_APPLICATION.get_app().Username
+    except Exception as e:
+        print (e)
+        return None
     
         
 

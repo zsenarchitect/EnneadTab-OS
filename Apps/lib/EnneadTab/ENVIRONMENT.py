@@ -49,14 +49,19 @@ else:
 USER_PROFILE_FOLDER = os.environ["USERPROFILE"]
 USER_DOCUMENT_FOLDER = "{}\\Documents".format(USER_PROFILE_FOLDER)
 USER_DOWNLOAD_FOLDER = "{}\\downloads".format(USER_PROFILE_FOLDER)
-USER_DESKTOP_FOLDER = "{}\\desktop".format(USER_PROFILE_FOLDER)
+# # desktop folder is tricky, reason unknown, maybe related to the One drive desktop sync?
+# USER_DESKTOP_FOLDER = "{}\\Desktop".format(USER_PROFILE_FOLDER)
 USER_APPDATA_FOLDER = "{}\\AppData".format(USER_PROFILE_FOLDER)
 ECO_SYS_FOLDER = "{}\\EnneadTab Ecosystem".format(USER_DOCUMENT_FOLDER)
 DUMP_FOLDER = ECO_SYS_FOLDER + "\\Dump"
 
-for folder in [ECO_SYS_FOLDER, DUMP_FOLDER]:
-    if not os.path.exists(folder):
-        os.makedirs(folder)
+for _folder in [ECO_SYS_FOLDER, DUMP_FOLDER]:
+    if not os.path.exists(_folder):
+        try:
+            os.makedirs(_folder)
+        except Exception as e:
+            print ("Cannot secure folder [{}] becasue {}".format(_folder, e))
+            
 
 
 
@@ -125,10 +130,18 @@ def unit_test():
             
             if not isinstance(content, list):
                 content = [content]
-
+            
             for item in content:
                 if "\\" in item:
+                    
                     is_ok = os.path.exists(item) or os.path.isdir(item)
+
+                    
+                    
+
+                    
+                    if not is_ok:
+                        print("!!!!!!!!!!!!!" + item)
                     assert is_ok
 
           

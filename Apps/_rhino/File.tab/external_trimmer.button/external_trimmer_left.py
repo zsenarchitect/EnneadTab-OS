@@ -65,7 +65,7 @@ def update_link(block_name):
             pass
 
 def get_external_filepath():
-    EA_export_folder = FOLDER.get_EA_local_dump_folder()
+    EA_export_folder = NOTIFICATION.DUMP_FOLDER
     if doc.Name is None:
         doc_name = "Untitled"
     else:

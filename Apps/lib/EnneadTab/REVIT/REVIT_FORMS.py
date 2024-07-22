@@ -51,7 +51,7 @@ class EnneadTabModelessForm(WPFWindow):
 
         #xaml_file_name = "general_renamer_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         # to-do: this is not very efficient,,,, consider store a lookup tab;e during startup
-        for folder, _, file in os.walk(ENVIRONMENT.ENNEADTAB_FOR_REVIT):
+        for folder, _, file in os.walk(ENVIRONMENT.REVIT_FOLDERget_EA_dump_folder_file):
             if xaml_file_name in file:
                 xaml_file_name = os.path.join(folder, xaml_file_name)
                 break

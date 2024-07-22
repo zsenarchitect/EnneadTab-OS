@@ -549,7 +549,7 @@ class AI_translate_ModelessForm(WPFWindow):
         file_name = "EA_TRANSLATE.sexyDuck"
         #print file_name
 
-        dump_folder = FOLDER.get_EA_local_dump_folder()
+        dump_folder = NOTIFICATION.DUMP_FOLDER
 
         #print dump_folder
         file_path = "{}\{}".format(dump_folder, file_name)

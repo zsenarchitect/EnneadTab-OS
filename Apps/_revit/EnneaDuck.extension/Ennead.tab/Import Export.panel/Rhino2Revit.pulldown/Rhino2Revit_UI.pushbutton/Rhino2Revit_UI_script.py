@@ -130,7 +130,7 @@ class Rhino2Revit_UI(forms.WPFWindow):
                 self.DWG_convert(item)
 
             time_span = time.time() - start_time
-            NOTIFICATION.messenger(main_text="{} import finished!!\nImport used {}".format(item.display_name, TIME.get_readable_time(time_span))
+            NOTIFICATION.messenger("{} import finished!!\nImport used {}".format(item.display_name, TIME.get_readable_time(time_span)))
         t.Commit()
         tool_time_span = time.time() - tool_start_time
         REVIT_FORMS.notification(main_text="Rhino2Revit Finished.",

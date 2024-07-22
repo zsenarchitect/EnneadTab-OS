@@ -1,7 +1,7 @@
 import time
 import os
 import shutil
-import NOTIFICATION
+import ENVIRONMENT
 
 def secure_folder(folder):
     if not os.path.exists(folder):
@@ -27,30 +27,17 @@ def get_file_extension_from_path(file_path):
 
 
 
-def get_appdata_folder():
-    return "{}\\AppData".format(os.environ["USERPROFILE"])
 
-
-def get_desktop_folder():
-    return os.path.expandvars('%userprofile%\\desktop')
-
-def get_download_folder():
-    return os.path.expandvars('%userprofile%\\downloads')
-
-def get_EA_local_dump_folder():
-    return get_user_folder() + "\\EnneadTab Ecosystem\\Dump"
 
 
 def get_EA_dump_folder_file(file_name):
     """include extension"""
-    return "{}\\{}".format(get_EA_local_dump_folder(), file_name)
+    return "{}\\{}".format(ENVIRONMENT.DUMP_FOLDER, file_name)
 
 
 def get_shared_dump_folder_file(file_name):
     """include extension"""
-    DB_FOLDER = "L:\\4b_Applied Computing\\EnneadTab-DB"
-    SHAERD_DUMP_FOLDER = DB_FOLDER + "\\Shared Data Dump"
-    return "{}\\{}".format(SHAERD_DUMP_FOLDER, file_name)
+    return "{}\\{}".format(ENVIRONMENT.SHAERD_DUMP_FOLDER, file_name)
 
 
 
@@ -65,7 +52,7 @@ def copy_file_to_local_dump_folder(original_path, file_name = None, ignore_warni
     except Exception as e:
         if not ignore_warning:
             if "being used by another process" in str(e):
-                NOTIFICATION.messenger("Please close opened file first.")
+                print("Please close opened file first.")
             else:
                 raise e
 

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
-
+import traceback
 import ENVIRONMENT
 import UNIT_TEST 
 
@@ -84,11 +84,11 @@ def get_autodesk_user_name():
     """
     if not ENVIRONMENT.IS_REVIT_ENVIRONMENT:
         return None
-    import REVIT
     try:
-        return REVIT.REVIT_APPLICATION.get_app().Username
+        from REVIT import REVIT_APPLICATION
+        return REVIT_APPLICATION.get_app().Username
     except Exception as e:
-        print (e)
+        print ("Cannot get Autodesk username becasue {}".format(traceback.format_exc()))
         return None
     
         

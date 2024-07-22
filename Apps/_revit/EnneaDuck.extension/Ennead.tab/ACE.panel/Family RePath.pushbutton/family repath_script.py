@@ -186,7 +186,7 @@ class FamilyRePath:
                 #out_family = clr.StrongBox[DB.Family](family)
                 #famDoc.LoadFamily(doc, FamilyOption(), out_family)
                 famDoc.LoadFamily(doc, FamilyOption())
-                REVIT_APPLICATION.set_active_doc_as_new_family()
+                REVIT_APPLICATION.open_safety_doc_family()
                 famDoc.Close(False)
                 #REVIT_APPLICATION.close_docs_by_name([family_name])
                 #doc.LoadFamily(new_file_path)

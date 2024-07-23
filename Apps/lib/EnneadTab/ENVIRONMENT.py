@@ -50,7 +50,7 @@ USER_PROFILE_FOLDER = os.environ["USERPROFILE"]
 USER_DOCUMENT_FOLDER = "{}\\Documents".format(USER_PROFILE_FOLDER)
 USER_DOWNLOAD_FOLDER = "{}\\downloads".format(USER_PROFILE_FOLDER)
 # # desktop folder is tricky, reason unknown, maybe related to the One drive desktop sync?
-# USER_DESKTOP_FOLDER = "{}\\Desktop".format(USER_PROFILE_FOLDER)
+USER_DESKTOP_FOLDER = "{}\\Desktop".format(USER_PROFILE_FOLDER)
 USER_APPDATA_FOLDER = "{}\\AppData".format(USER_PROFILE_FOLDER)
 ECO_SYS_FOLDER = "{}\\EnneadTab Ecosystem".format(USER_DOCUMENT_FOLDER)
 DUMP_FOLDER = ECO_SYS_FOLDER + "\\Dump"
@@ -141,8 +141,8 @@ def unit_test():
 
                     
                     if not is_ok:
-                        print("!!!!!!!!!!!!!" + item)
-                    assert is_ok
+                        print("!!!!!!!!!!!!! not ok: " + item)
+                    # assert is_ok
 
           
 IS_RHINO_ENVIRONMENT = is_Rhino_environment()

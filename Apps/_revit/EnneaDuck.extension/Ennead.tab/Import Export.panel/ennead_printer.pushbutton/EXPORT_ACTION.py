@@ -412,21 +412,21 @@ def dump_exported_files_to_copy_folder(output_folder, files_exported_for_this_is
                     new_folder = "{}\{}\PDFs".format(copy_folder, plot_id)
                 else:
                     new_folder = "{}\PDFs".format(copy_folder)
-                new_folder = EA_UTILITY.secure_folder(new_folder)
+                new_folder = FOLDER.secure_folder(new_folder)
 
             elif ".dwg" in file.lower():
                 if plot_id:
                     new_folder = "{}\{}\DWGs".format(copy_folder, plot_id)
                 else:
                     new_folder = "{}\DWGs".format(copy_folder)
-                new_folder = EA_UTILITY.secure_folder(new_folder)
+                new_folder = FOLDER.secure_folder(new_folder)
 
             elif ".jpg" in file.lower():
                 if plot_id:
                     new_folder = "{}\{}\JPGs".format(copy_folder, plot_id)
                 else:
                     new_folder = "{}\JPGs".format(copy_folder)
-                new_folder = EA_UTILITY.secure_folder(new_folder)
+                new_folder = FOLDER.secure_folder(new_folder)
 
             else:
                 new_folder = copy_folder[:]

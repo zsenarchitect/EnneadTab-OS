@@ -2,7 +2,7 @@
 __title__ = "DVD"
 __doc__ = "When you are bored..."
 
-from EnneadTab.FUN import JOKES
+
 from EnneadTab import LOG, ERROR_HANDLE
 
 

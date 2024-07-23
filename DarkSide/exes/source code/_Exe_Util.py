@@ -59,7 +59,8 @@ def get_setting(key, defaule_value=None):
     return data.get(key, defaule_value)
 
 
-
+def get_username():
+    return os.environ["USERPROFILE"].split("\\")[-1]
 
 
 

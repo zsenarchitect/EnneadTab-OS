@@ -59,9 +59,9 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
         self.draw_text("- Closing file without sync, even when running overtime.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
         self.draw_text("- Saving file locally will reset timer.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
         self.draw_text("- No changes made into the file since last sync.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
-        self.draw_text("- Manually kill a monitor progress from EnneadTab.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
+        self.draw_text("- Manually terminate a monitor progress from EnneadTab.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
         self.draw_text("Footnote *: This interval can be set in your EnneadTab setting.", self.FONT_BODY, self.TEXT_COLOR_FADE)
-        self.draw_text("Footnote**: Unless you have killed the talkie lady:)", self.FONT_BODY, self.TEXT_COLOR_FADE)
+        # self.draw_text("Footnote**: Unless you have disabled the text2speech function.", self.FONT_BODY, self.TEXT_COLOR_FADE)
         self.POINTER_Y += 20
         frame_upper_left_H = self.POINTER_Y
         bad_docs = ""

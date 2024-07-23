@@ -6,8 +6,9 @@ os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "True"
 import pygame
 
 class BasePyGameGUI:
-    BACKGROUND_COLOR = (52, 78, 91)
-    BACKGROUND_COLOR = (80, 97, 81)
+
+    BACKGROUND_COLOR = (52, 78, 91) # original blue
+    # BACKGROUND_COLOR = (80, 97, 81)# new green
     TEXT_COLOR = (255, 255, 255)
     TEXT_COLOR_FADE = (150, 150, 150)
     TEXT_COLOR_WARNING = (252, 127, 3)

@@ -95,13 +95,7 @@ class FileProcessorApp:
         self.warning_label = tk.Label(self.warning_frame, text="", bg='#2e2e2e', fg='red', font=("Helvetica", 16, "bold"))
         self.warning_label.pack(padx=20, pady=20)
 
-        if False and _Exe_Util.get_username() == "szhang":
-            self.duck_image_path = os.path.join(os.path.dirname(__file__), "serious_duck.png")
-            self.duck_image = Image.open(self.duck_image_path)
-            self.duck_photo = ImageTk.PhotoImage(self.duck_image)
-            self.duck_label = tk.Label(self.warning_frame, image=self.duck_photo, bg='#2e2e2e')
-            self.duck_label.pack(padx=20, pady=20)
-        
+
         self.request_users_label = tk.Label(self.warning_frame, text="", bg='#2e2e2e', fg='white')
         self.request_users_label.pack(padx=20, pady=20)
 

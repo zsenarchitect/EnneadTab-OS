@@ -12,12 +12,13 @@ from pyrevit import forms #
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE, EXCEL, NOTIFICATION
+from EnneadTab import ERROR_HANDLE, EXCEL, NOTIFICATION, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION
 from Autodesk.Revit import DB # pyright: ignore 
 
 doc = REVIT_APPLICATION.get_doc()
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def check_formula():
 
@@ -31,12 +32,7 @@ def check_formula():
     EXCEL.check_formula(excel, sheet)
     pass
 
-    """
-    t = DB.Transaction(doc, __title__)
-    t.Start()
-    $$$$$$$$$$$$$$$$$$$
-    t.Commit()
-    """
+
     NOTIFICATION.messenger("Done! All formula printed!\nAll formula cell are highlighted in dash border in a local copy.")
 
 

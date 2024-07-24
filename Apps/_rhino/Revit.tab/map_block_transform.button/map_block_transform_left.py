@@ -72,7 +72,7 @@ def map_block_transform():
     data = [get_data(x) for x in blocks]
     rs.EnableRedraw(False)
     filepath = NOTIFICATION.DUMP_FOLDER + "\map_block_transform.txt"
-    DATA_FILE.save_list_to_txt(data, filepath)
+    DATA_FILE.set_list(data, filepath)
     NOTIFICATION.messenger(main_text = "map ready!")
 
 

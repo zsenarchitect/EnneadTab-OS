@@ -181,7 +181,7 @@ def read_data(data):
 def map_block():
     file_path = FOLDER.get_EA_dump_folder_file("map_block_transform.txt")
 
-    raw_data = EA_UTILITY.read_txt_as_list(file_path)
+    raw_data = DATA_FILE.get_list(file_path)
     #for data in raw_data[0:10]:
     for data in raw_data:
         #print "###########"

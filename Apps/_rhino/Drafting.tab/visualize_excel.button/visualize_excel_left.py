@@ -49,8 +49,8 @@ class ShapeWriter:
             filepath = EnneadTab.FOLDER.get_EA_dump_folder_file("excel_area_data.txt")
             
        
-            EnneadTab.DATA_FILE.save_list_to_txt([input_text], filepath, end_with_new_line = False)
-            text = EnneadTab.DATA_FILE.read_txt_as_list(filepath)
+            EnneadTab.DATA_FILE.set_list([input_text], filepath, end_with_new_line = False)
+            text = EnneadTab.DATA_FILE.get_list(filepath)
             return text[0]
             return EnneadTab.UNICODE.convert_unicode_to_string(input_text)
         else:
@@ -105,8 +105,8 @@ class ShapeWriter:
         # filepath = EnneadTab.FOLDER.get_EA_dump_folder_file("excel_area_data.txt")
         # for i, entry in enumerate(self.datas):
         #     text, num = entry[:2], entry[2:]
-        #     EnneadTab.DATA_FILE.save_list_to_txt(text, filepath, end_with_new_line = False)
-        #     text = EnneadTab.DATA_FILE.read_txt_as_list(filepath)
+        #     EnneadTab.DATA_FILE.set_list(text, filepath, end_with_new_line = False)
+        #     text = EnneadTab.DATA_FILE.get_list(filepath)
         #     self.datas[i] = text + num
         
         opt = rs.ListBox(["Circle", "Square", "Bar"], "What shape to use?",  title="EnneadTab Visualize Excel")

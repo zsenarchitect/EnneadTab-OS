@@ -133,6 +133,28 @@ def _save_dict_to_json_in_shared_dump_folder(dict, file_name, use_encode=False):
 
 
 
+
+def get_list(filepath="path"):
+    extention = FOLDER.get_file_extension_from_path(filepath)
+    local_path = FOLDER.get_EA_dump_folder_file("temp{}".format(extention))
+    shutil.copyfile(filepath, local_path)
+
+
+    with io.open(local_path, encoding="utf8") as f:
+        lines = f.readlines()
+  
+    return map(lambda x: x.replace("\n", ""), lines)
+
+
+def set_list(list, filepath, end_with_new_line=False):
+
+    with io.open(filepath, "w", encoding="utf8") as f:
+        f.write('\n'.join(list))
+        if end_with_new_line:
+            f.write("\n")
+
+    return True
+
 #######################################################################################
 
 

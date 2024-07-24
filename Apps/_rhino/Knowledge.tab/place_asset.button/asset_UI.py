@@ -48,7 +48,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
         self.IMAGE_MAX_SIZE = 800
         self.MANAGER_NAMES = ["szhang",
                             "eshaw"]
-        if EnneadTab.USER.get_user_name() in self.MANAGER_NAMES or True:
+        if EnneadTab.USER.USERNAME in self.MANAGER_NAMES or True:
             self.MANAGER_MODE = True
         else:
             self.MANAGER_MODE = False

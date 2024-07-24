@@ -11,7 +11,7 @@ def remove_last_sync_data_file(doc):
 
 
 
-def update_tab():
+def update_pyrevit():
     # occasionally update the pyrevit. Do it here becasue normally when you close doc you are relaxed and not care if it take too long
     if random.random() > 0.01:
         return
@@ -23,7 +23,7 @@ def update_tab():
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
     remove_last_sync_data_file(doc)
-    update_tab()
+    update_pyrevit()
     VERSION_CONTROL.update_EA_dist()
 
 

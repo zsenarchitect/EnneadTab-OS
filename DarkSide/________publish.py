@@ -5,6 +5,7 @@ import subprocess
 import time
 import traceback
 import winsound
+import threading
 import sys
 
 OS_REPO_FOLDER = os.path.dirname(os.path.dirname(__file__))
@@ -207,13 +208,16 @@ def copy_to_standalone_collection():
     stand_alone_folder = "L:\\4b_Applied Computing\\EnneadTab-DB\\Stand Alone Tools"
 
 
-    for exe in os.listdir(exe_product_folder):
-        if exe.endswith(".exe"):
-            try:
-                shutil.copy(os.path.join(exe_product_folder, exe),
-                            os.path.join(stand_alone_folder, exe))
-            except:
-                print ("Failed to copy {} to standalone collection".format(exe))
+    for i, exe in enumerate(os.listdir(exe_product_folder)):
+
+        print("Copying {}/{} [{}] to standalone collection".format(i+1,
+                                                                    len(os.listdir(exe_product_folder)),
+                                                                    exe))
+        try:
+            shutil.copy(os.path.join(exe_product_folder, exe),
+                        os.path.join(stand_alone_folder, exe))
+        except:
+            print ("Failed to copy {} to standalone collection".format(exe))
 
     
 def update_installer_folder_exes():
@@ -243,7 +247,6 @@ def publish_duck():
         NOTIFICATION.messenger("NOT compiling exes today...")
     
     update_installer_folder_exes()
-    copy_to_standalone_collection()
 
     # recompile the rui layout for rhino
     import RuiWriter
@@ -255,6 +258,11 @@ def publish_duck():
     print_title("\n\npush update to EA dist folder")
     copy_to_EA_Dist_and_commit()
     VERSION_CONTROL.update_EA_dist()
+
+    
+    thread = threading.Thread(target=copy_to_standalone_collection)
+    thread.start()
+
 
 def manual_confirm_should_compile_exe():
     """manua change date to see if I should recompile exe

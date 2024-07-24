@@ -1,6 +1,7 @@
 import os
 import asyncio
 import winsound
+import time
 from tqdm import tqdm
 from colorama import Fore, Style
 
@@ -12,7 +13,7 @@ class ACCMigrationChecker:
 
     def get_job_folders(self):
         """Get main job folders in the drive"""
-        return sorted([os.path.join(self.drive, f) for f in os.listdir(self.drive) if os.path.isdir(os.path.join(self.drive, f))])
+        return sorted([os.path.join(self.drive, f) for f in os.listdir(self.drive) if os.path.isdir(os.path.join(self.drive, f))], reverse=True)
 
     async def check_path_length(self, job_folder):
         """Check if any file path will exceed the limit after adding the prefix"""
@@ -36,7 +37,7 @@ class ACCMigrationChecker:
         
         return affected_files
 
-    def generate_report_content(self, job_folder, affected_files):
+    def generate_report_content(self, job_folder, affected_files, elapsed_time):
         """Generate report content for the job folder"""
         report_content = []
         if affected_files:
@@ -50,12 +51,13 @@ class ACCMigrationChecker:
         else:
             summary = f"Summary: All paths are below {self.limit} length limit.\n"
             report_content.append(summary)
+        report_content.append(f"\nTotal time taken: {elapsed_time:.2f} seconds\n")
         return "\n".join(report_content)
 
-    def save_text_report(self, job_folder, report_content, status):
+    def save_text_report(self, drive_letter, job_folder, report_content, status):
         """Save a text report for the job folder"""
         job_number = os.path.basename(job_folder)
-        report_folder = "L:\\4b_Applied Computing\\EnneadTab-DB\\ACC Report"
+        report_folder = f"L:\\4b_Applied Computing\\EnneadTab-DB\\ACC Report\\{drive_letter}"
         if not os.path.exists(report_folder):
             os.makedirs(report_folder)
         
@@ -77,20 +79,25 @@ class ACCMigrationChecker:
 
 async def process_drive(drive, prefix, limit):
     checker = ACCMigrationChecker(drive, prefix, limit)
-    job_folders = checker.get_job_folders()
+    drive_letter = drive[0]  # Get the drive letter (J or I)
+    job_folders = checker.get_job_folders()[:3]  # Get the first 3 job folders
 
     for job_folder in job_folders:
+        start_time = time.time()
         affected_files = await checker.check_path_length(job_folder)
-        report_content = checker.generate_report_content(job_folder, affected_files)
+        elapsed_time = time.time() - start_time
+        report_content = checker.generate_report_content(job_folder, affected_files, elapsed_time)
         status = "bad" if affected_files else "good"
-        checker.save_text_report(job_folder, report_content, status)
+        checker.save_text_report(drive_letter, job_folder, report_content, status)
+        print(f"\nTotal time taken for {job_folder}: {elapsed_time:.2f} seconds\n")
+        print("="*80)
     
     if not job_folders:
         print(f"No job folders found in {drive}.")
 
 if __name__ == "__main__":
-    prefix = "C:\\Users\\SAMPLE.USERNAME\\DC\\ACCDocs\\Ennead Architects LLP\\"
-    limit = 240
+    prefix = "C:\\Users\\TYPICAL.USERNAME\\DC\\ACCDocs\\Ennead Architects LLP\\"
+    limit = 245
 
     drives = ["J:\\", "I:\\"]
 

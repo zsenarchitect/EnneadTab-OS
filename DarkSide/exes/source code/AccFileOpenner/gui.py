@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import scrolledtext
 from PIL import Image, ImageTk
 import datetime
+from tkinterdnd2 import DND_FILES
 
 EXPIRATION_DATE = datetime.date(2025, 1, 1)
 
@@ -15,6 +16,8 @@ class BaseApp:
         self.create_widgets()
         self.setup_bindings()
         self.update_title_with_days_left()
+        self.create_dashboard()
+        
 
     def setup_icon(self):
         icon_path = os.path.join(os.path.dirname(__file__), "icon_ennead-e.ico")
@@ -48,6 +51,43 @@ class BaseApp:
         self.logo_photo = ImageTk.PhotoImage(rotated_image)
         self.logo_label.configure(image=self.logo_photo)
 
+    def create_dashboard(self):
+        self.dashboard_frame = tk.Frame(self.root, bg='#3e3e3e', height=100)
+        self.dashboard_frame.grid(row=2, column=0, columnspan=3, sticky="nsew")
+        self.root.grid_rowconfigure(2, weight=1)
+
+        self.canvas = tk.Canvas(self.dashboard_frame, bg='#3e3e3e', highlightthickness=0)
+        self.canvas.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
+
+        self.root.update_idletasks()  # Ensure the window is fully rendered
+        self.windowX = self.canvas.winfo_width()
+        self.windowY = self.canvas.winfo_height()
+
+        self.draw_rounded_rect(10, 10, self.windowX - 10, self.windowY - 30, 20, width=4, dash=(5, 3))
+        self.dashboard_label = tk.Label(self.dashboard_frame, text="Drag and Drop a file here or Click to Select a file", bg='#3e3e3e', fg='white', font=('Helvetica', 14, 'bold'))
+        self.dashboard_label.pack(pady=20)
+
+        self.file_path_label = tk.Label(self.canvas, text="", bg='#3e3e3e', fg='white', font=('Helvetica', 12), wraplength=int(self.windowX * 0.8))
+        self.file_path_label.place(relx=0.5, rely=0.5, anchor='center')
+
+        self.dashboard_label.bind("<Button-1>", self.open_file_dialog)
+        self.dashboard_frame.bind("<Button-1>", self.open_file_dialog)
+        self.root.drop_target_register(DND_FILES)
+        self.root.dnd_bind('<<Drop>>', self.handle_file_drop)
+
+    def draw_rounded_rect(self, x1, y1, x2, y2, radius, **kwargs):
+        # Draw the lines
+        self.canvas.create_line(x1 + radius, y1, x2 - radius, y1, **kwargs)
+        self.canvas.create_line(x2, y1 + radius, x2, y2 - radius, **kwargs)
+        self.canvas.create_line(x2 - radius, y2, x1 + radius, y2, **kwargs)
+        self.canvas.create_line(x1, y2 - radius, x1, y1 + radius, **kwargs)
+        
+        # Draw the arcs
+        self.canvas.create_arc(x1, y1, x1 + 2 * radius, y1 + 2 * radius, start=90, extent=90, style='arc', **kwargs)
+        self.canvas.create_arc(x2 - 2 * radius, y1, x2, y1 + 2 * radius, start=0, extent=90, style='arc', **kwargs)
+        self.canvas.create_arc(x2 - 2 * radius, y2 - 2 * radius, x2, y2, start=270, extent=90, style='arc', **kwargs)
+        self.canvas.create_arc(x1, y2 - 2 * radius, x1 + 2 * radius, y2, start=180, extent=90, style='arc', **kwargs)
+        
     def update_title_with_days_left(self):
         days_left = (EXPIRATION_DATE - datetime.date.today()).days
         if days_left <= 0:

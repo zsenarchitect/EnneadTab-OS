@@ -4,10 +4,8 @@ import tkinter as tk
 from tkinter import messagebox, filedialog
 import shutil
 import sys
-import time
-from threading import Thread
 from gui import BaseApp
-from tkinterdnd2 import TkinterDnD, DND_FILES
+from tkinterdnd2 import TkinterDnD
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import _Exe_Util
@@ -32,45 +30,8 @@ class FileProcessorApp(BaseApp):
         self.selected_file = ""
         self.output_file = ""
         self.acc_folder = f"{os.getenv('USERPROFILE')}\\ACCDocs\\Ennead Architects LLP"
-        self.create_dashboard()
         self.monitor_acc_folder()
 
-    def create_dashboard(self):
-        self.dashboard_frame = tk.Frame(self.root, bg='#3e3e3e', height=100)
-        self.dashboard_frame.grid(row=2, column=0, columnspan=3, sticky="nsew")
-        self.root.grid_rowconfigure(2, weight=1)
-
-        self.canvas = tk.Canvas(self.dashboard_frame, bg='#3e3e3e', highlightthickness=0)
-        self.canvas.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
-
-        self.root.update_idletasks()  # Ensure the window is fully rendered
-        windowX = self.canvas.winfo_width()
-        windowY = self.canvas.winfo_height()
-
-        self.draw_rounded_rect(10, 10, windowX - 10, windowY - 30, 20, width=4, dash=(5, 3))
-        self.dashboard_label = tk.Label(self.dashboard_frame, text="Drag and Drop a file here or Click to Select a file", bg='#3e3e3e', fg='white', font=('Helvetica', 14, 'bold'))
-        self.dashboard_label.pack(pady=20)
-
-        self.file_path_label = tk.Label(self.canvas, text="", bg='#3e3e3e', fg='white', font=('Helvetica', 12))
-        self.file_path_label.place(relx=0.5, rely=0.5, anchor='center')
-
-        self.dashboard_label.bind("<Button-1>", self.open_file_dialog)
-        self.dashboard_frame.bind("<Button-1>", self.open_file_dialog)
-        self.root.drop_target_register(DND_FILES)
-        self.root.dnd_bind('<<Drop>>', self.handle_file_drop)
-
-    def draw_rounded_rect(self, x1, y1, x2, y2, radius, **kwargs):
-        # Draw the lines
-        self.canvas.create_line(x1 + radius, y1, x2 - radius, y1, **kwargs)
-        self.canvas.create_line(x2, y1 + radius, x2, y2 - radius, **kwargs)
-        self.canvas.create_line(x2 - radius, y2, x1 + radius, y2, **kwargs)
-        self.canvas.create_line(x1, y2 - radius, x1, y1 + radius, **kwargs)
-        
-        # Draw the arcs
-        self.canvas.create_arc(x1, y1, x1 + 2 * radius, y1 + 2 * radius, start=90, extent=90, style='arc', **kwargs)
-        self.canvas.create_arc(x2 - 2 * radius, y1, x2, y1 + 2 * radius, start=0, extent=90, style='arc', **kwargs)
-        self.canvas.create_arc(x2 - 2 * radius, y2 - 2 * radius, x2, y2, start=270, extent=90, style='arc', **kwargs)
-        self.canvas.create_arc(x1, y2 - 2 * radius, x1 + 2 * radius, y2, start=180, extent=90, style='arc', **kwargs)
 
     def open_file_dialog(self, event=None):
         file_path = filedialog.askopenfilename()
@@ -108,12 +69,12 @@ class FileProcessorApp(BaseApp):
             return
         self.create_editing_marker(original_file, file_name)
         
-        # Start monitoring the lock file in a separate thread
-        monitor_thread = Thread(target=self.monitor_file_lock, args=(original_file, desktop_file))
-        monitor_thread.start()
+        # Start monitoring the lock file using tkinter's after method
+        self.monitor_file_lock(original_file, desktop_file)
 
     def update_file_path_label(self, file_path):
-        self.file_path_label.config(text=file_path)
+        wrap_length = int(self.windowX * 0.8)
+        self.file_path_label.config(text=file_path, wraplength=wrap_length)
 
     def cleanup_old_request_files(self, original_file):
         file_name = os.path.basename(original_file)
@@ -153,10 +114,13 @@ class FileProcessorApp(BaseApp):
     def monitor_file_lock(self, original_file, desktop_file):
         lock_file = self.get_lock_file(desktop_file)
 
-        # Wait until lock file gone in a non-blocking way
-        while os.path.exists(lock_file):
-            time.sleep(1)
-        self.copy_back_to_original(original_file, desktop_file)
+        def check_lock_file():
+            if not lock_file or not os.path.exists(lock_file):
+                self.copy_back_to_original(original_file, desktop_file)
+            else:
+                self.root.after(1000, check_lock_file)
+
+        check_lock_file()
 
     def get_lock_file(self, desktop_file):
         file_category_data = self.get_file_category_data(desktop_file)
@@ -164,16 +128,15 @@ class FileProcessorApp(BaseApp):
         lock_file_begin_template = file_category_data["lock_file_begin_template"]
         base_name = os.path.basename(desktop_file)
 
-        while True:
-            for f in os.listdir(os.path.dirname(desktop_file)):
-                if not f.endswith(lock_file_extension):
-                    continue
-                lock_file_begin = lock_file_begin_template.format(base_name.replace(file_category_data["file_extension"], ""))
-                if f.lower().startswith(lock_file_begin.lower()):
-                    print(f"File lock found: {f}")
-                    return os.path.join(os.path.dirname(desktop_file), f)
-            print("File lock not found")
-            time.sleep(1)
+        for f in os.listdir(os.path.dirname(desktop_file)):
+            if not f.endswith(lock_file_extension):
+                continue
+            lock_file_begin = lock_file_begin_template.format(base_name.replace(file_category_data["file_extension"], ""))
+            if f.lower().startswith(lock_file_begin.lower()):
+                print(f"File lock found: {f}")
+                return os.path.join(os.path.dirname(desktop_file), f)
+        print("File lock not found")
+        return None
     
     def get_file_category_data(self, file_path):
         file_extension = os.path.splitext(file_path)[1].lower()
@@ -190,9 +153,15 @@ class FileProcessorApp(BaseApp):
 
     def remove_editing_marker(self, original_file):
         marker_file = os.path.join(os.path.dirname(original_file), f"[{self.username}_editing]_{os.path.basename(original_file)}")
-        if os.path.exists(marker_file):
-            print(f"Removing editing marker: {marker_file}")
-            os.remove(marker_file)
+        def try_remove_marker():
+            if os.path.exists(marker_file):
+                try:
+                    os.remove(marker_file)
+                except Exception as e:
+                    print(f"Error removing editing marker: {e}")
+                    self.root.after(1000, try_remove_marker)
+
+        try_remove_marker()
 
     def create_request_file(self, original_file):
         request_file_name = f"[{self.username}_requesting]_{os.path.basename(original_file)}"

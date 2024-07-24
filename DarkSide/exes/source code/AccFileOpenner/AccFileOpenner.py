@@ -5,7 +5,6 @@ from tkinter import messagebox, filedialog
 import shutil
 import sys
 import time
-from eel import sleep
 from gui import BaseApp
 from tkinterdnd2 import TkinterDnD
 

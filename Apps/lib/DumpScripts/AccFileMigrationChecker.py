@@ -120,7 +120,10 @@ if __name__ == "__main__":
     prefix = "C:\\Users\\TYPICAL.USERNAME\\DC\\ACCDocs\\Ennead Architects LLP\\"
     limit = 245
 
-    drives = ["J:\\", "I:\\"]
+    drives = [
+        "I:\\",
+        "J:\\", 
+        ]
 
     async def main():
         tasks = [process_drive(drive, prefix, limit) for drive in drives]

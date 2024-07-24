@@ -47,7 +47,10 @@ def add_hook():
 ###################################################
 def action_update_timesheet(doc):
     if doc.Path:
-        LOG.update_time_sheet_rhino(doc.Path)
+        try:
+            LOG.update_time_sheet_rhino(doc.Path)
+        except:
+            print ("Error updating timesheet")
 
 
 ##################################################

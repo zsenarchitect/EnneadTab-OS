@@ -59,11 +59,11 @@
    },
   {
     "optionDest": "datas", 
-    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\IndesignAccOpenner\\logo.png;."
+    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AccFileOpenner\\logo.png;."
    },
   {
     "optionDest": "datas", 
-    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\IndesignAccOpenner\\icon_ennead-e.ico;."
+    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AccFileOpenner\\icon_ennead-e.ico;."
    }
  ],
  "nonPyinstallerOptions": {

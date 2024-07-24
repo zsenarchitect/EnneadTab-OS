@@ -373,7 +373,7 @@ def combine_final_pdf(output_folder, files_exported_for_this_issue, combined_pdf
     """
     import os
     list_of_filepaths = []
-    files = EA_UTILITY.get_filenames_in_folder(output_folder)
+    files = os.listdir(output_folder)
 
     for file in files:
         if ".pdf" not in file.lower():
@@ -385,9 +385,9 @@ def combine_final_pdf(output_folder, files_exported_for_this_issue, combined_pdf
             list_of_filepaths.append(file_path)
 
     combined_pdf_file_path = "{}\{}.pdf".format(output_folder, combined_pdf_name)
-    EA_UTILITY.merge_pdfs(combined_pdf_file_path, list_of_filepaths, reorder = True)
+    PDF.merge_pdfs(combined_pdf_file_path, list_of_filepaths, reorder = True)
     if copy_folder:
-        EA_UTILITY.copy_file_to_folder(combined_pdf_file_path, copy_folder)
+        FOLDER.copy_file_to_folder(combined_pdf_file_path, copy_folder)
 
 
 
@@ -395,7 +395,7 @@ def dump_exported_files_to_copy_folder(output_folder, files_exported_for_this_is
 
     import os.path as op
 
-    for file in EA_UTILITY.get_filenames_in_folder(output_folder):
+    for file in os.listdir(output_folder):
         if file in files_exported_for_this_issue:
             file_path = op.join(output_folder, file)
 
@@ -431,7 +431,7 @@ def dump_exported_files_to_copy_folder(output_folder, files_exported_for_this_is
             else:
                 new_folder = copy_folder[:]
 
-            EA_UTILITY.copy_file_to_folder(file_path, new_folder)
+            FOLDER.copy_file_to_folder(file_path, new_folder)
 
 
 

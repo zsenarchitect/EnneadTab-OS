@@ -421,7 +421,7 @@ class AI_translate_ModelessForm(WPFWindow):
             return
         
         filepath = FOLDER.get_EA_dump_folder_file("EA Recent Translation.txt")
-        DATA_FILE.save_list_to_txt(self.recent_translation, filepath, end_with_new_line = False, use_encode = False)
+        DATA_FILE.set_list(self.recent_translation, filepath, end_with_new_line = False, use_encode = False)
         import os
         os.startfile(filepath)
 

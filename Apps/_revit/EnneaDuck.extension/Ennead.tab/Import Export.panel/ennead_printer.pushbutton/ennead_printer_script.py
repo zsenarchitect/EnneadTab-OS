@@ -1369,7 +1369,7 @@ class EA_Printer_UI(WPFWindow):
         self.is_printing_interupted = True
 
     def open_log_Clicked(self, sender, args):
-        #print EA_UTILITY.get_filenames_in_folder(self.output_folder)
+        #print os.listdir(self.output_folder)
         logs = filter(lambda x:x.startswith("EnneadTab Exporter AutoSave Log"), os.listdir(self.output_folder))
         if len(logs) == 0:
             return

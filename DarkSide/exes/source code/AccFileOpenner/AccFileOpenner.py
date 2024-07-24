@@ -4,6 +4,8 @@ import tkinter as tk
 from tkinter import messagebox, filedialog
 import shutil
 import sys
+import time
+from eel import sleep
 from gui import BaseApp
 from tkinterdnd2 import TkinterDnD
 
@@ -47,8 +49,9 @@ class FileProcessorApp(BaseApp):
     @_Exe_Util.try_catch_error
     def process_file(self, original_file):
         print(f"Processing file: {original_file}")
+
         file_name = os.path.basename(original_file)
-        
+
         if self.check_self_editing(original_file):
             messagebox.showwarning("Warning", "You are already editing this file.")
             return
@@ -58,19 +61,76 @@ class FileProcessorApp(BaseApp):
         desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
         desktop_file = os.path.join(desktop_path, file_name)
 
+        # Start the copy process
         shutil.copy2(original_file, desktop_file)
-        os.startfile(desktop_file)
-
-        self.cleanup_old_request_files(original_file)
-        current_editor = self.check_existing_editors(original_file)
-        if current_editor:
-            self.create_request_file(original_file)
-            messagebox.showwarning("Warning", f"This file is currently edited by {current_editor}.\n\nA request file has been placed.")
-            return
-        self.create_editing_marker(original_file, file_name)
         
-        # Start monitoring the lock file using tkinter's after method
-        self.monitor_file_lock(original_file, desktop_file)
+        # Check if the copy is complete
+        def check_copy_complete():
+            if os.path.exists(desktop_file):
+                os.startfile(desktop_file)
+
+                self.cleanup_old_request_files(original_file)
+                current_editor = self.check_existing_editors(original_file)
+                if current_editor:
+                    self.create_request_file(original_file)
+                    messagebox.showwarning("Warning", f"This file is currently edited by {current_editor}.\n\nA request file has been placed.")
+                    return
+                self.create_editing_marker(original_file, file_name)
+
+                # Start monitoring the lock file using tkinter's after method
+                self.monitor_file_lock(desktop_file )
+                self.copy_back_to_original(original_file, desktop_file)
+            else:
+                self.root.after(100, check_copy_complete)
+
+        check_copy_complete()
+
+    def get_lock_file(self, desktop_file):
+        file_category_data = self.get_file_category_data(desktop_file)
+        lock_file_extension = file_category_data["lock_file_extension"]
+        lock_file_begin_template = file_category_data["lock_file_begin_template"]
+        base_name = os.path.basename(desktop_file)
+        lock_file_begin = lock_file_begin_template.format(base_name.replace(file_category_data["file_extension"], ""))
+        self.lock_file_existed = False
+
+        
+        def check_for_lock_file():
+            for f in os.listdir(os.path.dirname(desktop_file)):
+                if f.endswith(lock_file_extension) and f.lower().startswith(lock_file_begin.lower()):
+                    print(f"File lock found: {f}")
+                    self.lock_file_existed = True
+                    return os.path.join(os.path.dirname(desktop_file), f)
+            if self.lock_file_existed:
+                print("File lock no longer there")
+            else:
+                print("File lock not found")
+                self.root.after(1000, check_for_lock_file)
+            return None
+        
+        return check_for_lock_file()
+
+    def monitor_file_lock(self, desktop_file):
+
+        while True:
+            time.sleep(2)
+            lock_file = self.get_lock_file(desktop_file)
+            if not lock_file:
+                continue
+            if not os.path.exists(lock_file):
+                break
+            
+       
+
+    def copy_back_to_original(self, original_file, desktop_file):
+        print(f"Copying back to original: {desktop_file} to {original_file}")
+        shutil.copy2(desktop_file, original_file)
+        os.remove(desktop_file)
+        self.remove_editing_marker(original_file)
+        self.clear_file_path_label()
+
+
+    def clear_file_path_label(self):
+        self.file_path_label.config(text="")
 
     def update_file_path_label(self, file_path):
         wrap_length = int(self.windowX * 0.8)
@@ -110,36 +170,8 @@ class FileProcessorApp(BaseApp):
         with open(marker_file, "w") as f:
             f.write(f"This file is currently being edited by {self.username}.")
         print(f"Created editing marker: {marker_file}")
-
-    def get_lock_file(self, desktop_file):
-        file_category_data = self.get_file_category_data(desktop_file)
-        lock_file_extension = file_category_data["lock_file_extension"]
-        lock_file_begin_template = file_category_data["lock_file_begin_template"]
-        base_name = os.path.basename(desktop_file)
-        lock_file_begin = lock_file_begin_template.format(base_name.replace(file_category_data["file_extension"], ""))
-
-        def check_for_lock_file():
-            for f in os.listdir(os.path.dirname(desktop_file)):
-                if f.endswith(lock_file_extension) and f.lower().startswith(lock_file_begin.lower()):
-                    print(f"File lock found: {f}")
-                    return os.path.join(os.path.dirname(desktop_file), f)
-            print("File lock not found")
-            self.root.after(1000, check_for_lock_file)
-            return None
+     
         
-        return check_for_lock_file()
-
-    def monitor_file_lock(self, original_file, desktop_file):
-        def check_lock_file():
-            lock_file = self.get_lock_file(desktop_file)
-            if lock_file and os.path.exists(lock_file):
-                self.root.after(1000, check_lock_file)
-            else:
-                self.copy_back_to_original(original_file, desktop_file)
-
-        check_lock_file()
-
-    
     def get_file_category_data(self, file_path):
         file_extension = os.path.splitext(file_path)[1].lower()
         for category, info in FILE_CATELOG.items():
@@ -147,11 +179,7 @@ class FileProcessorApp(BaseApp):
                 return FILE_CATELOG[category]
         return None
 
-    def copy_back_to_original(self, original_file, desktop_file):
-        print(f"Copying back to original: {desktop_file} to {original_file}")
-        shutil.copy2(desktop_file, original_file)
-        os.remove(desktop_file)
-        self.remove_editing_marker(original_file)
+
 
     def remove_editing_marker(self, original_file):
         marker_file = os.path.join(os.path.dirname(original_file), f"[{self.username}_editing]_{os.path.basename(original_file)}")

@@ -15,12 +15,15 @@ class ACCMigrationChecker:
     def get_job_folders(self):
         """Get main job folders in the drive"""
         folders = [os.path.join(self.drive, f) for f in os.listdir(self.drive) if os.path.isdir(os.path.join(self.drive, f))]
-        random.shuffle(folders)
-        return folders
+        folders = [ f for f in folders if "ennead" not in f.lower()]
+        # random.shuffle(folders)
+        # return folders
         return sorted(folders, reverse=True)
 
     async def check_path_length(self, job_folder):
         """Check if any file path will exceed the limit after adding the prefix"""
+
+        
         affected_files = []
         file_paths = []
         
@@ -32,13 +35,18 @@ class ACCMigrationChecker:
         # Use tqdm for the progress bar with custom color and style
         with tqdm(total=len(file_paths), desc=Fore.GREEN + f"Checking files in {os.path.basename(job_folder)}" + Style.RESET_ALL, unit="file", bar_format="{l_bar}{bar:20}{r_bar}{bar:-10b}") as pbar:
             for original_path in file_paths:
-                new_path = os.path.join(self.prefix, original_path.replace(":", "").replace("\\", "_"))
+                
+                # do not check those special folder such as marketing
+                
+                new_path = self.prefix + "\\" + job_folder.split(":\\")[1] + "_SAMPLE_NAME" + "\\" + "Project Files" + "\\" + job_folder.split(":\\")[1] + "_SAMPLE_NAME" + "\\" + original_path.replace(job_folder,"")
+                # # C:\Users\szhang\ACCDocs\Ennead Architects LLP\1643_LHH\Project Files\00_1643 LHH
                 # Replace double backslashes with a single backslash to mimic Windows OS behavior
                 new_path = new_path.replace("\\\\", "\\")
                 if len(new_path) > self.limit:
                     affected_files.append((original_path, new_path))
                 pbar.update(1)
-        
+
+  
         return affected_files
 
     def generate_report_content(self, job_folder, affected_files, elapsed_time):
@@ -47,6 +55,8 @@ class ACCMigrationChecker:
         if affected_files:
             summary = f"Summary: {len(affected_files)} files will be affected.\n"
             report_content.append(summary)
+            note = f"Note: The warning limit is set to {self.limit} characters. The real limit is 256, but it should allow username variation and project name customizations and some contingency.\n"
+            report_content.append(note)
             details_header = "Details of affected files:\n"
             report_content.append(details_header)
             for original, new in affected_files:
@@ -61,7 +71,7 @@ class ACCMigrationChecker:
     def save_text_report(self, drive_letter, job_folder, report_content, status):
         """Save a text report for the job folder"""
         job_number = os.path.basename(job_folder)
-        report_folder = f"L:\\4b_Applied Computing\\EnneadTab-DB\\ACC Report\\{drive_letter} Drive Report"
+        report_folder = f"L:\\4b_Applied Computing\\EnneadTab-DB\\ACC Migrate Path Length Report\\{drive_letter} Drive Report"
         if not os.path.exists(report_folder):
             os.makedirs(report_folder)
         

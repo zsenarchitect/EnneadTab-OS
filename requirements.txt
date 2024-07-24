@@ -15,3 +15,5 @@ playsound
 PyMuPDF
 pyautogui
 tkinterdnd2
+tqdm
+pandas

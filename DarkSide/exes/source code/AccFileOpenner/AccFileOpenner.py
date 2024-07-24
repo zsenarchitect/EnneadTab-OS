@@ -111,32 +111,34 @@ class FileProcessorApp(BaseApp):
             f.write(f"This file is currently being edited by {self.username}.")
         print(f"Created editing marker: {marker_file}")
 
-    def monitor_file_lock(self, original_file, desktop_file):
-        lock_file = self.get_lock_file(desktop_file)
-
-        def check_lock_file():
-            if not lock_file or not os.path.exists(lock_file):
-                self.copy_back_to_original(original_file, desktop_file)
-            else:
-                self.root.after(1000, check_lock_file)
-
-        check_lock_file()
-
     def get_lock_file(self, desktop_file):
         file_category_data = self.get_file_category_data(desktop_file)
         lock_file_extension = file_category_data["lock_file_extension"]
         lock_file_begin_template = file_category_data["lock_file_begin_template"]
         base_name = os.path.basename(desktop_file)
+        lock_file_begin = lock_file_begin_template.format(base_name.replace(file_category_data["file_extension"], ""))
 
-        for f in os.listdir(os.path.dirname(desktop_file)):
-            if not f.endswith(lock_file_extension):
-                continue
-            lock_file_begin = lock_file_begin_template.format(base_name.replace(file_category_data["file_extension"], ""))
-            if f.lower().startswith(lock_file_begin.lower()):
-                print(f"File lock found: {f}")
-                return os.path.join(os.path.dirname(desktop_file), f)
-        print("File lock not found")
-        return None
+        def check_for_lock_file():
+            for f in os.listdir(os.path.dirname(desktop_file)):
+                if f.endswith(lock_file_extension) and f.lower().startswith(lock_file_begin.lower()):
+                    print(f"File lock found: {f}")
+                    return os.path.join(os.path.dirname(desktop_file), f)
+            print("File lock not found")
+            self.root.after(1000, check_for_lock_file)
+            return None
+        
+        return check_for_lock_file()
+
+    def monitor_file_lock(self, original_file, desktop_file):
+        def check_lock_file():
+            lock_file = self.get_lock_file(desktop_file)
+            if lock_file and os.path.exists(lock_file):
+                self.root.after(1000, check_lock_file)
+            else:
+                self.copy_back_to_original(original_file, desktop_file)
+
+        check_lock_file()
+
     
     def get_file_category_data(self, file_path):
         file_extension = os.path.splitext(file_path)[1].lower()

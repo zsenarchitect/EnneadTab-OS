@@ -69,18 +69,25 @@ class ACCMigrationChecker:
             if file.startswith(f"Acc Migration Filepath Length PreCheck [{job_number}]_"):
                 os.remove(os.path.join(report_folder, file))
         
-        # Save the new text report
-        with open(txt_output_path, 'w') as f:
-            f.write(report_content)
-
-        print(f"Generated text report: {txt_output_path}")
-        # Play Windows system alert sound
-        winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
+        try:
+            # Save the new text report
+            with open(txt_output_path, 'w', encoding='utf-8') as f:
+                f.write(report_content)
+            print(f"Generated text report: {txt_output_path}")
+        except UnicodeEncodeError as e:
+            error_txt_filename = f"Acc Migration Filepath Length PreCheck [{job_number}]_{status}_error.txt"
+            error_txt_output_path = os.path.join(report_folder, error_txt_filename)
+            with open(error_txt_output_path, 'w', encoding='utf-8', errors='ignore') as f:
+                f.write(report_content)
+            print(f"Generated text report with error handling: {error_txt_output_path}\nError: {e}")
+        finally:
+            # Play Windows system alert sound
+            winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
 
 async def process_drive(drive, prefix, limit):
     checker = ACCMigrationChecker(drive, prefix, limit)
     drive_letter = drive[0]  # Get the drive letter (J or I)
-    job_folders = checker.get_job_folders()[:3]  # Get the first 3 job folders
+    job_folders = checker.get_job_folders()  # Get all job folders
 
     for job_folder in job_folders:
         start_time = time.time()

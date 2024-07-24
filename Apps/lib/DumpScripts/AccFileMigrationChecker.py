@@ -38,7 +38,7 @@ class ACCMigrationChecker:
                 
                 # do not check those special folder such as marketing
                 
-                new_path = self.prefix + "\\" + job_folder.split(":\\")[1] + "_SAMPLE_NAME" + "\\" + "Project Files" + "\\" + job_folder.split(":\\")[1] + "_SAMPLE_NAME" + "\\" + original_path.replace(job_folder,"")
+                new_path = self.prefix + "\\" + os.path.basename(job_folder) + "_SAMPLE_NAME" + "\\" + "Project Files" + "\\" + os.path.basename(job_folder) + "_SAMPLE_NAME" + "\\" + original_path.replace(job_folder,"")
                 # # C:\Users\szhang\ACCDocs\Ennead Architects LLP\1643_LHH\Project Files\00_1643 LHH
                 # Replace double backslashes with a single backslash to mimic Windows OS behavior
                 new_path = new_path.replace("\\\\", "\\")

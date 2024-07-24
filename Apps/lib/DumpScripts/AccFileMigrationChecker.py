@@ -2,6 +2,7 @@ import os
 import asyncio
 import winsound
 import time
+import random
 from tqdm import tqdm
 from colorama import Fore, Style
 
@@ -13,7 +14,10 @@ class ACCMigrationChecker:
 
     def get_job_folders(self):
         """Get main job folders in the drive"""
-        return sorted([os.path.join(self.drive, f) for f in os.listdir(self.drive) if os.path.isdir(os.path.join(self.drive, f))], reverse=True)
+        folders = [os.path.join(self.drive, f) for f in os.listdir(self.drive) if os.path.isdir(os.path.join(self.drive, f))]
+        random.shuffle(folders)
+        return folders
+        return sorted(folders, reverse=True)
 
     async def check_path_length(self, job_folder):
         """Check if any file path will exceed the limit after adding the prefix"""

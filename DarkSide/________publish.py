@@ -199,11 +199,27 @@ def reset_and_force_push(repository_path):
         print(traceback.format_exc())
         raise e
 
+def copy_to_standalone_collection():
+    # locate the EA_Dist repo folder and current repo folder
+    # the current repo folder is 3 parent folder up
+    print_title("\n\nBegin updating stand alone exe...")
+    exe_product_folder = OS_REPO_FOLDER + "\\Apps\\lib\\ExeProducts"
+    stand_alone_folder = "L:\\4b_Applied Computing\\EnneadTab-DB\\Stand Alone Tools"
 
+
+    for exe in os.listdir(exe_product_folder):
+        if exe.endswith(".exe"):
+            try:
+                shutil.copy(os.path.join(exe_product_folder, exe),
+                            os.path.join(stand_alone_folder, exe))
+            except:
+                print ("Failed to copy {} to standalone collection".format(exe))
+
+    
 def update_installer_folder_exes():
     # locate the EA_Dist repo folder and current repo folder
     # the current repo folder is 3 parent folder up
-
+    print_title("\n\nBegin updating installation folder for public easy install...")
     installation_folder = os.path.join(OS_REPO_FOLDER, "Installation")
     for file in os.listdir(installation_folder):
         if file.endswith(".exe"):
@@ -225,8 +241,9 @@ def publish_duck():
         update_exes()
     else:
         NOTIFICATION.messenger("NOT compiling exes today...")
-    print_title("\n\nBegin updating installation folder for public easy install...")
+    
     update_installer_folder_exes()
+    copy_to_standalone_collection()
 
     # recompile the rui layout for rhino
     import RuiWriter

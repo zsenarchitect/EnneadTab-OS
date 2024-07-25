@@ -237,7 +237,8 @@ def update_installer_folder_exes():
         "EnneadTab_OS_Installer.exe",
         "EnneadTab_For_Revit(Legacy)_Installer.exe",
         "EnneadTab_For_Revit_UnInstaller.exe",
-        "RevitIniDeployer.exe"
+        "RevitIniDeployer.exe",
+        "AccFileOpenner.exe"
                  ]
     for i, file in enumerate(app_list):
         print("Copying {}/{} [{}] to EA_dist installer folder".format(i+1,

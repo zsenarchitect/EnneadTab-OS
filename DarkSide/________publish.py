@@ -207,9 +207,14 @@ def copy_to_standalone_collection():
     exe_product_folder = OS_REPO_FOLDER + "\\Apps\\lib\\ExeProducts"
     stand_alone_folder = "L:\\4b_Applied Computing\\EnneadTab-DB\\Stand Alone Tools"
 
+    good_list = [
+        "IndesignAccOpenner.exe"
+    ]
+
 
     for i, exe in enumerate(os.listdir(exe_product_folder)):
-
+        if exe not in good_list:
+            continue
         print("Copying {}/{} [{}] to standalone collection".format(i+1,
                                                                     len(os.listdir(exe_product_folder)),
                                                                     exe))
@@ -260,8 +265,8 @@ def publish_duck():
     VERSION_CONTROL.update_EA_dist()
 
     
-    # thread = threading.Thread(target=copy_to_standalone_collection)
-    # thread.start()
+    thread = threading.Thread(target=copy_to_standalone_collection)
+    thread.start()
 
 
 def manual_confirm_should_compile_exe():

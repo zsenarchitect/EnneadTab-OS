@@ -17,7 +17,6 @@ class BaseApp:
         self.setup_bindings()
         self.update_title_with_days_left()
         self.create_dashboard()
-        
 
     def setup_icon(self):
         icon_path = os.path.join(os.path.dirname(__file__), "icon_ennead-e.ico")
@@ -31,12 +30,19 @@ class BaseApp:
         self.logo_label = tk.Label(self.root, image=self.logo_photo, bg='#2e2e2e')
         self.logo_label.grid(row=0, column=0, columnspan=3, sticky="nsew")
 
-        self.editing_files_text = scrolledtext.ScrolledText(self.root, width=60, height=20, bg='#2e2e2e', fg='white', font=('Helvetica', 12, 'bold'))
-        self.editing_files_text.grid(row=1, column=0, columnspan=3, sticky="nsew")
+        self.editing_files_frame = tk.Frame(self.root, bg='#2e2e2e')
+        self.editing_files_frame.grid(row=1, column=0, columnspan=3, sticky="nsew")
+
+        self.editing_files_text = scrolledtext.ScrolledText(self.editing_files_frame, width=60, height=15, bg='#2e2e2e', fg='white', font=('Helvetica', 12, 'bold'))
+        self.editing_files_text.pack(fill=tk.BOTH, expand=True)
+
+        self.instructions_label = tk.Label(self.root, text="The file will open automatically after picked/dropped.", bg='#2e2e2e', fg='white', font=('Helvetica', 12), wraplength=800, justify=tk.LEFT)
+        self.instructions_label.grid(row=2, column=0, columnspan=3, sticky="nw", padx=20, pady=10)
 
         for i in range(3):
             self.root.grid_columnconfigure(i, weight=1)
         self.root.grid_rowconfigure(1, weight=1)
+
 
     def setup_bindings(self):
         self.root.bind("<Motion>", self.rotate_logo)
@@ -53,8 +59,8 @@ class BaseApp:
 
     def create_dashboard(self):
         self.dashboard_frame = tk.Frame(self.root, bg='#3e3e3e', height=100)
-        self.dashboard_frame.grid(row=2, column=0, columnspan=3, sticky="nsew")
-        self.root.grid_rowconfigure(2, weight=1)
+        self.dashboard_frame.grid(row=3, column=0, columnspan=3, sticky="nsew")
+        self.root.grid_rowconfigure(3, weight=1)
 
         self.canvas = tk.Canvas(self.dashboard_frame, bg='#3e3e3e', highlightthickness=0)
         self.canvas.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
@@ -63,9 +69,10 @@ class BaseApp:
         self.windowX = self.canvas.winfo_width()
         self.windowY = self.canvas.winfo_height()
 
-        self.draw_rounded_rect(10, 10, self.windowX - 10, self.windowY - 30, 20, width=4, dash=(5, 3))
-        self.dashboard_label = tk.Label(self.dashboard_frame, text="Drag and Drop a file here or Click to Select a file", bg='#3e3e3e', fg='white', font=('Helvetica', 14, 'bold'))
-        self.dashboard_label.pack(pady=20)
+        self.draw_rounded_rect(10, 10, self.windowX - 10, self.windowY - 10, 20, width=4, dash=(5, 3))  # Adjusted the bottom padding
+
+        self.dashboard_label = tk.Label(self.canvas, text="Drag and Drop a file here or Click to Select a file", bg='#3e3e3e', fg='white', font=('Helvetica', 14, 'bold'))
+        self.dashboard_label.place(relx=0.5, rely=0.1, anchor='n')  # Positioned the label at the top
 
         self.file_path_label = tk.Label(self.canvas, text="", bg='#3e3e3e', fg='white', font=('Helvetica', 12), wraplength=int(self.windowX * 0.8))
         self.file_path_label.place(relx=0.5, rely=0.5, anchor='center')
@@ -74,6 +81,18 @@ class BaseApp:
         self.dashboard_frame.bind("<Button-1>", self.open_file_dialog)
         self.root.drop_target_register(DND_FILES)
         self.root.dnd_bind('<<Drop>>', self.handle_file_drop)
+
+        self.dashboard_label.bind("<Enter>", self.change_cursor_to_hand)
+        self.dashboard_label.bind("<Leave>", self.change_cursor_to_arrow)
+        self.dashboard_frame.bind("<Enter>", self.change_cursor_to_hand)
+        self.dashboard_frame.bind("<Leave>", self.change_cursor_to_arrow)
+
+    def change_cursor_to_hand(self, event):
+        event.widget.config(cursor="hand2")
+
+    def change_cursor_to_arrow(self, event):
+        event.widget.config(cursor="")
+
 
     def draw_rounded_rect(self, x1, y1, x2, y2, radius, **kwargs):
         # Draw the lines
@@ -96,3 +115,4 @@ class BaseApp:
             self.root.title(f"ACC File Opener - {days_left} days left")
         else:
             self.root.title("ACC File Opener")
+

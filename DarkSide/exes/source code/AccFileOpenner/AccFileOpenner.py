@@ -7,6 +7,7 @@ import sys
 import time
 from gui import BaseApp
 from tkinterdnd2 import TkinterDnD
+import subprocess
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import _Exe_Util
@@ -44,6 +45,21 @@ FILE_CATALOG = {
         "file_extension": ".docx",
         "prefer_cloud": True
     },
+    "photoshop": {
+        "lock_file_extension": None,
+        "lock_file_begin_template": "",
+        "file_extension": ".psd",
+    },
+    "illustrator": {
+        "lock_file_extension": None,
+        "lock_file_begin_template": "",
+        "file_extension": ".ai",
+    },
+    "grasshopper": {
+        "lock_file_extension": None,
+        "lock_file_begin_template": "",
+        "file_extension": ".gh",
+    },
 }
 
 class FileProcessorApp(BaseApp):
@@ -51,6 +67,7 @@ class FileProcessorApp(BaseApp):
         self.username = os.getenv("USERNAME")
         super().__init__(root)
         self.selected_file = ""
+        self.original_file = None
         self.output_file = ""
         self.acc_folder = f"{os.getenv('USERPROFILE')}\\ACCDocs\\Ennead Architects LLP"
         self.lock_file = None
@@ -61,16 +78,33 @@ class FileProcessorApp(BaseApp):
         self.update_editing_and_requesting_files()
         self.root.after(2000, self.monitor_acc_folder)
 
-    def open_file_dialog(self, event=None):
-        file_path = filedialog.askopenfilename()
+    def handle_file_selection(self, file_path):
+        if self.original_file:
+            response = messagebox.askyesno(
+                "Job in Progress",
+                "You already have a file being processed. Do you want to open a new instance to process another file?",
+                icon=messagebox.WARNING,
+                default=messagebox.NO
+            )
+            if response:
+                self.start_new_instance()
+            return
+
         if file_path:
             self.process_file(file_path)
+
+    def open_file_dialog(self, event=None):
+        file_path = filedialog.askopenfilename()
+        self.handle_file_selection(file_path)
 
     def handle_file_drop(self, event):
         file_path = event.data.strip("{}")
         print(f"File dropped: {file_path}")
-        if file_path:
-            self.process_file(file_path)
+        self.handle_file_selection(file_path)
+
+    def start_new_instance(self):
+        current_script = sys.argv[0]
+        subprocess.Popen([sys.executable, current_script])
 
     @_Exe_Util.try_catch_error
     def process_file(self, file_path):
@@ -106,8 +140,6 @@ class FileProcessorApp(BaseApp):
         
         self.create_editing_marker()
         self.monitor_file_lock()
-
-
 
     def copy_file_to_desktop(self):
         file_name = os.path.basename(self.original_file)
@@ -156,8 +188,7 @@ class FileProcessorApp(BaseApp):
         shutil.copy2(self.desktop_file, self.original_file)
         os.remove(self.desktop_file)
         self.remove_editing_marker()
-        self.clear_file_path_label()
-        self.remove_finished_button()
+        self.reset_all()
 
     def clear_file_path_label(self):
         self.file_path_label.config(text="")
@@ -251,7 +282,6 @@ class FileProcessorApp(BaseApp):
                     requesting_files.append(os.path.join(root, file))
         self.update_editing_files_panel(editing_files, requesting_files)
 
-
     def update_editing_files_panel(self, editing_files, requesting_files):
         self.editing_files_text.configure(state='normal')
         self.editing_files_text.delete('1.0', tk.END)
@@ -286,20 +316,12 @@ class FileProcessorApp(BaseApp):
         event.widget.config(cursor="")
         event.widget.tag_configure(tag, background="", foreground="")
 
-
-    def change_cursor_to_cross(self, event):
-        event.widget.config(cursor="cross")
-
-    def change_cursor_to_arrow(self, event):
-        event.widget.config(cursor="")
-
     def open_file_folder(self, file_path):
         folder_path = os.path.dirname(file_path)
         if os.path.exists(folder_path):
             os.startfile(folder_path)
         else:
             messagebox.showerror("Error", "Folder not found.")
-
 
     def create_finished_button(self, file_type):
         if self.finished_button:
@@ -309,11 +331,18 @@ class FileProcessorApp(BaseApp):
                                          command=self.copy_back_to_original)
         self.finished_button.grid(row=4, column=0, columnspan=3, pady=10)
 
-
     def remove_finished_button(self):
         if self.finished_button:
             self.finished_button.destroy()
             self.finished_button = None
+
+    def reset_all(self):
+        self.original_file = None
+        self.selected_file = ""
+        self.output_file = ""
+        self.lock_file = None
+        self.finished_button = None
+        self.clear_file_path_label()
 
 @_Exe_Util.try_catch_error
 def main():

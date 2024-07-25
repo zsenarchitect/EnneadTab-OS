@@ -8,9 +8,13 @@ import time
 from gui import BaseApp
 from tkinterdnd2 import TkinterDnD
 import subprocess
+from PIL import Image, ImageTk
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import _Exe_Util
+
+# Splash screen settings
+SPLASH_SCREEN_IMAGE = "{}\\splash_screen.png".format(os.path.dirname(__file__))  # Replace with your splash screen image path
 
 FILE_CATALOG = {
     "indesign": {
@@ -62,6 +66,40 @@ FILE_CATALOG = {
     },
 }
 
+class SplashScreen:
+    def __init__(self, root):
+        self.root = root
+        self.show_splash_screen()
+
+    def show_splash_screen(self):
+        self.splash = tk.Toplevel(self.root)
+        self.splash.overrideredirect(True)
+
+        # Load the splash image
+        splash_image = Image.open(SPLASH_SCREEN_IMAGE)
+        splash_photo = ImageTk.PhotoImage(splash_image)
+
+        # Calculate the position to center the window
+        screen_width = self.splash.winfo_screenwidth()
+        screen_height = self.splash.winfo_screenheight()
+        width = splash_photo.width()
+        height = splash_photo.height()
+        x = (screen_width // 2) - (width // 2)
+        y = (screen_height // 2) - (height // 2)
+
+        self.splash.geometry(f"{width}x{height}+{x}+{y}")
+
+        self.splash_label = tk.Label(self.splash, image=splash_photo)
+        self.splash_label.image = splash_photo
+        self.splash_label.pack()
+
+        self.root.withdraw()
+
+
+    def hide_splash_screen(self):
+        self.splash.destroy()
+        self.root.deiconify()
+
 class FileProcessorApp(BaseApp):
     def __init__(self, root):
         self.username = os.getenv("USERNAME")
@@ -70,15 +108,14 @@ class FileProcessorApp(BaseApp):
         self.original_file = None
         
         possible_acc_folders = [
-        f"{os.getenv('USERPROFILE')}\\DC\\ACCDocs",
-        f"{os.getenv('USERPROFILE')}\\ACCDocs"
+            f"{os.getenv('USERPROFILE')}\\DC\\ACCDocs",
+            f"{os.getenv('USERPROFILE')}\\ACCDocs"
         ]
         for acc_folder in possible_acc_folders:
             if os.path.exists(acc_folder):
                 self.acc_folder = acc_folder
                 break
 
-            
         self.lock_file = None
         self.finished_button = None
         self.monitor_acc_folder()
@@ -106,8 +143,6 @@ class FileProcessorApp(BaseApp):
         file_path = event.data.strip("{}")
         print(f"File dropped: {file_path}")
         self.handle_file_selection(file_path)
-
-
 
     @_Exe_Util.try_catch_error
     def process_file(self, file_path):
@@ -171,7 +206,6 @@ class FileProcessorApp(BaseApp):
                 print(f"File lock found: {f}")
                 self.lock_file = os.path.join(os.path.dirname(self.desktop_file), f)
                 return
-
 
         print("File lock not found")
 
@@ -281,7 +315,6 @@ class FileProcessorApp(BaseApp):
         return request_users
 
     def update_editing_and_requesting_files(self):
-           
         editing_files = []
         requesting_files = []
         for root, dirs, files in os.walk(self.acc_folder):
@@ -358,7 +391,10 @@ class FileProcessorApp(BaseApp):
 @_Exe_Util.try_catch_error
 def main():
     root = TkinterDnD.Tk()
+    splash = SplashScreen(root)
+    root.update()
     app = FileProcessorApp(root)
+    splash.hide_splash_screen()
     root.mainloop()
 
 if __name__ == "__main__":

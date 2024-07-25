@@ -45,7 +45,7 @@ def time_it(func):
         reset_color = "\033[0m"
 
         # Print the formatted message with color
-        print("{}Publish took {:.1f} seconds to complete.{}".format(blue_text, elapsed_time, reset_color))
+        print("\n\n{}Publish took {:.1f} seconds to complete.{}".format(blue_text, elapsed_time, reset_color))
         NOTIFICATION.duck_pop("Publish took {:.1f} seconds to complete.".format(elapsed_time))
         SOUND.play_sound("sound_effect_spring")
 

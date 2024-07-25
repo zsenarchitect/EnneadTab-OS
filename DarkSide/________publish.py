@@ -260,8 +260,8 @@ def publish_duck():
     VERSION_CONTROL.update_EA_dist()
 
     
-    thread = threading.Thread(target=copy_to_standalone_collection)
-    thread.start()
+    # thread = threading.Thread(target=copy_to_standalone_collection)
+    # thread.start()
 
 
 def manual_confirm_should_compile_exe():

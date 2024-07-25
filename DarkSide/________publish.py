@@ -201,8 +201,7 @@ def reset_and_force_push(repository_path):
         raise e
 
 def copy_to_standalone_collection():
-    # locate the EA_Dist repo folder and current repo folder
-    # the current repo folder is 3 parent folder up
+
     print_title("\n\nBegin updating stand alone exe...")
     exe_product_folder = OS_REPO_FOLDER + "\\Apps\\lib\\ExeProducts"
     stand_alone_folder = "L:\\4b_Applied Computing\\EnneadTab-DB\\Stand Alone Tools"
@@ -213,9 +212,8 @@ def copy_to_standalone_collection():
     ]
 
 
-    for i, exe in enumerate(os.listdir(exe_product_folder)):
-        if exe not in good_list:
-            continue
+    for i, exe in enumerate([f for f in os.listdir(exe_product_folder) if f in good_list]):
+    
         print("Copying {}/{} [{}] to standalone collection".format(i+1,
                                                                     len(os.listdir(exe_product_folder)),
                                                                     exe))
@@ -227,19 +225,24 @@ def copy_to_standalone_collection():
 
     
 def update_installer_folder_exes():
-    # locate the EA_Dist repo folder and current repo folder
-    # the current repo folder is 3 parent folder up
+
     print_title("\n\nBegin updating installation folder for public easy install...")
     installation_folder = os.path.join(OS_REPO_FOLDER, "Installation")
     for file in os.listdir(installation_folder):
         if file.endswith(".exe"):
             os.remove(os.path.join(installation_folder, file))
 
-    # copy folder from current repo to EA_dist repo
-    for file in ["EnneadTab_OS_Installer.exe",
-                 "EnneadTab_For_Revit(Legacy)_Installer.exe",
-                 "EnneadTab_For_Revit_UnInstaller.exe",
-                 "RevitIniDeployer.exe"]:
+    # copy folder from deep product folder to easy installation folder
+    app_list = [
+        "EnneadTab_OS_Installer.exe",
+        "EnneadTab_For_Revit(Legacy)_Installer.exe",
+        "EnneadTab_For_Revit_UnInstaller.exe",
+        "RevitIniDeployer.exe"
+                 ]
+    for i, file in enumerate(app_list):
+        print("Copying {}/{} [{}] to EA_dist installer folder".format(i+1,
+                                                                    len(os.listdir(app_list)),
+                                                                    file))
         shutil.copy(os.path.join(OS_REPO_FOLDER, "Apps", "lib", "ExeProducts", file),
                     os.path.join(OS_REPO_FOLDER, "Installation", file))
 

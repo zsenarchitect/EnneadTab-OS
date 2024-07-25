@@ -111,7 +111,11 @@ def make_exe(maker_json):
 
 def repath(path):
     # this is to be able to make exe from any named repo
-    return path.replace("C:\\Users\\szhang\\github\\EnneadTab-OS", ROOT)
+    new_path = path.replace("C:\\Users\\szhang\\github\\EnneadTab-OS", ROOT)
+    if os.path.exists(new_path):
+        return new_path
+    new_path = new_path.replace("github\\EnneadTab-OS", "dev\\EnneadTab-OS")
+    return new_path
         
 def json_to_command(json_file):
     json_config = json.load(json_file)

@@ -208,7 +208,8 @@ def copy_to_standalone_collection():
     stand_alone_folder = "L:\\4b_Applied Computing\\EnneadTab-DB\\Stand Alone Tools"
 
     good_list = [
-        "IndesignAccOpenner.exe"
+        "IndesignAccOpenner.exe",
+        "AccFileOpenner.exe"
     ]
 
 

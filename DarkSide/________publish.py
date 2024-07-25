@@ -215,7 +215,7 @@ def copy_to_standalone_collection():
     for i, exe in enumerate([f for f in os.listdir(exe_product_folder) if f in good_list]):
     
         print("Copying {}/{} [{}] to standalone collection".format(i+1,
-                                                                    len(os.listdir(exe_product_folder)),
+                                                                    len(good_list),
                                                                     exe))
         try:
             shutil.copy(os.path.join(exe_product_folder, exe),
@@ -242,7 +242,7 @@ def update_installer_folder_exes():
                  ]
     for i, file in enumerate(app_list):
         print("Copying {}/{} [{}] to EA_dist installer folder".format(i+1,
-                                                                    len(os.listdir(app_list)),
+                                                                    len(app_list),
                                                                     file))
         shutil.copy(os.path.join(OS_REPO_FOLDER, "Apps", "lib", "ExeProducts", file),
                     os.path.join(OS_REPO_FOLDER, "Installation", file))

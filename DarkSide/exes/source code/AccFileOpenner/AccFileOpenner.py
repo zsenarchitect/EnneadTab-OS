@@ -196,6 +196,7 @@ class FileProcessorApp(BaseApp):
                 try:
                     os.remove(marker_file)
                     print (" editing marker Removed")
+
                 except Exception as e:
                     print(f"Error removing editing marker: {e}")
                     self.root.after(1000, try_remove_marker)

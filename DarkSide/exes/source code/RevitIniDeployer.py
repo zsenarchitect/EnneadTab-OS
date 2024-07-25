@@ -3,8 +3,10 @@ import os
 import time
 
 def copy_revit_ini_files():
-    source_base = r"L:\4b_Applied Computing\01_Revit\Initialization"
-    target_base = r"C:\ProgramData\Autodesk\RVT "
+    # L:\4b_Applied Computing\01_Revit\Initialization\2025\Revit.ini
+    # C:\ProgramData\Autodesk\RVT 2025\UserDataCache\Revit.ini
+    source_base = "L:\\4b_Applied Computing\\01_Revit\\Initialization"
+    target_base = "C:\\ProgramData\\Autodesk\\RVT "
     filename = "Revit.ini"
 
     for year in range(2000, 2099):

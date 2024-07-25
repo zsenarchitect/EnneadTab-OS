@@ -1,11 +1,10 @@
+
 import os
-import re
+import sys
+import subprocess
+
 import tkinter as tk
 from tkinter import messagebox, filedialog
-import shutil
-import sys
-import time
-from gui import BaseApp
 from tkinterdnd2 import TkinterDnD
 import subprocess
 
@@ -62,7 +61,7 @@ FILE_CATALOG = {
     },
 }
 
-class FileProcessorApp(BaseApp):
+class FileProcessorApp:
     def __init__(self, root):
         self.username = os.getenv("USERNAME")
         super().__init__(root)
@@ -75,8 +74,9 @@ class FileProcessorApp(BaseApp):
         self.monitor_acc_folder()
 
     def monitor_acc_folder(self):
-        self.update_editing_and_requesting_files()
-        self.root.after(2000, self.monitor_acc_folder)
+        editing_files, requesting_files = self.folder_monitor.update_editing_and_requesting_files()
+        self.ui_components.update_editing_files_panel(editing_files, requesting_files, self.open_file_folder)
+        self.ui_components.root.after(2000, self.monitor_acc_folder)
 
     def handle_file_selection(self, file_path):
         if self.original_file:
@@ -106,36 +106,16 @@ class FileProcessorApp(BaseApp):
         current_script = sys.argv[0]
         subprocess.Popen([sys.executable, current_script])
 
-    @_Exe_Util.try_catch_error
-    def process_file(self, file_path):
-        self.original_file = file_path
-        print(f"Processing file: {self.original_file}")
-
-        file_category_data = self.get_file_category_data()
-        if file_category_data.get("prefer_cloud", False):
+    def handle_file_selection(self, file_path):
+        if self.file_handler.original_file:
             response = messagebox.askyesno(
-                "Cloud Editing Preferred",
-                "This file type is preferred to be edited on the ACC cloud for realtime collaboration. Do you still want to open it locally?",
-                icon=messagebox.QUESTION,
+                "Job in Progress",
+                "You already have a file being processed. Do you want to open a new instance to process another file?",
+                icon=messagebox.WARNING,
                 default=messagebox.NO
             )
-            if not response:
-                messagebox.showinfo("Cloud Editing", "Right click on the file in Windows Explorer and click 'View Online'.")
-                return
-
-        if self.check_self_editing():
-            messagebox.showwarning("Warning", "You are already editing this file. Will not attempt to open twice.\nIf you have recently crashed the AccFileOpenner, remove that editing marker file and retry.")
-            return
-
-        self.update_file_path_label()
-        self.copy_file_to_desktop()
-        os.startfile(self.desktop_file)
-        
-        self.cleanup_old_request_files()
-        current_editor = self.check_existing_editors()
-        if current_editor:
-            self.create_request_file()
-            messagebox.showwarning("Warning", f"This file is currently edited by {current_editor}.\n\nA request file has been placed.")
+            if response:
+                self.start_new_instance()
             return
         
         self.create_editing_marker()

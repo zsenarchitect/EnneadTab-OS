@@ -56,15 +56,19 @@
   {
     "optionDest": "datas", 
     "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\_Exe_Util.py;."
-   },
+  },
   {
     "optionDest": "datas", 
     "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AccFileOpenner\\logo.png;."
-   },
+  },
   {
     "optionDest": "datas", 
     "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AccFileOpenner\\icon_ennead-e.ico;."
-   }
+  },
+  {
+    "optionDest": "hidden-import", 
+    "value": "tkinterdnd2.tkdnd"
+  }
  ],
  "nonPyinstallerOptions": {
   "increaseRecursionLimit": true,

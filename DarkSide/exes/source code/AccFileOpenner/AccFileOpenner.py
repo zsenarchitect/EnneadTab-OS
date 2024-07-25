@@ -68,7 +68,17 @@ class FileProcessorApp(BaseApp):
         super().__init__(root)
         self.selected_file = ""
         self.original_file = None
-        self.acc_folder = f"{os.getenv('USERPROFILE')}\\ACCDocs\\Ennead Architects LLP"
+        
+        possible_acc_folders = [
+        f"{os.getenv('USERPROFILE')}\\DC\\ACCDocs",
+        f"{os.getenv('USERPROFILE')}\\ACCDocs"
+        ]
+        for acc_folder in possible_acc_folders:
+            if os.path.exists(acc_folder):
+                self.acc_folder = acc_folder
+                break
+
+            
         self.lock_file = None
         self.finished_button = None
         self.monitor_acc_folder()
@@ -271,6 +281,7 @@ class FileProcessorApp(BaseApp):
         return request_users
 
     def update_editing_and_requesting_files(self):
+           
         editing_files = []
         requesting_files = []
         for root, dirs, files in os.walk(self.acc_folder):

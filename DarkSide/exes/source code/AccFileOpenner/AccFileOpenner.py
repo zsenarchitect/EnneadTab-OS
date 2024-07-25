@@ -1,10 +1,11 @@
-
 import os
-import sys
-import subprocess
-
+import re
 import tkinter as tk
 from tkinter import messagebox, filedialog
+import shutil
+import sys
+import time
+from gui import BaseApp
 from tkinterdnd2 import TkinterDnD
 import subprocess
 
@@ -61,33 +62,27 @@ FILE_CATALOG = {
     },
 }
 
-class FileProcessorApp:
+class FileProcessorApp(BaseApp):
     def __init__(self, root):
         self.username = os.getenv("USERNAME")
         super().__init__(root)
         self.selected_file = ""
         self.original_file = None
-        self.output_file = ""
         self.acc_folder = f"{os.getenv('USERPROFILE')}\\ACCDocs\\Ennead Architects LLP"
         self.lock_file = None
         self.finished_button = None
         self.monitor_acc_folder()
 
     def monitor_acc_folder(self):
-        editing_files, requesting_files = self.folder_monitor.update_editing_and_requesting_files()
-        self.ui_components.update_editing_files_panel(editing_files, requesting_files, self.open_file_folder)
-        self.ui_components.root.after(2000, self.monitor_acc_folder)
+        self.update_editing_and_requesting_files()
+        self.root.after(2000, self.monitor_acc_folder)
 
     def handle_file_selection(self, file_path):
         if self.original_file:
-            response = messagebox.askyesno(
+            response = messagebox.showinfo(
                 "Job in Progress",
-                "You already have a file being processed. Do you want to open a new instance to process another file?",
-                icon=messagebox.WARNING,
-                default=messagebox.NO
+                "You already have a file being processed. To monitor another file, start a new AccFileOpener."
             )
-            if response:
-                self.start_new_instance()
             return
 
         if file_path:
@@ -102,20 +97,40 @@ class FileProcessorApp:
         print(f"File dropped: {file_path}")
         self.handle_file_selection(file_path)
 
-    def start_new_instance(self):
-        current_script = sys.argv[0]
-        subprocess.Popen([sys.executable, current_script])
 
-    def handle_file_selection(self, file_path):
-        if self.file_handler.original_file:
+
+    @_Exe_Util.try_catch_error
+    def process_file(self, file_path):
+        self.original_file = file_path
+        print(f"Processing file: {self.original_file}")
+
+        file_category_data = self.get_file_category_data()
+        if file_category_data.get("prefer_cloud", False):
             response = messagebox.askyesno(
-                "Job in Progress",
-                "You already have a file being processed. Do you want to open a new instance to process another file?",
-                icon=messagebox.WARNING,
+                "Cloud Editing Preferred",
+                "This file type is preferred to be edited on the ACC cloud for realtime collaboration. Do you still want to open it locally?",
+                icon=messagebox.QUESTION,
                 default=messagebox.NO
             )
-            if response:
-                self.start_new_instance()
+            if not response:
+                messagebox.showinfo("Cloud Editing", "Right click on the file in Windows Explorer and click 'View Online'.")
+                self.reset_all()
+                return
+
+        if self.check_self_editing():
+            messagebox.showwarning("Warning", "You are already editing this file. Will not attempt to open twice.\nIf you have recently crashed the AccFileOpenner, remove that editing marker file and retry.")
+            self.reset_all()
+            return
+
+        self.update_file_path_label()
+        self.copy_file_to_desktop()
+        os.startfile(self.desktop_file)
+        
+        self.cleanup_old_request_files()
+        current_editor = self.check_existing_editors()
+        if current_editor:
+            self.create_request_file()
+            messagebox.showwarning("Warning", f"This file is currently edited by {current_editor}.\n\nA request file has been placed.")
             return
         
         self.create_editing_marker()
@@ -134,15 +149,20 @@ class FileProcessorApp:
         base_name = os.path.basename(self.desktop_file)
         lock_file_begin = lock_file_begin_template.format(base_name.replace(file_category_data["file_extension"], ""))
         
+        #  word lock file sometimes remove first two char to create lockfile, so need to search as well
+        lock_file_begin_alt = lock_file_begin_template.format(base_name[2:].replace(file_category_data["file_extension"], ""))
+        
         if lock_file_extension is None:
             self.create_finished_button(file_category_data["file_extension"].strip('.'))
             return
         
         for f in os.listdir(os.path.dirname(self.desktop_file)):
-            if f.endswith(lock_file_extension) and f.lower().startswith(lock_file_begin.lower()):
+            if f.endswith(lock_file_extension) and (f.lower().startswith(lock_file_begin.lower()) or f.lower().startswith(lock_file_begin_alt.lower())):
                 print(f"File lock found: {f}")
                 self.lock_file = os.path.join(os.path.dirname(self.desktop_file), f)
                 return
+
+
         print("File lock not found")
 
     def monitor_file_lock(self):
@@ -164,9 +184,10 @@ class FileProcessorApp:
             self.root.after(1000, self.monitor_file_lock)
 
     def copy_back_to_original(self):
-        print(f"Copying back to original: {self.desktop_file} to {self.original_file}")
-        shutil.copy2(self.desktop_file, self.original_file)
-        os.remove(self.desktop_file)
+        if self.original_file and self.desktop_file:
+            print(f"Copying back to original: {self.desktop_file} to {self.original_file}")
+            shutil.copy2(self.desktop_file, self.original_file)
+            os.remove(self.desktop_file)
         self.remove_editing_marker()
         self.reset_all()
 
@@ -319,7 +340,6 @@ class FileProcessorApp:
     def reset_all(self):
         self.original_file = None
         self.selected_file = ""
-        self.output_file = ""
         self.lock_file = None
         self.finished_button = None
         self.clear_file_path_label()

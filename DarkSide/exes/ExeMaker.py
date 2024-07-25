@@ -112,6 +112,8 @@ def make_exe(maker_json):
 def repath(path):
     # this is to be able to make exe from any named repo
     new_path = path.replace("C:\\Users\\szhang\\github\\EnneadTab-OS", ROOT)
+    return new_path
+
     if os.path.exists(new_path):
         return new_path
     new_path = new_path.replace("github\\EnneadTab-OS", "dev\\EnneadTab-OS")
@@ -229,8 +231,8 @@ if __name__ == "__main__":
     # recompile_exe()
     # recompile_exe(single_exe="RevitExportRenamer.sexyDuck")
     # recompile_exe(single_exe="Speaker.sexyDuck")
-    # recompile_exe(single_exe="IndesignAccOpenner.sexyDuck")
-    # recompile_exe(single_exe="AccFileOpenner.sexyDuck")
+    recompile_exe(single_exe="IndesignAccOpenner.sexyDuck")
+    recompile_exe(single_exe="AccFileOpenner.sexyDuck")
     # recompile_exe(single_exe="Pdf2OrderedJpgs.sexyDuck")
-    recompile_exe(single_exe="RevitIniDeployer.sexyDuck")
+    # recompile_exe(single_exe="RevitIniDeployer.sexyDuck")
     # recompile_exe(single_exe="LastSyncMonitor.sexyDuck")

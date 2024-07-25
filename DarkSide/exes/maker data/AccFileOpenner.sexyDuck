@@ -71,7 +71,7 @@
     },
     {
       "optionDest": "additional-hooks-dir",
-      "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AccFileOpenner\\hook-tkinterdnd2.py"
+      "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AccFileOpenner\\hook"
     }
   ],
   "nonPyinstallerOptions": {

@@ -5,6 +5,7 @@
 ACC Desktop Connector pioritise the sync of Autodesk product files. For other major softwares it can sync too, __but__ the connecter will not sync most of the lock file. So there are risk that multiple user will override file unitentitally.
 
 ## How to use?
+![screenshot of downloading page](/Apps/lib/EnneadTab/images/Instruction_acc.png)
 Keep the Openner.exe open. You can pick file/drop file to the window to make a local copy, create editing marker file on the acc folder so other users can see which file is occupied. If a second user want to open the same file, the tool will place a edit request file to queue the editing order.
 
 When you close file, the editing marker file is removed from acc. When a second user want to open, their request marker file will be converted to a editing marker file.

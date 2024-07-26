@@ -252,6 +252,8 @@ class FileProcessorApp(BaseApp):
         return None
 
     def remove_editing_marker(self):
+        if not self.original_file:
+            return
         marker_file = os.path.join(os.path.dirname(self.original_file), f"[{self.username}_editing]_{os.path.basename(self.original_file)}")
 
         def try_remove_marker():

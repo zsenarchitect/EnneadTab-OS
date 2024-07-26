@@ -112,8 +112,8 @@ def make_exe(maker_json):
 def repath(path):
     # this is to be able to make exe from any named repo
     new_path = path.replace("C:\\Users\\szhang\\github\\EnneadTab-OS", ROOT)
-    return new_path
-
+    # return new_path
+    # C:\Users\szhang\dev\EnneadTab-OS\DarkSide\exes\ExeMaker.py
     if os.path.exists(new_path):
         return new_path
     new_path = new_path.replace("github\\EnneadTab-OS", "dev\\EnneadTab-OS")

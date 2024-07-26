@@ -211,12 +211,12 @@ def parse_version_info(content):
     return info
 
 def recompile_exe(single_exe = None):
-    
-    for file in os.listdir(EXE_MAKER_FOLDER):
+    jobs = os.listdir(EXE_MAKER_FOLDER)
+    for i, file in enumerate(jobs):
         if single_exe and single_exe != file:
             continue
         if file.endswith(".sexyDuck"):
-            print("\033[94m{}\033[00m".format(file))
+            print("{}/{}\033[94m{}\033[00m".format(i+1, len(jobs), file))
             make_exe(os.path.join(EXE_MAKER_FOLDER,file))
             print ("\n")
 

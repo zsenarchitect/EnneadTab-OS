@@ -208,7 +208,8 @@ def copy_to_standalone_collection():
 
     good_list = [
         "IndesignAccOpenner.exe",
-        "AccFileOpenner.exe"
+        "AccFileOpenner.exe",
+        "Pdf2OrderedJpgs.exe"
     ]
 
 

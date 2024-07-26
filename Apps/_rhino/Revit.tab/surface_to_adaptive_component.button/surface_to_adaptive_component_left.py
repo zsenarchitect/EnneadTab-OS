@@ -24,7 +24,7 @@ class Srf2AdpDialog(Eto.Forms.Form):
         self.Resizable = True
         self.Padding = Eto.Drawing.Padding(5)
         self.Spacing = Eto.Drawing.Size(5, 5)
-        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\ennead-e-logo.png")
+        
         self.height = 400
         self.width = 400
         self.selected_srfs = None
@@ -87,11 +87,6 @@ class Srf2AdpDialog(Eto.Forms.Form):
     def CreateLogoImage(self):
         self.logo = Eto.Forms.ImageView()
 
-        self.FOLDER_PRIMARY = r"L:\4b_Applied Computing\00_Asset Library"
-        self.FOLDER_APP_IMAGES = r"{}\Database\app images".format(self.FOLDER_PRIMARY)
-        self.LOGO_IMAGE = r"{}\Ennead_Architects_Logo.png".format(self.FOLDER_APP_IMAGES)
-        temp_bitmap = Eto.Drawing.Bitmap(self.LOGO_IMAGE)
-        self.logo.Image = temp_bitmap.WithSize(200,30)
         return self.logo
 
     # create message bar function
@@ -190,10 +185,10 @@ class Srf2AdpDialog(Eto.Forms.Form):
         if not self.out_data:
             return
             
-        file = FOLDER.get_EA_dump_folder_file("SRF2ADP_DATA.json")
-        DATA_FILE.save_dict_to_json(self.out_data, file)
+        file = FOLDER.get_EA_dump_folder_file("SRF2ADP_DATA.sexyDuck")
+        DATA_FILE.set_data(self.out_data, file)
 
-        SOUND.play_sound("sound effect_mario message.wav")
+        SOUND.play_sound("sound_effect_mario_message.wav")
         self.clear_out()
         self.Close()
 

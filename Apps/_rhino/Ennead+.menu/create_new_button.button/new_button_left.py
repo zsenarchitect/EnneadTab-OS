@@ -1,5 +1,6 @@
 
-__title__ = "Make A New Button"
+__title__ = "MakeANewButton"
+import os
 from ui import UI
 """
 Use this button to create new button folder.
@@ -12,13 +13,13 @@ This should be alloed to run indepdently
 
 
 def new_button():
-    tab_folders = r"C:\Users\szhang\github\EnneadTab-OS\Apps\_rhino"
 
 
     try:
         import rhinoscriptsyntax as rs
-        print ("At the moment, plase make new button from the IDE. Later can make a compatible version that work with ironpython")
+        os.startfile(__file__)
     except:
+        tab_folders = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
         UI(tab_folders)
 
 

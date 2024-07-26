@@ -12,3 +12,8 @@ pyyaml
 gtts
 pygame
 playsound
+PyMuPDF
+pyautogui
+tkinterdnd2
+tqdm
+pandas

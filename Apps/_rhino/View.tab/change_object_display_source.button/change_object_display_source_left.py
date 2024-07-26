@@ -1,11 +1,11 @@
 
 __title__ = "ChangeObjectDisplaySource"
-__doc__ = "This button does ChangeObjectDisplaySource when left click"
+__doc__ = "Change the display source of the object for display color and/or material"
 
 
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
-from EnneadTab import LOG, ERROR_HANDLE
+from EnneadTab import LOG, ERROR_HANDLE, SOUND
 
 class ChangeObjectDisplaySource:
     def change_objs_display(self, objs):
@@ -41,6 +41,9 @@ class ChangeObjectDisplaySource:
         #change for objs inside blocks
         block_names = rs.BlockNames(sort = True)
         map(self.update_block_display, block_names)
+
+
+        SOUND.play_sound()
 
 
 

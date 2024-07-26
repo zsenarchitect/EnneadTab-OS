@@ -1,0 +1,23 @@
+# background:
+#   panel: 'cbecc7'
+#   title: 'cbecc7'
+#   slideout: 'cbecc7'
+
+# this entire panel is commented out from the overall yaml tab layout for the basic user
+layout:
+  - Worksets
+  - Family RePath
+  - Project Starter
+  - export_color_scheme
+  - export_filled_region_types
+  - ">>>"
+  - List_Legend and Schedule
+  - QAQC_AI
+  - Excel Sheet Creator
+  - CollectTextures
+  - family_tree
+  - inspect_local_graphic_override
+  - list_detail_items
+  - transfer_parameter_data
+  - update_DOB_page
+  - check_formula

@@ -1,8 +1,13 @@
 import os
 import traceback
 import json
-ESOSYSTEM_FOLDER = "{}\Documents\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
 
+
+ESOSYSTEM_FOLDER = "{}\\Documents\\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
+DUMP_FOLDER = "{}\\Dump".format(ESOSYSTEM_FOLDER)
+for _folder in [ESOSYSTEM_FOLDER, DUMP_FOLDER]:
+    if not os.path.exists(_folder):
+        os.makedirs(_folder)
 
 def try_catch_error(func):
 
@@ -30,19 +35,52 @@ def try_catch_error(func):
 
     return wrapper
 
-def get_dump_folder():
-    return "{}\Documents\EnneadTab Ecosystem\Dump".format(os.environ["USERPROFILE"])
 
 def get_file_in_dump_folder(file_name):
-    return "{}\{}".format(get_dump_folder(), file_name)
+    return "{}\\{}".format(DUMP_FOLDER, file_name)
 
 def read_json_as_dict_in_dump_folder(file_name):
     filepath = get_file_in_dump_folder(file_name)
     
     # return empty dict if file not exist
     if not os.path.exists(filepath):
-        return False
+        return {}
     # reads it back
     with open(filepath,"r") as f:
       dict = json.load(f)
     return dict
+
+def save_dict_as_json_in_dump_folder(dict, file_name):
+    filepath = get_file_in_dump_folder(file_name)
+    with open(filepath, "w") as f:
+        json.dump(dict, f, indent=4)
+
+def show_splash_screen(image):
+    """create the data bit file and call SpalshScreen.exe"""
+    dict = {"image":image}
+    save_dict_as_json_in_dump_folder(dict, "splash_data.sexyDuck")
+    exe = "{}\\EA_Dist\\Apps\\lib\\ExeProducts\\SplashScreen.exe"
+    if os.path.exists(exe):
+        os.startfile(exe)
+
+def hide_splash_screen():
+    """delete the data bit file"""
+    data_file = get_file_in_dump_folder("splash_data.sexyDuck")
+    if os.path.exists(data_file):
+        os.remove(data_file)
+
+
+GLOBAL_SETTING_FILE = 'setting_{}.sexyDuck'.format(os.environ["USERPROFILE"].split("\\")[-1])
+
+def get_setting(key, defaule_value=None):
+    data = read_json_as_dict_in_dump_folder(GLOBAL_SETTING_FILE)
+    return data.get(key, defaule_value)
+
+
+def get_username():
+    return os.environ["USERPROFILE"].split("\\")[-1]
+
+
+
+
+

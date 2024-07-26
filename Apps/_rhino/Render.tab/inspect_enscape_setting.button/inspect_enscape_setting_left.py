@@ -42,17 +42,17 @@ def inspect_setting_file(path):
 @ERROR_HANDLE.try_catch_error()
 def inspect_enscape_setting():
   
-    path_1 = r"I:\2135\0_3D\00_3D Resources\Enscape\AXO DIAGRAM.json"
-    path_2 = r"I:\2135\0_3D\00_3D Resources\Enscape\Columbia Audubon_edit.json"
+    path_1 = r"I:\2135\0_3D\00_3D Resources\Enscape\AXO DIAGRAM.sexyDuck"
+    path_2 = r"I:\2135\0_3D\00_3D Resources\Enscape\Columbia Audubon_edit.sexyDuck"
     detail_1 = inspect_setting_file(path_1)
     detail_2 = inspect_setting_file(path_2)
     
     file_collection = [[1,2,3], [1, "B", "C"], [1,22,33]]
     
     file_collection = [detail_1, detail_2]
-    file_collection = list(rs.OpenFileNames(filter = "Enscape setting file|*.json"))
+    file_collection = list(rs.OpenFileNames(filter = "Enscape setting file|*.sexyDuck"))
     detail_collection = [inspect_setting_file(x) for x in file_collection]
-    file_names = [FOLDER.get_file_name_from_path(x).replace(".json", "") for x in file_collection]
+    file_names = [FOLDER.get_file_name_from_path(x).replace(".sexyDuck", "") for x in file_collection]
     for i, temp in enumerate(detail_collection):
         #print "*" * 50
         if "???" in str(temp):

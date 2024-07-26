@@ -13,8 +13,10 @@ class RepositoryUpdater:
         self.repo_url = repo_url
         self.extract_to = _Exe_Util.ESOSYSTEM_FOLDER
 
-        if not os.path.exists(self.extract_to):
-            os.makedirs(self.extract_to)
+        if not os.path.exists(_Exe_Util.ESOSYSTEM_FOLDER):
+            os.makedirs(_Exe_Util.ESOSYSTEM_FOLDER)
+        if not os.path.exists(_Exe_Util.DUMP_FOLDER):
+            os.makedirs(_Exe_Util.DUMP_FOLDER) 
             
         self.final_folder_name = self.extract_repo_name(repo_url)
         self.final_dir = os.path.join(self.extract_to, self.final_folder_name)
@@ -42,6 +44,7 @@ class RepositoryUpdater:
             raise e
         finally:
             self.cleanup_old_duck_files()
+            self.cleanup_old_download_cache()
     
     def download_zip(self):
         response = requests.get(self.repo_url, stream=True)
@@ -74,7 +77,11 @@ class RepositoryUpdater:
         for src_path, rel_path in source_files.items():
             tgt_path = os.path.join(self.final_dir, rel_path)
             os.makedirs(os.path.dirname(tgt_path), exist_ok=True)
-            shutil.copy2(src_path, tgt_path)
+            try:
+                shutil.copy2(src_path, tgt_path)
+            except:
+                # often OS_installer exe will fail to override becasue it is popular to run
+                pass
             
         # Delete files older than 1 day
         now = time.time()
@@ -94,6 +101,7 @@ class RepositoryUpdater:
         shutil.rmtree(self.temp_dir)
         os.remove(self.zip_path)
         print("Cleanup completed.")
+
     
     def create_duck_file(self, success=True, error_details=None):
         timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
@@ -117,6 +125,25 @@ class RepositoryUpdater:
                 if file_time < cutoff:
                     os.remove(file_path)
                     print("Old duck file removed: {}".format(file_path))
+
+
+    def cleanup_old_download_cache(self):
+        for file in os.listdir(self.extract_to):
+            if file.startswith("repo_") and file.endswith(".zip"):
+                #  if older than 1 days, remove
+                file_path = os.path.join(self.extract_to, file)
+                file_timestamp = os.path.getmtime(file_path)
+                if datetime.fromtimestamp(file_timestamp) < datetime.now() - timedelta(days=1):
+                    os.remove(file_path)
+                    print("Old zip file removed.")
+
+            # if it is a folder start with temp_extract and it is older than 1 days
+            if os.path.isdir(os.path.join(self.extract_to, file)) and file.startswith("temp_extract_"):
+                file_path = os.path.join(self.extract_to, file)
+                file_timestamp = os.path.getmtime(file_path)
+                if datetime.fromtimestamp(file_timestamp) < datetime.now() - timedelta(days=1):
+                    shutil.rmtree(file_path)
+                    print("Old temp folder removed.")
 
 
 @_Exe_Util.try_catch_error

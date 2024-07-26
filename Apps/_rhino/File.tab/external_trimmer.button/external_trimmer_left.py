@@ -65,7 +65,7 @@ def update_link(block_name):
             pass
 
 def get_external_filepath():
-    EA_export_folder = FOLDER.get_EA_local_dump_folder()
+    EA_export_folder = NOTIFICATION.DUMP_FOLDER
     if doc.Name is None:
         doc_name = "Untitled"
     else:
@@ -151,7 +151,7 @@ def process_and_export_selected():
 def external_trimmer():
     print(doc.Name)
     if len(rs.SelectedObjects()) == 0:
-        NOTIFICATION.toast(main_text = "Need to select at least one obj")
+        NOTIFICATION.messenger(main_text = "Need to select at least one obj")
         return
 
     opts = ["Yes(for simple file)", "No(for complex file, trimming manually)"]
@@ -163,8 +163,8 @@ def external_trimmer():
     else:
         filepath = get_external_filepath()
         doc.ExportSelected (filepath)
-        EXE.open_file_in_default_application(filepath)
-        NOTIFICATION.toast(main_text = "Opening External link file now.")
+        EXE.try_open_app(filepath)
+        NOTIFICATION.messenger(main_text = "Opening External link file now.")
 
     #process_link()
 

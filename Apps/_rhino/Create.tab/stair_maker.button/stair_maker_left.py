@@ -1,6 +1,5 @@
 
-__title__ = ["StairMaker", 
-             "StairMaker(Linear)"]
+__title__ = "StairMaker"
 __doc__ = "Interactively create linear stair."
 
 
@@ -283,7 +282,7 @@ def make_stair_mass_brep(e, start_pt, end_pt, max_riser, stair_width, current_pt
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def stair_maker():
-    max_riser, stair_width = DATA_FILE.get_sticky_longterm("MAX_RISER", 170), DATA_FILE.get_sticky_longterm("STAIR_RISER", 2000)
+    max_riser, stair_width = DATA_FILE.get_sticky("MAX_RISER", 170), DATA_FILE.get_sticky("STAIR_RISER", 2000)
     res = rs.PropertyListBox(items = ["Max Riser Height(file unit)", "Run Width(file unit)"],
                             values = [max_riser, stair_width],
                             message = "Enter stair primitive data",
@@ -293,8 +292,8 @@ def stair_maker():
     max_riser, stair_width = res
     #max_riser = rs.RealBox(message = "Max riser height number", default_number = 170, title = "EnneadTab")
     max_riser, stair_width = float(max_riser), float(stair_width)
-    DATA_FILE.set_sticky_longterm("MAX_RISER", max_riser)
-    DATA_FILE.set_sticky_longterm("STAIR_RISER", stair_width)
+    DATA_FILE.set_sticky("MAX_RISER", max_riser)
+    DATA_FILE.set_sticky("STAIR_RISER", stair_width)
 
 
     get_pt_instance = Rhino.Input.Custom.GetPoint()

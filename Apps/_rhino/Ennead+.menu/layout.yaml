@@ -1,0 +1,12 @@
+layout:
+  - get_latest
+  - tell_me_version
+  - restart_rhino
+  - reset_all_conduit
+  - '---'
+  - how_to_install
+  - youtube_playlist
+  - '---'
+  - create_new_button
+  - extract_preview_images
+  - star

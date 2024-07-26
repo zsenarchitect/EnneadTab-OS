@@ -10,20 +10,20 @@ from EnneadTab.RHINO import RHINO_CLEANUP, RHINO_LAYER
 from EnneadTab import NOTIFICATION, FOLDER, DATA_FILE, ENVIRONMENT
 
 import imp
-ref_module = imp.load_source("random_layer_color_left", '{}\\Layer.tab\\random_layer_color.button\\random_layer_color_left.py'.format(ENVIRONMENT.RHINO_SCRIPT_FOLDER))
+ref_module = imp.load_source("random_layer_color_left", '{}\\Layer.tab\\random_layer_color.button\\random_layer_color_left.py'.format(ENVIRONMENT.RHINO_FOLDER))
 
 def process_dwg(file, units):
     RHINO_CLEANUP.purge_block()
     rs.Command("_-import \"{}\" _ModelUnits={} -enter -enter".format(file, units))
 
-    NOTIFICATION.toast(main_text = "Come Back, come back!", sub_text = "Import Finish!")
+    NOTIFICATION.messenger(main_text = "Come Back, come back!", sub_text = "Import Finish!")
     imported_objs = rs.LastCreatedObjects()
     #print imported_objs
     layers_used = set()
     new_block_name_used = set()
 
     if not imported_objs:
-        NOTIFICATION.toast(main_text = "Nothing imported!")
+        NOTIFICATION.messenger(main_text = "Nothing imported!")
         
         return
     
@@ -97,11 +97,11 @@ def revit_drafter():
 
 
     # get_dwg path
-    transfer_dwg = r"{}\{}".format(FOLDER.get_EA_local_dump_folder() , "EA_TRANSFER_DRAFT_BACKGROUND.dwg")
+    transfer_dwg = r"{}\{}".format(NOTIFICATION.DUMP_FOLDER , "EA_TRANSFER_DRAFT_BACKGROUND.dwg")
 
     # import and bundle layer
-    file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.json")
-    setting = DATA_FILE.read_json_as_dict(file, use_encode = True)
+    file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.sexyDuck")
+    setting = DATA_FILE.read_json_as_dict(file)
     if not setting:
         NOTIFICATION.messenger(main_text = "No setting file found, please check your revit side.")
         return
@@ -123,7 +123,7 @@ def revit_drafter():
     elif revit_unit in ["inches, feet & inches", "inches"]:
         units = "Inches"
     else:
-        NOTIFICATION.toast(main_text = " bad unit, talk to SZ")
+        NOTIFICATION.messenger(main_text = " bad unit, talk to SZ")
         return
 
     rs.EnableRedraw(False)

@@ -68,10 +68,10 @@ def brep_to_mass():
             out[brep.ToString()] = data
     
 
-    file = FOLDER.get_EA_dump_folder_file("BREP2MASS_DATA.json")
-    DATA_FILE.save_dict_to_json(out, file)
+    file = FOLDER.get_EA_dump_folder_file("BREP2MASS_DATA.sexyDuck")
+    DATA_FILE.set_data(out, file)
 
-    SOUND.play_sound("sound effect_mario message.wav")
+    SOUND.play_sound("sound_effect_mario_message.wav")
 
 
 

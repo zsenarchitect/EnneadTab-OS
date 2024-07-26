@@ -1,0 +1,314 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        >
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Cross"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type Expander}">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="Foreground" Value="#FF9C8CBF" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AnimatedSwitch" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="#FAFAFB" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Viewbox Stretch="Uniform">
+                            <Canvas Name="Layer_1" Width="20" Height="20" Canvas.Left="10" Canvas.Top="0">
+                                <Ellipse  Canvas.Left="0" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                <Ellipse  Canvas.Left="15" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                <Border Canvas.Left="10" Width="15" Height="20" Name="rect416927" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,1,0,1"/>
+                                <Ellipse x:Name="ellipse"  Canvas.Left="0" Width="20" Height="20" Fill="White" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1">
+                                    <Ellipse.RenderTransform>
+                                        <TranslateTransform X="0" Y="0" />
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                            </Canvas>
+                        </Viewbox>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True" >
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#f39c12" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#1e2b38" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="15" KeySpline="0, 1, 0.6, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FAFAFB" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#CCCCCC" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="15"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" KeySpline="0, 0.5, 0.5, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20"
+            Cursor="ScrollAll">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646"/>
+        </Border.Background>
+        <Border.Effect>
+
+            <DropShadowEffect Color="#FFFFEA00" BlurRadius="15" Opacity="1"/>
+
+        </Border.Effect>
+
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0" 
+                   Height="100" 
+                   x:Name="logo_img"   
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left" />
+
+
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center">
+                <TextBlock x:Name="title"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        FontSize="40"
+                        Text="Toggle Contents">
+
+                </TextBlock>
+                <TextBlock x:Name="subtitle"
+                           HorizontalAlignment="Left"
+                           TextAlignment="Left"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Top"
+                           FontSize="10"
+                           LineHeight="20"
+                           Text="xxxxxxxxxxxxxxxxxxxxx."/>
+
+                <Separator/>
+                <TabControl Background="{x:Null}" Margin="0,5,0,0" TabStripPlacement="Top" HorizontalContentAlignment="Center">
+
+
+                    <TabItem Header="(un)Pin"  Background="{x:Null}">
+                        <StackPanel>
+                            <TextBlock Text="Set category to be pinned or unpined."/>
+                            <WrapPanel>
+                                <RadioButton x:Name="radial_bt_is_pin"  Content="Pin " IsChecked="True"/>
+                                <RadioButton Content="un-Pin" />
+                            </WrapPanel>
+                            <WrapPanel>
+                                <RadioButton x:Name="radial_bt_is_current_view_only"  Content="Current View Only " IsChecked="True"/>
+                                <RadioButton Content="All Project" />
+                            </WrapPanel>
+                            <Button Content="Dimension" Click="bt_pin_dim_click"/>
+                            <Button Content="Keynote Tag" Click="bt_pin_keynote_tag_click"/>
+                            <Button Content="Viewport" Click="bt_pin_viewport_click"/>
+                            <Button Content="Titleblock" Click="bt_pin_titleblock_click"/>
+                            <Button Content="Curtain Wall" Click="bt_pin_cw_click"/>
+                            <Button Content="Grids" Click="bt_pin_grid_click"/>
+                            <Button Content="Levels" Click="bt_pin_level_click"/>
+
+                        </StackPanel>
+                    
+                        
+                    </TabItem>
+                    <TabItem Header="(un)Hide" Background="{x:Null}">
+                        
+                        <StackPanel>
+                            <TextBlock Text="Set content to be hidden or shown in temporary template (except viewport crop border)." TextWrapping="Wrap"/>
+                            <WrapPanel>
+                                <RadioButton Content="Hide " IsChecked="True" x:Name="radial_bt_is_hide"/>
+                                <RadioButton Content="Show" />
+                            </WrapPanel>
+                            <Button Click="bt_pick_sheets_click"  Content="Pick Sheets To Modify Those Views."/>
+                            <TextBlock x:Name="txtbk_pick_sheet" />
+                            <CheckBox Content="As temporary view property change." IsChecked="True" IsEnabled="False" x:Name="checkbox_bt_is_temp_view_only"/>
+                            <Separator/>
+
+                            <Button Content="Viewport Crop Border" Click="bt_viewport_border_click"/>
+                            <TextBlock Text="--- Or ---" Margin="0,20,0,20" HorizontalAlignment="Center"/>
+                            <Button Content="Pick Object Styles" Click="bt_hide_pick_category_click"/>
+                            <TextBlock Text="Selected OST:" x:Name="label_selected_OST"/>
+                            <Button Content="Run!!" Click="bt_hide_run_click"/>
+                            <TextBlock Text="--- Or ---" Margin="0,20,0,20" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Run on common object style below as short cut:" />
+                            <Button Content="Room Seperation Line" Click="bt_hide_rm_sp_line_click"/>
+                            <Button Content="Area Boundary Line" Click="bt_hide_area_sp_line_click"/>
+                            <Button Content="Section Box" Click="bt_hide_sectionbox_click"/>
+                            <Button Content="Scope Box" Click="bt_hide_scopebox_click"/>
+                            <Button Content="Level" Click="bt_hide_level_click"/>
+
+
+                            <Separator/>
+                            <Button Content="Reset Temporary Templates" Click="bt_reset_temp_template_click"
+                                    BorderThickness="2"
+                                    BorderBrush="Orange"/>
+
+
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Bubble Head" Background="{x:Null}">
+
+                        <StackPanel>
+                            <TextBlock Text="Flip the 2D display of bubble head for levels and grids. When you cross select on window, you can select many elements. Only the Grid and Level category will be processed per setting below." TextWrapping="Wrap"/>
+                            <WrapPanel>
+                                <RadioButton x:Name="radial_bt_is_grid"  Content="Grids " IsChecked="True"/>
+                                <RadioButton Content="Levels" />
+                            </WrapPanel>
+
+
+                            <Button Content="Toggle Bubble Head Position" Click="toggle_bubble_click"/>
+
+
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+
+
+
+                <WrapPanel HorizontalAlignment="Center">
+
+                    <TextBlock x:Name="debug_textbox"
+                               Margin="0,10,0,0"
+                               FontSize="8"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="Debug Output:" />
+                </WrapPanel>
+
+
+
+
+
+
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Content="Close This Window" 
+                        Click="close_click"
+                        HorizontalAlignment="Center"/>
+                </WrapPanel>
+
+
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

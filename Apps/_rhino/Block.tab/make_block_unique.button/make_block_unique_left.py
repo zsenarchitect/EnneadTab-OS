@@ -34,7 +34,7 @@ def make_block_unique(add_name_tag = True, original_blocks = None, treat_nesting
     play_sound()
     new_block_name = create_unique_block(original_blocks[0], will_explode_nesting, add_name_tag, treat_nesting)
     map(lambda x:replace_original_blocks(new_block_name, x), original_blocks)
-    NOTIFICATION.messenger("New block created: {}".format(new_block_name), print_note = True)
+    NOTIFICATION.messenger("New block created: {}".format(new_block_name))
 
 
 def create_unique_block(orginal_block, will_explode_nesting, add_name_tag, treat_nesting):
@@ -93,7 +93,7 @@ def replace_original_blocks(new_block_name, original_block):
 
 def play_sound():
 
-    file = "sound effect_popup msg1.wav"
+    file = "sound_effect_popup_msg1.wav"
     SOUND.play_sound(file)
 
 

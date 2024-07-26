@@ -1,0 +1,338 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        >
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Cross"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type Expander}">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="Foreground" Value="#FF9C8CBF" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AnimatedSwitch" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="#FAFAFB" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Viewbox Stretch="Uniform">
+                            <Canvas Name="Layer_1" Width="20" Height="20" Canvas.Left="10" Canvas.Top="0">
+                                <Ellipse  Canvas.Left="0" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                <Ellipse  Canvas.Left="15" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                <Border Canvas.Left="10" Width="15" Height="20" Name="rect416927" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,1,0,1"/>
+                                <Ellipse x:Name="ellipse"  Canvas.Left="0" Width="20" Height="20" Fill="White" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1">
+                                    <Ellipse.RenderTransform>
+                                        <TranslateTransform X="0" Y="0" />
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                            </Canvas>
+                        </Viewbox>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True" >
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#f39c12" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#1e2b38" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="15" KeySpline="0, 1, 0.6, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FAFAFB" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#CCCCCC" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="15"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" KeySpline="0, 0.5, 0.5, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20"
+            Cursor="ScrollAll">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646"/>
+        </Border.Background>
+        <Border.Effect>
+
+            <DropShadowEffect Color="#FF42FF00" BlurRadius="15" Opacity="1"/>
+
+        </Border.Effect>
+
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0" 
+                   Height="100" 
+                   x:Name="logo_img"   
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left" />
+
+
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center">
+                <TextBlock x:Name="title"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        FontSize="40"
+                        Text="Rhino Drafter">
+
+                </TextBlock>
+                <TextBlock x:Name="subtitle"
+                           HorizontalAlignment="Left"
+                           TextAlignment="Left"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Top"
+                           FontSize="10"
+                           LineHeight="20"
+                           Text="xxxxxxxxxxxxxxxxxxxxx."/>
+                <Button Content="See Demo Video" Click="play_demo_click" HorizontalAlignment="Right"/>
+                <Separator/>
+                <TabControl Background="{x:Null}" Margin="0,5,0,0" TabStripPlacement="Top" HorizontalContentAlignment="Center">
+
+                    <TabItem Header="Step 1" Background="{x:Null}">
+
+                        <StackPanel>
+                            <TextBlock Text="Prepare The View." TextWrapping="Wrap" FontWeight="Bold" FontSize="18"/>
+                            <TextBlock Text="Go into the view you will be drafting. Do not use sheet view." TextWrapping="Wrap"/>
+                            <Separator/>
+                            <Expander Header="Other Notes">
+                                <StackPanel>
+                                    <TextBlock Text="Also note that if you want to draft over an axon, you should preapre the view with a series of rotated section. Revit Axon itself does not allow annotation lines over." TextWrapping="Wrap"/>
+                                    <Separator/>
+                                    <TextBlock Text="It will take a moment for Rhino to fire up if you checked below checkbox. Please just click once and wait. Repeatively export the same view quickly will make some rhino file as read-only." TextWrapping="Wrap"/>
+                                    <TextBlock Text="Alternatively, you can keep appending content to the same Rhino file to save time from openning new Rhino. Just be aware to clean your workspace before move to another view to avoid accidentally bring in draft content from other view." TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Expander>
+                            
+                            <Separator/>
+                            
+                            <CheckBox x:Name="checkbox_open_new_rhino" 
+                                      Content="Use a new empty rhino for each export." 
+                                      HorizontalAlignment="Center"
+                                      IsChecked="True"/>
+                            <WrapPanel HorizontalAlignment="Center">
+                                <TextBlock Text="DWG setting to use: " TextWrapping="Wrap"/>
+                                <ComboBox x:Name="combobox_dwg_setting" />
+                            </WrapPanel>
+                            
+                            <Button Content="Export This View" Click="export_view_click"/>
+                           
+
+
+
+
+                        </StackPanel>
+                    </TabItem>
+
+                    <TabItem Header="Step 2" Background="{x:Null}">
+
+                        <StackPanel>
+                            <TextBlock Text="Draft In Rhino." TextWrapping="Wrap" FontWeight="Bold" FontSize="18"/>
+                            <TextBlock Text="Go to Rhino and look for this icon." TextWrapping="Wrap"/>
+                            
+                            <Image x:Name="rhino_button_icon_1" Height="50" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Left click the button." TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                            <Separator/>
+
+                            <TextBlock Text="This will bring in the dwg and setup layers matching linestyle and filledregion types. You can start drafting lines, arcs, circle, polylines, nurbs curves, and surface. You can use any Rhino command that support those object types. Curves and surfaces will be regenerated as Revit detail lines and filled region accordingly. AreaBoundaryLine and RoomSeperationLine will be regenerated in Revit as well." TextWrapping="Wrap"/>
+                            <Separator/>
+                            <Expander Header="Other Notes">
+                                <StackPanel>
+                                    <TextBlock Text="Some Rhino command you might find useful in drafting: trim, split, fillet, move control pts, curveboolean, make2D, surface trim, etc. The possibility goes on." TextWrapping="Wrap"/>
+                                    <Separator/>
+                                    <TextBlock Text="When should you use this function? You might use it on AreaBoundary tracing, elevation outline, enlarged section profiling thickening, dense diagram drafting, etc." TextWrapping="Wrap"/>
+                                    <Separator/>
+                                    <TextBlock  Text="Pay attention to the layer structure it created for you. The 'OUT' parent layer contains layers that will match your line style in Revit. Any non-curve Rhino object on those layer will be ignored. In the 'FilledRegion' layer, any non-surface object will be ignored." TextWrapping="WrapWithOverflow"/>
+                                </StackPanel>
+                            </Expander>
+                           
+                           
+
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Step 3" Background="{x:Null}">
+
+                        <StackPanel>
+                            <TextBlock Text="Export Draft From Rhino." TextWrapping="Wrap" FontWeight="Bold" FontSize="18"/>
+                            <TextBlock Text="In Rhino and look for this icon." TextWrapping="Wrap"/>
+                            <Image x:Name="rhino_button_icon_2" Height="50" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Right click the button." TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                            <Separator/>
+                            <TextBlock Text="This will record the curves and surface you have drafted as a meta data file. You can save this draft file if you plan to come back later, otherwise the temp file will not be saved for you." TextWrapping="Wrap"/>
+                         
+                            
+                           
+                            
+
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Step 4" Background="{x:Null}">
+
+                        <StackPanel>
+                            <TextBlock Text="Generate Contents In Revit." TextWrapping="Wrap" FontWeight="Bold" FontSize="18"/>
+                            <TextBlock Text="Come back to Revit." TextWrapping="Wrap"/>
+                            
+                            <TextBlock Text="The detail lines and filled regions will be generated based on the meta data you draft in Rhino." TextWrapping="Wrap"/>
+                            <Separator/>
+                            <Expander Header="Other Notes" >
+                                <TextBlock Text="RoomSeperationLine and AreaBoundaryLine are special Revit model lines. They will be placed in the active workset. Do not attempt to transfer into views that does not support them. For example, attempt to transfer AreaBoundaryLine into elevation view is an invalid action." TextWrapping="Wrap"/>
+                              
+                            </Expander>
+                            <Separator/>
+
+                            <CheckBox Content="Group newly transfered contents." IsChecked="True" x:Name="checkbox_is_grouping"/>
+                            <Button Content="Transfer In Darft" Click="transfer_in_click"/>
+
+
+                        </StackPanel>
+                    </TabItem>
+                </TabControl>
+
+
+
+                <WrapPanel HorizontalAlignment="Center">
+
+                    <TextBlock x:Name="debug_textbox"
+                               Margin="0,10,0,0"
+                               FontSize="8"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="Debug Output:" />
+                </WrapPanel>
+
+
+
+
+
+
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Content="Close This Window" 
+                        Click="close_click"
+                        HorizontalAlignment="Center"/>
+                </WrapPanel>
+
+
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

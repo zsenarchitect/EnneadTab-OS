@@ -58,7 +58,7 @@ Note to furture
 """
 
 
-if not USER.is_SZ():
+if not USER.IS_DEVELOPER:
     files = [file for file in files if file in APPROVED_MODEL]
 for i, model in enumerate(files):
 
@@ -277,7 +277,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
 
         bt_test_model = Eto.Forms.Button(Text="Test Unapproved Models")
         bt_test_model.Click += self.OnTestModelButtonClick
-        if USER.is_SZ():
+        if USER.IS_DEVELOPER:
             layout.AddSeparateRow(None, bt_test_model,  self.bt_open_folder)
         else:
             layout.AddSeparateRow(None, self.bt_open_folder)
@@ -380,7 +380,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
         layout.AddSeparateRow(None, Eto.Forms.Label(
             Text="Note: If you want to export in high resolution, set output count to 1.\nIf you want to export more output options, set the resolution to below 1000 in either direction."), None)
 
-        if USER.is_SZ():
+        if USER.IS_DEVELOPER:
             self.foundation_pipeline_list = Eto.Forms.RadioButtonList()
             self.foundation_pipeline_list.Orientation = Eto.Forms.Orientation.Vertical
             self.foundation_pipeline_list.DataStore = [
@@ -493,7 +493,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
 
     @property
     def input_image_filename(self):
-        main_folder = FOLDER.get_EA_local_dump_folder()
+        main_folder = NOTIFICATION.DUMP_FOLDER
         session_folder = main_folder + \
             "\\EnneadTab_Ai_Rendering\\Session_{}".format(self.session)
         if not os.path.exists(session_folder):
@@ -560,7 +560,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
         data["iteration"] = int(self.tbox_iteration.Text)
         data["control_net_weight"] = self.weight_slider.Value/100.0
 
-        if USER.is_SZ():
+        if USER.IS_DEVELOPER:
             if self.foundation_pipeline_list.SelectedIndex == 0:
                 data["foundation_pipeline"] = "control_net"
             elif self.foundation_pipeline_list.SelectedIndex == 1:
@@ -574,10 +574,10 @@ class ViewCaptureDialog(Eto.Forms.Form):
 
         data["direction"] = "IN"
 
-        DATA_FILE.save_dict_to_json_in_dump_folder(
-            data, "AI_RENDER_DATA_{}.json".format(TIME.get_formatted_current_time()))
+        DATA_FILE.set_data(
+            data, "AI_RENDER_DATA_{}.sexyDuck".format(TIME.get_formatted_current_time()))
 
-        NOTIFICATION.toast(main_text="Render Job Enqueued!")
+        NOTIFICATION.messenger(main_text="Render Job Enqueued!")
 
 
 
@@ -598,31 +598,13 @@ def view2render():
     # survives when the main function ends.
     sc.sticky['EA_AI_RENDER_CAPTURE_FORM'] = form
 
-    if USER.is_SZ():
+    if USER.IS_DEVELOPER:
         is_testing_new_engine = False
 
         if is_testing_new_engine:
             return
 
-    version = "EA_AI_CONVERTER_0.2.4"
-    # exe_location = "L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exe\\{}\\{}.exe".format(
-    #     version, version)  # - Shortcut
-    # print(exe_location)
-
-    # res = rs.ListBox(["No", "Yes"], "Are you operating from SH office?")
-    # if res == "Yes":
-    #     version += "_SH"
-
-    exe_folder = "L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exe"
-    exe_path = exe_folder + "\\" + version + "\\" + version + ".exe"
-    exe_path += " - Shortcut"
-    # print exe_path
-
-    try:
-        EXE.open_file_in_default_application(exe_path)
-    except:
-        NOTIFICATION.messenger(main_text = "For SH team, the only way to access Stable\nDiffusion model is to use remoted NY computer.")
-
+    EXE.try_open_app("EA_AI_CONVERTER")
 
 
 

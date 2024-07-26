@@ -33,11 +33,11 @@ def load_enscape_to_psd():
     OUT.append("#$#KEEP DOC OPEN = {}".format( int(keep_doc_open)))
     OUT.append("#$#KEEP PS OPEN = {}".format( int(keep_ps_open)))
     print(OUT)
-    dump_file = "{}\EA_PSD_STACK.txt".format(FOLDER.get_EA_local_dump_folder())
-    DATA_FILE.save_list_to_txt(OUT, dump_file)
+    dump_file = "{}\EA_PSD_STACK.txt".format(NOTIFICATION.DUMP_FOLDER)
+    DATA_FILE.set_list(OUT, dump_file)
 
     exe_path = r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\Load_Enscape_Image_As_PSD_exe\Load_Enscape_Image_As_PSD_exe.exe"
-    EXE.open_file_in_default_application(exe_path)
+    EXE.try_open_app(exe_path)
     """sample
     I:\2135\1_Study\EA 2022-09-12 mushroom stem cladding study\raw render\cam 04_opt UHPC.png
     I:\2135\1_Study\EA 2022-09-12 mushroom stem cladding study\raw render\cam 04_opt metal.png

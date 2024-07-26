@@ -27,7 +27,7 @@ class SampleBlockDialog(Eto.Forms.Form):
         self.Resizable = True
         self.Padding = Eto.Drawing.Padding(5)
         self.Spacing = Eto.Drawing.Size(5, 5)
-        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\ennead-e-logo.png")
+        
         #self.Bounds = Eto.Drawing.Rectangle()
         self.height = 400
         self.width = 400
@@ -104,11 +104,6 @@ class SampleBlockDialog(Eto.Forms.Form):
     def CreateLogoImage(self):
         self.logo = Eto.Forms.ImageView()
 
-        self.FOLDER_PRIMARY = r"L:\4b_Applied Computing\00_Asset Library"
-        self.FOLDER_APP_IMAGES = r"{}\Database\app images".format(self.FOLDER_PRIMARY)
-        self.LOGO_IMAGE = r"{}\Ennead_Architects_Logo.png".format(self.FOLDER_APP_IMAGES)
-        temp_bitmap = Eto.Drawing.Bitmap(self.LOGO_IMAGE)
-        self.logo.Image = temp_bitmap.WithSize(200,30)
         return self.logo
 
     # create message bar function
@@ -254,9 +249,7 @@ class SampleBlockDialog(Eto.Forms.Form):
         self.btn_Run = Eto.Forms.Button()
         self.btn_Run.Height = 30
         self.btn_Run.Text = "Update Preview"
-        temp_bitmap = Eto.Drawing.Bitmap(r"{}\update_data.png".format(self.FOLDER_APP_IMAGES))
-        #self.btn_Run.Image = temp_bitmap.WithSize(200,50)
-        #self.btn_Run.Image = temp_bitmap
+
         self.btn_Run.ImagePosition = Eto.Forms.ButtonImagePosition.Right
         self.btn_Run.Click += self.btn_preview_Clicked
         user_buttons.append(self.btn_Run)
@@ -389,9 +382,9 @@ class SampleBlockDialog(Eto.Forms.Form):
 
         if not is_preview:
             self.obj_name = "EA_BLOCK_LAYOUT"
-            SOUND.play_sound("sound effect_popup msg3.wav")
+            SOUND.play_sound("sound_effect_popup_msg3.wav")
         else:
-            SOUND.play_sound("sound effect_menu_tap.wav")
+            SOUND.play_sound("sound_effect_menu_tap.wav")
             
 
 
@@ -590,7 +583,7 @@ class SampleBlockDialog(Eto.Forms.Form):
         for x in self.filler_list:
             sticky_key = FORM_KEY + x
             default = 0
-            value = DATA_FILE.get_sticky_longterm(sticky_key, default_value_if_no_sticky = default)
+            value = DATA_FILE.get_sticky(sticky_key, default_value_if_no_sticky = default)
 
 
             box = getattr(self, x)
@@ -618,9 +611,9 @@ class SampleBlockDialog(Eto.Forms.Form):
             sticky_key = FORM_KEY + x
             #print x
             if "tbox" in x:
-                DATA_FILE.set_sticky_longterm(sticky_key, box.Text)
+                DATA_FILE.set_sticky(sticky_key, box.Text)
             else:
-                DATA_FILE.set_sticky_longterm(sticky_key, box.Checked)
+                DATA_FILE.set_sticky(sticky_key, box.Checked)
 
         self.clear_out()
 

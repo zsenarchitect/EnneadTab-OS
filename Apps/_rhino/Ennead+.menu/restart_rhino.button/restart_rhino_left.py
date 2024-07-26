@@ -1,6 +1,6 @@
 
 __title__ = "RestartRhino"
-__doc__ = "This button does RestartRhino when left click"
+__doc__ = "Restart Rhino to test new core."
 
 
 from EnneadTab import ERROR_HANDLE, LOG

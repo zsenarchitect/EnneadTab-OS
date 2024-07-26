@@ -1,0 +1,21 @@
+# background:
+#   panel: 'b4e4e5'
+#   title: 'b4e4e5'
+#   slideout: 'b4e4e5'
+
+
+
+
+layout:
+  - EnneadTab_Setting_UI
+  - ">>>"
+  - tell_me_version
+  - reload
+  - external_links_UI
+  - print_all_documentation
+  - display_warning_history
+  - ChatGPT
+  - mini_bank
+  - beer_tab
+  - unit_test_revit
+

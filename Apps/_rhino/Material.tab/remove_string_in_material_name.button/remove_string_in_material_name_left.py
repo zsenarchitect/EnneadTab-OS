@@ -1,6 +1,6 @@
 
 __title__ = "RemoveStringInMaterialName"
-__doc__ = "This button does RemoveStringInMaterialName when left click"
+__doc__ = "Remove the specific string in material name. Handy if trying to remove file name prefix."
 
 import scriptcontext as sc
 import rhinoscriptsyntax as rs
@@ -12,7 +12,9 @@ from EnneadTab import LOG, ERROR_HANDLE
 def remove_string_in_material_name():
     doc_name = sc.doc.Name.split(".3dm")[0]
 
-    search_text = rs.GetString("string to search to remove, type your string or enter to use current file name", defaultString = doc_name + "_")
+    search_text = rs.StringBox("string to search to remove, type your string or enter to use current file name", 
+                               default_value= doc_name + "_",
+                               title = "I hate this name...")
  
     mats = sc.doc.Materials
 

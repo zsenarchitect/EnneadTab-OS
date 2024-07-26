@@ -45,12 +45,12 @@ class ShapeWriter:
         # print input_text
         # print type(input_text)
         
-        if EnneadTab.USER.is_SZ():
+        if EnneadTab.USER.IS_DEVELOPER:
             filepath = EnneadTab.FOLDER.get_EA_dump_folder_file("excel_area_data.txt")
             
        
-            EnneadTab.DATA_FILE.save_list_to_txt([input_text], filepath, end_with_new_line = False, use_encode = True)
-            text = EnneadTab.DATA_FILE.read_txt_as_list(filepath, use_encode = True)
+            EnneadTab.DATA_FILE.set_list([input_text], filepath, end_with_new_line = False)
+            text = EnneadTab.DATA_FILE.get_list(filepath)
             return text[0]
             return EnneadTab.UNICODE.convert_unicode_to_string(input_text)
         else:
@@ -105,8 +105,8 @@ class ShapeWriter:
         # filepath = EnneadTab.FOLDER.get_EA_dump_folder_file("excel_area_data.txt")
         # for i, entry in enumerate(self.datas):
         #     text, num = entry[:2], entry[2:]
-        #     EnneadTab.DATA_FILE.save_list_to_txt(text, filepath, end_with_new_line = False, use_encode = True)
-        #     text = EnneadTab.DATA_FILE.read_txt_as_list(filepath, use_encode = True)
+        #     EnneadTab.DATA_FILE.set_list(text, filepath, end_with_new_line = False)
+        #     text = EnneadTab.DATA_FILE.get_list(filepath)
         #     self.datas[i] = text + num
         
         opt = rs.ListBox(["Circle", "Square", "Bar"], "What shape to use?",  title="EnneadTab Visualize Excel")
@@ -118,12 +118,12 @@ class ShapeWriter:
 
     
         self.pointer = [0,0,0]
-        self.big_title_offset = DATA_FILE.get_sticky_longterm("viz_excel_big_title_offset", 100)
-        self.small_title_offset = DATA_FILE.get_sticky_longterm("viz_excel_small_title_offset", 50)
-        self.caption_text_drop = DATA_FILE.get_sticky_longterm("viz_excel_caption_text_drop", 10)
-        self.row_gap = DATA_FILE.get_sticky_longterm("viz_excel_row_gap", 60)
-        self.column_gap = DATA_FILE.get_sticky_longterm("viz_excel_column_gap", 40)
-        self.use_hori = DATA_FILE.get_sticky_longterm("viz_excel_use_hori", 1)
+        self.big_title_offset = DATA_FILE.get_sticky("viz_excel_big_title_offset", 100)
+        self.small_title_offset = DATA_FILE.get_sticky("viz_excel_small_title_offset", 50)
+        self.caption_text_drop = DATA_FILE.get_sticky("viz_excel_caption_text_drop", 10)
+        self.row_gap = DATA_FILE.get_sticky("viz_excel_row_gap", 60)
+        self.column_gap = DATA_FILE.get_sticky("viz_excel_column_gap", 40)
+        self.use_hori = DATA_FILE.get_sticky("viz_excel_use_hori", 1)
         
         para_list = ["big_title_offset", "small_title_offset", "caption_text_drop", "row_gap", "column_gap", "use_hori"]
         
@@ -131,10 +131,12 @@ class ShapeWriter:
                             values = [getattr(self, x) for x in para_list],
                             message = "Enter Data for Visualization Shape Control",
                             title = "Visualize Excel Area")
+        if not res:
+            return
         for i, x in enumerate(para_list):
             setattr(self, x, float(res[i]))
             
-            DATA_FILE.set_sticky_longterm("viz_excel_" + x , float(res[i]))
+            DATA_FILE.set_sticky("viz_excel_" + x , float(res[i]))
         
         
         self.current_small_category = None

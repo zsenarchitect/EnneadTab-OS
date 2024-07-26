@@ -86,11 +86,6 @@ class RenderUpscalerDialog(Eto.Forms.Form):
     def CreateLogoImage(self):
         self.logo = Eto.Forms.ImageView()
 
-        self.FOLDER_PRIMARY = r"L:\4b_Applied Computing\00_Asset Library"
-        self.FOLDER_APP_IMAGES = r"{}\Database\app images".format(self.FOLDER_PRIMARY)
-        self.LOGO_IMAGE = r"{}\Ennead_Architects_Logo.png".format(self.FOLDER_APP_IMAGES)
-        temp_bitmap = Eto.Drawing.Bitmap(self.LOGO_IMAGE)
-        self.logo.Image = temp_bitmap.WithSize(200,30)
         return self.logo
     
 
@@ -241,7 +236,7 @@ class RenderUpscalerDialog(Eto.Forms.Form):
 
     @property
     def previous_data(self):
-        return DATA_FILE.read_json_as_dict(os.path.join(self.session_folder, "EnneadTab AI Meta Data.json"))
+        return DATA_FILE.read_json_as_dict(os.path.join(self.session_folder, "EnneadTab AI Meta Data.sexyDuck"))
 
     
     
@@ -365,7 +360,7 @@ class RenderUpscalerDialog(Eto.Forms.Form):
 
     @property
     def input_image_filename(self):
-        main_folder = FOLDER.get_EA_local_dump_folder()
+        main_folder = NOTIFICATION.DUMP_FOLDER
         session_folder = main_folder + "\\EnneadTab_Ai_Rendering\\Session_{}_Upscale".format(self.session)
         if not os.path.exists(session_folder):
             os.makedirs(session_folder)
@@ -412,9 +407,9 @@ class RenderUpscalerDialog(Eto.Forms.Form):
         data["direction"] = "IN"
 
 
-        DATA_FILE.save_dict_to_json_in_dump_folder(data, "AI_RENDER_SCALER_{}.json".format(TIME.get_formatted_current_time()))
+        DATA_FILE.set_data(data, "AI_RENDER_SCALER_{}.sexyDuck".format(TIME.get_formatted_current_time()))
 
-        NOTIFICATION.toast(main_text = "Upscale Job Enqueued!") 
+        NOTIFICATION.messenger(main_text = "Upscale Job Enqueued!") 
         call_exe()
 
 
@@ -435,10 +430,8 @@ def render_upscale():
 
 
 def call_exe():
-    version = "EA_AI_SCALER_0.2.2"
-    exe_location = "L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exe\\{}\\{}.exe - Shortcut".format(version, version)
-    
-    EXE.open_file_in_default_application(exe_location)
+
+    EXE.try_open_app("EA_AI_SCALER")
 
  
 

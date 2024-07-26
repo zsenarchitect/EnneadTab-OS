@@ -32,7 +32,7 @@ def china_code_ref():
         return
 
     filepath = folder + "\\" + selected_opt
-    EXE.open_file_in_default_application(filepath)
+    EXE.try_open_app(filepath)
 
 
 if __name__ == "__main__":

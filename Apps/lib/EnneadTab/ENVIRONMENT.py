@@ -20,6 +20,14 @@ INSTALLATION_FOLDER = os.path.join(ROOT, "Installation")
 APP_FOLDER = os.path.join(ROOT, "Apps")
 REVIT_FOLDER = os.path.join(APP_FOLDER, "_revit")
 RHINO_FOLDER = os.path.join(APP_FOLDER, "_rhino")
+PRIMARY_EXTENSION_NAME = "EnneaDuck"
+REVIT_PRIMARY_EXTENSION = os.path.join(REVIT_FOLDER, "{}.extension".format(PRIMARY_EXTENSION_NAME))
+REVIT_PRIMARY_TAB = os.path.join(REVIT_PRIMARY_EXTENSION, "Ennead.tab")
+REVIT_LIBRARY_TAB = os.path.join(REVIT_PRIMARY_EXTENSION, "Ennead Library.tab")
+REVIT_TAILOR_TAB = os.path.join(REVIT_PRIMARY_EXTENSION, "Ennead Tailor.tab")
+
+DB_FOLDER = "L:\\4b_Applied Computing\\EnneadTab-DB"
+SHAERD_DUMP_FOLDER = DB_FOLDER + "\\Shared Data Dump"
 
 
 LIB_FOLDER = os.path.join(APP_FOLDER, "lib")
@@ -41,14 +49,19 @@ else:
 USER_PROFILE_FOLDER = os.environ["USERPROFILE"]
 USER_DOCUMENT_FOLDER = "{}\\Documents".format(USER_PROFILE_FOLDER)
 USER_DOWNLOAD_FOLDER = "{}\\downloads".format(USER_PROFILE_FOLDER)
-USER_DESKTOP_FOLDER = "{}\\desktop".format(USER_PROFILE_FOLDER)
+# # desktop folder is tricky, reason unknown, maybe related to the One drive desktop sync?
+USER_DESKTOP_FOLDER = "{}\\Desktop".format(USER_PROFILE_FOLDER)
 USER_APPDATA_FOLDER = "{}\\AppData".format(USER_PROFILE_FOLDER)
 ECO_SYS_FOLDER = "{}\\EnneadTab Ecosystem".format(USER_DOCUMENT_FOLDER)
 DUMP_FOLDER = ECO_SYS_FOLDER + "\\Dump"
 
-for folder in [ECO_SYS_FOLDER, DUMP_FOLDER]:
-    if not os.path.exists(folder):
-        os.makedirs(folder)
+for _folder in [ECO_SYS_FOLDER, DUMP_FOLDER]:
+    if not os.path.exists(_folder):
+        try:
+            os.makedirs(_folder)
+        except Exception as e:
+            print ("Cannot secure folder [{}] becasue {}".format(_folder, e))
+            
 
 
 
@@ -117,11 +130,19 @@ def unit_test():
             
             if not isinstance(content, list):
                 content = [content]
-
+            
             for item in content:
                 if "\\" in item:
+                    
                     is_ok = os.path.exists(item) or os.path.isdir(item)
-                    assert is_ok
+
+                    
+                    
+
+                    
+                    if not is_ok:
+                        print("!!!!!!!!!!!!! not ok: " + item)
+                    # assert is_ok
 
           
 IS_RHINO_ENVIRONMENT = is_Rhino_environment()

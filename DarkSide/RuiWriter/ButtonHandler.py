@@ -20,13 +20,18 @@ class DividerHandler(BaseHandler):
         return f"DividerHandler({note})"
     
     def as_json(self):
-        data = {
-            "@guid": self.guid,
-            "button_style": "separator" if self.is_menu else "spacer"
-        }
         if self.is_menu:
+            data = {
+                "@guid": self.guid,
+                "item_type": "separator"
+            }
             return {"menu_item":data}
         else:
+            data = {
+                "@guid": self.guid,
+                "button_style": "spacer"
+            }
+
             return {"tool_bar_item":data}
 
 

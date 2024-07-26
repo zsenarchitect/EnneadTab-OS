@@ -1,20 +1,23 @@
 __title__ = "EnneadTab_Startup"
 __doc__ = "Automatically run on every new rhino start session if bind to Rhino setting."
-import rhinoscriptsyntax as rs
-import Rhino # pyright: ignore
 import os, sys
 repos = [
-    os.path.join(os.environ['USERPROFILE'] + '\\\\github\\\\EnneadTab-OS\\\\Apps\\\\lib'),
-    os.path.join(os.environ['USERPROFILE'] + '\\\\dev-repo\\\\EnneadTab-OS\\\\Apps\\\\lib'),
-    os.path.join(os.environ['USERPROFILE'] + '\\\\Documents\\\\EnneadTab Ecosystem\\\\EA_Dist\\\\Apps\\\\lib')]
+        os.path.join(os.environ['USERPROFILE'] ,'github','EnneadTab-OS','Apps','lib'),
+        os.path.join(os.environ['USERPROFILE'], 'dev-repo','EnneadTab-OS','Apps','lib'),
+        os.path.join(os.environ['USERPROFILE'] , 'Documents','EnneadTab Ecosystem','EA_Dist','Apps','lib')
+        ]
 for repo in repos:
     if os.path.exists(repo):
         sys.path.append(repo)
         break
+
+print ("\n".join(sys.path))
 from EnneadTab import ERROR_HANDLE, NOTIFICATION, LOG, ENVIRONMENT, VERSION_CONTROL
 
 
-import sys
+import rhinoscriptsyntax as rs
+import Rhino # pyright: ignore
+
 sys.path.append(ENVIRONMENT.RHINO_FOLDER + "\\Ennead+.menu\\get_latest.button")
 import get_latest_left
 
@@ -44,7 +47,10 @@ def add_hook():
 ###################################################
 def action_update_timesheet(doc):
     if doc.Path:
-        LOG.update_time_sheet_rhino(doc.Path)
+        try:
+            LOG.update_time_sheet_rhino(doc.Path)
+        except:
+            print ("Error updating timesheet")
 
 
 ##################################################

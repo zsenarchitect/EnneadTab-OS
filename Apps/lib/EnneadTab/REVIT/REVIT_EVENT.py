@@ -61,7 +61,7 @@ class ExternalEventRunner:
             setattr(self, "simple_event_handler_{}".format(func.__name__), handler)
             setattr(self, "ext_event_{}".format(func.__name__), ExternalEvent.Create(handler))
             
-    @ERROR_HANDLE.try_catch_error_silently
+    @ERROR_HANDLE.try_catch_error(is_silent=True)
     def run(self, func_name, *args):
         event = getattr(self, "ext_event_{}".format(func_name))
         handler = getattr(self, "simple_event_handler_{}".format(func_name))

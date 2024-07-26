@@ -1,5 +1,5 @@
 
-__title__ = "StairMaker(Spiral)"
+__title__ = "StairMakerSpiral"
 __doc__ = "Interactively create spiral stair."
 
 import Rhino # pyright: ignore
@@ -91,7 +91,7 @@ def make_stair_mass_brep(e, center_pt, start_pt, end_pt, max_riser, stair_width,
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def stair_maker():
-    max_riser, stair_width, thread_thickness = DATA_FILE.get_sticky_longterm("STAIR_SPIRAL_MAX_RISER", 170),DATA_FILE.get_sticky_longterm("STAIR_SPIRAL_RISER", 2000), DATA_FILE.get_sticky_longterm("STAIR_SPIRAL_THREAD_THICKNESS", 50)
+    max_riser, stair_width, thread_thickness = DATA_FILE.get_sticky("STAIR_SPIRAL_MAX_RISER", 170),DATA_FILE.get_sticky("STAIR_SPIRAL_RISER", 2000), DATA_FILE.get_sticky("STAIR_SPIRAL_THREAD_THICKNESS", 50)
     res = rs.PropertyListBox(items = ["Max Riser Height(file unit)", "Run Width(file unit)", "Thread Thickness(file unit)"],
                             values = [max_riser, stair_width, thread_thickness],
                             message = "Enter stair primitive data",
@@ -101,9 +101,9 @@ def stair_maker():
     max_riser, stair_width, thread_thickness = res
     #max_riser = rs.RealBox(message = "Max riser height number", default_number = 170, title = "EnneadTab")
     max_riser, stair_width, thread_thickness = float(max_riser), float(stair_width), float(thread_thickness)
-    DATA_FILE.set_sticky_longterm("STAIR_SPIRAL_MAX_RISER", max_riser)
-    DATA_FILE.set_sticky_longterm("STAIR_SPIRAL_RISER", stair_width)
-    DATA_FILE.set_sticky_longterm("STAIR_SPIRAL_THREAD_THICKNESS", thread_thickness)
+    DATA_FILE.set_sticky("STAIR_SPIRAL_MAX_RISER", max_riser)
+    DATA_FILE.set_sticky("STAIR_SPIRAL_RISER", stair_width)
+    DATA_FILE.set_sticky("STAIR_SPIRAL_THREAD_THICKNESS", thread_thickness)
 
 
     get_pt_instance = Rhino.Input.Custom.GetPoint()
@@ -176,7 +176,7 @@ class GetDotPoint (Rhino.Input.Custom.GetPoint):
         self.stair_width = stair_width
         self.default_color = rs.CreateColor([87, 85, 83])
         #self.viewport = sc.doc.Views.ActiveView.ActiveViewport
-    #@ERROR_HANDLE.try_catch_error
+    #@ERROR_HANDLE.try_catch_error()
 
 
     def show_text_with_pointer(self, e, text, size, color = None, is_middle_justified = False):

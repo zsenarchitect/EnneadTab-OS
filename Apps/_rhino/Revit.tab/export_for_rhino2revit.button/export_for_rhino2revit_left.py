@@ -18,7 +18,7 @@ flatten = itertools.chain.from_iterable
 graft = itertools.combinations
 
 
-from EnneadTab import NOTIFICATION, SPEAK, DATA_FILE, SOUND
+from EnneadTab import NOTIFICATION, SPEAK, DATA_FILE, SOUND, ENVIRONMENT
 from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_LAYER, RHINO_UI
 
@@ -32,7 +32,7 @@ class Rhino2RevitExporterDialog(Eto.Forms.Dialog[bool]):
         self.Resizable = True
         self.Padding = Eto.Drawing.Padding(5)
         self.Spacing = Eto.Drawing.Size(5, 5)
-        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\ennead-e-logo.png")
+        
         #self.Bounds = Eto.Drawing.Rectangle()
         self.height = 400
         self.width = 400
@@ -94,11 +94,6 @@ class Rhino2RevitExporterDialog(Eto.Forms.Dialog[bool]):
     def CreateLogoImage(self):
         self.logo = Eto.Forms.ImageView()
 
-        self.FOLDER_PRIMARY = r"L:\4b_Applied Computing\00_Asset Library"
-        self.FOLDER_APP_IMAGES = r"{}\Database\app images".format(self.FOLDER_PRIMARY)
-        self.LOGO_IMAGE = r"{}\Ennead_Architects_Logo.png".format(self.FOLDER_APP_IMAGES)
-        temp_bitmap = Eto.Drawing.Bitmap(self.LOGO_IMAGE)
-        self.logo.Image = temp_bitmap.WithSize(200,30)
         return self.logo
 
     # create message bar function
@@ -394,32 +389,16 @@ class Rhino2RevitExporterDialog(Eto.Forms.Dialog[bool]):
 
 
 def get_output_folder():
-    print (os.path.join(os.path.expanduser("~"), "Desktop"))
-    recent_folder = DATA_FILE.get_sticky_longterm("RHINO2REVIT_FOLDER")
-    if not recent_folder:
-        recent_folder = os.path.join(os.path.expanduser("~"), "Desktop")
-        
-    if "EnneadTab Export By Layer" in recent_folder:
-        recent_folder = os.path.dirname(recent_folder)
-        
 
-        
-    while True:
-        target_main_folder = rs.BrowseForFolder( folder = recent_folder, message = "Select an output folder", title = "Select an output folder")
-        if target_main_folder is not None:
-            break
-        else:
-            NOTIFICATION.messenger(main_text = "Folder not picked...")
-    print (target_main_folder)
+   
     try:
         doc_name = sc.doc.Name.split(".3dm")[0]
     except:
         doc_name = "Untitled"
-    EA_export_folder = "{}\EnneadTab Export By Layer from [{}]".format(target_main_folder, doc_name)
+    EA_export_folder = "{}\EnneadTab Export By Layer from [{}]".format(ENVIRONMENT.USER_DESKTOP_FOLDER, doc_name)
     if not os.path.exists(EA_export_folder):
         os.makedirs(EA_export_folder)
 
-    DATA_FILE.set_sticky_longterm("RHINO2REVIT_FOLDER", EA_export_folder)
 
     return EA_export_folder
 

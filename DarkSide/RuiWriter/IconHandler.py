@@ -146,7 +146,7 @@ def test_bitmap(bitmap_text, size):
         
 
 if __name__ == "__main__":
-    sample_icon = r"C:\Users\szhang\github\EnneadTab-for-Rhino\Toolbar\Block.tab\make_block_unique.button\icon.png"
+
     sample_icon = IconHandler(sample_icon)
     # sample_icon.get_bitmap_text(16)
     IconHandler.chain_bitmap_text([sample_icon])

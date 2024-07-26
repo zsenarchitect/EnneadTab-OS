@@ -1,3 +1,4 @@
+import time
 import shutil
 import json
 import io
@@ -17,11 +18,11 @@ def _read_json_file_safely(filepath, use_encode=False, create_if_not_exist = Fal
     Returns:
         dict | None: the content of the json file
     """
-    local_path = FOLDER.get_EA_dump_folder_file("temp.json")
+    local_path = FOLDER.get_EA_dump_folder_file("temp.sexyDuck")
     try:
         shutil.copyfile(filepath, local_path)
     except IOError:
-        local_path = FOLDER.get_EA_dump_folder_file("temp_additional.json")
+        local_path = FOLDER.get_EA_dump_folder_file("temp_additional.sexyDuck")
         shutil.copyfile(filepath, local_path)
 
     content = _read_json_as_dict(local_path, use_encode, create_if_not_exist)
@@ -132,6 +133,28 @@ def _save_dict_to_json_in_shared_dump_folder(dict, file_name, use_encode=False):
 
 
 
+
+def get_list(filepath="path"):
+    extention = FOLDER.get_file_extension_from_path(filepath)
+    local_path = FOLDER.get_EA_dump_folder_file("temp{}".format(extention))
+    shutil.copyfile(filepath, local_path)
+
+
+    with io.open(local_path, encoding="utf8") as f:
+        lines = f.readlines()
+  
+    return map(lambda x: x.replace("\n", ""), lines)
+
+
+def set_list(list, filepath, end_with_new_line=False):
+
+    with io.open(filepath, "w", encoding="utf8") as f:
+        f.write('\n'.join(list))
+        if end_with_new_line:
+            f.write("\n")
+
+    return True
+
 #######################################################################################
 
 
@@ -164,7 +187,7 @@ def update_data(file_name, is_local = True):
     prefer just the file_name, but full path is ok
     
     Usage example
-    with DATA_FILE.update_data("abc.json") as data:
+    with DATA_FILE.update_data("abc.sexyDuck") as data:
         data['new_key'] = 'new_value'  # Update data here
     """
 
@@ -184,3 +207,44 @@ def update_data(file_name, is_local = True):
 
     except Exception:
         print("An error occurred when updating data:\n{}".format(traceback.format_exc()))
+
+
+
+
+
+#######################################
+
+
+STCIKY_FILE = "sticky.SexyDuck"
+
+def get_sticky(sticky_name, default_value_if_no_sticky=None):
+    """get longterm sticky information
+
+    Args:
+        sticky_name (str): name of the sticky
+        default_value_if_no_sticky (_type_, optional): _description_. Defaults to None.
+
+    Returns:
+        any : get the value of the longterm sticky
+    """
+   
+    data = get_data(STCIKY_FILE)
+    if sticky_name not in data.keys():
+        set_sticky(sticky_name, default_value_if_no_sticky)
+        return default_value_if_no_sticky
+    return data[sticky_name]
+
+
+def set_sticky(sticky_name, value_to_write):
+    """set a long term sticky. The long term sticky will not be cleared after the application is closed.
+
+    Args:
+        sticky_name (str): _description_
+        value_to_write (any): value to write
+    """
+    with update_data(STCIKY_FILE) as data:
+        data[sticky_name] = value_to_write
+
+
+
+

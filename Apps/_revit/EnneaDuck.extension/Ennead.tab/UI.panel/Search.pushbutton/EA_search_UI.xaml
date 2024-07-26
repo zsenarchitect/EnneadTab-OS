@@ -1,0 +1,475 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        PreviewKeyUp="handle_keyboard_key"
+
+        >
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFADB9CC"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="White"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style TargetType="{x:Type Expander}">
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Cross"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Cross"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="Padding" Value="20,0,20,0"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontWeight" Value="ExtraBold"/>
+            <Setter Property="Cursor" Value="IBeam"/>
+
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20" />
+                </Style>
+            </Style.Resources>
+
+        </Style>
+
+        <Style TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="Foreground" Value="#FF9C8CBF" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="12,25,25,25"
+            Margin="100"
+            x:Name="main_border"
+
+            Cursor="ScrollAll">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646"
+                             x:Name="back_pane"
+                             Opacity="1"/>
+
+        </Border.Background>
+
+        <Expander IsExpanded="True"  Header="Minimize" x:Name="main_expander" Expanded="main_expander_changed" Collapsed="main_expander_changed">
+            <StackPanel Cursor="ScrollAll">
+                <Grid Margin="20,20,20,20" Cursor="ScrollAll">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="850"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column ="0"
+                   Height="100"
+                   x:Name="logo_img"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Left" />
+
+
+                    <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center">
+                        <TextBlock x:Name="title"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        FontSize="40">
+                <Run Text="Command Search"/><Run x:Name="short_version_info"
+                                            FontSize="20"
+                                            Text="EnneadTab"/>
+                        </TextBlock>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <CheckBox Content="Search EnneadTab" x:Name="checkbox_enneadtab" IsChecked="True" Click="checkbox_changed"/>
+                            <CheckBox Content="Search Native Revit" x:Name="checkbox_native" IsChecked="False" Click="checkbox_changed"/>
+                        </WrapPanel>
+
+
+                        <Separator/>
+
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+
+                            </Grid.RowDefinitions>
+
+
+
+
+                            <Button Content="Go!"
+                            Click="activate_click"
+                            VerticalContentAlignment="Center"
+                            VerticalAlignment="Stretch"
+                            Padding="0"
+                            Margin="10,0,0,0"
+                            FontSize="30"
+                            Cursor="Arrow"
+
+
+
+                            Grid.Column="2"
+                               Grid.Row="1" FontWeight="Bold" FontFamily="Century Gothic">
+
+                                <Button.Resources>
+
+                                    <Style TargetType="Border">
+
+
+                                        <Setter Property="CornerRadius" Value="25"/>
+                                    </Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Height" Value="50"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border Background="{TemplateBinding Background}" BorderThickness="3" >
+                                                        <Border.BorderBrush>
+                                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                <LinearGradientBrush.RelativeTransform>
+                                                                    <TransformGroup>
+                                                                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                                                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                                                        <RotateTransform Angle="60" CenterX="0.5" CenterY="0.5"/>
+                                                                        <TranslateTransform/>
+                                                                    </TransformGroup>
+                                                                </LinearGradientBrush.RelativeTransform>
+                                                                <GradientStop Color="White"/>
+                                                                <GradientStop Color="#FFAAFF93" Offset="1"/>
+                                                            </LinearGradientBrush>
+                                                        </Border.BorderBrush>
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}"/>
+                                                <Setter Property="Foreground" Value="White" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+
+                                </Button.Resources>
+
+                            </Button>
+
+                            <TextBlock Text="Search: "
+                               HorizontalAlignment="Right"
+                               FontSize="20"
+                               VerticalAlignment="Center"
+                               Grid.Column="0"
+
+                               Grid.Row="1"/>
+                            <TextBox x:Name="search_textbox_background"
+                             Text=""
+                             HorizontalAlignment="Stretch"
+                             IsEnabled="False"
+                             Grid.Column="1"
+                             Grid.Row="1"
+
+                             Background="Black"
+                             Foreground="White">
+                                <TextBox.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="25"/>
+                                    </Style>
+                                </TextBox.Resources>
+                            </TextBox>
+                            <StackPanel Grid.Column="1"
+                                Grid.Row="1"
+                               Margin="5"
+                                Orientation="Horizontal">
+                                <Grid >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox x:Name="search_textbox"
+                             Text="Type In Here...."
+
+                             TextChanged="search_box_value_changed"
+                            Grid.Column="0"
+                             Visibility="Visible"
+                             Background="{x:Null}"
+                             Foreground="White"/>
+
+                                    <TextBox x:Name="search_guess_textbox"
+
+
+                             Text="xxxxxxxxxxxxxxxxxxxxxxxx"
+                             Grid.Column="2"
+                             Visibility="Hidden"
+                             Foreground="#FFB9B9B9"
+                             IsEnabled="False"
+                             Background="{x:Null}"/>
+                                </Grid>
+
+                            </StackPanel>
+
+
+                            <TextBlock Text="before"
+                               x:Name="textblock_before"
+                               FontSize="15"
+                               Margin="20,0,0,0"
+                               Grid.Column="1"
+                               Grid.Row="0"
+                               Visibility="Collapsed"
+                               Foreground="{StaticResource AboutWindowHightlightColor}"/>
+
+                            <TextBlock Text="after"
+                               x:Name="textblock_after"
+                               FontSize="15"
+                               Margin="20,0,0,0"
+                               Grid.Column="1"
+                               Grid.Row="2"
+                               Visibility="Collapsed"
+                               Foreground="{StaticResource AboutWindowHightlightColor}"/>
+
+
+
+                        </Grid>
+
+
+
+
+                        <WrapPanel HorizontalAlignment="Center" Margin="0,10,0,0">
+                            <TextBlock Text="Use " FontSize="10"/>
+                            <Polygon Points="10,0 20,10, 0,10"  Fill="Gray" Stroke="DarkGray" VerticalAlignment="Center" />
+                            <Polygon Points="10,10 20,0, 0,0"  Fill="Gray" Stroke="DarkGray" VerticalAlignment="Center"/>
+                            <TextBlock Text=" arrow key to navigate selection." FontSize="10"/>
+                            <TextBlock Text=" Use [Enter] key or [GO!] to execute." FontSize="10"/>
+                        </WrapPanel>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <TextBlock x:Name="debug_textbox"
+                               Margin="0,5,0,0"
+                               FontSize="10"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="Debug Output:" />
+                        </WrapPanel>
+
+
+
+
+
+
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button Content="Clear Textbox"
+                        Click="clear_click"
+                        HorizontalAlignment="Center"/>
+                            <Button Content="Close This Window"
+                        Click="close_click"
+                        HorizontalAlignment="Center"/>
+
+                        </WrapPanel>
+                        <StackPanel  Visibility="Visible"
+                             x:Name="doc_display_panel">
+                            <Border CornerRadius="10"
+
+                            Margin="0,20,0,0"
+                            MaxWidth="600"
+
+                            >
+                                <Border.Background >
+
+                                    <SolidColorBrush Opacity="0.8"
+                                             Color="#FF373737"/>
+                                </Border.Background>
+                                <StackPanel>
+                                    <Image x:Name="button_icon_display"
+                                   MaxHeight="60"
+                                   Margin="10"
+                                   HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="123456789012345678901234567890123456789012345678901234567890"
+                               HorizontalAlignment="Center"
+
+                               x:Name="doc_textblock"
+                               TextWrapping="Wrap"
+                               FontSize="12"
+
+                               Padding="10"
+
+                               >
+
+
+                                    </TextBlock>
+
+                                    <WrapPanel HorizontalAlignment="Center">
+                                        <Button Content="Play Demo Video"
+                                    HorizontalAlignment="Center"
+                                    x:Name="button_play_video"
+                                    FontSize="15"
+                                    FontWeight="Black"
+                                    Click="play_video_click"
+                                    Cursor="Help"
+
+                                    >
+                                            <Button.Resources>
+
+                                                <Style TargetType="Border">
+
+                                                    <Setter Property="Padding" Value="20, 0,20,0"/>
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                                <Style TargetType="Button">
+
+                                                    <Setter Property="Height" Value="40"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Border Background="{TemplateBinding Background}" BorderThickness="3" >
+
+                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}"/>
+                                                            <Setter Property="Foreground" Value="White" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+
+                                            </Button.Resources>
+                                        </Button>
+                                        <Button Content="Show EI Post"
+                                    HorizontalAlignment="Center"
+                                    x:Name="button_ei_post"
+                                    FontSize="15"
+                                    FontWeight="Black"
+                                    Click="show_post_click"
+                                    Cursor="Help"
+
+                                    >
+                                            <Button.Resources>
+
+                                                <Style TargetType="Border">
+
+                                                    <Setter Property="Padding" Value="20, 0,20,0"/>
+                                                    <Setter Property="CornerRadius" Value="10"/>
+                                                </Style>
+                                                <Style TargetType="Button">
+
+                                                    <Setter Property="Height" Value="40"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Border Background="{TemplateBinding Background}" BorderThickness="3" >
+
+                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}"/>
+                                                            <Setter Property="Foreground" Value="White" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+
+                                            </Button.Resources>
+                                        </Button>
+                                    </WrapPanel>
+
+                                </StackPanel>
+
+
+
+                            </Border>
+                            <TextBox Text="test typing speed" Visibility="Collapsed"></TextBox>
+
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+
+                </Grid>
+            </StackPanel>
+        </Expander>
+        
+    </Border>
+</Window>

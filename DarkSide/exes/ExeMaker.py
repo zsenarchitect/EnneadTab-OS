@@ -5,6 +5,19 @@ import subprocess
 import traceback
 import sys
 import time
+import re
+
+
+# print("Python executable:", sys.executable)
+# print("Python version:", sys.version)
+# print("sys.path:", sys.path)
+# print("Environment variables:", os.environ)
+
+
+# this will disable all pygame talk
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "True"
+
+
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))) + "\\Apps\\lib\\EnneadTab")
 
@@ -15,11 +28,13 @@ import NOTIFICATION  # pyright: ignore
 
 DARKSIDE_FOLDER = os.path.dirname(os.path.dirname(__file__))
 
-EXE_MAKER_FOLDER = os.path.join(DARKSIDE_FOLDER,"exes", "maker data")
-EXE_SOURCE_CODE_FOLDER = os.path.join(DARKSIDE_FOLDER,"exes","source code")
+EXE_FOLDER = os.path.join(DARKSIDE_FOLDER, "exes")
+EXE_MAKER_FOLDER = os.path.join(EXE_FOLDER, "maker data")
+EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_FOLDER,"source code")
+TEMP_SPEC_FOLDER = os.path.join(EXE_FOLDER, "temp_specs")
 
-
-PYGAME_ALLOWS = ["Speaker.json"]
+PYGAME_ALLOWS = ["Speaker.sexyDuck",
+                 "LastSyncMonitor.sexyDuck"]
 
 
 
@@ -96,33 +111,30 @@ def make_exe(maker_json):
 
 def repath(path):
     # this is to be able to make exe from any named repo
-    return path.replace("C:\\Users\\szhang\\github\\EnneadTab-OS", ROOT)
+    new_path = path.replace("C:\\Users\\szhang\\github\\EnneadTab-OS", ROOT)
+    return new_path
+
+    if os.path.exists(new_path):
+        return new_path
+    new_path = new_path.replace("github\\EnneadTab-OS", "dev\\EnneadTab-OS")
+    return new_path
         
 def json_to_command(json_file):
     json_config = json.load(json_file)
     command = [PY_INSTALLER_LOCATION]
 
-
-
-    
     for option in json_config['pyinstallerOptions']:
-
-        # the file name is usually added as the last argument
-        #  so just record and skip
         if option["optionDest"] == "filenames":
             final_path = option["value"]
-
             final_path = repath(final_path)
             continue
 
-        # json file use key icon_file, but as command it should be icon
         if option["optionDest"] == "icon_file":
             command.append("--{}".format("icon"))
             icon_path = repath(option['value'])
             command.append(icon_path)
             continue
 
-        # highlight as windowed(no output console) or console(yes output)
         if option["optionDest"] == "console":
             if option['value'] is True:
                 command.append("--{}".format("console"))
@@ -130,41 +142,80 @@ def json_to_command(json_file):
                 command.append("--{}".format("windowed"))
             continue
 
-        
-        # additional file
         if option["optionDest"] == "datas":
             command.append("--add-data")
             path = repath(option['value'])
             command.append(path)
             continue  
 
-        
         if option['value'] is True:
             command.append("--{}".format(option['optionDest']))
         elif option['value'] is not False:
             command.append("--{}".format(option['optionDest']))
             command.append("{}".format(option['value']))
 
-    command.append("--log-level=WARN") # disable output in terminal
-    command.append(final_path)
-    
+    # Add the version file for copyright information
+    # version_file_path = create_version_file(final_path)
+    # command.append("--version-file")
+    # command.append(version_file_path)
 
+    
+    command.append("--log-level=WARN")  # disable output in terminal
+    command.append(final_path)
 
     if os.path.basename(json_file.name) not in PYGAME_ALLOWS:
-        # disallowing pygame, there are only a few exe that need pygame
-        # when i got there this part will be updated
         command.append("--exclude-module")
-        command.append("pygame")  # Separate '--exclude-module' and 'pygame'
+        command.append("pygame")
 
     print("\033[92m{}\033[00m".format(command))
     return command
+
+def create_version_file(final_path):
+    with open(os.path.join(EXE_FOLDER, "enneadtab_spec_template.txt"), "r") as template_file:
+        template = template_file.read()
+
+    version_info = {
+        "CompanyName": "Ennead Architects",
+        "FileDescription": "EnneadTab Application",
+        "FileVersion": "1.0.0.0",
+        "InternalName": "EnneadTab",
+        "LegalCopyright": "Copyright © Ennead Architects 2024",
+        "OriginalFilename": os.path.basename(final_path),
+        "ProductName": "EnneadTab",
+        "ProductVersion": "1.0.0.0"
+    }
+
+
+    with open(final_path, "r") as main_py_file:
+        main_py_content = main_py_file.read()
+        version_info.update(parse_version_info(main_py_content))
+
+    version_file_content = template.format(**version_info)
+
+    if not os.path.exists(TEMP_SPEC_FOLDER):
+        os.makedirs(TEMP_SPEC_FOLDER)
+
+    version_file_path = os.path.join(TEMP_SPEC_FOLDER, "{}_version_info.txt".format(os.path.basename(final_path).replace(".py", "")))
+    with open(version_file_path, "w") as version_file:
+        version_file.write(version_file_content)
+
+    return version_file_path
+
+def parse_version_info(content):
+    info = {}
+    keys = ["__version__", "__description__"]
+    for key in keys:
+        match = re.search(r'{} = ["\']([^"\']+)["\']'.format(key), content)
+        if match:
+            info[key.strip("_")] = match.group(1)
+    return info
 
 def recompile_exe(single_exe = None):
     
     for file in os.listdir(EXE_MAKER_FOLDER):
         if single_exe and single_exe != file:
             continue
-        if file.endswith(".json"):
+        if file.endswith(".sexyDuck"):
             print("\033[94m{}\033[00m".format(file))
             make_exe(os.path.join(EXE_MAKER_FOLDER,file))
             print ("\n")
@@ -177,6 +228,11 @@ def recompile_exe(single_exe = None):
 
 
 if __name__ == "__main__":
-    recompile_exe()
-    # recompile_exe(single_exe="Revit_Export_Renamer.json")
-    # recompile_exe(single_exe="Speaker.json")
+    # recompile_exe()
+    # recompile_exe(single_exe="RevitExportRenamer.sexyDuck")
+    # recompile_exe(single_exe="Speaker.sexyDuck")
+    # recompile_exe(single_exe="IndesignAccOpenner.sexyDuck")
+    recompile_exe(single_exe="AccFileOpenner.sexyDuck")
+    # recompile_exe(single_exe="Pdf2OrderedJpgs.sexyDuck")
+    # recompile_exe(single_exe="RevitIniDeployer.sexyDuck")
+    # recompile_exe(single_exe="LastSyncMonitor.sexyDuck")

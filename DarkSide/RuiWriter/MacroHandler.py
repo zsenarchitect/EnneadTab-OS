@@ -137,13 +137,17 @@ class MacroHandler(BaseHandler):
 
         (Prefer second for long term effort. It is cleaner to read, BUT do require USER to register all alias dynamically.)
         """
-        # must_full_converter = self.script_gloabl_vars_dict.get("__FONDATION__")
-        # if not must_full_converter:
-        #     alias = self.script_gloabl_vars_dict.get("__title__")
-        #     if isinstance(alias, list):
-        #         alias = alias[0]
-        #     if alias is not None:
-        #         return alias
+        must_full_converter = self.script_gloabl_vars_dict.get("__FONDATION__")
+        if not must_full_converter:
+            alias = self.script_gloabl_vars_dict.get("__title__")
+            if isinstance(alias, list):
+                alias = alias[0]
+            if alias is not None:
+                if alias == alias.upper():
+                    return alias
+                else:
+                    return "EA_" + alias
+                
 
 
         locator = self.script_path.split("{}\\".format(search_folder))[1]
@@ -182,21 +186,7 @@ MODULE_HELPER.run_Rhino_button('{}')
         
 
 
-def force_load_enneadtab(contents):
-    contents.insert(0, "import sys\nimport importlib\n\n")
-    contents.insert(1, "sys.path.append('C:\\\\Users\\\\szhang\\\\github\\\\EnneadTab-for-Rhino\\\\Source Codes\\\\lib')\n\n\n")
-    add = """
-temp_spec = importlib.util.spec_from_file_location("EnneadTab", 
-                                                'C:\\\\Users\\\\szhang\\\\github\\\\EnneadTab-for-Rhino\\\\Source Codes\\\\lib\\\\EnneadTab\\\\__init__.py')
-temp_module = importlib.util.module_from_spec(temp_spec)
 
-sys.modules[temp_spec.name] = temp_module
-temp_spec.loader.exec_module(temp_module)
-"""
-    contents.insert(2, add)
-
-
-    return contents
 
 class ClickBehavior:
     Left = "_left.py"

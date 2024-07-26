@@ -1,0 +1,373 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        >
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+
+        <Style x:Key="AnimatedSwitch" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="#FFEF5B5B" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Viewbox Stretch="Uniform">
+                            <Canvas Name="Layer_1" Width="20" Height="20" Canvas.Left="10" Canvas.Top="0">
+                                <Ellipse  Canvas.Left="0" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                <Ellipse  Canvas.Left="15" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                <Border Canvas.Left="10" Width="15" Height="20" Name="rect416927" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,1,0,1"/>
+                                <Ellipse x:Name="ellipse"  Canvas.Left="0" Width="20" Height="20" Fill="White" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1">
+                                    <Ellipse.RenderTransform>
+                                        <TranslateTransform X="0" Y="0" />
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                            </Canvas>
+                        </Viewbox>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True" >
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#80ffaa" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#1e2b38" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="15" KeySpline="0, 1, 0.6, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FFEF5B5B" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#CCCCCC" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="15"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" KeySpline="0, 0.5, 0.5, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Cross"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+
+        <Style TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="Foreground" Value="#FF9C8CBF" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20"
+            Cursor="ScrollAll">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646"/>
+        </Border.Background>
+        <Border.Effect>
+            
+            <DropShadowEffect Color="#FF65FF00" BlurRadius="15" Opacity="1"/>
+
+        </Border.Effect>
+        
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="650"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0" 
+                   Height="100" 
+                   x:Name="logo_img"   
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left" />
+            
+            
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center">
+                <TextBlock x:Name="title"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        FontSize="40"
+                           Text="QQQQQQQQQQQQQQQQQQQ">
+                
+                </TextBlock>
+                <TextBlock x:Name="summery"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Left"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Top"
+                           FontSize="10"
+                           LineHeight="20"
+                           Text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx."/>
+
+                
+
+                <Separator/>
+               
+                <Grid Cursor="Hand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.3*"/>
+                        <ColumnDefinition Width="50"/>
+                        
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+
+                    </Grid.RowDefinitions>
+
+                    <WrapPanel Grid.Column="0"
+                               Grid.Row="0"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Rooms " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_rooms"/>
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Column="1"
+                               Grid.Row="0"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Area " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_areas"/>
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Column="2"
+                               Grid.Row="0"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Grids " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_grids"/>
+                    </WrapPanel>
+
+
+
+                    <WrapPanel Grid.Column="3"
+                               Grid.Row="0"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Curtain Panels " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_curtainpanels"/>
+                    </WrapPanel>
+
+                    
+                    <WrapPanel Grid.Column="0"
+                               Grid.Row="1"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Room Tags " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_roomtags"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="1"
+                               Grid.Row="1"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Area Tags " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_areatags"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="2"
+                               Grid.Row="1"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Floors " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_floors"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="3"
+                               Grid.Row="1"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Dimensions " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_dimensions"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="2"
+                               Grid.Row="2"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Lines " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_lines"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="1"
+                               Grid.Row="2"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="AreaBoundary " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_areaboundarylines"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="0"
+                               Grid.Row="2"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="RoomBoundary " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_roomboundarylines"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="3"
+                               Grid.Row="2"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Detail Items " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_detailitems"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="3"
+                               Grid.Row="3"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Walls " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_walls"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="2"
+                               Grid.Row="3"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Doors " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_doors"/>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="1"
+                               Grid.Row="3"
+                               HorizontalAlignment="Right">
+                        <TextBlock Text="Columns " FontWeight="Bold" VerticalAlignment="Center"/>
+                        <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="18"  IsChecked="False" 
+                                      x:Name="toggle_bt_columns"/>
+                    </WrapPanel>
+                </Grid>
+
+                <WrapPanel HorizontalAlignment="Left">
+
+                </WrapPanel>
+
+
+                <WrapPanel HorizontalAlignment="Center">
+
+                    <TextBlock x:Name="debug_textbox"
+                               Margin="0,10,0,0"
+                               FontSize="8"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="Debug Output:" />
+                </WrapPanel>
+
+
+
+
+
+                <WrapPanel HorizontalAlignment="Center" Cursor="Hand">
+                    <TextBlock Text="Filter is now Enabled " VerticalAlignment="Center" x:Name="tblock_enabler"/>
+                    <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                      Height="30"  IsChecked="True" 
+                                      x:Name="_toggle_bt_enabled"
+                                  Click="toggle_enabler_click"/>
+                </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center" Cursor="Hand">
+                    
+                    <Button Content="Select!"
+                            BorderThickness="1"
+                            Click="select_click"/>
+                    <Button Content="Set All Filter Check To Red"
+                            BorderThickness="1"
+                            Click="reset_filter_click"/>
+                    
+                    
+                </WrapPanel>
+                <Button Content="Close This Window" 
+                        Click="close_click"
+                        HorizontalAlignment="Center"
+                        Cursor="Hand"/>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

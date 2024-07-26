@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import time
 try:
     from pyrevit.forms import WPFWindow
     import REVIT_EVENT
@@ -50,7 +51,7 @@ class EnneadTabModelessForm(WPFWindow):
 
         #xaml_file_name = "general_renamer_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         # to-do: this is not very efficient,,,, consider store a lookup tab;e during startup
-        for folder, _, file in os.walk(ENVIRONMENT.ENNEADTAB_FOR_REVIT):
+        for folder, _, file in os.walk(ENVIRONMENT.REVIT_FOLDERget_EA_dump_folder_file):
             if xaml_file_name in file:
                 xaml_file_name = os.path.join(folder, xaml_file_name)
                 break
@@ -70,7 +71,7 @@ class EnneadTabModelessForm(WPFWindow):
         self.Show()
 
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def Sample_bt_Click(self, sender, e):
         return
         self.rename_view_event_handler.kwargs = sheets, is_default_format
@@ -124,7 +125,7 @@ class NotificationModelessForm(EnneadTabModelessForm):
 
 
     def primary_button_click(self, sender, e):
-        self.close_action()
+        self.Close()
 
 
     def timer(self, life_span):
@@ -151,7 +152,7 @@ class NotificationModelessForm(EnneadTabModelessForm):
                     #print_note(e)
             self.foot_text.Text = "Window will close in {} seconds".format(i / segement)
             time.sleep(1.0/segement)
-        self.close_action()
+        self.Close()
 
 
 
@@ -176,13 +177,13 @@ def notification(main_text = "",
 
 
     #xmal_template = remap_filepath_between_folder(xmal_template, new_folder_after_dot_extension = "lib")
-    NotificationModelessForm.ModelessForm(main_text,
-                                        sub_text,
-                                        button_name,
-                                        window_title,
-                                        self_destruct,
-                                        window_width,
-                                        window_height)
+    NotificationModelessForm(main_text,
+                            sub_text,
+                            button_name,
+                            window_title,
+                            self_destruct,
+                            window_width,
+                            window_height)
 
 
 def dialogue( title = "EnneadTab",

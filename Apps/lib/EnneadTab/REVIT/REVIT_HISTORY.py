@@ -10,7 +10,7 @@ import DATA_FILE
 import time
 import FOLDER
 try:
-    import ENNEAD_LOG
+    
     from Autodesk.Revit import DB # pyright: ignore
 except:
     pass
@@ -120,7 +120,7 @@ class WarningHistory:
         else:
             self.doc = doc
             self.doc_name = doc.Title
-        self.file = "REVIT_WARNING_HISTORY_{}.json".format(self.doc_name)
+        self.file = "REVIT_WARNING_HISTORY_{}.sexyDuck".format(self.doc_name)
 
         
         if os.path.exists(FOLDER.get_shared_dump_folder_file(self.file)):
@@ -155,7 +155,7 @@ class WarningHistory:
             today_data.update({description: warning_cate_data})
             
         self.data.update({today: today_data})
-        DATA_FILE.save_dict_to_json_in_shared_dump_folder(self.data, self.file)
+        DATA_FILE.set_data_in_shared_dump_folder(self.data, self.file)
     
   
     def display_warning(self, show_detail=True):

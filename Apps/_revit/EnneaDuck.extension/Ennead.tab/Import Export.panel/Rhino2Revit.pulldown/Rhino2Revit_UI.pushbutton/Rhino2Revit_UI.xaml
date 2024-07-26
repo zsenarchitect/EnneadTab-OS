@@ -1,0 +1,201 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        >
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground"
+                    Value="{StaticResource AboutWindowTextColor}"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Cross"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20"
+            Cursor="ScrollAll">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646"/>
+        </Border.Background>
+        <Border.Effect>
+            
+            <DropShadowEffect Color="#FF53D0F1" BlurRadius="15" Opacity="1"/>
+
+        </Border.Effect>
+        
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="550"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0" 
+                   Height="100" 
+                   x:Name="logo_img"   
+                   VerticalAlignment="Bottom" 
+                   HorizontalAlignment="Left" />
+            
+            
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center">
+                <TextBlock x:Name="title"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        FontSize="40">
+                <Run Text="Rhino2Revit"/><Run x:Name="short_version_info"
+                                            FontSize="20"
+                                            Text="EnneadTab"/>
+                </TextBlock>
+                <TextBlock x:Name="subtitle"
+                           HorizontalAlignment="Left"
+                           TextAlignment="Left"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Top"
+                           FontSize="10"
+                           LineHeight="20"
+                           Text="Convert geometry from Rhino to native Revit inside family. Works best with EnneadTab for Rhino 'Layer Packaging' tool."/>
+
+                <TextBlock FontSize="10"
+                           Margin="0,10,0,10"
+                           HorizontalAlignment="center"
+                           TextAlignment="Center"
+                           Text="Click here for Youtube Demo"
+                           MouseDown="open_youtube" 
+                           TextDecorations="Underline"/>
+
+                <Separator/>
+
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Content="Pick Files" 
+                            Click="pick_files"/>
+                    <TextBlock Text="Accepting .3dm and .dwg files." 
+                               VerticalAlignment="Center"/>
+                    <Button Content="What is the difference?" 
+                            Click="open_details_describtion" Background="{x:Null}" 
+                            Foreground="#FF8A8A8A" 
+                            BorderThickness="1,0,1,0" FontStyle="Italic"/>
+
+
+                </WrapPanel>
+
+                <DataGrid
+                    x:Name="data_grid"
+                    AutoGenerateColumns="False" 
+                    MaxHeight="640" 
+                    Background="#FF707070" 
+                    FontSize="9" 
+                    HorizontalGridLinesBrush="#FFBFBFBF" 
+                    VerticalGridLinesBrush="#FFBFBFBF" 
+                    AlternatingRowBackground="#FFDADADA" 
+                    RowBackground="#FFF3F3F3" 
+                    Visibility= "Collapsed"
+                    SelectedCellsChanged="data_grid_value_changed"
+                    Cursor="Arrow">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn  IsReadOnly="True" Header="File Names" Width="3*" Binding="{Binding display_name}"/>
+                        <DataGridComboBoxColumn  IsReadOnly="False" 
+                                                 Header="Object Style Dropdown Menu" 
+                                                 Width="2*" 
+                                                 x:Name="object_style_combos" 
+                                                 SelectedItemBinding="{Binding selected_OST_name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <WrapPanel HorizontalAlignment="Center">
+
+                    <TextBlock x:Name="madein_tb"
+                               Margin="0,10,0,0"
+                               FontSize="8"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="Pick Available Objects from the family. If you don't like what you see, you can also add more object style by creating your own, or use object style name from opening docs." />
+                </WrapPanel>
+
+
+
+                <Button Content="Add More Object Style"
+                            Click="add_OST_clicked"
+                            Width="200"/>
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Content="Test ObjectStyle Assignment"
+                            x:Name="button_test_assignment"
+                            Visibility="Collapsed"
+                            Click="test_assignment_clicked"/>
+                    <Button Content="Force Using FileName"
+                            x:Name="button_force_filename_OST"
+                            Visibility="Collapsed"
+                            Click="force_file_name_OST_clicked"/>
+
+                </WrapPanel>
+
+                <WrapPanel HorizontalAlignment="Center">
+                    <Button Content="Convert to Revit"
+                            x:Name="button_convert"
+                            Click="convert_clicked"
+                            IsEnabled="False"
+                            BorderThickness="1"/>
+                    <Button Content="Close This Window" 
+                        Click="close_click"
+                        HorizontalAlignment="Center"/>
+                </WrapPanel>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

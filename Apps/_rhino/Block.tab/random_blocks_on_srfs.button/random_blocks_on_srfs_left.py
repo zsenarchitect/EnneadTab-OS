@@ -5,6 +5,7 @@ import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
 import scriptcontext as sc
 import random
+import time
 import Eto # pyright: ignore
 
 
@@ -26,7 +27,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         self.Resizable = True
         self.Padding = Eto.Drawing.Padding(5)
         self.Spacing = Eto.Drawing.Size(5, 5)
-        self.Icon = Eto.Drawing.Icon(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\ennead-e-logo.png")
+        
         #self.Bounds = Eto.Drawing.Rectangle()
         self.Width = 600
         self.selected_srf = None
@@ -93,11 +94,6 @@ class ScatterBlockDialog(Eto.Forms.Form):
     def CreateLogoImage(self):
         self.logo = Eto.Forms.ImageView()
 
-        self.FOLDER_PRIMARY = r"L:\4b_Applied Computing\00_Asset Library"
-        self.FOLDER_APP_IMAGES = r"{}\Database\app images".format(self.FOLDER_PRIMARY)
-        self.LOGO_IMAGE = r"{}\Ennead_Architects_Logo.png".format(self.FOLDER_APP_IMAGES)
-        temp_bitmap = Eto.Drawing.Bitmap(self.LOGO_IMAGE)
-        self.logo.Image = temp_bitmap.WithSize(200,30)
         return self.logo
 
     # create message bar function
@@ -274,9 +270,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         self.btn_Run = Eto.Forms.Button()
         self.btn_Run.Height = 30
         self.btn_Run.Text = "(Re)Generate"
-        temp_bitmap = Eto.Drawing.Bitmap(r"{}\update_data.png".format(self.FOLDER_APP_IMAGES))
-        #self.btn_Run.Image = temp_bitmap.WithSize(200,50)
-        #self.btn_Run.Image = temp_bitmap
+
         self.btn_Run.ImagePosition = Eto.Forms.ButtonImagePosition.Right
         self.btn_Run.Click += self.btn_preview_Clicked
         user_buttons.append(self.btn_Run)
@@ -304,7 +298,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         z_vec = rs.VectorCreate([0,0,1], [0,0,0])
 
 
-        SOUND.play_sound("sound effect_mario fireball.wav")
+        SOUND.play_sound("sound_effect_mario_fireball.wav")
         for collection in self.total_collection:
             if collection is None: continue
             # print (collection)
@@ -341,7 +335,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         self.generate_blocks_layout(is_preview = False)
         self.clear_out()
         NOTIFICATION.messenger(main_text = "Blocks added")
-        SOUND.play_sound("sound effect_popup msg1.wav")
+        SOUND.play_sound("sound_effect_popup_msg1.wav")
         #self.Close()
 
     # event handler handling clicking on the 'cancel' button
@@ -361,7 +355,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         else:
             note = "Base surface not defined!"
             NOTIFICATION.messenger(main_text = note)
-            SOUND.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound_effect_error.wav")
             
             self.srf_label.Text = note
 
@@ -378,7 +372,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
             self.guide_crv = select_obj
         else:
             self.guide_crv_label.Text = "  Guide curve not defined!"
-            SOUND.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound_effect_error.wav")
 
         self.generate_blocks_layout(is_preview = True)
 
@@ -437,7 +431,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         rs.DeleteObjects(old_blocks)
         
         
-
+    @ERROR_HANDLE.try_catch_error()
     def generate_blocks_layout(self, is_preview):
         
    
@@ -448,26 +442,23 @@ class ScatterBlockDialog(Eto.Forms.Form):
             self.total_count = int(self.tbox_total_count.Text)
         except Exception as e:
             print (str(e))
-            NOTIFICATION.messenger(main_text = "data not valid",
-                                            print_note = True)
-            SOUND.play_sound("sound effect_error.wav")
+            NOTIFICATION.messenger(main_text = "data not valid")
+            SOUND.play_sound("sound_effect_error.wav")
             self.delete_preview_blocks()
             return
 
 
         if self.total_count == 0:
-            NOTIFICATION.messenger(main_text =  "Cannot have total count of 0 for scatter",
-                                            print_note = True)
-            SOUND.play_sound("sound effect_error.wav")
+            NOTIFICATION.messenger(main_text =  "Cannot have total count of 0 for scatter")
+            SOUND.play_sound("sound_effect_error.wav")
             
             self.delete_preview_blocks()
             return
 
 
         if not self.selected_srfs:
-            NOTIFICATION.messenger(main_text = "Base srfs not valid",
-                                            print_note = True)
-            SOUND.play_sound("sound effect_error.wav")
+            NOTIFICATION.messenger(main_text = "Base srfs not valid")
+            SOUND.play_sound("sound_effect_error.wav")
             
             self.delete_preview_blocks()
             return
@@ -475,9 +466,8 @@ class ScatterBlockDialog(Eto.Forms.Form):
 
         if self.scatter_mode_list.SelectedValue == self.scatter_mode_list.DataStore[1]:
             if not self.guide_crv or not rs.IsObject(self.guide_crv):
-                NOTIFICATION.messenger(main_text = "Guide curve not valid",
-                                            print_note = True)
-                SOUND.play_sound("sound effect_error.wav")
+                NOTIFICATION.messenger(main_text = "Guide curve not valid")
+                SOUND.play_sound("sound_effect_error.wav")
       
                 self.delete_preview_blocks()
                 return
@@ -499,7 +489,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         if not self.user_blocks:
             
             NOTIFICATION.messenger(main_text = "User block not valid")
-            SOUND.play_sound("sound effect_error.wav")
+            SOUND.play_sound("sound_effect_error.wav")
             
             return
         rs.UnselectAllObjects()
@@ -533,10 +523,10 @@ class ScatterBlockDialog(Eto.Forms.Form):
         with some near threhold setting, it might be immposobile to find max count pts. So a timer is needed to stop loop since last pts add to list.
         """
         self.pt_collection = []
-        success_time_mark = TIME.mark_time()
+        success_time_mark = time.time()
         count = 0
         while count < self.total_count:
-            time_span = TIME.time_span(success_time_mark)
+            time_span = time.time() - success_time_mark
             # if count%20 == 0:
             #     sc.doc.Views.Redraw()
             #     Rhino.RhinoApp.Wait()
@@ -574,13 +564,13 @@ class ScatterBlockDialog(Eto.Forms.Form):
             add rhino progress bar here,
             add time stamp reset for the last susceeful appending of pt. If too long since last addition, there might be problem in the thresshold setting.
             """
-            success_time_mark = TIME.mark_time()
+            success_time_mark = time.time()
             count += 1
 
         if is_preview:
-            SOUND.play_sound("sound effect_popup msg2.wav")
+            SOUND.play_sound("sound_effect_popup_msg2.wav")
         else:
-            SOUND.play_sound("sound effect_popup msg1.wav")
+            SOUND.play_sound("sound_effect_popup_msg1.wav")
         rs.DeleteObjects(self.borders)
 
 
@@ -678,7 +668,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
         for x in self.filler_list:
             sticky_key = FORM_KEY + x
             default = 0
-            value = DATA_FILE.get_sticky_longterm(sticky_key, default_value_if_no_sticky = default)
+            value = DATA_FILE.get_sticky(sticky_key, default_value_if_no_sticky = default)
 
             #setattr(self, x , str(value))
             tbox = getattr(self, x)
@@ -702,7 +692,7 @@ class ScatterBlockDialog(Eto.Forms.Form):
             tbox = getattr(self, x)
             sticky_key = FORM_KEY + x
             #print x
-            DATA_FILE.set_sticky_longterm(sticky_key, tbox.Text)
+            DATA_FILE.set_sticky(sticky_key, tbox.Text)
 
         self.clear_out()
 

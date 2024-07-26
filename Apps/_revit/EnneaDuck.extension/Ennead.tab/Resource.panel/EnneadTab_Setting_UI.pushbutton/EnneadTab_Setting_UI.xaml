@@ -1,0 +1,458 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EnneadTab"
+        Foreground="#000"
+        Margin="0"
+        SizeToContent="WidthAndHeight"
+        ShowInTaskbar="True"
+        BorderThickness="0"
+        Background="{x:Null}"
+        WindowStartupLocation="CenterScreen"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        UseLayoutRounding="False"
+        FontFamily="RomanD"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        MouseLeftButtonDown="mouse_down_main_panel"
+        >
+    <Window.Resources>
+        <SolidColorBrush x:Key="AboutWindowTextColor" Color="#FFDAE8FD"/>
+        <SolidColorBrush x:Key="AboutWindowHightlightColor" Color="#f39c12"/>
+        <SolidColorBrush x:Key="AboutWindowMainPanelColor" Color="#FF464646"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="BorderBrush" Value="#cccccc"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowMainPanelColor}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,0,10,0"/>
+            <Setter Property="Cursor" Value="Cross"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Margin="5"
+                                Height="20"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter Name="Presenter"
+                                                      Margin="{TemplateBinding Padding}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      RecognizesAccessKey="True"
+                                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource AboutWindowHightlightColor}" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="Background" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type RadioButton}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowTextColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type Expander}">
+            <Setter Property="Margin" Value="0,5,0,5"/>
+            <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBoxItem}">
+            <Setter Property="Foreground" Value="#FF9C8CBF" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource AboutWindowHightlightColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="AnimatedSwitch" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="#FAFAFB" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Viewbox Stretch="Uniform">
+                            <Canvas Name="Layer_1" Width="20" Height="20" Canvas.Left="10" Canvas.Top="0">
+                                <Ellipse  Canvas.Left="0" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                <Ellipse  Canvas.Left="15" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1"/>
+                                <Border Canvas.Left="10" Width="15" Height="20" Name="rect416927" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,1,0,1"/>
+                                <Ellipse x:Name="ellipse"  Canvas.Left="0" Width="20" Height="20" Fill="White" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1">
+                                    <Ellipse.RenderTransform>
+                                        <TranslateTransform X="0" Y="0" />
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                            </Canvas>
+                        </Viewbox>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True" >
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#f39c12" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#1e2b38" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="15" KeySpline="0, 1, 0.6, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FAFAFB" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#CCCCCC" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="15"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" KeySpline="0, 0.5, 0.5, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="15"
+            Margin="20,20,20,20"
+            Cursor="ScrollAll">
+        <Border.Background>
+            <SolidColorBrush Color="#FF464646"/>
+        </Border.Background>
+        <Border.Effect>
+
+            <DropShadowEffect Color="#FFFFA400" BlurRadius="15" Opacity="1"/>
+
+        </Border.Effect>
+
+        <Grid Margin="20,20,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column ="0"
+                   Height="100"
+                   x:Name="logo_img"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Left" />
+
+
+            <StackPanel Grid.Column="1"
+                        VerticalAlignment="Center">
+                <TextBlock x:Name="title"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Center"
+                        FontSize="40">
+                <Run Text="Setting."/><Run x:Name="short_version_info"
+                                            FontSize="20"
+                                            Text="EnneadTab"/>
+                </TextBlock>
+                <TextBlock x:Name="subtitle"
+                           HorizontalAlignment="Left"
+                           TextAlignment="Left"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Top"
+                           FontSize="10"
+                           LineHeight="20"
+                           Text="All basic setting for EnneadTab is in here."/>
+
+                <Separator/>
+
+                <StackPanel HorizontalAlignment="Left">
+                    <Expander Header="Ribbon Tabs"
+                              x:Name="ribbon_tab_setting">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="The core EnneadTab is alway on by default, while the following tabs are optional to load." TextWrapping="Wrap" Margin="0,0,0,10"/>
+                            <CheckBox x:Name="checkbox_tab_tailor" Content="Ennead Tailor (personal and project tools)" Click="tab_setting_changed"/>
+                            <CheckBox  x:Name="checkbox_tab_library" Content="Ennead Library (loadable content)" Click="tab_setting_changed"/>
+                            <CheckBox  x:Name="checkbox_tab_beta" Content="Ennead Beta (Buttons that might become basic)" Click="tab_setting_changed"/>
+                            
+                            <Separator/>
+                            <TextBlock Text="Note: The setting becomes effective everytime you open a document." TextWrapping="WrapWithOverflow"/>
+                        </StackPanel>
+                    </Expander>
+                    <Separator/>
+                    <Expander Header="Tab Color">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="Control if you want to see tab color." Margin="0,0,0,15"/>
+                            <TextBlock Text="It will try its best seperating different files and families. When turning on, it takes a few secs." Margin="0,0,0,15" TextWrapping="Wrap"/>
+
+                            <WrapPanel HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                <WrapPanel.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="-15"/>
+                                    </TransformGroup>
+                                </WrapPanel.RenderTransform>
+                                <TextBlock Text="No Color Tabs  " FontWeight="Bold"/>
+                                <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                              Height="24"  IsChecked="False" 
+                                              x:Name="toggle_bt_is_tab_color"
+                                              Click="toggle_tab_color_click"/>
+                                <TextBlock Text="Colored Tabs" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" >
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="30"/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                            </WrapPanel>
+                            
+                        </StackPanel>
+                    </Expander>
+                    <Separator/>
+                    <Expander Header="LITE VS Pro Version">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="Control if you are use the pro version instead of the default LITE version." Margin="0,0,0,15" TextWrapping="Wrap"/>
+                            <TextBlock Text="Pro version will expose you to the full collection of EnneadTab. Show off to your team what else you can do! LITE version is for baby, you know..." TextWrapping="Wrap"/>
+                            <WrapPanel HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                <WrapPanel.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="-15"/>
+                                    </TransformGroup>
+                                </WrapPanel.RenderTransform>
+                                <TextBlock Text="No Join " FontWeight="Bold"/>
+                                <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="24"  IsChecked="False" x:Name="toggle_bt_is_beta_tester"/>
+                                <TextBlock Text="Join" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" >
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="30"/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                            </WrapPanel>
+                            <Separator/>
+                            <TextBlock Text="Reload is needed for this change to be effective."/>
+                            <Button Content="Apply Setting and Reload"
+                                    Click="apply_setting_click"
+                                    HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Expander>
+                    <Separator/>
+                    <Expander Header="Reminder Level"
+                              x:Name="reminder_level_setting">
+                        <StackPanel Margin="10">
+
+                            <GroupBox Header="Popup Reminder Frequency Setting.">
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="This controls the shown frequency of the lower right side window popup." TextWrapping="Wrap" Margin="0,0,0,10"/>
+                                    <RadioButton  Content="Mimimal." x:Name="radio_bt_popup_minimal" FontWeight="Bold"/>
+                                    <TextBlock Text="Only show very important popup." Margin="20,0,0,20"/>
+                                    <RadioButton  Content="Standard." IsChecked="True" x:Name="radio_bt_popup_standard" FontWeight="Bold"/>
+                                    <TextBlock Text="The default amount of reminder popup." Margin="20,0,0,20" />
+                                    <RadioButton  Content="Full." x:Name="radio_bt_popup_full" FontWeight="Bold"/>
+                                    <TextBlock Text="The everything, including the fun stuff." Margin="20,0,0,20"/>
+                                </StackPanel>
+
+                            </GroupBox>
+
+                            <GroupBox Header="Talkie" Margin="0,20,0,0">
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="Control if the talkie lady is invited. This also consider the importance level of the talk in the setting above." TextWrapping="Wrap" Margin="0,15,0,0"/>
+                                    <WrapPanel HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                        <WrapPanel.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform/>
+                                                <TranslateTransform X="-15"/>
+                                            </TransformGroup>
+                                        </WrapPanel.RenderTransform>
+                                        <TextBlock Text="No Talkie " FontWeight="Bold"/>
+                                        <ToggleButton Style="{StaticResource AnimatedSwitch}" Height="24"  
+                                              IsChecked="True" 
+                                              x:Name="toggle_bt_is_talkie"/>
+                                        <TextBlock Text="Yes Talkie" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" >
+                                            <TextBlock.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform/>
+                                                    <SkewTransform/>
+                                                    <RotateTransform/>
+                                                    <TranslateTransform X="30"/>
+                                                </TransformGroup>
+                                            </TextBlock.RenderTransform>
+                                        </TextBlock>
+                                    </WrapPanel>
+                                </StackPanel>
+                            </GroupBox>
+                           
+                            <GroupBox Header="Last Sync Monitor Timer Setting."
+                                      Margin="0,20,0,0">
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="Note: Timer will reset by either successful sync or local save. When time exceed suggested timer limit, it will not deduct coins if file is not modified, or closed without syncing, or saved locally." TextWrapping="Wrap" Margin="0,0,0,20"/>
+
+
+                                    <RadioButton  Content="Check regularly." FontWeight="Bold" IsChecked="True" x:Name="radio_bt_sync_monitor_is_checking" Click="radio_bt_sync_monitor_click"/>
+                           
+                                    <WrapPanel HorizontalAlignment="Right" Margin="20,0,20,0">
+                                        <TextBlock Text="Sync Interval = " TextWrapping="Wrap"/>
+                                        <TextBox x:Name="textbox_sync_monitor_interval" Text="45" MinWidth="40"  HorizontalContentAlignment="Right" />
+                                        <TextBlock Text=" mins." TextWrapping="Wrap"/>
+                                    </WrapPanel>
+
+
+
+
+                                    <RadioButton  Content="Never." FontWeight="Bold" x:Name="radio_bt_sync_monitor_never" Click="radio_bt_sync_monitor_click"/>
+                                    <TextBlock Text="Will not be reminded again for syncing." Margin="20,0,0,20"/>
+
+                                   
+                                </StackPanel>
+                                
+
+                            </GroupBox>
+
+                            
+                        </StackPanel>
+                    </Expander>
+                    
+                    
+                    <Separator/>
+                    <Expander Header="Emails" >
+                        <StackPanel>
+                            <GroupBox Header="Emails"  Margin="0,15,0,0">
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="Control additional email notification." Margin="0,0,0,20"/>
+                                    <CheckBox Content="Receive email if sync gap too long." IsChecked="True" 
+                                              x:Name="checkbox_email_sync_gap"/>
+                                    <TextBlock Text="Sync gap threshold in setting above." Margin="20,0,0,20"/>
+
+
+
+                                    <CheckBox Content="Email outstanding warning during opening." IsChecked="True"  x:Name="checkbox_email_opening_warning_diff"/>
+                                    <TextBlock Text="Alerting number threshold = 2000 coins." Margin="20,0,0,20"/>
+                                    <CheckBox Content="Email outstanding warning between syncing." IsChecked="True" x:Name="checkbox_email_local_warning_diff"/>
+                                    <TextBlock Text="Alerting number threshold = 2500 coins." Margin="20,0,0,0"/>
+                                </StackPanel>
+
+                            </GroupBox>
+                        </StackPanel>
+                    </Expander>
+                    <Separator/>
+                    <Expander Header="EnneaDuck">
+                        <StackPanel Margin="10">
+                            <TextBlock Text="Control if you want to see the mascot." Margin="0,0,0,15"/>
+                            <TextBlock Text="If enabled, it shows up when you are entering sync queue. When it is your turn the Duck will tell you through dialog bobble." Margin="0,0,0,15" TextWrapping="Wrap"/>
+
+                            <WrapPanel HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                <WrapPanel.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform X="-15"/>
+                                    </TransformGroup>
+                                </WrapPanel.RenderTransform>
+                                <TextBlock Text="No Duck  " FontWeight="Bold"/>
+                                <ToggleButton Style="{StaticResource AnimatedSwitch}" 
+                                              Height="24"  IsChecked="True" 
+                                              x:Name="toggle_bt_is_duck_allowed"/>
+                                <TextBlock Text="Duck Friendly" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" >
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="30"/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                            </WrapPanel>
+                            <Button Content="Send In The Duck RIGHT NOW!" Click="send_duck_click" HorizontalAlignment="Center" Margin="10"/>
+                            <CheckBox x:Name="checkbox_is_dumb_duck" Content="Dumb Duck(dance only, no monitoring)" HorizontalAlignment="Center"/>
+
+                        </StackPanel>
+                    </Expander>
+                    <Separator/>
+                    <Expander Header="Game">
+                        
+                        <StackPanel>
+                            <CheckBox  x:Name="checkbox_game" Content="Monopoly (Reload needed, rvt 2022 only)" />
+                            <Button Content="Reload" 
+                                    Click="apply_setting_click"/>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+
+
+                <WrapPanel HorizontalAlignment="Center">
+
+                    <TextBlock x:Name="debug_textbox"
+                               Margin="0,10,0,0"
+                               FontSize="8"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="Debug Output:" />
+                </WrapPanel>
+
+
+
+
+
+
+                <WrapPanel HorizontalAlignment="Center">
+
+                    <Button Content="Save Setting and Close This Window"
+                        Click="close_click"
+                        HorizontalAlignment="Center"/>
+                </WrapPanel>
+
+
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

@@ -1,15 +1,17 @@
 
 __title__ = "IsolateLayerBySelection"
-__doc__ = "This button does IsolateLayerBySelection when left click"
+__doc__ = "Isolcate objs from similar layers"
 import rhinoscriptsyntax as rs
-from EnneadTab import LOG, ERROR_HANDLE
+from EnneadTab import LOG, ERROR_HANDLE, NOTIFICATION
 
 
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def isolate_layer_by_selection():
-    ids = rs.SelectedObjects(include_lights = True, include_grips = False)
-    if not ids: return
+    ids = rs.GetObjects(message="Pick objs: ", preselect=True)
+    if not ids: 
+        NOTIFICATION.messenger("Nothing selected")
+        return
     rs.EnableRedraw(False)
 
     used_layers = set()

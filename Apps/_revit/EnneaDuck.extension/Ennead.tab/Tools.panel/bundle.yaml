@@ -1,0 +1,21 @@
+# background:
+#   panel: 'aaaaaa'
+#   title: 'aaaaaa'
+#   slideout: 'aaaaaa'
+
+layout:
+
+  - color_design_option 
+  - dim_text_helper
+  - general_renamer
+  - Sync All
+  - tag_align
+  - toggle content_UI 
+  - translate_AI 
+  - ">>>" 
+  - apply_panel_radius_UI 
+  - open_doc_silently 
+  - AlignScopebox 
+  - move_curtain_grids 
+  - generic_healthcare_tool
+  - set_filled_region_border_line

@@ -68,6 +68,10 @@
     {
       "optionDest": "datas",
       "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AvdResourceMonitor\\normal_icon.ico;."
+    },    
+    {
+      "optionDest": "hidden-import",
+      "value": "pyautogui"
     }
   ],
   "nonPyinstallerOptions": {

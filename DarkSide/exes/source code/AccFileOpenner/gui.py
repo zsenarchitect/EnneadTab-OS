@@ -92,9 +92,11 @@ class BaseApp:
         self.dashboard_frame.bind("<Leave>", self.change_cursor_to_arrow)
 
     def change_cursor_to_hand(self, event):
+        return
         event.widget.config(cursor="hand2")
 
     def change_cursor_to_arrow(self, event):
+        return
         event.widget.config(cursor="")
 
     def draw_rounded_rect(self, x1, y1, x2, y2, radius, **kwargs):

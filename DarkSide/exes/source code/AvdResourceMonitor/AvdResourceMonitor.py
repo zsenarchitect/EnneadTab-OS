@@ -8,6 +8,10 @@ import os
 import pystray
 from pystray import MenuItem as item
 
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+import _Exe_Util
+
 SETTINGS = {
     "cpu_threshold": 80,
     "gpu_threshold": 80,
@@ -146,6 +150,7 @@ class UsageMonitor:
             int(days), int(hours), int(minutes), int(seconds)
         )
 
+    @_Exe_Util.try_catch_error
     def run(self):
         self.root.mainloop()
 

@@ -7,7 +7,7 @@
     },
     {
       "optionDest": "filenames",
-      "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AvdResourceMoinitor\\AvdResourceMoinitor.py"
+      "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AvdResourceMonitor\\AvdResourceMonitor.py"
     },
     {
       "optionDest": "onefile",
@@ -59,11 +59,11 @@
     },
     {
       "optionDest": "datas",
-      "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AvdResourceMoinitor\\alert_icon.ico;."
+      "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AvdResourceMonitor\\alert_icon.ico;."
     },
     {
       "optionDest": "datas",
-      "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AvdResourceMoinitor\\normal_icon.ico;."
+      "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AvdResourceMonitor\\normal_icon.ico;."
     }
   ],
   "nonPyinstallerOptions": {

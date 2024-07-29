@@ -58,7 +58,7 @@ class UsageMonitor(_GUI_Base_Util.BaseGUI):
             item("Status", self.show_status),
             item("Exit", self.exit_app)
         )
-        self.tray_icon = pystray.Icon("UsageMonitor", self.icon_image_normal, "Usage Monitor", menu)
+        self.tray_icon = pystray.Icon("AVD Usage Monitor", self.icon_image_normal, "Usage Monitor", menu)
         self.tray_icon.run_detached()
 
         # Start updating usage in the main thread

@@ -10,6 +10,10 @@ import logging
 import sys
 from py3nvml.py3nvml import nvmlInit, nvmlDeviceGetCount, nvmlDeviceGetHandleByIndex, nvmlDeviceGetUtilizationRates, nvmlShutdown
 
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+import _Exe_Util
+import _GUI_Base_Util
+
 # Set up logging
 desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
 log_file = os.path.join(desktop_path, 'logging.txt')
@@ -24,8 +28,9 @@ SETTINGS = {
 }
 
 
-class UsageMonitor:
+class UsageMonitor(_GUI_Base_Util.BaseGUI):
     def __init__(self):
+        self.app_title = "AVD Resource Monitor"
         self.root = tk.Tk()
         self.root.withdraw()  # Hide the main window
 
@@ -184,8 +189,12 @@ class UsageMonitor:
         return "{} days, {} hours, {} minutes, {} seconds".format(
             int(days), int(hours), int(minutes), int(seconds)
         )
-
+        
+    @_Exe_Util.try_catch_error
     def run(self):
+        if self.is_another_app_running():
+            self.root.destroy()
+            return
         self.root.mainloop()
 
 if __name__ == "__main__":

@@ -1,5 +1,4 @@
 import psutil
-import GPUtil
 import time
 import tkinter as tk
 from PIL import Image, ImageTk
@@ -7,17 +6,23 @@ import socket
 import os
 import pystray
 from pystray import MenuItem as item
-
+import logging
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-import _Exe_Util
+from py3nvml.py3nvml import nvmlInit, nvmlDeviceGetCount, nvmlDeviceGetHandleByIndex, nvmlDeviceGetUtilizationRates, nvmlShutdown
+
+# Set up logging
+desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
+log_file = os.path.join(desktop_path, 'logging.txt')
+logging.basicConfig(filename=log_file, level=logging.INFO, format='%(asctime)s - %(message)s')
 
 SETTINGS = {
     "cpu_threshold": 80,
     "gpu_threshold": 80,
+    "disk_threshold": 80,
     "user_threshold": 5,
     "uptime_threshold": 48 * 3600  # 48 hours in seconds
 }
+
 
 class UsageMonitor:
     def __init__(self):
@@ -31,10 +36,14 @@ class UsageMonitor:
         self.icon_image_alert = Image.open(self.icon_image_alert_path)
 
         self.status_window = None
+        self.pc_name = socket.gethostname()
         self.flashing = False
 
         self.cpu_usage = 0
         self.gpu_usage = 0
+        self.disk_usage = 0
+
+        nvmlInit()  # Initialize NVML for GPU monitoring
 
         self.tray_icon = None
         self.create_tray_icon()
@@ -54,17 +63,20 @@ class UsageMonitor:
         if self.tray_icon:
             self.tray_icon.stop()
         self.root.quit()
+        nvmlShutdown()  # Shutdown NVML
 
     def update_usage(self):
         self.cpu_usage = psutil.cpu_percent(interval=1)
         self.gpu_usage = self.get_gpu_usage()
-        users = psutil.users()
-        uptime_seconds = time.time() - psutil.boot_time()
+        self.disk_usage = self.get_disk_usage()
+        self.users = psutil.users()
+        self.uptime_seconds = time.time() - psutil.boot_time()
 
         if (self.cpu_usage > SETTINGS["cpu_threshold"] or 
             self.gpu_usage > SETTINGS["gpu_threshold"] or
-            len(users) > SETTINGS["user_threshold"] or
-            uptime_seconds > SETTINGS["uptime_threshold"]):
+            self.disk_usage > SETTINGS["disk_threshold"] or
+            len(self.users) > SETTINGS["user_threshold"] or
+            self.uptime_seconds > SETTINGS["uptime_threshold"]):
             if not self.flashing:
                 self.flashing = True
                 self.flash_icon()
@@ -76,14 +88,26 @@ class UsageMonitor:
         if self.status_window is not None:
             self.update_status_window()
 
+        # Log status
+        status_message = self.get_status_message()
+        logging.info(status_message)
+
         self.root.after(1000, self.update_usage)
 
     def get_gpu_usage(self):
-        gpus = GPUtil.getGPUs()
-        if gpus:
-            gpu = gpus[0]  # Assuming you have at least one GPU
-            return gpu.load * 100
+        try:
+            device_count = nvmlDeviceGetCount()
+            if device_count > 0:
+                handle = nvmlDeviceGetHandleByIndex(0)  # Assuming monitoring the first GPU
+                utilization = nvmlDeviceGetUtilizationRates(handle)
+                return utilization.gpu
+        except Exception as e:
+            logging.error("Failed to get GPU usage: {}".format(e))
         return 0
+
+    def get_disk_usage(self):
+        disk_usage = psutil.disk_usage('C:')
+        return disk_usage.percent
 
     def flash_icon(self):
         if self.flashing:
@@ -104,7 +128,8 @@ class UsageMonitor:
                 "num_users": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left"),
                 "uptime": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left"),
                 "cpu_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left"),
-                "gpu_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left")
+                "gpu_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left"),
+                "disk_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left")
             }
 
             for label in self.labels.values():
@@ -115,28 +140,38 @@ class UsageMonitor:
             self.update_status_window()
 
     def update_status_window(self):
-        pc_name = socket.gethostname()
-        users = psutil.users()
-        uptime_seconds = time.time() - psutil.boot_time()
-        uptime_string = self.format_uptime(uptime_seconds)
+        uptime_string = self.format_uptime(self.uptime_seconds)
 
-        self.labels["pc_name"].config(text="PC Name: {}".format(pc_name))
-        self.labels["num_users"].config(text="Number of Users: {}".format(len(users)))
+        self.labels["pc_name"].config(text="PC Name: {}".format(self.pc_name))
+        self.labels["num_users"].config(text="Number of Users: {}".format(len(self.users)))
         self.labels["uptime"].config(text="Uptime: {}".format(uptime_string))
         self.labels["cpu_usage"].config(text="Current CPU Usage: {:.2f}%".format(self.cpu_usage))
         self.labels["gpu_usage"].config(text="Current GPU Usage: {:.2f}%".format(self.gpu_usage))
+        self.labels["disk_usage"].config(text="C: Drive Usage: {:.2f}%".format(self.disk_usage))
 
         # Check thresholds and set colors independently
         self.set_label_color("cpu_usage", self.cpu_usage > SETTINGS["cpu_threshold"])
         self.set_label_color("gpu_usage", self.gpu_usage > SETTINGS["gpu_threshold"])
-        self.set_label_color("num_users", len(users) > SETTINGS["user_threshold"])
-        self.set_label_color("uptime", uptime_seconds > SETTINGS["uptime_threshold"])
+        self.set_label_color("disk_usage", self.disk_usage > SETTINGS["disk_threshold"])
+        self.set_label_color("num_users", len(self.users) > SETTINGS["user_threshold"])
+        self.set_label_color("uptime", self.uptime_seconds > SETTINGS["uptime_threshold"])
 
     def set_label_color(self, label_name, condition):
         if condition:
             self.labels[label_name].config(fg="orange", font=("Helvetica", 12, "bold"))
         else:
             self.labels[label_name].config(fg="black", font=("Helvetica", 12))
+
+    def get_status_message(self):
+        uptime_string = self.format_uptime(self.uptime_seconds)
+        return (
+            "PC Name: {}\n"
+            "Number of Users: {}\n"
+            "Uptime: {}\n"
+            "Current CPU Usage: {:.2f}%\n"
+            "Current GPU Usage: {:.2f}%\n"
+            "C: Drive Usage: {:.2f}%"
+        ).format(self.pc_name, len(self.users), uptime_string, self.cpu_usage, self.gpu_usage, self.disk_usage)
 
     def close_status_window(self):
         self.status_window.destroy()
@@ -150,7 +185,6 @@ class UsageMonitor:
             int(days), int(hours), int(minutes), int(seconds)
         )
 
-    @_Exe_Util.try_catch_error
     def run(self):
         self.root.mainloop()
 

@@ -17,5 +17,9 @@ pyautogui
 tkinterdnd2
 tqdm
 pandas
-gputil
+
+
+#gputil
+py3nvml
+
 pystray

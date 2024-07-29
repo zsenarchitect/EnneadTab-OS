@@ -23,6 +23,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))) + "\
 
 from ENVIRONMENT import ROOT, EXE_PRODUCT_FOLDER  # pyright: ignore
 import NOTIFICATION  # pyright: ignore
+import SOUND   # pyright: ignore
 
 
 
@@ -224,6 +225,7 @@ def recompile_exe(single_exe = None):
     move_exes()
     print ("done exe creation")
     NOTIFICATION.messenger("Exe finish compiling")
+    SOUND.play_sound()
     
 
 

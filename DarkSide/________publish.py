@@ -212,7 +212,7 @@ def copy_to_standalone_collection():
         "IndesignAccOpenner.exe",
         "AccFileOpenner.exe",
         "Pdf2OrderedJpgs.exe",
-        "AvdResourceMonitor"
+        "AvdResourceMonitor.exe"
     ]
 
     for i, exe in enumerate([f for f in os.listdir(exe_product_folder) if f in good_list]):

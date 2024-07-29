@@ -13,3 +13,17 @@ When you close file, the editing marker file is removed from acc. When a second 
 Rhino, CAD, Indesign, Word and Excel have native lock file format that this tool can monitor. There is no action needed when exiting. Photoshop, Illustrator and PDF does not have lock file format, so you DO need to click "I am finished" to notify that you are no longer editing. The post process will handle the marker files cleanup.
 
 The main display panel will lookup the current status of the ACC folders so you are aware where have the editing marker or request market file.
+
+Word and Excel are prefered to edit in the cloud for its collbration ability, but if you do need to edit it locally, the tool also allow file lock for them.
+
+## What file types are supported?
+Files with default file lock system:
+- Indesign
+- Rhino
+- Word
+- Excel
+
+Files without default file lock system:
+- PDF
+- Illustrator
+- Photoshop

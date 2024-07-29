@@ -317,7 +317,8 @@ class CompileConfirmation:
 
     def countdown(self, count):
         if count > 0:
-            self.label['text'] = f"Do you want to compile the exe today? \nTime remaining: {count} seconds"
+            note = "default as Yes" if self.should_compile else "default as No"
+            self.label['text'] = f"Do you want to compile the exe today?\n{note}\nTime remaining: {count} seconds"
             self.root.after(1000, self.countdown, count-1)
         else:
             self.root.quit()

@@ -520,7 +520,7 @@ def clean_import_object_style(existing_OSTs):
 @ERROR_HANDLE.try_catch_error()
 def main():
     if not doc.IsFamilyDocument:
-        NOTIFICATION.messenger("Must be in a family environment, for effective subCategory")
+        NOTIFICATION.messenger("Must be in a family environment\nOtherwise cannot use effective subCategory")
         REVIT_FORMS.notification(main_text="Must be in a family environment for subCategory to be useful.",
                                                  sub_text="DirectShape is never a good solution, so don't do it in project environment.",
                                                  window_title="EnneadTab",

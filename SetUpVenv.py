@@ -4,7 +4,7 @@ import subprocess
 commands = [
     '.venv\\Scripts\\activate',
     'python.exe -m pip install --upgrade pip',
-    'pip install --upgrade wheel', # need this to make sure some moudle in requirement can install with pip(such as playsound)
+    'pip install --upgrade wheel', # need this to make sure some module in requirement can install with pip(such as playsound)
     'pip install -r requirements.txt'
 ]
 

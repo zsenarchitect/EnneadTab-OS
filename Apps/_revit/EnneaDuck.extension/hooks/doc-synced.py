@@ -8,6 +8,7 @@ doc = EXEC_PARAMS.event_args.Document
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ERROR_HANDLE, SOUND, LOG, NOTIFICATION, SPEAK, MODULE_HELPER, ENVIRONMENT, EMAIL, USER, DATA_FILE
 from EnneadTab.REVIT import REVIT_SYNC, REVIT_FORMS
 __title__ = "Doc Synced Hook"

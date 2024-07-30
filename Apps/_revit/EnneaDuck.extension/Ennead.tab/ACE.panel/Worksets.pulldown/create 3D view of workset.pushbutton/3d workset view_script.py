@@ -10,7 +10,8 @@ from pyrevit import forms #
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE
+proDUCKtion.validify()
+from EnneadTab import ERROR_HANDLE, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
@@ -74,8 +75,7 @@ def get_threeD_view_type():
     return filter(lambda x: x.ViewFamily == DB.ViewFamily.ThreeDimensional, view_family_types)[0]
 
 
-
-
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     t = DB.Transaction(doc, "create view from workset")

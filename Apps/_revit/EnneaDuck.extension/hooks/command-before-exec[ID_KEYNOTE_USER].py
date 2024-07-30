@@ -1,6 +1,7 @@
 
 from pyrevit import  EXEC_PARAMS
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 args = EXEC_PARAMS.event_args
 doc = args.ActiveDocument 

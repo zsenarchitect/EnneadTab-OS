@@ -17,8 +17,9 @@ from pyrevit import script, forms
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
+from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE, LOG
 
 
 import traceback
@@ -357,10 +358,13 @@ class apply_panel_radius_UI(forms.WPFWindow):
 
 
 
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
 
-    modeless_form = apply_panel_radius_UI()
+    apply_panel_radius_UI()
 
 
 ################## main code below #####################

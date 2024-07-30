@@ -1,2 +1,6 @@
 """the dancing call duck"""
-pass
+import EXE
+
+
+def quack ():
+    EXE.try_open_app(exe)

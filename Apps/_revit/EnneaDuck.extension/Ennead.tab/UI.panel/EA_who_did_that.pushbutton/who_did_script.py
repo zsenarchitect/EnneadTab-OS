@@ -20,8 +20,9 @@ from pyrevit import script #
 from pyrevit import HOST_APP
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE, IMAGE
+from EnneadTab import ERROR_HANDLE, IMAGE, LOG
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
@@ -252,6 +253,11 @@ class who_did_that_ModelessForm(WPFWindow):
 
 
 
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    who_did_that_ModelessForm()
+        
 
 ################## main code below #####################
 output = script.get_output()
@@ -259,9 +265,7 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
-    try:
-        modeless_form = who_did_that_ModelessForm()
-        
-    except:
-        print (traceback.format_exc())
+    main()
+
+
+

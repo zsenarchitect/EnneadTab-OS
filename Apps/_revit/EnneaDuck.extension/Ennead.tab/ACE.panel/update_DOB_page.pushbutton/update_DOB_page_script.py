@@ -10,13 +10,16 @@ __title__ = "Update DOB\nPage Number"
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE, NOTIFICATION
+proDUCKtion.validify()
+from EnneadTab import ERROR_HANDLE, NOTIFICATION, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 # uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def update_DOB_page(doc, show_log = True):
     all_link_docs = REVIT_APPLICATION.get_revit_link_docs(link_only = True)

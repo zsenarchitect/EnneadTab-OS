@@ -168,7 +168,7 @@ def json_to_command(json_file):
         command.append("--exclude-module")
         command.append("pygame")
 
-    print("\033[92m{}\033[00m".format(command))
+    print("\033[92m{}\033[00m".format("\n".join(command)))
     return command
 
 def create_version_file(final_path):

@@ -238,4 +238,5 @@ if __name__ == "__main__":
     # recompile_exe(single_exe="Pdf2OrderedJpgs.sexyDuck")
     # recompile_exe(single_exe="RevitIniDeployer.sexyDuck")
     # recompile_exe(single_exe="AvdResourceMonitor.sexyDuck")
-    recompile_exe(single_exe="LastSyncMonitor.sexyDuck")
+    # recompile_exe(single_exe="LastSyncMonitor.sexyDuck")
+    recompile_exe(single_exe="sample_exe.sexyDuck")

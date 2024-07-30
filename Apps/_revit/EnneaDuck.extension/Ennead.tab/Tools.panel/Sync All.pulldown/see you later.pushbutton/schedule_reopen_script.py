@@ -9,8 +9,9 @@ This si especially helpful for team taking long time to open files everyday."""
 
 __tip__ = True
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import EXE, DATA_FILE, USER, ERROR_HANDLE, FOLDER
+from EnneadTab import EXE, DATA_FILE, USER, ERROR_HANDLE, FOLDER, LOG
 from pyrevit import forms, script
 # import datetime
 from datetime import datetime, timedelta
@@ -21,6 +22,10 @@ import time
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
+
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
 

@@ -9,11 +9,12 @@ __youtube__ = "https://youtu.be/iiAy-Gxl5ZU"
 __tip__ = True
 # from pyrevit import forms #
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import NOTIFICATION
 from pyrevit import script #
 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE,LOG
 
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
@@ -100,6 +101,9 @@ def process_wall(wall, crvs):
         #DB.Transform.CreateTranslation (vecter)
         DB.ElementTransformUtils.MoveElement(doc, grid.Id,vecter)
 
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def move_curtain_grid():
 

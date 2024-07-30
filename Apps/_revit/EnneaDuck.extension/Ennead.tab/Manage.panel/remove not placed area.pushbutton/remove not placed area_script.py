@@ -5,12 +5,12 @@ the option to check room status by phase."
 __title__ = "Remove Not Placed\nArea and Rooms"
 __tip__ = True
 from pyrevit import forms,  script
-from EA_UTILITY import dialogue
 from Autodesk.Revit import DB # pyright: ignore
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, LOG, NOTIFICATION
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
@@ -97,6 +97,7 @@ def get_element_phase(element):
 
 
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     phase = select_phase()
@@ -123,15 +124,18 @@ def delete_not_placed_areas():
             count += 1
 
         if area.Area < 0:
-            print("this area has negative area. Area Scheme = {}, Level = {}, area name = {}----{}".format(area.AreaScheme.Name,  doc.GetElement(area.LevelId).Name,area.LookupParameter("Name").AsString(), output.linkify(area.Id, title = "Select Area")))
+            print("this area has negative area. Area Scheme = {}, Level = {}, area name = {}----{}".format(area.AreaScheme.Name,  
+                                                                                                           doc.GetElement(area.LevelId).Name,
+                                                                                                           area.LookupParameter("Name").AsString(), 
+                                                                                                           output.linkify(area.Id, title = "Select Area")))
             nega_count += 1
     t.Commit()
 
     if count > 0:
-        dialogue(main_text = "{} not placed areas are removed from project.".format(count))
+        NOTIFICATION.messenger(main_text = "{} not placed areas are removed from project.".format(count))
 
     if nega_count > 0:
-        dialogue(main_text = "{} negative area in projects".format(nega_count))
+        NOTIFICATION.messenger(main_text = "{} negative area in projects".format(nega_count))
 
 
 def delete_not_placed_rooms(phase):
@@ -148,7 +152,7 @@ def delete_not_placed_rooms(phase):
     if count > 0:
         output.insert_divider()
         print("*"*100)
-        dialogue(main_text = "{} not placed rooms are removed from project.".format(count))
+        NOTIFICATION.messenger(main_text = "{} not placed rooms are removed from project.".format(count))
 
 
 def find_non_close_or_redundent_room(phase):
@@ -164,7 +168,7 @@ def find_non_close_or_redundent_room(phase):
         print("*"*100)
         output.print_md("Inspecting on phase <**{}**>".format(phase.Name))
 
-        dialogue(main_text = "{} not enclosed room or redundent room still in the project.".format(count), icon = "warning")
+        NOTIFICATION.messenger(main_text = "{} not enclosed room or redundent room still in the project.".format(count))
         for room in open_rooms:
             #print area.LookupParameter("Area").AsValueString() ### is this equal to redundent or not enclosed?
             #print area.Perimeter
@@ -175,7 +179,7 @@ def find_non_close_or_redundent_room(phase):
                                                                                                                             room.LookupParameter("Name").AsString(),
                                                                                                                             output.linkify(room.Id, title = "Select Room")))
     else:
-        dialogue(main_text = "no non-enclose or redundent Room found.")
+        NOTIFICATION.messenger(main_text = "no non-enclose or redundent Room found.")
 
 
 def find_non_close_or_redundent_area():
@@ -190,7 +194,7 @@ def find_non_close_or_redundent_area():
         output.insert_divider()
         print("*"*100)
 
-        dialogue(main_text = "{} not enclosed areas or redundent area still in the project.".format(count), icon = "warning")
+        NOTIFICATION.messenger(main_text = "{} not enclosed areas or redundent area still in the project.".format(count))
         for area in open_areas:
             #print area.LookupParameter("Area").AsValueString() ### is this equal to redundent or not enclosed?
             #print area.Perimeter
@@ -202,7 +206,7 @@ def find_non_close_or_redundent_area():
                                                                                                                                             area_department,area.LookupParameter("Name").AsString(),
                                                                                                                                             output.linkify(area.Id, title = "Select Area")))
     else:
-        dialogue(main_text = "no non-enclose or redundent area found.")
+        NOTIFICATION.messenger(main_text = "no non-enclose or redundent area found.")
 
 
 def find_empty_area_department():
@@ -220,9 +224,9 @@ def find_empty_area_department():
             print("this area has no area department assignemted to it. Area Scheme = {}, Level = {}, area name = {}----{}".format(area.AreaScheme.Name,  doc.GetElement(area.LevelId).Name,area.LookupParameter("Name").AsString(), output.linkify(area.Id, title = "Select Area")))
             count += 1
     if count > 0:
-        dialogue(main_text = "{} area has empty area department value in gross buiilding area scheme. See output window for detail".format(count), icon = "warning")
+        NOTIFICATION.messenger(main_text = "{} area has empty area department value in gross buiilding area scheme. See output window for detail".format(count), icon = "warning")
     else:
-        dialogue(main_text = "no empty area department value found")
+        NOTIFICATION.messenger(main_text = "no empty area department value found")
 
 
 

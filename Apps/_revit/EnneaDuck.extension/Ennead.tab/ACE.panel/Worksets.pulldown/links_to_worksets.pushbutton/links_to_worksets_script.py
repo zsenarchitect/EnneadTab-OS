@@ -10,13 +10,17 @@ __tip__ = True
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE
+proDUCKtion.validify()
+from EnneadTab import ERROR_HANDLE, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def links_to_worksets():
 

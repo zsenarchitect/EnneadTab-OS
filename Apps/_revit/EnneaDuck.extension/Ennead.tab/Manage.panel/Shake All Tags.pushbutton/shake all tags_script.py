@@ -4,7 +4,8 @@ from pyrevit import script
 from pyrevit import forms
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE
+proDUCKtion.validify()
+from EnneadTab import ERROR_HANDLE, LOG
 
 __doc__ = 'Sometimes the tag will not update after updating the component info. This can be resolved by shifting the tags up and down to force them to update.\nThis tool moved all tags on the selected sheets back-and-forth by a tiny amount to force Revit to regenerate the tag and update the display. This makes sure the tags are all reading something.'
 __title__ = "Shake\nAll Tags"
@@ -92,6 +93,7 @@ def shake_tags(view):
         """
         #print(str(tag.Id)+ " moved back")
         
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     #selection = revit.get_selection()

@@ -11,13 +11,15 @@ from pyrevit import script #
 import xlsxwriter as xw
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_FORMS
-from EnneadTab import ERROR_HANDLE, NOTIFICATION, COLOR, EXE, DATA_FILE
+from EnneadTab import ERROR_HANDLE, NOTIFICATION, COLOR, EXE, DATA_FILE, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
             
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def export_color_scheme():
     

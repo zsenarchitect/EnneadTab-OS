@@ -9,8 +9,9 @@ from pyrevit import script
 from Autodesk.Revit import DB # pyright: ignore
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, LOG
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
@@ -90,11 +91,15 @@ class Solution:
             for x in  nosheet_schedule_name:
                 print( "\t\t{}   (created by:{})".format(x,self.who_created(x)))
 
-        
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    Solution().main()
 ################## main code below #####################
 
 if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
-    Solution().main()
+    main()
     

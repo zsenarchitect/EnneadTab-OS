@@ -15,7 +15,8 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import DATA_CONVERSION, ERROR_HANDLE
+proDUCKtion.validify()
+from EnneadTab import DATA_CONVERSION, ERROR_HANDLE, LOG
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 import random
@@ -32,12 +33,9 @@ def make_3D_views_for_warning_cleaning():
 
     try:
         view.LookupParameter("Views_$Group").Set("Ennead")
-        view.LookupParameter("Views_$Series").Set("Fix Errors  (°⌓°)")
-
-        
+        view.LookupParameter("Views_$Series").Set("Fix Errors  (°⌓°)")        
     except:
-
-        ERROR_HANDLE.print_note( traceback.format_exc())
+        pass
 
     t.Commit()
 
@@ -155,7 +153,7 @@ class SimpleEventHandler(IExternalEventHandler):
 
 
 # A simple WPF form used to call the ExternalEvent
-class generic_warning_fixer_ModelessForm(WPFWindow):
+class GenericWarningFixer(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -263,14 +261,18 @@ class generic_warning_fixer_ModelessForm(WPFWindow):
         self.category_text.Text = self.warning_category
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    GenericWarningFixer()
 ################## main code below #####################
 output = script.get_output()
 output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
-    modeless_form = generic_warning_fixer_ModelessForm()
+    main()
 
 
 

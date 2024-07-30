@@ -47,7 +47,7 @@ def get_EA_local_dump_folder():
     return get_special_folder_in_EA_setting("Local Copy Dump")
 
 
-def read_json_as_dict(filepath):
+def get_data(filepath):
 
     if use_encode:
         with io.open(filepath, encoding='utf8') as f:
@@ -93,7 +93,7 @@ class PromptData:
             print ("not found")
             return
 
-        data = read_json_as_dict(file_path)
+        data = get_data(file_path)
         if data["direction"] != "input":
             print ("direction not input")
             return
@@ -110,7 +110,7 @@ class PromptData:
         file_name = "EA_TRANSLATE.sexyDuck"
         dump_folder = get_EA_local_dump_folder()
         file_path = "{}\{}".format(dump_folder, file_name)
-        data = read_json_as_dict(file_path)
+        data = get_data(file_path)
         """
         if self.ai_name in self.response:
             self.conversation_history += "{}".format(self.response)

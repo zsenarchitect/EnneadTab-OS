@@ -64,7 +64,7 @@ def cleanup_tts_mp3():
 
 @_Exe_Util.try_catch_error
 def tts():
-    data = _Exe_Util.read_json_as_dict_in_dump_folder(TTS_FILE)
+    data = _Exe_Util.get_data(TTS_FILE)
     if not data:
         print("No data")
         return

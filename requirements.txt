@@ -17,3 +17,10 @@ pyautogui
 tkinterdnd2
 tqdm
 pandas
+
+
+#gputil
+py3nvml
+
+pystray
+psutil

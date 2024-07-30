@@ -31,7 +31,7 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
         self.wait_time = int(_Exe_Util.get_setting("textbox_sync_monitor_interval", 45))
     
         
-        self.life_max = 12 * 60 * 60 * 20
+        self.life_max = _GUI_Util.BasePyGameGUI.MAX_LIFE
         self.life_count = self.life_max
 
         self.taskbar_icon = "{}\\images\\icon.png".format(self.content_folder)
@@ -43,7 +43,7 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
 
 
     def display_record(self):
-        record = _Exe_Util.read_json_as_dict_in_dump_folder("Last_Sync_Record.sexyDuck")
+        record = _Exe_Util.get_data("Last_Sync_Record.sexyDuck")
            
         now = time.time()
         records = sorted(record.items(), key=lambda x: now - x[1])

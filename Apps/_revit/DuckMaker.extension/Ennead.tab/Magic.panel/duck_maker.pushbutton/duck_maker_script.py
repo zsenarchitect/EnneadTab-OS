@@ -33,7 +33,7 @@ def create_new_button():
     if not os.path.exists(target_folder):
         os.makedirs(target_folder)
 
-    template_folder = "{}\\NAME_OF_THE_BUTTON.pushbutton".format(os.path.dirname(__file__))
+    template_folder = "{}\\NAME_OF_THE_BUTTON.BUTTONEXTENSION".format(os.path.dirname(__file__))
     
     for file in os.listdir(template_folder):
         # print(os.path.join(template_folder, file))

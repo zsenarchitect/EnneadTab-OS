@@ -16,7 +16,8 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE, FOLDER
+proDUCKtion.validify()
+from EnneadTab import ERROR_HANDLE, FOLDER, LOG, DATA_FILE
 from EnneadTab.REVIT import REVIT_UNIT
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
@@ -190,7 +191,8 @@ def map_block():
 
         place_new_instance(block_name, transform, rotation_tuple, reflection)
 
-    
+   
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     t = DB.Transaction(doc, "map blocks")

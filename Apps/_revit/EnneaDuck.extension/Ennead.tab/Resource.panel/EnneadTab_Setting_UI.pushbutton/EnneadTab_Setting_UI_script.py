@@ -26,8 +26,8 @@ import traceback
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER, IMAGE, LOG
-from EnneadTab.FUN import EnneaDuck
+from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER, IMAGE, LOG, DUCK
+
 
 from pyrevit import script, forms
 from pyrevit.coreutils import ribbon
@@ -254,7 +254,7 @@ class MainSetting(forms.WPFWindow):
 
     @ERROR_HANDLE.try_catch_error()
     def send_duck_click(self, sender, args):
-        EnneaDuck.quack()
+        DUCK.quack()
  
 
     @ERROR_HANDLE.try_catch_error()

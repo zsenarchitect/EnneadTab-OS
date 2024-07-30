@@ -23,6 +23,8 @@ def update_pyrevit():
 
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
+    if doc.IsFamilyDocument:
+        return
     remove_last_sync_data_file(doc)
     update_pyrevit()
     VERSION_CONTROL.update_EA_dist()

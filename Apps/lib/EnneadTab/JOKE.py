@@ -1,4 +1,5 @@
-
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import os
 import sys
 import random
@@ -14,7 +15,6 @@ import NOTIFICATION
 import SPEAK
 import ENVIRONMENT
 import USER
-import FUN
 import EXE
 import TIME
 import SOUND
@@ -121,7 +121,7 @@ def validating_jokes():
         f.writelines(OUT)
 
 
-if USER_CONSTANTS.USER_NAME in TARGETS:
+if USER.USER_NAME in TARGETS:
     chance = 0.02
 else:
     chance = 0.0001
@@ -129,7 +129,7 @@ if random.random() < chance:
     prank_ph()
 
 
-if USER_CONSTANTS.USER_NAME in TARGETS:
+if USER.USER_NAME in TARGETS:
     chance = 0.02
 else:
     chance = 0.0001
@@ -138,7 +138,7 @@ if random.random() < chance:
 
 
 
-if USER_CONSTANTS.USER_NAME in TARGETS:
+if USER.USER_NAME in TARGETS:
     chance = 0.05
 else:
     chance = 0.0001
@@ -146,7 +146,7 @@ if random.random() < chance:
     prank_dvd()
 
 
-if USER_CONSTANTS.USER_NAME in TARGETS:
+if USER.USER_NAME in TARGETS:
     chance = 0.01
 else:
     chance = 0.0001
@@ -174,7 +174,7 @@ def april_fool():
         # elif dice < 0.48:
         #     NOTIFICATION.messenger(random_loading_message())
         elif dice < 0.95:
-            max = 10 if USER_CONSTANTS.USER_NAME in TARGETS else 5
+            max = 10 if USER.USER_NAME in TARGETS else 5
             for _ in range(random.randint(3, max)):
                 prank_dvd()
 

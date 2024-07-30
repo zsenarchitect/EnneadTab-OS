@@ -33,12 +33,9 @@ def make_3D_views_for_warning_cleaning():
 
     try:
         view.LookupParameter("Views_$Group").Set("Ennead")
-        view.LookupParameter("Views_$Series").Set("Fix Errors  (°⌓°)")
-
-        
+        view.LookupParameter("Views_$Series").Set("Fix Errors  (°⌓°)")        
     except:
-
-        ERROR_HANDLE.print_note( traceback.format_exc())
+        pass
 
     t.Commit()
 

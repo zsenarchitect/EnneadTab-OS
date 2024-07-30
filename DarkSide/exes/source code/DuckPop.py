@@ -229,7 +229,7 @@ class DuckPopApp:
 @_Exe_Util.try_catch_error
 def pop_message():
 
-    data = _Exe_Util.read_json_as_dict_in_dump_folder(JSON_FILE)
+    data = _Exe_Util.get_data(JSON_FILE)
     if not data:
         return
     if "main_text" not in data.keys():

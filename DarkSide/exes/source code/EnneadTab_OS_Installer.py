@@ -80,12 +80,12 @@ class RepositoryUpdater:
             try:
                 shutil.copy2(src_path, tgt_path)
             except:
-                # often OS_installer exe will fail to override becasue it is popular to run
+                # often OS_installer exe will fail to override becasue it is still runing by pther process.
                 pass
             
-        # Delete files older than 1 day
+        # Delete files older than 2 day
         now = time.time()
-        file_age_threshold = now - 1 * 24 * 60 * 60
+        file_age_threshold = now - 2 * 24 * 60 * 60
         for dp, dn, filenames in os.walk(self.final_dir):
             for f in filenames:
                 file_path = os.path.join(dp, f)

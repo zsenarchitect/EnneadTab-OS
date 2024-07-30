@@ -11,18 +11,13 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab.REVIT import REVIT_APPLICATION
+from EnneadTab.REVIT import REVIT_APPLICATION, LOG
 from EnneadTab import NOTIFICATION, ERROR_HANDLE, EXCEL
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
         
-def OLD_get_titleblock_id():
-    all_ids = DB.FilteredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_TitleBlocks).WhereElementIsElementType().ToElements()
-    return filter(lambda x: x.Family.Name == "Consaultant Sheet Placeholder", list(all_ids))[0].Id
-
-
 
 
 def is_new_sheet_number_ok(new_sheet_numbers):       
@@ -40,7 +35,7 @@ def is_new_sheet_number_ok(new_sheet_numbers):
     return True
     
 
-     
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def excel_sheet_creator():
     excel_path = forms.pick_excel_file(title="Where is the excel thjat has the new sheet data?")   

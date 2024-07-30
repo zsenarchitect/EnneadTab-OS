@@ -5,11 +5,11 @@ from shutil import copy
 import os
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, LOG
 __title__ = 'Collect\nTextures'
 __doc__ = 'Choose a new destination for texture images. Then Collect Textures copies all material texture images to this new location, and updates texture image path.\n'
 
-
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     materials = get_materials()

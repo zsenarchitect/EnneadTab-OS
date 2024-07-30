@@ -14,7 +14,7 @@ from pyrevit import script #
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import DATA_FILE, ERROR_HANDLE
+from EnneadTab import DATA_FILE, ERROR_HANDLE, LOG
 import System
 from pyrevit.revit import ErrorSwallower
 from Autodesk.Revit import DB # pyright: ignore 
@@ -130,11 +130,18 @@ class Solution:
 
 def open_doc_silently(doc_names):
     Solution().main(doc_names)
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    Solution().main()
+    
 ################## main code below #####################
 output = script.get_output()
 output.close_others()
 
 
 if __name__ == "__main__":
-    Solution().main()
-    
+    main()
+

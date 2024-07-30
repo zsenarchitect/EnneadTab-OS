@@ -15,12 +15,17 @@ from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
-from EnneadTab import ENVIRONMENT, MODULE_HELPER
+from EnneadTab import ENVIRONMENT, MODULE_HELPER, LOG
 
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
 
+
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def ChatGPT():
     
     module_path = "{}\\Utility.panel\\exe_2.stack\\chatGPT.pushbutton\\chatGPT_script.py".format(ENVIRONMENT.REVIT_PRIMARY_TAB)

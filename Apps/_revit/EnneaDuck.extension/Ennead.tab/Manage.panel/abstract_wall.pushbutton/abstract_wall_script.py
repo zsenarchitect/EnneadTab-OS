@@ -409,7 +409,7 @@ class Solution:
 if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
-    if __shiftclick__:
+    if __shiftclick__: #pyright:ignore
         abstract_wall(current_only=False)
     else:
         abstract_wall(current_only=True)

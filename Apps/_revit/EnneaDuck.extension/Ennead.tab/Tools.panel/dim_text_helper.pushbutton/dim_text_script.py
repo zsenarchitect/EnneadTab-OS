@@ -17,7 +17,7 @@ from pyrevit import script #
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import IMAGE, ERROR_HANDLE
+from EnneadTab import IMAGE, ERROR_HANDLE, LOG
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 
@@ -285,18 +285,23 @@ class _CustomHandler(UI.IExternalEventHandler):
 
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()    
+def main():
+    dim_text_ModelessForm()
+
 ################## main code below #####################
 output = script.get_output()
 output.close_others()
 
 
 if __name__ == "__main__":
-    
-    try:
-        modeless_form = dim_text_ModelessForm()
-        
-    except:
-        print (traceback.format_exc())
+    main()
+
+
+
+
 
 
 

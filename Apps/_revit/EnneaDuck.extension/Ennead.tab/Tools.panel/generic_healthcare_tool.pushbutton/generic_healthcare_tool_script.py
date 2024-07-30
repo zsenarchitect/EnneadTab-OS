@@ -13,12 +13,16 @@ from pyrevit import script #
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import USER, ERROR_HANDLE
+from EnneadTab import USER, ERROR_HANDLE, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
             
+
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def generic_healthcare_tool(doc, show_log):
     if not USER.IS_DEVELOPER:

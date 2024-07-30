@@ -84,7 +84,7 @@ class SimpleEventHandler(IExternalEventHandler):
 
 
 # A simple WPF form used to call the ExternalEvent
-class ExternalLinks_UI(forms.WPFWindow):
+class AssistantUI(forms.WPFWindow):
     """
     Simple modeless form sample
     """
@@ -281,11 +281,10 @@ class ExternalLinks_UI(forms.WPFWindow):
         sender.DragMove()
 
 
-
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
-
-    modeless_form = ExternalLinks_UI()
+    AssistantUI()
 
 
 ################## main code below #####################

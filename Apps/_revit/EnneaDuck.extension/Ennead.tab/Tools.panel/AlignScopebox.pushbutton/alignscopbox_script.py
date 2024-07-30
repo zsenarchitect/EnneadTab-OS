@@ -6,7 +6,7 @@ import math
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, LOG
 
 __doc__ = 'Need at leat one model line as refference, and one scopebox to play with. Becasue the initial oriteation of the scopebox can be unpredicatable so i cannot ganrantee it finish in one go, but by large it can find the angle within 3 clicks.'
 __tip__ = True
@@ -90,6 +90,10 @@ def update_display_text(scopeboxs):
     else:
         return  "Not all scopeboxs are ready.\nPlease try oritent option continously."
 
+
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     selection = list(revit.get_selection())

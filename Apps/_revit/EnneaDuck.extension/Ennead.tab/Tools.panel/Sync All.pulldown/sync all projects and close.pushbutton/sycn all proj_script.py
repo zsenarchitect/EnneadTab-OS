@@ -6,12 +6,16 @@ __tip__ = True
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, LOG
 from pyrevit import script
 
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
+
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     REVIT_APPLICATION.sync_and_close()

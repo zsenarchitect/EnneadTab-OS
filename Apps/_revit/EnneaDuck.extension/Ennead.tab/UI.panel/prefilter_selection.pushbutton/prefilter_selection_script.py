@@ -24,7 +24,7 @@ import proDUCKtion # pyright: ignore
 proDUCKtion.validify()
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import NOTIFICATION, ERROR_HANDLE
+from EnneadTab import NOTIFICATION, ERROR_HANDLE, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -103,7 +103,8 @@ class PrefilterUI(REVIT_FORMS.EnneadTabModelessForm):
         for item in self.get_filter_toggle_bt():
             item.IsEnabled = self._toggle_bt_enabled.IsChecked
 
-            
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def prefilter_selection():
 

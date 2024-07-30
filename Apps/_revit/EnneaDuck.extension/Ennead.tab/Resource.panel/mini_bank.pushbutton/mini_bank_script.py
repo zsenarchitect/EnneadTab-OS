@@ -15,7 +15,7 @@ from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
-from EnneadTab import ERROR_HANDLE, SOUND, NOTIFICATION
+from EnneadTab import ERROR_HANDLE, SOUND, NOTIFICATION, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION
 import traceback
 
@@ -30,7 +30,7 @@ __persistentengine__ = True
 
 
 # A simple WPF form used to call the ExternalEvent
-class mini_bank_ModelessForm(WPFWindow):
+class MiniBank(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -45,7 +45,7 @@ class mini_bank_ModelessForm(WPFWindow):
     def __init__(self):
         self.pre_actions()
 
-        xaml_file_name = "mini_bank_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "MiniBank.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab MiniBank"
@@ -122,15 +122,16 @@ class mini_bank_ModelessForm(WPFWindow):
 
 
 
+    
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    MiniBank()
 ################## main code below #####################
 output = script.get_output()
 output.close_others()
 
 
 if __name__ == "__main__":
-    
-    try:
-        modeless_form = mini_bank_ModelessForm()
-        
-    except:
-        print (traceback.format_exc())
+    main()

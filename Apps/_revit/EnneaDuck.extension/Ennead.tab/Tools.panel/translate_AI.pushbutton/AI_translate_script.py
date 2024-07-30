@@ -24,7 +24,7 @@ import difflib
 
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
-from EnneadTab import ERROR_HANDLE, EXE, IMAGE, ENVIRONMENT, NOTIFICATION, DATA_FILE, FOLDER, SOUND
+from EnneadTab import ERROR_HANDLE, EXE, IMAGE, ENVIRONMENT, NOTIFICATION, DATA_FILE, FOLDER, SOUND, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_FORMS
 
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -33,26 +33,6 @@ __persistentengine__ = True
 
 
 
-
-def OLD_clock_work(window):
-    current_text = window.debug_textbox.Text
-    max_wait = 20
-    wait = 0
-    while True:
-        if wait > max_wait:
-            break
-        wait += 1
-        deco = "." * (wait % 5)
-        #print deco
-        if not window.simple_event_handler.OUT:
-            window.debug_textbox.Text = current_text + "\n\nThinking{}".format(deco)
-
-        else:
-            window.debug_textbox.Text = window.simple_event_handler.OUT
-            break
-        time.sleep(1)
-
-    window.simple_event_handler.OUT = None
 
 
 def translate_contents(data, para_name):
@@ -790,6 +770,12 @@ def run_exe():
 
 
 
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    AI_translate_ModelessForm()
+    
+
 
 ################## main code below #####################
 output = script.get_output()
@@ -797,7 +783,6 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    
+    main()
 
-    modeless_form = AI_translate_ModelessForm()
-    
+

@@ -26,7 +26,7 @@ import traceback
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER, IMAGE
+from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER, IMAGE, LOG
 from EnneadTab.FUN import EnneaDuck
 
 from pyrevit import script, forms
@@ -139,7 +139,7 @@ class SimpleEventHandler(IExternalEventHandler):
 
 
 # A simple WPF form used to call the ExternalEvent
-class main_setting_UI(forms.WPFWindow):
+class MainSetting(forms.WPFWindow):
     """
     Simple modeless form sample
     """
@@ -346,10 +346,10 @@ class main_setting_UI(forms.WPFWindow):
 
 
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
-
-    modeless_form = main_setting_UI()
+    MainSetting()
 
 
 ################## main code below #####################

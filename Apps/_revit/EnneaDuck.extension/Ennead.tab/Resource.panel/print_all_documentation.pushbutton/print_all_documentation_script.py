@@ -13,12 +13,15 @@ from pyrevit import script #
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import DOCUMENTATION, ERROR_HANDLE
+from EnneadTab import DOCUMENTATION, ERROR_HANDLE, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
-            
+
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def print_all_documentation():
     DOCUMENTATION.print_documentation_book_for_review_revit()

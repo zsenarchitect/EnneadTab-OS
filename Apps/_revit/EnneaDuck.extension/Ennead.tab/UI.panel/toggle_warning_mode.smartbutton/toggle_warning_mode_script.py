@@ -13,7 +13,7 @@ from pyrevit.coreutils.ribbon import ICON_LARGE
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 
-from EnneadTab import ERROR_HANDLE, NOTIFICATION
+from EnneadTab import ERROR_HANDLE, NOTIFICATION, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_VIEW
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
@@ -48,8 +48,8 @@ def show_warnings(sender, args):
 
 
 
-    
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def toggle_warning_mode():
     new_state = not script.get_envvar(KEY_NAME)

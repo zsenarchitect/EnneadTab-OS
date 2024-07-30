@@ -13,8 +13,9 @@ from pyrevit import script
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, LOG
 from Autodesk.Revit import DB # pyright: ignore
 
 # from Autodesk.Revit import UI # pyright: ignore
@@ -23,7 +24,7 @@ doc = REVIT_APPLICATION.get_doc()
 
 from EnneadTab.REVIT import REVIT_FORMS
 
-  
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def track_detail_group():
     opts = ["Find detail groups by views",

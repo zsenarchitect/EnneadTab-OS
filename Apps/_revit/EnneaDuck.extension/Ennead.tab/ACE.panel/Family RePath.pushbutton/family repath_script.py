@@ -6,8 +6,9 @@ from Autodesk.Revit import DB # pyright: ignore
 from Autodesk.Revit import UI # pyright: ignore
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_UNIT, REVIT_FORMS
-from EnneadTab import OUTPUT, ERROR_HANDLE, NOTIFICATION
+from EnneadTab import OUTPUT, ERROR_HANDLE, NOTIFICATION, LOG
 
 __doc__ = """Find family file path. And remap the path to a folder you picked. In this folder, families will be organised based on their category.
 This will also load the repathed families back to central model.
@@ -186,7 +187,7 @@ class FamilyRePath:
                 #out_family = clr.StrongBox[DB.Family](family)
                 #famDoc.LoadFamily(doc, FamilyOption(), out_family)
                 famDoc.LoadFamily(doc, FamilyOption())
-                REVIT_APPLICATION.set_active_doc_as_new_family()
+                REVIT_APPLICATION.open_safety_doc_family()
                 famDoc.Close(False)
                 #REVIT_APPLICATION.close_docs_by_name([family_name])
                 #doc.LoadFamily(new_file_path)
@@ -269,7 +270,8 @@ class FamilyRePath:
             
         script.get_output().self_destruct(1000)
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def main():
     family_repath = FamilyRePath()
     if family_repath.is_failed_init:

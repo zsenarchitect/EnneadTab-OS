@@ -17,13 +17,17 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_HISTORY
-from EnneadTab import ENVIRONMENT, OUTPUT, NOTIFICATION, ERROR_HANDLE
+from EnneadTab import ENVIRONMENT, OUTPUT, NOTIFICATION, ERROR_HANDLE, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
             
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def display_warning_history(using_current = True):
 
@@ -79,7 +83,7 @@ def hint_chart_js():
 if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
-    if __shiftclick__:
+    if __shiftclick__: #pyright:ignore
         display_warning_history(using_current=False)
     else:
         display_warning_history()

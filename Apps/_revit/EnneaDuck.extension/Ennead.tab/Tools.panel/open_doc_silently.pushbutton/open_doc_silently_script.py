@@ -12,8 +12,9 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import DATA_FILE, ERROR_HANDLE
+from EnneadTab import DATA_FILE, ERROR_HANDLE, LOG
 import System
 from pyrevit.revit import ErrorSwallower
 from Autodesk.Revit import DB # pyright: ignore 
@@ -81,7 +82,7 @@ class Solution:
         # to-do: replace with ENVIRONEMENT MISC_FOLDER
         filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.sexyDuck"
 
-        self.data = DATA_FILE.read_json_as_dict(filepath)
+        self.data = DATA_FILE.get_data(filepath)
 
         if not doc_names:
             docs_to_process = forms.SelectFromList.show(sorted(self.data),
@@ -129,11 +130,18 @@ class Solution:
 
 def open_doc_silently(doc_names):
     Solution().main(doc_names)
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    Solution().main()
+    
 ################## main code below #####################
 output = script.get_output()
 output.close_others()
 
 
 if __name__ == "__main__":
-    Solution().main()
-    
+    main()
+

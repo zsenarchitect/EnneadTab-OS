@@ -9,8 +9,9 @@ This si especially helpful for team taking long time to open files everyday."""
 
 __tip__ = True
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import EXE, DATA_FILE, USER, ERROR_HANDLE, FOLDER
+from EnneadTab import EXE, DATA_FILE, USER, ERROR_HANDLE, FOLDER, LOG
 from pyrevit import forms, script
 # import datetime
 from datetime import datetime, timedelta
@@ -21,6 +22,10 @@ import time
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
+
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
 
@@ -75,7 +80,7 @@ def main():
     exe = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Exe\SCHEDULE_OPENER_0.2\SCHEDULE_OPENER.EXE"
     EXE.try_open_app(exe)
     
-    if USER.get_user_name() in ["paula.gronda"]:
+    if USER.USERNAME in ["paula.gronda"]:
         auto_clicker_exe = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Exe\GENERAL_AUTO_CLICKER\GENERAL_AUTO_CLICKER.exe"
         EXE.try_open_app(auto_clicker_exe)
     

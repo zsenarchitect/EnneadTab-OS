@@ -3,7 +3,8 @@ from datetime import date
 import random
 
 from Autodesk.Revit import DB # pyright: ignore
-
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE, EMAIL, NOTIFICATION, USER, FOLDER, DATA_FILE, ENVIRONMENT, SOUND
 from EnneadTab.REVIT import REVIT_HISTORY, REVIT_EXTERNAL_FILE, REVIT_FORMS, REVIT_SYNC
 from pyrevit import forms, script
@@ -86,7 +87,7 @@ def pop_up_window(doc):
             EMAIL.email(receiver_email_list=["gayatri.desai@ennead.com"],
                                 subject="Help!!!!!!",
                                 body="I need new pair of glass becasue I cannot see very well.\n\nThere are imported CAD in the file, I have been warned for {} days but I cannot see the message well. Do you know some good optometrists?\n\nBest,\n{}".format(day_delta,
-                                                                                                                                                                                                                                                                 USER.get_user_name()))
+                                                                                                                                                                                                                                                                 USER.USERNAME))
     else:
         remove_ignorance(doc,
                         warning_cate="WARNING_IGNORANCE_IMPORT_CAD_RECORD")
@@ -303,7 +304,7 @@ def check_if_keynote_file_pointing_to_library(doc):
                 EMAIL.email(receiver_email_list=["gayatri.desai@ennead.com"],
                                     subject="Help!!!!!!",
                                     body="I need new pair of glass becasue I cannot see very well.\n\nThe keynote file is pointing to the shared L drive location, I have been warned for {} days but I cannot see the message well. Do you know some good optometrists?\n\nBest,\n{}".format(day_delta,
-                                                                                                                                                                                                                                                                                              USER.get_user_name()))
+                                                                                                                                                                                                                                                                                              USER.USERNAME))
 
         
     # if knote_table.RefersToExternalResourceReferences():
@@ -320,7 +321,7 @@ def warn_ignorance(doc, warning_cate):
     ignore_list = ["gayatri.desai",
                    "achi",
                    "scott.mackenzie"]
-    if USER.get_user_name() in ignore_list:
+    if USER.USERNAME in ignore_list:
         return 0
     
     
@@ -329,18 +330,18 @@ def warn_ignorance(doc, warning_cate):
     if not os.path.exists(record_file):
         record = dict()
     else:
-        record = DATA_FILE.read_json_as_dict_in_shared_dump_folder(record_file, create_if_not_exist=True)
+        record = DATA_FILE.get_data_in_shared_dump_folder(record_file, create_if_not_exist=True)
     
     import time
     if len(record.keys()) == 0:
         record[0] = {"timestamp":time.time(),
-                    "user":USER.get_user_name()}
+                    "user":USER.USERNAME}
         DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
         return
     
     this_record_index = len(record.keys())
     record[this_record_index] = {"timestamp":time.time(),
-                                "user":USER.get_user_name()}
+                                "user":USER.USERNAME}
     DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
     
     day_delta = (time.time() - record["0"].get("timestamp"))/86400 # there is 86400 secons in one day

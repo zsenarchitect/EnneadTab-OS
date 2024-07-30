@@ -8,14 +8,16 @@ __doc__ = "Pick category and type for the dwg export. It will isolate elements b
 __title__ = "Isolated Export\nBy System Family Type"
 __tip__ = True
 __youtube__ = "https://youtu.be/o_cnp-BvnHw"
+import os
 from pyrevit import forms #
 from pyrevit import script #
 # from pyrevit import revit #
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import DATA_FILE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
+from EnneadTab import DATA_FILE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE, LOG, FOLDER
 import time
 
 from Autodesk.Revit import DB # pyright: ignore 
@@ -342,7 +344,9 @@ def export_dwg_action(file_name, view_or_sheet, doc, output_folder, additional_m
         
         
     print ("preparing [{}].dwg".format(file_name))
-    EA_UTILITY.remove_exisitng_file_in_folder(output_folder, file_name + ".dwg")
+    _path = os.path.join(output_folder, file_name + ".dwg")
+    if os.path.exists(_path):
+        os.remove(_path)
     
     view_as_collection = DATA_CONVERSION.list_to_system_list([view_or_sheet.Id])
     max_attempt = 10
@@ -362,25 +366,25 @@ def export_dwg_action(file_name, view_or_sheet, doc, output_folder, additional_m
             if  "The files already exist!" in e:
                 file_name = file_name + "_same name"
                 #new_name = print_manager.PrintToFileName = r"{}\{}.pdf".format(output_folder, file_name)
-                output.print_md("------**There is a file existing with same name, will attempt to save as {}**".format(new_name))
+                output.print_md("------**There is a file existing with same name, will attempt to save as {}**".format(file_name))
 
             else:
                 if "no views/sheets selected" in e:
                     print (e)
-                    print ("000000000")
+               
                     has_non_print_sheet = True
                 else:
-
                     print (e)
 
     time_end = time.time()
     additional_msg = "exporting DWG takes {}s".format( time_end - time_start)
     print( additional_msg)
-    EA_UTILITY.remove_exisitng_file_in_folder(output_folder, file_name + ".pcp")
+    _path = os.path.join(output_folder, file_name + ".pcp")
+    if os.path.exists(_path):
+        os.remove(_path)
 
-    EA_UTILITY.show_toast(app_name = "EnneadTab Type Exporter",
-                            title = "[{}.dwg] saved.".format(file_name),
-                            message = additional_msg)
+
+    NOTIFICATION.messenger("[{}.dwg] saved.".format(file_name) + additional_msg)
 
 
 def get_elements_by_OST(OST):
@@ -399,7 +403,7 @@ def get_elements_by_OST(OST):
     print ("totally found {} items".format(len(all_els)))
     return all_els
 
-
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     if any([doc.ActiveView.IsInTemporaryViewMode (DB.TemporaryViewMode .RevealHiddenElements),

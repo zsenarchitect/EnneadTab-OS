@@ -29,10 +29,12 @@ from pyrevit import script #
 from pyrevit import HOST_APP
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import EXE, NOTIFICATION, IMAGE, ERROR_HANDLE, FOLDER
+from EnneadTab import EXE, NOTIFICATION, IMAGE, ERROR_HANDLE, FOLDER, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
+import __main__
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
@@ -427,8 +429,11 @@ class dwg_manage_ModelessForm(WPFWindow):
         sender.DragMove()
 
 
-
-
+   
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    dwg_manage_ModelessForm()
 
 
 ################## main code below #####################
@@ -437,10 +442,4 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
-    try:
-
-        modeless_form = dwg_manage_ModelessForm()
-     
-    except:
-        print (traceback.format_exc())
+    main()

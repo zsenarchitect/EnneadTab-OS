@@ -5,7 +5,11 @@ import subprocess
 import time
 import traceback
 import winsound
+import threading
 import sys
+import tkinter as tk
+from tkinter import messagebox
+
 
 OS_REPO_FOLDER = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(OS_REPO_FOLDER + "\\Apps\\lib\\EnneadTab")
@@ -15,6 +19,7 @@ import NOTIFICATION  # pyright: ignore
 import FOLDER  # pyright: ignore
 import SOUND  # pyright: ignore
 import VERSION_CONTROL  # pyright: ignore
+import ENVIRONMENT  # pyright: ignore
 
 class NoGoodSetupException(Exception):
     def __init__(self):
@@ -22,7 +27,7 @@ class NoGoodSetupException(Exception):
 
 # Specify the absolute path to the git executable
 locations = [
-    "{}\\Local\\Programs\\Git\\cmd\\git.exe".format(FOLDER.get_appdata_folder()),
+    "{}\\Local\\Programs\\Git\\cmd\\git.exe".format(ENVIRONMENT.USER_APPDATA_FOLDER),
     "C:\\Program Files\\Git\\cmd\\git.exe"
 ]
 for location in locations:
@@ -43,7 +48,7 @@ def time_it(func):
         reset_color = "\033[0m"
 
         # Print the formatted message with color
-        print("{}Publish took {:.1f} seconds to complete.{}".format(blue_text, elapsed_time, reset_color))
+        print("\n\n{}Publish took {:.1f} seconds to complete.{}\n\n".format(blue_text, elapsed_time, reset_color))
         NOTIFICATION.duck_pop("Publish took {:.1f} seconds to complete.".format(elapsed_time))
         SOUND.play_sound("sound_effect_spring")
 
@@ -198,33 +203,68 @@ def reset_and_force_push(repository_path):
         print(traceback.format_exc())
         raise e
 
+def copy_to_standalone_collection():
+    print_title("\n\nBegin updating stand alone exe...\n")
+    exe_product_folder = os.path.join(OS_REPO_FOLDER, "Apps", "lib", "ExeProducts")
+    stand_alone_folder = "L:\\4b_Applied Computing\\EnneadTab-DB\\Stand Alone Tools"
 
+    good_list = [
+        "IndesignAccOpenner.exe",
+        "AccFileOpenner.exe",
+        "Pdf2OrderedJpgs.exe",
+        "AvdResourceMonitor.exe"
+    ]
+
+    for i, exe in enumerate([f for f in os.listdir(exe_product_folder) if f in good_list]):
+        src_path = os.path.join(exe_product_folder, exe)
+        dest_path = os.path.join(stand_alone_folder, exe)
+        
+        print("Copying {}/{} [{}] to standalone collection".format(i + 1, len(good_list), exe))
+        
+        try:
+            if not os.path.exists(dest_path) or os.path.getmtime(src_path) > os.path.getmtime(dest_path):
+                shutil.copy(src_path, dest_path)
+                print("Successfully copied {} to standalone collection".format(exe))
+            else:
+                print("Skipped copying {} as it is up to date".format(exe))
+        except Exception as e:
+            print("Failed to copy {} to standalone collection: {}".format(exe, e))
+
+    
 def update_installer_folder_exes():
-    # locate the EA_Dist repo folder and current repo folder
-    # the current repo folder is 3 parent folder up
 
+    print_title("\n\nBegin updating installation folder for public easy install...")
     installation_folder = os.path.join(OS_REPO_FOLDER, "Installation")
     for file in os.listdir(installation_folder):
         if file.endswith(".exe"):
             os.remove(os.path.join(installation_folder, file))
 
-    # copy folder from current repo to EA_dist repo
-    for file in ["EnneadTab_OS_Installer.exe",
-                 "EnneadTab_For_Revit(Legacy)_Installer.exe",
-                 "EnneadTab_For_Revit_UnInstaller.exe",
-                 "RevitIniDeployer.exe"]:
+    # copy folder from deep product folder to easy installation folder
+    app_list = [
+        "EnneadTab_OS_Installer.exe",
+        "EnneadTab_For_Revit(Legacy)_Installer.exe",
+        "EnneadTab_For_Revit_UnInstaller.exe",
+        "RevitIniDeployer.exe",
+        "AccFileOpenner.exe"
+                 ]
+    for i, file in enumerate(app_list):
+        print("Copying {}/{} [{}] to EA_dist installer folder".format(i+1,
+                                                                    len(app_list),
+                                                                    file))
         shutil.copy(os.path.join(OS_REPO_FOLDER, "Apps", "lib", "ExeProducts", file),
                     os.path.join(OS_REPO_FOLDER, "Installation", file))
 
 @time_it
 def publish_duck():
-    if manual_confirm_should_compile_exe():
+
+
+    if CompileConfirmation().get_result():
         print_title("\n\nBegin compiling all exes...")
         NOTIFICATION.messenger("Recompiling all exes...kill VScode if you want to cancel..")
         update_exes()
     else:
         NOTIFICATION.messenger("NOT compiling exes today...")
-    print_title("\n\nBegin updating installation folder for public easy install...")
+    
     update_installer_folder_exes()
 
     # recompile the rui layout for rhino
@@ -238,10 +278,61 @@ def publish_duck():
     copy_to_EA_Dist_and_commit()
     VERSION_CONTROL.update_EA_dist()
 
-def manual_confirm_should_compile_exe():
-    """manua change date to see if I should recompile exe
-    so each recompile is more intentional"""
-    return str(datetime.date.today()) == "2024-07-109"
+    
+    thread = threading.Thread(target=copy_to_standalone_collection)
+    thread.start()
+
+
+class CompileConfirmation:
+    def __init__(self):
+        self.should_compile = False
+
+    def get_result(self):
+        """Show GUI to confirm if the user wants to compile the exe today."""
+        self.root = tk.Tk()
+        self.root.title("Compile Confirmation")
+        
+        # Center the window on the screen
+        window_width = 400
+        window_height = 200
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        position_top = int(screen_height / 2 - window_height / 2)
+        position_right = int(screen_width / 2 - window_width / 2)
+        self.root.geometry(f'{window_width}x{window_height}+{position_right}+{position_top}')
+
+        self.label = tk.Label(self.root, text="", font=('Helvetica', 16))
+        self.label.pack(pady=20)
+        
+        button_yes = tk.Button(self.root, text="Yes", font=('Helvetica', 16), command=self.on_yes)
+        button_yes.pack(side="left", padx=20, pady=20)
+        
+        button_no = tk.Button(self.root, text="No", font=('Helvetica', 16), command=self.on_no)
+        button_no.pack(side="right", padx=20, pady=20)
+        
+        self.countdown(15)
+        self.root.mainloop()
+        
+        return self.should_compile
+
+    def countdown(self, count):
+        if count > 0:
+            note = "default as Yes" if self.should_compile else "default as No"
+            self.label['text'] = f"Do you want to compile the exe today?\n{note}\nTime remaining: {count} seconds"
+            self.root.after(1000, self.countdown, count-1)
+        else:
+            self.root.quit()
+            self.root.destroy()
+
+    def on_yes(self):
+        self.should_compile = True
+        self.root.quit()
+        self.root.destroy()
+
+    def on_no(self):
+        self.should_compile = False
+        self.root.quit()
+        self.root.destroy()
 
 def print_title(text):
     # ANSI escape code for larger text

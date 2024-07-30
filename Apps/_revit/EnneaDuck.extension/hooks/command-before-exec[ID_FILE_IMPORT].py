@@ -1,6 +1,7 @@
 
 from pyrevit import  EXEC_PARAMS, script
-
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import NOTIFICATION, ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_FORMS
 from Autodesk.Revit import DB # pyright: ignore

@@ -71,8 +71,8 @@ def map_block_transform():
     blocks = rs.GetObjects(message = "pick blocks", custom_filter = rs.filter.instance)
     data = [get_data(x) for x in blocks]
     rs.EnableRedraw(False)
-    filepath = FOLDER.get_EA_local_dump_folder() + "\map_block_transform.txt"
-    DATA_FILE.save_list_to_txt(data, filepath)
+    filepath = NOTIFICATION.DUMP_FOLDER + "\map_block_transform.txt"
+    DATA_FILE.set_list(data, filepath)
     NOTIFICATION.messenger(main_text = "map ready!")
 
 

@@ -3,6 +3,9 @@ from Autodesk.Revit import DB # pyright: ignore
 doc = EXEC_PARAMS.event_args.Document
 from pyrevit.coreutils import envvars
 
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import VERSION_CONTROL, ERROR_HANDLE, LOG
 from EnneadTab.REVIT import REVIT_SELECTION
 

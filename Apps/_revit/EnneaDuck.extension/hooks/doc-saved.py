@@ -1,6 +1,7 @@
 
 from pyrevit import EXEC_PARAMS
-
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_SYNC
 

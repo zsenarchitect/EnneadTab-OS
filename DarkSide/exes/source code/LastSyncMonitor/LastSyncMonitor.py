@@ -31,7 +31,7 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
         self.wait_time = int(_Exe_Util.get_setting("textbox_sync_monitor_interval", 45))
     
         
-        self.life_max = 12 * 60 * 60 * 20
+        self.life_max = _GUI_Util.BasePyGameGUI.MAX_LIFE
         self.life_count = self.life_max
 
         self.taskbar_icon = "{}\\images\\icon.png".format(self.content_folder)
@@ -43,7 +43,7 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
 
 
     def display_record(self):
-        record = _Exe_Util.read_json_as_dict_in_dump_folder("Last_Sync_Record.sexyDuck")
+        record = _Exe_Util.get_data("Last_Sync_Record.sexyDuck")
            
         now = time.time()
         records = sorted(record.items(), key=lambda x: now - x[1])
@@ -59,9 +59,9 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
         self.draw_text("- Closing file without sync, even when running overtime.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
         self.draw_text("- Saving file locally will reset timer.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
         self.draw_text("- No changes made into the file since last sync.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
-        self.draw_text("- Manually kill a monitor progress from EnneadTab.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
+        self.draw_text("- Manually terminate a monitor progress from EnneadTab.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
         self.draw_text("Footnote *: This interval can be set in your EnneadTab setting.", self.FONT_BODY, self.TEXT_COLOR_FADE)
-        self.draw_text("Footnote**: Unless you have killed the talkie lady:)", self.FONT_BODY, self.TEXT_COLOR_FADE)
+        # self.draw_text("Footnote**: Unless you have disabled the text2speech function.", self.FONT_BODY, self.TEXT_COLOR_FADE)
         self.POINTER_Y += 20
         frame_upper_left_H = self.POINTER_Y
         bad_docs = ""

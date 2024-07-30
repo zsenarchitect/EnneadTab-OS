@@ -23,9 +23,10 @@ from pyrevit.forms import WPFWindow
 # from pyrevit import revit #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS
-from EnneadTab.FUN import JOKES
-from EnneadTab import EXE, DATA_FILE, SOUND, TIME, ERROR_HANDLE, FOLDER, IMAGE
+
+from EnneadTab import EXE, DATA_FILE, SOUND, TIME, ERROR_HANDLE, FOLDER, IMAGE, LOG, JOKE
 import traceback
 
 from Autodesk.Revit import DB # pyright: ignore 
@@ -44,7 +45,7 @@ def get_api_key():
 
 
 
-    data = DATA_FILE.read_json_as_dict(file_path)
+    data = DATA_FILE.get_data(file_path)
     return data["reporter_api_key"]
 
 
@@ -195,7 +196,7 @@ class AI_Report_modelessForm(WPFWindow):
 
 
             if attempt%3 == 0:
-                self.debug_textbox.Text = JOKES.random_loading_message()
+                self.debug_textbox.Text = JOKE.random_loading_message()
             
             time.sleep(1)
             temp_data = DATA_FILE.read_json_file_safely(self.data_file)
@@ -275,7 +276,8 @@ def run_exe():
     EXE.try_open_app('QAQC_REPORT_READER')
 
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def main():
     output = script.get_output()
     output.close_others()

@@ -5,6 +5,7 @@ from pyrevit import forms, DB, UI, script
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_SELECTION
 from EnneadTab import SOUND, ERROR_HANDLE
 
@@ -98,11 +99,9 @@ def pick_family_from_folder():
     return opened_docs
 
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def process_family():
-
-    
-
     open_docs = REVIT_APPLICATION.get_top_revit_docs()
     selected_docs = forms.SelectFromList.show(open_docs,
                                             name_attr = "Title",
@@ -121,7 +120,7 @@ def process_family():
     global LOG
     LOG = []
 
-    will_sync_and_close = EA_UTILITY.do_you_want_to_sync_and_close_after_done()
+    will_sync_and_close = REVIT_APPLICATION.do_you_want_to_sync_and_close_after_done()
 
 
 
@@ -185,6 +184,8 @@ def process_family():
             print("Fail to close family doc becasue: {}".format(e))
     """
 
+    SOUND.play_sound("sound_effect_notification_position.wav")
+
 
 
 def close_family(family_doc):
@@ -202,10 +203,8 @@ def close_family(family_doc):
     if will_close_family:
         uidoc.SaveAndClose()
 
-def main():
-    process_family()
-    # action finished
-    SOUND.play_sound("sound_effect_notification_position.wav")
+
+
 
 ################## main code below #####################
 
@@ -213,4 +212,4 @@ output = script.get_output()
 output.close_others()
 
 if __name__ == "__main__":
-    main()
+    process_family()

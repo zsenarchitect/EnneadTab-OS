@@ -14,15 +14,15 @@ def try_catch_error(func):
             return False
         """
 
-        # EA_UTILITY.print_note ("Wrapper func for EA Log -- Begin:")
+        # ERROR_HANDLE.print_note ("Wrapper func for EA Log -- Begin:")
         try:
             # print "main in wrapper"
             out = func(*args, **kwargs)
-            # EA_UTILITY.print_note ( "Wrapper func for EA Log -- Finish:")
+            # ERROR_HANDLE.print_note ( "Wrapper func for EA Log -- Finish:")
             return out
         except Exception as e:
-            EA_UTILITY.print_note(str(e))
-            EA_UTILITY.print_note(
+            ERROR_HANDLE.print_note(str(e))
+            ERROR_HANDLE.print_note(
                 "Wrapper func for EA Log -- Error: " + str(e))
             update_error_log(traceback.format_exc())
             try:
@@ -134,7 +134,7 @@ def get_absolute_path(file_name):
 
 def get_data_by_name(user_name=get_current_user_name()):
     file_name = get_user_data_file_by_name(user_name)
-    data = DATA_FILE.read_json_as_dict(get_absolute_path(file_name))
+    data = DATA_FILE.get_data(get_absolute_path(file_name))
 
     # uncomment below to find out which file has format issue in json
     # print "\n"
@@ -220,7 +220,7 @@ def update_local_warning(doc):
     data[keyB][central_name] = get_current_warning_dict(doc)
 
     set_data_by_name(user_name, data)
-    # EA_UTILITY.show_toast(title = "Current warning = {}".format(len(list(doc.GetWarnings()))))
+    # NOTIFICATION.messenger(title = "Current warning = {}".format(len(list(doc.GetWarnings()))))
 
 
 @try_catch_error
@@ -379,7 +379,7 @@ def update_account_by_local_warning_diff(doc):
 def is_TTS_killed():
     return not DATA_FILE.get_revit_ui_setting_data(("toggle_bt_is_talkie", True))
     """
-    dump_folder = EA_UTILITY.get_EA_local_dump_folder()
+    dump_folder = FOLDER.get_EA_local_dump_folder()
     file_name = "EA_TALKIE_KILL.kill"
 
     if EA_UTILITY.is_file_exist_in_folder(file_name, dump_folder):
@@ -420,7 +420,7 @@ def get_central_name(doc=None):
 def get_user_root_folder():
     """ wait for the new home in AVD"""
     if not ENVIRONMENT.IS_L_DRIVE_ACCESSIBLE:
-        return FOLDER.get_EA_local_dump_folder()
+        return NOTIFICATION.DUMP_FOLDER
     
     folder = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Users"
     folder = FOLDER.secure_folder(folder)
@@ -428,9 +428,9 @@ def get_user_root_folder():
         res = DATA_FILE.set_data(
             dict(), folder + "\\SH_tester_account.sexyDuck")
         if not res:
-            folder = FOLDER.get_EA_local_dump_folder()
+            folder = NOTIFICATION.DUMP_FOLDER
     except:
-        folder = FOLDER.get_EA_local_dump_folder()
+        folder = NOTIFICATION.DUMP_FOLDER
     finally:
         return folder
 
@@ -524,7 +524,7 @@ def print_leader_board():
 
         if data.has_key("is_TTS_killed"):
             if data["is_TTS_killed"]:
-                add_additional_icon += " :zipper-mouth_face:"
+                add_additional_icon += " :shushing_face:"
 
         if i < 3:
             output.print_md("<***{}***> :money_bag: : **{}** {}: **${}** ".format(
@@ -539,7 +539,7 @@ def print_leader_board():
                     "-" * len(str(i+1)), data["name"], add_additional_icon, data["money"]))
 
     print("Congratulation to everyone!")
-    print("Note: If you are wondering about the zipper mouth icon, those people has decided to mute the talkie lady.")
+    print("Note: If you are wondering about the zipper mouth icon, those people has decided to disable the Text2Speech feature.")
 
     output.print_image(
         r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\Rich_Duck.jpg")
@@ -678,7 +678,7 @@ def update_error_log(error, user_name=get_current_user_name()):
 
 
 def get_data_from_error_log():
-    data = DATA_FILE.read_json_as_dict(
+    data = DATA_FILE.get_data(
         r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Users\Error_Log.sexyDuck")
     return data
 

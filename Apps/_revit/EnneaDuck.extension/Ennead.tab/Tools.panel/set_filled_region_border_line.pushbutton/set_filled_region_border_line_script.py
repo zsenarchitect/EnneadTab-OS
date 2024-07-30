@@ -11,13 +11,19 @@ from pyrevit import script #
 from pyrevit.revit import ErrorSwallower
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_SELECTION
+from EnneadTab import ERROR_HANDLE, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
 uidoc = __revit__.ActiveUIDocument
 
 
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def set_filled_region_border_line():
     selection_ids = uidoc.Selection.GetElementIds ()
     selection = [doc.GetElement(x) for x in selection_ids]

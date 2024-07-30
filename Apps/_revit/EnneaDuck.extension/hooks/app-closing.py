@@ -1,7 +1,8 @@
 #from pyrevit import script
 #from Autodesk.Revit import DB # pyright: ignore
 from Autodesk.Revit import UI # pyright: ignore
-
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ERROR_HANDLE, SOUND
 
 def play_closing_sound():

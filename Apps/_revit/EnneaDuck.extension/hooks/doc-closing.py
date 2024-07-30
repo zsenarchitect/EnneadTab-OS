@@ -1,5 +1,6 @@
 from pyrevit import EXEC_PARAMS
-
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import VERSION_CONTROL, ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_SYNC
 import random
@@ -11,7 +12,7 @@ def remove_last_sync_data_file(doc):
 
 
 
-def update_tab():
+def update_pyrevit():
     # occasionally update the pyrevit. Do it here becasue normally when you close doc you are relaxed and not care if it take too long
     if random.random() > 0.01:
         return
@@ -22,8 +23,10 @@ def update_tab():
 
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
+    if doc.IsFamilyDocument:
+        return
     remove_last_sync_data_file(doc)
-    update_tab()
+    update_pyrevit()
     VERSION_CONTROL.update_EA_dist()
 
 

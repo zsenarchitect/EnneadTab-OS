@@ -13,8 +13,9 @@ from pyrevit.revit import ErrorSwallower
 # from pyrevit import revit #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import DATA_FILE, NOTIFICATION, IMAGE, ERROR_HANDLE, FOLDER, TIME
+from EnneadTab import DATA_FILE, NOTIFICATION, IMAGE, ERROR_HANDLE, FOLDER, TIME, LOG
 
 from Autodesk.Revit import DB # pyright: ignore  
 import clr
@@ -130,7 +131,7 @@ class Rhino2Revit_UI(forms.WPFWindow):
                 self.DWG_convert(item)
 
             time_span = time.time() - start_time
-            NOTIFICATION.messenger(main_text="{} import finished!!\nImport used {}".format(item.display_name, TIME.get_readable_time(time_span))
+            NOTIFICATION.messenger("{} import finished!!\nImport used {}".format(item.display_name, TIME.get_readable_time(time_span)))
         t.Commit()
         tool_time_span = time.time() - tool_start_time
         REVIT_FORMS.notification(main_text="Rhino2Revit Finished.",
@@ -516,13 +517,13 @@ def clean_import_object_style(existing_OSTs):
     # print "\n\nCleaning finish."
 
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     if not doc.IsFamilyDocument:
-        NOTIFICATION.messenger(sub_text="For effective subCategory",
-                                     main_text="Must be in a family environment")
+        NOTIFICATION.messenger("Must be in a family environment\nOtherwise cannot use effective subCategory")
         REVIT_FORMS.notification(main_text="Must be in a family environment for subCategory to be useful.",
-                                                 sub_text="DirectShape is never a good solution, so dont do it in project environment.",
+                                                 sub_text="DirectShape is never a good solution, so don't do it in project environment.",
                                                  window_title="EnneadTab",
                                                  button_name="Close",
                                                  self_destruct=5,

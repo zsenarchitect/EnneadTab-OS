@@ -1,3 +1,5 @@
+# Deploy Revit.ini file for all version of Revit
+## this can work for either standalone computer or AVD image builder
 
 example for what to do when Revit 2026 is released.
 

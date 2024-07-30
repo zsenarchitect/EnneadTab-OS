@@ -18,7 +18,7 @@ flatten = itertools.chain.from_iterable
 graft = itertools.combinations
 
 
-from EnneadTab import NOTIFICATION, SPEAK, DATA_FILE, SOUND
+from EnneadTab import NOTIFICATION, SPEAK, DATA_FILE, SOUND, ENVIRONMENT
 from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_LAYER, RHINO_UI
 
@@ -389,13 +389,13 @@ class Rhino2RevitExporterDialog(Eto.Forms.Dialog[bool]):
 
 
 def get_output_folder():
-    target_main_folder = os.path.join(os.path.expanduser("~"), "Desktop")
+
    
     try:
         doc_name = sc.doc.Name.split(".3dm")[0]
     except:
         doc_name = "Untitled"
-    EA_export_folder = "{}\EnneadTab Export By Layer from [{}]".format(target_main_folder, doc_name)
+    EA_export_folder = "{}\EnneadTab Export By Layer from [{}]".format(ENVIRONMENT.USER_DESKTOP_FOLDER, doc_name)
     if not os.path.exists(EA_export_folder):
         os.makedirs(EA_export_folder)
 

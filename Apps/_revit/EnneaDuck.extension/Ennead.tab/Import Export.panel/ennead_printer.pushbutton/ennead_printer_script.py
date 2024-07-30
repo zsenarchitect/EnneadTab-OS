@@ -5,7 +5,7 @@
 this tool is getting heavy, should consider spliting to smaller files and restrucrure for Exporter 2.0"""
 
 
-__doc__ = "A great helper for your print on deadline. Feastures include:\n  -pdf, dwg, jpg export together\n  -Package export files to subfolders in destination folder by assigned prefix and file type\n  -Prefix for auto numbering\n  -Email result as a link to folder.\n  -Time esitmation, with increasing accuracy the more you export\n  -Identify color setting per parameter on sheet. So you can mix color and BW export together.\n  -Option to sync and close files after exporting done.\n  -Export sheets by revision mark instead of printSet, and allow selective export without desrupting shared printSet.\n  -Export views on sheet seperatedly for dwg.\n  -Export from links or open docs.\n  -Merge pdf after export.\n  -Jokes while exporting."
+__doc__ = "A great helper for your print on deadline. Feastures include:\n  -pdf, dwg, jpg export together\n  -Package export files to subfolders in destination folder by assigned prefix and file type\n  -Prefix for auto numbering\n  -Email result as a link to folder.\n  -Time esitmation, with increasing accuracy the more you export\n  -Identify color setting per parameter on sheet. So you can mix color and BW export together.\n  -Option to sync and close files after exporting done.\n  -Export sheets by revision mark instead of printSet, and allow selective export without desrupting shared printSet.\n  -Export views on sheet seperatedly for dwg.\n  -Export from links or open docs.\n  -Merge pdf after export.\n  -JOKE while exporting."
 __title__ = "Ennead\nExporter"
 __tip__ = True
 # from pyrevit import forms #
@@ -15,9 +15,10 @@ from pyrevit.revit import ErrorSwallower
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab.FUN import JOKES
-from EnneadTab import EXE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, ERROR_HANDLE, FOLDER, IMAGE
+
+from EnneadTab import EXE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, ERROR_HANDLE, FOLDER, IMAGE, USER, EMAIL, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 import traceback
@@ -173,7 +174,7 @@ class EmailData(object):
 
 
         #print self.additional_attachments_list
-        EA_UTILITY.email(sender_email = None,
+        EMAIL.email(sender_email = None,
                         receiver_email_list = self.receiver_list,
                         subject = self.subject,
                         body = self.body,
@@ -212,15 +213,14 @@ class EA_Printer_UI(WPFWindow):
 
 
         # important data setup
-        setting_file = "EA_PRINTER_SETTING.sexyDuck"
-        self.setting_file_path = "{}\{}".format(EA_UTILITY.get_EA_local_dump_folder(), setting_file)
-        self.output_folder = "{}\EnneadTab Exporter".format(EA_UTILITY.get_user_folder())
-        EA_UTILITY.secure_folder(self.output_folder)
+        self.setting_file = "EA_PRINTER_SETTING.sexyDuck"
+        self.output_folder = "{}\EnneadTab Exporter".format(ENVIRONMENT.DUMP_FOLDER)
+        FOLDER.secure_folder(self.output_folder)
         self.record_folder = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exporter_Record".format(ENVIRONMENT.HOSTER_FOLDER)
         try:
             DATA_FILE.set_data(dict(), self.record_folder + "\\SH_Access_test.sexyDuck")
         except:
-            self.record_folder = FOLDER.get_EA_local_dump_folder()
+            self.record_folder = NOTIFICATION.DUMP_FOLDER
 
 
         self.export_queue = []
@@ -278,8 +278,8 @@ class EA_Printer_UI(WPFWindow):
         self.textbox_combined_pdf_name.Text = "{}_{}_Combined".format(date.today(), doc.Title)
         self.email_sender.Text = "{}@ennead.com".format(os.environ["USERPROFILE"].split("sers\\")[1])
 
-        if not EA_UTILITY.is_file_exist_in_folder(setting_file, EA_UTILITY.get_EA_local_dump_folder()):
-            EA_UTILITY.set_data(dict(), self.setting_file_path)
+        if not os.path.exists(self.setting_file):
+            DATA_FILE.set_data(dict(), self.setting_file)
 
 
 
@@ -407,7 +407,7 @@ class EA_Printer_UI(WPFWindow):
 
     def save_setting(self):
 
-        current_setting_data = EA_UTILITY.read_json_as_dict(self.setting_file_path)
+        current_setting_data = DATA_FILE.get_data(self.setting_file)
 
 
 
@@ -472,7 +472,7 @@ class EA_Printer_UI(WPFWindow):
 
 
 
-        EA_UTILITY.set_data(out_data, self.setting_file_path)
+        DATA_FILE.set_data(out_data, self.setting_file)
 
     def initiate_default_email_data(self):
         self.email_data = EmailData(receiver_list = self.email_receivers.Text,
@@ -483,11 +483,11 @@ class EA_Printer_UI(WPFWindow):
     @ERROR_HANDLE.try_catch_error()
     def load_setting(self):
         try:
-            data = EA_UTILITY.read_json_as_dict(self.setting_file_path)
+            data = DATA_FILE.get_data(self.setting_file)
         except:
             #REVIT_FORMS.notification(main_text = "Creating setting file for first-time user. ", sub_text = "Open exporter tool again to start exporting!", self_destruct = 15)
             data = dict()
-            EA_UTILITY.set_data(data, self.setting_file_path)
+            DATA_FILE.set_data(data, self.setting_file)
 
 
 
@@ -625,7 +625,7 @@ class EA_Printer_UI(WPFWindow):
 
     @staticmethod
     def central_doc_name(doc):
-        return doc.Title.replace("_{}".format(EA_UTILITY.get_user_name()), "")
+        return doc.Title.replace("_{}".format(USER.USERNAME,  ""))
 
     def get_id_by_doc(self, doc):
         true_doc_name = self.central_doc_name(doc)
@@ -837,7 +837,7 @@ class EA_Printer_UI(WPFWindow):
         if model_path.CloudPath:
             #cloud_path = DB.ModelPathUtils.ConvertCloudGUIDsToCloudPath(System.Guid(data[1]), System.Guid(data[2]) )
             open_options = DB.OpenOptions()
-            #EA_UTILITY.print_note( "setting active doc as {}".format(data[0]))
+            #ERROR_HANDLE.print_note( "setting active doc as {}".format(data[0]))
             return UI.UIApplication(app).OpenAndActivateDocument (model_path,
                                                                 open_options,
                                                                 False)
@@ -845,7 +845,7 @@ class EA_Printer_UI(WPFWindow):
 
         # this model path  is server path
         open_options = DB.OpenOptions()
-        #EA_UTILITY.print_note( "setting active doc as {}".format(data[0]))
+        #ERROR_HANDLE.print_note( "setting active doc as {}".format(data[0]))
         try:
             return UI.UIApplication(REVIT_APPLICATION.get_app()).OpenAndActivateDocument (model_path,
                                                                                             open_options,
@@ -858,7 +858,7 @@ class EA_Printer_UI(WPFWindow):
         #print "!!!Opening {} in background".format(doc_name)
         model_path = self.doc_model_path_pair[doc_name]
         open_options = DB.OpenOptions()
-        new_doc = EA_UTILITY.get_app().OpenDocumentFile(model_path,
+        new_doc = REVIT_APPLICATION.get_app().OpenDocumentFile(model_path,
                                                                 open_options)
 
         #output.print_md( "background open file {}".format(doc_name))
@@ -887,7 +887,7 @@ class EA_Printer_UI(WPFWindow):
         #depress open hook
         EA_UTILITY.set_open_hook_depressed(is_depressed = True)
         EA_UTILITY.set_doc_change_hook_depressed(is_depressed = True)
-        EA_UTILITY.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
+        ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
 
         time_start = time.time()
         #open background doc that neeed to be opeend
@@ -1064,13 +1064,13 @@ class EA_Printer_UI(WPFWindow):
 
 
         #close daocs opeeedn by API
-        EA_UTILITY.close_docs_by_name(names = [x.Title for x in self.docs_to_be_opened_by_API], close_all = False)
+        REVIT_APPLICATION.close_docs_by_name(names = [x.Title for x in self.docs_to_be_opened_by_API], close_all = False)
 
 
 
 
         EA_UTILITY.set_doc_change_hook_depressed(is_depressed = False)
-        EA_UTILITY.print_note("my doc change hook depress status = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
+        ERROR_HANDLE.print_note("my doc change hook depress status = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
 
         if self.is_copy_folder:
 
@@ -1094,8 +1094,8 @@ class EA_Printer_UI(WPFWindow):
         EXPORT_ACTION.print_time("Print {} sheets".format(len(self.files_exported_for_this_issue)), time_end, time_start, use_minutes = True)
         print ("#"*20)
         self.print_ranked_log()
-        EA_UTILITY.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
-        EA_UTILITY.print_note("###END OF TOOL###")
+        ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
+        ERROR_HANDLE.print_note("###END OF TOOL###")
 
         time_obj = time.localtime()
         localtime = "{}-{}-{}_{}-{}-{}".format(time_obj.tm_year,
@@ -1144,7 +1144,7 @@ class EA_Printer_UI(WPFWindow):
             safety = 0
             while True:
                 safety += 1
-                if EA_UTILITY.is_file_exist_in_folder(self.log_file, self.output_folder):
+                if os.path.exists(self.log_file, self.output_folder):
                     SPEAK.speak("Output log file saved.")
                     break
 
@@ -1268,12 +1268,12 @@ class EA_Printer_UI(WPFWindow):
             # too many top doc
             REVIT_FORMS.dialogue(main_text = "I notice you have other document opened right now in this session.",
                                 sub_text = "In order to avoid version conflicting, EnneadTab Exporter try to export opened docs only, no export from link.\n\nTo export from links, close all other files and only leave one open.")
-            docs = EA_UTILITY.select_top_level_docs(select_multiple = True)
+            docs = REVIT_APPLICATION.select_top_level_docs(select_multiple = True)
 
 
         else:
             # ok, only one top doc
-            docs = EA_UTILITY.select_revit_link_docs(select_multiple = True, including_current_doc = True)
+            docs = REVIT_APPLICATION.select_revit_link_docs(select_multiple = True, including_current_doc = True)
         if not docs:
             docs = [doc]
         self.docs_to_process = docs
@@ -1370,8 +1370,8 @@ class EA_Printer_UI(WPFWindow):
         self.is_printing_interupted = True
 
     def open_log_Clicked(self, sender, args):
-        #print EA_UTILITY.get_filenames_in_folder(self.output_folder)
-        logs = filter(lambda x:x.startswith("EnneadTab Exporter AutoSave Log"), EA_UTILITY.get_filenames_in_folder(self.output_folder))
+        #print os.listdir(self.output_folder)
+        logs = filter(lambda x:x.startswith("EnneadTab Exporter AutoSave Log"), os.listdir(self.output_folder))
         if len(logs) == 0:
             return
 
@@ -1381,12 +1381,12 @@ class EA_Printer_UI(WPFWindow):
             return
 
         file = "{}\{}".format(self.output_folder, sel)
-        EA_UTILITY.try_open_app(file)
+        os.startfile(file)
 
 
     def show_sample_marker_Clicked(self, sender, args):
         filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Published\ENNEAD.extension\lib\MARKER.txt"
-        EXE.try_open_app(filepath)
+        os.startfile(filepath)
         
         
     def generate_issue_Clicked(self, sender, args):
@@ -1464,8 +1464,8 @@ class EA_Printer_UI(WPFWindow):
 
 
     def update_preview_image(self, view_or_sheet):
-        EXPORT_ACTION.export_image(view_or_sheet, "EXPORTER_PREVIEW", EA_UTILITY.get_EA_local_dump_folder(), is_thumbnail = True)
-        self.set_image_source(self.preview_image, EA_UTILITY.get_EA_dump_folder_file("EXPORTER_PREVIEW.jpg"))
+        EXPORT_ACTION.export_image(view_or_sheet, "EXPORTER_PREVIEW", FOLDER.get_EA_local_dump_folder(), is_thumbnail = True)
+        self.set_image_source(self.preview_image, FOLDER.get_EA_dump_folder_file("EXPORTER_PREVIEW.jpg"))
 
 
     def initiate_loading_message(self):
@@ -1474,7 +1474,7 @@ class EA_Printer_UI(WPFWindow):
 
     def update_loading_message(self, preview_obj):
         self.textblock_export_status.Text = "{}\nEstimated time = {}".format( preview_obj.format_name, preview_obj.time_estimate_format)
-        self.textblock_load_screen.Text = JOKES.random_loading_message()
+        self.textblock_load_screen.Text = JOKE.random_loading_message()
     """
     !! store time 3sitmate  dict[(ID, extension)] = time
 
@@ -1495,13 +1495,13 @@ class EA_Printer_UI(WPFWindow):
                     continue
                 self.record["{}#{}".format(item.item.UniqueId, item.extension)] = item.time_estimate
 
-            EA_UTILITY.set_data(self.record, self.get_record_path_by_doc(doc))
+            DATA_FILE.set_data(self.record, self.get_record_path_by_doc(doc))
 
 
     def get_time_estimate_from_record(self, doc):
         record_path = self.get_record_path_by_doc(doc)
-        if EA_UTILITY.is_file_exist_in_folder(self.central_doc_name(doc) + ".sexyDuck", self.record_folder):
-            return EA_UTILITY.read_json_as_dict(record_path)
+        if os.path.exists(os.path.join(self.record_folder, self.central_doc_name(doc) + ".sexyDuck")):
+            return DATA_FILE.get_data(record_path)
         return dict()
 
 
@@ -1520,49 +1520,15 @@ class EA_Printer_UI(WPFWindow):
 
 
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def ennead_printer():
-    """
-    if not EA_UTILITY.IS_DEVELOPER:
-        REVIT_FORMS.dialogue(main_text = "This tool is under construction, and will be ready in a few weeks.")
-        return
-    """
-    try:
-        EA_UTILITY.show_loading_screen(display_text = "EnneadTab Printer is loading...", time = 2)
-        window = EA_Printer_UI()
-        window.ShowDialog()
+
+    # EA_UTILITY.show_loading_screen(display_text = "EnneadTab Printer is loading...", time = 2)
+    window = EA_Printer_UI()
+    window.ShowDialog()
 
 
-    except:
-        error_file = "{}\error.txt".format(EA_UTILITY.get_user_folder())
-        with open(error_file, "w") as f:
-            f.write(traceback.format_exc())
-        EA_UTILITY.try_open_app(error_file)
-        EA_UTILITY.show_toast(title = "Send the output window to Sen Zhang", message = "Oops..Something is wrong.")
-        output.print_md( "##Print send the below screenshot to Sen Zhang##")
-        print("\n\n\n\n")
-        print (traceback.format_exc())
-        if 'window' in vars():
-            window.Close()
-
-    """
-    t = DB.Transaction(doc, "Link into link doc view for this dummy")
-    t.Start()
-    $$$$$$$$$$$$$$$$$$$
-    t.Commit()
-    """
-"""
-def try_catch_error(func):
-    def wrapper(*args, **kwargs):
-        print("Wrapper func for EA Log -- Begin:")
-        try:
-            # print "main in wrapper"
-            return func(*args, **kwargs)
-        except Exception as e:
-            print(str(e))
-            return "Wrapper func for EA Log -- Error: " + str(e)
-    return wrapper
-"""
 ################## main code below #####################
 output = script.get_output()
 output.close_others()

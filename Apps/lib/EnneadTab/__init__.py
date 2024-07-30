@@ -10,7 +10,7 @@ for module in os.listdir(os.path.dirname(__file__)):
     #print (module)
     if module == '__init__.py':
         continue
-    if module in ["RHINO", "REVIT", "EXE", "FUN", "GIT"]:
+    if module in ["RHINO", "REVIT"]:
         __import__(module, locals(), globals())
         continue
     if module[-3:] != '.py':

@@ -8,8 +8,9 @@ from Autodesk.Revit import DB # pyright: ignore
 from pyrevit import forms
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, LOG
 __title__ = "Create\nWorksets"
 DEFAULT_LIST = ['0_References', 
                 '0_Shared Levels & Grids', 
@@ -31,7 +32,7 @@ __tip__ = True
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
-
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     # # get all existing workset names

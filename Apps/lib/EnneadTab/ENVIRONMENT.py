@@ -64,6 +64,21 @@ for _folder in [ECO_SYS_FOLDER, DUMP_FOLDER]:
             
 
 
+def is_avd():
+    try:
+        import clr
+        clr.AddReference('System')
+        from System.Net import Dns
+
+        computer_name = Dns.GetHostName()
+    except:
+        import socket
+
+        computer_name = socket.gethostname()
+
+
+
+    return "avd" in computer_name.lower()
 
 
 
@@ -144,7 +159,7 @@ def unit_test():
                         print("!!!!!!!!!!!!! not ok: " + item)
                     # assert is_ok
 
-          
+IS_AVD = is_avd()
 IS_RHINO_ENVIRONMENT = is_Rhino_environment()
 IS_GRASSHOPPER_ENVIRONMENT = is_Grasshopper_environment()
 IS_REVIT_ENVIRONMENT = is_Revit_environment()

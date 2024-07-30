@@ -8,24 +8,23 @@ __title__ = "Fire Rating\nGraphic"
 __tip__ = True
 
 import traceback
-import System
+import System # pyright: ignore 
 
-from Autodesk.Revit.UI import IExternalEventHandler, ExternalEvent
-from System import EventHandler, Uri
+from Autodesk.Revit.UI import IExternalEventHandler, ExternalEvent # pyright: ignore 
+from System import EventHandler, Uri # pyright: ignore 
 
 
-from Autodesk.Revit.Exceptions import InvalidOperationException
+from Autodesk.Revit.Exceptions import InvalidOperationException # pyright: ignore 
 from pyrevit.forms import WPFWindow
 from pyrevit.forms import select_views as PYFORM_SELECT_VIEWS
-from pyrevit import script #
-# from pyrevit import _HostApplication
-#from pyrevit import HOST_APP
+from pyrevit import script 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import NOTIFICATION, DATA_CONVERSION, ENVIRONMENT, ERROR_HANDLE, FOLDER, IMAGE
+from EnneadTab import NOTIFICATION, DATA_CONVERSION, ENVIRONMENT, ERROR_HANDLE, FOLDER, IMAGE, LOG
 from Autodesk.Revit import DB # pyright: ignore 
-from Autodesk.Revit import UI # pyright: ignore
+
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
@@ -472,8 +471,11 @@ class fire_rating_ModelessForm(WPFWindow):
 
 
 
-
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    fire_rating_ModelessForm()
+    
 
 ################## main code below #####################
 output = script.get_output()
@@ -481,10 +483,4 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
-    try:
-
-        modeless_form = fire_rating_ModelessForm()
-      
-    except:
-        print (traceback.format_exc())
+    main()

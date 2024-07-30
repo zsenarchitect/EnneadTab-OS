@@ -5,6 +5,7 @@ from pyrevit.coreutils import envvars
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import VERSION_CONTROL, ERROR_HANDLE, LOG
 from EnneadTab.REVIT import REVIT_SELECTION
 

@@ -38,7 +38,9 @@ class BaseApp:
         self.editing_files_text.config(height=10)
         self.editing_files_text.config(height=10)  # Setting fixed height
 
-        self.instructions_label = tk.Label(self.root, text="The file will open automatically after picked/dropped.", bg='#2e2e2e', fg='white', font=('Helvetica', 12), wraplength=800, justify=tk.LEFT)
+        note = "The file will open automatically after picked/dropped."
+        note += "\nAccepting File types of Indesign, Rhino, Word, Excel, PDF, Photoshop, Illustrator"
+        self.instructions_label = tk.Label(self.root, text=note, bg='#2e2e2e', fg='white', font=('Helvetica', 12), wraplength=800, justify=tk.LEFT)
         self.instructions_label.grid(row=2, column=0, columnspan=3, sticky="nw", padx=20, pady=10)
 
         for i in range(3):
@@ -90,9 +92,11 @@ class BaseApp:
         self.dashboard_frame.bind("<Leave>", self.change_cursor_to_arrow)
 
     def change_cursor_to_hand(self, event):
+        return
         event.widget.config(cursor="hand2")
 
     def change_cursor_to_arrow(self, event):
+        return
         event.widget.config(cursor="")
 
     def draw_rounded_rect(self, x1, y1, x2, y2, radius, **kwargs):

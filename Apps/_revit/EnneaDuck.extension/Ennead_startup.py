@@ -21,6 +21,7 @@ if lib_dir not in sys.path:
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab import VERSION_CONTROL, LOG, ERROR_HANDLE
 

@@ -7,6 +7,7 @@ __context__ = "zero-doc"
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab import ERROR_HANDLE, UNIT_TEST, LOG
 

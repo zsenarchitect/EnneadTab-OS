@@ -66,9 +66,17 @@
     "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\_GUI_Util.py;."
    },
    {
+    "optionDest": "datas", 
+    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\_GUI_Base_Util.py;."
+   },
+   {
     "optionDest": "hidden-import", 
     "value": "json"
-   },
+   },   
+   {
+    "optionDest": "hidden-import",
+    "value": "pyautogui"
+    },
    {
     "optionDest": "hidden-import", 
     "value": "pyautogui"

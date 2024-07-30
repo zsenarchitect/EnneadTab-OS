@@ -7,8 +7,9 @@ from pyrevit import script
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_UNIT, REVIT_APPLICATION, REVIT_FORMS
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, LOG
 from EnneadTab import NOTIFICATION 
 #forms.alert( "Work in progress. Coming in the next version")
 from Autodesk.Revit import DB # pyright: ignore
@@ -177,13 +178,19 @@ class Solution:
         t.Commit()
 
 
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    if doc.IsFamilyDocument :
+        NOTIFICATION.messenger("this function is meant to use in project environment not in family environment")
+        return
+    
+    Solution().move_to_origin()
 ################## main code below #####################
 output = script.get_output()
 output.close_others()
 
 
 if __name__ == "__main__":
-    if doc.IsFamilyDocument :
-        NOTIFICATION.messenger("this function is meant to use in project environment not in family environment")
-    else:
-        Solution().move_to_origin()
+    main()
+   

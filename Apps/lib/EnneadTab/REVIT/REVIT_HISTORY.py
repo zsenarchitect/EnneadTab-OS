@@ -26,14 +26,14 @@ def name_fix(name):
 
 def append_data(file,data_entry):
     if not os.path.exists(file):
-        f = open(file, 'w')
-        pickle.dump([data_entry], f)
-        f.close()
+        with open(file, 'w') as f:
+            pickle.dump([data_entry], f)
+           
         return
 
-    f = open(file, 'r')
-    current_data  = pickle.load(f)
-    f.close()
+    with open(file, 'r') as f:
+        current_data  = pickle.load(f)
+   
 
     for item in current_data:
         if str(date.today()) in item:
@@ -41,10 +41,10 @@ def append_data(file,data_entry):
             return
 
 
-    f = open(file, 'w')
-    current_data.append(data_entry)
-    pickle.dump(current_data, f)
-    f.close()
+    with open(file, 'w') as f:
+        current_data.append(data_entry)
+        pickle.dump(current_data, f)
+    
 
 
 def read_data(file, doc):
@@ -52,9 +52,8 @@ def read_data(file, doc):
         print ("data with this file title {} do not exist".format(doc.Title))
         return None
     
-    f = open(file, 'r')
-    current_data  = pickle.load(f)
-    f.close()
+    with open(file, 'r') as f:
+        current_data  = pickle.load(f)
     return current_data
 
         
@@ -125,7 +124,7 @@ class WarningHistory:
         
         if os.path.exists(FOLDER.get_shared_dump_folder_file(self.file)):
             
-            self.data = DATA_FILE.read_json_as_dict_in_shared_dump_folder(self.file, create_if_not_exist=True)
+            self.data = DATA_FILE.get_data_in_shared_dump_folder(self.file, create_if_not_exist=True)
         else:
             print("data find not found")
             self.data = {}

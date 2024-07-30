@@ -3,6 +3,7 @@ from pyrevit import  EXEC_PARAMS, script
 import os
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ERROR_HANDLE
 
 from Autodesk.Revit import DB # pyright: ignore 

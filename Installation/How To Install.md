@@ -9,7 +9,7 @@ Download "EnneadTab_OS_Installer.exe"
 save anywhere and run it. It might takes a few seconds to unpack the contents. When you can see "C:\Users\\[USER_NAME]\Documents\EnneadTab Ecosystem\EA_Dist\Installation" then it is ready to move on installing Rhino and Revit Version.
 ![screenshot of downloading page](/Apps/lib/EnneadTab/images/Instruction_core.png)
 
-
+Legacy version use script hosted by L drive version. Legacy version only works with other legacy version. There are no plan to further improve any legacy version.
 
 ## 2.1. EnneadTab-For-Revit(Legacy)
 1. Make sure you have pyrevit installed. Revit is not open.
@@ -22,7 +22,7 @@ save anywhere and run it. It might takes a few seconds to unpack the contents. W
 
 4. You can now open Revit.
 
-## 2.2. EnneadTab-For-Revit
+## 2.2. EnneadTab-For-Revit 2.0
 1. Make sure you have pyrevit installed. Revit is not open.
 
 2. Navigate to 
@@ -45,7 +45,7 @@ save anywhere and run it. It might takes a few seconds to unpack the contents. W
 
 4. You can now open Revit.
 
-## 3. EnnneaTab-For-Rhino
+## 3. EnnneaTab-For-Rhino 2.0
 1. Navigate to 
     - "C:\Users\\[USER_NAME]\Documents\EnneadTab Ecosystem\EA_Dist\Installation"
 2. Have only ONE Rhino open, then drag "EnneadTab_For_Rhino_Installer.rui" into the Rhino window

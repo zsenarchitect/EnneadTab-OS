@@ -14,8 +14,9 @@ from pyrevit import forms #
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
+from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE, LOG
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 
@@ -679,6 +680,11 @@ class content_transfer_ModelessForm(WPFWindow):
 
 
 
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    content_transfer_ModelessForm()
+        
 
 ################## main code below #####################
 output = script.get_output()
@@ -686,9 +692,5 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
-    try:
-        modeless_form = content_transfer_ModelessForm()
-        
-    except:
-        print (traceback.format_exc())
+    main()
+

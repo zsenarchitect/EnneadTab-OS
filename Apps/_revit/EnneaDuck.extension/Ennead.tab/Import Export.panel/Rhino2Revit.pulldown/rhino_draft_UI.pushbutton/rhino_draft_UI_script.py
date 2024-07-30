@@ -18,8 +18,9 @@ from pyrevit import script, forms
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_EXPORT, REVIT_FORMS, REVIT_UNIT, REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import EXE, DATA_FILE, DATA_CONVERSION, NOTIFICATION, IMAGE, SOUND, TIME, ERROR_HANDLE, FOLDER
+from EnneadTab import EXE, DATA_FILE, DATA_CONVERSION, NOTIFICATION, IMAGE, SOUND, TIME, ERROR_HANDLE, FOLDER, LOG
 
 
 import traceback
@@ -344,7 +345,7 @@ def transfer_in_draft(rhino_unit, is_grouping):
 
     # get dump data
     file_path = FOLDER.get_filepath_in_special_folder_in_EA_setting("Local Copy Dump", "EA_DRAFTING_TRANSFER.sexyDuck")
-    datas = DATA_FILE.read_json_as_dict(file_path)
+    datas = DATA_FILE.get_data(file_path)
     if not datas:
         NOTIFICATION.messenger ("There is no data saved. Have you exported from the Rhino?")
         return
@@ -655,11 +656,11 @@ class RhinoDraft_UI(forms.WPFWindow):
         os.startfile(__youtube__)
         
 
-
+   
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
-
-    modeless_form = RhinoDraft_UI()
+    RhinoDraft_UI()
 
 
 

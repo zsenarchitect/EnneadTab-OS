@@ -24,9 +24,10 @@ import traceback
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER, IMAGE
-from EnneadTab.FUN import EnneaDuck
+from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER, IMAGE, LOG, DUCK
+
 
 from pyrevit import script, forms
 from pyrevit.coreutils import ribbon
@@ -138,7 +139,7 @@ class SimpleEventHandler(IExternalEventHandler):
 
 
 # A simple WPF form used to call the ExternalEvent
-class main_setting_UI(forms.WPFWindow):
+class MainSetting(forms.WPFWindow):
     """
     Simple modeless form sample
     """
@@ -198,7 +199,7 @@ class main_setting_UI(forms.WPFWindow):
             return
 
 
-        data = DATA_FILE.read_json_as_dict(setting_file)
+        data = DATA_FILE.get_data(setting_file)
         for key, value in data.items():
             ui_obj = getattr(self, key, None)
             if not ui_obj:
@@ -218,7 +219,7 @@ class main_setting_UI(forms.WPFWindow):
     @ERROR_HANDLE.try_catch_error()
     def save_setting(self):
         setting_file = FOLDER.get_EA_dump_folder_file('revit_ui_setting.json')
-        data = DATA_FILE.read_json_as_dict(setting_file)
+        data = DATA_FILE.get_data(setting_file)
 
 
         setting_list = ["checkbox_tab_tailor", 
@@ -253,7 +254,7 @@ class main_setting_UI(forms.WPFWindow):
 
     @ERROR_HANDLE.try_catch_error()
     def send_duck_click(self, sender, args):
-        EnneaDuck.quack()
+        DUCK.quack()
  
 
     @ERROR_HANDLE.try_catch_error()
@@ -345,10 +346,10 @@ class main_setting_UI(forms.WPFWindow):
 
 
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
-
-    modeless_form = main_setting_UI()
+    MainSetting()
 
 
 ################## main code below #####################

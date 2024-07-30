@@ -12,8 +12,9 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE, EXE, FOLDER
+from EnneadTab import ERROR_HANDLE, EXE, FOLDER, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
@@ -74,11 +75,16 @@ class Solution:
         #     pass
 
 
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    Solution().family_tree()
+    
 ################## main code below #####################
 
 
 if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
-    Solution().family_tree()
+    main()
     

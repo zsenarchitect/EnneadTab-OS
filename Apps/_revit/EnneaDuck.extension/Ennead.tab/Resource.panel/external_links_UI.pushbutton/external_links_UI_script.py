@@ -34,6 +34,7 @@ from pyrevit import script, forms
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_SYNC
 from EnneadTab import DOCUMENTATION, EXE, DATA_FILE, USER, IMAGE, ERROR_HANDLE, LOG, FOLDER
 
@@ -83,7 +84,7 @@ class SimpleEventHandler(IExternalEventHandler):
 
 
 # A simple WPF form used to call the ExternalEvent
-class ExternalLinks_UI(forms.WPFWindow):
+class AssistantUI(forms.WPFWindow):
     """
     Simple modeless form sample
     """
@@ -241,7 +242,7 @@ class ExternalLinks_UI(forms.WPFWindow):
         
         guid = self.textbox_cache_decoder.Text
         filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.sexyDuck"
-        data = DATA_FILE.read_json_as_dict(filepath)
+        data = DATA_FILE.get_data(filepath)
         note = "This Guid has not been recored in EnneadTab DataBase."
         for doc_title, value in data.items():
             project_guid, file_guid,_ = value
@@ -280,11 +281,10 @@ class ExternalLinks_UI(forms.WPFWindow):
         sender.DragMove()
 
 
-
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
-
-    modeless_form = ExternalLinks_UI()
+    AssistantUI()
 
 
 ################## main code below #####################

@@ -24,6 +24,7 @@ import traceback
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER, IMAGE
 from EnneadTab.FUN import EnneaDuck
@@ -198,7 +199,7 @@ class main_setting_UI(forms.WPFWindow):
             return
 
 
-        data = DATA_FILE.read_json_as_dict(setting_file)
+        data = DATA_FILE.get_data(setting_file)
         for key, value in data.items():
             ui_obj = getattr(self, key, None)
             if not ui_obj:
@@ -218,7 +219,7 @@ class main_setting_UI(forms.WPFWindow):
     @ERROR_HANDLE.try_catch_error()
     def save_setting(self):
         setting_file = FOLDER.get_EA_dump_folder_file('revit_ui_setting.json')
-        data = DATA_FILE.read_json_as_dict(setting_file)
+        data = DATA_FILE.get_data(setting_file)
 
 
         setting_list = ["checkbox_tab_tailor", 

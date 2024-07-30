@@ -17,6 +17,7 @@ from Autodesk.Revit.Exceptions import InvalidOperationException
 from pyrevit import script, forms
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import IMAGE, DATA_CONVERSION, ERROR_HANDLE

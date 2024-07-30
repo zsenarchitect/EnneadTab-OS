@@ -4,6 +4,7 @@ from pyrevit import script
 from pyrevit import forms
 import math
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
 

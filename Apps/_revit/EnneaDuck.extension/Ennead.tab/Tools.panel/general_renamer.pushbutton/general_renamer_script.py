@@ -18,6 +18,7 @@ from pyrevit import forms #
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab import IMAGE, USER, NOTIFICATION, ERROR_HANDLE
 import traceback
@@ -455,7 +456,7 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
+    
     try:
         modeless_form = general_renamer_ModelessForm()
         

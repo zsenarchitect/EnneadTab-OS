@@ -20,8 +20,9 @@ from pyrevit import forms #
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ENVIRONMENT, USER, NOTIFICATION,  ERROR_HANDLE, EXCEL, FOLDER, IMAGE
+from EnneadTab import ENVIRONMENT, USER, NOTIFICATION,  ERROR_HANDLE, EXCEL, FOLDER, IMAGE, LOG
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 import random
@@ -86,7 +87,7 @@ def get_moudle(module_name):
     return imp.load_source(module_name, full_file_path)
 
 # A simple WPF form used to call the ExternalEvent
-class project_starter_ModelessForm(WPFWindow):
+class ProjectInitor(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -116,7 +117,7 @@ class project_starter_ModelessForm(WPFWindow):
         self.doc = doc
         self.pre_actions()
 
-        xaml_file_name = "{}\\ACE.panel\\Project Starter.pushbutton\\project_starter_ModelessForm.xaml".format(ENVIRONMENT.REVIT_PRIMARY_TAB)
+        xaml_file_name = "{}\\ACE.panel\\Project Starter.pushbutton\\ProjectInitor.xaml".format(ENVIRONMENT.REVIT_PRIMARY_TAB)
 
         WPFWindow.__init__(self, xaml_file_name)
 
@@ -341,9 +342,10 @@ class project_starter_ModelessForm(WPFWindow):
 
 
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
 def project_starter(doc):
-    modeless_form = project_starter_ModelessForm(doc)
+    ProjectInitor(doc)
 
 ################## main code below #####################
 output = script.get_output()
@@ -351,9 +353,5 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
-    try:
-        project_starter(doc)
+    project_starter(doc)
         
-    except:
-        print (traceback.format_exc())

@@ -18,8 +18,9 @@ from pyrevit import script, forms
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
+from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE, LOG
 
 
 import traceback
@@ -345,7 +346,7 @@ class DropDownItem():
 
 
 # A simple WPF form used to call the ExternalEvent
-class MergeFamily_UI(forms.WPFWindow):
+class FamilyMerger(forms.WPFWindow):
     """
     Simple modeless form sample
     """
@@ -372,7 +373,7 @@ class MergeFamily_UI(forms.WPFWindow):
     def __init__(self):
 
         self.pre_actions()
-        xaml_file_name = 'MergeFamily_UI.xaml'
+        xaml_file_name = 'FamilyMerger.xaml'
         forms.WPFWindow.__init__(self, xaml_file_name)
         
         
@@ -722,9 +723,10 @@ class MergeFamily_UI(forms.WPFWindow):
 
 
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
-    modeless_form = MergeFamily_UI()
+    FamilyMerger()
 
 
 ################## main code below #####################

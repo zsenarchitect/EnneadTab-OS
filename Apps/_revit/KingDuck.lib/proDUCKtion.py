@@ -42,3 +42,10 @@ This is to eliminate all the clearup output window step that was needed in the p
 from pyrevit import script #
 output = script.get_output()
 output.close_others()
+
+
+
+def validify():
+    """This func do absolutely NOTHING, it is here so when this module is imported
+    you can call this func to make it seems like usfule for pylint"""
+    pass

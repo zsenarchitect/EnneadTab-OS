@@ -4,6 +4,7 @@ import random
 
 from Autodesk.Revit import DB # pyright: ignore
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE, EMAIL, NOTIFICATION, USER, FOLDER, DATA_FILE, ENVIRONMENT, SOUND
 from EnneadTab.REVIT import REVIT_HISTORY, REVIT_EXTERNAL_FILE, REVIT_FORMS, REVIT_SYNC
 from pyrevit import forms, script
@@ -329,7 +330,7 @@ def warn_ignorance(doc, warning_cate):
     if not os.path.exists(record_file):
         record = dict()
     else:
-        record = DATA_FILE.read_json_as_dict_in_shared_dump_folder(record_file, create_if_not_exist=True)
+        record = DATA_FILE.get_data_in_shared_dump_folder(record_file, create_if_not_exist=True)
     
     import time
     if len(record.keys()) == 0:

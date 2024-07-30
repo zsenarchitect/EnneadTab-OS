@@ -11,6 +11,7 @@ from pyrevit import script #
 from pyrevit.revit import ErrorSwallower
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore

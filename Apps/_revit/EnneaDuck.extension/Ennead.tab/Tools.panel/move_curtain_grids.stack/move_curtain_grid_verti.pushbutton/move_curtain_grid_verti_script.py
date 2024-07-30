@@ -9,6 +9,7 @@ __youtube__ = "https://youtu.be/iiAy-Gxl5ZU"
 __tip__ = True
 # from pyrevit import forms #
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import NOTIFICATION
 from pyrevit import script #
 

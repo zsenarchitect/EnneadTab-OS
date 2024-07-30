@@ -5,6 +5,7 @@ __doc__ = "Sen Zhang has not writed documentation for this tool, but he should!"
 __title__ = "Test Core Module"
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab import ERROR_HANDLE, LOG
 # from EnneadTab.REVIT import REVIT_APPLICATION

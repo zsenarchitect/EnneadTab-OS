@@ -23,6 +23,7 @@ import time
 import difflib
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ERROR_HANDLE, EXE, IMAGE, ENVIRONMENT, NOTIFICATION, DATA_FILE, FOLDER, SOUND
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_FORMS
 
@@ -533,7 +534,7 @@ class AI_translate_ModelessForm(WPFWindow):
 
 
 
-        data = DATA_FILE.read_json_as_dict(file_path)
+        data = DATA_FILE.get_data(file_path)
         return data["translator_api_key"]
 
     #@ERROR_HANDLE.try_catch_error()
@@ -600,7 +601,7 @@ class AI_translate_ModelessForm(WPFWindow):
             print (attempt)
             if attempt % 5 == 0:
                 try:
-                    loading_message = "\n{}".format(JOKES.random_loading_message())
+                    loading_message = "\n{}".format(JOKE.random_loading_message())
                 except Exception as e:
                     print (e)
                     loading_message = ""
@@ -613,7 +614,7 @@ class AI_translate_ModelessForm(WPFWindow):
             attempt += 1
             time.sleep(1)
             try:
-                record = DATA_FILE.read_json_as_dict(file_path)
+                record = DATA_FILE.get_data(file_path)
             except Exception as e:
                 print (e)
 
@@ -796,7 +797,7 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
+    
 
     modeless_form = AI_translate_ModelessForm()
     

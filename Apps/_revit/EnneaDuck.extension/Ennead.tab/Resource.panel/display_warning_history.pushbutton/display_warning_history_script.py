@@ -17,6 +17,7 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_HISTORY
 from EnneadTab import ENVIRONMENT, OUTPUT, NOTIFICATION, ERROR_HANDLE
 from Autodesk.Revit import DB # pyright: ignore 

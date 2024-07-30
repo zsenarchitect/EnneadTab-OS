@@ -15,6 +15,7 @@ from pyrevit.forms import WPFWindow
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import IMAGE, ERROR_HANDLE
 import traceback
@@ -290,7 +291,7 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
+    
     try:
         modeless_form = dim_text_ModelessForm()
         

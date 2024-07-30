@@ -17,6 +17,7 @@ from pyrevit import script, forms
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
 

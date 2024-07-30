@@ -36,7 +36,7 @@ class SplashScreen:
         self.root.withdraw()
 
     def get_splash_image(self):
-        splash_data = _Exe_Util.read_json_as_dict_in_dump_folder(self.splash_data_file)
+        splash_data = _Exe_Util.get_data_in_dump_folder(self.splash_data_file)
         if splash_data and "image" in splash_data:
             self.splash_scren_image = splash_data.get("image")
             return True

@@ -6,8 +6,9 @@ from pyrevit import script
 
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE
+proDUCKtion.validify()
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_UNIT
+from EnneadTab import ERROR_HANDLE, LOG, FOLDER
 
 from Autodesk.Revit import DB # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
@@ -55,7 +56,7 @@ class CameraImporter:
         new_view.SetOrientation(DB.ViewOrientation3D(rhino_camera_position, rhino_camera_up_direction, rhino_camera_direction))
 
     def import_rhino_camera(self):
-        filepath = EA_UTILITY.get_EA_dump_folder_file("EA_CAMERA_TRANSFER.3dm")
+        filepath = FOLDER.get_EA_dump_folder_file("EA_CAMERA_TRANSFER.3dm")
         self.RHINO_NAME = filepath.split("\\")[-1].split(".3dm")[0]
 
         file3dm = Rhino.FileIO.File3dm()
@@ -92,7 +93,8 @@ class CameraImporter:
         self.UNIT_INCH = unit == "Inch"
         
         
-        
+   
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     importer = CameraImporter()

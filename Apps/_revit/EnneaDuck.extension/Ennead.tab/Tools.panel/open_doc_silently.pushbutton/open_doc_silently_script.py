@@ -12,6 +12,7 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab import DATA_FILE, ERROR_HANDLE
 import System
@@ -81,7 +82,7 @@ class Solution:
         # to-do: replace with ENVIRONEMENT MISC_FOLDER
         filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.sexyDuck"
 
-        self.data = DATA_FILE.read_json_as_dict(filepath)
+        self.data = DATA_FILE.get_data(filepath)
 
         if not doc_names:
             docs_to_process = forms.SelectFromList.show(sorted(self.data),

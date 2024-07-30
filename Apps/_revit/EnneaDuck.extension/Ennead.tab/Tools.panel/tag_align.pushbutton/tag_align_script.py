@@ -19,6 +19,7 @@ from pyrevit import script #
 from pyrevit import HOST_APP
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import IMAGE, ERROR_HANDLE
@@ -282,7 +283,7 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
+    
     try:
         modeless_form = tag_align_ModelessForm()
         

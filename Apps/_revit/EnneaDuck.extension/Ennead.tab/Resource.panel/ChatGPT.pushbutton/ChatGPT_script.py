@@ -14,6 +14,7 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ENVIRONMENT, MODULE_HELPER
 
 from Autodesk.Revit import DB # pyright: ignore 

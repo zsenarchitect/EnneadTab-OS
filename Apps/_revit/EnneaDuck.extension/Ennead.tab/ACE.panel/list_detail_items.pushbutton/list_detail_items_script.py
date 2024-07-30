@@ -13,9 +13,10 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, LOG
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_VIEW, REVIT_FAMILY
 from Autodesk.Revit import DB # pyright: ignore
 # from rpw.db import family 
@@ -134,9 +135,7 @@ class Deployer:
 
 
         
-        
-
-    
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def list_detail_items():
     detail_families = REVIT_SELECTION.pick_detail_componenet(multi_select=True)

@@ -5,6 +5,7 @@ __tip__ = True
 from pyrevit import  script
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
 from EnneadTab import SOUND
 

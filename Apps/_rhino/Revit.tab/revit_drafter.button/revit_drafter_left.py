@@ -101,7 +101,7 @@ def revit_drafter():
 
     # import and bundle layer
     file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.sexyDuck")
-    setting = DATA_FILE.read_json_as_dict(file)
+    setting = DATA_FILE.get_data(file)
     if not setting:
         NOTIFICATION.messenger(main_text = "No setting file found, please check your revit side.")
         return

@@ -158,7 +158,7 @@ class FamilyMetaDataExporter:
         
         meta_file_path = "{}\\{}".format(self.meta_data_folder, family_doc.Title + ".json")
         if EnneadTab.FOLDER.is_path_exist(meta_file_path):
-            meta_data = EnneadTab.DATA_FILE.read_json_as_dict(meta_file_path)
+            meta_data = EnneadTab.DATA_FILE.get_data(meta_file_path)
         else:
             meta_data = dict()
             

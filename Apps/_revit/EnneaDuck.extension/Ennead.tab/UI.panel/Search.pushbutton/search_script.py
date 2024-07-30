@@ -30,6 +30,7 @@ import pyrevit.extensions as py_extensions
 from pyrevit import HOST_APP
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab import USER, ENVIRONMENT, SOUND, TIME, ERROR_HANDLE, FOLDER, IMAGE

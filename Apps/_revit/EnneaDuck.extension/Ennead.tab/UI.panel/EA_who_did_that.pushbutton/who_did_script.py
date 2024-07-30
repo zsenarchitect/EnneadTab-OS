@@ -20,6 +20,7 @@ from pyrevit import script #
 from pyrevit import HOST_APP
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE, IMAGE
 import traceback
@@ -259,7 +260,7 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
+    
     try:
         modeless_form = who_did_that_ModelessForm()
         

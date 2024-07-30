@@ -12,13 +12,14 @@ from pyrevit import script #
 import traceback
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_UNIT, REVIT_APPLICATION
-from EnneadTab import SOUND, DATA_FILE, FOLDER, ERROR_HANDLE
+from EnneadTab import SOUND, DATA_FILE, FOLDER, ERROR_HANDLE, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
-app = __revit__.Application
+app = REVIT_APPLICATION.get_app()
 
 
 
@@ -146,22 +147,28 @@ class Solution:
         cap = doc.FamilyCreate.NewFormByCap(True, refarr)
 
         return cap
+
+
+
    
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    solution = Solution()
+
+    file = FOLDER.get_EA_dump_folder_file("BREP2MASS_DATA.sexyDuck")
+    data = DATA_FILE.get_data(file)
+    for brep_name, brep_data in data.items():
+        
+        solution.main(brep_data)
 ################## main code below #####################
 output = script.get_output()
 output.close_others()
 
 
 if __name__ == "__main__":
+    main()
 
-
-    solution = Solution()
-
-    file = FOLDER.get_EA_dump_folder_file("BREP2MASS_DATA.sexyDuck")
-    data = DATA_FILE.read_json_as_dict(file)
-    for brep_name, brep_data in data.items():
-        
-        solution.main(brep_data)
     
 
 

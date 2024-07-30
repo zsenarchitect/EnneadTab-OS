@@ -16,6 +16,7 @@ import pickle
 from pyrevit.coreutils import envvars
 import time
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ERROR_HANDLE, SOUND, NOTIFICATION, TIME
 from EnneadTab.REVIT import REVIT_FORMS
 

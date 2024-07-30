@@ -166,7 +166,7 @@ class family_browser_ModelessForm(WPFWindow):
         meta_data_files.sort()
         EnneadTab.NOTIFICATION.messenger(main_text = "Indexing {} files from the DataBase...\nthis might takes a few seconds...".format(len(meta_data_files)))
 
-        family_datas =  [EnneadTab.DATA_FILE.read_json_as_dict(x) for x in meta_data_files]
+        family_datas =  [EnneadTab.DATA_FILE.get_data(x) for x in meta_data_files]
         type_datas = []
         for family_data in family_datas:
 
@@ -189,7 +189,7 @@ class family_browser_ModelessForm(WPFWindow):
             #         print "!!!!!!!!!!!!!!!!!!!!!!!!!!"*100
             #         print family_data.get("family_name", "N/A")
             
-        #type_datas = [EnneadTab.DATA_FILE.read_json_as_dict(x) for x in meta_data_files]
+        #type_datas = [EnneadTab.DATA_FILE.get_data(x) for x in meta_data_files]
         
         return type_datas
 
@@ -423,7 +423,7 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
+    
     try:
         modeless_form = family_browser_ModelessForm()
         ENNEAD_LOG.use_enneadtab(coin_change = 99, tool_used = __title__.replace("\n", " "), show_toast = True)

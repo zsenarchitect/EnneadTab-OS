@@ -14,6 +14,7 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ERROR_HANDLE, SOUND, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION
 import traceback
@@ -127,7 +128,7 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
+    
     try:
         modeless_form = mini_bank_ModelessForm()
         

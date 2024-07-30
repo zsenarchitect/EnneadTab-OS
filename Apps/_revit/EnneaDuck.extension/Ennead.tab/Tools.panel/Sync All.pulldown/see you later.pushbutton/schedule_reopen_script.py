@@ -9,6 +9,7 @@ This si especially helpful for team taking long time to open files everyday."""
 
 __tip__ = True
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab import EXE, DATA_FILE, USER, ERROR_HANDLE, FOLDER
 from pyrevit import forms, script

@@ -12,6 +12,7 @@ from pyrevit import script #
 # from pyrevit import revit #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
 from EnneadTab import ERROR_HANDLE
 

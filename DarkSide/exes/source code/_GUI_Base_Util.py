@@ -22,6 +22,8 @@ class BaseGUI:
 
     run = True
 
+    MAX_LIFE = 12 * 60 * 60 * 20
+
     
                 
     def is_another_app_running(self):

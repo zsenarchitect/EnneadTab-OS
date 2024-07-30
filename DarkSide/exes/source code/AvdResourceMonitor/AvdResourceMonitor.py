@@ -61,6 +61,9 @@ class UsageMonitor(_GUI_Base_Util.BaseGUI):
         self.tray_icon = None
         self.create_tray_icon()
 
+        # Track start time
+        self.start_time = time.time()
+
     def create_tray_icon(self):
         menu = pystray.Menu(
             item("AVD Resource Status", self.show_status),
@@ -81,7 +84,6 @@ class UsageMonitor(_GUI_Base_Util.BaseGUI):
 
         # Start updating usage in the main thread
         self.root.after(1000, self.update_usage)
-
 
     def exit_app(self, icon=None, item=None):
         if self.tray_icon:
@@ -117,6 +119,9 @@ class UsageMonitor(_GUI_Base_Util.BaseGUI):
         # Log status
         status_message = self.get_status_message()
         logging.info(status_message)
+
+        # Check if MAX_LIFE exceeded
+        self.check_max_life()
 
         self.root.after(1000, self.update_usage)
 
@@ -278,6 +283,11 @@ class UsageMonitor(_GUI_Base_Util.BaseGUI):
         
         return ", ".join(uptime_string)
 
+    def check_max_life(self):
+        elapsed_time = time.time() - self.start_time
+        if elapsed_time > self.MAX_LIFE:
+            logging.info("Maximum life exceeded. Shutting down the application.")
+            self.exit_app()
 
     @_Exe_Util.try_catch_error
     def run(self):

@@ -31,7 +31,7 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
         self.wait_time = int(_Exe_Util.get_setting("textbox_sync_monitor_interval", 45))
     
         
-        self.life_max = 12 * 60 * 60 * 20
+        self.life_max = _GUI_Util.BasePyGameGUI.MAX_LIFE
         self.life_count = self.life_max
 
         self.taskbar_icon = "{}\\images\\icon.png".format(self.content_folder)

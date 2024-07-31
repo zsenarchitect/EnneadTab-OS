@@ -16,7 +16,7 @@ def process_dwg(file, units):
     RHINO_CLEANUP.purge_block()
     rs.Command("_-import \"{}\" _ModelUnits={} -enter -enter".format(file, units))
 
-    NOTIFICATION.messenger(main_text = "Come Back, come back!", sub_text = "Import Finish!")
+    NOTIFICATION.messenger(main_text = "Come Back, come back!\nImport Finish!")
     imported_objs = rs.LastCreatedObjects()
     #print imported_objs
     layers_used = set()
@@ -97,11 +97,10 @@ def revit_drafter():
 
 
     # get_dwg path
-    transfer_dwg = r"{}\{}".format(ENVIRONMENT.DUMP_FOLDER , "EA_TRANSFER_DRAFT_BACKGROUND.dwg")
+    transfer_dwg = "{}\\{}".format(ENVIRONMENT.DUMP_FOLDER , "EA_TRANSFER_DRAFT_BACKGROUND.dwg")
 
     # import and bundle layer
-    file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.sexyDuck")
-    setting = DATA_FILE.get_data(file)
+    setting = DATA_FILE.get_data("EA_TRANSFER_DRAFT_SETTING.sexyDuck")
     if not setting:
         NOTIFICATION.messenger(main_text = "No setting file found, please check your revit side.")
         return

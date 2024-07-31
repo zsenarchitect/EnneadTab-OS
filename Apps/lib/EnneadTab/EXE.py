@@ -8,6 +8,13 @@ def try_open_app(exe_name, legacy_name = None):
     """extension optional
     legacy_name if for legacy support just in case, but alwasys should put preferred exe_name as first arg"""
 
+    abs_name = exe_name.lower()
+    if abs_name.endswith(".3dm") or abs_name.endswith(".xlsx") or abs_name.endswith(".xls") or abs_name.endswith(".pdf") or abs_name.endswith(".png") or abs_name.endswith(".jpg"):
+        os.startfile(exe_name)
+        return True
+    
+
+
     exe_name = exe_name.replace(".exe", "")
     exe = ENVIRONMENT.EXE_PRODUCT_FOLDER + "\\{}.exe".format(exe_name)
         

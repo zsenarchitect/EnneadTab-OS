@@ -87,7 +87,7 @@ example:
         self.Show()
 
         
-    @ERROR_HANDLE.try_catch_error()
+
     def load_setting(self, setting_file):
         data = DATA_FILE.get_data(setting_file)
         for key, value in data.items():
@@ -99,7 +99,7 @@ example:
             if "textbox" in key:
                 setattr(ui_obj, "Text", str(value))
         
-    @ERROR_HANDLE.try_catch_error()
+
     def save_setting(self, setting_file):
         with DATA_FILE.update_data(setting_file) as data:
             setting_list = self.get_all_xaml_component_names()
@@ -119,7 +119,7 @@ example:
             return False
         return [x for x in self.__dict__ if contain_keyword(x)]
 
-    @ERROR_HANDLE.try_catch_error()
+
     def Sample_bt_Click(self, sender, e):
         return
         self.rename_view_event_handler.kwargs = sheets, is_default_format

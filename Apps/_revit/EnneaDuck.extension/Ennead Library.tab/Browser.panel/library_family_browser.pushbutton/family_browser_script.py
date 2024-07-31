@@ -162,7 +162,7 @@ class family_browser_ModelessForm(WPFWindow):
         self.Show()
 
     def get_meta_datas(self):
-        meta_data_files = ["{}\{}".format(self.meta_data_folder, x) for x in os.listdir(self.meta_data_folder) if x.endswith(".json")]
+        meta_data_files = ["{}\{}".format(self.meta_data_folder, x) for x in os.listdir(self.meta_data_folder) if x.endswith(".sexyDuck")]
         meta_data_files.sort()
         EnneadTab.NOTIFICATION.messenger(main_text = "Indexing {} files from the DataBase...\nthis might takes a few seconds...".format(len(meta_data_files)))
 

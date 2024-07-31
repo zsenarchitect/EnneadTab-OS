@@ -45,7 +45,7 @@ class FamilyMetaDataExporter:
         except:
             self.initial_view = None
         if IS_IGNORE_EXISTING:
-            self.existing_meta_data = [x for x in os.listdir(self.meta_data_folder) if x.endswith(".json")]
+            self.existing_meta_data = [x for x in os.listdir(self.meta_data_folder) if x.endswith(".sexyDuck")]
             # print self.existing_meta_data
             EnneadTab.NOTIFICATION.messenger (main_text = "{} existing meta data file(s) found.".format(len(self.existing_meta_data)))
     
@@ -129,8 +129,8 @@ class FamilyMetaDataExporter:
             
             
             head, tail = os.path.split(family_path)
-            if tail.replace(".rfa", ".json")  in  self.existing_meta_data:
-                # EnneadTab.NOTIFICATION.messenger (main_text = tail.replace(".rfa", ".json"))
+            if tail.replace(".rfa", ".sexyDuck")  in  self.existing_meta_data:
+                # EnneadTab.NOTIFICATION.messenger (main_text = tail.replace(".rfa", ".sexyDuck"))
                 # if json file modification date is within last 3 day, return func
                 # this is to avoid processing the same family file again and again                
                 if time.time() - os.path.getctime(family_path) < 60*60*24*3:
@@ -156,7 +156,7 @@ class FamilyMetaDataExporter:
         
         views = DB.FilteredElementCollector(family_doc).OfClass(DB.View).WhereElementIsNotElementType ().ToElements()
         
-        meta_file_path = "{}\\{}".format(self.meta_data_folder, family_doc.Title + ".json")
+        meta_file_path = "{}\\{}".format(self.meta_data_folder, family_doc.Title + ".sexyDuck")
         if EnneadTab.FOLDER.is_path_exist(meta_file_path):
             meta_data = EnneadTab.DATA_FILE.get_data(meta_file_path)
         else:

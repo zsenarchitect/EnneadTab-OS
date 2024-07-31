@@ -3,6 +3,8 @@
 
 import os
 import time
+
+
 try:
     from pyrevit.forms import WPFWindow
     import REVIT_EVENT
@@ -14,6 +16,7 @@ import ERROR_HANDLE
 import ENVIRONMENT
 import NOTIFICATION
 import IMAGE
+import DATA_FILE
 
 
 
@@ -33,7 +36,19 @@ class EnneadTabModeForm():
 class EnneadTabModelessForm(WPFWindow):
     """
     this form will NOT revit, it cannot return value directly
-    overload with more function depend on what you are loading"""
+    overload with more function depend on what you are loading
+
+example:
+    class MainSetting(REVIT_FORMS.EnneadTabModelessForm):
+        def __init__(self, title, summary, xaml_file_name, **kwargs):
+            super(MainSetting, self).__init__(title, summary, xaml_file_name, **kwargs)
+            # call supper first so can connect to xaml to get all compenent, 
+            # otherwise the load setting will have nothing to load
+
+            self.Height = 800
+            self.load_setting()
+
+    """
 
     def pre_actions(self, *external_funcs):
         self.event_runner = REVIT_EVENT.ExternalEventRunner(*external_funcs)
@@ -44,7 +59,7 @@ class EnneadTabModelessForm(WPFWindow):
         # self.rename_view_event_handler = SimpleEventHandler(rename_views)
         # self.ext_event_rename_view = ExternalEvent.Create(self.rename_view_event_handler)
 
-    def __init__(self, title, summery, xaml_file_name, **kwargs):
+    def __init__(self, title, summary, xaml_file_name, **kwargs):
         external_funcs = kwargs.get('external_funcs', [])
         self.pre_actions(*external_funcs)
 
@@ -64,13 +79,45 @@ class EnneadTabModelessForm(WPFWindow):
         self.title.Text = title
         self.Title = title
         if hasattr(self, "semmery"):
-            self.summery.Text = summery
+            self.summary.Text = summary
 
         logo_file = IMAGE.get_image_path_by_name("logo_vertical_light.png")
         self.set_image_source(self.logo_img, logo_file)
    
         self.Show()
 
+        
+    @ERROR_HANDLE.try_catch_error()
+    def load_setting(self, setting_file):
+        data = DATA_FILE.get_data(setting_file)
+        for key, value in data.items():
+            ui_obj = getattr(self, key, None)
+            if not ui_obj:
+                continue
+            if "checkbox" in key or "toggle_bt" in key or "radio_bt" in key:
+                setattr(ui_obj, "IsChecked", value)
+            if "textbox" in key:
+                setattr(ui_obj, "Text", str(value))
+        
+    @ERROR_HANDLE.try_catch_error()
+    def save_setting(self, setting_file):
+        with DATA_FILE.update_data(setting_file) as data:
+            setting_list = self.get_all_xaml_component_names()
+            
+            for key in setting_list:
+                ui_obj = getattr(self, key)
+                if "checkbox" in key or "toggle_bt" in key or "radio_bt" in key:
+                    data[key] = getattr(ui_obj, "IsChecked")
+                if "textbox" in key:
+                    data[key] = getattr(ui_obj, "Text")
+
+                    
+    def get_all_xaml_component_names(self):
+        def contain_keyword(x):
+            if "bt_" in x or "textbox" in x or "label" in x or "checkbox" in x or "toggle_bt" in x or "radio_bt" in x:
+                return True
+            return False
+        return [x for x in self.__dict__ if contain_keyword(x)]
 
     @ERROR_HANDLE.try_catch_error()
     def Sample_bt_Click(self, sender, e):

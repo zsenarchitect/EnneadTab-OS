@@ -343,8 +343,6 @@
                                     </WrapPanel>
 
 
-
-
                                     <RadioButton  Content="Never." FontWeight="Bold" x:Name="radio_bt_sync_monitor_never" Click="radio_bt_sync_monitor_click"/>
                                     <TextBlock Text="Will not be reminded again for syncing." Margin="20,0,0,20"/>
 
@@ -440,12 +438,11 @@
 
 
 
-
-
-
                 <WrapPanel HorizontalAlignment="Center">
-
-                    <Button Content="Save Setting and Close This Window"
+                    <Button Content="Save Setting"
+                        Click="save_setting_click"
+                        HorizontalAlignment="Center"/>
+                    <Button Content="Close"
                         Click="close_click"
                         HorizontalAlignment="Center"/>
                 </WrapPanel>

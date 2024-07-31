@@ -44,8 +44,8 @@ class EnneadTabModelessForm(WPFWindow):
         # self.rename_view_event_handler = SimpleEventHandler(rename_views)
         # self.ext_event_rename_view = ExternalEvent.Create(self.rename_view_event_handler)
 
-    def __init__(self, title, summery, xaml_file_name, *external_funcs):
-        
+    def __init__(self, title, summery, xaml_file_name, **kwargs):
+        external_funcs = kwargs.get('external_funcs', [])
         self.pre_actions(*external_funcs)
 
 
@@ -63,7 +63,8 @@ class EnneadTabModelessForm(WPFWindow):
         
         self.title.Text = title
         self.Title = title
-        self.summery.Text = summery
+        if hasattr(self, "semmery"):
+            self.summery.Text = summery
 
         logo_file = IMAGE.get_image_path_by_name("logo_vertical_light.png")
         self.set_image_source(self.logo_img, logo_file)
@@ -83,7 +84,9 @@ class EnneadTabModelessForm(WPFWindow):
             self.debug_textbox.Text = "Debug Output:"
 
 
-    
+    def handle_click(self, sender, args):
+        print ("surface clicked")
+        
     def close_click(self, sender, e):
         self.Close()
 
@@ -332,7 +335,7 @@ def show_balloon(header, text, tooltip='', group='', is_favourite=False, is_new=
         forms.show_balloon("my header", "Lorem ipsum", tooltip='tooltip',   group='group', is_favourite=True, is_new=True, timestamp = date, click_result = forms.result_item_result_clicked)
         ```
     """
-    result_item = Autodesk.Internal.InfoCenter.ResultItem()
+    result_item = Autodesk.Internal.InfoCenter.ResultItem() # pyright: ignore
     result_item.Category = header
     result_item.Title = text
     result_item.TooltipText = tooltip
@@ -342,8 +345,7 @@ def show_balloon(header, text, tooltip='', group='', is_favourite=False, is_new=
     if timestamp:
         result_item.Timestamp = timestamp
     result_item.ResultClicked += click_result
-    balloon = Autodesk.Windows.ComponentManager.InfoCenterPaletteManager.ShowBalloon(
-        result_item)
+    balloon = Autodesk.Windows.ComponentManager.InfoCenterPaletteManager.ShowBalloon(result_item) # pyright: ignore
     return balloon
 
 

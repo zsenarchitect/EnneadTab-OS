@@ -428,7 +428,7 @@ class ToggleContent_UI(forms.WPFWindow):
         self.debug_textbox.Text = "{} elements reset.".format(res)
 
 
-    def handleclick(self, sender, args):
+    def handle_click(self, sender, args):
         print ("surface clicked")
 
     def close_click(self, sender, args):

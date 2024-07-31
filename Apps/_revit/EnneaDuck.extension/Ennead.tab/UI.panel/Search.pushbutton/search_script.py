@@ -590,7 +590,7 @@ class EA_search_UI(forms.WPFWindow):
         self.search_textbox.Text = ""
         self.search_textbox.Focus()
 
-    def handleclick(self, sender, args):
+    def handle_click(self, sender, args):
         print ("surface clicked")
 
     def play_video_click(self, sender, args):

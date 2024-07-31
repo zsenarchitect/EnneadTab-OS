@@ -566,8 +566,6 @@ class RhinoDraft_UI(forms.WPFWindow):
         #rhino_template_folder = r"{}\AppData\Roaming\McNeel\Rhinoceros\7.0\Localization\en-US\Template Files".format(os.environ["USERPROFILE"])
 
 
-
-        import os
         rhino_template_folder = "{}\Rhino Template Files".format(os.path.dirname(os.path.abspath(__file__)))
 
         # note:

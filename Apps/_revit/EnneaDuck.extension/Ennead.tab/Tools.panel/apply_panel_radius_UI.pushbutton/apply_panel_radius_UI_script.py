@@ -346,7 +346,7 @@ class apply_panel_radius_UI(forms.WPFWindow):
         uidoc.Selection.SetElementIds(DATA_CONVERSION.list_to_system_list([instance.Id]))
 
 
-    def handleclick(self, sender, args):
+    def handle_click(self, sender, args):
         print ("surface clicked")
 
     def close_click(self, sender, args):

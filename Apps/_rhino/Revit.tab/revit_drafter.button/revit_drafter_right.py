@@ -4,7 +4,7 @@ __doc__ = "Send the draft content back to Revit."
 import rhinoscriptsyntax as rs
 
 from EnneadTab import LOG, ERROR_HANDLE
-from EnneadTab import FOLDER, NOTIFICATION, DATA_FILE
+from EnneadTab import ENVIRONMENT, NOTIFICATION, DATA_FILE
 from EnneadTab.RHINO import RHINO_LAYER
 
 def get_final_children_layer_name(layer_name):
@@ -207,7 +207,7 @@ def revit_drafter():
     DATA_FILE.pretty_print_dict(OUT_Data)
 
     # save data to dump folder\
-    file_path = "{}\\{}".format(NOTIFICATION.DUMP_FOLDER , "EA_DRAFTING_TRANSFER.sexyDuck")
+    file_path = "{}\\{}".format(ENVIRONMENT.DUMP_FOLDER , "EA_DRAFTING_TRANSFER.sexyDuck")
     print (file_path)
     DATA_FILE.set_data(OUT_Data, file_path)
 

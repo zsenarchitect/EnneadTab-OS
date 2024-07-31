@@ -170,12 +170,14 @@ def pretty_print_dict(dict):
 
 
 def get_data(file_name, is_local = True):
+    
     if is_local:
         return _read_json_as_dict_in_dump_folder(file_name, use_encode=True, create_if_not_exist=True)
     else:
         return _read_json_as_dict_in_shared_dump_folder(file_name, use_encode=True, create_if_not_exist=True)
 
 def set_data(data, file_name, is_local = True):
+    
     if is_local:
         _save_dict_to_json_in_dump_folder(data, file_name, use_encode=True)
     else:

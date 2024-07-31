@@ -18,7 +18,7 @@ import proDUCKtion # pyright: ignore
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 
-from EnneadTab import EXE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, ERROR_HANDLE, FOLDER, IMAGE, USER, EMAIL, LOG
+from EnneadTab import JOKE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, ERROR_HANDLE, FOLDER, IMAGE, USER, EMAIL, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 import traceback
@@ -216,11 +216,6 @@ class EA_Printer_UI(WPFWindow):
         self.setting_file = "EA_PRINTER_SETTING.sexyDuck"
         self.output_folder = "{}\EnneadTab Exporter".format(ENVIRONMENT.DUMP_FOLDER)
         FOLDER.secure_folder(self.output_folder)
-        self.record_folder = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exporter_Record".format(ENVIRONMENT.HOSTER_FOLDER)
-        try:
-            DATA_FILE.set_data(dict(), self.record_folder + "\\SH_Access_test.sexyDuck")
-        except:
-            self.record_folder = NOTIFICATION.DUMP_FOLDER
 
 
         self.export_queue = []
@@ -885,9 +880,9 @@ class EA_Printer_UI(WPFWindow):
         self.docs_to_be_opened_by_API = [x for x in self.docs_to_process if self.central_doc_name(x) not in self.doc_names_already_open]
 
         #depress open hook
-        EA_UTILITY.set_open_hook_depressed(is_depressed = True)
-        EA_UTILITY.set_doc_change_hook_depressed(is_depressed = True)
-        ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
+        # EA_UTILITY.set_open_hook_depressed(is_depressed = True)
+        # EA_UTILITY.set_doc_change_hook_depressed(is_depressed = True)
+        # ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
 
         time_start = time.time()
         #open background doc that neeed to be opeend
@@ -907,7 +902,7 @@ class EA_Printer_UI(WPFWindow):
 
 
         #open hook depression re-enable
-        EA_UTILITY.set_open_hook_depressed(is_depressed = False)
+        # EA_UTILITY.set_open_hook_depressed(is_depressed = False)
 
 
 
@@ -969,8 +964,9 @@ class EA_Printer_UI(WPFWindow):
 
 
 
-
-            EA_UTILITY.remove_exisitng_file_in_folder(self.output_folder, file_name )#file_name here contain extension
+            #file_name here contain extension
+            if os.path.exists(os.path.join(self.output_folder, file_name)):
+                os.remove(os.path.join(self.output_folder, file_name))
 
 
             if extension == ".pdf":
@@ -1069,8 +1065,8 @@ class EA_Printer_UI(WPFWindow):
 
 
 
-        EA_UTILITY.set_doc_change_hook_depressed(is_depressed = False)
-        ERROR_HANDLE.print_note("my doc change hook depress status = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
+        # EA_UTILITY.set_doc_change_hook_depressed(is_depressed = False)
+        # ERROR_HANDLE.print_note("my doc change hook depress status = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
 
         if self.is_copy_folder:
 
@@ -1094,7 +1090,7 @@ class EA_Printer_UI(WPFWindow):
         EXPORT_ACTION.print_time("Print {} sheets".format(len(self.files_exported_for_this_issue)), time_end, time_start, use_minutes = True)
         print ("#"*20)
         self.print_ranked_log()
-        ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
+        # ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
         ERROR_HANDLE.print_note("###END OF TOOL###")
 
         time_obj = time.localtime()
@@ -1495,20 +1491,21 @@ class EA_Printer_UI(WPFWindow):
                     continue
                 self.record["{}#{}".format(item.item.UniqueId, item.extension)] = item.time_estimate
 
-            DATA_FILE.set_data(self.record, self.get_record_path_by_doc(doc))
+            record_file = self.get_record_file_by_doc(doc)
+            DATA_FILE.set_data(self.record, record_file, is_local=False)
 
 
     def get_time_estimate_from_record(self, doc):
-        record_path = self.get_record_path_by_doc(doc)
-        if os.path.exists(os.path.join(self.record_folder, self.central_doc_name(doc) + ".sexyDuck")):
-            return DATA_FILE.get_data(record_path)
-        return dict()
+        record_file = self.get_record_file_by_doc(doc)
+        return DATA_FILE.get_data(record_file, is_local=False)
 
 
-    def get_record_path_by_doc(self, doc):
-        return "{}\{}.sexyDuck".format(self.record_folder, self.central_doc_name(doc))
 
+    def get_record_file_by_doc(self, doc):
+        return "EXPORT_RECORD_" + self.central_doc_name(doc) + ".sexyDuck"
 
+ 
+    
     def mouse_down_main_panel(self, sender, args):
         #print "mouse down"
         sender.DragMove()

@@ -571,7 +571,7 @@ class RhinoDraft_UI(forms.WPFWindow):
         # note:
         # Use "Draft Transfer" from EnneadTab for Rhino to continue working.
 
-        for template in FOLDER.get_filenames_in_folder(rhino_template_folder):
+        for template in os.listdir(rhino_template_folder):
             #print template
             if self.revit_unit in template.lower():
                 break

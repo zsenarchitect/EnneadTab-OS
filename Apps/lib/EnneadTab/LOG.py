@@ -52,7 +52,8 @@ def log(script_path, func_name_as_record):
                 t_start = time.time()
                 out = func(*args, **kwargs)
                 t_end = time.time()
-
+                if not data:
+                    data = dict()
                 data[TIME.get_formatted_current_time()] = {
                     "application":ENVIRONMENT.get_app_name(), 
                     "function_name": func_name_as_record.replace("\n", " "),

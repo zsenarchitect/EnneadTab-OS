@@ -46,7 +46,7 @@ def update_DOB_page(doc, show_log = True):
     good_sheets.sort(key = lambda x: "{}_{}_{}".format(x.LookupParameter("Sheet_$Group").AsString(),
                                                        x.LookupParameter("Sheet_$Series").AsString(),
                                                        x.SheetNumber))
-    print( good_sheets)
+    # print( good_sheets)
     t = DB.Transaction(doc, __title__)
     t.Start()
     for i, sheet in enumerate(good_sheets):

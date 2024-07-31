@@ -186,7 +186,7 @@ class AssistantUI(forms.WPFWindow):
     @ERROR_HANDLE.try_catch_error()
     def SH_code_click(self, sender, args):
         folder = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Library Docs\Codes"
-        files = FOLDER.get_filenames_in_folder(folder)
+        files = os.listdir(folder)
         special_folder = "#PDF in this directory are reference only"
         files.remove(special_folder)
 

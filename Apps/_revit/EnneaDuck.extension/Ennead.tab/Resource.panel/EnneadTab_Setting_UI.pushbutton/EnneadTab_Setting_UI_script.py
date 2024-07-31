@@ -48,6 +48,7 @@ __persistentengine__ = True
 
 @ERROR_HANDLE.try_catch_error()
 def change_extension_folder(is_force_tester, include_game):
+    NOTIFICATION.messenger("This feature is disabled for now")
     return
     """this arg has no effect"""
 
@@ -107,56 +108,25 @@ def change_extension_folder(is_force_tester, include_game):
 # A simple WPF form used to call the ExternalEvent
 class MainSetting(REVIT_FORMS.EnneadTabModelessForm):
 
-    def __init__(self, title, summery, xaml_file_name, **kwargs):
+    def __init__(self, title, summary, xaml_file_name, **kwargs):
+        super(MainSetting, self).__init__(title, summary, xaml_file_name, **kwargs)
+        # call supper first so can connect to xaml to get all compenent, 
+        # otherwise the load setting will have nothing to load
         self.Height = 800
         self.load_setting()
-        super().__init__(title, summery, xaml_file_name, **kwargs)
 
     @ERROR_HANDLE.try_catch_error()
     def load_setting(self):
-        data = DATA_FILE.get_data(CONFIG.GLOBAL_SETTING_FILE)
-        for key, value in data.items():
-            ui_obj = getattr(self, key, None)
-            if not ui_obj:
-                continue
+        super(MainSetting, self).load_setting(CONFIG.GLOBAL_SETTING_FILE)
+    
 
-            
-            if "checkbox" in key or "toggle_bt" in key or "radio_bt" in key:
-                setattr(ui_obj, "IsChecked", value)
-            if "textbox" in key:
-                setattr(ui_obj, "Text", str(value))
-
-        # self.toggle_bt_is_tab_color.IsChecked = TABS.get_doc_colorizer_state()
+        self.toggle_bt_is_tab_color.IsChecked = TABS.get_doc_colorizer_state()
         self.update_UI()
             
 
     @ERROR_HANDLE.try_catch_error()
     def save_setting(self):
-        with DATA_FILE.update_data(CONFIG.GLOBAL_SETTING_FILE) as data:
-            setting_list = ["checkbox_tab_tailor", 
-                            "checkbox_tab_library", 
-                            "checkbox_tab_beta", 
-                            "checkbox_game",
-                            "toggle_bt_is_talkie",
-                            "radio_bt_popup_minimal",
-                            "radio_bt_popup_standard",
-                            "radio_bt_popup_full",
-                            "textbox_sync_monitor_interval",
-                            "radio_bt_sync_monitor_is_checking",
-                            "radio_bt_sync_monitor_never",
-                            "checkbox_email_sync_gap",
-                            "checkbox_email_opening_warning_diff",
-                            "checkbox_email_local_warning_diff",
-                            "toggle_bt_is_duck_allowed",
-                            "checkbox_is_dumb_duck"]
-            for key in setting_list:
-                ui_obj = getattr(self, key)
-                if "checkbox" in key or "toggle_bt" in key or "radio_bt" in key:
-                    data[key] = getattr(ui_obj, "IsChecked")
-                if "textbox" in key:
-                    data[key] = getattr(ui_obj, "Text")
-
-
+        super(MainSetting, self).save_setting(CONFIG.GLOBAL_SETTING_FILE)
 
         #  the handle of say or not is inside speak
         SPEAK.speak("I am back! How are you doing?")
@@ -207,11 +177,8 @@ class MainSetting(REVIT_FORMS.EnneadTabModelessForm):
     def toggle_tab_color_click(self, sender, args):
         
         TABS.toggle_doc_colorizer()
-        #self.toggle_bt_is_tab_color.IsChecked = not(self.toggle_bt_is_tab_color.IsChecked)
+        self.toggle_bt_is_tab_color.IsChecked = not(self.toggle_bt_is_tab_color.IsChecked)
 
-        """
-        should also add function to display color legend for what current tabs color refer to what files
-        """
 
     @ERROR_HANDLE.try_catch_error()
     def radio_bt_sync_monitor_click(self, sender, args):
@@ -227,17 +194,7 @@ class MainSetting(REVIT_FORMS.EnneadTabModelessForm):
             self.textbox_sync_monitor_interval.Background = System.Windows.Media.Brushes.Gray
 
 
-
-
-
-
-
-
-    def handle_click(self, sender, args):
-        print ("surface clicked")
-
-    def close_click(self, sender, args):
-        self.Close()
+    def save_setting_click(self, sender, args):
         self.save_setting()
 
 
@@ -248,7 +205,7 @@ class MainSetting(REVIT_FORMS.EnneadTabModelessForm):
 @ERROR_HANDLE.try_catch_error()
 def main():
     MainSetting(title = __title__, 
-                summery = __doc__, 
+                summary = __doc__, 
                 xaml_file_name = 'EnneadTab_Setting_UI.xaml', 
                 external_funcs = [change_extension_folder])
 

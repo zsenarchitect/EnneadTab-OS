@@ -62,13 +62,15 @@ for _folder in [ECO_SYS_FOLDER, DUMP_FOLDER]:
         except Exception as e:
             print ("Cannot secure folder [{}] becasue {}".format(_folder, e))
             
-
+IS_OFFLINE_MODE = not os.path.exists(SHAERD_DUMP_FOLDER)
+if IS_OFFLINE_MODE:
+    SHAERD_DUMP_FOLDER = DUMP_FOLDER
 
 def is_avd():
     try:
-        import clr
+        import clr # pyright:ignore
         clr.AddReference('System')
-        from System.Net import Dns
+        from System.Net import Dns # pyright:ignore
 
         computer_name = Dns.GetHostName()
     except:

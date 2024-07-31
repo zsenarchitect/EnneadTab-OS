@@ -5,7 +5,7 @@ from Autodesk.Revit import DB # pyright: ignore
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab import VERSION_CONTROL, ERROR_HANDLE, LOG, DATA_FILE, TIME, USER, DUCK
-from EnneadTab.REVIT import REVIT_SYNC, REVIT_FORMS, REVIT_SELECTION
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_SELECTION
 
 __title__ = "Doc Syncing Hook"
 doc = EXEC_PARAMS.event_args.Document

@@ -1,9 +1,9 @@
 
 __title__ = "Turtorial"
 __doc__ = "This button does Turtorial when left click"
+import os
 import rhinoscriptsyntax as rs
 import subprocess
-
 
 from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab import FOLDER, EXE
@@ -32,7 +32,7 @@ def open_gh_by_selection(folder, selected_opt):
 
 def open_local_tutorial():
     folder = 'L:\\4b_Applied Computing\\03_Rhino\\12_EnneadTab for Rhino\\Documents\\Tutorials'
-    files = FOLDER.get_filenames_in_folder(folder)
+    files = os.listdir(folder)
     special_folder = "#PDF in this directory are reference only"
     files.remove(special_folder)
     special_folder = "#If Possible, place a shortcut link instead of actual original file"

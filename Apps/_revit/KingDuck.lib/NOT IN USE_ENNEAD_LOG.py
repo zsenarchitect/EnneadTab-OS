@@ -98,7 +98,7 @@ def get_all_user_meta_files():
     folder = get_user_root_folder()
     if not os.path.exists(folder):
         return []
-    file_names = FOLDER.get_filenames_in_folder(folder)
+    file_names = os.listdir(folder)
     if "Error_Log.sexyDuck" in file_names:
         file_names.remove("Error_Log.sexyDuck")
 

@@ -80,7 +80,7 @@ def main():
     exe = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Exe\SCHEDULE_OPENER_0.2\SCHEDULE_OPENER.EXE"
     EXE.try_open_app(exe)
     
-    if USER.USERNAME in ["paula.gronda"]:
+    if USER.USER_NAME in ["paula.gronda"]:
         auto_clicker_exe = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Exe\GENERAL_AUTO_CLICKER\GENERAL_AUTO_CLICKER.exe"
         EXE.try_open_app(auto_clicker_exe)
     

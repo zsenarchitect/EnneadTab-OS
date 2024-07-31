@@ -14,9 +14,9 @@ def main():
     # if doc.IsFamilyDocument:
     #     return
     
-    # if EnneadTab.USER.USERNAME == "yumeng.an" and EnneadTab.TIME.get_YYYYMMDD() == "231215":
+    # if EnneadTab.USER.USER_NAME == "yumeng.an" and EnneadTab.TIME.get_YYYYMMDD() == "231215":
     #     return
-    # if EnneadTab.USER.USERNAME == "hjlee" and EnneadTab.TIME.get_YYYYMMDD() < "240315":
+    # if EnneadTab.USER.USER_NAME == "hjlee" and EnneadTab.TIME.get_YYYYMMDD() < "240315":
         
     #     return
     NOTIFICATION.duck_pop(main_text = "EnneaDuck dislikes [UserKeynote], that tag will not link to other database! Quack!\nOnly use [UserKeynote] when you have ABSOLUTELY no choice.")

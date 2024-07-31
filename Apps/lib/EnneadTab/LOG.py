@@ -9,7 +9,7 @@ import FOLDER
 import USER
 import DATA_FILE
 import ENVIRONMENT
-LOG_FILE_NAME = 'log_{}.json'.format(USER.USER_NAME)
+LOG_FILE_NAME = 'log_{}.sexyDuck'.format(USER.USER_NAME)
 
 
 

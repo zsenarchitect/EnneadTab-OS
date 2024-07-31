@@ -87,7 +87,7 @@ def pop_up_window(doc):
             EMAIL.email(receiver_email_list=["gayatri.desai@ennead.com"],
                                 subject="Help!!!!!!",
                                 body="I need new pair of glass becasue I cannot see very well.\n\nThere are imported CAD in the file, I have been warned for {} days but I cannot see the message well. Do you know some good optometrists?\n\nBest,\n{}".format(day_delta,
-                                                                                                                                                                                                                                                                 USER.USERNAME))
+                                                                                                                                                                                                                                                                 USER.USER_NAME))
     else:
         remove_ignorance(doc,
                         warning_cate="WARNING_IGNORANCE_IMPORT_CAD_RECORD")
@@ -304,7 +304,7 @@ def check_if_keynote_file_pointing_to_library(doc):
                 EMAIL.email(receiver_email_list=["gayatri.desai@ennead.com"],
                                     subject="Help!!!!!!",
                                     body="I need new pair of glass becasue I cannot see very well.\n\nThe keynote file is pointing to the shared L drive location, I have been warned for {} days but I cannot see the message well. Do you know some good optometrists?\n\nBest,\n{}".format(day_delta,
-                                                                                                                                                                                                                                                                                              USER.USERNAME))
+                                                                                                                                                                                                                                                                                              USER.USER_NAME))
 
         
     # if knote_table.RefersToExternalResourceReferences():
@@ -321,7 +321,7 @@ def warn_ignorance(doc, warning_cate):
     ignore_list = ["gayatri.desai",
                    "achi",
                    "scott.mackenzie"]
-    if USER.USERNAME in ignore_list:
+    if USER.USER_NAME in ignore_list:
         return 0
     
     
@@ -335,13 +335,13 @@ def warn_ignorance(doc, warning_cate):
     import time
     if len(record.keys()) == 0:
         record[0] = {"timestamp":time.time(),
-                    "user":USER.USERNAME}
+                    "user":USER.USER_NAME}
         DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
         return
     
     this_record_index = len(record.keys())
     record[this_record_index] = {"timestamp":time.time(),
-                                "user":USER.USERNAME}
+                                "user":USER.USER_NAME}
     DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
     
     day_delta = (time.time() - record["0"].get("timestamp"))/86400 # there is 86400 secons in one day

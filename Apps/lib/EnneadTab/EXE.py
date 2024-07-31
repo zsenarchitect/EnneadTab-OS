@@ -7,9 +7,14 @@ import NOTIFICATION
 def try_open_app(exe_name, legacy_name = None):
     """extension optional
     legacy_name if for legacy support just in case, but alwasys should put preferred exe_name as first arg"""
+    if not exe_name.endswith(".exe"):
+        # this is might not be a exe from EnneadTab, such as excel file
+        os.startfile(exe_name)
+        return True
+
     exe_name = exe_name.replace(".exe", "")
-    
     exe = ENVIRONMENT.EXE_PRODUCT_FOLDER + "\\{}.exe".format(exe_name)
+        
     if os.path.exists(exe):
         os.startfile(exe)
         return True

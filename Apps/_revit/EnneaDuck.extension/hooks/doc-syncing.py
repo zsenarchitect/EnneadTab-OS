@@ -27,7 +27,7 @@ def check_sync_queue():
             pass
     queue = DATA_FILE.get_list(log_file)
     wait_num = len(queue)
-    time = TIME.get_formatted_current_time(show_user_name = False, use_unix_time = True)
+    time = TIME.get_formatted_current_time()
     user_name = USER.USER_NAME
 
     # define default value for succeful sync

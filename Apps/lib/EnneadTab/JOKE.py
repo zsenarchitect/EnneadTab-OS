@@ -3,12 +3,10 @@
 import os
 import sys
 import random
+import io
 
 
 
-
-root_folder = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(root_folder)
 
 
 import FOLDER
@@ -31,12 +29,19 @@ TARGETS = ['fsun',
 def is_hate_fun():
     return not CONFIG.get_setting("radio_bt_popup_full", True)
 
+def get_all_jokes():
+    with io.open('{}\\text\\_dad_jokes.txt'.format(ENVIRONMENT.DOCUMENT_FOLDER), "r", encoding = "utf8") as f:
+        lines = f.readlines()
+    return [x.replace("\n", "") for x  in lines if x != "\n"]
+
+def get_all_loading_screen_message():
+    with open('{}\_loading_screen_message.txt'.format(FOLDER.get_folder_path_from_path(__file__)), "r") as f:
+        lines = f.readlines()
+    return [x.replace("\n", "") for x  in lines if x != "\n"]
 
 def random_joke():
 
-    joke_file = "{}\\FUN\\_dad_jokes.txt".format(ENVIRONMENT.CORE_MODULE_FOLDER_FOR_PUBLISHED_RHINO)
-    with open(joke_file, "r") as f:
-        lines = f.readlines()
+    lines = get_all_jokes()
 
 
     random.shuffle(lines)
@@ -49,8 +54,7 @@ def random_loading_message():
         str: a random line of funny message
     """
 
-    with open('{}\_loading_screen_message.txt'.format(FOLDER.get_folder_path_from_path(__file__)), "r") as f:
-        lines = f.readlines()
+    lines = get_all_loading_screen_message()
     random.shuffle(lines)
     return lines[0].replace("\n", "")
 
@@ -151,32 +155,21 @@ def validating_jokes():
 if USER.USER_NAME in TARGETS:
     chance = 0.02
 else:
-    chance = 0.0001
+    chance = 0.0000000000001
 if random.random() < chance:
     prank_ph()
 
 
-if USER.USER_NAME in TARGETS:
-    chance = 0.02
-else:
-    chance = 0.0001
+
 if random.random() < chance:
     prank_meme()
 
 
 
-if USER.USER_NAME in TARGETS:
-    chance = 0.05
-else:
-    chance = 0.0001
 if random.random() < chance:
     prank_dvd()
 
 
-if USER.USER_NAME in TARGETS:
-    chance = 0.01
-else:
-    chance = 0.0001
 if random.random() < chance:
     DUCK.quack()
 
@@ -206,7 +199,7 @@ def april_fool():
                 prank_dvd()
 
         else:
-            SOUNDS.play_meme_sound()
+            SOUND.play_meme_sound()
         with open(marker_file, 'w') as f:
             f.write("You have been pranked.")
 

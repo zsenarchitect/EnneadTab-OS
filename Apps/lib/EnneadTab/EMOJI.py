@@ -2,14 +2,19 @@
 # -*- coding: utf-8 -*-
 
 
-import FOLDER
+import io
+import random
+import ENVIRONMENT
+
+def get_all_emojis():
+    with io.open('{}\\text\\_emoji_text.txt'.format(ENVIRONMENT.DOCUMENT_FOLDER), "r", encoding = "utf8") as f:
+        lines = f.readlines()
+    return [x.replace("\n", "") for x  in lines if x != "\n"]
 
 
 def pick_emoji_text():
-    import io
-    with io.open('{}\\FUN\\_emoji_text.txt'.format(FOLDER.get_folder_path_from_path(__file__)), "r", encoding = "utf8") as f:
-        lines = f.readlines()
-    lines = [x.replace("\n", "") for x  in lines if x != "\n"]
+
+    lines = get_all_emojis()
     from pyrevit import forms
     sel = forms.SelectFromList.show(lines, select_multiple = False, title = "Go wild")
     if not sel:
@@ -21,11 +26,7 @@ def pick_emoji_text():
 
 
 def random_emoji():
-    import io
-    with io.open('{}\\_emoji_text.txt'.format(FOLDER.get_folder_path_from_path(__file__)), "r", encoding = "utf8") as f:
-        lines = f.readlines()
-    lines = [x.replace("\n", "") for x  in lines if x != "\n"]
-    import random
+    lines = get_all_emojis()
     
     random.shuffle(lines)
     return lines[0].replace("\n", "")

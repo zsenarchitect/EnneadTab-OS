@@ -7,7 +7,7 @@ from Autodesk.Revit import DB # pyright: ignore #pylint: disable=undefined-varia
 from pyrevit import script
 import os
 
-from EnneadTab import IMAGES
+from EnneadTab import IMAGE
 
 # import ennead_printer_script as ENNEAD_PRINTER_SCRIPT
 #
@@ -124,7 +124,7 @@ def export_image(view_or_sheet, file_name, output_folder, is_thumbnail = False, 
     if sheet_color_setting:
         file_path = "{}\\{}.jpg".format(output_folder, file_name)
         bw_file = "{}\\{}_BW.jpg".format(output_folder, file_name)
-        IMAGES.convert_image_to_greyscale(file_path, bw_file)
+        IMAGE.convert_image_to_greyscale(file_path, bw_file)
 
         try:
             os.remove(file_path)

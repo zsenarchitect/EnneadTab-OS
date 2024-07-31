@@ -64,7 +64,7 @@ class FamilyMetaDataExporter:
         
         
         print ("Meta data exported!!!!")
-        EnneadTab.SOUNDS.play_sound("sound effect_mario stage clear.wav")
+        EnneadTab.SOUND.play_sound("sound effect_mario stage clear.wav")
         envvars.set_pyrevit_env_var("IS_L_DRIVE_WORKING_ALARM_DISABLED", False)
         
 

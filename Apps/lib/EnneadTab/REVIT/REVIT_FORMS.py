@@ -53,38 +53,49 @@ example:
     def pre_actions(self, *external_funcs):
         self.event_runner = REVIT_EVENT.ExternalEventRunner(*external_funcs)
 
-        #print "doing preaction"
-        # Now we need to make an instance of this handler. Moreover, it shows that the same class could be used to for
-        # different functions using different handler class instances
-        # self.rename_view_event_handler = SimpleEventHandler(rename_views)
-        # self.ext_event_rename_view = ExternalEvent.Create(self.rename_view_event_handler)
+    def __init__(self, title, summary, xaml_file_name, external_funcs = None, **kwargs):
+        if not external_funcs:
+            external_funcs = kwargs.get('external_funcs', [])
 
-    def __init__(self, title, summary, xaml_file_name, **kwargs):
-        external_funcs = kwargs.get('external_funcs', [])
         self.pre_actions(*external_funcs)
 
 
         #xaml_file_name = "general_renamer_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
-        # to-do: this is not very efficient,,,, consider store a lookup tab;e during startup
-        for folder, _, file in os.walk(ENVIRONMENT.REVIT_FOLDER):
-            if xaml_file_name in file:
-                xaml_file_name = os.path.join(folder, xaml_file_name)
-                break
-        else:
-            NOTIFICATION.messenger(main_text="Cannot find the xaml file....")
+        xaml_path = self.get_xaml(xaml_file_name)
+        if not xaml_path:
             return
-
-        WPFWindow.__init__(self, xaml_file_name)
+        WPFWindow.__init__(self, xaml_path)
         
         self.title.Text = title
         self.Title = title
-        if hasattr(self, "semmery"):
+        if hasattr(self, "summary"):
             self.summary.Text = summary
 
         logo_file = IMAGE.get_image_path_by_name("logo_vertical_light.png")
         self.set_image_source(self.logo_img, logo_file)
    
         self.Show()
+
+    def get_xaml(self, xaml_file_name):
+        data = DATA_FILE.get_data("xaml_path.sexyDuck")
+
+        path = data.get(xaml_file_name)
+        if path:
+            return path
+
+
+        NOTIFICATION.messenger(main_text="There is no pre-recorded path, going to re-search again.")
+        # if the path has changed during editng, need to redo search
+        for folder, _, file in os.walk(ENVIRONMENT.REVIT_FOLDER):
+            if xaml_file_name in file:
+                data[file] = os.path.join(folder, xaml_file_name)
+                DATA_FILE.set_data(data, "xaml_path.sexyDuck")
+                
+                return data[file]
+                
+        else:
+            NOTIFICATION.messenger(main_text="Cannot find the xaml file....")
+            return None
 
         
 

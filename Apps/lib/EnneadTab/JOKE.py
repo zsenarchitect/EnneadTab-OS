@@ -6,6 +6,7 @@ import random
 
 
 
+
 root_folder = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(root_folder)
 
@@ -18,10 +19,18 @@ import USER
 import EXE
 import TIME
 import SOUND
+import EMOJI
+import CONFIG
+import DUCK
 
     
 TARGETS = ['fsun', 
            'eshaw']
+
+
+def is_hate_fun():
+    return not CONFIG.get_setting("radio_bt_popup_full", True)
+
 
 def random_joke():
 
@@ -47,7 +56,8 @@ def random_loading_message():
 
 
 def prank_ph():
-
+    if is_hate_fun():
+        return
     
     icon = '{}\prank\pornhub.png'.format(FOLDER.get_folder_path_from_path(__file__))
    
@@ -58,17 +68,34 @@ def prank_ph():
                         force_toast=True)
     
 def prank_meme():
-
+    if is_hate_fun():
+        return
     link = "https://www.instagram.com/reel/C0KA4-kxioj/?igsh=MWN6cmg4cW5qeXV5NA%3D%3D"
     import webbrowser
     webbrowser.open(link)
 
 
 def prank_dvd():
+    if is_hate_fun():
+        return
+    EXE.open_exe("Bouncer.exe")
+    
+def joke_quote():
+    if is_hate_fun():
+        return
+    emoji = EMOJI.random_emoji()
+    quote = random_loading_message()
+    
 
-    EXE.open_exe("BOUNCER")
-    
-    
+    import textwrap
+    # Wrap this text.
+    wrapper = textwrap.TextWrapper(width = 100)
+    quote = wrapper.fill(text = quote)
+
+
+    NOTIFICATION.messenger(main_text = "{}\n{}".format(quote, emoji), animation_stay_duration = 10)
+
+
 
      
 def give_me_a_joke(talk = False, max_len = None):
@@ -151,7 +178,7 @@ if USER.USER_NAME in TARGETS:
 else:
     chance = 0.0001
 if random.random() < chance:
-    FUN.EnneaDuck.quack()
+    DUCK.quack()
 
 
 def april_fool():

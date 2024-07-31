@@ -137,59 +137,11 @@ def open_scheduled_docs():
         pass
 
 
-def starter_quote():
-    if NOTIFICATION.get_toaster_level_setting() != 0:
-        return
-
-    
-    if random.random() < 0.5:
-        warming_quote()
-    else:
-        joke_quote()
 
 
-def joke_quote():
-    emoji = EMOJI.random_emoji()
-    quote = JOKE.random_loading_message()
-    
-
-    import textwrap
-    # Wrap this text.
-    wrapper = textwrap.TextWrapper(width = 100)
-    quote = wrapper.fill(text = quote)
 
 
-    NOTIFICATION.messenger(main_text = "{}\n{}".format(quote, emoji), animation_stay_duration = 10)
 
-
-def warming_quote():
-    quote = ENCOURAGING.random_warming_quote()
-    
-
-    import textwrap
-    # Wrap this text.
-    wrapper = textwrap.TextWrapper(width = 100)
-    quote = wrapper.fill(text = quote)
-
-
-    NOTIFICATION.messenger(main_text = quote, animation_stay_duration = 10)
-
-
-    return
-
-    if not DATA_FILE.get_revit_ui_setting_data(key_defaule_value = ("toggle_bt_is_duck_allowed", False)):
-        return
-
-    NOTIFICATION.messenger(main_text = "Hello {}!\nEnneaDuck welcome you back!".format(USER.get_user_name() ))
-    
-    
-    
-    audio_folder = "{}\\ENNEAD.extension\\Ennead.tab\\Utility.panel\\exe_2.stack\\duck_pop\\audio".format(ENVIRONMENT.PUBLISH_FOLDER_FOR_REVIT)
-    # pick a random duck sound from the folder
-    duck_sound_list = [x for x in os.listdir(audio_folder) if x.endswith(".wav")]
-    audio = os.path.join(audio_folder,random.choice(duck_sound_list))
-
-    SOUND.play_sound(audio)
 
 
 
@@ -218,7 +170,7 @@ def register_auto_update():
 
 class TempGraphicServer(UI.ITemporaryGraphicsHandler):
 
-    @ERROR_HANDLE.try_catch_error_silently
+    @ERROR_HANDLE.try_catch_error(is_silent=True)
     def OnClick(self, data):
         """this data is TemporaryGraphicsCommandData class that return during click,
         not InCanvasControlData class used to add control"""
@@ -264,14 +216,30 @@ def register_temp_graphic_server():
     external_service.SetActiveServers(System.Collections.Generic.List[System.Guid]([my_graphics_service.GetServerId()]))
 
 
+def register_xaml_path():
+    """go thru all extension to location all examl file location, so later when attempt o lokk up it is quicker."""
+    data = {}
 
+    # loop thru folder and nesting folder
+    for root, dirs, files in os.walk(ENVIRONMENT.REVIT_FOLDER):
+        for file in files:
+            if file.endswith(".xaml"):
+                data[file] = os.path.join(root, file)
+
+    DATA_FILE.set_data(data, "xaml_path.sexyDuck")
+    
 
 
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 def EnneadTab_startup():
     VERSION_CONTROL.update_EA_dist()
+    register_xaml_path()
     check_minimal_version_for_enneadtab()
+    ENCOURAGING.warming_quote()
+
+    NOTIFICATION.duck_pop(main_text = "Hello {}!\nEnneaDuck welcome you back!".format(USER.get_user_name() ))
+    
     return
 
     HOLIDAY.festival_greeting()

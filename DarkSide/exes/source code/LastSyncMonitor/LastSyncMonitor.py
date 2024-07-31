@@ -24,7 +24,7 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
     def __init__(self):
 
         self.app_title = TITLE
-        self.SCREEN_WIDTH = 900
+        self.SCREEN_WIDTH = 700
         self.SCREEN_HEIGHT = 900
         self.content_folder = os.path.dirname(__file__)
 
@@ -51,9 +51,9 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
         check_interval = self.wait_time
         yell_interval = int(self.wait_time * 1.5)
 
-        self.draw_text("Time Since Sync (Sync interval every {} mins*):".format(check_interval), self.FONT_SUBTITLE, self.TEXT_COLOR)
+        self.draw_text("Sync interval reminder set as every {} mins*:".format(check_interval), self.FONT_SUBTITLE, self.TEXT_COLOR)
         self.draw_text("{} mins after timer begins, it will become orange.".format(check_interval), self.FONT_SUBTITLE, self.TEXT_COLOR)  
-        self.draw_text("{} mins after timer begins, it will become red and try to talk**".format(yell_interval), self.FONT_SUBTITLE, self.TEXT_COLOR)
+        self.draw_text("{} mins after timer begins, it will become red".format(yell_interval), self.FONT_SUBTITLE, self.TEXT_COLOR)
         self.draw_text("Every minutes after {} mins will cost {} coins.".format(yell_interval, 2), self.FONT_SUBTITLE, self.TEXT_COLOR)
         self.draw_text("Methods to avoid paying coins:", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
         self.draw_text("- Closing file without sync, even when running overtime.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
@@ -61,7 +61,7 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
         self.draw_text("- No changes made into the file since last sync.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
         self.draw_text("- Manually terminate a monitor progress from EnneadTab.", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
         self.draw_text("Footnote *: This interval can be set in your EnneadTab setting.", self.FONT_BODY, self.TEXT_COLOR_FADE)
-        # self.draw_text("Footnote**: Unless you have disabled the text2speech function.", self.FONT_BODY, self.TEXT_COLOR_FADE)
+        
         self.POINTER_Y += 20
         frame_upper_left_H = self.POINTER_Y
         bad_docs = ""

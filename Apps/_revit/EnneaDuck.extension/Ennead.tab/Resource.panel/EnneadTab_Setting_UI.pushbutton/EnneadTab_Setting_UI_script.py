@@ -48,6 +48,7 @@ __persistentengine__ = True
 
 @ERROR_HANDLE.try_catch_error()
 def change_extension_folder(is_force_tester, include_game):
+    from EnneadTab import NOTIFICATION # to be resolved, there is a scope leak so have to import again..
     NOTIFICATION.messenger("This feature is disabled for now")
     return
     """this arg has no effect"""
@@ -163,13 +164,13 @@ class MainSetting(REVIT_FORMS.EnneadTabModelessForm):
         is_tester = self.toggle_bt_is_beta_tester.IsChecked
         is_game_included = self.checkbox_game.IsChecked
         
-        from EnneadTab.REVIT import REVIT_APPLICATION
-        from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER
-        USER.set_revit_beta_tester(is_tester)
-        self.change_extension_event_handler.kwargs = is_tester, is_game_included
-        self.ext_event.Raise()
-        res = self.change_extension_event_handler.OUT
-        self.Close()
+        self.event_runner.run("change_extension_folder", is_tester, is_game_included)
+        # from EnneadTab.REVIT import REVIT_APPLICATION
+        # from EnneadTab import DATA_FILE, USER, NOTIFICATION, ENVIRONMENT, SPEAK, ERROR_HANDLE, FOLDER
+        # self.change_extension_event_handler.kwargs = is_tester, is_game_included
+        # self.ext_event.Raise()
+        # res = self.change_extension_event_handler.OUT
+        # self.Close()
 
 
 
@@ -177,7 +178,9 @@ class MainSetting(REVIT_FORMS.EnneadTabModelessForm):
     def toggle_tab_color_click(self, sender, args):
         
         TABS.toggle_doc_colorizer()
-        self.toggle_bt_is_tab_color.IsChecked = not(self.toggle_bt_is_tab_color.IsChecked)
+
+        # below line is intentional comment out so it does not self trigger
+        # self.toggle_bt_is_tab_color.IsChecked = not(self.toggle_bt_is_tab_color.IsChecked)
 
 
     @ERROR_HANDLE.try_catch_error()

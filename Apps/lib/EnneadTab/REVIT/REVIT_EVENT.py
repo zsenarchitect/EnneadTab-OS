@@ -41,7 +41,7 @@ class SimpleEventHandler(REF_CLASS_IExternalEventHandler):
                 event_mark_end()
 
             except:
-                print ("failed")
+                print ("event runner failed")
                 print (traceback.format_exc())
         except InvalidOperationException:
             # If you don't catch this exeption Revit may crash.
@@ -55,11 +55,15 @@ class SimpleEventHandler(REF_CLASS_IExternalEventHandler):
 class ExternalEventRunner:
     
     def __init__(self, *funcs):
-  
+        if len(funcs) == 0:
+            print("here is no funcs")
+            return
         for func in funcs:
-            handler = SimpleEventHandler(func)
-            setattr(self, "simple_event_handler_{}".format(func.__name__), handler)
-            setattr(self, "ext_event_{}".format(func.__name__), ExternalEvent.Create(handler))
+            original_func = getattr(func, 'original_function', func)  # Use the original function if available
+            handler = SimpleEventHandler(original_func)
+            setattr(self, "simple_event_handler_{}".format(original_func.__name__), handler)
+            setattr(self, "ext_event_{}".format(original_func.__name__), ExternalEvent.Create(handler))
+            # print (original_func.__name__ + " has been regiested!!!!!!!!")
             
     @ERROR_HANDLE.try_catch_error(is_silent=True)
     def run(self, func_name, *args):

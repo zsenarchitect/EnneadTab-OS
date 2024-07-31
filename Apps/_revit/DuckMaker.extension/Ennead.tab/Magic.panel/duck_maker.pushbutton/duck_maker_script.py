@@ -9,21 +9,33 @@ __context__ = "zero-doc"
 
 import os
 import shutil
-from pyrevit import forms #
-
-from pyrevit.loader import sessionmgr
+try:
+    from pyrevit import forms
+    from pyrevit.loader import sessionmgr
+    IS_PYREVIT = True
+except ImportError:
+    import tkinter as tk
+    from tkinter import filedialog
+    IS_PYREVIT = False
+    
 
 def create_new_button():
-    # get new button name
-    func_name = forms.ask_for_string(default = "New_Button_Name", 
-                                     prompt = "Type in the name for new script",
-                                     title="You are going to change the world...")
+    if IS_PYREVIT:
+        # get new button name
+        func_name = forms.ask_for_string(default = "New_Button_Name", 
+                                        prompt = "Type in the name for new script",
+                                        title="You are going to change the world...")
+    else:
+        func_name = input("Type in the name for new script:")
 
     func_name = func_name.replace(" ", "_").lower()
 
-    # pick folder location
-    folder = forms.pick_folder(title = "New script location of container pushbutton", owner = None)#not sure what is owner
-
+    if IS_PYREVIT:
+        # pick folder location
+        folder = forms.pick_folder(title = "New script location of container pushbutton", owner = None)#not sure what is owner
+    else:
+        folder = filedialog.askdirectory()
+    
     target_folder = "{}\\{}.pushbutton".format(folder, func_name)
     new_location = "{}\\{}_script.py".format(target_folder, func_name)
 
@@ -60,7 +72,6 @@ def create_new_button():
 
     os.startfile(new_location)
 
-    sessionmgr.reload_pyrevit()
 
 
 def pretty_name(name):
@@ -74,3 +85,5 @@ def pretty_name(name):
 
 if __name__ == "__main__":
     create_new_button()
+    if IS_PYREVIT:
+        sessionmgr.reload_pyrevit()

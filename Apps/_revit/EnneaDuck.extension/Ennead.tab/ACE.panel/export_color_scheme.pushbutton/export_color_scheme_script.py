@@ -6,6 +6,8 @@
 __doc__ = "Use me tp export selected Color Scheme To Excel. You have the option to exclude unused color."
 __title__ = "ColorScheme\nTo Excel"
 __tip__ = True
+
+import os
 from pyrevit import forms #
 from pyrevit import script #
 import xlsxwriter as xw
@@ -57,8 +59,10 @@ def export_color_scheme():
 def export_color_scheme_to_excel(color_scheme, is_ignore_non_used):
     cate_name = DB.Category.GetCategory(doc, color_scheme.CategoryId).Name
     excel_name =  "[{}] {}".format(cate_name, color_scheme.Name)
+    excel_name =  color_scheme.Name
     file_location = forms.save_file(file_ext='xlsx',
                                     default_name=excel_name)
+
     workbook = xw.Workbook(file_location)
     worksheet = workbook.add_worksheet("Color Scheme")
 
@@ -111,38 +115,13 @@ def export_color_scheme_to_excel(color_scheme, is_ignore_non_used):
     try:
         workbook.close()
         NOTIFICATION.messenger("Excel saved at '{}'".format(file_location))
-        EXE.try_open_app(file_location)
+        os.startfile(file_location)
     except:
         NOTIFICATION.messenger("the excel file you picked is still open, cannot override. Writing cancelled.")
     
 
 
-    
-    """
-    t = DB.Transaction(doc, __title__)
-    t.Start()
-    $$$$$$$$$$$$$$$$$$$
-    t.Commit()
-    """
-"""
-def try_catch_error(func):
-    def wrapper(*args, **kwargs):
-        print("Wrapper func for EA Log -- Begin:")
-        try:
-            # print "main in wrapper"
-            return func(*args, **kwargs)
-        except Exception as e:
-            print(str(e))
-            return "Wrapper func for EA Log -- Error: " + str(e)
-    return wrapper
-"""
-"""
-    phase_provider = DB.ParameterValueProvider( DB.ElementId(DB.BuiltInParameter.ROOM_PHASE))
-    phase_rule = DB.FilterElementIdRule(phase_provider, DB.FilterNumericEquals(), phase.Id)
-    phase_filter = DB.ElementParameterFilter(phase_rule)
-    all_rooms = DB.FilteredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_Rooms).WherePasses(phase_filter).WhereElementIsNotElementType().ToElements()
-    return all_rooms
-"""
+
 ################## main code below #####################
 output = script.get_output()
 output.close_others()

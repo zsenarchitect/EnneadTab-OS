@@ -344,8 +344,7 @@ def transfer_in_draft(rhino_unit, is_grouping):
 
 
     # get dump data
-    file_path = FOLDER.get_filepath_in_special_folder_in_EA_setting("Local Copy Dump", "EA_DRAFTING_TRANSFER.sexyDuck")
-    datas = DATA_FILE.get_data(file_path)
+    datas = DATA_FILE.get_data("EA_DRAFTING_TRANSFER.sexyDuck")
     if not datas:
         NOTIFICATION.messenger ("There is no data saved. Have you exported from the Rhino?")
         return
@@ -566,7 +565,7 @@ class RhinoDraft_UI(forms.WPFWindow):
         #rhino_template_folder = r"{}\AppData\Roaming\McNeel\Rhinoceros\7.0\Localization\en-US\Template Files".format(os.environ["USERPROFILE"])
 
 
-        rhino_template_folder = "{}\Rhino Template Files".format(os.path.dirname(os.path.abspath(__file__)))
+        rhino_template_folder = "{}\\Rhino Template Files".format(os.path.dirname(__file__))
 
         # note:
         # Use "Draft Transfer" from EnneadTab for Rhino to continue working.
@@ -607,8 +606,7 @@ class RhinoDraft_UI(forms.WPFWindow):
         OUT["filled_region_type_names"] = filled_region_type_names
         OUT["revit_unit"] = self.revit_unit
         OUT["final_file"] = self.final_file
-        file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.sexyDuck")
-        DATA_FILE.set_data(OUT, file)
+        DATA_FILE.set_data(OUT, "EA_TRANSFER_DRAFT_SETTING.sexyDuck")
 
 
     @ERROR_HANDLE.try_catch_error()

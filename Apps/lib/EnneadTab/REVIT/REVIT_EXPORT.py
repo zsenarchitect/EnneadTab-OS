@@ -90,7 +90,7 @@ def export_dwg(view_or_sheet, file_name, output_folder, dwg_setting_name, is_exp
 
             else:
                 print (e)
-    FOLDER.cleanup_folder(folder = output_folder, extension = ".pcp")
+    FOLDER.cleanup_folder_by_extension(folder = output_folder, extension = ".pcp")
     files_exported.append(file_name + ".dwg")
     return files_exported
 

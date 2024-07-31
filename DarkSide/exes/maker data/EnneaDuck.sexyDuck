@@ -7,7 +7,7 @@
   },
   {
    "optionDest": "filenames",
-   "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\LastSyncMonitor\\LastSyncMonitor.py"
+   "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\EnneaDuck\\EnneaDuck.py"
   },
   {
    "optionDest": "onefile",
@@ -19,7 +19,7 @@
   },
   {
    "optionDest": "icon_file",
-   "value": "C:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\LastSyncMonitor\\images\\icon.ico"
+   "value": "C:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\EnneaDuck\\images\\icon.ico"
   },
   {
    "optionDest": "clean_build",
@@ -55,7 +55,7 @@
   },
   {
     "optionDest": "datas",
-    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\LastSyncMonitor\\images;images\\"
+    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\EnneaDuck\\images;images\\"
    },
    {
     "optionDest": "datas",
@@ -68,14 +68,6 @@
    {
     "optionDest": "datas",
     "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\_GUI_Base_Util.py;."
-   },
-   {
-    "optionDest": "hidden-import",
-    "value": "json"
-   },
-   {
-    "optionDest": "hidden-import",
-    "value": "pyautogui"
    }
  ],
  "nonPyinstallerOptions": {

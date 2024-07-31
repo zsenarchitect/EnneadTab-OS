@@ -226,7 +226,12 @@ def copy_to_standalone_collection():
                 shutil.copy(src_path, dest_path)
                 print("Successfully copied {} to standalone collection".format(exe))
             else:
-                print("Skipped copying {} as it is up to date".format(exe))
+                
+                yellow_text = "\033[93m"
+                reset_text = "\033[0m"
+                print("   - Skipped copying {} {} {}as it is up to date".format(yellow_text,
+                                                                           exe,
+                                                                           reset_text))
         except Exception as e:
             print("Failed to copy {} to standalone collection: {}".format(exe, e))
 

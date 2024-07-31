@@ -47,19 +47,19 @@
         "tab": "Ennead+.menu",
         "tab_icon": null
     },
-    "Ennead+.menu\\star.button\\star_left.py": {
-        "script": "Ennead+.menu\\star.button\\star_left.py",
-        "icon": "Ennead+.menu\\star.button\\icon.png",
-        "alias": "MakeStar",
-        "doc": null,
-        "tab": "Ennead+.menu",
-        "tab_icon": null
-    },
     "Ennead+.menu\\tell_me_version.button\\tell_me_version_left.py": {
         "script": "Ennead+.menu\\tell_me_version.button\\tell_me_version_left.py",
         "icon": "Ennead+.menu\\tell_me_version.button\\icon.png",
         "alias": "TellMeVersion",
         "doc": "This button does TellMeVersion when left click",
+        "tab": "Ennead+.menu",
+        "tab_icon": null
+    },
+    "Ennead+.menu\\unit_test.button\\unit_test_left.py": {
+        "script": "Ennead+.menu\\unit_test.button\\unit_test_left.py",
+        "icon": null,
+        "alias": "UnitTest",
+        "doc": "This button does UnitTest when left click",
         "tab": "Ennead+.menu",
         "tab_icon": null
     },

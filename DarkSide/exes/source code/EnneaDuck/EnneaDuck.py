@@ -3,36 +3,19 @@ import os
 import random
 import tkinter as tk
 
-sys.path.append(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Dependency Modules")
-import pyautogui # need pyautogui to show the label for dependecy reason, but for pyrevit might just import from site package
+import pyautogui # need pyautogui to show the label for dependecy reason
 from PIL import Image as pim
 
 
 
-root_folder = os.path.abspath(os.path.dirname((os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
-sys.path.append(root_folder)
-#print (root_folder)
-import FOLDER
-import USER
-import DATA_FILE
-import ERROR_HANDLE
-
 EXE_NAME = u"EnneaDuck"
 
-def try_catch_error(func):
-    def wrapper(*args, **kwargs):
-        try:
-            out = func(*args, **kwargs)
-            return out
-        except Exception as e:
-            pass
-            #print (e)
-    return wrapper
-
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+import _Exe_Util
 
 
 class EnneaDuck:
-    @try_catch_error
+    @_Exe_Util.try_catch_error
     def __init__(self):
         self.x = 900
         self.y = 1000
@@ -44,8 +27,8 @@ class EnneaDuck:
         self.animation_wait_time = int(1000 / self.FPS)
         self.bubble_life = 0
         self.last_time_check = 0
-        self.user_name = USER.get_user_name()
-        self.autodesk_user_name = USER.get_autodesk_user_name()
+        self.user_name = _Exe_Util.get_username()
+        
 
         self.image_path = "{}\img_assets\\".format(os.path.dirname(os.path.abspath(__file__)))
         #print (self.image_path)
@@ -196,22 +179,22 @@ class EnneaDuck:
         records = ""
         is_my_turn = False
         # find all the queue file that has the user name
-        folder = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Sync_Queue"
+        folder = "L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Sync_Queue"
 
-        monitor_file = FOLDER.get_EA_dump_folder_file("EA_Last_Sync_Record.json")
-        if not FOLDER.is_path_exist(monitor_file):
+        monitor_file = _Exe_Util.get_file_in_dump_folder("EA_Last_Sync_Record.json")
+        if not os.path.exists(monitor_file):
             return False, docs, records
 
-        data = DATA_FILE.read_json_file_safely(monitor_file)
+        data = _Exe_Util.read_json_file_safely(monitor_file)
 
         for doc in data.keys():
-            filepath = "{}\Sync Queue_{}.queue".format(folder,doc)
-            if not FOLDER.is_path_exist(filepath):
+            filepath = "{}\\Sync Queue_{}.queue".format(folder,doc)
+            if not os.path.exists(filepath):
                 continue
             #print (filepath)
 
             # in py3, map return a map object instead of a list. To read the content, use list to convert.
-            content = list(DATA_FILE.read_txt_file_safely(filepath))
+            content = list(_Exe_Util.get_list(filepath))
 
             #print (content)
 
@@ -238,7 +221,7 @@ class EnneaDuck:
 
 
     def is_hate_talking_duck(self):
-        return DATA_FILE.get_revit_ui_setting_data(key_defaule_value = ("checkbox_is_dumb_duck", False))
+        return _Exe_Util.get_setting("checkbox_is_dumb_duck", False)
 
 
     def say_hello(self, text = "Quack-Quack!!"):
@@ -310,8 +293,6 @@ class EnneaDuck:
 
 
 def is_another_duck_running():
-
-    #print [x.title for x in pyautogui.getAllWindows()]
     for window in pyautogui.getAllWindows():
         #print window.title
         if window.title == EXE_NAME:
@@ -319,7 +300,7 @@ def is_another_duck_running():
     return False
 
 
-@ERROR_HANDLE.try_catch_error
+@_Exe_Util.try_catch_error
 def main():
     if is_another_duck_running():
         return
@@ -330,6 +311,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-
-# allow duck to not given warning at all

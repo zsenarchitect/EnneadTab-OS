@@ -242,7 +242,7 @@ def update_installer_folder_exes():
     # copy folder from deep product folder to easy installation folder
     app_list = [
         "EnneadTab_OS_Installer.exe",
-        "EnneadTab_For_Revit(Legacy)_Installer.exe",
+   "EnneadTab_For_Revit_Installer.exe",     "EnneadTab_For_Revit(Legacy)_Installer.exe",
         "EnneadTab_For_Revit_UnInstaller.exe",
         "RevitIniDeployer.exe",
         "AccFileOpenner.exe"

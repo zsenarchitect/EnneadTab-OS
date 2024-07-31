@@ -3,6 +3,12 @@ import os
 import shutil
 import ENVIRONMENT
 
+def copy_file(original_path, new_path):
+    target_folder = os.path.dirname(new_path)
+    if not os.path.exists(target_folder):
+        os.mkdir(target_folder)
+    shutil.copyfile(original_path, new_path)
+
 def secure_folder(folder):
     if not os.path.exists(folder):
         os.mkdir(folder)
@@ -90,3 +96,21 @@ def backup_data(data_file_name, backup_folder_title, max_time = 60*60*24*1):
             return out
         return wrapper
     return decorator
+
+
+
+def cleanup_folder_by_extension(folder = "folder path",
+                    extension = "extension"):
+    """remove files in folder based on extension"""
+    filenames = os.listdir(folder)
+
+    count = 0
+    for current_file in filenames:
+        ext = os.path.splitext(current_file)[1]
+        if ext.upper() == extension.upper():
+            try:
+                os.remove(os.path.join(folder, current_file))
+                count += 1
+            except Exception as e:
+                print ("Cannot delete file [{}] becasue error: {}".format(current_file, e))
+    return count

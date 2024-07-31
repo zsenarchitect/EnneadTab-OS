@@ -207,9 +207,7 @@ def revit_drafter():
     DATA_FILE.pretty_print_dict(OUT_Data)
 
     # save data to dump folder\
-    file_path = "{}\\{}".format(ENVIRONMENT.DUMP_FOLDER , "EA_DRAFTING_TRANSFER.sexyDuck")
-    print (file_path)
-    DATA_FILE.set_data(OUT_Data, file_path)
+    DATA_FILE.set_data(OUT_Data, "EA_DRAFTING_TRANSFER.sexyDuck")
 
     NOTIFICATION.messenger(main_text = "Draft Data recorded. You can return to Revit now")
 

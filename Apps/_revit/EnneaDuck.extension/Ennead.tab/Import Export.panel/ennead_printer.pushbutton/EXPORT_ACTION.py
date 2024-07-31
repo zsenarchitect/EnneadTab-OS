@@ -2,7 +2,7 @@ import time
 
 
 from EnneadTab import NOTIFICATION
-from EnneadTab import FOLDER
+from EnneadTab import FOLDER, DATA_CONVERSION, PDF
 from Autodesk.Revit import DB # pyright: ignore #pylint: disable=undefined-variable
 from pyrevit import script
 import os
@@ -85,7 +85,7 @@ def export_image(view_or_sheet, file_name, output_folder, is_thumbnail = False, 
     if is_thumbnail:
         opts.PixelSize = 1200
 
-    opts.SetViewsAndSheets(EA_UTILITY.list_to_system_list([view_or_sheet.Id]))
+    opts.SetViewsAndSheets(DATA_CONVERSION.list_to_system_list([view_or_sheet.Id]))
 
     attempt = 0
     max_attempt = 10
@@ -179,7 +179,7 @@ def export_dwg(view_or_sheet, file_name, output_folder, dwg_setting_name, is_exp
 
     #DWG_export_setting = get_export_setting(doc, export_setting_name)
     DWG_option = DB.DWGExportOptions().GetPredefinedOptions(doc, dwg_setting_name)
-    view_as_collection = EA_UTILITY.list_to_system_list([view_or_sheet.Id])
+    view_as_collection = DATA_CONVERSION.list_to_system_list([view_or_sheet.Id])
     max_attempt = 10
     attempt = 0
     while True:
@@ -201,7 +201,7 @@ def export_dwg(view_or_sheet, file_name, output_folder, dwg_setting_name, is_exp
 
             else:
                 print (e)
-    EA_UTILITY.cleanup_folder(folder = output_folder, extension = ".pcp")
+    FOLDER.cleanup_folder_by_extension(folder = output_folder, extension = ".pcp")
     files_exported.append(file_name + ".dwg")
     return files_exported
 
@@ -312,7 +312,7 @@ def export_pdf(view_or_sheet, file_name, output_folder, is_color_by_sheet):
         #  ----- method 2 -----
         #print "$$$ Trying method 2"
 
-        sheet_list = EA_UTILITY.list_to_system_list([view_or_sheet.Id])
+        sheet_list = DATA_CONVERSION.list_to_system_list([view_or_sheet.Id])
 
 
         pdf_options = DB.PDFExportOptions ()
@@ -336,7 +336,7 @@ def export_pdf(view_or_sheet, file_name, output_folder, is_color_by_sheet):
 
         # IList<TableCellCombinedParameterData> GetNamingRule()
         new_rule = [sheet_num_para_data, sheet_name_para_data]
-        new_rule = EA_UTILITY.list_to_system_list(new_rule, type = "TableCellCombinedParameterData", use_IList = False)
+        new_rule = DATA_CONVERSION.list_to_system_list(new_rule, type = "TableCellCombinedParameterData", use_IList = False)
         pdf_options.SetNamingRule(new_rule)
 
         if view_or_sheet.LookupParameter("Print_In_Color"):
@@ -385,7 +385,7 @@ def combine_final_pdf(output_folder, files_exported_for_this_issue, combined_pdf
             list_of_filepaths.append(file_path)
 
     combined_pdf_file_path = "{}\{}.pdf".format(output_folder, combined_pdf_name)
-    PDF.merge_pdfs(combined_pdf_file_path, list_of_filepaths, reorder = True)
+    PDF.pdfs2pdf(combined_pdf_file_path, list_of_filepaths, reorder = True)
     if copy_folder:
         FOLDER.copy_file_to_folder(combined_pdf_file_path, copy_folder)
 

@@ -16,8 +16,8 @@ class BaseGUI:
 
     
     FONT_TITLE = ("arialblack", 30)
-    FONT_SUBTITLE = ("arialblack", 20)
-    FONT_BODY = ("arial", 15)
+    FONT_SUBTITLE = ("arialblack", 15)
+    FONT_BODY = ("arial", 12)
     FONT_NOTE = ("arialblack", 10)
 
     run = True

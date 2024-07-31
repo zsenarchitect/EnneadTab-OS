@@ -2,8 +2,7 @@ import os
 import random
 from pyrevit import EXEC_PARAMS
 from Autodesk.Revit import DB # pyright: ignore
-
-from pycoreutils import envvars
+from pyrevit.coreutils import envvars
 doc = EXEC_PARAMS.event_args.Document
 
 
@@ -225,12 +224,12 @@ def update_sync_queue():
 
     queue = DATA_FILE.get_list(log_file)
 
-    user_name = USER.USERNAME
+    
     OUT = []
 
 
     for item in queue:
-        if user_name in item:
+        if USER.USER_NAME in item:
             #this step remove current user name from any place in wait list, either beginging or last
             continue
         OUT.append(item)

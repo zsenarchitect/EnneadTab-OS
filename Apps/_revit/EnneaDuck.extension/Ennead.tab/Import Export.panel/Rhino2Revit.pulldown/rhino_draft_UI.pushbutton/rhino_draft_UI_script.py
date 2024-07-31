@@ -20,7 +20,7 @@ from pyrevit import script, forms
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_EXPORT, REVIT_FORMS, REVIT_UNIT, REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import EXE, DATA_FILE, DATA_CONVERSION, NOTIFICATION, IMAGE, SOUND, TIME, ERROR_HANDLE, FOLDER, LOG
+from EnneadTab import EXE, DATA_FILE, DATA_CONVERSION, NOTIFICATION, IMAGE, SOUND, TIME, ERROR_HANDLE, FOLDER, LOG, ENVIRONMENT
 
 
 import traceback
@@ -502,7 +502,7 @@ class RhinoDraft_UI(forms.WPFWindow):
 
         file_name = "EA_TRANSFER_DRAFT_BACKGROUND"
         view = doc.ActiveView
-        output_folder = NOTIFICATION.DUMP_FOLDER
+        output_folder = ENVIRONMENT.DUMP_FOLDER
         REVIT_EXPORT.export_dwg(view, file_name, output_folder, self.combobox_dwg_setting.SelectedItem)
 
         self.update_global_unit()
@@ -579,8 +579,8 @@ class RhinoDraft_UI(forms.WPFWindow):
 
         self.template_file_path = rhino_template_folder + "\\" + template
 
-        #FOLDER.copy_file_to_folder(file_path, NOTIFICATION.DUMP_FOLDER)
-        file_path = NOTIFICATION.DUMP_FOLDER + "\\" + template
+        #FOLDER.copy_file_to_folder(file_path, ENVIRONMENT.DUMP_FOLDER)
+        file_path = ENVIRONMENT.DUMP_FOLDER + "\\" + template
         final_file = file_path.replace(".3dm", "_{}.3dm".format(doc.ActiveView.Name
                                                                 .replace("/","-")))
 

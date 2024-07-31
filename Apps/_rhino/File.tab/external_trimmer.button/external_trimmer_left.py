@@ -8,7 +8,7 @@ from scriptcontext import doc
 import sys
 sys.path.append("..\lib")
 
-from EnneadTab import EXE, NOTIFICATION, FOLDER
+from EnneadTab import EXE, NOTIFICATION, ENVIRONMENT
 from EnneadTab import LOG, ERROR_HANDLE
 
 BLOCK_NAME = "EA_EXTERNAL_LINK"
@@ -65,7 +65,7 @@ def update_link(block_name):
             pass
 
 def get_external_filepath():
-    EA_export_folder = NOTIFICATION.DUMP_FOLDER
+    EA_export_folder = ENVIRONMENT.DUMP_FOLDER
     if doc.Name is None:
         doc_name = "Untitled"
     else:

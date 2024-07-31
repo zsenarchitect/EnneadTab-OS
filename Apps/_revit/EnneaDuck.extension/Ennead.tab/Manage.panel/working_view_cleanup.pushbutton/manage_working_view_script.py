@@ -20,7 +20,7 @@ import time
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import USER, NOTIFICATION, DATA_CONVERSION, IMAGE, ERROR_HANDLE, FOLDER, LOG
+from EnneadTab import USER, NOTIFICATION, DATA_CONVERSION, IMAGE, ERROR_HANDLE, FOLDER, LOG, ENVIRONMENT
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 import random
@@ -469,14 +469,14 @@ class WorkingViewManager(WPFWindow):
                                 main_text = "[{}.jpg] saved.".format(view.Name))
 
         """clean jpg name"""
-        file_names = os.listdir(NOTIFICATION.DUMP_FOLDER)
+        file_names = os.listdir(ENVIRONMENT.DUMP_FOLDER)
         desired_name = file_name
 
         for file_name in file_names:
             if desired_name in file_name and ".jpg" in file_name.lower():
                 try:
                     # os.path.join(output_folder, file_name)
-                    os.rename("{}\{}".format(NOTIFICATION.DUMP_FOLDER, file_name),os.path.join(NOTIFICATION.DUMP_FOLDER, desired_name + ".jpg"))
+                    os.rename("{}\{}".format(ENVIRONMENT.DUMP_FOLDER, file_name),os.path.join(ENVIRONMENT.DUMP_FOLDER, desired_name + ".jpg"))
                 except Exception as e:
                     print ("skip {} becasue: {}".format(file_name, e))
 

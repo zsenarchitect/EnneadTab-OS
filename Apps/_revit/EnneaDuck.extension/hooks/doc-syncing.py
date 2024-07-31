@@ -110,7 +110,7 @@ def check_sync_queue():
 
 
 
-@ERROR_HANDLE.try_pass
+@ERROR_HANDLE.try_catch_error(is_pass=True)
 def fill_drafter_info():
     all_sheets = DB.FilteredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_Sheets).ToElements()
     free_sheets = REVIT_SELECTION.filter_elements_changable(all_sheets)
@@ -131,7 +131,6 @@ def fill_drafter_info():
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 def doc_syncing():
     VERSION_CONTROL.update_EA_dist()
-    LOG.update_time_sheet_revit(doc.Title)
 
 
     can_sync = check_sync_queue()
@@ -144,7 +143,8 @@ def doc_syncing():
     # do this after checking ques so the primary EXE_PARAM is same as before
     fill_drafter_info()
 
-
+    return
+    LOG.update_time_sheet_revit(doc.Title)
 
 
     

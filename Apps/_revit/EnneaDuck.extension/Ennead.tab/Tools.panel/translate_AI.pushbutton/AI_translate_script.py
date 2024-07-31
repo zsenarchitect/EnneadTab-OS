@@ -119,7 +119,7 @@ class DataGridObj(object):
 
 
 # A simple WPF form used to call the ExternalEvent
-class AI_translate_ModelessForm(WPFWindow):
+class AiTranslator(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -145,7 +145,7 @@ class AI_translate_ModelessForm(WPFWindow):
     def __init__(self):
         self.pre_actions()
 
-        xaml_file_name = "AI_translate_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "AiTranslator.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab AI Translator"
@@ -773,7 +773,7 @@ def run_exe():
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
-    AI_translate_ModelessForm()
+    AiTranslator()
     
 
 

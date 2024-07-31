@@ -179,7 +179,7 @@ class data_grid_obj:
 
 
 # A simple WPF form used to call the ExternalEvent
-class dwg_manage_ModelessForm(WPFWindow):
+class DwgManager(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -205,7 +205,7 @@ class dwg_manage_ModelessForm(WPFWindow):
     @ERROR_HANDLE.try_catch_error()
     def __init__(self):
         self.pre_actions()
-        xaml_file_name = "dwg_manager_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "DwgManager.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab DWG Manager"
@@ -433,7 +433,7 @@ class dwg_manage_ModelessForm(WPFWindow):
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
-    dwg_manage_ModelessForm()
+    DwgManager()
 
 
 ################## main code below #####################

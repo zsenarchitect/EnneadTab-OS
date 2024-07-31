@@ -60,7 +60,7 @@ example:
         self.pre_actions(*external_funcs)
 
 
-        #xaml_file_name = "general_renamer_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        #xaml_file_name = "SuperRenamer.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         xaml_path = self.get_xaml(xaml_file_name)
         if not xaml_path:
             return

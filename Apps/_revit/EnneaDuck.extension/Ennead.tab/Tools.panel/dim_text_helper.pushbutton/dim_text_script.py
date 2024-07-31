@@ -100,7 +100,7 @@ class dim_text_SimpleEventHandler(IExternalEventHandler):
 
 
 # A simple WPF form used to call the ExternalEvent
-class dim_text_ModelessForm(WPFWindow):
+class DimTextHelper(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -125,7 +125,7 @@ class dim_text_ModelessForm(WPFWindow):
     def __init__(self):
         self.pre_actions()
 
-        xaml_file_name = "DimText_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "DimTextHelper.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab Dim Text Helper"
@@ -289,7 +289,7 @@ class _CustomHandler(UI.IExternalEventHandler):
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()    
 def main():
-    dim_text_ModelessForm()
+    DimTextHelper()
 
 ################## main code below #####################
 output = script.get_output()

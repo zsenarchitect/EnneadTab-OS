@@ -303,7 +303,7 @@ class SimpleEventHandler(IExternalEventHandler):
 
 
 # A simple WPF form used to call the ExternalEvent
-class general_renamer_ModelessForm(WPFWindow):
+class SuperRenamer(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -339,7 +339,7 @@ class general_renamer_ModelessForm(WPFWindow):
     def __init__(self):
         self.pre_actions()
 
-        xaml_file_name = "general_renamer_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "SuperRenamer.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab Super Renamer"
@@ -452,7 +452,7 @@ class general_renamer_ModelessForm(WPFWindow):
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
-    general_renamer_ModelessForm()
+    SuperRenamer()
 
 
 ################## main code below #####################

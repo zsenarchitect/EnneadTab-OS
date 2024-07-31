@@ -128,7 +128,7 @@ class tag_align_SimpleEventHandler(IExternalEventHandler):
 
 
 # A simple WPF form used to call the ExternalEvent
-class tag_align_ModelessForm(WPFWindow):
+class TagAligner(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -155,7 +155,7 @@ class tag_align_ModelessForm(WPFWindow):
     def __init__(self):
         self.pre_actions()
 
-        xaml_file_name = "TagAlign_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "TagAligner.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab Tag Aligner"
@@ -280,7 +280,7 @@ class tag_align_ModelessForm(WPFWindow):
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
-    tag_align_ModelessForm()
+    TagAligner()
 
 
 ################## main code below #####################

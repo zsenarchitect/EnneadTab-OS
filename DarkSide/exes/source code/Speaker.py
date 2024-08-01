@@ -4,7 +4,7 @@ import _Exe_Util
 import contextlib
 import io
 
-TTS_FILE = "EA_Text2Speech.sexyDuck"
+TTS_FILE = "text2speech.sexyDuck"
 
 def text_to_speech_with_gTTS(text, lang='en', tld='com'):
     from gtts import gTTS

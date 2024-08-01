@@ -46,7 +46,7 @@ def messenger(main_text,
     data["image"] = image
     data["x_offset"] = x_offset
 
-    DATA_FILE.set_data(data, "MESSENGER.sexyDuck")
+    DATA_FILE.set_data(data, "messenger_data.sexyDuck")
 
 
 

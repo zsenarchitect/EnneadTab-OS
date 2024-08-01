@@ -144,7 +144,8 @@ def copy_to_standalone_collection():
         "IndesignAccOpenner.exe",
         "AccFileOpenner.exe",
         "Pdf2OrderedJpgs.exe",
-        "AvdResourceMonitor.exe"
+        "AvdResourceMonitor.exe",
+        "AppStore.exe"
     ]
     for i, exe in enumerate([f for f in os.listdir(exe_product_folder) if f in good_list]):
         src_path = os.path.join(exe_product_folder, exe)
@@ -171,7 +172,8 @@ def update_installer_folder_exes():
         "EnneadTab_For_Revit(Legacy)_Installer.exe",
         "EnneadTab_For_Revit_UnInstaller.exe",
         "RevitIniDeployer.exe",
-        "AccFileOpenner.exe"
+        "AccFileOpenner.exe",
+        "AppStore.exe"
     ]
     for i, file in enumerate(app_list):
         print("Copying {}/{} [{}] to EA_dist installer folder".format(i + 1, len(app_list), file))

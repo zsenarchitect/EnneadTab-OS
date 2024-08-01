@@ -3,7 +3,7 @@
 
 __doc__ = "Sen Zhang has not writed documentation for this tool, but he should!"
 __title__ = "Test Core Module"
-
+__context__ = "zero-doc"
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 

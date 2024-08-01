@@ -11,11 +11,10 @@ __tip__ = True
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import EXE, DATA_FILE, USER, ERROR_HANDLE, FOLDER, LOG
+from EnneadTab import EXE, DATA_FILE, USER, ERROR_HANDLE, LOG
 from pyrevit import forms, script
 # import datetime
 from datetime import datetime, timedelta
-import time
 # https://pypi.org/project/tkTimePicker/
 # time picker
 
@@ -71,8 +70,7 @@ def main():
     else:
         return
     data["open_time"] = schedule_time.isoformat()
-    res = DATA_FILE. set_data(
-        data, data_file, use_encode=True)
+    res = DATA_FILE. set_data(data, data_file)
     # print (res)
     
     

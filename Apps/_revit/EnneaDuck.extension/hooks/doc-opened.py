@@ -7,7 +7,7 @@ from Autodesk.Revit import DB # pyright: ignore
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE, EMAIL, NOTIFICATION, USER, FOLDER, DATA_FILE, ENVIRONMENT, SOUND
-from EnneadTab.REVIT import REVIT_HISTORY, REVIT_EXTERNAL_FILE, REVIT_FORMS, REVIT_SYNC
+from EnneadTab.REVIT import REVIT_HISTORY, REVIT_EXTERNAL_FILE, REVIT_FORMS, REVIT_SYNC, REVIT_APPLICATION
 from pyrevit import forms, script
 from pyrevit import EXEC_PARAMS
 from pyrevit.coreutils import envvars
@@ -403,7 +403,7 @@ def main():
 
 
 
-    if False and EA_UTILITY.is_open_hook_depressed():
+    if REVIT_APPLICATION.get_open_hook_depressed():
         print ("not running doc-opening hook")
         script.get_output().close()
         return

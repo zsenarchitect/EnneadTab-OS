@@ -98,7 +98,7 @@ def open_scheduled_docs():
     """this will also require the exe to run a schedule to active the revit, with version required.
     """
 
-    data_file = "action_" + "EA_SCHEDULE_OPENER.sexyDuck"
+    data_file = "action_" + "schedule_opener_data.sexyDuck"
     if not FOLDER.is_file_exist_in_dump_folder(data_file):
         return
     data = DATA_FILE.read_json_as_dict_in_dump_folder(data_file)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from EnneadTab import ENVIRONMENT, NOTIFICATION, DATA_FILE
+import ENVIRONMENT, NOTIFICATION, DATA_FILE
 
 
 try:

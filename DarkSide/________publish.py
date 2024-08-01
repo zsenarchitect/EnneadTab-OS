@@ -304,8 +304,10 @@ def remind_all_to_do_items():
                         for j in range(start, end):
                             print(f'{j + 1}: {lines[j].rstrip()}')
                         print('-' * 40)
-    
-    print(f'Total "to-do" items found: {todo_count}')
+                        
+    red_color = "\033[91m"
+    reset_color = "\033[0m"
+    print(f'{red_color}Total "to-do" items found: {todo_count}\n When you have time you should review.{reset_color}')
 
 
     

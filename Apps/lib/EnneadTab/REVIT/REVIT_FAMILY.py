@@ -22,7 +22,7 @@ class EnneadTabFamilyLoadingOption(REF_CLASS):
 
     def OnFamilyFound(self, familyInUse, overwriteParameterValues):
 
-        # true means use project value
+        # true means use family value
         overwriteParameterValues = True
 
         return True
@@ -37,20 +37,27 @@ class EnneadTabFamilyLoadingOption(REF_CLASS):
         return True
 
 
-def load_family(family_doc, project_doc):
+def load_family(family_doc, project_doc, loading_opt = EnneadTabFamilyLoadingOption()):
+    """safely load a family to a project.
+
+    Args:
+        family_doc (DB.Document): _description_
+        project_doc (DB.Document): _description_
+        loading_opt (DB.IFamilyLoadOptions, optional): What behaviour to use during loading conflict. Defaults to EnneadTabFamilyLoadingOption(), which prefer family value for normal parameter and shared family.
+    """
     try:
-        family_doc.LoadFamily.Overloads[DB.Document, DB.IFamilyLoadOptions](project_doc, EnneadTabFamilyLoadingOption())
+        family_doc.LoadFamily.Overloads[DB.Document, DB.IFamilyLoadOptions](project_doc, loading_opt)
     except Exception as e:
         print (e)
-        family_doc.LoadFamily(project_doc, EnneadTabFamilyLoadingOption())
+        family_doc.LoadFamily(project_doc, loading_opt)
     
     
-def load_family_by_path(family_path, project_doc=None, ):
+def load_family_by_path(family_path, project_doc=None, loading_opt = EnneadTabFamilyLoadingOption()):
     project_doc = project_doc or DOC
     
     fam_ref = clr.StrongBox[DB.Family](None)
     family_path = FOLDER.copy_file_to_local_dump_folder(family_path, file_name=family_path.rsplit("\\", 1)[1].replace("_content",""))
-    project_doc.LoadFamily(family_path, EnneadTabFamilyLoadingOption(), fam_ref)
+    project_doc.LoadFamily(family_path, loading_opt, fam_ref)
     
     return fam_ref
     

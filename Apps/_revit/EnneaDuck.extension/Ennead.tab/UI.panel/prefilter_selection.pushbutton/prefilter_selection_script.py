@@ -10,7 +10,7 @@ You can enable multiple category at same time.
 
 Let Sen.Z know if you would like to add more to the category list."""
 
-# to-do: add feature to allow include/exclude elements in group. Make a big toggle ----> if element.GroupId == element.GroupId.InvalidElementId:
+# TO-DO: add feature to allow include/exclude elements in group. Make a big toggle ----> if element.GroupId == element.GroupId.InvalidElementId:
 
 
 __title__ = "Prefilter\nSelection"

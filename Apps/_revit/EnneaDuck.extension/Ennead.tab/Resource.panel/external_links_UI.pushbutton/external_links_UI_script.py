@@ -238,7 +238,7 @@ class AssistantUI(forms.WPFWindow):
 
     @ERROR_HANDLE.try_catch_error()
     def decode_guid_click(self, sender, args):
-        # to-do: make also a selection list so user can decide which folder to delete cahe or restore recent crash local
+        # TO-DO: make also a selection list so user can decide which folder to delete cahe or restore recent crash local
         
         guid = self.textbox_cache_decoder.Text
         filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.sexyDuck"

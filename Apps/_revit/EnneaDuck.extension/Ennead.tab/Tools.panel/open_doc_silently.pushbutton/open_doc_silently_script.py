@@ -79,7 +79,7 @@ class Solution:
             self.use_audit = False
             self.open_without_workset = False
 
-        # to-do: replace with ENVIRONEMENT MISC_FOLDER
+        # TO-DO: replace with ENVIRONEMENT MISC_FOLDER
         filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.sexyDuck"
 
         self.data = DATA_FILE.get_data(filepath)

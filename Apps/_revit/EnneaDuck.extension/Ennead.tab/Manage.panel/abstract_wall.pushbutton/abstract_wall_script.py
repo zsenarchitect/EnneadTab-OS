@@ -236,11 +236,11 @@ class Solution:
         
 
     def update_detail_lines_of_same_original_element(self, element_unique_id):
-        # to-do: make this a statdard processure for both geo2line and line2geo
+        # TO-DO: make this a statdard processure for both geo2line and line2geo
         pass
     
     def update_detail_lines_of_same_detail_line(self, detail_line_id):
-        # to-do: make this a statdard processure for both geo2line and line2geo
+        # TO-DO: make this a statdard processure for both geo2line and line2geo
         pass
     
     def process_wall2line(self, wall):
@@ -327,7 +327,7 @@ class Solution:
                 # key = detail line, value = source floor
                 self.data[detail_line.UniqueId] = floor.UniqueId
 
-                # to-do: use temp tranation to find the 
+                # TO-DO: use temp tranation to find the 
                 # self.data[detail_line.UniqueId] = sketch_curve.UniqueId
 
     

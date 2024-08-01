@@ -154,7 +154,7 @@ class FileProcessorApp:
             messagebox.showwarning("Warning", "Please select an InDesign file.")
             return
         
-        username = os.getenv('USERNAME')  # Get current user's name
+        username = _Exe_Util.get_username()
         file_name = os.path.basename(original_file)
         prefix = "[{}_editing]_".format(username)
 

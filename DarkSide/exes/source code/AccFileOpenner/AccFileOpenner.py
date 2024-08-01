@@ -64,7 +64,7 @@ FILE_CATALOG = {
 
 class FileProcessorApp(BaseApp):
     def __init__(self, root):
-        self.username = os.getenv("USERNAME")
+        self.username = _Exe_Util.get_username()
         super().__init__(root)
         self.selected_file = ""
         self.original_file = None

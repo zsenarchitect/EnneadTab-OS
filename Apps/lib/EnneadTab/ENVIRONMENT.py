@@ -63,8 +63,8 @@ for _folder in [ECO_SYS_FOLDER, DUMP_FOLDER]:
             print ("Cannot secure folder [{}] becasue {}".format(_folder, e))
             
 IS_OFFLINE_MODE = not os.path.exists(SHAERD_DUMP_FOLDER)
-# if IS_OFFLINE_MODE:
-#     SHAERD_DUMP_FOLDER = DUMP_FOLDER
+if IS_OFFLINE_MODE:
+    SHAERD_DUMP_FOLDER = DUMP_FOLDER
 
 def is_avd():
     try:

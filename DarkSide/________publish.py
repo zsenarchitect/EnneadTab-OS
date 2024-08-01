@@ -9,6 +9,7 @@ import threading
 import sys
 import tkinter as tk
 from tkinter import messagebox
+import re
 
 
 OS_REPO_FOLDER = os.path.dirname(os.path.dirname(__file__))
@@ -260,6 +261,54 @@ def update_installer_folder_exes():
         shutil.copy(os.path.join(OS_REPO_FOLDER, "Apps", "lib", "ExeProducts", file),
                     os.path.join(OS_REPO_FOLDER, "Installation", file))
 
+
+import os
+import re
+
+# Assuming OS_REPO_FOLDER is defined elsewhere
+# OS_REPO_FOLDER = '/path/to/your/folder'
+
+def remind_all_to_do_items():
+    """Go through the entire OS_REPO_FOLDER folder's Python files to find any file that 
+    has 'to-do' as a keyword (using regular expression), extract the file name, and 2 lines before and after. 
+    Print line numbers in front. Also give a summary of how many 'to-do' items are there."""
+    
+    todo_pattern = re.compile(r'to-do', re.IGNORECASE)
+    todo_count = 0
+    current_file = os.path.abspath(__file__)
+    
+    def read_file(file_path):
+        encodings = ['utf-8', 'latin-1', 'cp1252']
+        for enc in encodings:
+            try:
+                with open(file_path, 'r', encoding=enc) as f:
+                    return f.readlines()
+            except UnicodeDecodeError:
+                continue
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+            return f.readlines()
+    
+    for root, dirs, files in os.walk(OS_REPO_FOLDER):
+        dirs[:] = [d for d in dirs if d not in ['.venv', '.git']]
+        for file in files:
+            file_path = os.path.join(root, file)
+            if file.endswith('.py') and file_path != current_file:
+                lines = read_file(file_path)
+                
+                for i, line in enumerate(lines):
+                    if todo_pattern.search(line):
+                        todo_count += 1
+                        start = max(i - 2, 0)
+                        end = min(i + 3, len(lines))
+                        print(f'File: {file_path}')
+                        for j in range(start, end):
+                            print(f'{j + 1}: {lines[j].rstrip()}')
+                        print('-' * 40)
+    
+    print(f'Total "to-do" items found: {todo_count}')
+
+
+    
 @time_it
 def publish_duck():
 
@@ -284,9 +333,11 @@ def publish_duck():
     copy_to_EA_Dist_and_commit()
     VERSION_CONTROL.update_EA_dist()
 
+    remind_all_to_do_items()
     
     thread = threading.Thread(target=copy_to_standalone_collection)
     thread.start()
+
 
 
 class CompileConfirmation:

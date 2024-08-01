@@ -272,7 +272,10 @@ def remind_all_to_do_items():
     """Go through the entire OS_REPO_FOLDER folder's Python files to find any file that 
     has 'to-do' as a keyword (using regular expression), extract the file name, and 2 lines before and after. 
     Print line numbers in front. Also give a summary of how many 'to-do' items are there."""
-    
+
+
+    print_title("\n\nBegin scanning for 'to-do' items...")
+    print('-' * 40)
     todo_pattern = re.compile(r'to-do', re.IGNORECASE)
     todo_count = 0
     current_file = os.path.abspath(__file__)

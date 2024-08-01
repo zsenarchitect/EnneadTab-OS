@@ -145,8 +145,8 @@ class RepositoryUpdater:
                     shutil.rmtree(file_path)
                     print("Old temp folder removed.")
 
-
-@_Exe_Util.try_catch_error
+# do not need to try catch error becasue the error is record in ERROR_DUCK file.
+# @_Exe_Util.try_catch_error
 def main():
     repo_url = "https://github.com/zsenarchitect/EA_Dist/archive/refs/heads/master.zip"
 

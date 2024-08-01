@@ -198,7 +198,7 @@ class EnneaDuck:
         # find all the queue file that has the user name
         folder = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Sync_Queue"
 
-        monitor_file = FOLDER.get_EA_dump_folder_file("EA_Last_Sync_Record.json")
+        monitor_file = FOLDER.get_EA_dump_folder_file("last_sync_record_data.sexyDuck")
         if not FOLDER.is_path_exist(monitor_file):
             return False, docs, records
 

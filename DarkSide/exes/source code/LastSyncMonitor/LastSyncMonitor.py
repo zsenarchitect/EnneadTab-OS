@@ -66,6 +66,10 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
         frame_upper_left_H = self.POINTER_Y
         bad_docs = ""
 
+        if len(records) == 0:
+            self.run = False
+
+            
         for key, value in records:
             text = "{} >>> {}".format(key, self.format_seconds(now - value))
             if now - value > check_interval * 60:

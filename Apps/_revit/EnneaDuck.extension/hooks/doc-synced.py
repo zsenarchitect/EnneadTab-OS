@@ -9,7 +9,7 @@ doc = EXEC_PARAMS.event_args.Document
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab import ERROR_HANDLE, SOUND, LOG, NOTIFICATION, SPEAK, MODULE_HELPER, ENVIRONMENT, EMAIL, USER, DATA_FILE
-from EnneadTab.REVIT import REVIT_SYNC, REVIT_FORMS
+from EnneadTab.REVIT import REVIT_SYNC, REVIT_FORMS, REVIT_EVENT
 __title__ = "Doc Synced Hook"
 
 
@@ -240,7 +240,7 @@ def update_sync_queue():
         print ("Your account have no access to write in this address.")
         return
 
-    if envvars.get_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED"):
+    if REVIT_EVENT.is_sync_queue_hook_depressed:
         # when  gloabl sync queue disabled, dont want to see dialogue, but still want to clear name from log file
         return
 

@@ -102,8 +102,7 @@ def merge_action(window):
                                             len(bad_instances)))
     #print all_instances
     map(solution.process_instance_recording, bad_instances)
-    #envvars.get_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED")
-    #envvars.set_pyrevit_env_var("EA_INSTANCE_DATA_TRANSFER", DATA)
+
 
     # change them to good family by matching type name
     map(solution.changing_type, bad_instances)

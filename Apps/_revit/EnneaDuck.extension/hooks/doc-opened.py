@@ -403,7 +403,7 @@ def main():
 
 
 
-    if REVIT_APPLICATION.get_open_hook_depressed():
+    if REVIT_EVENT.is_open_hook_depressed():
         print ("not running doc-opening hook")
         script.get_output().close()
         return

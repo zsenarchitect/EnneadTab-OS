@@ -880,7 +880,7 @@ class EA_Printer_UI(WPFWindow):
         self.docs_to_be_opened_by_API = [x for x in self.docs_to_process if self.central_doc_name(x) not in self.doc_names_already_open]
 
         #depress open hook
-        REVIT_APPLICATION.set_open_hook_depressed(is_depressed = True)
+        REVIT_EVENT.set_open_hook_depressed(is_depressed = True)
         # EA_UTILITY.set_doc_change_hook_depressed(is_depressed = True)
         # ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
 

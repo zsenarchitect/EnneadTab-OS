@@ -35,7 +35,8 @@ EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_FOLDER,"source code")
 TEMP_SPEC_FOLDER = os.path.join(EXE_FOLDER, "temp_specs")
 
 PYGAME_ALLOWS = ["Speaker.sexyDuck",
-                 "LastSyncMonitor.sexyDuck"]
+                 "LastSyncMonitor.sexyDuck",
+                 "ScheduleOpener.sexyDuck"]
 
 
 

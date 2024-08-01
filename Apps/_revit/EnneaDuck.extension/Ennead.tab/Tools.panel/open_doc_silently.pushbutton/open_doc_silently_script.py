@@ -97,7 +97,7 @@ class Solution:
         print ("docs to be opened = {}".format(docs_to_be_opened_by_API))
 
 
-        REVIT_APPLICATION.set_open_hook_depressed(True)
+        REVIT_EVENT.set_open_hook_depressed(True)
         warnings = ""
         with ErrorSwallower() as swallower:
             for doc_name in docs_to_be_opened_by_API:
@@ -114,7 +114,7 @@ class Solution:
             REVIT_APPLICATION.open_and_active_project(model_path)
 
 
-        REVIT_APPLICATION.set_open_hook_depressed(False)
+        REVIT_EVENT.set_open_hook_depressed(False)
 
 
         if warnings != "":

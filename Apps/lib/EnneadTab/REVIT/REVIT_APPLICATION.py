@@ -330,18 +330,6 @@ def select_revit_link_docs(select_multiple = True, including_current_doc = False
 
 
 
-def is_open_hook_depressed():
-    from pyrevit.coreutils import envvars
-    if envvars.get_pyrevit_env_var("IS_OPEN_HOOK_DEPRESSED"):
-        return True
-    return False
-
-
-def set_open_hook_depressed(is_depressed = True):
-    from pyrevit.coreutils import envvars
-    envvars.set_pyrevit_env_var("IS_OPEN_HOOK_DEPRESSED", is_depressed)
-
-
 def close_revit_app():
     """try its best to close the revit session.
     """

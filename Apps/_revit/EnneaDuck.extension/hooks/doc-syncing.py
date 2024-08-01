@@ -5,7 +5,7 @@ from Autodesk.Revit import DB # pyright: ignore
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab import VERSION_CONTROL, ERROR_HANDLE, LOG, DATA_FILE, TIME, USER, DUCK
-from EnneadTab.REVIT import REVIT_FORMS, REVIT_SELECTION
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_SELECTION, REVIT_EVENT
 
 __title__ = "Doc Syncing Hook"
 doc = EXEC_PARAMS.event_args.Document
@@ -67,8 +67,7 @@ def check_sync_queue():
             return True
         
 
-    if wait_num == 0 or user_name in queue[0]:
-    # or envvars.get_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED"):
+    if wait_num == 0 or user_name in queue[0] or REVIT_EVENT.is_sync_queue_hook_depressed:
 
         # no one is on wait list now, should go ahead sync
         # or maybe username is at the begining of line, he can go sync as well.

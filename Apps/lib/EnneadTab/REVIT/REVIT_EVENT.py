@@ -5,6 +5,7 @@ import traceback
 try:
     from Autodesk.Revit import DB # pyright: ignore
     from Autodesk.Revit import UI # pyright: ignore
+    from pyrevit.coreutils import envvars
 
 
     from Autodesk.Revit.UI import IExternalEventHandler, ExternalEvent # pyright: ignore
@@ -102,3 +103,34 @@ def wait_event():
         
         if max_wait<0:
             return 
+
+
+def is_open_hook_depressed():
+    return envvars.get_pyrevit_env_var("IS_OPEN_HOOK_DEPRESSED")
+
+
+def set_open_hook_depressed(is_depressed = True):
+    envvars.set_pyrevit_env_var("IS_OPEN_HOOK_DEPRESSED", is_depressed)
+
+
+
+
+def is_L_drive_alert_hook_depressed():
+    return envvars.get_pyrevit_env_var("IS_L_DRIVE_WORKING_ALARM_DISABLED")
+
+
+def set_L_drive_alert_hook_depressed(is_depressed = True):
+    envvars.set_pyrevit_env_var("IS_L_DRIVE_WORKING_ALARM_DISABLED", is_depressed)
+
+
+
+
+    
+def is_sync_queue_hook_depressed():
+    return envvars.get_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED")
+
+
+def set_sync_queue_hook_depressed(is_depressed = True):
+    envvars.set_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED", is_depressed)
+
+

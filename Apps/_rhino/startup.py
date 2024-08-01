@@ -4,10 +4,11 @@ import os, sys
 repos = [
         os.path.join(os.environ['USERPROFILE'] ,'github','EnneadTab-OS','Apps','lib'),
         os.path.join(os.environ['USERPROFILE'], 'dev-repo','EnneadTab-OS','Apps','lib'),
+        os.path.join(os.environ['USERPROFILE'], 'dev','EnneadTab-OS','Apps','lib'),
         os.path.join(os.environ['USERPROFILE'] , 'Documents','EnneadTab Ecosystem','EA_Dist','Apps','lib')
         ]
 for repo in repos:
-    if os.path.exists(repo):
+    if os.path.exists(repo) and repo not in sys.path:
         sys.path.append(repo)
         break
 
@@ -19,12 +20,12 @@ import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
 
 sys.path.append(ENVIRONMENT.RHINO_FOLDER + "\\Ennead+.menu\\get_latest.button")
-import get_latest_left
+import get_latest_left # pyright: ignore
 
 
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
-    VERSION_CONTROL.update_EA_dist()
+
     add_hook()
     
     get_latest_left.get_latest(is_silient = True)

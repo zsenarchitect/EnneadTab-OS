@@ -1,28 +1,31 @@
 import os
 import sys
+import time
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
 
+        
+def find_main_repo():
+    for root, dirs, files in os.walk(os.environ['USERPROFILE']):
+        if 'EnneadTab-OS' in dirs:
+            return os.path.join(root, 'EnneadTab-OS')
+    return os.path.join(os.environ['USERPROFILE'], 'Documents', 'EnneadTab Ecosystem', 'EA_Dist')
 
 def add_search_path():
-    repos = [
-        os.path.join(os.environ['USERPROFILE'] ,'github','EnneadTab-OS','Apps','lib'),
-        os.path.join(os.environ['USERPROFILE'], 'dev-repo','EnneadTab-OS','Apps','lib'),
-        os.path.join(os.environ['USERPROFILE'] , 'Documents','EnneadTab Ecosystem','EA_Dist','Apps','lib')
-        ]
     for path in rs.SearchPathList():
-        # print ("Rhion sarch path", path)
-        if path in repos:
+        if 'EnneadTab-OS' in path:
             rs.DeleteSearchPath(path)
-            
-    for repo in repos:
-        if os.path.exists(repo):
-            rs.AddSearchPath(repo)
-            sys.path.append(repo)
-            return
 
-
+    main_repo = find_main_repo()
+    lib_path = os.path.join(main_repo, 'Apps', 'lib')
+    if os.path.exists(lib_path):
+        rs.AddSearchPath(lib_path)
+        sys.path.append(lib_path)
+    sys.path = list(set(sys.path))
+      
+time_start = time.time()
 add_search_path()
+print ("Get Latest use {:.2}s".format(time.time() - time_start))
 print ("\n".join(sys.path))
 
 
@@ -43,7 +46,6 @@ def get_latest(is_silient = False):
     VERSION_CONTROL.update_EA_dist()
     RHINO_RUI.update_my_rui()
     RHINO_ALIAS.register_alias_set()
-    add_search_path()
     add_startup_script()
     update_GH_folders()
 
@@ -58,6 +60,7 @@ def add_startup_script():
     python cannot add startup script directly
    
     i use this python script C to call rhino script B to call rhino script A, which is the command alias
+    This will not run the startup command, it just add to the start sequence.
     """
     rvb_satrtup_modifier_script = "{}\\StartupEnable.rvb".format(os.path.dirname(__file__))
     Rhino.RhinoApp.RunScript("-LoadScript " + rvb_satrtup_modifier_script, True)

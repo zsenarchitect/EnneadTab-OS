@@ -39,6 +39,7 @@ def main():
         config.write(configfile)
 
     print("EnneadTab-for-Revit has been attached to pyRevit.")
+    print("Version: {}".format(new_userextensions_path))
     print ("You can now close this window and open Revit.")
 
 

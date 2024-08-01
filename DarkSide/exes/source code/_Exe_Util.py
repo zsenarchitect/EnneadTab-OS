@@ -10,6 +10,14 @@ for _folder in [ESOSYSTEM_FOLDER, DUMP_FOLDER]:
     if not os.path.exists(_folder):
         os.makedirs(_folder)
 
+
+        
+def find_main_repo():
+    for root, dirs, files in os.walk(os.environ['USERPROFILE']):
+        if 'EnneadTab-OS' in dirs:
+            return os.path.join(root, 'EnneadTab-OS')
+    return os.path.join(os.environ['USERPROFILE'], 'Documents', 'EnneadTab Ecosystem', 'EA_Dist')
+
 def try_catch_error(func):
 
     def wrapper(*args, **kwargs):

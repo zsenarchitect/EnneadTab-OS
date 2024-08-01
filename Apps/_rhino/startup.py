@@ -1,16 +1,8 @@
 __title__ = "EnneadTab_Startup"
 __doc__ = "Automatically run on every new rhino start session if bind to Rhino setting."
 import os, sys
-repos = [
-        os.path.join(os.environ['USERPROFILE'] ,'github','EnneadTab-OS','Apps','lib'),
-        os.path.join(os.environ['USERPROFILE'], 'dev-repo','EnneadTab-OS','Apps','lib'),
-        os.path.join(os.environ['USERPROFILE'], 'dev','EnneadTab-OS','Apps','lib'),
-        os.path.join(os.environ['USERPROFILE'] , 'Documents','EnneadTab Ecosystem','EA_Dist','Apps','lib')
-        ]
-for repo in repos:
-    if os.path.exists(repo) and repo not in sys.path:
-        sys.path.append(repo)
-        break
+_app_folder = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(os.path.join(_app_folder, "lib" ))
 
 print ("\n".join(sys.path))
 from EnneadTab import ERROR_HANDLE, NOTIFICATION, LOG, ENVIRONMENT, VERSION_CONTROL

@@ -4,23 +4,17 @@ import time
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
 
-        
-def find_main_repo():
-    for root, dirs, files in os.walk(os.environ['USERPROFILE']):
-        if 'EnneadTab-OS' in dirs:
-            return os.path.join(root, 'EnneadTab-OS')
-    return os.path.join(os.environ['USERPROFILE'], 'Documents', 'EnneadTab Ecosystem', 'EA_Dist')
+
+
 
 def add_search_path():
     for path in rs.SearchPathList():
         if 'EnneadTab-OS' in path:
             rs.DeleteSearchPath(path)
-
-    main_repo = find_main_repo()
-    lib_path = os.path.join(main_repo, 'Apps', 'lib')
-    if os.path.exists(lib_path):
-        rs.AddSearchPath(lib_path)
-        sys.path.append(lib_path)
+    _app_folder = os.path.dirname(os.path.dirname(__file__))
+    lib_path = os.path.join(_app_folder, "lib" )
+    rs.AddSearchPath(lib_path)
+    sys.path.append(lib_path)
     sys.path = list(set(sys.path))
       
 time_start = time.time()

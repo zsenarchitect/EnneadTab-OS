@@ -21,7 +21,7 @@ from EnneadTab import EXE, DATA_FILE, NOTIFICATION, SPEAK, ERROR_HANDLE, FOLDER
 import time
 
 
-SYNC_MONITOR_FILE = "Last_Sync_Record.sexyDuck"
+SYNC_MONITOR_FILE = "last_sync_record_data.sexyDuck"
 
 
 def get_record_file_path():

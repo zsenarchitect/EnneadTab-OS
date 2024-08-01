@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "c:/Users/szhang/github/EnneadTab-for-Revit/ENNEAD.extension/Ennead.tab/Tools.panel/Sync All.pulldown/see you later.pushbutton/SCHEDULE_OPENER/SCHEDULE_OPENER.py", line 252, in <module>
-    main()
-  File "c:/Users/szhang/github/EnneadTab-for-Revit/ENNEAD.extension/Ennead.tab/Tools.panel/Sync All.pulldown/see you later.pushbutton/SCHEDULE_OPENER/SCHEDULE_OPENER.py", line 204, in main
-    display_data()
-  File "c:/Users/szhang/github/EnneadTab-for-Revit/ENNEAD.extension/Ennead.tab/Tools.panel/Sync All.pulldown/see you later.pushbutton/SCHEDULE_OPENER/SCHEDULE_OPENER.py", line 160, in display_data
-    draw_text("Time Till Scheduled Open Time: {}".format( target_time - datetime.now()), font, TEXT_COL_FADE, 50, 150)
-AttributeError: 'module' object has no attribute 'now'

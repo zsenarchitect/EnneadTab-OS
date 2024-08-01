@@ -344,7 +344,7 @@ def transfer_in_draft(rhino_unit, is_grouping):
 
 
     # get dump data
-    datas = DATA_FILE.get_data("EA_DRAFTING_TRANSFER.sexyDuck")
+    datas = DATA_FILE.get_data("draft_transfer_rhino2revit_setting.sexyDuck")
     if not datas:
         NOTIFICATION.messenger ("There is no data saved. Have you exported from the Rhino?")
         return
@@ -606,7 +606,7 @@ class RhinoDraft_UI(forms.WPFWindow):
         OUT["filled_region_type_names"] = filled_region_type_names
         OUT["revit_unit"] = self.revit_unit
         OUT["final_file"] = self.final_file
-        DATA_FILE.set_data(OUT, "EA_TRANSFER_DRAFT_SETTING.sexyDuck")
+        DATA_FILE.set_data(OUT, "draft_transfer_revit2rhino_setting.sexyDuck")
 
 
     @ERROR_HANDLE.try_catch_error()

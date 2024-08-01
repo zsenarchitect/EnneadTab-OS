@@ -1,3 +1,4 @@
+from operator import is_
 import os
 from datetime import date
 import random
@@ -6,7 +7,7 @@ from Autodesk.Revit import DB # pyright: ignore
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE, EMAIL, NOTIFICATION, USER, FOLDER, DATA_FILE, ENVIRONMENT, SOUND
-from EnneadTab.REVIT import REVIT_HISTORY, REVIT_EXTERNAL_FILE, REVIT_FORMS, REVIT_SYNC
+from EnneadTab.REVIT import REVIT_HISTORY, REVIT_EXTERNAL_FILE, REVIT_FORMS, REVIT_SYNC, REVIT_APPLICATION
 from pyrevit import forms, script
 from pyrevit import EXEC_PARAMS
 from pyrevit.coreutils import envvars
@@ -255,10 +256,9 @@ def register_silient_open(doc):
 
     
 
-    filepath = "{}\doc_opener.sexyDuck".format(ENVIRONMENT.MISC_FOLDER)
 
     try:
-        data = DATA_FILE.read_json_file_safely(filepath)
+        data = DATA_FILE.get_data("doc_opener.sexyDuck", is_local=False)
         if doc.Title in data.keys():
             return
     except:
@@ -273,7 +273,7 @@ def register_silient_open(doc):
                         model_path.Region)
 
     try:
-        DATA_FILE.set_data(data, filepath)
+        DATA_FILE.set_data(data, "doc_opener.sexyDuck", is_local=False)
     except:
         print ("Cannot register model due to L drive access limit.")
     #print "\n\nYour model is regiestered."
@@ -395,14 +395,15 @@ def check_group_usage(doc):
 
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
-    # this varaible is set to True only after    use sync and close all is run ealier. So if user open new docs, we shoudl resume default False,
-    envvars.set_pyrevit_env_var("IS_AFTER_SYNC_WARNING_DISABLED", False)
+    # this varaible is set to True only after use sync and close all is run ealier. So if user open new docs, we shoudl resume default False,
+    # To-do: figure out a safr way to handle the sync/open hook related depresser.
+    # envvars.set_pyrevit_env_var("IS_AFTER_SYNC_WARNING_DISABLED", False)
 
     hide_user_tab()
 
 
 
-    if False and EA_UTILITY.is_open_hook_depressed():
+    if REVIT_APPLICATION.get_open_hook_depressed():
         print ("not running doc-opening hook")
         script.get_output().close()
         return
@@ -426,6 +427,8 @@ def main():
 
         check_if_file_opened(doc)
         append_sync_time_record(doc)
+        check_if_keynote_file_pointing_to_library(doc)
+        register_silient_open(doc)
 
         return
         
@@ -438,7 +441,6 @@ def main():
         except SystemError:
             pass
 
-        check_if_keynote_file_pointing_to_library(doc)
 
 
         ask_to_unload_locally(doc)
@@ -454,7 +456,6 @@ def main():
         
         # ENNEAD_LOG.update_local_warning(doc)
 
-        register_silient_open(doc)
 
 
 

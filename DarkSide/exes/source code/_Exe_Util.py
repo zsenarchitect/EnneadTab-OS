@@ -1,13 +1,22 @@
 import os
+import io
 import traceback
 import json
-
+import shutil
 
 ESOSYSTEM_FOLDER = "{}\\Documents\\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
 DUMP_FOLDER = "{}\\Dump".format(ESOSYSTEM_FOLDER)
 for _folder in [ESOSYSTEM_FOLDER, DUMP_FOLDER]:
     if not os.path.exists(_folder):
         os.makedirs(_folder)
+
+
+        
+def find_main_repo():
+    for root, dirs, files in os.walk(os.environ['USERPROFILE']):
+        if 'EnneadTab-OS' in dirs:
+            return os.path.join(root, 'EnneadTab-OS')
+    return os.path.join(os.environ['USERPROFILE'], 'Documents', 'EnneadTab Ecosystem', 'EA_Dist')
 
 def try_catch_error(func):
 
@@ -85,6 +94,16 @@ def get_username():
 
 
 
+def get_list(filepath="path"):
+    extention = os.path.split(filepath)[1]
+    local_path = get_file_in_dump_folder("exe_temp{}".format(extention))
+    shutil.copyfile(filepath, local_path)
+
+
+    with io.open(local_path, encoding="utf8") as f:
+        lines = f.readlines()
+  
+    return map(lambda x: x.replace("\n", ""), lines)
 
 
 

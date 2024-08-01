@@ -43,7 +43,7 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
 
 
     def display_record(self):
-        record = _Exe_Util.get_data("Last_Sync_Record.sexyDuck")
+        record = _Exe_Util.get_data("last_sync_record_data.sexyDuck")
            
         now = time.time()
         records = sorted(record.items(), key=lambda x: now - x[1])

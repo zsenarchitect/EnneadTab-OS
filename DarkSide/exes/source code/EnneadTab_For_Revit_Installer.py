@@ -23,7 +23,7 @@ def main():
     config.read(file_path)
 
     # Construct the new path for userextensions
-    new_userextensions_path = os.path.join(_Exe_Util.ESOSYSTEM_FOLDER, 'EA_Dist', 'Apps', '_revit')
+    new_userextensions_path = os.path.join(_Exe_Util.find_main_repo(), 'Apps', '_revit')
 
     # Modify the necessary items in the [...] section
     if 'core' in config:
@@ -39,6 +39,7 @@ def main():
         config.write(configfile)
 
     print("EnneadTab-for-Revit has been attached to pyRevit.")
+    print("Version: {}".format(new_userextensions_path))
     print ("You can now close this window and open Revit.")
 
 

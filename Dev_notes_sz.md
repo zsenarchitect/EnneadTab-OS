@@ -4,17 +4,19 @@
 - production working revit rhino
     - enneadtab for rhino(working)
     - enneadtab for revit(working)
-- no OS
-- no Dist
+- no OS(when improving ACCopenner, clone to szhang2 becasue this is the ONLY working acc connector, othwerwise do not keep OS becasue it has happened before, accidentally change legacy core.)
+- no Dist, never publish from there.
 
 ### szhang
-- not in use.
+- OS
+- Dist.(This should be the ONLY place for Dist, the only place to publish.)
 
 ### AVD GPU
-- Ameer says do not use
+- do not use
 
 ### AVD Test/Dev
 - development for OS
+- no Dist, never publish from there.
 
 ### AVD image
 - reserve for use when instructred by Ameer

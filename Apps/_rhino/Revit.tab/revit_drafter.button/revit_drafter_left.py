@@ -100,7 +100,7 @@ def revit_drafter():
     transfer_dwg = "{}\\{}".format(ENVIRONMENT.DUMP_FOLDER , "EA_TRANSFER_DRAFT_BACKGROUND.dwg")
 
     # import and bundle layer
-    setting = DATA_FILE.get_data("EA_TRANSFER_DRAFT_SETTING.sexyDuck")
+    setting = DATA_FILE.get_data("draft_transfer_revit2rhino_setting.sexyDuck")
     if not setting:
         NOTIFICATION.messenger(main_text = "No setting file found, please check your revit side.")
         return

@@ -207,7 +207,7 @@ def revit_drafter():
     DATA_FILE.pretty_print_dict(OUT_Data)
 
     # save data to dump folder\
-    DATA_FILE.set_data(OUT_Data, "EA_DRAFTING_TRANSFER.sexyDuck")
+    DATA_FILE.set_data(OUT_Data, "draft_transfer_rhino2revit_setting.sexyDuck")
 
     NOTIFICATION.messenger(main_text = "Draft Data recorded. You can return to Revit now")
 

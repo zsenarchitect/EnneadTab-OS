@@ -79,10 +79,8 @@ class Solution:
             self.use_audit = False
             self.open_without_workset = False
 
-        # to-do: replace with ENVIRONEMENT MISC_FOLDER
-        filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.sexyDuck"
 
-        self.data = DATA_FILE.get_data(filepath)
+        self.data = DATA_FILE.get_data("doc_opener.sexyDuck", is_local=False)
 
         if not doc_names:
             docs_to_process = forms.SelectFromList.show(sorted(self.data),

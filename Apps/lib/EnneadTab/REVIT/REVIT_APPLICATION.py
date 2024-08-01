@@ -4,7 +4,7 @@
 try:
     from Autodesk.Revit import UI # pyright: ignore
     from Autodesk.Revit import DB # pyright: ignore
-    import REVIT_FORMS, REVIT_VIEW
+    import REVIT_FORMS
 except:
     pass
 
@@ -64,6 +64,7 @@ def sync_and_close(close_others = True, disable_sync_queue = True):
     killtime = 30
     output.self_destruct(killtime)
 
+    import REVIT_VIEW
     envvars.set_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED", disable_sync_queue)
     if close_others:
         envvars.set_pyrevit_env_var("IS_AFTER_SYNC_WARNING_DISABLED", True)

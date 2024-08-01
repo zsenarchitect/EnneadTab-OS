@@ -40,7 +40,7 @@ import System # pyright: ignore
 from EnneadTab import NOTIFICATION, DATA_FILE, FOLDER, OUTPUT, TIME, VERSION_CONTROL
 from EnneadTab import MODULE_HELPER, ERROR_HANDLE, USER, KEYBOARD, ENVIRONMENT, SOUND, DOCUMENTATION, LOG, IMAGE
 from EnneadTab import JOKE, EMOJI, ENCOURAGING, HOLIDAY
-from EnneadTab.REVIT import REVIT_FORMS
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 
 
 # need below for the C drive space check
@@ -99,9 +99,9 @@ def open_scheduled_docs():
     """
 
     data_file = "action_" + "schedule_opener_data.sexyDuck"
-    if not FOLDER.is_file_exist_in_dump_folder(data_file):
+    if not os.path.exists(FOLDER.get_EA_dump_folder_file(data_file)):
         return
-    data = DATA_FILE.read_json_as_dict_in_dump_folder(data_file)
+    data = DATA_FILE.get_data(data_file)
     if not data:
         return
     
@@ -126,7 +126,7 @@ def open_scheduled_docs():
     
     # if so, check the GUID and open each one, use silent openner.
     
-    FOLDER.remove_file_from_dump_folder(data_file)
+    os.remove(FOLDER.get_EA_dump_folder_file(data_file))
     used_time = time.time() - begin_time
     REVIT_FORMS.notification(main_text = "{} have been preloaded to this revit session.\nIt took {}.".format(success_docs_note, TIME.get_readable_time(used_time)),
                                              sub_text = "Even you are not seeing them right now, they hare been openned in the background.\nTo show them, open those files as normal(click from 'recently open list') to see them instantly open.")
@@ -135,13 +135,6 @@ def open_scheduled_docs():
         KEYBOARD.send_control_D()
     except:
         pass
-
-
-
-
-
-
-
 
 
 
@@ -240,58 +233,39 @@ def EnneadTab_startup():
 
     NOTIFICATION.duck_pop(main_text = "Hello {}!\nEnneaDuck welcome you back!".format(USER.get_user_name() ))
     
-    return
 
     HOLIDAY.festival_greeting()
     
-    # this need to be up front becasue some of the file during 
-    # import module will clear out all the output window.
-    # for developer, it will also kill the loadding status window so if 
-    # developer, do not show this tips very often
-    chance = 1
-    if USER.is_SZ():
-        chance = random.random()
-        chance = 1 # when testing tip of day
- 
-    if chance > 0.8:
+    check_C_drive_space()
+
+    if random.random() > 0.2:
         DOCUMENTATION.tip_of_day()
-    else:
-        pass
+
   
         
     
     
-    check_C_drive_space()
     
     # use this part to force clear a user from database, in case the file is corrupted
     # ENNEAD_LOG.force_clear_user(target_user_names = ["fliu"])
     
-    ENNEAD_LOG.open_revit_successful()
+    # ENNEAD_LOG.open_revit_successful()
     
-    if ENNEAD_LOG.is_money_negative():
-        print ("Your Current balance is {}".format(ENNEAD_LOG.get_current_money()))
+    # if ENNEAD_LOG.is_money_negative():
+    #     print ("Your Current balance is {}".format(ENNEAD_LOG.get_current_money()))
     
-    # all kinds of anouncers..........
-    starter_quote()
-    general_annoucement()
-
-
-
-    read_beta_annoucment()
-    
-    
-    EA_UTILITY.set_doc_change_hook_depressed(is_depressed = False)
-    envvars.set_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED", False)
-
-    try:
-        TIME.set_revit_uptime()
-    except:
-        envvars.set_pyrevit_env_var("APP_UPTIME", time.time())
-
 
 
     
     open_scheduled_docs()
+    
+    # REVIT_APPLICATION.set_doc_change_hook_depressed(is_depressed = False)
+    # envvars.set_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED", False)
+
+    TIME.update_revit_uptime()
+
+
+    
 
     register_auto_update()
 

@@ -50,7 +50,7 @@ class ScheduleOpener(_GUI_Util.BasePyGameGUI):
 
         self.app_title = TITLE
         self.SCREEN_WIDTH = 700
-        self.SCREEN_HEIGHT = 900
+        self.SCREEN_HEIGHT = 300
         self.content_folder = os.path.dirname(__file__)
 
         self.life_max = _GUI_Util.BasePyGameGUI.MAX_LIFE
@@ -69,10 +69,12 @@ class ScheduleOpener(_GUI_Util.BasePyGameGUI):
     def display_data(self, data):
         # Set your specific date and time for the task to run
         # For example: Aug 24, 2023 at 2:30 PM
-        
+        self.POINTER_Y = 150
 
         self.draw_text("Below are docs that will be opened:", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
-
+        if not data:# no data
+            self.run = False
+            return False
         target_time = data["open_time"]
         # print(target_time)
         #  use re to convert isoformat to datetime without using strptime
@@ -87,7 +89,7 @@ class ScheduleOpener(_GUI_Util.BasePyGameGUI):
             
         self.draw_text("Time Till Scheduled Open Time: {}".format( target_time - datetime.datetime.now()), self.FONT_BODY, self.TEXT_COLOR_FADE)
         for i, doc in enumerate(data["docs"]):
-            self.draw_text("    [{}]".format( doc), self.FONT_BODY, self.TEXT_COLOR_FADE)
+            self.draw_text("    [{}]".format( doc), self.FONT_BODY, self.TEXT_COLOR_WARNING)
         
         
         if datetime.datetime.now() > target_time:
@@ -115,10 +117,9 @@ class ScheduleOpener(_GUI_Util.BasePyGameGUI):
 
             
             data = _Exe_Util.get_data(DATA_FILE)
-            if data:
-                res = self.display_data(data)
-                if res:
-                    data = None#clear data to prevent repeat open revit
+            res = self.display_data(data)
+            if res:
+                data = None#clear data to prevent repeat open revit
             
             self.check_exit()
 

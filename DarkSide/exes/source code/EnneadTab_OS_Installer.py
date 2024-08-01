@@ -37,7 +37,8 @@ class RepositoryUpdater:
             self.download_zip()
             self.extract_zip()
             self.update_files()
-            self.cleanup()
+            self.cleanup_current_cache()
+            self.cleanup_empty_EA_dist_folder()
             self.create_duck_file(success=True)
         except Exception as e:
             self.create_duck_file(success=False, error_details=traceback.format_exc())
@@ -97,12 +98,22 @@ class RepositoryUpdater:
                         pass
         print("Files have been updated.")
     
-    def cleanup(self):
+    def cleanup_current_cache(self):
         shutil.rmtree(self.temp_dir)
         os.remove(self.zip_path)
-        print("Cleanup completed.")
+        print("Cleanup current cache download completed.")
 
-    
+    def cleanup_empty_EA_dist_folder(self):
+        ea_dist_folder = os.path.join(_Exe_Util.ESOSYSTEM_FOLDER, "EA_Dist")
+        """walk thru all the folder, remove if it is a empty folder"""
+        for folder, _, filenames in os.walk(ea_dist_folder):
+            if not filenames:
+                try:
+                    os.removedirs(folder)
+                except:
+                    pass
+        print("Cleanup empty EA folder completed.")
+            
     def create_duck_file(self, success=True, error_details=None):
         timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         duck_file_path = os.path.join(_Exe_Util.ESOSYSTEM_FOLDER, f"{timestamp}.duck")
@@ -117,7 +128,7 @@ class RepositoryUpdater:
     
     def cleanup_old_duck_files(self):
         now = datetime.now()
-        cutoff = now - timedelta(days=2)
+        cutoff = now - timedelta(hours=8)
         for f in os.listdir(_Exe_Util.ESOSYSTEM_FOLDER):
             if f.endswith(".duck"):
                 file_path = os.path.join(_Exe_Util.ESOSYSTEM_FOLDER, f)

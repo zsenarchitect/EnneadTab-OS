@@ -344,7 +344,6 @@ def publish_duck():
     thread.start()
 
 
-
 class CompileConfirmation:
     def __init__(self):
         self.should_compile = False

@@ -9,6 +9,16 @@ def copy_file(original_path, new_path):
         os.mkdir(target_folder)
     shutil.copyfile(original_path, new_path)
 
+    
+def copy_file_to_folder(original_path, target_folder):
+    new_path = original_path.replace(os.path.dirname(original_path), target_folder)
+    try:
+        shutil.copyfile(original_path, new_path)
+    except Exception as e:
+        print (e)
+
+    return new_path
+
 def secure_folder(folder):
     if not os.path.exists(folder):
         os.mkdir(folder)
@@ -100,7 +110,7 @@ def backup_data(data_file_name, backup_folder_title, max_time = 60*60*24*1):
 
 
 def cleanup_folder_by_extension(folder = "folder path",
-                    extension = "extension"):
+                                extension = "extension"):
     """remove files in folder based on extension"""
     filenames = os.listdir(folder)
 
@@ -114,3 +124,43 @@ def cleanup_folder_by_extension(folder = "folder path",
             except Exception as e:
                 print ("Cannot delete file [{}] becasue error: {}".format(current_file, e))
     return count
+
+
+
+def secure_filename_in_folder(output_folder, desired_name, extension):
+    """make sure the desired name of file is formated as such in the output folder.
+    This is usually a requirement after export revit jpg becasue revit will auto append other name in the jpg export.
+
+    Args:
+        output_folder (str): folder to search
+        desired_name (str): desired final name, also the name to search for among existing files in output folder. THIS NAME DOES NOT CONTAIN EXTENSION.
+        extension (str): extension to lock search. THIS CONTAINS DOT, such as ".xxx"
+    """
+    
+    
+    try:
+        os.remove(os.path.join(output_folder, desired_name + extension))
+    except:
+        pass
+
+    #print keyword
+    keyword = " - Sheet - "
+
+    for file_name in os.listdir(output_folder):
+        if desired_name in file_name and extension in file_name.lower():
+            new_name = desired_name
+
+
+            # this prefix allow longer path limit
+            old_path = "\\\\?\\{}\\{}".format(output_folder, file_name)
+            new_path = "\\\\?\\{}\\{}".format(output_folder, new_name + extension)
+            try:
+                os.rename(old_path, new_path)
+
+            except:
+                try:
+                    
+                    os.rename(os.path.join(output_folder, file_name),os.path.join(output_folder, new_name + extension))
+
+                except Exception as e:
+                    ERROR_HANDLE.print_note( "filename clean up failed: skip {} becasue: {}".format(file_name, e))

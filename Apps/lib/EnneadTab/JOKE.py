@@ -35,7 +35,7 @@ def get_all_jokes():
     return [x.replace("\n", "") for x  in lines if x != "\n"]
 
 def get_all_loading_screen_message():
-    with open('{}\_loading_screen_message.txt'.format(FOLDER.get_folder_path_from_path(__file__)), "r") as f:
+    with open('{}\\text\\_loading_screen_message.txt'.format(ENVIRONMENT.DOCUMENT_FOLDER), "r") as f:
         lines = f.readlines()
     return [x.replace("\n", "") for x  in lines if x != "\n"]
 
@@ -60,6 +60,7 @@ def random_loading_message():
 
 
 def prank_ph():
+    return
     if is_hate_fun():
         return
     

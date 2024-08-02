@@ -16,9 +16,10 @@ from pyrevit.revit import ErrorSwallower
 
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
-from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_EVENT
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_EVENT, REVIT_EXPORT
 
-from EnneadTab import JOKE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, ERROR_HANDLE, FOLDER, IMAGE, USER, EMAIL, LOG
+from EnneadTab import JOKE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, PDF
+from EnneadTab import ERROR_HANDLE, FOLDER, IMAGE, USER, EMAIL, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 import traceback
@@ -47,7 +48,7 @@ script_folder = os.path.dirname(__file__)
 import sys
 sys.path.append(script_folder)
 import HELPER
-import EXPORT_ACTION
+
 
 
 class DataGrid_Preview_Obj(object):
@@ -902,7 +903,7 @@ class EA_Printer_UI(WPFWindow):
         time_end = time.time()
 
         if len(self.docs_to_be_opened_by_API) > 0:
-            EXPORT_ACTION.print_time("background loading {} files".format(self.docs_to_be_opened_by_API), time_end, time_start, use_minutes = False)
+            REVIT_EXPORT.print_time("background loading {} files".format(self.docs_to_be_opened_by_API), time_end, time_start, use_minutes = False)
 
             ###!!!! no need to reactive primary doc if we are using post file name correction method
             #primary_doc = active_original_doc(orginal_doc_name).Document##function return UI doc ##try this to fix main doc pdf not print issue
@@ -910,7 +911,7 @@ class EA_Printer_UI(WPFWindow):
 
 
         #open hook depression re-enable
-        REVIT_APPLICATION.set_open_hook_depressed(stage = False)
+        REVIT_EVENT.set_open_hook_depressed(stage = False)
 
 
 
@@ -979,7 +980,7 @@ class EA_Printer_UI(WPFWindow):
 
             if extension == ".pdf":
                 is_color_by_sheet = self.is_color_by_sheet
-                final_file = EXPORT_ACTION.export_pdf(view_or_sheet, raw_name, self.output_folder, is_color_by_sheet)
+                final_file = REVIT_EXPORT.export_pdf(view_or_sheet, raw_name, self.output_folder, is_color_by_sheet)
                 self.files_exported_for_this_issue.append(final_file)
 
             if extension == ".dwg":
@@ -987,7 +988,7 @@ class EA_Printer_UI(WPFWindow):
                 dwg_setting_name = self.dwg_setting_name
                 DWG_option = DB.DWGExportOptions().GetPredefinedOptions(view_or_sheet.Document, dwg_setting_name)
                 if DWG_option:
-                    final_files = EXPORT_ACTION.export_dwg(view_or_sheet, raw_name, self.output_folder, dwg_setting_name, is_export_view_on_sheet)
+                    final_files = REVIT_EXPORT.export_dwg(view_or_sheet, raw_name, self.output_folder, dwg_setting_name, is_export_view_on_sheet)
 
                     self.files_exported_for_this_issue.extend(final_files)
                     for new_files in final_files:
@@ -998,11 +999,11 @@ class EA_Printer_UI(WPFWindow):
                     #is_success = False
 
             if extension == ".jpg":
-                final_file = EXPORT_ACTION.export_image(view_or_sheet, raw_name, self.output_folder,  is_color_by_sheet = self.is_color_by_sheet)
+                final_file = REVIT_EXPORT.export_image(view_or_sheet, raw_name, self.output_folder,  is_color_by_sheet = self.is_color_by_sheet)
                 self.files_exported_for_this_issue.append(final_file)
 
             time_end = time.time()
-            format_time = EXPORT_ACTION.print_time("sheet to {}".format(extension), time_end, time_start)
+            format_time = REVIT_EXPORT.print_time("sheet to {}".format(extension), time_end, time_start)
             preview_obj.time_estimate = time_end - time_start
 
             """
@@ -1034,7 +1035,7 @@ class EA_Printer_UI(WPFWindow):
                     new_contents = final_files
                 else:
                     new_contents = [final_file]
-                EXPORT_ACTION.dump_exported_files_to_copy_folder(self.output_folder, new_contents, self.file_id_dict, self.copy_folder_path)
+                REVIT_EXPORT.dump_exported_files_to_copy_folder(self.output_folder, new_contents, self.file_id_dict, self.copy_folder_path)
 
 
             # ----- end of for loop
@@ -1078,11 +1079,11 @@ class EA_Printer_UI(WPFWindow):
 
         if self.is_copy_folder:
 
-            EXPORT_ACTION.dump_exported_files_to_copy_folder(self.output_folder, self.files_exported_for_this_issue, self.file_id_dict, copy_folder)
+            REVIT_EXPORT.dump_exported_files_to_copy_folder(self.output_folder, self.files_exported_for_this_issue, self.file_id_dict, copy_folder)
 
         if self.is_combine_pdf and not self.is_printing_interupted:
             combined_pdf_name = self.textbox_combined_pdf_name.Text
-            EXPORT_ACTION.combine_final_pdf(self.output_folder, self.files_exported_for_this_issue, combined_pdf_name, copy_folder)
+            REVIT_EXPORT.combine_final_pdf(self.output_folder, self.files_exported_for_this_issue, combined_pdf_name, copy_folder)
 
         if self.is_play_sound:
             SOUND.play_sound("sound_effect_mario_stage_clear.wav")
@@ -1095,7 +1096,7 @@ class EA_Printer_UI(WPFWindow):
         total_time_min = int( total_time_second / 60 )
         print ("#"*20)
         print ("all sheets from selected revit files have been printed.\nIssue parameter = [{}]".format(self.issue_name))
-        EXPORT_ACTION.print_time("Print {} sheets".format(len(self.files_exported_for_this_issue)), time_end, time_start, use_minutes = True)
+        REVIT_EXPORT.print_time("Print {} sheets".format(len(self.files_exported_for_this_issue)), time_end, time_start, use_minutes = True)
         print ("#"*20)
         self.print_ranked_log()
         # ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
@@ -1468,8 +1469,8 @@ class EA_Printer_UI(WPFWindow):
 
 
     def update_preview_image(self, view_or_sheet):
-        EXPORT_ACTION.export_image(view_or_sheet, "EXPORTER_PREVIEW", FOLDER.get_EA_local_dump_folder(), is_thumbnail = True)
-        self.set_image_source(self.preview_image, FOLDER.get_EA_dump_folder_file("EXPORTER_PREVIEW.jpg"))
+        REVIT_EXPORT.export_image(view_or_sheet, "exporter_preview", ENVIRONMENT.DUMP_FOLDER, is_thumbnail = True)
+        self.set_image_source(self.preview_image, FOLDER.get_EA_dump_folder_file("exporter_preview.jpg"))
 
 
     def initiate_loading_message(self):

@@ -231,7 +231,7 @@ def EnneadTab_startup():
     check_minimal_version_for_enneadtab()
     ENCOURAGING.warming_quote()
 
-    NOTIFICATION.duck_pop(main_text = "Hello {}!\nEnneaDuck welcome you back!".format(USER.get_user_name() ))
+    NOTIFICATION.duck_pop(main_text = "Hello {}!\nEnneaDuck welcome you back!".format(USER.USER_NAME))
     
 
     HOLIDAY.festival_greeting()

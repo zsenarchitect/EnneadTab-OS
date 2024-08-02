@@ -13,12 +13,12 @@ from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
-from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_EVENT
 from EnneadTab import DATA_FILE, ERROR_HANDLE, LOG
-import System
+import System # pyright: ignore 
 from pyrevit.revit import ErrorSwallower
 from Autodesk.Revit import DB # pyright: ignore 
-from Autodesk.Revit import UI # pyright: ignore
+
 
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
@@ -53,7 +53,7 @@ class Solution:
         if self.use_audit:
             open_options.Audit = True
         try:
-            __revit__.OpenAndActivateDocument (cloud_path, open_options, False)
+            __revit__.OpenAndActivateDocument (cloud_path, open_options, False) # pyright: ignore 
             return
             new_doc = REVIT_APPLICATION.get_app().OpenDocumentFile(cloud_path,
                                                                                             open_options)

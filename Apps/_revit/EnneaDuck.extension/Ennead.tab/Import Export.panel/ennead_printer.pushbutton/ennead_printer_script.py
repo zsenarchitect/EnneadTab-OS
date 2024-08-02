@@ -620,7 +620,7 @@ class EA_Printer_UI(WPFWindow):
 
     @staticmethod
     def central_doc_name(doc):
-        return doc.Title.replace("_{}".format(USER.USER_NAME,  ""))
+        return doc.Title.replace("_{}".format(USER.USER_NAME),  "")
 
     def get_id_by_doc(self, doc):
         true_doc_name = self.central_doc_name(doc)

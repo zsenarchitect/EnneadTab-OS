@@ -62,13 +62,14 @@ def try_catch_error(is_silent=False, is_pass = False):
 
 
 def print_note(string):
+    """for non developer this is never printed."""
 
     if USER.is_EnneadTab_developer():
         try:
             from pyrevit import script
             string = str(string)
             script.get_output().print_md(
-                "***[DEBUG NOTE]***:{}".format(string))
+                "***[Dev Debug Only Oote]***:{}".format(string))
         except Exception as e:
 
-            print("[DEBUG NOTE]:{}".format(string))
+            print("[Dev Debug Only Oote]:{}".format(string))

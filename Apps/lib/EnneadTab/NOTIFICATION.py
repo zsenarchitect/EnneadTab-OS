@@ -11,7 +11,7 @@ def is_hate_messenger():
     return not (CONFIG.get_setting("radio_bt_popup_standard", True) or CONFIG.get_setting("radio_bt_popup_full", True))
 
 def is_hate_duck_pop():
-    return not CONFIG.get_setting("toggle_bt_is_duck_allowed", True)
+    return not CONFIG.get_setting("toggle_bt_is_duck_allowed", False)
 
 def messenger(main_text,
              width = 1200,
@@ -55,6 +55,7 @@ def messenger(main_text,
 
 def duck_pop(main_text = None):
     if is_hate_duck_pop():
+        messenger(main_text)
         return
     
     if not main_text:

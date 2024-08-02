@@ -15,7 +15,9 @@
 - do not use
 
 ### AVD Test/Dev
-- development for OS
+- enneadtab for rhino(checking)
+- enneadtab for revit(checking)
+- no OS
 - no Dist, never publish from there.
 
 ### AVD image

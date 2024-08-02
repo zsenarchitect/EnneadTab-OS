@@ -47,7 +47,7 @@ class BasePyGameGUI(_GUI_Base_Util.BaseGUI):
 
         if self.life_count < 0:
             self.run = False
-            
+
         
         self.life_count -= 1
         self.update_footnote()

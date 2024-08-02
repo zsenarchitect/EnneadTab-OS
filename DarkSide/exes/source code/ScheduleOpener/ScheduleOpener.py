@@ -50,7 +50,7 @@ class ScheduleOpener(_GUI_Util.BasePyGameGUI):
 
         self.app_title = TITLE
         self.SCREEN_WIDTH = 700
-        self.SCREEN_HEIGHT = 300
+        self.SCREEN_HEIGHT = 500
         self.content_folder = os.path.dirname(__file__)
 
         self.life_max = _GUI_Util.BasePyGameGUI.MAX_LIFE

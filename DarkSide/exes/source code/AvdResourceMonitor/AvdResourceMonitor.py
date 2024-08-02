@@ -157,17 +157,17 @@ class UsageMonitor(_GUI_Base_Util.BaseGUI):
         if self.status_window is None:
             self.status_window = tk.Toplevel(self.root)
             self.status_window.title("System Status")
-            self.status_window.configure(bg='#2e2e2e')
+            self.status_window.configure(bg=self.BACKGROUND_COLOR_HEX)
             self.status_window.iconbitmap(self.icon_image_normal_path)
 
             self.labels = {
-                "pc_name": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg='#2e2e2e', fg='white'),
-                "num_users": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg='#2e2e2e', fg='white'),
-                "uptime": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg='#2e2e2e', fg='white'),
-                "cpu_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg='#2e2e2e', fg='white'),
-                "gpu_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg='#2e2e2e', fg='white'),
-                "disk_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg='#2e2e2e', fg='white'),
-                "memory_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg='#2e2e2e', fg='white')
+                "pc_name": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg=self.BACKGROUND_COLOR_HEX, fg='white'),
+                "num_users": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg=self.BACKGROUND_COLOR_HEX, fg='white'),
+                "uptime": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg=self.BACKGROUND_COLOR_HEX, fg='white'),
+                "cpu_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg=self.BACKGROUND_COLOR_HEX, fg='white'),
+                "gpu_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg=self.BACKGROUND_COLOR_HEX, fg='white'),
+                "disk_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg=self.BACKGROUND_COLOR_HEX, fg='white'),
+                "memory_usage": tk.Label(self.status_window, text="", font=("Helvetica", 12), anchor="w", justify="left", bg=self.BACKGROUND_COLOR_HEX, fg='white')
             }
 
             for label in self.labels.values():
@@ -225,7 +225,7 @@ class UsageMonitor(_GUI_Base_Util.BaseGUI):
             self.settings_window = tk.Toplevel(self.root)
             self.settings_window.title("Settings")
             self.settings_window.iconbitmap(self.icon_image_normal_path)  # Set window icon
-            self.settings_window.configure(bg='#2e2e2e')
+            self.settings_window.configure(bg=self.BACKGROUND_COLOR_HEX)
 
             self.settings_vars = {
                 "cpu_threshold": tk.IntVar(value=SETTINGS["cpu_threshold"]),
@@ -245,13 +245,13 @@ class UsageMonitor(_GUI_Base_Util.BaseGUI):
                     label_text += " (%)"
                 if key in ["cpu_threshold", "gpu_threshold"]:
                     label_text = label_text.upper()
-                label = tk.Label(self.settings_window, text=label_text, anchor="w", justify="left", bg='#2e2e2e', fg='white')
+                label = tk.Label(self.settings_window, text=label_text, anchor="w", justify="left", bg=self.BACKGROUND_COLOR_HEX, fg='white')
                 label.grid(row=row, column=0, padx=10, pady=5, sticky="w")
-                entry = tk.Entry(self.settings_window, textvariable=var, bg='#2e2e2e', fg='white')
+                entry = tk.Entry(self.settings_window, textvariable=var, bg=self.BACKGROUND_COLOR_HEX, fg='white')
                 entry.grid(row=row, column=1, padx=10, pady=5, sticky="w")
                 row += 1
 
-            tk.Button(self.settings_window, text="Save", command=self.save_settings, bg='#2e2e2e', fg='white').grid(row=row, column=0, columnspan=2, pady=10)
+            tk.Button(self.settings_window, text="Save", command=self.save_settings, bg=self.BACKGROUND_COLOR_HEX, fg='white').grid(row=row, column=0, columnspan=2, pady=10)
             self.settings_window.protocol("WM_DELETE_WINDOW", self.close_settings_window)
 
     def save_settings(self):

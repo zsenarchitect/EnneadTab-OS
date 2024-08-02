@@ -110,7 +110,7 @@ def export_image(view_or_sheet, file_name, output_folder, is_thumbnail = False, 
 
             else:
                 print (e.message)
-    FOLDER.cleanup_name_in_folder(output_folder, file_name, ".jpg")
+    FOLDER.cleanup_folder_by_extension(output_folder, file_name, ".jpg")
 
 
 
@@ -304,7 +304,7 @@ def export_pdf(view_or_sheet, file_name, output_folder, is_color_by_sheet):
 
         """might be important again"""
         #cleanup_pdf_name()
-        FOLDER.cleanup_name_in_folder(output_folder, file_name, ".pdf")
+        FOLDER.cleanup_folder_by_extension(output_folder, file_name, ".pdf")
 
         print ("$$$ end method 1")
 

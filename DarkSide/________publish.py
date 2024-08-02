@@ -270,7 +270,7 @@ def print_title(text):
 @time_it
 def publish_duck():
     if ENVIRONMENT.IS_AVD:
-        print_title("Not going to publish from here...")
+        NOTIFICATION.messenger("Not going to publish from AVD...")
         return
     
     if CompileConfirmation().get_result():

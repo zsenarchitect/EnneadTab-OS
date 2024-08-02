@@ -67,7 +67,7 @@ def check_sync_queue():
             return True
         
 
-    if wait_num == 0 or user_name in queue[0] or REVIT_EVENT.is_sync_queue_hook_depressed:
+    if wait_num == 0 or user_name in queue[0] or REVIT_EVENT.is_sync_queue_disabled:
 
         # no one is on wait list now, should go ahead sync
         # or maybe username is at the begining of line, he can go sync as well.

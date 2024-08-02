@@ -880,8 +880,8 @@ class EA_Printer_UI(WPFWindow):
         self.docs_to_be_opened_by_API = [x for x in self.docs_to_process if self.central_doc_name(x) not in self.doc_names_already_open]
 
         #depress open hook
-        REVIT_EVENT.set_open_hook_depressed(is_depressed = True)
-        # EA_UTILITY.set_doc_change_hook_depressed(is_depressed = True)
+        REVIT_EVENT.set_open_hook_depressed(stage = True)
+        # EA_UTILITY.set_doc_change_hook_depressed(stage = True)
         # ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
 
         time_start = time.time()
@@ -902,7 +902,7 @@ class EA_Printer_UI(WPFWindow):
 
 
         #open hook depression re-enable
-        REVIT_APPLICATION.set_open_hook_depressed(is_depressed = False)
+        REVIT_APPLICATION.set_open_hook_depressed(stage = False)
 
 
 
@@ -1065,7 +1065,7 @@ class EA_Printer_UI(WPFWindow):
 
 
 
-        # EA_UTILITY.set_doc_change_hook_depressed(is_depressed = False)
+        # EA_UTILITY.set_doc_change_hook_depressed(stage = False)
         # ERROR_HANDLE.print_note("my doc change hook depress status = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
 
         if self.is_copy_folder:

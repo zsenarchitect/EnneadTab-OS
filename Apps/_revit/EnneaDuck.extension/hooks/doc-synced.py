@@ -212,7 +212,7 @@ def update_project_2306():
 def update_sync_queue():
 
     # dont need to do anything if pre-sycn chech was cancelled,
-    if envvars.get_pyrevit_env_var("IS_SYNC_CANCELLED"):
+    if REVIT_EVENT.is_sync_cancelled():
         return
 
     log_file = "{}\\Sync_Queue\\Sync Queue_{}.sexyDuck". format(ENVIRONMENT.DB_FOLDER, doc.Title)
@@ -240,7 +240,7 @@ def update_sync_queue():
         print ("Your account have no access to write in this address.")
         return
 
-    if REVIT_EVENT.is_sync_queue_hook_depressed:
+    if REVIT_EVENT.is_sync_queue_disabled:
         # when  gloabl sync queue disabled, dont want to see dialogue, but still want to clear name from log file
         return
 

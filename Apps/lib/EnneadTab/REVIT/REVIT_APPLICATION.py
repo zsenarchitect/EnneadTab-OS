@@ -4,7 +4,7 @@
 try:
     from Autodesk.Revit import UI # pyright: ignore
     from Autodesk.Revit import DB # pyright: ignore
-    import REVIT_FORMS
+    import REVIT_FORMS, REVIT_EVENT
 except:
     pass
 
@@ -65,7 +65,7 @@ def sync_and_close(close_others = True, disable_sync_queue = True):
     output.self_destruct(killtime)
 
     import REVIT_VIEW
-    envvars.set_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED", disable_sync_queue)
+    REVIT_EVENT.set_sync_queue_enable_stage(disable_sync_queue)
     if close_others:
         envvars.set_pyrevit_env_var("IS_AFTER_SYNC_WARNING_DISABLED", True)
         # if you descide to close others, they should be no further warning. Only recover that warning behavir in DOC OPENED event

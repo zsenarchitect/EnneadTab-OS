@@ -3,7 +3,7 @@
 """
     >>> with ErrorSwallower() as swallower:
     >>>     for fam in families:
-    >>>         revit.doc.EditFamily(fam)
+    >>>         doc.EditFamily(fam)
     >>>         if swallower.get_swallowed():
     >>>             logger.warn("Warnings swallowed")
 """
@@ -14,18 +14,20 @@ __title__ = "MetaData\nExporter"
 import os
 # from pyrevit import forms #
 from pyrevit import script #
-from pyrevit.revit import ErrorSwallower
-import ENNEAD_LOG
-import EnneadTab
+from pyrevit import ErrorSwallower
+
 import time
 from pyrevit.coreutils import envvars
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 import random
 
+from EnneadTab import NOTIFICATION, TIME, ERROR_HANDLE, FOLDER, DATA_FILE, EXE, FOLDER, SOUND
+from EnneadTab.REVIT import REVIT_UNIT, REVIT_APPLICATION, REVIT_EVENT, REVIT_EXPORT
+
 try:
     doc = __revit__.ActiveUIDocument.Document # pyright: ignore
-    uidoc = __revit__.ActiveUIDocument
+    uidoc = __revit__.ActiveUIDocument # pyright: ignore
 except:
     pass
 
@@ -47,11 +49,12 @@ class FamilyMetaDataExporter:
         if IS_IGNORE_EXISTING:
             self.existing_meta_data = [x for x in os.listdir(self.meta_data_folder) if x.endswith(".sexyDuck")]
             # print self.existing_meta_data
-            EnneadTab.NOTIFICATION.messenger (main_text = "{} existing meta data file(s) found.".format(len(self.existing_meta_data)))
+            NOTIFICATION.messenger (main_text = "{} existing meta data file(s) found.".format(len(self.existing_meta_data)))
     
-    @EnneadTab.TIME.timer
+    @TIME.timer
     def export_data(self):
-        envvars.set_pyrevit_env_var("IS_L_DRIVE_WORKING_ALARM_DISABLED", True)
+        REVIT_EVENT.set_L_drive_alert_hook_depressed(stage=True)
+        
         
         self.is_dry_run = True
         # dry run to get the total family count but not process data
@@ -64,9 +67,8 @@ class FamilyMetaDataExporter:
         
         
         print ("Meta data exported!!!!")
-        EnneadTab.SOUND.play_sound("sound effect_mario stage clear.wav")
-        envvars.set_pyrevit_env_var("IS_L_DRIVE_WORKING_ALARM_DISABLED", False)
-        
+        SOUND.play_sound("sound effect_mario stage clear.wav")
+        REVIT_EVENT.set_L_drive_alert_hook_depressed(stage= False)
 
         
         try: 
@@ -130,7 +132,7 @@ class FamilyMetaDataExporter:
             
             head, tail = os.path.split(family_path)
             if tail.replace(".rfa", ".sexyDuck")  in  self.existing_meta_data:
-                # EnneadTab.NOTIFICATION.messenger (main_text = tail.replace(".rfa", ".sexyDuck"))
+                # NOTIFICATION.messenger (main_text = tail.replace(".rfa", ".sexyDuck"))
                 # if json file modification date is within last 3 day, return func
                 # this is to avoid processing the same family file again and again                
                 if time.time() - os.path.getctime(family_path) < 60*60*24*3:
@@ -145,11 +147,11 @@ class FamilyMetaDataExporter:
         
         
             
-        EnneadTab.NOTIFICATION.messenger (main_text = "-{}/{}: {}".format(self.counter,self.total_family_count, 
+        NOTIFICATION.messenger (main_text = "-{}/{}: {}".format(self.counter,self.total_family_count, 
                                                                       family_path.replace(r"L:\4b_Applied Computing\01_Revit\03_Library", ""),
                                         width = 1500))
         
-        family_doc = EnneadTab.REVIT.REVIT_APPLICATION.get_application().OpenDocumentFile(family_path)
+        family_doc = REVIT_APPLICATION.get_application().OpenDocumentFile(family_path)
         # print family_doc
         t = DB.Transaction(family_doc, "Export Family Meta Data")
         t.Start()
@@ -157,8 +159,8 @@ class FamilyMetaDataExporter:
         views = DB.FilteredElementCollector(family_doc).OfClass(DB.View).WhereElementIsNotElementType ().ToElements()
         
         meta_file_path = "{}\\{}".format(self.meta_data_folder, family_doc.Title + ".sexyDuck")
-        if EnneadTab.FOLDER.is_path_exist(meta_file_path):
-            meta_data = EnneadTab.DATA_FILE.get_data(meta_file_path)
+        if FOLDER.is_path_exist(meta_file_path):
+            meta_data = DATA_FILE.get_data(meta_file_path)
         else:
             meta_data = dict()
             
@@ -168,7 +170,7 @@ class FamilyMetaDataExporter:
         
         
         family_unit = family_doc.GetUnits()
-        length_spec = EnneadTab.REVIT.REVIT_UNIT.lookup_unit_spec_id("length")
+        length_spec = REVIT_UNIT.lookup_unit_spec_id("length")
         format_option = family_unit.GetFormatOptions (length_spec)
         unit_id = format_option.GetUnitTypeId ()
         unit_string = str(unit_id)#.split("-")[0].split("unit:")[1]
@@ -186,7 +188,7 @@ class FamilyMetaDataExporter:
     
     
         meta_data["family_path"] = family_path
-        meta_data["record_time"] = EnneadTab.TIME.get_formatted_current_time()
+        meta_data["record_time"] = TIME.get_formatted_current_time()
         meta_data["type_data"] = dict()
         
         manager = family_doc.FamilyManager
@@ -206,7 +208,7 @@ class FamilyMetaDataExporter:
             
             
         t.RollBack()
-        EnneadTab.DATA_FILE.save_dict_to_json(meta_data, 
+        DATA_FILE.save_dict_to_json(meta_data, 
                                               meta_file_path,
                                               use_encode = True)
         
@@ -239,7 +241,7 @@ class FamilyMetaDataExporter:
 
             except Exception as e:
                 print (e)
-                EnneadTab.NOTIFICATION.messenger (main_text = str(e))
+                NOTIFICATION.messenger (main_text = str(e))
                 pass   
             
             
@@ -263,7 +265,7 @@ class FamilyMetaDataExporter:
             
 
         
-            final_image = EnneadTab.REVIT.REVIT_EXPORT.export_image(view_or_sheet = view, 
+            final_image = REVIT_EXPORT.export_image(view_or_sheet = view, 
                                                                 file_name = "{}#{}#{}".format(family_doc.Title,type_name, view.Name), 
                                                                 output_folder= self.meta_data_folder, 
                                                                 is_thumbnail = False,
@@ -271,14 +273,14 @@ class FamilyMetaDataExporter:
             type_data["views"][view.Name] = final_image
         return type_data
         
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error
 def family_browser():
     exe_path = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Exe\AUTO_CANCEL_CLICKER\AUTO_CANCEL_CLICKER.exe"
-    EnneadTab.EXE.open_file_in_default_application(exe_path)
+    EXE.open_file_in_default_application(exe_path)
 
     with ErrorSwallower() as swallower:
     # >>>     for fam in families:
-    # >>>         revit.doc.EditFamily(fam)
+    # >>>         doc.EditFamily(fam)
     # >>>         if swallower.get_swallowed():
     # >>>             logger.warn("Warnings swallowed")
         FamilyMetaDataExporter().export_data()
@@ -291,5 +293,4 @@ output.close_others()
 
 if __name__ == "__main__":
     family_browser()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
 

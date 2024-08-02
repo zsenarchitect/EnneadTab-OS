@@ -40,7 +40,7 @@ import System # pyright: ignore
 from EnneadTab import NOTIFICATION, DATA_FILE, FOLDER, OUTPUT, TIME, VERSION_CONTROL
 from EnneadTab import MODULE_HELPER, ERROR_HANDLE, USER, KEYBOARD, ENVIRONMENT, SOUND, DOCUMENTATION, LOG, IMAGE
 from EnneadTab import JOKE, EMOJI, ENCOURAGING, HOLIDAY
-from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_EVENT
 
 
 # need below for the C drive space check
@@ -259,8 +259,8 @@ def EnneadTab_startup():
     
     open_scheduled_docs()
     
-    # REVIT_APPLICATION.set_doc_change_hook_depressed(is_depressed = False)
-    # envvars.set_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED", False)
+    REVIT_EVENT.set_doc_change_hook_depressed(stage = False)
+    REVIT_EVENT.set_sync_queue_enable_stage(stage = False)
 
     TIME.update_revit_uptime()
 

@@ -94,11 +94,14 @@ class DataGrid_Preview_Obj(object):
                                                         extension)
 
         if is_sheet_group_prefix:
-            self.format_name = "[{}]-[{}]_{} - {}{}".format(self.item.LookupParameter("Sheet_$Group").AsString(),
-                                                       self.item.LookupParameter("Sheet_$Series").AsString(),
-                                                       self.sheet_number,
-                                                        self.sheet_name, 
-                                                        extension)
+            sheet_group = self.item.LookupParameter("Sheet_$Group").AsString() if self.item.LookupParameter("Sheet_$Group").AsString() else "Sheet $Group Missing"
+            sheet_series = self.item.LookupParameter("Sheet_$Series").AsString() if self.item.LookupParameter("Sheet_$Series").AsString() else "Sheet $Series Missing"
+
+            self.format_name = "[{}]-[{}]_{} - {}{}".format(sheet_group,
+                                                            sheet_series,
+                                                            self.sheet_number,
+                                                                self.sheet_name, 
+                                                                extension)
 
 
     @property

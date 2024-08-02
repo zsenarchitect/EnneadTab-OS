@@ -93,8 +93,8 @@ class Solution:
 
         docs_already_open = [x.Title for x in REVIT_APPLICATION.get_top_revit_docs()]
         docs_to_be_opened_by_API = [x for x in docs_to_process if x not in docs_already_open]
-        print ("docs alrady open = {}".format(docs_already_open))
-        print ("docs to be opened = {}".format(docs_to_be_opened_by_API))
+        ERROR_HANDLE.print_note("docs already open = {}".format(docs_already_open))
+        ERROR_HANDLE.print_note ("docs to be opened = {}".format(docs_to_be_opened_by_API))
 
 
         REVIT_EVENT.set_open_hook_depressed(True)
@@ -106,7 +106,7 @@ class Solution:
                 #print errors
                 if len(errors) != 0:
                     warnings += "\n\n{}".format(errors)
-        print ("silent mode finish")
+        
         for doc_name in docs_to_be_opened_by_API:
             model_path = self.tuple_to_model_path(self.data.get(doc_name, None))
             if not model_path:

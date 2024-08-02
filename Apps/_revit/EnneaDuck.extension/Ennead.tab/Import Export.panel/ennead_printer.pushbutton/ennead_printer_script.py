@@ -16,7 +16,7 @@ from pyrevit.revit import ErrorSwallower
 
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
-from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_EVENT
 
 from EnneadTab import JOKE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, ERROR_HANDLE, FOLDER, IMAGE, USER, EMAIL, LOG
 from Autodesk.Revit import DB # pyright: ignore 
@@ -96,8 +96,8 @@ class DataGrid_Preview_Obj(object):
 
         if is_sheet_group_prefix:
             # have to assume non-EA file has no such parameters
-            sheet_group = self.item.LookupParameter("Sheet_$Group").AsString() if self.item.LookupParameter("Sheet_$Group").AsString() else "Sheet $Group Missing"
-            sheet_series = self.item.LookupParameter("Sheet_$Series").AsString() if self.item.LookupParameter("Sheet_$Series").AsString() else "Sheet $Series Missing"
+            sheet_group = self.item.LookupParameter("Sheet_$Group").AsString() if self.item.LookupParameter("Sheet_$Group") else "Sheet $Group Missing"
+            sheet_series = self.item.LookupParameter("Sheet_$Series").AsString() if self.item.LookupParameter("Sheet_$Series") else "Sheet $Series Missing"
 
             self.format_name = "[{}]-[{}]_{} - {}{}".format(sheet_group,
                                                             sheet_series,
@@ -218,7 +218,7 @@ class EA_Printer_UI(WPFWindow):
 
 
         # important data setup
-        self.setting_file = "EA_PRINTER_SETTING.sexyDuck"
+        self.setting_file = "exporter_setting.sexyDuck"
         self.output_folder = "{}\EnneadTab Exporter".format(ENVIRONMENT.DUMP_FOLDER)
         FOLDER.secure_folder(self.output_folder)
 
@@ -485,7 +485,7 @@ class EA_Printer_UI(WPFWindow):
         try:
             data = DATA_FILE.get_data(self.setting_file)
         except:
-            #REVIT_FORMS.notification(main_text = "Creating setting file for first-time user. ", sub_text = "Open exporter tool again to start exporting!", self_destruct = 15)
+        
             data = dict()
             DATA_FILE.set_data(data, self.setting_file)
 
@@ -496,7 +496,7 @@ class EA_Printer_UI(WPFWindow):
             self.docs_to_process = [doc]
             self.doc_names_id_pair = {self.central_doc_name(doc): "Ennead"}
             if doc.IsWorkshared :
-                self.doc_model_path_pair = {self.central_doc_name(doc): doc.GetWorksharingCentralModelPath()}
+                self.doc_model_path_pair = {self.central_doc_name(doc): get_doc_path(doc)}
             else:
                 self.doc_model_path_pair = {self.central_doc_name(doc): None}
                 NOTIFICATION.messenger(main_text = "This document is not workshared.")
@@ -536,7 +536,7 @@ class EA_Printer_UI(WPFWindow):
         # restore previous form condition
         self.docs_to_process = [doc]
         if doc.IsWorkshared :
-            self.doc_model_path_pair = {self.central_doc_name(doc): doc.GetWorksharingCentralModelPath()}
+            self.doc_model_path_pair = {self.central_doc_name(doc): get_doc_path(doc)}
         else:
             self.doc_model_path_pair = {self.central_doc_name(doc): None}
             NOTIFICATION.messenger(main_text = "This document is not workshared.")
@@ -1286,10 +1286,10 @@ class EA_Printer_UI(WPFWindow):
         for item in self.data_grid_doc_id_map.ItemsSource:
             doc_name, id = item.doc_name, item.map_id
             self.doc_names_id_pair[doc_name] = str(id)
-            self.doc_model_path_pair[doc_name] = item.doc.GetWorksharingCentralModelPath()
+            self.doc_model_path_pair[doc_name] = get_doc_path(item.doc)
 
         #adding additional self doc data in case user are only print link, in that case we need a way to go back to original doc
-        self.doc_model_path_pair[self.orginal_doc_name] = doc.GetWorksharingCentralModelPath()
+        self.doc_model_path_pair[self.orginal_doc_name] = get_doc_path(doc)
 
     def pick_copy_folder_Clicked(self, sender, args):
         title_line = 'Pick the folder ...'
@@ -1458,7 +1458,7 @@ class EA_Printer_UI(WPFWindow):
             doc_name, id = item.doc_name, item.map_id
             #print doc_name, id
             self.doc_names_id_pair[doc_name] = str(id)
-            self.doc_model_path_pair[doc_name] = item.doc.GetWorksharingCentralModelPath()
+            self.doc_model_path_pair[doc_name] = get_doc_path(item.doc)
 
         self.check_all_setting_ready()
 
@@ -1514,6 +1514,13 @@ class EA_Printer_UI(WPFWindow):
     def mouse_down_main_panel(self, sender, args):
         #print "mouse down"
         sender.DragMove()
+
+
+def get_doc_path(doc):
+    if doc.IsWorkshared:
+        return doc.GetWorksharingCentralModelPath()
+    else:
+        return doc.PathName
 ##################################################
 
 

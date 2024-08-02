@@ -269,6 +269,10 @@ def print_title(text):
 
 @time_it
 def publish_duck():
+    if ENVIRONMENT.IS_AVD:
+        print_title("Not going to publish from here...")
+        return
+    
     if CompileConfirmation().get_result():
         print_title("\n\nBegin compiling all exes...")
         NOTIFICATION.messenger("Recompiling all exes...kill VScode if you want to cancel..")

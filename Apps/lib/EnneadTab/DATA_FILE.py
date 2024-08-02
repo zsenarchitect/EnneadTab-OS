@@ -18,6 +18,8 @@ def _read_json_file_safely(filepath, use_encode=False, create_if_not_exist = Fal
     Returns:
         dict | None: the content of the json file
     """
+    if not os.path.exists (filepath):
+        return dict()
     local_path = FOLDER.get_EA_dump_folder_file("temp.sexyDuck")
     try:
         shutil.copyfile(filepath, local_path)

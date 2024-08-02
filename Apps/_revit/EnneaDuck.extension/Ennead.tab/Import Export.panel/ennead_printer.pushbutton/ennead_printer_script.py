@@ -331,7 +331,7 @@ class EA_Printer_UI(WPFWindow):
         for doc in self.docs_to_process:
             doc_sheets =  self.get_sheets_from_doc(doc)
             if doc_sheets == []:
-                print ("Cannot find any good sheets in {}. Check your Issue parameter name if you are using locally defined parameter.".format(doc.Title))
+                NOTIFICATION.messenger("Cannot find any good sheets in {}.\nCheck your Issue parameter name used to find sheets.".format(doc.Title))
                 continue
 
             if self.radio_button_sheetGroup_sheetSeries_sheetNum_sheetName.IsChecked:
@@ -858,8 +858,11 @@ class EA_Printer_UI(WPFWindow):
         #print "!!!Opening {} in background".format(doc_name)
         model_path = self.doc_model_path_pair[doc_name]
         open_options = DB.OpenOptions()
-        new_doc = REVIT_APPLICATION.get_app().OpenDocumentFile(model_path,
-                                                                open_options)
+        if isinstance(model_path, DB.ModelPath):
+            new_doc = REVIT_APPLICATION.get_app().OpenDocumentFile(model_path,
+                                                                    open_options)
+        elif isinstance(model_path, str):
+            new_doc = REVIT_APPLICATION.get_app().OpenDocumentFile(model_path)
 
         #output.print_md( "background open file {}".format(doc_name))
 

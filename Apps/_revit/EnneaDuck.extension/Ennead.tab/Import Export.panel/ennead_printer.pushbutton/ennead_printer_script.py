@@ -93,7 +93,9 @@ class DataGrid_Preview_Obj(object):
                                                         self.sheet_name,
                                                         extension)
 
+
         if is_sheet_group_prefix:
+            # have to assume non-EA file has no such parameters
             sheet_group = self.item.LookupParameter("Sheet_$Group").AsString() if self.item.LookupParameter("Sheet_$Group").AsString() else "Sheet $Group Missing"
             sheet_series = self.item.LookupParameter("Sheet_$Series").AsString() if self.item.LookupParameter("Sheet_$Series").AsString() else "Sheet $Series Missing"
 

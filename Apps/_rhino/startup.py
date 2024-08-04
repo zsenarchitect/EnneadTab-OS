@@ -2,7 +2,8 @@ __title__ = "EnneadTab_Startup"
 __doc__ = "Automatically run on every new rhino start session if bind to Rhino setting."
 import os, sys
 _app_folder = os.path.dirname(os.path.dirname(__file__))
-sys.path.append(os.path.join(_app_folder, "lib" ))
+_lib_path = os.path.join(_app_folder, "lib" )
+sys.path.append(_lib_path)
 
 print ("\n".join(sys.path))
 from EnneadTab import ERROR_HANDLE, NOTIFICATION, LOG, ENVIRONMENT, VERSION_CONTROL
@@ -10,6 +11,7 @@ from EnneadTab import ERROR_HANDLE, NOTIFICATION, LOG, ENVIRONMENT, VERSION_CONT
 
 import rhinoscriptsyntax as rs
 import Rhino # pyright: ignore
+rs.AddSearchPath(_lib_path)
 
 sys.path.append(ENVIRONMENT.RHINO_FOLDER + "\\Ennead+.menu\\get_latest.button")
 import get_latest_left # pyright: ignore

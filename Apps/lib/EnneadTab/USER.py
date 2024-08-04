@@ -8,6 +8,12 @@ import UNIT_TEST
 
 USER_NAME = os.environ["USERPROFILE"].split("\\")[-1]
 
+# this line kept for now for backward compatibility reason, 
+# TO-DO: check again in 2024-09-15 to remove it. 
+USERNAME = USER_NAME 
+
+
+
 # note: why has seperate system key and autodesk keys? becasue some 
 # developer might only be handling one software, not both.
 EnneadTab_DEVELOPERS = {
@@ -21,7 +27,7 @@ EnneadTab_DEVELOPERS = {
     "Colin Matthews": {
         "initials": "CM",
         "system_id": ["cmatthews", "colin.matthews"],
-        "autodesk_id": [],
+        "autodesk_id": ["Colin.Matthews8AEED"],
         "github_remote": ["colinlsmatthews"],
         "email": ["Colin.Matthews@ennead.com"]
     }

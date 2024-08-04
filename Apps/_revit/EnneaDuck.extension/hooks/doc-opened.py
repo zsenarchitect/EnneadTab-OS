@@ -1,11 +1,13 @@
+from operator import is_
 import os
 from datetime import date
 import random
 
 from Autodesk.Revit import DB # pyright: ignore
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE, EMAIL, NOTIFICATION, USER, FOLDER, DATA_FILE, ENVIRONMENT, SOUND
-from EnneadTab.REVIT import REVIT_HISTORY, REVIT_EXTERNAL_FILE, REVIT_FORMS, REVIT_SYNC
+from EnneadTab.REVIT import REVIT_HISTORY, REVIT_EXTERNAL_FILE, REVIT_FORMS, REVIT_SYNC, REVIT_EVENT
 from pyrevit import forms, script
 from pyrevit import EXEC_PARAMS
 from pyrevit.coreutils import envvars
@@ -86,7 +88,7 @@ def pop_up_window(doc):
             EMAIL.email(receiver_email_list=["gayatri.desai@ennead.com"],
                                 subject="Help!!!!!!",
                                 body="I need new pair of glass becasue I cannot see very well.\n\nThere are imported CAD in the file, I have been warned for {} days but I cannot see the message well. Do you know some good optometrists?\n\nBest,\n{}".format(day_delta,
-                                                                                                                                                                                                                                                                 USER.USERNAME))
+                                                                                                                                                                                                                                                                 USER.USER_NAME))
     else:
         remove_ignorance(doc,
                         warning_cate="WARNING_IGNORANCE_IMPORT_CAD_RECORD")
@@ -254,10 +256,9 @@ def register_silient_open(doc):
 
     
 
-    filepath = "{}\doc_opener.sexyDuck".format(ENVIRONMENT.MISC_FOLDER)
 
     try:
-        data = DATA_FILE.read_json_file_safely(filepath)
+        data = DATA_FILE.get_data("doc_opener.sexyDuck", is_local=False)
         if doc.Title in data.keys():
             return
     except:
@@ -272,7 +273,7 @@ def register_silient_open(doc):
                         model_path.Region)
 
     try:
-        DATA_FILE.set_data(data, filepath)
+        DATA_FILE.set_data(data, "doc_opener.sexyDuck", is_local=False)
     except:
         print ("Cannot register model due to L drive access limit.")
     #print "\n\nYour model is regiestered."
@@ -303,7 +304,7 @@ def check_if_keynote_file_pointing_to_library(doc):
                 EMAIL.email(receiver_email_list=["gayatri.desai@ennead.com"],
                                     subject="Help!!!!!!",
                                     body="I need new pair of glass becasue I cannot see very well.\n\nThe keynote file is pointing to the shared L drive location, I have been warned for {} days but I cannot see the message well. Do you know some good optometrists?\n\nBest,\n{}".format(day_delta,
-                                                                                                                                                                                                                                                                                              USER.USERNAME))
+                                                                                                                                                                                                                                                                                              USER.USER_NAME))
 
         
     # if knote_table.RefersToExternalResourceReferences():
@@ -320,7 +321,7 @@ def warn_ignorance(doc, warning_cate):
     ignore_list = ["gayatri.desai",
                    "achi",
                    "scott.mackenzie"]
-    if USER.USERNAME in ignore_list:
+    if USER.USER_NAME in ignore_list:
         return 0
     
     
@@ -329,18 +330,18 @@ def warn_ignorance(doc, warning_cate):
     if not os.path.exists(record_file):
         record = dict()
     else:
-        record = DATA_FILE.read_json_as_dict_in_shared_dump_folder(record_file, create_if_not_exist=True)
+        record = DATA_FILE.get_data_in_shared_dump_folder(record_file, create_if_not_exist=True)
     
     import time
     if len(record.keys()) == 0:
         record[0] = {"timestamp":time.time(),
-                    "user":USER.USERNAME}
+                    "user":USER.USER_NAME}
         DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
         return
     
     this_record_index = len(record.keys())
     record[this_record_index] = {"timestamp":time.time(),
-                                "user":USER.USERNAME}
+                                "user":USER.USER_NAME}
     DATA_FILE.set_data_in_shared_dump_folder(record, record_file)
     
     day_delta = (time.time() - record["0"].get("timestamp"))/86400 # there is 86400 secons in one day
@@ -394,14 +395,15 @@ def check_group_usage(doc):
 
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
-    # this varaible is set to True only after    use sync and close all is run ealier. So if user open new docs, we shoudl resume default False,
-    envvars.set_pyrevit_env_var("IS_AFTER_SYNC_WARNING_DISABLED", False)
+    # this varaible is set to True only after use sync and close all is run ealier. So if user open new docs, we shoudl resume default False,
+    # To-do: figure out a safr way to handle the sync/open hook related depresser.
+    # envvars.set_pyrevit_env_var("IS_AFTER_SYNC_WARNING_DISABLED", False)
 
     hide_user_tab()
 
 
 
-    if False and EA_UTILITY.is_open_hook_depressed():
+    if REVIT_EVENT.is_open_hook_disabled():
         print ("not running doc-opening hook")
         script.get_output().close()
         return
@@ -425,6 +427,8 @@ def main():
 
         check_if_file_opened(doc)
         append_sync_time_record(doc)
+        check_if_keynote_file_pointing_to_library(doc)
+        register_silient_open(doc)
 
         return
         
@@ -437,7 +441,6 @@ def main():
         except SystemError:
             pass
 
-        check_if_keynote_file_pointing_to_library(doc)
 
 
         ask_to_unload_locally(doc)
@@ -453,7 +456,6 @@ def main():
         
         # ENNEAD_LOG.update_local_warning(doc)
 
-        register_silient_open(doc)
 
 
 

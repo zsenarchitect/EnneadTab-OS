@@ -1,15 +1,16 @@
 from pyrevit import EXEC_PARAMS
 from pyrevit.coreutils import envvars
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ERROR_HANDLE, FOLDER
-from EnneadTab.REVIT import REVIT_FORMS
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_EVENT
 
 
 
 
 
 def check_is_template_folder():
-    if envvars.get_pyrevit_env_var("IS_L_DRIVE_WORKING_ALARM_DISABLED"):
+    if REVIT_EVENT.is_L_drive_alert_hook_depressed:
         return
     path = EXEC_PARAMS.event_args.PathName
     extension = FOLDER.get_file_extension_from_path(path)

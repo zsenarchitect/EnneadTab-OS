@@ -13,7 +13,7 @@ import OUTPUT
 
 def try_catch_error(is_silent=False, is_pass = False):
     def decorator(func):
-        def wrapper(*args, **kwargs):
+        def error_wrapper(*args, **kwargs):
 
             try:
                 out = func(*args, **kwargs)
@@ -22,7 +22,7 @@ def try_catch_error(is_silent=False, is_pass = False):
                 if is_pass:
                     return
                 print_note(str(e))
-                print_note("Wrapper func for EA Log -- Error: " + str(e))
+                print_note("error_Wrapper func for EA Log -- Error: " + str(e))
                 error_time = "Oops at {}\n\n".format(TIME.get_formatted_current_time())
                 error = traceback.format_exc()
 
@@ -54,19 +54,22 @@ def try_catch_error(is_silent=False, is_pass = False):
                 if ENVIRONMENT.IS_REVIT_ENVIRONMENT and not is_silent:
                     NOTIFICATION.messenger(
                         main_text="!Critical Warning, close all Revit UI window from EnneadTab and reach to Sen Zhang.")
-        return wrapper
+                    
+        error_wrapper.original_function = func
+        return error_wrapper
     return decorator
 
 
 
 def print_note(string):
+    """for non developer this is never printed."""
 
     if USER.is_EnneadTab_developer():
         try:
             from pyrevit import script
             string = str(string)
             script.get_output().print_md(
-                "***[DEBUG NOTE]***:{}".format(string))
+                "***[Dev Debug Only Oote]***:{}".format(string))
         except Exception as e:
 
-            print("[DEBUG NOTE]:{}".format(string))
+            print("[Dev Debug Only Oote]:{}".format(string))

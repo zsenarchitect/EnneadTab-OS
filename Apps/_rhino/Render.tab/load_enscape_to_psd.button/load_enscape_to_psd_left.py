@@ -4,7 +4,7 @@ __doc__ = "This button does LoadEnscapeToPsd when left click"
 
 import rhinoscriptsyntax as rs
 
-from EnneadTab import FOLDER, EXE, DATA_FILE
+from EnneadTab import ENVIRONMENT, EXE, DATA_FILE
 from EnneadTab import LOG, ERROR_HANDLE
 
 
@@ -33,7 +33,7 @@ def load_enscape_to_psd():
     OUT.append("#$#KEEP DOC OPEN = {}".format( int(keep_doc_open)))
     OUT.append("#$#KEEP PS OPEN = {}".format( int(keep_ps_open)))
     print(OUT)
-    dump_file = "{}\EA_PSD_STACK.txt".format(NOTIFICATION.DUMP_FOLDER)
+    dump_file = "{}\EA_PSD_STACK.txt".format(ENVIRONMENT.DUMP_FOLDER)
     DATA_FILE.set_list(OUT, dump_file)
 
     exe_path = r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Source Codes\lib\Load_Enscape_Image_As_PSD_exe\Load_Enscape_Image_As_PSD_exe.exe"

@@ -13,6 +13,7 @@ from pyrevit.revit import ErrorSwallower
 # from pyrevit import revit #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
 from EnneadTab import DATA_FILE, NOTIFICATION, IMAGE, ERROR_HANDLE, FOLDER, TIME, LOG
 
@@ -346,7 +347,7 @@ class Rhino2Revit_UI(forms.WPFWindow):
         self.data_grid.ItemsSource = [DataGridObj(
             x.file_path, self.object_style_combos.ItemsSource, selected_name=x.selected_OST_name) for x in self.data_grid.ItemsSource]
 
-    def handleclick(self, sender, args):
+    def handle_click(self, sender, args):
         print("surface clicked")
 
     def close_click(self, sender, args):
@@ -520,8 +521,7 @@ def clean_import_object_style(existing_OSTs):
 @ERROR_HANDLE.try_catch_error()
 def main():
     if not doc.IsFamilyDocument:
-        NOTIFICATION.messenger(sub_text="For effective subCategory",
-                                     main_text="Must be in a family environment")
+        NOTIFICATION.messenger("Must be in a family environment\nOtherwise cannot use effective subCategory")
         REVIT_FORMS.notification(main_text="Must be in a family environment for subCategory to be useful.",
                                                  sub_text="DirectShape is never a good solution, so don't do it in project environment.",
                                                  window_title="EnneadTab",

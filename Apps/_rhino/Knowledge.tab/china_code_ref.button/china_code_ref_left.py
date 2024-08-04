@@ -1,6 +1,7 @@
 
 __title__ = "ChinaCodeRef"
 __doc__ = "This button does ChinaCodeRef when left click"
+import os
 import subprocess
 from EnneadTab import EXE, FOLDER
 from EnneadTab.RHINO import RHINO_FORMS
@@ -12,7 +13,7 @@ from EnneadTab import LOG, ERROR_HANDLE
 @ERROR_HANDLE.try_catch_error()
 def china_code_ref():
     folder = "L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Library Docs\\Codes"
-    files = FOLDER.get_filenames_in_folder(folder)
+    files = os.listdir(folder)
     special_folder = "#PDF in this directory are reference only"
     files.remove(special_folder)
 

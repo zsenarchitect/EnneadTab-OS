@@ -4,7 +4,7 @@
 try:
     from Autodesk.Revit import UI # pyright: ignore
     from Autodesk.Revit import DB # pyright: ignore
-    import REVIT_FORMS, REVIT_VIEW
+    import REVIT_FORMS, REVIT_EVENT
 except:
     pass
 
@@ -64,7 +64,8 @@ def sync_and_close(close_others = True, disable_sync_queue = True):
     killtime = 30
     output.self_destruct(killtime)
 
-    envvars.set_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED", disable_sync_queue)
+    import REVIT_VIEW
+    REVIT_EVENT.set_sync_queue_enable_stage(disable_sync_queue)
     if close_others:
         envvars.set_pyrevit_env_var("IS_AFTER_SYNC_WARNING_DISABLED", True)
         # if you descide to close others, they should be no further warning. Only recover that warning behavir in DOC OPENED event
@@ -327,18 +328,6 @@ def select_revit_link_docs(select_multiple = True, including_current_doc = False
     return docs
 
 
-
-
-def is_open_hook_depressed():
-    from pyrevit.coreutils import envvars
-    if envvars.get_pyrevit_env_var("IS_OPEN_HOOK_DEPRESSED"):
-        return True
-    return False
-
-
-def set_open_hook_depressed(is_depressed = True):
-    from pyrevit.coreutils import envvars
-    envvars.set_pyrevit_env_var("IS_OPEN_HOOK_DEPRESSED", is_depressed)
 
 
 def close_revit_app():

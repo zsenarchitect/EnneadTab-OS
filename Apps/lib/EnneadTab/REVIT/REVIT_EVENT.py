@@ -5,6 +5,7 @@ import traceback
 try:
     from Autodesk.Revit import DB # pyright: ignore
     from Autodesk.Revit import UI # pyright: ignore
+    from pyrevit.coreutils import envvars
 
 
     from Autodesk.Revit.UI import IExternalEventHandler, ExternalEvent # pyright: ignore
@@ -41,7 +42,7 @@ class SimpleEventHandler(REF_CLASS_IExternalEventHandler):
                 event_mark_end()
 
             except:
-                print ("failed")
+                print ("event runner failed")
                 print (traceback.format_exc())
         except InvalidOperationException:
             # If you don't catch this exeption Revit may crash.
@@ -55,11 +56,15 @@ class SimpleEventHandler(REF_CLASS_IExternalEventHandler):
 class ExternalEventRunner:
     
     def __init__(self, *funcs):
-  
+        if len(funcs) == 0:
+            print("here is no funcs")
+            return
         for func in funcs:
-            handler = SimpleEventHandler(func)
-            setattr(self, "simple_event_handler_{}".format(func.__name__), handler)
-            setattr(self, "ext_event_{}".format(func.__name__), ExternalEvent.Create(handler))
+            original_func = getattr(func, 'original_function', func)  # Use the original function if available
+            handler = SimpleEventHandler(original_func)
+            setattr(self, "simple_event_handler_{}".format(original_func.__name__), handler)
+            setattr(self, "ext_event_{}".format(original_func.__name__), ExternalEvent.Create(handler))
+            # print (original_func.__name__ + " has been regiested!!!!!!!!")
             
     @ERROR_HANDLE.try_catch_error(is_silent=True)
     def run(self, func_name, *args):
@@ -78,7 +83,7 @@ class ExternalEventRunner:
 
 
 
-#to-do: the idea behinds those two mark funcs is to resolve the issue that modeless form func once passed cannot pass the res back.
+#TO-DO: the idea behinds those two mark funcs is to resolve the issue that modeless form func once passed cannot pass the res back.
 def event_mark_start():
     return
     os. evn[MARKER] = True
@@ -98,3 +103,48 @@ def wait_event():
         
         if max_wait<0:
             return 
+
+
+def is_open_hook_disabled():
+    return envvars.get_pyrevit_env_var("IS_OPEN_HOOK_DISABLED")
+
+
+def set_open_hook_depressed(stage = True):
+    envvars.set_pyrevit_env_var("IS_OPEN_HOOK_DISABLED", stage)
+
+
+
+
+def is_L_drive_alert_hook_depressed():
+    return envvars.get_pyrevit_env_var("IS_L_DRIVE_WORKING_ALARM_DISABLED")
+
+
+def set_L_drive_alert_hook_depressed(stage = True):
+    envvars.set_pyrevit_env_var("IS_L_DRIVE_WORKING_ALARM_DISABLED", stage)
+
+
+
+
+    
+def is_sync_queue_disabled():
+    return envvars.get_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED")
+
+
+def set_sync_queue_enable_stage(stage = True):
+    envvars.set_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED", stage)
+
+
+def is_doc_change_hook_depressed():
+    return envvars.get_pyrevit_env_var("IS_DOC_CHANGE_DISABLED")
+
+
+def set_doc_change_hook_depressed(stage = True):
+    envvars.set_pyrevit_env_var("IS_DOC_CHANGE_DISABLED", stage)
+
+
+def is_sync_cancelled():
+    return envvars.get_pyrevit_env_var("IS_SYNC_CANCELLED")
+
+
+def set_sync_cancelled(stage = True):
+    envvars.set_pyrevit_env_var("IS_SYNC_CANCELLED", stage)

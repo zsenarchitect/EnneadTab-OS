@@ -22,14 +22,17 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_EXPORT, REVIT_APPLICATION
-from EnneadTab import EXE, DATA_FILE, NOTIFICATION, ERROR_HANDLE, FOLDER
+from EnneadTab import EXE, DATA_FILE, ENVIRONMENT,  NOTIFICATION, ERROR_HANDLE, FOLDER, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 import os
 # from Autodesk.Revit import UI # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
             
+   
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def update_miro():
 
@@ -52,7 +55,7 @@ def update_miro():
 
     res = REVIT_APPLICATION.do_you_want_to_sync_and_close_after_done()
 
-    dump_folder = "{}\\miro_dump".format(NOTIFICATION.DUMP_FOLDER)
+    dump_folder = "{}\\miro_dump".format(ENVIRONMENT.DUMP_FOLDER)
 
     # make sure everytig is the lastest in this folder
 

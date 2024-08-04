@@ -18,8 +18,9 @@ from pyrevit import script, forms
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_EXPORT, REVIT_FORMS, REVIT_UNIT, REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import EXE, DATA_FILE, DATA_CONVERSION, NOTIFICATION, IMAGE, SOUND, TIME, ERROR_HANDLE, FOLDER
+from EnneadTab import EXE, DATA_FILE, DATA_CONVERSION, NOTIFICATION, IMAGE, SOUND, TIME, ERROR_HANDLE, FOLDER, LOG, ENVIRONMENT
 
 
 import traceback
@@ -343,8 +344,7 @@ def transfer_in_draft(rhino_unit, is_grouping):
 
 
     # get dump data
-    file_path = FOLDER.get_filepath_in_special_folder_in_EA_setting("Local Copy Dump", "EA_DRAFTING_TRANSFER.sexyDuck")
-    datas = DATA_FILE.read_json_as_dict(file_path)
+    datas = DATA_FILE.get_data("draft_transfer_rhino2revit_setting.sexyDuck")
     if not datas:
         NOTIFICATION.messenger ("There is no data saved. Have you exported from the Rhino?")
         return
@@ -501,7 +501,7 @@ class RhinoDraft_UI(forms.WPFWindow):
 
         file_name = "EA_TRANSFER_DRAFT_BACKGROUND"
         view = doc.ActiveView
-        output_folder = NOTIFICATION.DUMP_FOLDER
+        output_folder = ENVIRONMENT.DUMP_FOLDER
         REVIT_EXPORT.export_dwg(view, file_name, output_folder, self.combobox_dwg_setting.SelectedItem)
 
         self.update_global_unit()
@@ -565,14 +565,12 @@ class RhinoDraft_UI(forms.WPFWindow):
         #rhino_template_folder = r"{}\AppData\Roaming\McNeel\Rhinoceros\7.0\Localization\en-US\Template Files".format(os.environ["USERPROFILE"])
 
 
-
-        import os
-        rhino_template_folder = "{}\Rhino Template Files".format(os.path.dirname(os.path.abspath(__file__)))
+        rhino_template_folder = "{}\\Rhino Template Files".format(os.path.dirname(__file__))
 
         # note:
         # Use "Draft Transfer" from EnneadTab for Rhino to continue working.
 
-        for template in FOLDER.get_filenames_in_folder(rhino_template_folder):
+        for template in os.listdir(rhino_template_folder):
             #print template
             if self.revit_unit in template.lower():
                 break
@@ -580,8 +578,8 @@ class RhinoDraft_UI(forms.WPFWindow):
 
         self.template_file_path = rhino_template_folder + "\\" + template
 
-        #FOLDER.copy_file_to_folder(file_path, NOTIFICATION.DUMP_FOLDER)
-        file_path = NOTIFICATION.DUMP_FOLDER + "\\" + template
+        #FOLDER.copy_file_to_folder(file_path, ENVIRONMENT.DUMP_FOLDER)
+        file_path = ENVIRONMENT.DUMP_FOLDER + "\\" + template
         final_file = file_path.replace(".3dm", "_{}.3dm".format(doc.ActiveView.Name
                                                                 .replace("/","-")))
 
@@ -608,8 +606,7 @@ class RhinoDraft_UI(forms.WPFWindow):
         OUT["filled_region_type_names"] = filled_region_type_names
         OUT["revit_unit"] = self.revit_unit
         OUT["final_file"] = self.final_file
-        file = FOLDER.get_EA_dump_folder_file("EA_TRANSFER_DRAFT_SETTING.sexyDuck")
-        DATA_FILE.set_data(OUT, file)
+        DATA_FILE.set_data(OUT, "draft_transfer_revit2rhino_setting.sexyDuck")
 
 
     @ERROR_HANDLE.try_catch_error()
@@ -655,11 +652,11 @@ class RhinoDraft_UI(forms.WPFWindow):
         os.startfile(__youtube__)
         
 
-
+   
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
-
-    modeless_form = RhinoDraft_UI()
+    RhinoDraft_UI()
 
 
 

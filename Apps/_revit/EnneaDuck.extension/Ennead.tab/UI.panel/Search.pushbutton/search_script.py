@@ -30,9 +30,10 @@ import pyrevit.extensions as py_extensions
 from pyrevit import HOST_APP
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import USER, ENVIRONMENT, SOUND, TIME, ERROR_HANDLE, FOLDER, IMAGE
+from EnneadTab import USER, ENVIRONMENT, SOUND, TIME, ERROR_HANDLE, FOLDER, IMAGE, LOG
 
 
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -589,7 +590,7 @@ class EA_search_UI(forms.WPFWindow):
         self.search_textbox.Text = ""
         self.search_textbox.Focus()
 
-    def handleclick(self, sender, args):
+    def handle_click(self, sender, args):
         print ("surface clicked")
 
     def play_video_click(self, sender, args):
@@ -640,6 +641,8 @@ class EA_search_UI(forms.WPFWindow):
         print("--------------<{}> is NOT imported at line {}".format(x, mark))
 
 
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
     EA_search_UI()

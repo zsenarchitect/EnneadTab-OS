@@ -17,9 +17,10 @@ from Autodesk.Revit.Exceptions import InvalidOperationException
 from pyrevit import script, forms
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import IMAGE, DATA_CONVERSION, ERROR_HANDLE
+from EnneadTab import IMAGE, DATA_CONVERSION, ERROR_HANDLE, LOG
 
 
 import traceback
@@ -427,7 +428,7 @@ class ToggleContent_UI(forms.WPFWindow):
         self.debug_textbox.Text = "{} elements reset.".format(res)
 
 
-    def handleclick(self, sender, args):
+    def handle_click(self, sender, args):
         print ("surface clicked")
 
     def close_click(self, sender, args):
@@ -439,10 +440,13 @@ class ToggleContent_UI(forms.WPFWindow):
 
 
 
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
 
-    modeless_form = ToggleContent_UI()
+    ToggleContent_UI()
 
 
 ################## main code below #####################

@@ -15,7 +15,8 @@ from pyrevit import script #
 import System
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE, NOTIFICATION
+proDUCKtion.validify()
+from EnneadTab import ERROR_HANDLE, NOTIFICATION, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
@@ -35,6 +36,7 @@ CATEGORY_OPTIONS = {"Sheet":DB.BuiltInCategory.OST_Sheets,
                     "Area":DB.BuiltInCategory.OST_Areas,
                     "Room":DB.BuiltInCategory.OST_Rooms}
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def transfer_parameter_data():
     category = forms.SelectFromList.show(CATEGORY_OPTIONS.keys(),

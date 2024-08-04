@@ -12,7 +12,7 @@ def random_speak(lines, chance=1.0):
 
 
 def is_hate_talkie():
-    return not CONFIG.get_setting_data("toggle_bt_is_talkie", False)
+    return not CONFIG.get_setting("toggle_bt_is_talkie", False)
 
 
 def speak(text, language='en', accent='com'):
@@ -25,6 +25,8 @@ def speak(text, language='en', accent='com'):
     #accent = 'co.in'
     #accent = 'com'
     """
+    if is_hate_talkie():
+        return
     
     if not text:
         return
@@ -33,7 +35,7 @@ def speak(text, language='en', accent='com'):
     data["text"] = text
     data["language"] = language
     data["accent"] = accent
-    DATA_FILE.set_data(data, "EA_Text2Speech.sexyDuck")
+    DATA_FILE.set_data(data, "text2speech.sexyDuck")
     
  
 

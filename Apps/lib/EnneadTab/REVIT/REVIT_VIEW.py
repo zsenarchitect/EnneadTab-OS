@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from EnneadTab import ENVIRONMENT, NOTIFICATION, DATA_FILE
+import ENVIRONMENT, NOTIFICATION, DATA_FILE
 
 
 try:
@@ -199,4 +199,8 @@ def show_warnings_in_view(view, doc):
         
     show_in_convas_graphic(graphic_datas, view = view)
     NOTIFICATION.messenger("Warnings marked!")
-    
+
+
+def unit_test():
+    if ENVIRONMENT.IS_REVIT_ENVIRONMENT:
+        switch_to_sync_draft_view(DOC)

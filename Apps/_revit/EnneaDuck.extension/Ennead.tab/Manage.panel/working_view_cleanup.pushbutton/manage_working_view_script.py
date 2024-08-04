@@ -18,8 +18,9 @@ import time
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import USER, NOTIFICATION, DATA_CONVERSION, IMAGE, ERROR_HANDLE, FOLDER
+from EnneadTab import USER, NOTIFICATION, DATA_CONVERSION, IMAGE, ERROR_HANDLE, FOLDER, LOG, ENVIRONMENT
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 import random
@@ -224,7 +225,7 @@ class DataGrid_Preview_Obj(object):
 
 
 # A simple WPF form used to call the ExternalEvent
-class manage_working_view_ModelessForm(WPFWindow):
+class WorkingViewManager(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -246,7 +247,7 @@ class manage_working_view_ModelessForm(WPFWindow):
     def __init__(self):
         self.pre_actions()
 
-        xaml_file_name = "manage_working_view_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "WorkingViewManager.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab Manage Working Views"
@@ -468,14 +469,14 @@ class manage_working_view_ModelessForm(WPFWindow):
                                 main_text = "[{}.jpg] saved.".format(view.Name))
 
         """clean jpg name"""
-        file_names = os.listdir(NOTIFICATION.DUMP_FOLDER)
+        file_names = os.listdir(ENVIRONMENT.DUMP_FOLDER)
         desired_name = file_name
 
         for file_name in file_names:
             if desired_name in file_name and ".jpg" in file_name.lower():
                 try:
                     # os.path.join(output_folder, file_name)
-                    os.rename("{}\{}".format(NOTIFICATION.DUMP_FOLDER, file_name),os.path.join(NOTIFICATION.DUMP_FOLDER, desired_name + ".jpg"))
+                    os.rename("{}\{}".format(ENVIRONMENT.DUMP_FOLDER, file_name),os.path.join(ENVIRONMENT.DUMP_FOLDER, desired_name + ".jpg"))
                 except Exception as e:
                     print ("skip {} becasue: {}".format(file_name, e))
 
@@ -485,15 +486,15 @@ class manage_working_view_ModelessForm(WPFWindow):
         return final_path
 
 
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    WorkingViewManager()
 ################## main code below #####################
 output = script.get_output()
 output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
-    try:
-        modeless_form = manage_working_view_ModelessForm()
-    except:
-        print (traceback.format_exc())
+    main()
+

@@ -220,7 +220,7 @@ def save_data_to_excel(data, filepath, worksheet = "EnneadTab", open_after = Tru
         return
 
     if open_after:
-        EXE.try_open_app(filepath)
+        os.startfile(filepath)
 
 
 def unit_test():

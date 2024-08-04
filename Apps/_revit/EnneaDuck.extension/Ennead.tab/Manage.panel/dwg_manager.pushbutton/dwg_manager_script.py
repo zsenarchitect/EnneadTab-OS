@@ -29,10 +29,12 @@ from pyrevit import script #
 from pyrevit import HOST_APP
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import EXE, NOTIFICATION, IMAGE, ERROR_HANDLE, FOLDER
+from EnneadTab import EXE, NOTIFICATION, IMAGE, ERROR_HANDLE, FOLDER, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
+import __main__
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 __persistentengine__ = True
@@ -177,7 +179,7 @@ class data_grid_obj:
 
 
 # A simple WPF form used to call the ExternalEvent
-class dwg_manage_ModelessForm(WPFWindow):
+class DwgManager(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -203,7 +205,7 @@ class dwg_manage_ModelessForm(WPFWindow):
     @ERROR_HANDLE.try_catch_error()
     def __init__(self):
         self.pre_actions()
-        xaml_file_name = "dwg_manager_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "DwgManager.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab DWG Manager"
@@ -427,8 +429,11 @@ class dwg_manage_ModelessForm(WPFWindow):
         sender.DragMove()
 
 
-
-
+   
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    DwgManager()
 
 
 ################## main code below #####################
@@ -437,10 +442,4 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
-    try:
-
-        modeless_form = dwg_manage_ModelessForm()
-     
-    except:
-        print (traceback.format_exc())
+    main()

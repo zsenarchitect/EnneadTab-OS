@@ -22,14 +22,16 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_SELECTION, REVIT_APPLICATION, REVIT_VIEW
-from EnneadTab import DATA_FILE, NOTIFICATION, ERROR_HANDLE
+from EnneadTab import DATA_FILE, NOTIFICATION, ERROR_HANDLE, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
-
+   
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def abstract_wall(current_only):
     solution = Solution()
@@ -57,7 +59,7 @@ class Solution:
     
     def __init__(self):
         self.data_file_name = "ABSTRACT_WALL_{}.sexyDuck".format(doc.Title)
-        self.data = DATA_FILE.read_json_as_dict_in_shared_dump_folder(self.data_file_name, create_if_not_exist=True)
+        self.data = DATA_FILE.get_data_in_shared_dump_folder(self.data_file_name, create_if_not_exist=True)
         self.prefix = "EnneadTab Abstract Wall_"
         self.opts = [["Wall-->Diagram", "Generate abstract walls to review and update"],
                 ["Diagram-->Wall", "Use abstract walls to update original wall locations. This will also delete other diagram lines of the same CW wall."]]
@@ -234,11 +236,11 @@ class Solution:
         
 
     def update_detail_lines_of_same_original_element(self, element_unique_id):
-        # to-do: make this a statdard processure for both geo2line and line2geo
+        # TO-DO: make this a statdard processure for both geo2line and line2geo
         pass
     
     def update_detail_lines_of_same_detail_line(self, detail_line_id):
-        # to-do: make this a statdard processure for both geo2line and line2geo
+        # TO-DO: make this a statdard processure for both geo2line and line2geo
         pass
     
     def process_wall2line(self, wall):
@@ -325,7 +327,7 @@ class Solution:
                 # key = detail line, value = source floor
                 self.data[detail_line.UniqueId] = floor.UniqueId
 
-                # to-do: use temp tranation to find the 
+                # TO-DO: use temp tranation to find the 
                 # self.data[detail_line.UniqueId] = sketch_curve.UniqueId
 
     
@@ -407,7 +409,7 @@ class Solution:
 if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
-    if __shiftclick__:
+    if __shiftclick__: #pyright:ignore
         abstract_wall(current_only=False)
     else:
         abstract_wall(current_only=True)

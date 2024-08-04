@@ -10,8 +10,9 @@ from Autodesk.Revit import DB # pyright: ignore
 import random
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import NOTIFICATION, ERROR_HANDLE
+from EnneadTab import NOTIFICATION, ERROR_HANDLE, LOG
 
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
@@ -114,6 +115,7 @@ def process_setting(sel_setting):
     sel_setting.Name = old_name
     t.Commit()
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
 

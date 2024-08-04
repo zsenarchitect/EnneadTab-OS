@@ -11,8 +11,9 @@ from pyrevit import DB, revit, script
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, LOG
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
@@ -56,6 +57,7 @@ def override_2D_element(element,is_user_tag = False,is_wrong_tag_type = False, r
     view.SetElementOverrides(element.Id, OG_setting)
 
 
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
 

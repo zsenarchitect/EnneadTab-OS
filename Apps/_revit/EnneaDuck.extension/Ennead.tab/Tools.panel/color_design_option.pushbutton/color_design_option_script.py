@@ -12,8 +12,9 @@ from pyrevit import script #
 # from pyrevit import revit #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import ERROR_HANDLE
+from EnneadTab import ERROR_HANDLE, LOG
 
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
@@ -140,6 +141,12 @@ class Solution:
 
 
 
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    
+    Solution().color_design_option()
+
 
 ################## main code below #####################
 
@@ -147,5 +154,8 @@ class Solution:
 if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
-    Solution().color_design_option()
+
+
+    main()
+
     

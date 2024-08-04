@@ -1,13 +1,22 @@
 import os
+import io
 import traceback
 import json
-
+import shutil
 
 ESOSYSTEM_FOLDER = "{}\\Documents\\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
 DUMP_FOLDER = "{}\\Dump".format(ESOSYSTEM_FOLDER)
 for _folder in [ESOSYSTEM_FOLDER, DUMP_FOLDER]:
     if not os.path.exists(_folder):
         os.makedirs(_folder)
+
+
+        
+def find_main_repo():
+    for root, dirs, files in os.walk(os.environ['USERPROFILE']):
+        if 'EnneadTab-OS' in dirs:
+            return os.path.join(root, 'EnneadTab-OS')
+    return os.path.join(ESOSYSTEM_FOLDER, 'EA_Dist')
 
 def try_catch_error(func):
 
@@ -39,7 +48,7 @@ def try_catch_error(func):
 def get_file_in_dump_folder(file_name):
     return "{}\\{}".format(DUMP_FOLDER, file_name)
 
-def read_json_as_dict_in_dump_folder(file_name):
+def get_data(file_name):
     filepath = get_file_in_dump_folder(file_name)
     
     # return empty dict if file not exist
@@ -50,15 +59,17 @@ def read_json_as_dict_in_dump_folder(file_name):
       dict = json.load(f)
     return dict
 
-def save_dict_as_json_in_dump_folder(dict, file_name):
+def set_data(dict, file_name):
     filepath = get_file_in_dump_folder(file_name)
     with open(filepath, "w") as f:
         json.dump(dict, f, indent=4)
 
+
+
 def show_splash_screen(image):
     """create the data bit file and call SpalshScreen.exe"""
     dict = {"image":image}
-    save_dict_as_json_in_dump_folder(dict, "splash_data.sexyDuck")
+    set_data(dict, "splash_data.sexyDuck")
     exe = "{}\\EA_Dist\\Apps\\lib\\ExeProducts\\SplashScreen.exe"
     if os.path.exists(exe):
         os.startfile(exe)
@@ -73,13 +84,26 @@ def hide_splash_screen():
 GLOBAL_SETTING_FILE = 'setting_{}.sexyDuck'.format(os.environ["USERPROFILE"].split("\\")[-1])
 
 def get_setting(key, defaule_value=None):
-    data = read_json_as_dict_in_dump_folder(GLOBAL_SETTING_FILE)
+    data = get_data(GLOBAL_SETTING_FILE)
     return data.get(key, defaule_value)
 
 
 def get_username():
     return os.environ["USERPROFILE"].split("\\")[-1]
 
+
+
+
+def get_list(filepath="path"):
+    extention = os.path.split(filepath)[1]
+    local_path = get_file_in_dump_folder("exe_temp{}".format(extention))
+    shutil.copyfile(filepath, local_path)
+
+
+    with io.open(local_path, encoding="utf8") as f:
+        lines = f.readlines()
+  
+    return map(lambda x: x.replace("\n", ""), lines)
 
 
 

@@ -12,13 +12,14 @@ from pyrevit import script #
 import traceback
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_UNIT, REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import SOUND, DATA_FILE, FOLDER, ERROR_HANDLE
+from EnneadTab import SOUND, DATA_FILE, FOLDER, ERROR_HANDLE, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 # uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
-app = __revit__.Application
+app = REVIT_APPLICATION.get_app()
 
 
 
@@ -108,19 +109,14 @@ class Solution:
             doc.GetElement(adp_pt).Location.Position = pts[i]#self.get_shared_ref_pt(pts[i])
         return instance
    
-################## main code below #####################
-output = script.get_output()
-output.close_others()
-
-
-if __name__ == "__main__":
-
-
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
     solution = Solution()
     T = DB.TransactionGroup(doc, __title__)
     T.Start()
     file = FOLDER.get_EA_dump_folder_file("SRF2ADP_DATA.sexyDuck")
-    data = DATA_FILE.read_json_as_dict(file)
+    data = DATA_FILE.get_data(file)
     index = 1
     for brep_name, brep_data in data.items():
         
@@ -132,6 +128,14 @@ if __name__ == "__main__":
     SOUND.play_sound("sound_effect_mario_message.wav")
     T.Commit()
     
+################## main code below #####################
+output = script.get_output()
+output.close_others()
+
+
+if __name__ == "__main__":
+    main()
+   
 
 
 

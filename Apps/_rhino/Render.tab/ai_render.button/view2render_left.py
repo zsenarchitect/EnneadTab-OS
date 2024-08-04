@@ -13,7 +13,7 @@ import os
 import System # pyright: ignore
 import random
 
-from EnneadTab import USER, FOLDER, NOTIFICATION, DATA_FILE, EXE, TIME
+from EnneadTab import USER, ENVIRONMENT, NOTIFICATION, DATA_FILE, EXE, TIME
 from EnneadTab import LOG, ERROR_HANDLE
 from EnneadTab.RHINO import RHINO_UI
 
@@ -493,7 +493,7 @@ class ViewCaptureDialog(Eto.Forms.Form):
 
     @property
     def input_image_filename(self):
-        main_folder = NOTIFICATION.DUMP_FOLDER
+        main_folder = ENVIRONMENT.DUMP_FOLDER
         session_folder = main_folder + \
             "\\EnneadTab_Ai_Rendering\\Session_{}".format(self.session)
         if not os.path.exists(session_folder):

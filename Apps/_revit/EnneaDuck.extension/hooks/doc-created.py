@@ -3,10 +3,11 @@ from pyrevit import EXEC_PARAMS
 from pyrevit.coreutils import envvars
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ENVIRONMENT, USER, FOLDER, MODULE_HELPER
+proDUCKtion.validify()
+from EnneadTab import ENVIRONMENT, MODULE_HELPER, ERROR_HANDLE
 
 
-
+@ERROR_HANDLE.try_catch_error(is_silent=True)
 def proj_initiation():
     if ENVIRONMENT.is_RhinoInsideRevit_environment():
         return

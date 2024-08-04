@@ -15,7 +15,8 @@ import pprint
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
-from  EnneadTab import NOTIFICATION, DATA_FILE
+proDUCKtion.validify()
+from  EnneadTab import NOTIFICATION, DATA_FILE, ERROR_HANDLE, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION
 
 from Autodesk.Revit import DB # pyright: ignore 
@@ -82,15 +83,23 @@ class Solution:
         # pprint.pprint(self.table, indent=4)
         DATA_FILE.set_data(self.table, "SUBC_MATERIAL_TABLE.sexyDuck")
         NOTIFICATION.messenger(main_text="Export done, now swicth to 'map Revit SubC' in Rhino")
+
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    Solution().export_ost_material_table()
+    
+
 ################## main code below #####################
 
 
 if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
-    Solution().export_ost_material_table()
+    main()
     
-
 
 
 

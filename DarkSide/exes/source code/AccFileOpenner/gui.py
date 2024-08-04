@@ -4,13 +4,15 @@ from tkinter import scrolledtext
 from PIL import Image, ImageTk
 import datetime
 from tkinterdnd2 import DND_FILES
-
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+import _GUI_Base_Util
 EXPIRATION_DATE = datetime.date(2025, 1, 1)
 
-class BaseApp:
+class BaseApp(_GUI_Base_Util.BaseGUI):
     def __init__(self, root):
         self.root = root
-        self.root.configure(bg='#2e2e2e')
+        self.root.configure(bg=self.BACKGROUND_COLOR_HEX)
         self.root.geometry("1000x800")
         self.setup_icon()
         self.create_widgets()
@@ -27,18 +29,20 @@ class BaseApp:
         self.logo_photo = ImageTk.PhotoImage(self.logo_image)
 
     def create_widgets(self):
-        self.logo_label = tk.Label(self.root, image=self.logo_photo, bg='#2e2e2e')
+        self.logo_label = tk.Label(self.root, image=self.logo_photo, bg=self.BACKGROUND_COLOR_HEX)
         self.logo_label.grid(row=0, column=0, columnspan=3, sticky="nsew")
 
-        self.editing_files_frame = tk.Frame(self.root, bg='#2e2e2e')
+        self.editing_files_frame = tk.Frame(self.root, bg=self.BACKGROUND_COLOR_HEX)
         self.editing_files_frame.grid(row=1, column=0, columnspan=3, sticky="nsew")
 
-        self.editing_files_text = scrolledtext.ScrolledText(self.editing_files_frame, width=60, height=15, bg='#2e2e2e', fg='white', font=('Helvetica', 12, 'bold'), wrap=tk.WORD)
+        self.editing_files_text = scrolledtext.ScrolledText(self.editing_files_frame, width=60, height=15, bg=self.BACKGROUND_COLOR_HEX, fg='white', font=('Helvetica', 12, 'bold'), wrap=tk.WORD)
         self.editing_files_text.pack(fill=tk.BOTH, expand=True)
         self.editing_files_text.config(height=10)
         self.editing_files_text.config(height=10)  # Setting fixed height
 
-        self.instructions_label = tk.Label(self.root, text="The file will open automatically after picked/dropped.", bg='#2e2e2e', fg='white', font=('Helvetica', 12), wraplength=800, justify=tk.LEFT)
+        note = "The file will open automatically after picked/dropped."
+        note += "\nAccepting File types of Indesign, Rhino, Word, Excel, PDF, Photoshop, Illustrator"
+        self.instructions_label = tk.Label(self.root, text=note, bg=self.BACKGROUND_COLOR_HEX, fg='white', font=('Helvetica', 12), wraplength=800, justify=tk.LEFT)
         self.instructions_label.grid(row=2, column=0, columnspan=3, sticky="nw", padx=20, pady=10)
 
         for i in range(3):
@@ -90,9 +94,11 @@ class BaseApp:
         self.dashboard_frame.bind("<Leave>", self.change_cursor_to_arrow)
 
     def change_cursor_to_hand(self, event):
+        return
         event.widget.config(cursor="hand2")
 
     def change_cursor_to_arrow(self, event):
+        return
         event.widget.config(cursor="")
 
     def draw_rounded_rect(self, x1, y1, x2, y2, radius, **kwargs):

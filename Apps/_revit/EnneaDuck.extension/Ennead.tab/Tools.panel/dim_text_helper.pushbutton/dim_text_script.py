@@ -15,8 +15,9 @@ from pyrevit.forms import WPFWindow
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import IMAGE, ERROR_HANDLE
+from EnneadTab import IMAGE, ERROR_HANDLE, LOG
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 
@@ -99,7 +100,7 @@ class dim_text_SimpleEventHandler(IExternalEventHandler):
 
 
 # A simple WPF form used to call the ExternalEvent
-class dim_text_ModelessForm(WPFWindow):
+class DimTextHelper(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -124,7 +125,7 @@ class dim_text_ModelessForm(WPFWindow):
     def __init__(self):
         self.pre_actions()
 
-        xaml_file_name = "DimText_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "DimTextHelper.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab Dim Text Helper"
@@ -284,18 +285,23 @@ class _CustomHandler(UI.IExternalEventHandler):
 
 
 
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()    
+def main():
+    DimTextHelper()
+
 ################## main code below #####################
 output = script.get_output()
 output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
-    try:
-        modeless_form = dim_text_ModelessForm()
-        
-    except:
-        print (traceback.format_exc())
+    main()
+
+
+
+
 
 
 

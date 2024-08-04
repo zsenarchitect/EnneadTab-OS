@@ -1,9 +1,9 @@
 
+import os
 import DATA_FILE
-import USER
 
 
-GLOBAL_SETTING_FILE = 'setting_{}.sexyDuck'.format(USER.USER_NAME)
+GLOBAL_SETTING_FILE = 'setting_{}.sexyDuck'.format(os.environ["USERPROFILE"].split("\\")[-1])
 
 def get_setting(key, defaule_value=None):
     """if no key provided, will return the whole dict

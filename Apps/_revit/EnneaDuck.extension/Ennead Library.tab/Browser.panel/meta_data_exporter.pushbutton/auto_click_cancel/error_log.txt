@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "c:/Users/szhang/github/EnneadTab-for-Revit/ENNEAD.extension/Ennead Library.tab/Browser.panel/meta_data_exporter.pushbutton/auto_click_cancel/AUTO_CANCEL_CLICKER.py", line 226, in <module>
+    main()
+  File "c:/Users/szhang/github/EnneadTab-for-Revit/ENNEAD.extension/Ennead Library.tab/Browser.panel/meta_data_exporter.pushbutton/auto_click_cancel/AUTO_CANCEL_CLICKER.py", line 113, in main
+    EA_logo = pygame.image.load("{}\images\\Ennead_Architects_Logo.png".format(exe_folder)).convert_alpha()
+IOError: No such file or directory.

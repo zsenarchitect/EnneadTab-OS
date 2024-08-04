@@ -1,5 +1,6 @@
 from pyrevit import EXEC_PARAMS
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import VERSION_CONTROL, ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_SYNC
 import random
@@ -22,6 +23,8 @@ def update_pyrevit():
 
 @ERROR_HANDLE.try_catch_error(is_silent=True)
 def main():
+    if doc.IsFamilyDocument:
+        return
     remove_last_sync_data_file(doc)
     update_pyrevit()
     VERSION_CONTROL.update_EA_dist()

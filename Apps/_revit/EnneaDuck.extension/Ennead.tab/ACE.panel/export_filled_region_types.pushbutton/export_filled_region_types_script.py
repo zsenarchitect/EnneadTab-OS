@@ -11,7 +11,8 @@ __tip__ = True
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE, FOLDER, EXCEL
+proDUCKtion.validify()
+from EnneadTab import ERROR_HANDLE, FOLDER, EXCEL, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
@@ -21,7 +22,7 @@ doc = REVIT_APPLICATION.get_doc()
 
 from EXCEL import ExcelDataItem # pyright: ignore 
 
-
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def export_filled_region_types():
     

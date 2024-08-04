@@ -3,6 +3,8 @@
 
 import os
 import time
+
+
 try:
     from pyrevit.forms import WPFWindow
     import REVIT_EVENT
@@ -14,6 +16,7 @@ import ERROR_HANDLE
 import ENVIRONMENT
 import NOTIFICATION
 import IMAGE
+import DATA_FILE
 
 
 
@@ -33,45 +36,101 @@ class EnneadTabModeForm():
 class EnneadTabModelessForm(WPFWindow):
     """
     this form will NOT revit, it cannot return value directly
-    overload with more function depend on what you are loading"""
+    overload with more function depend on what you are loading
+
+example:
+    class MainSetting(REVIT_FORMS.EnneadTabModelessForm):
+        def __init__(self, title, summary, xaml_file_name, **kwargs):
+            super(MainSetting, self).__init__(title, summary, xaml_file_name, **kwargs)
+            # call supper first so can connect to xaml to get all compenent, 
+            # otherwise the load setting will have nothing to load
+
+            self.Height = 800
+            self.load_setting()
+
+    """
 
     def pre_actions(self, *external_funcs):
         self.event_runner = REVIT_EVENT.ExternalEventRunner(*external_funcs)
 
-        #print "doing preaction"
-        # Now we need to make an instance of this handler. Moreover, it shows that the same class could be used to for
-        # different functions using different handler class instances
-        # self.rename_view_event_handler = SimpleEventHandler(rename_views)
-        # self.ext_event_rename_view = ExternalEvent.Create(self.rename_view_event_handler)
+    def __init__(self, title, summary, xaml_file_name, external_funcs = None, **kwargs):
+        if not external_funcs:
+            external_funcs = kwargs.get('external_funcs', [])
 
-    def __init__(self, title, summery, xaml_file_name, *external_funcs):
-        
         self.pre_actions(*external_funcs)
 
 
-        #xaml_file_name = "general_renamer_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
-        # to-do: this is not very efficient,,,, consider store a lookup tab;e during startup
-        for folder, _, file in os.walk(ENVIRONMENT.REVIT_FOLDERget_EA_dump_folder_file):
-            if xaml_file_name in file:
-                xaml_file_name = os.path.join(folder, xaml_file_name)
-                break
-        else:
-            NOTIFICATION.messenger(main_text="Cannot find the xaml file....")
+        #xaml_file_name = "SuperRenamer.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_path = self.get_xaml(xaml_file_name)
+        if not xaml_path:
             return
-
-        WPFWindow.__init__(self, xaml_file_name)
+        WPFWindow.__init__(self, xaml_path)
         
         self.title.Text = title
         self.Title = title
-        self.summery.Text = summery
+        if hasattr(self, "summary"):
+            self.summary.Text = summary
 
         logo_file = IMAGE.get_image_path_by_name("logo_vertical_light.png")
         self.set_image_source(self.logo_img, logo_file)
    
         self.Show()
 
+    def get_xaml(self, xaml_file_name):
+        data = DATA_FILE.get_data("xaml_path.sexyDuck")
 
-    @ERROR_HANDLE.try_catch_error()
+        path = data.get(xaml_file_name)
+        if path:
+            return path
+
+
+        NOTIFICATION.messenger(main_text="There is no pre-recorded path, going to re-search again.")
+        # if the path has changed during editng, need to redo search
+        for folder, _, file in os.walk(ENVIRONMENT.REVIT_FOLDER):
+            if xaml_file_name in file:
+                data[file] = os.path.join(folder, xaml_file_name)
+                DATA_FILE.set_data(data, "xaml_path.sexyDuck")
+                
+                return data[file]
+                
+        else:
+            NOTIFICATION.messenger(main_text="Cannot find the xaml file....")
+            return None
+
+        
+
+    def load_setting(self, setting_file):
+        data = DATA_FILE.get_data(setting_file)
+        for key, value in data.items():
+            ui_obj = getattr(self, key, None)
+            if not ui_obj:
+                continue
+            if "checkbox" in key or "toggle_bt" in key or "radio_bt" in key:
+                setattr(ui_obj, "IsChecked", value)
+            if "textbox" in key:
+                setattr(ui_obj, "Text", str(value))
+        
+
+    def save_setting(self, setting_file):
+        with DATA_FILE.update_data(setting_file) as data:
+            setting_list = self.get_all_xaml_component_names()
+            
+            for key in setting_list:
+                ui_obj = getattr(self, key)
+                if "checkbox" in key or "toggle_bt" in key or "radio_bt" in key:
+                    data[key] = getattr(ui_obj, "IsChecked")
+                if "textbox" in key:
+                    data[key] = getattr(ui_obj, "Text")
+
+                    
+    def get_all_xaml_component_names(self):
+        def contain_keyword(x):
+            if "bt_" in x or "textbox" in x or "label" in x or "checkbox" in x or "toggle_bt" in x or "radio_bt" in x:
+                return True
+            return False
+        return [x for x in self.__dict__ if contain_keyword(x)]
+
+
     def Sample_bt_Click(self, sender, e):
         return
         self.rename_view_event_handler.kwargs = sheets, is_default_format
@@ -83,7 +142,9 @@ class EnneadTabModelessForm(WPFWindow):
             self.debug_textbox.Text = "Debug Output:"
 
 
-    
+    def handle_click(self, sender, args):
+        print ("surface clicked")
+        
     def close_click(self, sender, e):
         self.Close()
 
@@ -332,7 +393,7 @@ def show_balloon(header, text, tooltip='', group='', is_favourite=False, is_new=
         forms.show_balloon("my header", "Lorem ipsum", tooltip='tooltip',   group='group', is_favourite=True, is_new=True, timestamp = date, click_result = forms.result_item_result_clicked)
         ```
     """
-    result_item = Autodesk.Internal.InfoCenter.ResultItem()
+    result_item = Autodesk.Internal.InfoCenter.ResultItem() # pyright: ignore
     result_item.Category = header
     result_item.Title = text
     result_item.TooltipText = tooltip
@@ -342,8 +403,7 @@ def show_balloon(header, text, tooltip='', group='', is_favourite=False, is_new=
     if timestamp:
         result_item.Timestamp = timestamp
     result_item.ResultClicked += click_result
-    balloon = Autodesk.Windows.ComponentManager.InfoCenterPaletteManager.ShowBalloon(
-        result_item)
+    balloon = Autodesk.Windows.ComponentManager.InfoCenterPaletteManager.ShowBalloon(result_item) # pyright: ignore
     return balloon
 
 

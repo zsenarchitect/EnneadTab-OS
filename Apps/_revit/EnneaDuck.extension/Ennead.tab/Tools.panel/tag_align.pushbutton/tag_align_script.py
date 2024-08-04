@@ -19,9 +19,10 @@ from pyrevit import script #
 from pyrevit import HOST_APP
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import IMAGE, ERROR_HANDLE
+from EnneadTab import IMAGE, ERROR_HANDLE, LOG
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 
@@ -127,7 +128,7 @@ class tag_align_SimpleEventHandler(IExternalEventHandler):
 
 
 # A simple WPF form used to call the ExternalEvent
-class tag_align_ModelessForm(WPFWindow):
+class TagAligner(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -154,7 +155,7 @@ class tag_align_ModelessForm(WPFWindow):
     def __init__(self):
         self.pre_actions()
 
-        xaml_file_name = "TagAlign_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "TagAligner.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab Tag Aligner"
@@ -276,15 +277,18 @@ class tag_align_ModelessForm(WPFWindow):
 
 
 
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    TagAligner()
+
+
 ################## main code below #####################
 output = script.get_output()
 output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
-    try:
-        modeless_form = tag_align_ModelessForm()
-        
-    except:
-        print (traceback.format_exc())
+    main()
+
+

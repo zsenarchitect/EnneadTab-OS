@@ -10,7 +10,7 @@ You can enable multiple category at same time.
 
 Let Sen.Z know if you would like to add more to the category list."""
 
-# to-do: add feature to allow include/exclude elements in group. Make a big toggle ----> if element.GroupId == element.GroupId.InvalidElementId:
+# TO-DO: add feature to allow include/exclude elements in group. Make a big toggle ----> if element.GroupId == element.GroupId.InvalidElementId:
 
 
 __title__ = "Prefilter\nSelection"
@@ -21,9 +21,10 @@ __tip__ = True
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_SELECTION, REVIT_APPLICATION
-from EnneadTab import NOTIFICATION, ERROR_HANDLE
+from EnneadTab import NOTIFICATION, ERROR_HANDLE, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -102,7 +103,8 @@ class PrefilterUI(REVIT_FORMS.EnneadTabModelessForm):
         for item in self.get_filter_toggle_bt():
             item.IsEnabled = self._toggle_bt_enabled.IsChecked
 
-            
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def prefilter_selection():
 

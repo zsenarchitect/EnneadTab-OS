@@ -21,7 +21,7 @@ from EnneadTab import EXE, DATA_FILE, NOTIFICATION, SPEAK, ERROR_HANDLE, FOLDER
 import time
 
 
-SYNC_MONITOR_FILE = "Last_Sync_Record.sexyDuck"
+SYNC_MONITOR_FILE = "last_sync_record_data.sexyDuck"
 
 
 def get_record_file_path():
@@ -130,7 +130,7 @@ def is_hate_sync_monitor():
 
 
     setting_file = FOLDER.get_EA_dump_folder_file(file_name)
-    data = DATA_FILE.read_json_as_dict(setting_file)
+    data = DATA_FILE.get_data(setting_file)
     return data.get("radio_bt_sync_monitor_never", False)
     """
     return DATA_FILE.get_revit_ui_setting_data(("radio_bt_sync_monitor_never", False))

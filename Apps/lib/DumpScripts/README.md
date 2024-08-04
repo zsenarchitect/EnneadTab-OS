@@ -1,1 +1,1 @@
-# One time wonder in IDE, not other other people to use.
+# One time wonder in IDE, not for everyday repeating use.

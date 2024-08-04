@@ -98,7 +98,7 @@ def get_all_user_meta_files():
     folder = get_user_root_folder()
     if not os.path.exists(folder):
         return []
-    file_names = FOLDER.get_filenames_in_folder(folder)
+    file_names = os.listdir(folder)
     if "Error_Log.sexyDuck" in file_names:
         file_names.remove("Error_Log.sexyDuck")
 
@@ -134,7 +134,7 @@ def get_absolute_path(file_name):
 
 def get_data_by_name(user_name=get_current_user_name()):
     file_name = get_user_data_file_by_name(user_name)
-    data = DATA_FILE.read_json_as_dict(get_absolute_path(file_name))
+    data = DATA_FILE.get_data(get_absolute_path(file_name))
 
     # uncomment below to find out which file has format issue in json
     # print "\n"
@@ -220,7 +220,7 @@ def update_local_warning(doc):
     data[keyB][central_name] = get_current_warning_dict(doc)
 
     set_data_by_name(user_name, data)
-    # EA_UTILITY.show_toast(title = "Current warning = {}".format(len(list(doc.GetWarnings()))))
+    # NOTIFICATION.messenger(title = "Current warning = {}".format(len(list(doc.GetWarnings()))))
 
 
 @try_catch_error
@@ -420,7 +420,7 @@ def get_central_name(doc=None):
 def get_user_root_folder():
     """ wait for the new home in AVD"""
     if not ENVIRONMENT.IS_L_DRIVE_ACCESSIBLE:
-        return NOTIFICATION.DUMP_FOLDER
+        return ENVIRONMENT.DUMP_FOLDER
     
     folder = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Users"
     folder = FOLDER.secure_folder(folder)
@@ -428,9 +428,9 @@ def get_user_root_folder():
         res = DATA_FILE.set_data(
             dict(), folder + "\\SH_tester_account.sexyDuck")
         if not res:
-            folder = NOTIFICATION.DUMP_FOLDER
+            folder = ENVIRONMENT.DUMP_FOLDER
     except:
-        folder = NOTIFICATION.DUMP_FOLDER
+        folder = ENVIRONMENT.DUMP_FOLDER
     finally:
         return folder
 
@@ -678,7 +678,7 @@ def update_error_log(error, user_name=get_current_user_name()):
 
 
 def get_data_from_error_log():
-    data = DATA_FILE.read_json_as_dict(
+    data = DATA_FILE.get_data(
         r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Users\Error_Log.sexyDuck")
     return data
 

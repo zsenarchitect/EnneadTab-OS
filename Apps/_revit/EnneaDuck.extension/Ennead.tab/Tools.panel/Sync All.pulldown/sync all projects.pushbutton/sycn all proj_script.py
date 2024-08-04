@@ -5,14 +5,17 @@ __tip__ = True
 from pyrevit import  script
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_APPLICATION
-from EnneadTab import SOUND
+from EnneadTab import SOUND, ERROR_HANDLE, LOG
 
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
-################## main code below #####################
-if __name__ == "__main__":
-    
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
     
 
     REVIT_APPLICATION.sync_and_close(close_others = False)
@@ -20,3 +23,7 @@ if __name__ == "__main__":
     output = script.get_output()
     killtime = 30
     output.self_destruct(killtime)
+################## main code below #####################
+if __name__ == "__main__":
+
+    main()

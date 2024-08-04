@@ -5,8 +5,13 @@ import SOUND
 import DATA_FILE
 import EXE
 import IMAGE
+import CONFIG
 
+def is_hate_messenger():
+    return not (CONFIG.get_setting("radio_bt_popup_standard", True) or CONFIG.get_setting("radio_bt_popup_full", True))
 
+def is_hate_duck_pop():
+    return not CONFIG.get_setting("toggle_bt_is_duck_allowed", False)
 
 def messenger(main_text,
              width = 1200,
@@ -23,13 +28,8 @@ def messenger(main_text,
         height (int, optional): how tall is the message max height. Defaults to 150.
     """
 
-
-
-
-    import random
-    if random.random() < 0.0001:
-        if duck_pop(main_text):
-            return
+    if is_hate_messenger():
+        return
     
     if not isinstance(main_text, str):
         main_text = str(main_text)
@@ -46,7 +46,7 @@ def messenger(main_text,
     data["image"] = image
     data["x_offset"] = x_offset
 
-    DATA_FILE.set_data(data, "MESSENGER.sexyDuck")
+    DATA_FILE.set_data(data, "messenger_data.sexyDuck")
 
 
 
@@ -54,6 +54,10 @@ def messenger(main_text,
 
 
 def duck_pop(main_text = None):
+    if is_hate_duck_pop():
+        messenger(main_text)
+        return
+    
     if not main_text:
         main_text = "Quack!"
 

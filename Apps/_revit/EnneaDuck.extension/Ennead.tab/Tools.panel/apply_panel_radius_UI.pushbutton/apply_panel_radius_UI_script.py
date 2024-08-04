@@ -17,8 +17,9 @@ from pyrevit import script, forms
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE
+from EnneadTab import IMAGE, NOTIFICATION, DATA_CONVERSION, ERROR_HANDLE, LOG
 
 
 import traceback
@@ -63,9 +64,6 @@ def apply_radius_action(window):
                                             len(bad_instances)))
     #print all_instances
     map(solution.fix_panel, bad_instances)
-    #envvars.get_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED")
-    #envvars.set_pyrevit_env_var("EA_INSTANCE_DATA_TRANSFER", DATA)
-
 
 
 
@@ -345,7 +343,7 @@ class apply_panel_radius_UI(forms.WPFWindow):
         uidoc.Selection.SetElementIds(DATA_CONVERSION.list_to_system_list([instance.Id]))
 
 
-    def handleclick(self, sender, args):
+    def handle_click(self, sender, args):
         print ("surface clicked")
 
     def close_click(self, sender, args):
@@ -357,10 +355,13 @@ class apply_panel_radius_UI(forms.WPFWindow):
 
 
 
+
+
+@LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def main():
 
-    modeless_form = apply_panel_radius_UI()
+    apply_panel_radius_UI()
 
 
 ################## main code below #####################

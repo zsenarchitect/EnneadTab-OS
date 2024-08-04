@@ -6,6 +6,7 @@ __title__ = "Tell Me\nVersion"
 __context__ = "zero-doc"
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab import ERROR_HANDLE, LOG
 from EnneadTab import VERSION_CONTROL

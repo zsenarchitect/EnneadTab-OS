@@ -10,7 +10,7 @@ import math
 
 
 from EnneadTab import LOG, ERROR_HANDLE
-from EnneadTab import FOLDER, NOTIFICATION, DATA_FILE
+from EnneadTab import ENVIRONMENT, NOTIFICATION, DATA_FILE
 """
 use Transform.DecomposeAffine Method (Vector3d, Transform, Transform, Vector3d) to decompose trnasform to trnaltion and rotation
 for rotation, use Transform.GetEulerZYZ to get rotation angle of X,Y,Z axis(use radiun here)
@@ -71,7 +71,7 @@ def map_block_transform():
     blocks = rs.GetObjects(message = "pick blocks", custom_filter = rs.filter.instance)
     data = [get_data(x) for x in blocks]
     rs.EnableRedraw(False)
-    filepath = NOTIFICATION.DUMP_FOLDER + "\map_block_transform.txt"
+    filepath = ENVIRONMENT.DUMP_FOLDER + "\map_block_transform.txt"
     DATA_FILE.set_list(data, filepath)
     NOTIFICATION.messenger(main_text = "map ready!")
 

@@ -23,7 +23,8 @@ import time
 import difflib
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab import ERROR_HANDLE, EXE, IMAGE, ENVIRONMENT, NOTIFICATION, DATA_FILE, FOLDER, SOUND
+proDUCKtion.validify()
+from EnneadTab import ERROR_HANDLE, EXE, IMAGE, ENVIRONMENT, NOTIFICATION, DATA_FILE, FOLDER, SOUND, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_FORMS
 
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -32,26 +33,6 @@ __persistentengine__ = True
 
 
 
-
-def OLD_clock_work(window):
-    current_text = window.debug_textbox.Text
-    max_wait = 20
-    wait = 0
-    while True:
-        if wait > max_wait:
-            break
-        wait += 1
-        deco = "." * (wait % 5)
-        #print deco
-        if not window.simple_event_handler.OUT:
-            window.debug_textbox.Text = current_text + "\n\nThinking{}".format(deco)
-
-        else:
-            window.debug_textbox.Text = window.simple_event_handler.OUT
-            break
-        time.sleep(1)
-
-    window.simple_event_handler.OUT = None
 
 
 def translate_contents(data, para_name):
@@ -138,7 +119,7 @@ class DataGridObj(object):
 
 
 # A simple WPF form used to call the ExternalEvent
-class AI_translate_ModelessForm(WPFWindow):
+class AiTranslator(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -164,7 +145,7 @@ class AI_translate_ModelessForm(WPFWindow):
     def __init__(self):
         self.pre_actions()
 
-        xaml_file_name = "AI_translate_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "AiTranslator.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab AI Translator"
@@ -533,7 +514,7 @@ class AI_translate_ModelessForm(WPFWindow):
 
 
 
-        data = DATA_FILE.read_json_as_dict(file_path)
+        data = DATA_FILE.get_data(file_path)
         return data["translator_api_key"]
 
     #@ERROR_HANDLE.try_catch_error()
@@ -549,7 +530,7 @@ class AI_translate_ModelessForm(WPFWindow):
         file_name = "EA_TRANSLATE.sexyDuck"
         #print file_name
 
-        dump_folder = NOTIFICATION.DUMP_FOLDER
+        dump_folder = ENVIRONMENT.DUMP_FOLDER
 
         #print dump_folder
         file_path = "{}\{}".format(dump_folder, file_name)
@@ -600,7 +581,7 @@ class AI_translate_ModelessForm(WPFWindow):
             print (attempt)
             if attempt % 5 == 0:
                 try:
-                    loading_message = "\n{}".format(JOKES.random_loading_message())
+                    loading_message = "\n{}".format(JOKE.random_loading_message())
                 except Exception as e:
                     print (e)
                     loading_message = ""
@@ -613,7 +594,7 @@ class AI_translate_ModelessForm(WPFWindow):
             attempt += 1
             time.sleep(1)
             try:
-                record = DATA_FILE.read_json_as_dict(file_path)
+                record = DATA_FILE.get_data(file_path)
             except Exception as e:
                 print (e)
 
@@ -789,6 +770,12 @@ def run_exe():
 
 
 
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    AiTranslator()
+    
+
 
 ################## main code below #####################
 output = script.get_output()
@@ -796,7 +783,6 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
+    main()
 
-    modeless_form = AI_translate_ModelessForm()
-    
+

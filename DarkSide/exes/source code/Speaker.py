@@ -4,7 +4,7 @@ import _Exe_Util
 import contextlib
 import io
 
-TTS_FILE = "EA_Text2Speech.sexyDuck"
+TTS_FILE = "text2speech.sexyDuck"
 
 def text_to_speech_with_gTTS(text, lang='en', tld='com'):
     from gtts import gTTS
@@ -64,7 +64,7 @@ def cleanup_tts_mp3():
 
 @_Exe_Util.try_catch_error
 def tts():
-    data = _Exe_Util.read_json_as_dict_in_dump_folder(TTS_FILE)
+    data = _Exe_Util.get_data(TTS_FILE)
     if not data:
         print("No data")
         return

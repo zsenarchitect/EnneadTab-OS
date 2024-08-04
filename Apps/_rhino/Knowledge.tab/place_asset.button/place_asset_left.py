@@ -2,7 +2,7 @@
 __title__ = "PlaceAsset"
 __doc__ = "This button does PlaceAsset when left click"
 
-
+import os
 import sys
 import Rhino # pyright: ignore
 import rhinoscriptsyntax as rs
@@ -65,7 +65,7 @@ def get_external_filepath(block_name):
         return block_name
 
 
-    files = FOLDER.get_filenames_in_folder(folder)
+    files = os.listdir(folder)
     for file_name in files:
         if block_name in  file_name:
             return "{}\{}".format(folder, file_name)
@@ -76,7 +76,7 @@ def get_external_filepath(block_name):
 @ERROR_HANDLE.try_catch_error()
 def place_asset():
     folder = "L:\\4b_Applied Computing\\00_Asset Library"
-    files = FOLDER.get_filenames_in_folder(folder)
+    files = os.listdir(folder)
 
     def is_good_file(name):
         if name.endswith(".3dm"):

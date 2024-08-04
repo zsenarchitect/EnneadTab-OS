@@ -131,9 +131,8 @@ class MacroHandler(BaseHandler):
         return IconHandler(None, caller = self.script_name)
 
     def get_script(self, search_folder):
-        """TO-DO:
-         use a template format to fill in info. 
-        [Or] create alias automatically and call that.
+        """used to just use a template format to fill in info. 
+        Now create alias automatically and call that.
 
         (Prefer second for long term effort. It is cleaner to read, BUT do require USER to register all alias dynamically.)
         """

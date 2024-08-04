@@ -23,6 +23,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))) + "\
 
 from ENVIRONMENT import ROOT, EXE_PRODUCT_FOLDER  # pyright: ignore
 import NOTIFICATION  # pyright: ignore
+import SOUND   # pyright: ignore
 
 
 
@@ -34,7 +35,8 @@ EXE_SOURCE_CODE_FOLDER = os.path.join(EXE_FOLDER,"source code")
 TEMP_SPEC_FOLDER = os.path.join(EXE_FOLDER, "temp_specs")
 
 PYGAME_ALLOWS = ["Speaker.sexyDuck",
-                 "LastSyncMonitor.sexyDuck"]
+                 "LastSyncMonitor.sexyDuck",
+                 "ScheduleOpener.sexyDuck"]
 
 
 
@@ -113,7 +115,7 @@ def repath(path):
     # this is to be able to make exe from any named repo
     new_path = path.replace("C:\\Users\\szhang\\github\\EnneadTab-OS", ROOT)
     return new_path
-
+    # C:\Users\szhang\dev\EnneadTab-OS\DarkSide\exes\ExeMaker.py
     if os.path.exists(new_path):
         return new_path
     new_path = new_path.replace("github\\EnneadTab-OS", "dev\\EnneadTab-OS")
@@ -167,7 +169,7 @@ def json_to_command(json_file):
         command.append("--exclude-module")
         command.append("pygame")
 
-    print("\033[92m{}\033[00m".format(command))
+    print("\033[92m{}\033[00m".format("\n".join(command)))
     return command
 
 def create_version_file(final_path):
@@ -211,12 +213,12 @@ def parse_version_info(content):
     return info
 
 def recompile_exe(single_exe = None):
-    
-    for file in os.listdir(EXE_MAKER_FOLDER):
+    jobs = os.listdir(EXE_MAKER_FOLDER)
+    for i, file in enumerate(jobs):
         if single_exe and single_exe != file:
             continue
         if file.endswith(".sexyDuck"):
-            print("\033[94m{}\033[00m".format(file))
+            print("{}/{} \033[94m{}\033[00m".format(i+1, len(jobs), file))
             make_exe(os.path.join(EXE_MAKER_FOLDER,file))
             print ("\n")
 
@@ -224,6 +226,7 @@ def recompile_exe(single_exe = None):
     move_exes()
     print ("done exe creation")
     NOTIFICATION.messenger("Exe finish compiling")
+    SOUND.play_sound()
     
 
 
@@ -232,7 +235,10 @@ if __name__ == "__main__":
     # recompile_exe(single_exe="RevitExportRenamer.sexyDuck")
     # recompile_exe(single_exe="Speaker.sexyDuck")
     # recompile_exe(single_exe="IndesignAccOpenner.sexyDuck")
-    recompile_exe(single_exe="AccFileOpenner.sexyDuck")
+    # recompile_exe(single_exe="AccFileOpenner.sexyDuck")
     # recompile_exe(single_exe="Pdf2OrderedJpgs.sexyDuck")
     # recompile_exe(single_exe="RevitIniDeployer.sexyDuck")
+    # recompile_exe(single_exe="AvdResourceMonitor.sexyDuck")
     # recompile_exe(single_exe="LastSyncMonitor.sexyDuck")
+    # recompile_exe(single_exe="sample_exe.sexyDuck")
+    recompile_exe(single_exe="ScheduleOpener.sexyDuck")

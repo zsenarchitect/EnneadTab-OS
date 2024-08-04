@@ -28,7 +28,6 @@ def print_text_in_highlight_color(text, ok = True):
 
 
 IGNORE_LIST = ["__pycache__",
-               "REVIT",
                "RHINO"]
 
 

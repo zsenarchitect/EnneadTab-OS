@@ -27,7 +27,7 @@ a:::::aaaa::::::a      tt::::::::::::::t  tt::::::::::::::t e::::::::eeeeeeee   
                                                                                                                                                                    
 
 THIS is direct copy from old MARK_HISTORY script with NO modification, it will faill for sure. 2023-12-07
-To-Do migrate this to new way of doing things and make startup.py point to this"""
+TO-DO migrate this to new way of doing things and make startup.py point to this"""
 
 try:
     from pyrevit import DB, revit

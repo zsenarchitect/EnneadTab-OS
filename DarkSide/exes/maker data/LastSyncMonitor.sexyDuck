@@ -54,23 +54,27 @@
    "value": false
   },
   {
-    "optionDest": "datas", 
+    "optionDest": "datas",
     "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\LastSyncMonitor\\images;images\\"
    },
    {
-    "optionDest": "datas", 
+    "optionDest": "datas",
     "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\_Exe_Util.py;."
    },
    {
-    "optionDest": "datas", 
+    "optionDest": "datas",
     "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\_GUI_Util.py;."
    },
    {
-    "optionDest": "hidden-import", 
+    "optionDest": "datas",
+    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\_GUI_Base_Util.py;."
+   },
+   {
+    "optionDest": "hidden-import",
     "value": "json"
    },
    {
-    "optionDest": "hidden-import", 
+    "optionDest": "hidden-import",
     "value": "pyautogui"
    }
  ],

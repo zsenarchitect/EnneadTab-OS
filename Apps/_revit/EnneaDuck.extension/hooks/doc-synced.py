@@ -2,14 +2,14 @@ import os
 import random
 from pyrevit import EXEC_PARAMS
 from Autodesk.Revit import DB # pyright: ignore
-
-from pycoreutils import envvars
+from pyrevit.coreutils import envvars
 doc = EXEC_PARAMS.event_args.Document
 
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ERROR_HANDLE, SOUND, LOG, NOTIFICATION, SPEAK, MODULE_HELPER, ENVIRONMENT, EMAIL, USER, DATA_FILE
-from EnneadTab.REVIT import REVIT_SYNC, REVIT_FORMS
+from EnneadTab.REVIT import REVIT_SYNC, REVIT_FORMS, REVIT_EVENT
 __title__ = "Doc Synced Hook"
 
 
@@ -212,7 +212,7 @@ def update_project_2306():
 def update_sync_queue():
 
     # dont need to do anything if pre-sycn chech was cancelled,
-    if envvars.get_pyrevit_env_var("IS_SYNC_CANCELLED"):
+    if REVIT_EVENT.is_sync_cancelled():
         return
 
     log_file = "{}\\Sync_Queue\\Sync Queue_{}.sexyDuck". format(ENVIRONMENT.DB_FOLDER, doc.Title)
@@ -224,12 +224,12 @@ def update_sync_queue():
 
     queue = DATA_FILE.get_list(log_file)
 
-    user_name = USER.USERNAME
+    
     OUT = []
 
 
     for item in queue:
-        if user_name in item:
+        if USER.USER_NAME in item:
             #this step remove current user name from any place in wait list, either beginging or last
             continue
         OUT.append(item)
@@ -240,7 +240,7 @@ def update_sync_queue():
         print ("Your account have no access to write in this address.")
         return
 
-    if envvars.get_pyrevit_env_var("IS_SYNC_QUEUE_DISABLED"):
+    if REVIT_EVENT.is_sync_queue_disabled:
         # when  gloabl sync queue disabled, dont want to see dialogue, but still want to clear name from log file
         return
 

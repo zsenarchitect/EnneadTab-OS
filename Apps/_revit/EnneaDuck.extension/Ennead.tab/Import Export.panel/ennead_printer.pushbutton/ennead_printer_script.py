@@ -5,7 +5,7 @@
 this tool is getting heavy, should consider spliting to smaller files and restrucrure for Exporter 2.0"""
 
 
-__doc__ = "A great helper for your print on deadline. Feastures include:\n  -pdf, dwg, jpg export together\n  -Package export files to subfolders in destination folder by assigned prefix and file type\n  -Prefix for auto numbering\n  -Email result as a link to folder.\n  -Time esitmation, with increasing accuracy the more you export\n  -Identify color setting per parameter on sheet. So you can mix color and BW export together.\n  -Option to sync and close files after exporting done.\n  -Export sheets by revision mark instead of printSet, and allow selective export without desrupting shared printSet.\n  -Export views on sheet seperatedly for dwg.\n  -Export from links or open docs.\n  -Merge pdf after export.\n  -Jokes while exporting."
+__doc__ = "A great helper for your print on deadline. Feastures include:\n  -pdf, dwg, jpg export together\n  -Package export files to subfolders in destination folder by assigned prefix and file type\n  -Prefix for auto numbering\n  -Email result as a link to folder.\n  -Time esitmation, with increasing accuracy the more you export\n  -Identify color setting per parameter on sheet. So you can mix color and BW export together.\n  -Option to sync and close files after exporting done.\n  -Export sheets by revision mark instead of printSet, and allow selective export without desrupting shared printSet.\n  -Export views on sheet seperatedly for dwg.\n  -Export from links or open docs.\n  -Merge pdf after export.\n  -JOKE while exporting."
 __title__ = "Ennead\nExporter"
 __tip__ = True
 # from pyrevit import forms #
@@ -15,9 +15,11 @@ from pyrevit.revit import ErrorSwallower
 
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
+proDUCKtion.validify()
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_EVENT, REVIT_EXPORT
 
-from EnneadTab import EXE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, ERROR_HANDLE, FOLDER, IMAGE, USER, EMAIL, LOG
+from EnneadTab import JOKE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, PDF
+from EnneadTab import ERROR_HANDLE, FOLDER, IMAGE, USER, EMAIL, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
 import traceback
@@ -46,7 +48,7 @@ script_folder = os.path.dirname(__file__)
 import sys
 sys.path.append(script_folder)
 import HELPER
-import EXPORT_ACTION
+
 
 
 class DataGrid_Preview_Obj(object):
@@ -92,12 +94,17 @@ class DataGrid_Preview_Obj(object):
                                                         self.sheet_name,
                                                         extension)
 
+
         if is_sheet_group_prefix:
-            self.format_name = "[{}]-[{}]_{} - {}{}".format(self.item.LookupParameter("Sheet_$Group").AsString(),
-                                                       self.item.LookupParameter("Sheet_$Series").AsString(),
-                                                       self.sheet_number,
-                                                        self.sheet_name, 
-                                                        extension)
+            # have to assume non-EA file has no such parameters
+            sheet_group = self.item.LookupParameter("Sheet_$Group").AsString() if self.item.LookupParameter("Sheet_$Group") else "Sheet $Group Missing"
+            sheet_series = self.item.LookupParameter("Sheet_$Series").AsString() if self.item.LookupParameter("Sheet_$Series") else "Sheet $Series Missing"
+
+            self.format_name = "[{}]-[{}]_{} - {}{}".format(sheet_group,
+                                                            sheet_series,
+                                                            self.sheet_number,
+                                                                self.sheet_name, 
+                                                                extension)
 
 
     @property
@@ -212,14 +219,9 @@ class EA_Printer_UI(WPFWindow):
 
 
         # important data setup
-        self.setting_file = "EA_PRINTER_SETTING.sexyDuck"
+        self.setting_file = "exporter_setting.sexyDuck"
         self.output_folder = "{}\EnneadTab Exporter".format(ENVIRONMENT.DUMP_FOLDER)
         FOLDER.secure_folder(self.output_folder)
-        self.record_folder = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Exporter_Record".format(ENVIRONMENT.HOSTER_FOLDER)
-        try:
-            DATA_FILE.set_data(dict(), self.record_folder + "\\SH_Access_test.sexyDuck")
-        except:
-            self.record_folder = NOTIFICATION.DUMP_FOLDER
 
 
         self.export_queue = []
@@ -330,7 +332,7 @@ class EA_Printer_UI(WPFWindow):
         for doc in self.docs_to_process:
             doc_sheets =  self.get_sheets_from_doc(doc)
             if doc_sheets == []:
-                print ("Cannot find any good sheets in {}. Check your Issue parameter name if you are using locally defined parameter.".format(doc.Title))
+                NOTIFICATION.messenger("Cannot find any good sheets in {}.\nCheck your Issue parameter name used to find sheets.".format(doc.Title))
                 continue
 
             if self.radio_button_sheetGroup_sheetSeries_sheetNum_sheetName.IsChecked:
@@ -484,7 +486,7 @@ class EA_Printer_UI(WPFWindow):
         try:
             data = DATA_FILE.get_data(self.setting_file)
         except:
-            #REVIT_FORMS.notification(main_text = "Creating setting file for first-time user. ", sub_text = "Open exporter tool again to start exporting!", self_destruct = 15)
+        
             data = dict()
             DATA_FILE.set_data(data, self.setting_file)
 
@@ -495,7 +497,7 @@ class EA_Printer_UI(WPFWindow):
             self.docs_to_process = [doc]
             self.doc_names_id_pair = {self.central_doc_name(doc): "Ennead"}
             if doc.IsWorkshared :
-                self.doc_model_path_pair = {self.central_doc_name(doc): doc.GetWorksharingCentralModelPath()}
+                self.doc_model_path_pair = {self.central_doc_name(doc): get_doc_path(doc)}
             else:
                 self.doc_model_path_pair = {self.central_doc_name(doc): None}
                 NOTIFICATION.messenger(main_text = "This document is not workshared.")
@@ -535,7 +537,7 @@ class EA_Printer_UI(WPFWindow):
         # restore previous form condition
         self.docs_to_process = [doc]
         if doc.IsWorkshared :
-            self.doc_model_path_pair = {self.central_doc_name(doc): doc.GetWorksharingCentralModelPath()}
+            self.doc_model_path_pair = {self.central_doc_name(doc): get_doc_path(doc)}
         else:
             self.doc_model_path_pair = {self.central_doc_name(doc): None}
             NOTIFICATION.messenger(main_text = "This document is not workshared.")
@@ -624,7 +626,7 @@ class EA_Printer_UI(WPFWindow):
 
     @staticmethod
     def central_doc_name(doc):
-        return doc.Title.replace("_{}".format(USER.USERNAME,  ""))
+        return doc.Title.replace("_{}".format(USER.USER_NAME),  "")
 
     def get_id_by_doc(self, doc):
         true_doc_name = self.central_doc_name(doc)
@@ -857,8 +859,11 @@ class EA_Printer_UI(WPFWindow):
         #print "!!!Opening {} in background".format(doc_name)
         model_path = self.doc_model_path_pair[doc_name]
         open_options = DB.OpenOptions()
-        new_doc = REVIT_APPLICATION.get_app().OpenDocumentFile(model_path,
-                                                                open_options)
+        if isinstance(model_path, DB.ModelPath):
+            new_doc = REVIT_APPLICATION.get_app().OpenDocumentFile(model_path,
+                                                                    open_options)
+        elif isinstance(model_path, str):
+            new_doc = REVIT_APPLICATION.get_app().OpenDocumentFile(model_path)
 
         #output.print_md( "background open file {}".format(doc_name))
 
@@ -884,9 +889,9 @@ class EA_Printer_UI(WPFWindow):
         self.docs_to_be_opened_by_API = [x for x in self.docs_to_process if self.central_doc_name(x) not in self.doc_names_already_open]
 
         #depress open hook
-        EA_UTILITY.set_open_hook_depressed(is_depressed = True)
-        EA_UTILITY.set_doc_change_hook_depressed(is_depressed = True)
-        ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
+        REVIT_EVENT.set_open_hook_depressed(stage = True)
+        # EA_UTILITY.set_doc_change_hook_depressed(stage = True)
+        # ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
 
         time_start = time.time()
         #open background doc that neeed to be opeend
@@ -898,7 +903,7 @@ class EA_Printer_UI(WPFWindow):
         time_end = time.time()
 
         if len(self.docs_to_be_opened_by_API) > 0:
-            EXPORT_ACTION.print_time("background loading {} files".format(self.docs_to_be_opened_by_API), time_end, time_start, use_minutes = False)
+            REVIT_EXPORT.print_time("background loading {} files".format(self.docs_to_be_opened_by_API), time_end, time_start, use_minutes = False)
 
             ###!!!! no need to reactive primary doc if we are using post file name correction method
             #primary_doc = active_original_doc(orginal_doc_name).Document##function return UI doc ##try this to fix main doc pdf not print issue
@@ -906,7 +911,7 @@ class EA_Printer_UI(WPFWindow):
 
 
         #open hook depression re-enable
-        EA_UTILITY.set_open_hook_depressed(is_depressed = False)
+        REVIT_EVENT.set_open_hook_depressed(stage = False)
 
 
 
@@ -968,13 +973,14 @@ class EA_Printer_UI(WPFWindow):
 
 
 
-
-            EA_UTILITY.remove_exisitng_file_in_folder(self.output_folder, file_name )#file_name here contain extension
+            #file_name here contain extension
+            if os.path.exists(os.path.join(self.output_folder, file_name)):
+                os.remove(os.path.join(self.output_folder, file_name))
 
 
             if extension == ".pdf":
                 is_color_by_sheet = self.is_color_by_sheet
-                final_file = EXPORT_ACTION.export_pdf(view_or_sheet, raw_name, self.output_folder, is_color_by_sheet)
+                final_file = REVIT_EXPORT.export_pdf(view_or_sheet, raw_name, self.output_folder, is_color_by_sheet)
                 self.files_exported_for_this_issue.append(final_file)
 
             if extension == ".dwg":
@@ -982,7 +988,7 @@ class EA_Printer_UI(WPFWindow):
                 dwg_setting_name = self.dwg_setting_name
                 DWG_option = DB.DWGExportOptions().GetPredefinedOptions(view_or_sheet.Document, dwg_setting_name)
                 if DWG_option:
-                    final_files = EXPORT_ACTION.export_dwg(view_or_sheet, raw_name, self.output_folder, dwg_setting_name, is_export_view_on_sheet)
+                    final_files = REVIT_EXPORT.export_dwg(view_or_sheet, raw_name, self.output_folder, dwg_setting_name, is_export_view_on_sheet)
 
                     self.files_exported_for_this_issue.extend(final_files)
                     for new_files in final_files:
@@ -993,11 +999,11 @@ class EA_Printer_UI(WPFWindow):
                     #is_success = False
 
             if extension == ".jpg":
-                final_file = EXPORT_ACTION.export_image(view_or_sheet, raw_name, self.output_folder,  is_color_by_sheet = self.is_color_by_sheet)
+                final_file = REVIT_EXPORT.export_image(view_or_sheet, raw_name, self.output_folder,  is_color_by_sheet = self.is_color_by_sheet)
                 self.files_exported_for_this_issue.append(final_file)
 
             time_end = time.time()
-            format_time = EXPORT_ACTION.print_time("sheet to {}".format(extension), time_end, time_start)
+            format_time = REVIT_EXPORT.print_time("sheet to {}".format(extension), time_end, time_start)
             preview_obj.time_estimate = time_end - time_start
 
             """
@@ -1029,7 +1035,7 @@ class EA_Printer_UI(WPFWindow):
                     new_contents = final_files
                 else:
                     new_contents = [final_file]
-                EXPORT_ACTION.dump_exported_files_to_copy_folder(self.output_folder, new_contents, self.file_id_dict, self.copy_folder_path)
+                REVIT_EXPORT.dump_exported_files_to_copy_folder(self.output_folder, new_contents, self.file_id_dict, self.copy_folder_path)
 
 
             # ----- end of for loop
@@ -1068,16 +1074,16 @@ class EA_Printer_UI(WPFWindow):
 
 
 
-        EA_UTILITY.set_doc_change_hook_depressed(is_depressed = False)
-        ERROR_HANDLE.print_note("my doc change hook depress status = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
+        # EA_UTILITY.set_doc_change_hook_depressed(stage = False)
+        # ERROR_HANDLE.print_note("my doc change hook depress status = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
 
         if self.is_copy_folder:
 
-            EXPORT_ACTION.dump_exported_files_to_copy_folder(self.output_folder, self.files_exported_for_this_issue, self.file_id_dict, copy_folder)
+            REVIT_EXPORT.dump_exported_files_to_copy_folder(self.output_folder, self.files_exported_for_this_issue, self.file_id_dict, copy_folder)
 
         if self.is_combine_pdf and not self.is_printing_interupted:
             combined_pdf_name = self.textbox_combined_pdf_name.Text
-            EXPORT_ACTION.combine_final_pdf(self.output_folder, self.files_exported_for_this_issue, combined_pdf_name, copy_folder)
+            REVIT_EXPORT.combine_final_pdf(self.output_folder, self.files_exported_for_this_issue, combined_pdf_name, copy_folder)
 
         if self.is_play_sound:
             SOUND.play_sound("sound_effect_mario_stage_clear.wav")
@@ -1090,10 +1096,10 @@ class EA_Printer_UI(WPFWindow):
         total_time_min = int( total_time_second / 60 )
         print ("#"*20)
         print ("all sheets from selected revit files have been printed.\nIssue parameter = [{}]".format(self.issue_name))
-        EXPORT_ACTION.print_time("Print {} sheets".format(len(self.files_exported_for_this_issue)), time_end, time_start, use_minutes = True)
+        REVIT_EXPORT.print_time("Print {} sheets".format(len(self.files_exported_for_this_issue)), time_end, time_start, use_minutes = True)
         print ("#"*20)
         self.print_ranked_log()
-        ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
+        # ERROR_HANDLE.print_note("my doc change hook depress satus = {}".format(EA_UTILITY.is_doc_change_hook_depressed()))
         ERROR_HANDLE.print_note("###END OF TOOL###")
 
         time_obj = time.localtime()
@@ -1284,10 +1290,10 @@ class EA_Printer_UI(WPFWindow):
         for item in self.data_grid_doc_id_map.ItemsSource:
             doc_name, id = item.doc_name, item.map_id
             self.doc_names_id_pair[doc_name] = str(id)
-            self.doc_model_path_pair[doc_name] = item.doc.GetWorksharingCentralModelPath()
+            self.doc_model_path_pair[doc_name] = get_doc_path(item.doc)
 
         #adding additional self doc data in case user are only print link, in that case we need a way to go back to original doc
-        self.doc_model_path_pair[self.orginal_doc_name] = doc.GetWorksharingCentralModelPath()
+        self.doc_model_path_pair[self.orginal_doc_name] = get_doc_path(doc)
 
     def pick_copy_folder_Clicked(self, sender, args):
         title_line = 'Pick the folder ...'
@@ -1456,15 +1462,15 @@ class EA_Printer_UI(WPFWindow):
             doc_name, id = item.doc_name, item.map_id
             #print doc_name, id
             self.doc_names_id_pair[doc_name] = str(id)
-            self.doc_model_path_pair[doc_name] = item.doc.GetWorksharingCentralModelPath()
+            self.doc_model_path_pair[doc_name] = get_doc_path(item.doc)
 
         self.check_all_setting_ready()
 
 
 
     def update_preview_image(self, view_or_sheet):
-        EXPORT_ACTION.export_image(view_or_sheet, "EXPORTER_PREVIEW", FOLDER.get_EA_local_dump_folder(), is_thumbnail = True)
-        self.set_image_source(self.preview_image, FOLDER.get_EA_dump_folder_file("EXPORTER_PREVIEW.jpg"))
+        REVIT_EXPORT.export_image(view_or_sheet, "exporter_preview", ENVIRONMENT.DUMP_FOLDER, is_thumbnail = True)
+        self.set_image_source(self.preview_image, FOLDER.get_EA_dump_folder_file("exporter_preview.jpg"))
 
 
     def initiate_loading_message(self):
@@ -1494,23 +1500,31 @@ class EA_Printer_UI(WPFWindow):
                     continue
                 self.record["{}#{}".format(item.item.UniqueId, item.extension)] = item.time_estimate
 
-            DATA_FILE.set_data(self.record, self.get_record_path_by_doc(doc))
+            record_file = self.get_record_file_by_doc(doc)
+            DATA_FILE.set_data(self.record, record_file, is_local=False)
 
 
     def get_time_estimate_from_record(self, doc):
-        record_path = self.get_record_path_by_doc(doc)
-        if os.path.exists(os.path.join(self.record_folder, self.central_doc_name(doc) + ".sexyDuck")):
-            return DATA_FILE.get_data(record_path)
-        return dict()
+        record_file = self.get_record_file_by_doc(doc)
+        return DATA_FILE.get_data(record_file, is_local=False)
 
 
-    def get_record_path_by_doc(self, doc):
-        return "{}\{}.sexyDuck".format(self.record_folder, self.central_doc_name(doc))
 
+    def get_record_file_by_doc(self, doc):
+        return "EXPORT_RECORD_" + self.central_doc_name(doc) + ".sexyDuck"
 
+ 
+    
     def mouse_down_main_panel(self, sender, args):
         #print "mouse down"
         sender.DragMove()
+
+
+def get_doc_path(doc):
+    if doc.IsWorkshared:
+        return doc.GetWorksharingCentralModelPath()
+    else:
+        return doc.PathName
 ##################################################
 
 

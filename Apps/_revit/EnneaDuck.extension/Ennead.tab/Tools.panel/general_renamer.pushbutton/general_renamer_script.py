@@ -18,8 +18,9 @@ from pyrevit import forms #
 from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import IMAGE, USER, NOTIFICATION, ERROR_HANDLE
+from EnneadTab import IMAGE, USER, NOTIFICATION, ERROR_HANDLE, LOG
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 import random
@@ -302,7 +303,7 @@ class SimpleEventHandler(IExternalEventHandler):
 
 
 # A simple WPF form used to call the ExternalEvent
-class general_renamer_ModelessForm(WPFWindow):
+class SuperRenamer(WPFWindow):
     """
     Simple modeless form sample
     """
@@ -338,7 +339,7 @@ class general_renamer_ModelessForm(WPFWindow):
     def __init__(self):
         self.pre_actions()
 
-        xaml_file_name = "general_renamer_ModelessForm.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
+        xaml_file_name = "SuperRenamer.xaml" ###>>>>>> if change from window to dockpane, the top level <Window></Window> need to change to <Page></Page>
         WPFWindow.__init__(self, xaml_file_name)
 
         self.title_text.Text = "EnneadTab Super Renamer"
@@ -448,6 +449,11 @@ class general_renamer_ModelessForm(WPFWindow):
 
 
 
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    SuperRenamer()
+
 
 ################## main code below #####################
 output = script.get_output()
@@ -455,9 +461,7 @@ output.close_others()
 
 
 if __name__ == "__main__":
-    # Let's launch our beautiful and useful form !
-    try:
-        modeless_form = general_renamer_ModelessForm()
-        
-    except:
-        print (traceback.format_exc())
+
+    main()
+
+

@@ -12,12 +12,13 @@ from pyrevit import script #
 
 
 import proDUCKtion # pyright: ignore 
-from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION
-from EnneadTab import DATA_FILE, ERROR_HANDLE
-import System
+proDUCKtion.validify()
+from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_EVENT
+from EnneadTab import DATA_FILE, ERROR_HANDLE, LOG
+import System # pyright: ignore 
 from pyrevit.revit import ErrorSwallower
 from Autodesk.Revit import DB # pyright: ignore 
-from Autodesk.Revit import UI # pyright: ignore
+
 
 uidoc = REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
@@ -52,7 +53,7 @@ class Solution:
         if self.use_audit:
             open_options.Audit = True
         try:
-            __revit__.OpenAndActivateDocument (cloud_path, open_options, False)
+            __revit__.OpenAndActivateDocument (cloud_path, open_options, False) # pyright: ignore 
             return
             new_doc = REVIT_APPLICATION.get_app().OpenDocumentFile(cloud_path,
                                                                                             open_options)
@@ -78,10 +79,8 @@ class Solution:
             self.use_audit = False
             self.open_without_workset = False
 
-        # to-do: replace with ENVIRONEMENT MISC_FOLDER
-        filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.sexyDuck"
 
-        self.data = DATA_FILE.read_json_as_dict(filepath)
+        self.data = DATA_FILE.get_data("doc_opener.sexyDuck", is_local=False)
 
         if not doc_names:
             docs_to_process = forms.SelectFromList.show(sorted(self.data),
@@ -94,11 +93,11 @@ class Solution:
 
         docs_already_open = [x.Title for x in REVIT_APPLICATION.get_top_revit_docs()]
         docs_to_be_opened_by_API = [x for x in docs_to_process if x not in docs_already_open]
-        print ("docs alrady open = {}".format(docs_already_open))
-        print ("docs to be opened = {}".format(docs_to_be_opened_by_API))
+        ERROR_HANDLE.print_note("docs already open = {}".format(docs_already_open))
+        ERROR_HANDLE.print_note ("docs to be opened = {}".format(docs_to_be_opened_by_API))
 
 
-        REVIT_APPLICATION.set_open_hook_depressed(True)
+        REVIT_EVENT.set_open_hook_depressed(True)
         warnings = ""
         with ErrorSwallower() as swallower:
             for doc_name in docs_to_be_opened_by_API:
@@ -107,7 +106,7 @@ class Solution:
                 #print errors
                 if len(errors) != 0:
                     warnings += "\n\n{}".format(errors)
-        print ("silent mode finish")
+        
         for doc_name in docs_to_be_opened_by_API:
             model_path = self.tuple_to_model_path(self.data.get(doc_name, None))
             if not model_path:
@@ -115,7 +114,7 @@ class Solution:
             REVIT_APPLICATION.open_and_active_project(model_path)
 
 
-        REVIT_APPLICATION.set_open_hook_depressed(False)
+        REVIT_EVENT.set_open_hook_depressed(False)
 
 
         if warnings != "":
@@ -129,11 +128,18 @@ class Solution:
 
 def open_doc_silently(doc_names):
     Solution().main(doc_names)
+
+
+@LOG.log(__file__, __title__)
+@ERROR_HANDLE.try_catch_error()
+def main():
+    Solution().main()
+    
 ################## main code below #####################
 output = script.get_output()
 output.close_others()
 
 
 if __name__ == "__main__":
-    Solution().main()
-    
+    main()
+

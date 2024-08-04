@@ -35,12 +35,12 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import _Exe_Util
 EXPIRATION_DATE = datetime.date(2025, 1, 1)
+import _GUI_Base_Util
 
-
-class FileProcessorApp:
+class FileProcessorApp(_GUI_Base_Util.BaseGUI):
     def __init__(self, root):
         self.root = root
-        self.root.configure(bg='#2e2e2e')
+        self.root.configure(bg=self.BACKGROUND_COLOR_HEX)
 
         self.update_title_with_days_left()
 
@@ -71,38 +71,38 @@ class FileProcessorApp:
             self.root.title("InDesign File Opener")
 
     def create_widgets(self):
-        self.logo_label = tk.Label(self.root, image=self.logo_photo, bg='#2e2e2e')
+        self.logo_label = tk.Label(self.root, image=self.logo_photo, bg=self.BACKGROUND_COLOR_HEX)
         self.logo_label.grid(row=0, column=0, columnspan=3)
 
-        self.pick_file_button = tk.Button(self.root, text="Pick InDesign File From ACC Connector", command=self.pick_file, bg='#2e2e2e', fg='white')
+        self.pick_file_button = tk.Button(self.root, text="Pick InDesign File From ACC Connector", command=self.pick_file, bg=self.BACKGROUND_COLOR_HEX, fg='white')
         self.pick_file_button.grid(row=1, column=0, columnspan=3, padx=10, pady=10)
 
-        self.indesign_version_label = tk.Label(self.root, text="InDesign Version:", bg='#2e2e2e', fg='white')
+        self.indesign_version_label = tk.Label(self.root, text="InDesign Version:", bg=self.BACKGROUND_COLOR_HEX, fg='white')
         self.indesign_version_label.grid(row=2, column=1, padx=10, pady=10)
 
         self.indesign_version_entry = tk.Entry(self.root)
         self.indesign_version_entry.insert(0, "2024")
         self.indesign_version_entry.grid(row=3, column=1, padx=10, pady=10)
 
-        self.selected_file_label = tk.Label(self.root, text="", bg='#2e2e2e', fg='white')
+        self.selected_file_label = tk.Label(self.root, text="", bg=self.BACKGROUND_COLOR_HEX, fg='white')
         self.selected_file_label.grid(row=4, column=0, columnspan=3, padx=10, pady=10)
 
-        self.process_button = tk.Button(self.root, text="Open ACC InDesign Safety", command=self.process_file, bg='#2e2e2e', fg='white')
+        self.process_button = tk.Button(self.root, text="Open ACC InDesign Safety", command=self.process_file, bg=self.BACKGROUND_COLOR_HEX, fg='white')
         self.process_button.grid(row=5, column=0, columnspan=3, padx=10, pady=20)
         self.process_button.config(state=tk.DISABLED)
 
-        self.warning_frame = tk.Frame(self.root, bg='#2e2e2e')
-        self.warning_label = tk.Label(self.warning_frame, text="", bg='#2e2e2e', fg='red', font=("Helvetica", 16, "bold"))
+        self.warning_frame = tk.Frame(self.root, bg=self.BACKGROUND_COLOR_HEX)
+        self.warning_label = tk.Label(self.warning_frame, text="", bg=self.BACKGROUND_COLOR_HEX, fg='red', font=("Helvetica", 16, "bold"))
         self.warning_label.pack(padx=20, pady=20)
 
 
-        self.request_users_label = tk.Label(self.warning_frame, text="", bg='#2e2e2e', fg='white')
+        self.request_users_label = tk.Label(self.warning_frame, text="", bg=self.BACKGROUND_COLOR_HEX, fg='white')
         self.request_users_label.pack(padx=20, pady=20)
 
         self.warning_frame.grid(row=6, column=0, columnspan=3, padx=10, pady=10)
         self.warning_frame.grid_remove()  # Initially hide the frame
 
-        self.note = tk.Label(self.root, text="Only close this toolbox after indesign document closed.\nIt is OK to minimize.", bg='#2e2e2e', fg='white', font=("Helvetica", 12))
+        self.note = tk.Label(self.root, text="Only close this toolbox after indesign document closed.\nIt is OK to minimize.", bg=self.BACKGROUND_COLOR_HEX, fg='white', font=("Helvetica", 12))
         self.note.grid(row=7, column=0, columnspan=3, padx=10, pady=10)
 
         note = """Features:
@@ -111,10 +111,10 @@ class FileProcessorApp:
 3. When previous editor relinquish, requster can convert request lock to edit lock.
 4. The cleanup of locker files and request files are done automatically over ACC drive.
 """
-        self.note2 = tk.Label(self.root, text=note, bg='#2e2e2e', fg='white', font=("Helvetica", 8), justify='left')
+        self.note2 = tk.Label(self.root, text=note, bg=self.BACKGROUND_COLOR_HEX, fg='white', font=("Helvetica", 8), justify='left')
         self.note2.grid(row=8, column=0, columnspan=3, padx=10, pady=10)
 
-        self.copy_right = tk.Label(self.root, text="CopyRight @ 2024 By Ennead Architects", bg='#2e2e2e', fg='white', font=("Helvetica", 6))
+        self.copy_right = tk.Label(self.root, text="CopyRight @ 2024 By Ennead Architects", bg=self.BACKGROUND_COLOR_HEX, fg='white', font=("Helvetica", 6))
         self.copy_right.grid(row=9, column=0, columnspan=3, padx=10, pady=10)
 
         # Center the widgets
@@ -154,7 +154,7 @@ class FileProcessorApp:
             messagebox.showwarning("Warning", "Please select an InDesign file.")
             return
         
-        username = os.getenv('USERNAME')  # Get current user's name
+        username = _Exe_Util.get_username()
         file_name = os.path.basename(original_file)
         prefix = "[{}_editing]_".format(username)
 

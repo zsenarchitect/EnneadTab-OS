@@ -1,7 +1,7 @@
 __title__ = "EnneadTab_Startup"
 __doc__ = "Automatically run on every new rhino start session if bind to Rhino setting."
 import os, sys
-_app_folder = os.path.dirname(os.path.dirname(__file__))
+_app_folder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _lib_path = os.path.join(_app_folder, "lib" )
 sys.path.append(_lib_path)
 

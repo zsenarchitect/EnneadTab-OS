@@ -11,7 +11,7 @@ def add_search_path():
     for path in rs.SearchPathList():
         if 'EnneadTab-OS' in path:
             rs.DeleteSearchPath(path)
-    _app_folder = os.path.dirname(os.path.dirname(__file__))
+    _app_folder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     lib_path = os.path.join(_app_folder, "lib" )
     rs.AddSearchPath(lib_path)
     sys.path.append(lib_path)

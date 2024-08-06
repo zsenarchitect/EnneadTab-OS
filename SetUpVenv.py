@@ -1,16 +1,18 @@
 import subprocess
 
-commands = [
-    '.venv\\Scripts\\activate && python.exe -m pip install --upgrade pip',
-    'pip install --upgrade wheel',  # need this to make sure some module in requirement can install with pip (such as playsound)
-    'pip install -r requirements.txt'
-]
+def run_command(command):
+    try:
+        subprocess.run(command, shell=True, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error occurred while running command: {command}")
+        print(e)
 
 def setup_venv():
-    # Run the commands in the terminal
-    for command in commands:
-        subprocess.run(command, shell=True, check=True)
-
+    # Activate virtual environment and upgrade pip and wheel
+    run_command('.venv\\Scripts\\activate && python.exe -m pip install --upgrade pip && pip install --upgrade wheel')
+    
+    # Install requirements
+    run_command('.venv\\Scripts\\activate && pip install -r requirements.txt')
 
 if __name__ == "__main__":
     setup_venv()

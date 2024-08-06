@@ -10,6 +10,17 @@ import FOLDER
 import USER
 import OUTPUT
 
+
+
+
+def get_text_path_by_name(file_name):
+    path = "{}\\text\\{}".format(ENVIRONMENT.DOCUMENT_FOLDER, file_name)
+    if os.path.exists(path):
+        return path
+    print ("A ha! {} is not valid or accessibile. Better luck next time.".format(path))
+
+
+
 TIP_KEY = "__tip__"
 SCOTT_TIPS = ["https://ei.ennead.com/post/3046/revit-legends-legend-components",
               "https://ei.ennead.com/post/2777/revit-short-subject-purge-cad-before-linking-into-revit",

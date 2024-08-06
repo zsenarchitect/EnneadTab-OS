@@ -268,7 +268,10 @@ def print_title(text):
     print(large_text)
 
 def purge_by_extension():
-    bad_extensions = [".3dmbak"]
+    bad_extensions = [
+        ".3dmbak",
+        ".rui_bak"
+        ]
 
     for folder, _, files in os.walk(OS_REPO_FOLDER):
         for file in files:

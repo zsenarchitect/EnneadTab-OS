@@ -258,7 +258,7 @@ def register_silient_open(doc):
 
 
     try:
-        data = DATA_FILE.get_data("doc_opener.sexyDuck", is_local=False)
+        data = DATA_FILE.get_data("DOC_OPENER_DATA.sexyDuck", is_local=False)
         if doc.Title in data.keys():
             return
     except:
@@ -273,7 +273,7 @@ def register_silient_open(doc):
                         model_path.Region)
 
     try:
-        DATA_FILE.set_data(data, "doc_opener.sexyDuck", is_local=False)
+        DATA_FILE.set_data(data, "DOC_OPENER_DATA.sexyDuck", is_local=False)
     except:
         print ("Cannot register model due to L drive access limit.")
     #print "\n\nYour model is regiestered."

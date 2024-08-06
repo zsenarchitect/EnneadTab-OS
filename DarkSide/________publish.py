@@ -10,7 +10,7 @@ import sys
 import tkinter as tk
 import re
 
-from pyrevit.revit import files
+
 
 # Setup paths
 OS_REPO_FOLDER = os.path.dirname(os.path.dirname(__file__))

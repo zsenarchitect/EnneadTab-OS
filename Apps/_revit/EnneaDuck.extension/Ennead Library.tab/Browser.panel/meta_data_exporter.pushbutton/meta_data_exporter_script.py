@@ -12,12 +12,11 @@ __doc__ = "Process all the family file to generate a metadata file for usage lat
 __title__ = "MetaData\nExporter"
 
 import os
-# from pyrevit import forms #
-from pyrevit import script #
+import time
+
+from pyrevit import script
 from pyrevit import ErrorSwallower
 
-import time
-from pyrevit.coreutils import envvars
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 import random
@@ -38,7 +37,7 @@ IS_IGNORE_EXISTING = False
           
 class FamilyMetaDataExporter:
     def __init__(self):
-        self.family_lib_folder =  r"L:\4b_Applied Computing\01_Revit\03_Library"     
+        self.family_lib_folder =  "{}\\01_Revit\\03_Library".format(ENVIRONMENT.L_DRIVE_HOST_FOLDER)     
         self.counter = 0   
         self.meta_data_folder = "{}\\Family Browser".format(ENVIRONMENT.DB_FOLDER)
         self.opened_docs = []

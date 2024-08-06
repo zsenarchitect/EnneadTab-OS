@@ -3,7 +3,7 @@
 
 
 
-__doc__ = "A floating window that can help you search the family from Applied Computing Library.\n\nDisclaimer: EnneadTab only help you find the family, but is not participating in the creation and maintainance of the family library."
+__doc__ = "A floating window that can help you search the family from AppliedComputing Library.\n\nDisclaimer: EnneadTab only help you find the family, but is not participating in the creation and maintainance of the family library."
 __title__ = "Family\nBrowser"
 
 

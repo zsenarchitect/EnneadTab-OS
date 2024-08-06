@@ -179,7 +179,7 @@ class EnneaDuck:
         records = ""
         is_my_turn = False
         # find all the queue file that has the user name
-        folder = "L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Project Settings\\Sync_Queue"
+        folder = "{}\\Sync_Queue".format(_Exe_Util.DB_FOLDER)
 
         monitor_file = _Exe_Util.get_file_in_dump_folder("last_sync_record_data.sexyDuck")
         if not os.path.exists(monitor_file):

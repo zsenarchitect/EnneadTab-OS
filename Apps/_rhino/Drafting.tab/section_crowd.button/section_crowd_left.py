@@ -98,6 +98,9 @@ class GetPointUI(Rhino.Input.Custom.GetPoint):
         collection = []
         #print crv_segs
         base_crv = base_crv.ToNurbsCurve ()
+        if not base_crv:
+            return collection
+        
         count_target = base_crv.GetLength() / spacing
         domain = base_crv.Domain
         count = 0

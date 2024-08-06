@@ -203,7 +203,7 @@ def greeting_mid_moon():
     dest_file = FOLDER.get_EA_dump_folder_file("Moon Festival.html")
     output.save_contents(dest_file)
     output.close()
-    EXE.open_file_in_default_application(dest_file)
+    os.startfile(dest_file)
 
 
 

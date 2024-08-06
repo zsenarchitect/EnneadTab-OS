@@ -24,7 +24,7 @@ import difflib
 
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
-from EnneadTab import ERROR_HANDLE, EXE, IMAGE, ENVIRONMENT, NOTIFICATION, DATA_FILE, FOLDER, SOUND, LOG
+from EnneadTab import ERROR_HANDLE, EXE, SECRET, JOKE, ENVIRONMENT, NOTIFICATION, DATA_FILE, FOLDER, SOUND, LOG
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_FORMS
 
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -508,19 +508,12 @@ class AiTranslator(WPFWindow):
 
 
 
-    def get_api_key(self):
 
-        file_path = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\EA_API_KEY.sexyDuck"
-
-
-
-        data = DATA_FILE.get_data(file_path)
-        return data["translator_api_key"]
 
     #@ERROR_HANDLE.try_catch_error()
     def fire_AI_translator(self, new_prompt, request_count):
 
-        session_token = self.get_api_key()
+        session_token = SECRET.get_api_key("translator_api_key")
 
 
 

@@ -172,6 +172,8 @@ def pretty_print_dict(dict):
 
 
 def get_data(file_name, is_local = True):
+    if os.path.exists (file_name):
+        return _read_json_as_dict(file_name, use_encode=True, create_if_not_exist=False)
     
     if is_local:
         return _read_json_as_dict_in_dump_folder(file_name, use_encode=True, create_if_not_exist=True)

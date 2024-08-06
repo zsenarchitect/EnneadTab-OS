@@ -8,7 +8,7 @@ doc = EXEC_PARAMS.event_args.Document
 
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
-from EnneadTab import ERROR_HANDLE, SOUND, LOG, NOTIFICATION, SPEAK, MODULE_HELPER, ENVIRONMENT, EMAIL, USER, DATA_FILE
+from EnneadTab import ERROR_HANDLE, SOUND, LOG, NOTIFICATION, SPEAK, MODULE_HELPER, ENVIRONMENT, EMAIL, USER, DATA_FILE, IMAGE
 from EnneadTab.REVIT import REVIT_SYNC, REVIT_FORMS, REVIT_EVENT
 __title__ = "Doc Synced Hook"
 
@@ -256,7 +256,7 @@ def update_sync_queue():
     EMAIL.email(receiver_email_list="{}@ennead.com".format(next_user),
                             subject="Your Turn To Sync!",
                             body="Hi there, it is your turn to sync <{}>!".format(doc.Title),
-                            body_image_link_list=["L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Published\\ENNEAD.extension\\lib\\EnneadTab\\images\\you sync first.jpg"])
+                            body_image_link_list=[IMAGE.get_image_path_by_name("meme_you_sync_first.jpg")])
 
     REVIT_FORMS.notification(main_text = "[{}]\nshould sync next.".format(next_user), sub_text = "Expect slight network lag between SH/NY server to transfer waitlist file.", window_width = 500, window_height = 400, self_destruct = 15)
 

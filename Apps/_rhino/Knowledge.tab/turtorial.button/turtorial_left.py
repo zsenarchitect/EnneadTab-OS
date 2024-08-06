@@ -6,7 +6,7 @@ import rhinoscriptsyntax as rs
 import subprocess
 
 from EnneadTab import LOG, ERROR_HANDLE
-from EnneadTab import FOLDER, EXE
+from EnneadTab import FOLDER, EXE, ENVIRONMENT
 from EnneadTab.RHINO import RHINO_FORMS
 
 
@@ -31,7 +31,7 @@ def open_gh_by_selection(folder, selected_opt):
  
 
 def open_local_tutorial():
-    folder = 'L:\\4b_Applied Computing\\03_Rhino\\12_EnneadTab for Rhino\\Documents\\Tutorials'
+    folder = '{}\\03_Rhino\\12_EnneadTab for Rhino\\Documents\\Tutorials'.format(ENVIRONMENT.L_DRIVE_HOST_FOLDER)
     files = os.listdir(folder)
     special_folder = "#PDF in this directory are reference only"
     files.remove(special_folder)
@@ -50,7 +50,7 @@ def open_local_tutorial():
 
     if keyword == selected_opt:
 
-        path = r"file:\\L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\Documents\Tutorials\#PDF in this directory are reference only"
+        path = "{}\\03_Rhino\\12_EnneadTab for Rhino\\Documents\\Tutorials\\#PDF in this directory are reference only".format(ENVIRONMENT.L_DRIVE_HOST_FOLDER)
         subprocess.Popen(r'explorer /select, {}'.format(path))
         return
 

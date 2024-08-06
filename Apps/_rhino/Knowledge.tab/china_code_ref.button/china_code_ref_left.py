@@ -3,7 +3,7 @@ __title__ = "ChinaCodeRef"
 __doc__ = "This button does ChinaCodeRef when left click"
 import os
 import subprocess
-from EnneadTab import EXE, FOLDER
+from EnneadTab import EXE, FOLDER, ENVIRONMENT
 from EnneadTab.RHINO import RHINO_FORMS
 
 from EnneadTab import LOG, ERROR_HANDLE
@@ -12,7 +12,7 @@ from EnneadTab import LOG, ERROR_HANDLE
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def china_code_ref():
-    folder = "L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Library Docs\\Codes"
+    folder = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Library Docs\\Codes".format(ENVIRONMENT.L_DRIVE_HOST_FOLDER)
     files = os.listdir(folder)
     special_folder = "#PDF in this directory are reference only"
     files.remove(special_folder)
@@ -28,7 +28,7 @@ def china_code_ref():
 
     if keyword == selected_opt:
 
-        path = "file:\\L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Library Docs\DD Documentation Samples\\#PDF in this directory are reference only"
+        path = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Library Docs\DD Documentation Samples\\#PDF in this directory are reference only".format(ENVIRONMENT.L_DRIVE_HOST_FOLDER)
         subprocess.Popen('explorer /select, {}'.format(path))
         return
 

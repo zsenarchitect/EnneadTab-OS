@@ -14,7 +14,8 @@ from EnneadTab import DATA_FILE
 from EnneadTab import NOTIFICATION, LOG, ERROR_HANDLE
 
 BASIC_BLOCK_NAMES = []
-for block_file in os.listdir(r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\bin\Dummy Blocks\EA_People_Elevation_Dummy"):
+BLOCK_FOLDER = "{}\\People_Elevation_Dummy".format(os.path.dirname(__file__))
+for block_file in os.listdir(BLOCK_FOLDER):
     if block_file.endswith(".3dm"):
         dummy_block_name = block_file.split(".")[0]
         BASIC_BLOCK_NAMES.append(dummy_block_name)
@@ -180,13 +181,13 @@ def section_crowd():
 
 def insert_ref_block( dummy_block_name):
     if rs.IsBlock(dummy_block_name):
-        # EnneadTab.NOTIFICATION.messenger(main_text = "Block Already Exists")
+        # NOTIFICATION.messenger(main_text = "Block Already Exists")
         
         return
     
     NOTIFICATION.messenger(main_text = "Block Importing")
-    external_block_filepath = "{}\\People_Elevation_Dummy\\{}.3dm".format(os.path.dirname(__file__),
-                                                                          dummy_block_name)
+    external_block_filepath = "{}\\{}.3dm".format(BLOCK_FOLDER,
+                                                    dummy_block_name)
 
     dummyInitialObjects = [Rhino.Geometry.Point(Rhino.Geometry.Plane.WorldXY.Origin)]
     dummyInitialAttributes = [Rhino.DocObjects.ObjectAttributes()]

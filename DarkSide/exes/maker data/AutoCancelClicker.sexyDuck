@@ -7,7 +7,7 @@
   },
   {
    "optionDest": "filenames",
-   "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\ScheduleOpener\\ScheduleOpener.py"
+   "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AutoCancelClicker\\AutoCancelClicker.py"
   },
   {
    "optionDest": "onefile",
@@ -19,7 +19,7 @@
   },
   {
    "optionDest": "icon_file",
-   "value": "C:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\ScheduleOpener\\images\\icon.ico"
+   "value": "C:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AutoCancelClicker\\images\\icon.ico"
   },
   {
    "optionDest": "clean_build",
@@ -55,7 +55,7 @@
   },
   {
     "optionDest": "datas",
-    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\ScheduleOpener\\images;images\\"
+    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AutoCancelClicker\\images;images\\"
    },
    {
     "optionDest": "datas",
@@ -72,6 +72,10 @@
    {
     "optionDest": "hidden-import",
     "value": "json"
+   },
+   {
+    "optionDest": "hidden-import",
+    "value": "pyautogui"
    }
  ],
  "nonPyinstallerOptions": {

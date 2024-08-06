@@ -24,3 +24,5 @@ py3nvml
 
 pystray
 psutil
+
+opencv-python

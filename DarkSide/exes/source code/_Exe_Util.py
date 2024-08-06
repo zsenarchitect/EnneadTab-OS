@@ -4,13 +4,15 @@ import traceback
 import json
 import shutil
 
+GLOBAL_SETTING_FILE = 'setting_{}.sexyDuck'.format(os.environ["USERPROFILE"].split("\\")[-1])
+
 ESOSYSTEM_FOLDER = "{}\\Documents\\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
 DUMP_FOLDER = "{}\\Dump".format(ESOSYSTEM_FOLDER)
 for _folder in [ESOSYSTEM_FOLDER, DUMP_FOLDER]:
     if not os.path.exists(_folder):
         os.makedirs(_folder)
 
-
+DB_FOLDER = "L:\\4b_Applied Computing\\EnneadTab-DB"
         
 def find_main_repo():
     for root, dirs, files in os.walk(os.environ['USERPROFILE']):
@@ -81,7 +83,6 @@ def hide_splash_screen():
         os.remove(data_file)
 
 
-GLOBAL_SETTING_FILE = 'setting_{}.sexyDuck'.format(os.environ["USERPROFILE"].split("\\")[-1])
 
 def get_setting(key, defaule_value=None):
     data = get_data(GLOBAL_SETTING_FILE)

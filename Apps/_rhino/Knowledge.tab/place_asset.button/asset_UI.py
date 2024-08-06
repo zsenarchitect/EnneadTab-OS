@@ -13,7 +13,7 @@ graft = itertools.combinations
 
 
 
-from EnneadTab import  NOTIFICATION, DATA_FILE, SOUND
+from EnneadTab import  NOTIFICATION, DATA_FILE, SOUND, ENVIRONMENT, USER, NOTIFICATION
 from EnneadTab.RHINO import RHINO_UI
 
 # make modal dialog
@@ -38,17 +38,17 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
         self.multi_select = False
 
         self.Button_Names = ["Place Asset!"]
-        self.FOLDER_PRIMARY = r"L:\4b_Applied Computing\00_Asset Library"
-        self.FOLDER_APP_IMAGES = r"{}\Database\app images".format(self.FOLDER_PRIMARY)
-        self.FOLDER_DATA = r"{}\Database\data".format(self.FOLDER_PRIMARY)
-        self.DEFAULT_IMAGE_NOTHING_SELECTED = r"{}\DEFAULT PREVIEW_NOTHING SELECTED.png".format(self.FOLDER_APP_IMAGES)
-        self.DEFAULT_IMAGE_CANNOT_FIND_PREVIEW_IMAGE = r"{}\DEFAULT PREVIEW_CANNOT FIND PREVIEW IMAGE.png".format(self.FOLDER_APP_IMAGES)
-        self.LOGO_IMAGE = r"{}\Ennead_Architects_Logo.png".format(self.FOLDER_APP_IMAGES)
+        self.FOLDER_PRIMARY = "{}\\00_Asset Library".format(ENVIRONMENT.DB_FOLDER)
+        self.FOLDER_APP_IMAGES = "{}\Database\\app images".format(self.FOLDER_PRIMARY)
+        self.FOLDER_DATA = "{}\Database\\data".format(self.FOLDER_PRIMARY)
+        self.DEFAULT_IMAGE_NOTHING_SELECTED = "{}\\DEFAULT PREVIEW_NOTHING SELECTED.png".format(self.FOLDER_APP_IMAGES)
+        self.DEFAULT_IMAGE_CANNOT_FIND_PREVIEW_IMAGE = "{}\\DEFAULT PREVIEW_CANNOT FIND PREVIEW IMAGE.png".format(self.FOLDER_APP_IMAGES)
+        self.LOGO_IMAGE = "{}\\Ennead_Architects_Logo.png".format(self.FOLDER_APP_IMAGES)
         self.SOUND_MUTE = False
         self.IMAGE_MAX_SIZE = 800
         self.MANAGER_NAMES = ["szhang",
                             "eshaw"]
-        if EnneadTab.USER.USER_NAME in self.MANAGER_NAMES or True:
+        if USER.USER_NAME in self.MANAGER_NAMES or True:
             self.MANAGER_MODE = True
         else:
             self.MANAGER_MODE = False
@@ -457,7 +457,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
             self.btn_Run = Eto.Forms.ToggleButton ()
             self.btn_Run.Height = max_height
             self.btn_Run.Text = b_name
-            self.btn_Run.Image = Eto.Drawing.Bitmap(r"{}\checked_toggle_off.png".format(self.FOLDER_APP_IMAGES))
+            self.btn_Run.Image = Eto.Drawing.Bitmap("{}\\checked_toggle_off.png".format(self.FOLDER_APP_IMAGES))
             self.btn_Run.ImagePosition = Eto.Forms.ButtonImagePosition.Overlay#behind text
             self.btn_Run.Click += self.EVENT_ManagerTagAssignButton_Clicked
             #tag_buttons.append(None)
@@ -626,15 +626,15 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
 
     def read_item_tags(self, rhino_file_name):
 
-        meta_data_file = r"{}\{}".format(self.FOLDER_DATA, rhino_file_name.replace("3dm", "meta"))
+        meta_data_file = "{}\\{}".format(self.FOLDER_DATA, rhino_file_name.replace("3dm", "meta"))
         if os.path.exists(meta_data_file):
-            temp_dict = EA.read_txt_as_dict(filepath = meta_data_file, use_encode = False)
+            temp_dict = DATA_FILE.get_data(filepath = meta_data_file, use_encode = False)
             self.ITEM_DOWNLOADS[rhino_file_name] = temp_dict["Download"]
         else:
             # assign a default no tag dict
             self.ITEM_DOWNLOADS[rhino_file_name] = 0
             self.default_tag_data_reset(item_name = rhino_file_name)
-            DATA_FILE.save_dict_to_txt(self.META_DATA, meta_data_file, end_with_new_line = False)
+            DATA_FILE.set_data(self.META_DATA, meta_data_file, end_with_new_line = False)
             temp_dict = DATA_FILE.read_txt_as_dict(filepath = meta_data_file, use_encode = False)
 
 
@@ -660,7 +660,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
                     mistake_found = True
                     temp_dict[tag_name.lower()] == True
             if mistake_found:
-                DATA_FILE.save_dict_to_txt(temp_dict, meta_data_file, end_with_new_line = False)
+                DATA_FILE.set_data(temp_dict, meta_data_file, end_with_new_line = False)
 
 
     def get_item_tags(self, rhino_file_name):
@@ -725,7 +725,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
         meta_data_file = self.get_meta_file_from_current_selection()
 
         try:
-            DATA_FILE.save_dict_to_txt(self.META_DATA, meta_data_file, end_with_new_line = False)
+            DATA_FILE.set_data(self.META_DATA, meta_data_file, end_with_new_line = False)
         except Exception as e:
             NOTIFICATION.messenger(main_text = str(e))
 
@@ -736,7 +736,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
 
         meta_data_file = self.get_meta_file_from_current_selection()
         if os.path.exists(meta_data_file):
-            return EA.read_txt_as_dict(filepath = meta_data_file, use_encode = False)
+            return DATA_FILE.get_data(filepath = meta_data_file, use_encode = False)
         else:
             # assign a default no tag dict
             self.default_tag_data_reset()
@@ -865,7 +865,7 @@ class ImageSelectionDialog(Eto.Forms.Dialog[bool]):
         # close window after double click action. Otherwise, run with error
         self.update_item_tag_pool()
         self.Search()
-        EnneadTab.NOTIFICATION.messenger(main_text = "The tags data pool is updated.")
+        NOTIFICATION.messenger(main_text = "The tags data pool is updated.")
 
     def EVENT_NextListboxItemButton_Clicked(self, sender, e):
         self.set_new_listitem(increment = 1)

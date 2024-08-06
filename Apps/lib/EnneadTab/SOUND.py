@@ -13,9 +13,10 @@ def get_audio_path_by_name(file_name):
         file_name = file_name + ".wav"
     if os.path.exists(file_name):
         return file_name
-    if os.path.exists("{}\\{}".format(ENVIRONMENT.AUDIO_FOLDER, file_name)):
-        return "{}\\{}".format(ENVIRONMENT.AUDIO_FOLDER, file_name)
-    print ("A ha! {}\\{} is not valid or accessibile. Better luck next time.".format(ENVIRONMENT.AUDIO_FOLDER, file_name))
+    path = "{}\\{}".format(ENVIRONMENT.AUDIO_FOLDER, file_name)
+    if os.path.exists(path):
+        return path
+    print ("A ha! {} is not valid or accessibile. Better luck next time.".format(path))
     return False
 
 def get_one_audio_path_by_prefix(prefix):

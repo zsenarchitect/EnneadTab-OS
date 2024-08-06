@@ -20,6 +20,7 @@ import SOUND
 import EMOJI
 import CONFIG
 import DUCK
+import DOCUMENTATION
 
     
 TARGETS = ['fsun', 
@@ -30,12 +31,12 @@ def is_hate_fun():
     return not CONFIG.get_setting("radio_bt_popup_full", True)
 
 def get_all_jokes():
-    with io.open('{}\\text\\_dad_jokes.txt'.format(ENVIRONMENT.DOCUMENT_FOLDER), "r", encoding = "utf8") as f:
+    with io.open(DOCUMENTATION.get_text_path_by_name('_dad_jokes.txt'), "r", encoding = "utf8") as f:
         lines = f.readlines()
     return [x.replace("\n", "") for x  in lines if x != "\n"]
 
 def get_all_loading_screen_message():
-    with open('{}\\text\\_loading_screen_message.txt'.format(ENVIRONMENT.DOCUMENT_FOLDER), "r") as f:
+    with open(DOCUMENTATION.get_text_path_by_name('_loading_screen_message.txt'), "r") as f:
         lines = f.readlines()
     return [x.replace("\n", "") for x  in lines if x != "\n"]
 

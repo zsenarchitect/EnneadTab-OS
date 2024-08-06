@@ -9,9 +9,10 @@ except Exception as e:
 
 
 def get_image_path_by_name(file_name):
-    if os.path.exists("{}\\{}".format(ENVIRONMENT.IMAGE_FOLDER, file_name)):
-        return "{}\\{}".format(ENVIRONMENT.IMAGE_FOLDER, file_name)
-    print ("A ha! {}\\{} is not valid or accessibile. Better luck next time.".format(ENVIRONMENT.IMAGE_FOLDER, file_name))
+    path = "{}\\{}".format(ENVIRONMENT.IMAGE_FOLDER, file_name)
+    if os.path.exists(path):
+        return path
+    print ("A ha! {} is not valid or accessibile. Better luck next time.".format(path))
 
 
 

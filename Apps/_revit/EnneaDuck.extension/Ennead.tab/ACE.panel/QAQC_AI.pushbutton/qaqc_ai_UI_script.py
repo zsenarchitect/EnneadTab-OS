@@ -26,7 +26,7 @@ import proDUCKtion # pyright: ignore
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS
 
-from EnneadTab import EXE, DATA_FILE, SOUND, TIME, ERROR_HANDLE, FOLDER, IMAGE, LOG, JOKE
+from EnneadTab import EXE, DATA_FILE, SOUND, TIME, ERROR_HANDLE, FOLDER, IMAGE, LOG, JOKE, SECRET
 import traceback
 
 from Autodesk.Revit import DB # pyright: ignore 
@@ -39,14 +39,7 @@ __persistentengine__ = True
 
 
 
-def get_api_key():
 
-    file_path = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\EA_API_KEY.sexyDuck"
-
-
-
-    data = DATA_FILE.get_data(file_path)
-    return data["reporter_api_key"]
 
 
 
@@ -174,7 +167,7 @@ class AI_Report_modelessForm(WPFWindow):
                 return
             data["qaqc_text"] = self.report
         data["query"] = self.tbox_input.Text
-        data["api_key"] = get_api_key()
+        data["api_key"] = SECRET.get_api_key("reporter_api_key")
         data["store_name"] = self.session_name
         data["response"] = "No results."
         

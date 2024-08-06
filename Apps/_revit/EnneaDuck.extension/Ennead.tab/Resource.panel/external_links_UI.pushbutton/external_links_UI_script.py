@@ -36,7 +36,7 @@ from pyrevit import script, forms
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_SYNC
-from EnneadTab import DOCUMENTATION, EXE, DATA_FILE, USER, IMAGE, ERROR_HANDLE, LOG, FOLDER
+from EnneadTab import DOCUMENTATION, EXE, DATA_FILE, USER, IMAGE, ERROR_HANDLE, LOG, FOLDER, ENVIRONMENT
 
 
 import traceback
@@ -142,7 +142,7 @@ class AssistantUI(forms.WPFWindow):
         script.open_url('https://github.com/zsenarchitect/EA_Dist/blob/main/Installation/How%20To%20Install.md')
     @ERROR_HANDLE.try_catch_error()
     def how_to_cad_click(self, sender, args):
-        path = r"file:\\L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Library Docs\CAD LISP\CAD Command list.txt"
+        path = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Library Docs\\CAD LISP\\CAD Command list.txt".format(ENVIRONMENT.L_DRIVE_HOST_FOLDER)
 
         subprocess.Popen(r'explorer /select, {}'.format(path))
 
@@ -173,19 +173,19 @@ class AssistantUI(forms.WPFWindow):
 
     @ERROR_HANDLE.try_catch_error()
     def SD_reference_click(self, sender, args):
-        path = r"file:\\L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Library Docs\SD Documentation Samples\#PDF in this directory are reference only"
+        path = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Library Docs\\SD Documentation Samples\\#PDF in this directory are reference only".format(ENVIRONMENT.L_DRIVE_HOST_FOLDER)
 
         subprocess.Popen(r'explorer /select, {}'.format(path))
     @ERROR_HANDLE.try_catch_error()
     def DD_reference_click(self, sender, args):
-        path = r"file:\\L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Library Docs\DD Documentation Samples\#PDF in this directory are reference only"
+        path = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Library Docs\\DD Documentation Samples\\#PDF in this directory are reference only".format(ENVIRONMENT.L_DRIVE_HOST_FOLDER)
 
         subprocess.Popen(r'explorer /select, {}'.format(path))
 
 
     @ERROR_HANDLE.try_catch_error()
     def SH_code_click(self, sender, args):
-        folder = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Library Docs\Codes"
+        folder = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Library Docs\Codes".format(ENVIRONMENT.L_DRIVE_HOST_FOLDER)
         files = os.listdir(folder)
         special_folder = "#PDF in this directory are reference only"
         files.remove(special_folder)
@@ -199,7 +199,7 @@ class AssistantUI(forms.WPFWindow):
 
         if keyword == selected_opt:
 
-            path = r"file:\\L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Library Docs\DD Documentation Samples\#PDF in this directory are reference only"
+            path = "{}\\01_Revit\\04_Tools\\08_EA Extensions\\Library Docs\\DD Documentation Samples\\#PDF in this directory are reference only".format(ENVIRONMENT.L_DRIVE_HOST_FOLDER)
             subprocess.Popen(r'explorer /select, {}'.format(path))
             return
 
@@ -218,7 +218,7 @@ class AssistantUI(forms.WPFWindow):
         
     @ERROR_HANDLE.try_catch_error()
     def training_click(self, sender, args):
-        folder_scott = "L:\\4b_Applied Computing\\10_Learning Resources\\01_Revit\\Essentials"
+        folder_scott = "{}\\10_Learning Resources\\01_Revit\\Essentials".format(ENVIRONMENT.L_DRIVE_HOST_FOLDER)
         os.startfile(folder_scott)
 
 
@@ -241,8 +241,8 @@ class AssistantUI(forms.WPFWindow):
         # TO-DO: make also a selection list so user can decide which folder to delete cahe or restore recent crash local
         
         guid = self.textbox_cache_decoder.Text
-        filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Misc\doc_opener.sexyDuck"
-        data = DATA_FILE.get_data(filepath)
+        
+        data = DATA_FILE.get_data("DOC_OPENER_DATA.sexyDuck", is_local=False)
         note = "This Guid has not been recored in EnneadTab DataBase."
         for doc_title, value in data.items():
             project_guid, file_guid,_ = value

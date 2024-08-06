@@ -265,7 +265,7 @@ class WorkingViewManager(WPFWindow):
 
 
 
-        self.output_folder = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Work_View_Collection\{}".format("UnSheeted Views Jpgs for [{}]".format(doc.Title))
+        self.output_folder = "{}\\{}".format(ENVIRONMENT.SHAERD_DUMP_FOLDER, "UnSheeted Views Jpgs for [{}]".format(doc.Title))
 
 
 
@@ -379,9 +379,8 @@ class WorkingViewManager(WPFWindow):
     def get_true_preview_image(self, unique_id):
         for file in os.listdir(self.output_folder):
             if unique_id in file:
-                break
-        preview_image = "{}\{}".format(self.output_folder, file)
-        return preview_image
+                return "{}\\{}".format(self.output_folder, file)
+      
 
     @ERROR_HANDLE.try_catch_error()
     def append_creator_name_click(self, sender, e):

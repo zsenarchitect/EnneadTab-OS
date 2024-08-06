@@ -5,7 +5,6 @@
 
 import shutil
 import os
-import pyautogui
 import sys
 import datetime
 import subprocess
@@ -17,26 +16,6 @@ import pygame
 
 TITLE = u"EnneadTab Revit Schedule Opener."
 DATA_FILE = "schedule_opener_data.sexyDuck"
-
-def is_there_cancel_button(cancel_button_icon_file):
-    try:
-        #cancel_button_icon = pyautogui.locateOnScreen(cancel_button_icon_file, confidence = 0.8)
-        cancel_button_icon = pyautogui.locateOnScreen(cancel_button_icon_file)
-        #print cancel_button_icon
-        if not cancel_button_icon:
-            return False
-
-        pyautogui.click(pyautogui.center(cancel_button_icon))
-        print ("click button")
-        return True
-
-    except Exception as e:
-        #print (e.message)
-        return False
-
-
-
-
 
 
 def start_revit(revit_version):

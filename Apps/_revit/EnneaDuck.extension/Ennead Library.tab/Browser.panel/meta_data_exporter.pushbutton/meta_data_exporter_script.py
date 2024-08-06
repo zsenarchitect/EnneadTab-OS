@@ -22,7 +22,7 @@ from Autodesk.Revit import DB # pyright: ignore
 # from Autodesk.Revit import UI # pyright: ignore
 import random
 
-from EnneadTab import NOTIFICATION, TIME, ERROR_HANDLE, FOLDER, DATA_FILE, EXE, FOLDER, SOUND
+from EnneadTab import NOTIFICATION, TIME, ERROR_HANDLE, FOLDER, DATA_FILE, EXE, FOLDER, SOUND, ENVIRONMENT
 from EnneadTab.REVIT import REVIT_UNIT, REVIT_APPLICATION, REVIT_EVENT, REVIT_EXPORT
 
 try:
@@ -40,7 +40,7 @@ class FamilyMetaDataExporter:
     def __init__(self):
         self.family_lib_folder =  r"L:\4b_Applied Computing\01_Revit\03_Library"     
         self.counter = 0   
-        self.meta_data_folder = r"L:\4b_Applied Computing\01_Revit\06_DB\Family Browser"
+        self.meta_data_folder = "{}\\Family Browser".format(ENVIRONMENT.DB_FOLDER)
         self.opened_docs = []
         try: 
             self.initial_view = doc.ActiveView
@@ -148,7 +148,7 @@ class FamilyMetaDataExporter:
         
             
         NOTIFICATION.messenger (main_text = "-{}/{}: {}".format(self.counter,self.total_family_count, 
-                                                                      family_path.replace(r"L:\4b_Applied Computing\01_Revit\03_Library", ""),
+                                                                      family_path.replace(self.family_lib_folder, ""),
                                         width = 1500))
         
         family_doc = REVIT_APPLICATION.get_application().OpenDocumentFile(family_path)
@@ -275,8 +275,8 @@ class FamilyMetaDataExporter:
         
 @ERROR_HANDLE.try_catch_error
 def family_browser():
-    exe_path = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Project Settings\Exe\AUTO_CANCEL_CLICKER\AUTO_CANCEL_CLICKER.exe"
-    EXE.open_file_in_default_application(exe_path)
+
+    EXE.try_open_app("AutoCancelClicker.exe")
 
     with ErrorSwallower() as swallower:
     # >>>     for fam in families:

@@ -8,9 +8,9 @@ import Rhino # pyright: ignore
 
 
 def add_search_path():
-    for path in rs.SearchPathList():
-        if 'EnneadTab-OS' in path:
-            rs.DeleteSearchPath(path)
+    # for path in rs.SearchPathList():
+    #     if 'EnneadTab-OS' in path:
+    #         rs.DeleteSearchPath(path)
     _app_folder = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     lib_path = os.path.join(_app_folder, "lib" )
     rs.AddSearchPath(lib_path)
@@ -19,8 +19,8 @@ def add_search_path():
       
 time_start = time.time()
 add_search_path()
-print ("Get Latest use {:.2}s".format(time.time() - time_start))
-print ("\n".join(sys.path))
+# print ("Get Latest use {:.2}s".format(time.time() - time_start))
+# print ("\n".join(sys.path))
 
 
 

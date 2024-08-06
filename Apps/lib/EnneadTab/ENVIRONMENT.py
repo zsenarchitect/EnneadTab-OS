@@ -28,7 +28,7 @@ REVIT_TAILOR_TAB = os.path.join(REVIT_PRIMARY_EXTENSION, "Ennead Tailor.tab")
 
 L_DRIVE_HOST_FOLDER = "L:\\4b_Applied Computing"
 DB_FOLDER = "{}\\EnneadTab-DB".format(L_DRIVE_HOST_FOLDER)
-SHAERD_DUMP_FOLDER = DB_FOLDER + "\\Shared Data Dump"
+SHARED_DUMP_FOLDER = DB_FOLDER + "\\Shared Data Dump"
 
 
 LIB_FOLDER = os.path.join(APP_FOLDER, "lib")
@@ -63,9 +63,9 @@ for _folder in [ECO_SYS_FOLDER, DUMP_FOLDER]:
         except Exception as e:
             print ("Cannot secure folder [{}] becasue {}".format(_folder, e))
             
-IS_OFFLINE_MODE = not os.path.exists(SHAERD_DUMP_FOLDER)
+IS_OFFLINE_MODE = not os.path.exists(SHARED_DUMP_FOLDER)
 if IS_OFFLINE_MODE:
-    SHAERD_DUMP_FOLDER = DUMP_FOLDER
+    SHARED_DUMP_FOLDER = DUMP_FOLDER
 
 def is_avd():
     try:

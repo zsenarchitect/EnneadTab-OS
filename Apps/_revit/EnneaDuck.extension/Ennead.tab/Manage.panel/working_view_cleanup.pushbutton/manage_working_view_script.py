@@ -265,7 +265,7 @@ class WorkingViewManager(WPFWindow):
 
 
 
-        self.output_folder = "{}\\{}".format(ENVIRONMENT.SHAERD_DUMP_FOLDER, "UnSheeted Views Jpgs for [{}]".format(doc.Title))
+        self.output_folder = "{}\\{}".format(ENVIRONMENT.SHARED_DUMP_FOLDER, "UnSheeted Views Jpgs for [{}]".format(doc.Title))
 
 
 

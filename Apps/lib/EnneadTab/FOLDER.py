@@ -53,7 +53,7 @@ def get_EA_dump_folder_file(file_name):
 
 def get_shared_dump_folder_file(file_name):
     """include extension"""
-    return "{}\\{}".format(ENVIRONMENT.SHAERD_DUMP_FOLDER, file_name)
+    return "{}\\{}".format(ENVIRONMENT.SHARED_DUMP_FOLDER, file_name)
 
 
 

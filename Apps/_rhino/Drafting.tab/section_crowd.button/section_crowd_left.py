@@ -185,7 +185,8 @@ def insert_ref_block( dummy_block_name):
         return
     
     NOTIFICATION.messenger(main_text = "Block Importing")
-    external_block_filepath = r"L:\4b_Applied Computing\03_Rhino\12_EnneadTab for Rhino\bin\Dummy Blocks\EA_People_Elevation_Dummy\{}.3dm".format(dummy_block_name)
+    external_block_filepath = "{}\\People_Elevation_Dummy\\{}.3dm".format(os.path.dirname(__file__),
+                                                                          dummy_block_name)
 
     dummyInitialObjects = [Rhino.Geometry.Point(Rhino.Geometry.Plane.WorldXY.Origin)]
     dummyInitialAttributes = [Rhino.DocObjects.ObjectAttributes()]

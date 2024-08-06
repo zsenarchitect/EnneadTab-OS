@@ -18,7 +18,7 @@ import proDUCKtion # pyright: ignore
 proDUCKtion.validify()
 from EnneadTab.REVIT import REVIT_FORMS, REVIT_APPLICATION, REVIT_EVENT, REVIT_EXPORT
 
-from EnneadTab import JOKE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, PDF
+from EnneadTab import JOKE, DATA_FILE, NOTIFICATION, ENVIRONMENT, SOUND, SPEAK, DOCUMENTATION
 from EnneadTab import ERROR_HANDLE, FOLDER, IMAGE, USER, EMAIL, LOG
 from Autodesk.Revit import DB # pyright: ignore 
 from Autodesk.Revit import UI # pyright: ignore
@@ -1390,7 +1390,7 @@ class EA_Printer_UI(WPFWindow):
 
 
     def show_sample_marker_Clicked(self, sender, args):
-        filepath = r"L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Published\ENNEAD.extension\lib\MARKER.txt"
+        filepath = DOCUMENTATION.get_text_path_by_name("_emoji_text.txt")
         os.startfile(filepath)
         
         

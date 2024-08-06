@@ -10,6 +10,8 @@ import sys
 import tkinter as tk
 import re
 
+from pyrevit.revit import files
+
 # Setup paths
 OS_REPO_FOLDER = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(OS_REPO_FOLDER + "\\Apps\\lib\\EnneadTab")
@@ -265,10 +267,21 @@ def print_title(text):
     large_text = "\033[1m" + text + "\033[0m"
     print(large_text)
 
+def purge_by_extension():
+    bad_extensions = [".3dmbak"]
 
+    for folder, _, files in os.walk(OS_REPO_FOLDER):
+        for file in files:
+            for ext in bad_extensions:
+                if file.endswith(ext):
+                    os.remove(os.path.join(folder, file))
 
 @time_it
 def publish_duck():
+
+    purge_by_extension()
+
+    
     if ENVIRONMENT.IS_AVD:
         NOTIFICATION.messenger("Not going to publish from AVD...")
         return

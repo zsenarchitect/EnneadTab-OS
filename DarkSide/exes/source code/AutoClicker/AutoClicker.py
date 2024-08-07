@@ -17,25 +17,25 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 import _Exe_Util
 import _GUI_Util
 
-TITLE = u"EnneadTab Auto Cancel Clicker."
+TITLE = u"EnneadTab Auto Clicker."
 
-def is_there_cancel_button(cancel_button_icon_file, confidence=0.8):
+def try_click_ref_image(ref_image, confidence=0.8):
     try:
-        cancel_button_icon = pyautogui.locateOnScreen(cancel_button_icon_file, confidence=confidence)
-        logger.info(cancel_button_icon)
-        if not cancel_button_icon:
-            logger.info("Cancel button not found.")
+        icon = pyautogui.locateOnScreen(ref_image, confidence=confidence)
+        logger.info(icon)
+        if not icon:
+            logger.info(" button not found.")
             return False
 
-        pyautogui.click(pyautogui.center(cancel_button_icon))
-        logger.info("Cancel button clicked.")
+        pyautogui.click(pyautogui.center(icon))
+        logger.info(" button clicked.")
         return True
 
     except ImageNotFoundException as e:
         logger.error("Image not found. Ensure the image is on the screen and the path is correct.", exc_info=True)
         return False
     except Exception as e:
-        logger.error("Failed to locate or click the cancel button.", exc_info=True)
+        logger.error("Failed to locate or click the  button.", exc_info=True)
         return False
 
 def take_screenshot(save_path):
@@ -43,7 +43,7 @@ def take_screenshot(save_path):
     screenshot.save(save_path)
     logger.info(f"Screenshot saved at {save_path}")
 
-class AutoCancelClicker(_GUI_Util.BasePyGameGUI):
+class AutoClicker(_GUI_Util.BasePyGameGUI):
     def __init__(self):
         pygame.init()  # Ensure pygame is initialized
         self.app_title = TITLE
@@ -55,7 +55,6 @@ class AutoCancelClicker(_GUI_Util.BasePyGameGUI):
         self.life_count = self.life_max
 
         self.taskbar_icon = "{}\\images\\icon.png".format(self.content_folder)
-        self.cancel_button_icon_file = "{}\\images\\icon_lookup.png".format(self.content_folder)
 
         self.setup_GUI()
 
@@ -67,14 +66,18 @@ class AutoCancelClicker(_GUI_Util.BasePyGameGUI):
 
             self.update_logo_angle()  # update animated logo
             self.update_title()
-            self.draw_text("This tool actively looks for", self.FONT_BODY, self.TEXT_COLOR)
-            self.draw_text("the warning cancel icon on your screen.", self.FONT_BODY, self.TEXT_COLOR)
+            self.draw_text("This tool actively looks for images on your screen.", self.FONT_BODY, self.TEXT_COLOR)
             self.draw_text("And clicks it to bypass the warning popup.", self.FONT_BODY, self.TEXT_COLOR)
+
+
+            if self.life_count % 10 == 0: 
+                self.job_data = _Exe_Util.get_data("auto_click_data.sexyDuck")
+                self.ref_images = self.job_data.get("ref_images", [])
+                for image in self.ref_images:
+                    self.draw_text(image, self.FONT_BODY, self.TEXT_COLOR)
+                    try_click_ref_image(image)
+
             self.update_footnote()
-
-            if self.life_count % 10 == 0 and is_there_cancel_button(self.cancel_button_icon_file):
-                self.life_count = self.life_max
-
             self.check_exit()
 
             # refresh all drawings by order
@@ -84,4 +87,4 @@ class AutoCancelClicker(_GUI_Util.BasePyGameGUI):
         pygame.quit()
 
 if __name__ == "__main__":
-    AutoCancelClicker().main()
+    AutoClicker().main()

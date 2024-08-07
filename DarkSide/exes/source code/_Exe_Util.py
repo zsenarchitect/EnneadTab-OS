@@ -95,7 +95,7 @@ def get_username():
 
 
 
-def get_list(filepath="path"):
+def get_list(filepath):
     extention = os.path.split(filepath)[1]
     local_path = get_file_in_dump_folder("exe_temp{}".format(extention))
     shutil.copyfile(filepath, local_path)

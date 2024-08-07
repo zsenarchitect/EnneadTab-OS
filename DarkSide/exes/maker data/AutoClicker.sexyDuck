@@ -7,7 +7,7 @@
   },
   {
    "optionDest": "filenames",
-   "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AutoCancelClicker\\AutoCancelClicker.py"
+   "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AutoClicker\\AutoClicker.py"
   },
   {
    "optionDest": "onefile",
@@ -19,7 +19,7 @@
   },
   {
    "optionDest": "icon_file",
-   "value": "C:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AutoCancelClicker\\images\\icon.ico"
+   "value": "C:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AutoClicker\\images\\icon.ico"
   },
   {
    "optionDest": "clean_build",
@@ -55,7 +55,7 @@
   },
   {
     "optionDest": "datas",
-    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AutoCancelClicker\\images;images\\"
+    "value": "c:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSide\\exes\\source code\\AutoClicker\\images;images\\"
    },
    {
     "optionDest": "datas",

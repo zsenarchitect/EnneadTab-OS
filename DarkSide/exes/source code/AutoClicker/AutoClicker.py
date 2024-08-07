@@ -75,8 +75,13 @@ class AutoClicker(_GUI_Util.BasePyGameGUI):
                 self.ref_images = self.job_data.get("ref_images", [])
                 for image in self.ref_images:
                     self.draw_text(image, self.FONT_BODY, self.TEXT_COLOR)
-                    try_click_ref_image(image)
+                    if try_click_ref_image(image):
+                        self.job_data["ref_images"] = self.ref_images.remove(image)
+                        _Exe_Util.set_data(self.job_data, "auto_click_data.sexyDuck")
+                if not self.ref_images:
+                    self.run = False
 
+                    
             self.update_footnote()
             self.check_exit()
 

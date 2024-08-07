@@ -143,6 +143,7 @@ def copy_to_standalone_collection():
     exe_product_folder = os.path.join(OS_REPO_FOLDER, "Apps", "lib", "ExeProducts")
     stand_alone_folder = "L:\\4b_Applied Computing\\EnneadTab-DB\\Stand Alone Tools"
     good_list = [
+        "EnneadTab_OS_Installer.exe",
         "IndesignAccOpenner.exe",
         "AccFileOpenner.exe",
         "Pdf2OrderedJpgs.exe",

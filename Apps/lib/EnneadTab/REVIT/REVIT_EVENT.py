@@ -148,3 +148,6 @@ def is_sync_cancelled():
 
 def set_sync_cancelled(stage = True):
     envvars.set_pyrevit_env_var("IS_SYNC_CANCELLED", stage)
+
+
+

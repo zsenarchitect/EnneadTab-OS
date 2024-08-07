@@ -73,9 +73,9 @@ class LastSyncMonitor(_GUI_Util.BasePyGameGUI):
         for key, value in records:
             text = "{} >>> {}".format(key, self.format_seconds(now - value))
             if now - value > check_interval * 60:
-                self.draw_text(text, self.FONT_BODY, self.TEXT_COLOR_WARNING)
+                self.draw_text(text, self.FONT_SUBTITLE, self.TEXT_COLOR_WARNING)
             elif now - value > yell_interval * 60:
-                self.draw_text(text, self.FONT_BODY, self.TEXT_COLOR_BIG_WARNING)
+                self.draw_text(text, self.FONT_SUBTITLE, self.TEXT_COLOR_BIG_WARNING)
                 if len(bad_docs) == 0:
                     bad_docs += "{}".format(key)
                 else:

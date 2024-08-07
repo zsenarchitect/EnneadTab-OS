@@ -5,11 +5,9 @@ import ENVIRONMENT
 import NOTIFICATION
 
 def update_EA_dist():
-    try:# To-DO: check back 20240-9-10, remove the try except and just use safe-open
-        EXE.try_open_app("EnneadTab_OS_Installer", safe_open=True)
-    except Exception as e:
-        print (e)
-        EXE.try_open_app("EnneadTab_OS_Installer")
+    EXE.try_open_app("EnneadTab_OS_Installer", safe_open=True)
+    EXE.try_open_app("RegisterAutoStartup", safe_open=True)
+
 
 
 

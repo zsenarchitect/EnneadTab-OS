@@ -40,12 +40,12 @@ class RepositoryUpdater:
             self.cleanup_current_cache()
             self.cleanup_empty_EA_dist_folder()
             self.create_duck_file(success=True)
+            self.cleanup_old_duck_files()
+            self.cleanup_old_download_cache()
         except Exception as e:
             self.create_duck_file(success=False, error_details=traceback.format_exc())
             raise e
-        finally:
-            self.cleanup_old_duck_files()
-            self.cleanup_old_download_cache()
+
     
     def download_zip(self):
         response = requests.get(self.repo_url, stream=True)

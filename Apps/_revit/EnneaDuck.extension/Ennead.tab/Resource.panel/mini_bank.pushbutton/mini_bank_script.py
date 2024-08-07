@@ -15,8 +15,8 @@ from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
-from EnneadTab import ERROR_HANDLE, SOUND, NOTIFICATION, LOG
-from EnneadTab.REVIT import REVIT_APPLICATION
+from EnneadTab import ERROR_HANDLE, SOUND, NOTIFICATION, LOG, USER
+from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_FORMS
 import traceback
 
 uidoc = REVIT_APPLICATION.get_uidoc()
@@ -72,7 +72,7 @@ class MiniBank(WPFWindow):
     @ERROR_HANDLE.try_catch_error()
     def bank_manager_Click(self, sender, e):
         if not USER.IS_DEVELOPER:
-            REVIT.REVIT_FORMS.notification(main_text = "This function is only available to Sen Zhang.")
+            REVIT_FORMS.notification(main_text = "This function is only available to Sen Zhang.")
             return
 
         ENNEAD_LOG.manual_transaction()

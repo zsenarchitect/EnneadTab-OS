@@ -101,7 +101,8 @@ def compare_data(previous_data,current_warning_count, doc):
 
     main_text += "\n{}".format(price_note )
     if old_warnings != 0:
-        ENNEAD_LOG.open_doc_with_warning_count(warning_count = warning_increase, doc = doc)
+        pass
+        # ENNEAD_LOG.open_doc_with_warning_count(warning_count = warning_increase, doc = doc)
 
     return main_text
 

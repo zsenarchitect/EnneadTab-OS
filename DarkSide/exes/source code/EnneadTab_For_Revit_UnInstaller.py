@@ -1,10 +1,22 @@
 import configparser
 import os
 import time
+import psutil
 import _Exe_Util
+
+def check_revit_running():
+    # Check if Revit is running (case-insensitive)
+    for process in psutil.process_iter(['pid', 'name']):
+        if 'revit' in process.info['name'].lower():
+            return True
+    return False
 
 @_Exe_Util.try_catch_error
 def main():
+    if check_revit_running():
+        print("Please close all running instances of Revit before making change to EnneadTab Revit.")
+        return
+    
     # Get the current user's profile directory
     user_profile = os.path.expanduser("~")
 
@@ -12,7 +24,7 @@ def main():
     file_path = os.path.join(user_profile, 'AppData', 'Roaming', 'pyRevit', 'pyRevit_config.ini')
     if not os.path.exists(file_path):
         print("Are you sure pyRevit has been installed?")
-        print ("Close this window and check again.")
+        print("Close this window and check again.")
         return
 
     # Create a ConfigParser object

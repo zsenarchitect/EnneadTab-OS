@@ -26,7 +26,6 @@ uidoc = __revit__.ActiveUIDocument
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
 __persistentengine__ = True
 
-import ENNEAD_LOG
 
 @EnneadTab.ERROR_HANDLE.try_catch_error
 def load_family(family_path):
@@ -424,8 +423,6 @@ output.close_others()
 
 if __name__ == "__main__":
     
-    try:
-        modeless_form = family_browser_ModelessForm()
-        ENNEAD_LOG.use_enneadtab(coin_change = 99, tool_used = __title__.replace("\n", " "), show_toast = True)
-    except:
-        print (traceback.format_exc())
+    family_browser_ModelessForm()
+       
+

@@ -95,11 +95,14 @@ def punish_long_gap_time(data):
     min_max = 90
     for key, value in data.items():
         if now - value  > 60 * min_max:
+            
             #print int( (now - value - 60 * min_max) / 60)
             try:
-                ENNEAD_LOG.sync_gap_too_long(mins_exceeded = int( (now - value - 60 * min_max) / 60), doc_name = key )
+                pass
+                # ENNEAD_LOG.sync_gap_too_long(mins_exceeded = int( (now - value - 60 * min_max) / 60), doc_name = key )
             except:
-                ENNEAD_LOG.sync_gap_too_long(mins_exceeded = int( (now - value - 60 * min_max) / 60) )
+                pass
+                # ENNEAD_LOG.sync_gap_too_long(mins_exceeded = int( (now - value - 60 * min_max) / 60) )
 
 
 

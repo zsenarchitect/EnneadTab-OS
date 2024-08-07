@@ -163,6 +163,9 @@ def json_to_command(json_file):
 
     
     command.append("--log-level=WARN")  # disable output in terminal
+    # command.append("--strip")
+    command.append("--upx-dir")
+    command.append(repath("C:\\Users\\szhang\\github\\EnneadTab-OS\\DarkSideupx\\upx\\upx.exe"))
     command.append(final_path)
 
     if os.path.basename(json_file.name) not in PYGAME_ALLOWS:
@@ -235,10 +238,10 @@ if __name__ == "__main__":
     # recompile_exe(single_exe="RevitExportRenamer.sexyDuck")
     # recompile_exe(single_exe="Speaker.sexyDuck")
     # recompile_exe(single_exe="IndesignAccOpenner.sexyDuck")
-    # recompile_exe(single_exe="AccFileOpenner.sexyDuck")
+    recompile_exe(single_exe="AccFileOpenner.sexyDuck")
     # recompile_exe(single_exe="Pdf2OrderedJpgs.sexyDuck")
     # recompile_exe(single_exe="RevitIniDeployer.sexyDuck")
     # recompile_exe(single_exe="AvdResourceMonitor.sexyDuck")
     # recompile_exe(single_exe="LastSyncMonitor.sexyDuck")
     # recompile_exe(single_exe="sample_exe.sexyDuck")
-    recompile_exe(single_exe="ScheduleOpener.sexyDuck")
+    # recompile_exe(single_exe="ScheduleOpener.sexyDuck")

@@ -9,7 +9,7 @@ __title__ = "Align Key Plams"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_SELECTION, REVIT_SHEET, REVIT_VIEW
 from Autodesk.Revit import DB # pyright: ignore 
@@ -23,7 +23,7 @@ MAIN_PLAN_REF = "PS 1_A115_10_L14 LACHMAN PENT ROOF"
 WORK_SHEET = REVIT_SHEET.get_sheet_by_sheet_num("PS 1_A115")
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def align_key_plans():
     align_plan(KEY_PLAN_REF, WORK_SHEET)
     print ("#######################################")
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     align_key_plans()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

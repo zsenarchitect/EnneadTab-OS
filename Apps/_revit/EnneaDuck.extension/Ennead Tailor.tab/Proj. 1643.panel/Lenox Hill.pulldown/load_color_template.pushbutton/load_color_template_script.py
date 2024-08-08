@@ -24,7 +24,7 @@ from EnneadTab import ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_COLOR_SCHEME
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
@@ -39,7 +39,7 @@ NAMING_MAP = {"department_color_map":"Section Category",
 
 
     
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def load_color_template():
     REVIT_COLOR_SCHEME.load_color_template(doc, NAMING_MAP, EXCEL_PATH, is_remove_bad = False)
     
@@ -52,7 +52,6 @@ output.close_others()
 
 if __name__ == "__main__":
     load_color_template()
-    ENNEAD_LOG.use_enneadtab(coin_change = 200, tool_used = __title__.replace("\n", " "), show_toast = True)
 
 
 

@@ -9,8 +9,9 @@ __title__ = "Find All Door Not Tagged"
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -22,7 +23,7 @@ BAD_NAMES = ["B - DR-Opening",
             "Detail-Door Swing-Slider"]
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def find_all_door_tag():
     
     sheets = forms.select_sheets(title = "Select sheets to find door tags")
@@ -113,7 +114,7 @@ output.close_others()
 
 if __name__ == "__main__":
     find_all_door_tag()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

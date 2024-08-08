@@ -4,8 +4,12 @@ __title__ = "Colorize Pills"
 # from pyrevit import forms #
 from pyrevit import script #
 import os
-import ENNEAD_LOG
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
+
+
+from EnneadTab import ERROR_HANDLE, NOTIFICATION
+from EnneadTab.REVIT import REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 try:
@@ -17,7 +21,7 @@ except:
 COLOR_SCHEME_NAME = "[Areas]: Department Category_Primary"      
 
         
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def color_pills(doc, show_log = False):
     
     solution = ColorizePills(doc)
@@ -40,7 +44,7 @@ def color_pills(doc, show_log = False):
     
     if show_log:
         
-        EnneadTab.NOTIFICATION.messenger(main_text = "Color pill color change done!")
+        NOTIFICATION.messenger(main_text = "Color pill color change done!")
 
 
 
@@ -59,7 +63,7 @@ class ColorizePills:
         
         # prepare a hot pink for bad color
         self.bad_color = DB.Color(255, 0, 255)
-        self.solid_pattern_id = EnneadTab.REVIT.REVIT_SELECTION.get_solid_fill_pattern(self.doc, return_id = True)
+        self.solid_pattern_id = REVIT_SELECTION.get_solid_fill_pattern(self.doc, return_id = True)
         
     
     def get_color_scheme_data(self):
@@ -72,7 +76,7 @@ class ColorizePills:
             return "[{}]: {}".format(cate_name, x.Name)
         color_schemes = filter(lambda x: scheme_name(x) == COLOR_SCHEME_NAME, color_schemes)
         if len(color_schemes)== 0:
-            EnneadTab.NOTIFICATION.messenger(main_text = "Cannot find the color scheme [{}].\nMaybe you renamed your color scheme recently? Talk to SZ for update.".format(COLOR_SCHEME_NAME))
+            NOTIFICATION.messenger(main_text = "Cannot find the color scheme [{}].\nMaybe you renamed your color scheme recently? Talk to SZ for update.".format(COLOR_SCHEME_NAME))
             return
         color_scheme = color_schemes[0]
         # print color_scheme
@@ -91,7 +95,7 @@ class ColorizePills:
         special_detail_components = DB.FilteredElementCollector(self.doc).OfCategory(DB.BuiltInCategory.OST_DetailComponents).WhereElementIsNotElementType().ToElements()
         special_detail_components = filter(lambda x: hasattr(x, "Symbol") and x.Symbol.FamilyName.lower().startswith( "DTL_Healthcare_Planning_Section Bubble".lower()), special_detail_components)
         
-        return EnneadTab.REVIT.REVIT_SELECTION.filter_elements_changable(special_detail_components)
+        return REVIT_SELECTION.filter_elements_changable(special_detail_components)
          
 
 
@@ -100,7 +104,7 @@ class ColorizePills:
         # get the view it is using
         owner_view_id = pill.OwnerViewId
         view = self.doc.GetElement(owner_view_id)
-        if not EnneadTab.REVIT.REVIT_SELECTION.is_changable(view):
+        if not REVIT_SELECTION.is_changable(view):
             print("View <{}> cannot be editted right now due to ownership by {}.".format(view.Name,view .LookupParameter("Edited by").AsString()))
             return
         
@@ -146,7 +150,7 @@ output.close_others()
 
 if __name__ == "__main__":
     color_pills(doc, show_log = True)
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

@@ -9,7 +9,7 @@ __title__ = "Smart Match Grid Graphic"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_VIEW
 from Autodesk.Revit import DB # pyright: ignore 
@@ -78,7 +78,7 @@ def set_base_leaders():
     return True
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def smart_match_grid_bubble():
     # get all floor plans and area plans
     # for each view, find all grids. Then for each end of 

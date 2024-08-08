@@ -8,7 +8,8 @@ __title__ = "36_repeat ADP"
 from pyrevit import script, revit #
 # from pyrevit import revit #
 import EA_UTILITY
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore

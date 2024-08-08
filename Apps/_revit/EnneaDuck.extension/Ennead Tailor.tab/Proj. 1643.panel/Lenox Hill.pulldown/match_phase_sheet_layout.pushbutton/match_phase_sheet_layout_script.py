@@ -9,7 +9,7 @@ __title__ = "Match Phase Sheet Layout"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_SHEET, REVIT_VIEW
 from Autodesk.Revit import DB # pyright: ignore 
@@ -28,7 +28,7 @@ WORK_SHEETS = [
     "PH-07"
     ]
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def match_phase_sheet_layout():
 
     t = DB.Transaction(doc, __title__)
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     match_phase_sheet_layout()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

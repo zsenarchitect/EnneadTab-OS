@@ -9,8 +9,9 @@ __title__ = "Replace Keynote With Symbol"
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -24,7 +25,7 @@ def get_type(family_name, type_name):
            return symbol_type
     return None
  
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def replace_leynote():
     
 
@@ -118,7 +119,7 @@ output.close_others()
 
 if __name__ == "__main__":
     replace_leynote()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

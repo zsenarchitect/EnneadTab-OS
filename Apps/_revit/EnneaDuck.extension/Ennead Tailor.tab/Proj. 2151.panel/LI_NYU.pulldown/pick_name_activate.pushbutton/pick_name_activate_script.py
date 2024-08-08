@@ -9,8 +9,9 @@ __title__ = "Pick Name(DO NOT USE)"
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -18,7 +19,7 @@ from Autodesk.Revit.UI.Events import SelectionChangedEventArgs
 from Autodesk.Revit.UI import IExternalEventHandler, ExternalEvent
 from System import EventHandler, Uri
                 
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def pick_name_activate():
     print(__revit__.SelectionChanged)
     for item in dir(__revit__.SelectionChanged):
@@ -44,11 +45,12 @@ def pick_name_activate():
     $$$$$$$$$$$$$$$$$$$
     t.Commit()
     """
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def event_handler_function(sender, args):
     import sys
     sys.path.append("L:\\4b_Applied Computing\\01_Revit\\04_Tools\\08_EA Extensions\\Published\\ENNEAD.extension\\lib")
-    import EnneadTab
+    import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
     from pyrevit import forms
     from Autodesk.Revit import DB # pyright: ignore 
     # from Autodesk.Revit import UI # pyright: ignore
@@ -125,7 +127,7 @@ def event_handler_function(sender, args):
         def GetName(self):
             return "simple function executed by an IExternalEventHandler in a Form"
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def action(element, name):
         t = DB.Transaction(doc, __title__)
         t.Start()
@@ -150,6 +152,6 @@ output.close_others()
 
 if __name__ == "__main__":
     pick_name_activate()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 

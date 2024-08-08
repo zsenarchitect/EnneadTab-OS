@@ -9,8 +9,9 @@ __title__ = "Excel Sheet Creator"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -19,7 +20,7 @@ def get_titleblock_id():
     all_ids = DB.FilteredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_TitleBlocks).WhereElementIsElementType().ToElements()
     return filter(lambda x: x.Family.Name == "Consaultant Sheet Placeholder", list(all_ids))[0].Id
             
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def excel_sheet_creator():
     pass
     excel_path = r"J:\2306\2_Record\2023-07-31 SD Submission\SD Sheetlist_REV00.xlsx"
@@ -50,7 +51,7 @@ output.close_others()
 
 if __name__ == "__main__":
     excel_sheet_creator()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

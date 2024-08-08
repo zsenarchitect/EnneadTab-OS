@@ -10,8 +10,9 @@ from pyrevit import forms #
 from pyrevit import script #
 
 import traceback
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -49,7 +50,7 @@ class Solution:
   
             return DB.XYZ(x[0], x[1], x[2])
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def main(self, brep_data):
 
         #print brep_data
@@ -129,6 +130,6 @@ if __name__ == "__main__":
         solution.main(brep_data)
     EnneadTab.SOUNDS.play_sound("sound effect_mario message.wav")
     T.Commit()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 

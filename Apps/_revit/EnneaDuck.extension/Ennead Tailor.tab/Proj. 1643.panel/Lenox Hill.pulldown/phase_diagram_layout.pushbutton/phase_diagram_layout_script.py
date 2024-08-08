@@ -9,7 +9,7 @@ __title__ = "Phase Diagram Layout update"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_SHEET, REVIT_VIEW
 from Autodesk.Revit import DB # pyright: ignore 
@@ -54,7 +54,7 @@ def get_all_phase():
     return sorted([ doc.GetElement(phase_id) for phase_id in all_phase_ids], key = lambda x: x.Name)
 
 PHASE_MAP = {phase.Name:i for i, phase in enumerate(get_all_phase(), 1)}
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def match_phase_sheet_layout():
 
     sheet = REVIT_SHEET.get_sheet_by_sheet_num(REF_SHEET)
@@ -109,7 +109,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     match_phase_sheet_layout()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

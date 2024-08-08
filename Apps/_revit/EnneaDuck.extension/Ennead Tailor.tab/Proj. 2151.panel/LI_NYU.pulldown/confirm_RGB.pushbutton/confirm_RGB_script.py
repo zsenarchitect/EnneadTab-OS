@@ -10,7 +10,7 @@ __title__ = "Confirm RGB"
 import traceback
 from pyrevit import script #
 import traceback
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION
 from Autodesk.Revit import DB # pyright: ignore 
@@ -28,7 +28,7 @@ OUT_EXCEL_PATH = "J:\\2151\\2_Master File\\B-70_Programming\\03_Colors\\archive\
 
 
         
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def confirm_RGB(doc, show_log = False):
     flag = False
     raw_data = EXCEL.read_data_from_excel(EXCEL_PATH, 
@@ -129,7 +129,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     confirm_RGB(doc, show_log = True)
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

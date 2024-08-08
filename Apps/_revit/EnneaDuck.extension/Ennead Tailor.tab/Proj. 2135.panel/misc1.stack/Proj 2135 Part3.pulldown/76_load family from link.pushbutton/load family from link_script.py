@@ -21,7 +21,8 @@ from Autodesk.Revit import DB # pyright: ignore
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
 import EA_UTILITY
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 
 def get_link_doc():

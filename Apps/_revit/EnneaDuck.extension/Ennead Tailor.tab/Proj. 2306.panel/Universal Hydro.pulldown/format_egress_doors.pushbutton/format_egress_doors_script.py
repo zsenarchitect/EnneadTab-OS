@@ -9,8 +9,9 @@ __title__ = "(Depreciated)Format Egress Doors"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 import math
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore

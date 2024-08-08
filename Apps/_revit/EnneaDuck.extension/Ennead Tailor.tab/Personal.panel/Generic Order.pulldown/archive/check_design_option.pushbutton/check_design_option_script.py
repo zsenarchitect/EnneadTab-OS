@@ -10,7 +10,7 @@ from pyrevit import forms #
 from pyrevit import script #
 # from pyrevit import revit #
 
-import ENNEAD_LOG
+
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 import random
@@ -124,4 +124,4 @@ output.close_others()
 if __name__ == "__main__":
     my_solution = Solution()
     my_solution.check_design_option()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__, show_toast = True)
+    

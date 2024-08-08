@@ -10,7 +10,7 @@ __title__ = "Update Life Safety Info"
 from re import L
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_FAMILY, REVIT_LIFE_SAFETY, REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
@@ -18,7 +18,7 @@ from Autodesk.Revit import DB # pyright: ignore
 # uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def update_life_safety(doc):
     data_source = REVIT_LIFE_SAFETY.SpatialDataSource(
                 source = "Area",
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     update_life_safety(doc)
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

@@ -9,8 +9,9 @@ __title__ = "Pick Name"
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 uidoc = __revit__.ActiveUIDocument
@@ -18,7 +19,7 @@ doc = __revit__.ActiveUIDocument.Document # pyright: ignore
             
 COLOR_SCHEME_NAME = "[Areas]: Department Category_Primary"      
             
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def pick_name():
     selection_ids = uidoc.Selection.GetElementIds ()
     if len (selection_ids) == 0:
@@ -73,7 +74,7 @@ output.close_others()
 
 if __name__ == "__main__":
     pick_name()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

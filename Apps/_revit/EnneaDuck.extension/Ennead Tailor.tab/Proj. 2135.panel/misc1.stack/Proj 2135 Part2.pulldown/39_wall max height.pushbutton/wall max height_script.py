@@ -10,7 +10,8 @@ __title__ = "39_wall max_height"
 from pyrevit import script #
 
 import EA_UTILITY
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore

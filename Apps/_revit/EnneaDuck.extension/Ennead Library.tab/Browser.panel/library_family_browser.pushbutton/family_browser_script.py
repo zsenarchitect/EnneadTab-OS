@@ -16,7 +16,8 @@ from pyrevit import script #
 import os
 
 import System
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from EnneadTab import ENVIRONMENT
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
@@ -27,7 +28,7 @@ doc = __revit__.ActiveUIDocument.Document # pyright: ignore
 __persistentengine__ = True
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def load_family(family_path):
     app = doc.Application
     family_doc = app.OpenDocumentFile (family_path)
@@ -197,7 +198,7 @@ class family_browser_ModelessForm(WPFWindow):
 
 
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def preview_selection_changed(self, sender, e):
         if len(self.data_grid.ItemsSource) == 0:
             return
@@ -249,16 +250,16 @@ class family_browser_ModelessForm(WPFWindow):
             self.set_image_source(self.preview_image, "DEFAULT PREVIEW_CANNOT FIND PREVIEW IMAGE.png")
             self.textblock_export_status.Text = ""
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def UI_changed(self, sender, e):
         self.update_preview_grid()
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def refresh_table_Click(self, sender, e):
         self.update_preview_grid()
         self.debug_textbox.Text = "Currently showing {} views.".format(len(self.data_grid.ItemsSource))
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def update_preview_grid(self):
         if not hasattr(self, "_search_results"):
             self._search_results = []
@@ -268,7 +269,7 @@ class family_browser_ModelessForm(WPFWindow):
             self.data_grid.ItemsSource = self.data_pool
         
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def open_view_click(self, sender, e):
         obj = self.data_grid.SelectedItem
         if not obj:
@@ -367,7 +368,7 @@ class family_browser_ModelessForm(WPFWindow):
     def clear_search_click(self, sender, e):
         self.search_textbox.Text = ""
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def search_box_value_changed(self, sender, args):
         """Handle text changed event."""
 
@@ -392,7 +393,7 @@ class family_browser_ModelessForm(WPFWindow):
         self.update_preview_grid()
 
 
-    @EnneadTab.ERROR_HANDLE.try_catch_error
+    @EnneadTab.ERROR_HANDLE.try_catch_error()
     def load_family_click(self, sender, e):
         if len(self.data_grid.ItemsSource) == 0:
             return

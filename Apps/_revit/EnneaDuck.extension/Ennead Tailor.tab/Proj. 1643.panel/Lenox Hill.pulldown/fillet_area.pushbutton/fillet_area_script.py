@@ -11,8 +11,9 @@ __title__ = "Fillet Area Corner"
 from pyrevit import script #
 import math
 import clr
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 # uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
@@ -22,7 +23,7 @@ doc = EnneadTab.REVIT.REVIT_APPLICATION.get_doc()
 RADIUS = 1
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def fillet_area():
     t = DB.Transaction(doc, __title__)
     t.Start()
@@ -123,7 +124,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     fillet_area()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

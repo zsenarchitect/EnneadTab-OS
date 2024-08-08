@@ -22,8 +22,11 @@ __title__ = "Load Color Template"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
+
+from EnneadTab import ERROR_HANDLE, COLOR, NOTIFICATION, OUTPUT
+from EnneadTab.REVIT import REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -37,11 +40,11 @@ NAMING_MAP = {"department_color_map":["Department Category_Primary", "Department
 
 
     
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def load_color_template():
     
     # load data from color excel
-    data = EnneadTab.COLOR.get_color_template_data(EXCEL_PATH)
+    data = COLOR.get_color_template_data(EXCEL_PATH)
     
     
     # for key, value in data.items():
@@ -63,16 +66,16 @@ def load_color_template():
         
     t.Commit()
     
-    EnneadTab.NOTIFICATION.messenger(main_text="Color Scheme Updated!")
+    NOTIFICATION.messenger(main_text="Color Scheme Updated!")
     print ("\n\nDone!")
     
-    EnneadTab.OUTPUT.display_output_on_browser()
+    OUTPUT.display_output_on_browser()
 
 
 def update_color_scheme(data, lookup_key, color_scheme_name):
-    color_scheme = EnneadTab.REVIT.REVIT_SELECTION.get_color_scheme_by_name(color_scheme_name)
+    color_scheme = REVIT_SELECTION.get_color_scheme_by_name(color_scheme_name)
     if not color_scheme:
-        EnneadTab.NOTIFICATION.messenger(main_text="Color Scheme [{}] not found!\nCheck spelling".format(color_scheme_name))
+        NOTIFICATION.messenger(main_text="Color Scheme [{}] not found!\nCheck spelling".format(color_scheme_name))
         return
     
     output.print_md ("##Working on color scheme [{}]".format(color_scheme.Name))
@@ -103,10 +106,10 @@ def add_missing_entry(color_scheme, department_data, current_entry_names, storag
         if department not in current_entry_names:
             entry = DB.ColorFillSchemeEntry (storage_type)
         
-            entry.Color = EnneadTab.COLOR.tuple_to_color(department_data[department]["color"])
+            entry.Color = COLOR.tuple_to_color(department_data[department]["color"])
           
             entry.SetStringValue (department)
-            entry.FillPatternId = EnneadTab.REVIT.REVIT_SELECTION.get_solid_fill_pattern_id(doc)
+            entry.FillPatternId = REVIT_SELECTION.get_solid_fill_pattern_id(doc)
             color_scheme.AddEntry (entry)
             # print ("+++ entry [{}] added".format(department))
             output.print_md("**+++** entry [{}] added with **{}**".format(department, 
@@ -126,9 +129,9 @@ def update_entry_color(color_scheme, department_data):
                                                              
             continue
         
-        lookup_color = EnneadTab.COLOR.tuple_to_color(lookup_data["color"])
+        lookup_color = COLOR.tuple_to_color(lookup_data["color"])
         
-        if EnneadTab.COLOR.is_same_color(existing_color, lookup_color):
+        if COLOR.is_same_color(existing_color, lookup_color):
             continue
         
         old_color = (existing_entry.Color.Red, existing_entry.Color.Green, existing_entry.Color.Blue)
@@ -147,7 +150,6 @@ output.close_others()
 
 if __name__ == "__main__":
     load_color_template()
-    ENNEAD_LOG.use_enneadtab(coin_change = 200, tool_used = __title__.replace("\n", " "), show_toast = True)
 
 
 

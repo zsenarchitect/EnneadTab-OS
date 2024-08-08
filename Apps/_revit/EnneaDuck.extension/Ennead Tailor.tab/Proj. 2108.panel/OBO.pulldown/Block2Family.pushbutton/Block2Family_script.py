@@ -12,7 +12,7 @@ import clr # pyright: ignore
 # from pyrevit import forms #
 from pyrevit.revit import ErrorSwallower
 from pyrevit import script #
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, FOLDER, DATA_FILE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_FAMILY, REVIT_UNIT
 from Autodesk.Revit import DB # pyright: ignore 
@@ -26,7 +26,7 @@ doc = REVIT_APPLICATION.get_doc()
 KEY_PREFIX = "BLOCKS2FAMILY"
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def Block2Family():
     for _doc in REVIT_APPLICATION.get_application().Documents:
         if _doc.IsFamilyDocument:
@@ -288,7 +288,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     Block2Family()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

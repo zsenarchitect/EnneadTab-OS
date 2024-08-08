@@ -9,7 +9,7 @@ __title__ = "Open Favorite Views by Set"
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_VIEW
 from Autodesk.Revit import DB # pyright: ignore 
@@ -17,7 +17,7 @@ from Autodesk.Revit import DB # pyright: ignore
 # uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def open_all_views_in_set():
     all_view_sheet_sets = DB.FilteredElementCollector(doc).OfClass(DB.ViewSheetSet).ToElements()
 
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     open_all_views_in_set()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

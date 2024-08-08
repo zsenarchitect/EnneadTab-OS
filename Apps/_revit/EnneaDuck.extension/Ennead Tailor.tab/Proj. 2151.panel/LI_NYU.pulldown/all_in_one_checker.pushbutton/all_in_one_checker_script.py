@@ -8,7 +8,9 @@ __title__ = "Detailed Program Chart Update"
 # from pyrevit import forms #
 from pyrevit import script
 
-import ENNEAD_LOG
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
+
 from EnneadTab import NOTIFICATION, ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_SELECTION, REVIT_FAMILY
 from Autodesk.Revit import DB # pyright: ignore  
@@ -383,7 +385,7 @@ class InternalCheck:
             dummy_delta_type.LookupParameter(para_name).Set(delta)
             
 
-    @ERROR_HANDLE.try_catch_error
+    @ERROR_HANDLE.try_catch_error()
     def run_check(self):
 
         T = DB.TransactionGroup(self.doc, __title__)
@@ -413,7 +415,7 @@ class InternalCheck:
 #############################################################################
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def all_in_one_checker(doc, show_log):
     """this is the main doc
     passing doc and show_log para to make sure using this as button VS using it

@@ -9,8 +9,9 @@ __title__ = "Factory Internal All-In-One Check"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 import math
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
@@ -511,7 +512,7 @@ def get_calculator_type_by_egress_id(doc, egress_id):
 
 
 
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def factory_internal_check(doc, show_log):
     InternalCheck(doc, show_log).run_check()
     
@@ -524,7 +525,7 @@ output.close_others()
 
 if __name__ == "__main__":
     factory_internal_check(doc, show_log = True)
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

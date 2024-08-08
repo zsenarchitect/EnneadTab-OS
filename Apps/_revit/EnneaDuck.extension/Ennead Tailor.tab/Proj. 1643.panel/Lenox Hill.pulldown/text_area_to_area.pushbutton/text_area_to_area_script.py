@@ -9,14 +9,15 @@ __title__ = "Text Area --> Area"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 # uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
 doc = EnneadTab.REVIT.REVIT_APPLICATION.get_doc()
             
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def text_area_to_area():
     for area in DB.FileredElementCollector(doc).OfCategory(DB.BuiltInCategory.OST_Areas).WhereElementIsNotElementType().ToElements():
         bad_data = area.LookupParameter("Proposed Data_old").AsString().replace("SF", "")
@@ -30,7 +31,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     text_area_to_area()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

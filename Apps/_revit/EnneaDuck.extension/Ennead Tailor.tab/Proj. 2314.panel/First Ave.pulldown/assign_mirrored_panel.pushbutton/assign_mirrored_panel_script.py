@@ -9,8 +9,9 @@ __title__ = "Assign Mirrored Panels"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -18,7 +19,7 @@ doc = __revit__.ActiveUIDocument.Document # pyright: ignore
 FAMILY_NAMES_PREFIX = "CW-1"
 PARA_NAME = "Mirrored"
 
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def assign_mirrored_panel():
     # all_families = DB.FilteredElementCollector(doc).OfClass(DB.Family).ToElements()
     # families = [x for x in all_families if x.Name.startswith(FAMILY_NAMES_PREFIX)]
@@ -55,7 +56,7 @@ output.close_others()
 
 if __name__ == "__main__":
     assign_mirrored_panel()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

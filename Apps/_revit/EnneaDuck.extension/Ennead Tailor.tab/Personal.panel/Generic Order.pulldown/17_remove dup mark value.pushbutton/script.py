@@ -7,7 +7,8 @@ output = script.get_output()
 output.close_others()
 
 
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 __title__ = "remove dup value"
 __doc__ = 'remove dup value in warning'
 

@@ -9,7 +9,7 @@ __title__ = "test_temp_graphic"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_VIEW
 from Autodesk.Revit import DB # pyright: ignore 
@@ -23,7 +23,7 @@ background 0,128,128
 # uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
 doc = REVIT_APPLICATION.get_doc()
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def test_temp_graphic():
 
     REVIT_VIEW.show_in_convas_graphic(DB.XYZ(400,150,50), additional_info={"description":"Hello"})
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     test_temp_graphic()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

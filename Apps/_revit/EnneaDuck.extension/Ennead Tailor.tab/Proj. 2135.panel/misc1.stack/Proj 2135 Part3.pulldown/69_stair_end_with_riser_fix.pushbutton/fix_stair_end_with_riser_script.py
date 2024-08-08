@@ -10,7 +10,8 @@ __title__ = "69_stair_end_with_riser(Fixer)"
 from pyrevit import script #
 # from pyrevit import revit #
 import EA_UTILITY
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 import sys
 
 sys.path.append(r'L:\4b_Applied Computing\01_Revit\04_Tools\08_EA Extensions\Published\ENNEAD.extension\Ennead.tab\Tailor Shop.panel\misc1.stack\Proj 2135 Part3.pulldown\68_stair_end_with_riser.pushbutton')

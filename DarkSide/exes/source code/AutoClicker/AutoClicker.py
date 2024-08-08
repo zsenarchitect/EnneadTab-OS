@@ -73,6 +73,7 @@ class AutoClicker(_GUI_Util.BasePyGameGUI):
             if self.life_count % 10 == 0: 
                 self.job_data = _Exe_Util.get_data("auto_click_data.sexyDuck")
                 self.ref_images = self.job_data.get("ref_images", [])
+                self.ref_images = list(set(self.ref_images))
                 for image in self.ref_images:
                     self.draw_text(image, self.FONT_BODY, self.TEXT_COLOR)
                     if try_click_ref_image(image):

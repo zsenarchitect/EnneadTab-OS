@@ -67,8 +67,11 @@ def send_email():
 
     message.Send()
     # print ("finish")
-    
-    os.remove(file_path)
+
+    try:
+        os.remove(file_path)
+    except:
+        pass
     print ("tool end")
 
 

@@ -36,11 +36,20 @@ class ScheduleOpener(_GUI_Util.BasePyGameGUI):
         self.life_count = self.life_max
 
         self.taskbar_icon = "{}\\images\\icon.png".format(self.content_folder)
-        self.cancel_button_icon_file = "{}\\images\\icon_lookup.png".format(self.content_folder)
 
     
 
         self.setup_GUI()
+        self.set_RIR_clicker()
+
+
+    def set_RIR_clicker(self):
+        data = _Exe_Util.get_data("auto_click_data.sexyDuck")
+        if "ref_images" not in data:
+            data["ref_images"] = []
+        data["ref_images"].append("{}\\images\\search_RIR_7.png".format(_Exe_Util.CORE_LIB_FOLDER))
+        _Exe_Util.set_data(data, "auto_click_data.sexyDuck")
+        _Exe_Util.try_open_app("AutoClicker.exe")
 
 
     

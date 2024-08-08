@@ -1,13 +1,16 @@
 import os
 import io
 import traceback
+import time
 import json
 import shutil
+
 
 GLOBAL_SETTING_FILE = 'setting_{}.sexyDuck'.format(os.environ["USERPROFILE"].split("\\")[-1])
 
 ESOSYSTEM_FOLDER = "{}\\Documents\\EnneadTab Ecosystem".format(os.environ["USERPROFILE"])
 DUMP_FOLDER = "{}\\Dump".format(ESOSYSTEM_FOLDER)
+CORE_LIB_FOLDER = os.path.join(ESOSYSTEM_FOLDER, "Apps","lib")
 for _folder in [ESOSYSTEM_FOLDER, DUMP_FOLDER]:
     if not os.path.exists(_folder):
         os.makedirs(_folder)
@@ -53,11 +56,13 @@ def get_file_in_dump_folder(file_name):
 def get_data(file_name):
     filepath = get_file_in_dump_folder(file_name)
     
-    # return empty dict if file not exist
+
     if not os.path.exists(filepath):
         return {}
-    # reads it back
-    with open(filepath,"r") as f:
+
+    temp_file = get_file_in_dump_folder("_temp_exe_data_" + file_name)
+    shutil.copyfile(filepath, temp_file)
+    with open(temp_file,"r") as f:
       dict = json.load(f)
     return dict
 
@@ -107,5 +112,24 @@ def get_list(filepath):
     return map(lambda x: x.replace("\n", ""), lines)
 
 
+def try_open_app(app_name):
+    exe_product_folder = os.path.join(ESOSYSTEM_FOLDER, "Apps", "lib", "ExeProducts")
 
+
+    app_name = app_name.replace(".exe", "")
+    app_name += ".exe"
+    if not os.path.exists(app_name):
+        return
+    
+    temp_exe_name = "_temp_exe_{}_{}.exe".format(app_name, int(time.time()))
+    temp_exe = DUMP_FOLDER + "\\" + temp_exe_name
+    app = os.path.join(exe_product_folder, app_name)
+    shutil.copyfile(app, temp_exe)
+    os.startfile(temp_exe)
+    for file in os.listdir(DUMP_FOLDER):
+        if file.startswith("_temp_exe_"):
+            try:
+                os.remove(os.path.join(DUMP_FOLDER, file))
+            except:
+                pass
 

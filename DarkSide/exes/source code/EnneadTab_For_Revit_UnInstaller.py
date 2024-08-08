@@ -13,7 +13,7 @@ def check_revit_running():
 
 @_Exe_Util.try_catch_error
 def main():
-    if check_revit_running():
+    if not _Exe_Util.is_avd() and check_revit_running():
         print("Please close all running instances of Revit before making change to EnneadTab Revit.")
         return
     

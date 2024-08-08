@@ -1,0 +1,19 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="300"
+        Background="#FFEEEEEE" FontFamily="RomanD" ResizeMode="NoResize" SizeToContent="Height" Title="Tile Here" Topmost="True" WindowStartupLocation="CenterScreen">
+    <StackPanel  Margin="37,20,20,20" >
+        <StackPanel Margin="0,0,0,0">
+            <Label Content="Pick Reference Element" Margin="0,0,0,0" />
+            <TextBox x:Name="textbox1" TextWrapping="Wrap" Text="type here" FontSize="18" Background="#FFDAE8FD" Cursor="Pen" RenderTransformOrigin="0.5,0.5" ForceCursor="True">
+            </TextBox>
+            <Button Content="Pick Ref Element" Height="26" Margin="0,10,0,0" Click="BT_pick_ref_element" Background="#FFFFF0D7" BorderBrush="#FF555032"/>
+        </StackPanel>
+        <Image Height="100" x:Name="logo_img"/>
+    </StackPanel>
+
+
+    
+    
+    
+</Window>

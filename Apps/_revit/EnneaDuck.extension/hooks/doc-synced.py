@@ -53,7 +53,7 @@ def update_project_2151():
     
     if random.random() > 0.1:
         return
-    if USER_CONSTANTS.USER_NAME not in ["sha.li", "szhang"]:
+    if USER.USER_NAME not in ["sha.li", "szhang"]:
         return
     
     folder = "Ennead Tailor.tab\\Proj. 2151.panel\\LI_NYU.pulldown"
@@ -183,7 +183,7 @@ def update_working_view_name():
     script = "Ennead.tab\\Manage.panel\\working_view_cleanup.pushbutton\\manage_working_view_script.py"
     func_name = "modify_creator_in_view_name"
 
-    fullpath = "{}\\ENNEAD.extension\\{}".format(ENVIRONMENT.PUBLISH_FOLDER_FOR_REVIT, script)
+    fullpath = "{}\\{}".format(ENVIRONMENT.REVIT_PRIMARY_EXTENSION, script)
     import imp
     ref_module = imp.load_source("manage_working_view_script", fullpath)
 

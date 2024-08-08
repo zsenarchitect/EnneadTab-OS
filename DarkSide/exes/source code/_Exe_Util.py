@@ -4,6 +4,7 @@ import traceback
 import time
 import json
 import shutil
+import socket
 
 
 GLOBAL_SETTING_FILE = 'setting_{}.sexyDuck'.format(os.environ["USERPROFILE"].split("\\")[-1])
@@ -16,7 +17,14 @@ for _folder in [ESOSYSTEM_FOLDER, DUMP_FOLDER]:
         os.makedirs(_folder)
 
 DB_FOLDER = "L:\\4b_Applied Computing\\EnneadTab-DB"
-        
+
+
+def is_avd():
+    computer_name = socket.gethostname()
+    return "avd" in computer_name.lower()
+
+
+     
 def find_main_repo():
     for root, dirs, files in os.walk(os.environ['USERPROFILE']):
         if 'EnneadTab-OS' in dirs:

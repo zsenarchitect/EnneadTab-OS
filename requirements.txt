@@ -17,6 +17,7 @@ pyautogui
 tkinterdnd2
 tqdm
 pandas
+holidays
 
 
 #gputil

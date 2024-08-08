@@ -4,9 +4,7 @@ __doc__ = "Convert excel data to shape diagrams."
 
 
 import rhinoscriptsyntax as rs
-
 import math
-
 import textwrap
 
 

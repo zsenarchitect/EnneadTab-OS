@@ -122,7 +122,7 @@ output.close_others()
 
 
 import imp
-ref_module = imp.load_source("make walltype filter_script", r'{}\ENNEAD.extension\Ennead.tab\Tailor Shop.panel\misc1.stack\Proj 2135 Part2.pulldown\52_make walltype_filter and assign.pushbutton\make walltype filter_script.py'.format(EnneadTab.ENVIRONMENT_CONSTANTS.PUBLISH_FOLDER_FOR_REVIT))
+ref_module = imp.load_source("make walltype filter_script", r'{}\ENNEAD.extension\Ennead.tab\Tailor Shop.panel\misc1.stack\Proj 2135 Part2.pulldown\52_make walltype_filter and assign.pushbutton\make walltype filter_script.py'.format(EnneadTab.ENVIRONMENT.PUBLISH_FOLDER_FOR_REVIT))
 
 GAP = EA_UTILITY.mm_to_internal(500)
 SQUARE_EDGE_LENGTH = EA_UTILITY.mm_to_internal(3000)

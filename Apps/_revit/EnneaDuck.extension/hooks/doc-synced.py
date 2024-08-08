@@ -53,7 +53,7 @@ def update_project_2151():
     
     if random.random() > 0.1:
         return
-    if USER_CONSTANTS.USER_NAME not in ["sha.li", "szhang"]:
+    if USER.USER_NAME not in ["sha.li", "szhang"]:
         return
     
     folder = "Ennead Tailor.tab\\Proj. 2151.panel\\LI_NYU.pulldown"

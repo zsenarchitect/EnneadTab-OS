@@ -17,7 +17,7 @@ import os
 
 import System
 import EnneadTab
-from EnneadTab import ENVIRONMENT_CONSTANTS
+from EnneadTab import ENVIRONMENT
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 
@@ -141,13 +141,13 @@ class family_browser_ModelessForm(WPFWindow):
 
         self.Title = self.title_text.Text
 
-        self.set_image_source(self.logo_img, "{}\logo_vertical_light.png".format(EnneadTab.ENVIRONMENT_CONSTANTS.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT))
+        self.set_image_source(self.logo_img, "{}\logo_vertical_light.png".format(EnneadTab.ENVIRONMENT.CORE_IMAGES_FOLDER_FOR_PUBLISHED_REVIT))
         self.set_image_source(self.monitor_icon, "monitor_icon.png")
         self.set_image_source(self.preview_image, "DEFAULT PREVIEW_CANNOT FIND PREVIEW IMAGE.png")
         self.set_image_source(self.status_icon, "update_icon.png")
 
 
-        self.meta_data_folder = "{}\\01_Revit\\06_DB\\Family Browser".format(ENVIRONMENT_CONSTANTS.HOSTER_FOLDER)
+        self.meta_data_folder = "{}\\01_Revit\\06_DB\\Family Browser".format(ENVIRONMENT.HOSTER_FOLDER)
 
 
 

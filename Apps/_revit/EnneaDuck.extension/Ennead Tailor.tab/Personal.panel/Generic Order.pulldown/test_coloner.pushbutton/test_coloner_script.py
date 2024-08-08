@@ -21,8 +21,8 @@ import clr
 import os
 import System
 
-from EnneadTab import ENVIRONMENT_CONSTANTS
-LIBGIT_DLL = "{}\LibGit2Sharp.dll".format(ENVIRONMENT_CONSTANTS.DEPENDENCY_FOLDER_LEGACY)
+from EnneadTab import ENVIRONMENT
+LIBGIT_DLL = "{}\LibGit2Sharp.dll".format(ENVIRONMENT.DEPENDENCY_FOLDER_LEGACY)
 print (os.path.exists(LIBGIT_DLL))
 clr.AddReferenceToFileAndPath(LIBGIT_DLL)
 

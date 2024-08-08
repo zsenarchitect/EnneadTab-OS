@@ -435,7 +435,3 @@ output.close_others()
 
 if __name__ == "__main__":
     all_in_one_checker(doc, show_log=True)
-
-    # record usage data to minbank
-    ENNEAD_LOG.use_enneadtab(
-        coin_change=20, tool_used=__title__.replace("\n", " "), show_toast=True)

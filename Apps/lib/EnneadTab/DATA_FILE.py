@@ -136,7 +136,9 @@ def _save_dict_to_json_in_shared_dump_folder(dict, file_name, use_encode=False):
 
 
 
-def get_list(filepath="path"):
+def get_list(filepath):
+    if not os.path.exists(filepath):
+        return []
     extention = FOLDER.get_file_extension_from_path(filepath)
     local_path = FOLDER.get_EA_dump_folder_file("temp{}".format(extention))
     shutil.copyfile(filepath, local_path)

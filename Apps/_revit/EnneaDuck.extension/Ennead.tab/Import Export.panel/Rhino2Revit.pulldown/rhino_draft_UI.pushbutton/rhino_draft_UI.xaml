@@ -230,6 +230,9 @@
                                 <TextBlock Text="DWG setting to use: " TextWrapping="Wrap"/>
                                 <ComboBox x:Name="combobox_dwg_setting" />
                             </WrapPanel>
+                            <TextBlock Text="*For best result, export with internal coordinate.*" 
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Center"/>
                             
                             <Button Content="Export This View" Click="export_view_click"/>
                            

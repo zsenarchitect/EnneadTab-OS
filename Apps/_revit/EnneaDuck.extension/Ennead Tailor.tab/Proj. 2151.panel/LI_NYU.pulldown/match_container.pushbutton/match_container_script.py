@@ -32,8 +32,13 @@ def match_container():
     NYULI_list = [
         "2151_A_EA_NYULI_Hospital_EXT",
         "2151_A_EAEC_NYULI_Hospital_INT",
+        "2151_A_EA_NYULI_Site",
+        "2151_A_EA_NYULI_Parking East",
+        "2151_A_EA_NYULI_Parking West",
+        "2151_A_EA_NYULI_CUP_EXT"
     ]
     working_docs = [FG.get_NYU_doc(doc_title = x) for x in NYULI_list]
+    working_docs = [x for x in working_docs if x is not None]
     process_system_family("Walls", container_doc, working_docs)
     process_system_family("Floors", container_doc, working_docs)
     process_system_family("Roofs", container_doc, working_docs)

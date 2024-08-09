@@ -16,6 +16,9 @@ def get_NYU_doc(doc_title):
 
     
     data = DATA_FILE.get_data("DOC_OPENER_DATA.sexyDuck", is_local=False)
+    if doc_title not in data:
+        print ("[{}] has not been recorded by EnneadTab before in data".format(doc_name))
+        return None
     
     REVIT_EVENT.set_open_hook_depressed(True)
     warnings = ""
@@ -35,8 +38,8 @@ def get_NYU_doc(doc_title):
 
     REVIT_EVENT.set_open_hook_depressed(False)
 
-    container_doc = [x for x in REVIT_APPLICATION.get_top_revit_docs() if x.Title == doc_title][0]
-    return container_doc
+    opened_doc = [x for x in REVIT_APPLICATION.get_top_revit_docs() if x.Title == doc_title][0]
+    return opened_doc
 
         
 def tuple_to_model_path(tuple):
@@ -51,9 +54,7 @@ def tuple_to_model_path(tuple):
         return cloud_path
 
 def open_doc_siliently(doc_name, data):
-    if doc_name not in data:
-        print ("[{}] has not been recorded by EnneadTab before in data".format(doc_name))
-        return
+
     
     
     cloud_path = tuple_to_model_path(data[doc_name])

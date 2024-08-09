@@ -150,6 +150,10 @@ def copy_to_standalone_collection():
         "AvdResourceMonitor.exe",
         "AppStore.exe"
     ]
+    green_text = "\033[92m"  
+    red_text = "\033[91m"    
+    yellow_text = "\033[93m" 
+    reset_text = "\033[0m"   
     for i, exe in enumerate([f for f in os.listdir(exe_product_folder) if f in good_list]):
         src_path = os.path.join(exe_product_folder, exe)
         dest_path = os.path.join(stand_alone_folder, exe)
@@ -157,11 +161,18 @@ def copy_to_standalone_collection():
         try:
             if not os.path.exists(dest_path) or os.path.getmtime(src_path) > os.path.getmtime(dest_path):
                 shutil.copy(src_path, dest_path)
-                print("Successfully copied {} to standalone collection".format(exe))
+                print("Successfully copied {}{}{} to standalone collection".format(green_text, 
+                                                                                   exe,
+                                                                                   reset_text))
             else:
-                print("   - Skipped copying {} as it is up to date".format(exe))
+                print("   - Skipped copying {}{}{} as it is up to date".format(yellow_text,
+                                                                               exe,
+                                                                               reset_text))
         except Exception as e:
-            print("Failed to copy {} to standalone collection: {}".format(exe, e))
+            print("Failed to copy {}{}{} to standalone collection: {}".format(red_text,
+                                                                              exe,
+                                                                              reset_text,
+                                                                              e))
 
 def update_installer_folder_exes():
     print_title("\n\nBegin updating installation folder for public easy install...")

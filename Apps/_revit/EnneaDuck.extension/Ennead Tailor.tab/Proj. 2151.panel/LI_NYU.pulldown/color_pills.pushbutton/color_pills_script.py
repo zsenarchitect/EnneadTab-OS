@@ -3,7 +3,7 @@ __title__ = "Colorize Pills"
 
 # from pyrevit import forms #
 from pyrevit import script #
-import os
+
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 
@@ -43,6 +43,7 @@ def color_pills(doc, show_log = False):
 
     
     if show_log:
+        print ("Done...")
         
         NOTIFICATION.messenger(main_text = "Color pill color change done!")
 

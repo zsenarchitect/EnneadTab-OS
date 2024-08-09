@@ -7,9 +7,10 @@ __doc__ = "Even when you type in the RGB value in excel, that might get changed 
 __title__ = "Confirm RGB"
 
 # from pyrevit import forms #
-import traceback
 from pyrevit import script #
-import traceback
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION

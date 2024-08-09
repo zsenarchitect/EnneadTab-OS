@@ -12,33 +12,37 @@ from pyrevit import script #
 
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
+
+from EnneadTab import ERROR_HANDLE, NOTIFICATION, TEXT
+from EnneadTab.REVIT import REVIT_SELECTION
+
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
-uidoc = __revit__.ActiveUIDocument
+uidoc = __revit__.ActiveUIDocument # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
             
 COLOR_SCHEME_NAME = "[Areas]: Department Category_Primary"      
             
-@EnneadTab.ERROR_HANDLE.try_catch_error()
+@ERROR_HANDLE.try_catch_error()
 def pick_name():
     selection_ids = uidoc.Selection.GetElementIds ()
     if len (selection_ids) == 0:
-        EnneadTab.NOTIFICATION.messenger(main_text = "Select one and only one pill shape")
+        NOTIFICATION.messenger(main_text = "Select one and only one pill shape")
 
         return 
     
     if len (selection_ids) != 1:
-        EnneadTab.NOTIFICATION.messenger(main_text = "Select one and only one pill shape")
+        NOTIFICATION.messenger(main_text = "Select one and only one pill shape")
         return
     
     element = doc.GetElement(selection_ids[0])
-    if not EnneadTab.REVIT.REVIT_SELECTION.is_changable(element):
-        EnneadTab.NOTIFICATION.messenger(main_text = "You do not have permission to edit it.")
+    if not REVIT_SELECTION.is_changable(element):
+        NOTIFICATION.messenger(main_text = "You do not have permission to edit it.")
         return
     
     
     if not hasattr(element, "Symbol") or not element.Symbol.FamilyName.lower().startswith( "DTL_Healthcare_Planning_Section Bubble".lower()):
-        EnneadTab.NOTIFICATION.messenger(main_text = "This tool only work with the pill shape")
+        NOTIFICATION.messenger(main_text = "This tool only work with the pill shape")
         return
     
     
@@ -49,7 +53,7 @@ def pick_name():
     
     color_schemes = filter(lambda x: scheme_name(x) == COLOR_SCHEME_NAME, color_schemes)
     if len( color_schemes)== 0:
-        EnneadTab.NOTIFICATION.messenger(main_text = "Cannot find the color scheme [{}].\nMaybe you renamed your color scheme recently? Talk to SZ for update.".format(COLOR_SCHEME_NAME))
+        NOTIFICATION.messenger(main_text = "Cannot find the color scheme [{}].\nMaybe you renamed your color scheme recently? Talk to SZ for update.".format(COLOR_SCHEME_NAME))
         return
     color_scheme = color_schemes[0]
 
@@ -59,8 +63,8 @@ def pick_name():
                                     multiselect=False)
     if not name:
         return
-    # EnneadTab.NOTIFICATION.messenger(main_text = name)
-    name = EnneadTab.TEXT.wrapped_text(name, max_len=20)
+    # NOTIFICATION.messenger(main_text = name)
+    name = TEXT.wrapped_text(name, max_len=20)
     
     t = DB.Transaction(doc, __title__)
     t.Start()

@@ -212,10 +212,7 @@ def save_template_to_file():
     templates = [v.Name for v in views if v.IsTemplate]
 
     templates.sort()
-    # print templates
-    import EA_UTILITY
-    import proDUCKtion # pyright: ignore 
-proDUCKtion.validify()
+
     EA_UTILITY.save_list_to_txt(templates, template_checklist_filepath)
 ################## main code below #####################
 output = script.get_output()

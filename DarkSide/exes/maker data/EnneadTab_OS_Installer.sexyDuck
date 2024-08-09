@@ -52,7 +52,23 @@
   {
    "optionDest": "bootloader_ignore_signals",
    "value": false
-  }
+  },
+   {
+    "optionDest": "hidden-import",
+    "value": "zipfile"
+   },
+   {
+    "optionDest": "hidden-import",
+    "value": "socket"
+   },
+   {
+    "optionDest": "hidden-import",
+    "value": "shutil"
+   },
+   {
+    "optionDest": "hidden-import",
+    "value": "requests"
+   }
  ],
  "nonPyinstallerOptions": {
   "increaseRecursionLimit": true,

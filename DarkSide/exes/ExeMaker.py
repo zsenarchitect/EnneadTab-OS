@@ -246,4 +246,5 @@ if __name__ == "__main__":
     # recompile_exe(single_exe="AvdResourceMonitor.sexyDuck")
     # recompile_exe(single_exe="LastSyncMonitor.sexyDuck")
     # recompile_exe(single_exe="sample_exe.sexyDuck")
-    recompile_exe(single_exe="ScheduleOpener.sexyDuck")
+    recompile_exe(single_exe="EnneadTab_OS_Installer.sexyDuck")
+    # recompile_exe(single_exe="ScheduleOpener.sexyDuck")

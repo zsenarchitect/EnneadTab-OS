@@ -125,14 +125,13 @@ def try_open_app(app_name):
 
 
     app_name = app_name.replace(".exe", "")
-    app_name += ".exe"
-    if not os.path.exists(app_name):
+    app_address = app_name + ".exe"
+    if not os.path.exists(app_address):
         return
     
     temp_exe_name = "_temp_exe_{}_{}.exe".format(app_name, int(time.time()))
     temp_exe = DUMP_FOLDER + "\\" + temp_exe_name
-    app = os.path.join(exe_product_folder, app_name)
-    shutil.copyfile(app, temp_exe)
+    shutil.copyfile(app_address, temp_exe)
     os.startfile(temp_exe)
     for file in os.listdir(DUMP_FOLDER):
         if file.startswith("_temp_exe_"):

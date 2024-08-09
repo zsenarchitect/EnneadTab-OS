@@ -1,7 +1,4 @@
 
-import math
-import sys
-import os
 import pyautogui
 
 def rgb_to_hex(r, g, b):

@@ -44,7 +44,7 @@ class RepositoryUpdater:
             self.cleanup_old_download_cache()
         except Exception as e:
             self.create_duck_file(success=False, error_details=traceback.format_exc())
-            raise e
+            # raise e
 
     
     def download_zip(self):

@@ -60,9 +60,7 @@ class ScheduleOpener(_GUI_Util.BasePyGameGUI):
         self.POINTER_Y = 150
 
         self.draw_text("Below are docs that will be opened:", self.FONT_SUBTITLE, self.TEXT_COLOR_FADE)
-        if not data:# no data
-            self.run = False
-            return False
+
         target_time = data["open_time"]
         # print(target_time)
         #  use re to convert isoformat to datetime without using strptime
@@ -105,6 +103,9 @@ class ScheduleOpener(_GUI_Util.BasePyGameGUI):
 
             
             data = _Exe_Util.get_data(DATA_FILE)
+            if not data:# no data
+                self.run = False
+                return False
             res = self.display_data(data)
             if res:
                 data = None#clear data to prevent repeat open revit

@@ -72,6 +72,10 @@
    {
     "optionDest": "hidden-import",
     "value": "json"
+   },
+   {
+    "optionDest": "hidden-import",
+    "value": "pyautogui"
    }
  ],
  "nonPyinstallerOptions": {

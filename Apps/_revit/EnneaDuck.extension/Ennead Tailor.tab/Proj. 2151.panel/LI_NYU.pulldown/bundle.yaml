@@ -1,8 +1,0 @@
-layout:
-  - color_pills
-  #- pick_name_activate
-  #- pick_name_deactivate
-  - pick_name
-  - all_in_one_checker
-  - load_color_template
-  - confirm_RGB

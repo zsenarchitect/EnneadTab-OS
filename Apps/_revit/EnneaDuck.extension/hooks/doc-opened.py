@@ -426,9 +426,9 @@ def main():
             return
 
         check_if_file_opened(doc)
+        register_silient_open(doc)
         append_sync_time_record(doc)
         check_if_keynote_file_pointing_to_library(doc)
-        register_silient_open(doc)
 
         return
         

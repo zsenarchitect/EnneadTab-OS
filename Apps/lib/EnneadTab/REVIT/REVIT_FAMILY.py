@@ -125,3 +125,41 @@ def get_family_instances_by_family_name_and_type_name(family_name, type_name, do
         res = REVIT_SELECTION.filter_elements_changable(res)
 
     return res
+
+
+
+
+
+        
+class RevitInstance:
+    def __init__(self, element):
+        self.element = element
+
+
+    def get_para(self, name):
+        para =  self.element.LookupParameter(name)
+        if not para:
+            return None
+        if para.StorageType == DB.StorageType.String:
+            return para.AsString()
+        elif para.StorageType == DB.StorageType.Integer:
+            return para.AsInteger()
+        elif para.StorageType == DB.StorageType.Double:
+            return para.AsDouble()
+        elif para.StorageType == DB.StorageType.ElementId:
+            return para.AsElementId()
+
+
+    def set_para(self, name, value):
+        para =  self.element.LookupParameter(name)
+        if not para:
+            return None
+        para.Set(value)
+
+
+
+class RevitType(RevitInstance):
+
+    @property
+    def type_name(self):
+        return self.element.LookupParameter("Type Name").AsString()

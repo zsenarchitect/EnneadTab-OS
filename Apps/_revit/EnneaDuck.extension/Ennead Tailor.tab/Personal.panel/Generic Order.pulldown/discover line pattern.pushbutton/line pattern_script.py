@@ -3,7 +3,8 @@ __title__ = "Discover\nLine Pattern"
 
 from pyrevit import forms, DB, revit, script
 import EA_UTILITY
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 def print_pattern_detail(pattern, show_name = False):
     try:

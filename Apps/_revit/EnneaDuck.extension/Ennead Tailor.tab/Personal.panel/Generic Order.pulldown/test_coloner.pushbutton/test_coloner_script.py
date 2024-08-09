@@ -9,7 +9,7 @@ __title__ = "test_coloner"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_APPLICATION
 from Autodesk.Revit import DB # pyright: ignore 
@@ -30,7 +30,7 @@ import LibGit2Sharp as libgit
 from LibGit2Sharp import Repository, CloneOptions
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def test_coloner():
 
 
@@ -99,7 +99,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     test_coloner()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

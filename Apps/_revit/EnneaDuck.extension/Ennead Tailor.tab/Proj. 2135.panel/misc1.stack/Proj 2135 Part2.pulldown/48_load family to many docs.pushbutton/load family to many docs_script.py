@@ -3,7 +3,8 @@ __title__ = "48_load many families to many docs"
 
 from pyrevit import forms, DB,  script
 import EA_UTILITY
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 uidoc = __revit__.ActiveUIDocument
 
 

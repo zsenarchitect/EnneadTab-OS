@@ -9,8 +9,9 @@ __title__ = "(Depreciated)Format Egress Stairs"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 try:
@@ -75,7 +76,7 @@ output.close_others()
 
 if __name__ == "__main__":
     format_stairs(doc)
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

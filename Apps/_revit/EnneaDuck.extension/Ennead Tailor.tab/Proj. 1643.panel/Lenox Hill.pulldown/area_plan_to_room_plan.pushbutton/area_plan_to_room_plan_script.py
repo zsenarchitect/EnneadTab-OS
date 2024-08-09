@@ -9,7 +9,7 @@ __title__ = "AreaPlan to RoomPlan"
 from pyrevit import forms #
 from pyrevit import script #
 import System
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_APPLICATION
 from Autodesk.Revit import DB # pyright: ignore 
@@ -27,7 +27,7 @@ STORAGE_TYPE_MAP = {
 }
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def area_plan_to_room_plan():
     views = forms.select_views()
     if not views:
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     area_plan_to_room_plan()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

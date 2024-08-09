@@ -5,7 +5,8 @@ from Autodesk.Revit import DB # pyright: ignore
 from pyrevit import script
 from pyrevit import forms
 
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 
 __title__ = "Randomly Reduce Panel Selection to 5 pack, requested by Chiwhei"
 __doc__ = 'Randomly deselect from selection input.'
@@ -42,7 +43,7 @@ def get_type_by_name(type_name):
         return family_type
         
         
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def main():
 
     selection = EnneadTab.REVIT.REVIT_SELECTION.get_selection()

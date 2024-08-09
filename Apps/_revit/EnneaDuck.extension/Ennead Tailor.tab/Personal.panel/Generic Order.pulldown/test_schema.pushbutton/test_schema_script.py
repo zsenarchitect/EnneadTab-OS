@@ -10,8 +10,9 @@ __title__ = "test_schema"
 
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 # uidoc = EnneadTab.REVIT.REVIT_APPLICATION.get_uidoc()
@@ -22,7 +23,7 @@ from EnneadTab.REVIT import REVIT_SCHEMA
 from EnneadTab import NOTIFICATION
 
        
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def test_schema():
     schema_name = "SampleSchema2"
     schema = REVIT_SCHEMA.get_schema_by_name(schema_name)
@@ -52,7 +53,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     test_schema()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

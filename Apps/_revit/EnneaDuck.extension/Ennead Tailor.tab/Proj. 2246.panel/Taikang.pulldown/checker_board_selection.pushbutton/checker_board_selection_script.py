@@ -9,13 +9,14 @@ __title__ = "Checker Board Selection"
 # from pyrevit import forms #
 from pyrevit import script #
 import clr
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
             
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def checker_board_selection():
     selection = EnneadTab.REVIT.REVIT_SELECTION.get_selection()
     if len(selection) == 0:
@@ -91,6 +92,6 @@ output.close_others()
 
 if __name__ == "__main__":
     checker_board_selection()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 

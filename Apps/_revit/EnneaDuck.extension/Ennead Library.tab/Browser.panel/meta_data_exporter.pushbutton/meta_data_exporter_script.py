@@ -272,7 +272,7 @@ class FamilyMetaDataExporter:
             type_data["views"][view.Name] = final_image
         return type_data
         
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def family_browser():
 
     EXE.try_open_app("AutoCancelClicker.exe")

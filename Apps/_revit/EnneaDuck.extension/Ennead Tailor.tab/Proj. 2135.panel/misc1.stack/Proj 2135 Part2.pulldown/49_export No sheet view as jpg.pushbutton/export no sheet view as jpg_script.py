@@ -10,7 +10,8 @@ from pyrevit import forms #
 from pyrevit import script #
 # from pyrevit import revit #
 import EA_UTILITY
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 import time
 import os
 import os.path as op

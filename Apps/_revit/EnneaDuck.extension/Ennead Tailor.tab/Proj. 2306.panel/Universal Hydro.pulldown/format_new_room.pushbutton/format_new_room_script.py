@@ -9,8 +9,9 @@ __title__ = "(Depreciated)Format New Rooms"
 from pyrevit import script
 # from pyrevit import revit #
 # import EA_UTILITY
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore  
 # from Autodesk.Revit import UI # pyright: ignore
 try:

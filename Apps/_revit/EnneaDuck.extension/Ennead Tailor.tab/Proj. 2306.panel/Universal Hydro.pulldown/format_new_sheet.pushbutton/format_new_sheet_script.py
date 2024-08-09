@@ -10,8 +10,9 @@ __title__ = "(Depreciated)Format New Sheets"
 from pyrevit import script #
 
 import EA_UTILITY
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -77,6 +78,6 @@ output.close_others()
 
 if __name__ == "__main__":
     format_new_sheet()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 

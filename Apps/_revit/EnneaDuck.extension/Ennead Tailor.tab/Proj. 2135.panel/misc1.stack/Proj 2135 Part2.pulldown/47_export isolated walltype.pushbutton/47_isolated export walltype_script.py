@@ -10,7 +10,8 @@ from pyrevit import forms #
 from pyrevit import script #
 # from pyrevit import revit #
 import EA_UTILITY
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 import time
 from Autodesk.Revit import DB # pyright: ignore 
 import traceback

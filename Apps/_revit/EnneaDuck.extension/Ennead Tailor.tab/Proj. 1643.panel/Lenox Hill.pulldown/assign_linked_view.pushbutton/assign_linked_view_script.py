@@ -9,7 +9,7 @@ __title__ = "Assign Linked Views to PlanSet 7"
 # from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE, NOTIFICATION
 from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_VIEW, REVIT_SELECTION
 from Autodesk.Revit import DB # pyright: ignore 
@@ -41,7 +41,7 @@ EAEC_VIEW_MAP = {
 }
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def assign_linked_view():
     link = REVIT_SELECTION.get_revit_link_instance_by_name("20160364_LHH BOD-A_FO_New")
     if not link:
@@ -87,7 +87,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     assign_linked_view()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

@@ -319,7 +319,7 @@ def is_another_duck_running():
     return False
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def main():
     if is_another_duck_running():
         return

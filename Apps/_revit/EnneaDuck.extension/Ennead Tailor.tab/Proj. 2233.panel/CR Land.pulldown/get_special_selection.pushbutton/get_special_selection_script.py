@@ -9,8 +9,9 @@ from collections import defaultdict
 from pyrevit import forms #
 from pyrevit import script #
 
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore 
 # from Autodesk.Revit import UI # pyright: ignore
 doc = __revit__.ActiveUIDocument.Document # pyright: ignore
@@ -28,7 +29,7 @@ def get_cloest_panel(pt, all_panel_locations):
 
     return doc.GetElement(cloest_panel_id)  
        
-@EnneadTab.ERROR_HANDLE.try_catch_error
+@EnneadTab.ERROR_HANDLE.try_catch_error()
 def get_special_selection():
     
     family_list = ["TYP PANEL",
@@ -129,7 +130,7 @@ output.close_others()
 
 if __name__ == "__main__":
     get_special_selection()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

@@ -10,7 +10,7 @@ __title__ = "sum_area_from_link"
 from pyrevit import script #
 from pyrevit import HOST_APP
 
-import ENNEAD_LOG
+
 from EnneadTab import ERROR_HANDLE
 from EnneadTab.REVIT import REVIT_APPLICATION
 from Autodesk.Revit import DB # pyright: ignore 
@@ -40,7 +40,7 @@ def format_area(total):
     return format_value(total, unit_type)
 
 
-@ERROR_HANDLE.try_catch_error
+@ERROR_HANDLE.try_catch_error()
 def sum_area_from_link():
     # from Autodesk.Revit.DB import *
     # from Autodesk.Revit.UI import *
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     output = script.get_output()
     output.close_others()
     sum_area_from_link()
-    ENNEAD_LOG.use_enneadtab(coin_change = 20, tool_used = __title__.replace("\n", " "), show_toast = True)
+    
 
 
 

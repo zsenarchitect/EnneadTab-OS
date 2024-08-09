@@ -8,8 +8,9 @@ __title__ = "Set Revision By BlackSquare"
 from pyrevit import script
 
 import System
-import ENNEAD_LOG
-import EnneadTab
+
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 from Autodesk.Revit import DB # pyright: ignore  
 # from Autodesk.Revit import UI # pyright: ignore
 try:

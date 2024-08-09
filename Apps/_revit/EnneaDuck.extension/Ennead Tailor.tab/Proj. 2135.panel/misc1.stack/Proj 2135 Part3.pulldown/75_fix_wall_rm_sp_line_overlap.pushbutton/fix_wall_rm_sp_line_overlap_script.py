@@ -13,7 +13,8 @@ from pyrevit.forms import WPFWindow
 from pyrevit import script #
 # from pyrevit import revit #
 import EA_UTILITY
-import EnneadTab
+import proDUCKtion # pyright: ignore 
+proDUCKtion.validify()
 import traceback
 from Autodesk.Revit import DB # pyright: ignore 
 import random

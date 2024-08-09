@@ -326,7 +326,7 @@ def set_type_order_index(doc, option):
 def is_family_valid(doc, option):
 
     # make sure family exists
-    sample_family_path = "{}\\ENNEAD.extension\\Ennead Library.tab\\Contents.panel\\2D Contents.pulldown\\HealthCare Data Calculator.content\\EnneadTab AreaData Calculator_content.rfa".format(ENVIRONMENT.PUBLISH_BETA_FOLDER_FOR_REVIT)
+    sample_family_path = "{}\\Contents.panel\\2D Contents.pulldown\\HealthCare Data Calculator.content\\EnneadTab AreaData Calculator_content.rfa".format(ENVIRONMENT.REVIT_LIBRARY_TAB)
     REVIT_FAMILY.get_family_by_name(option.CALCULATOR_FAMILY_NAME, doc, load_path_if_not_exist=sample_family_path)
     
 

@@ -6,10 +6,12 @@ from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_EVENT
 
 
 from Autodesk.Revit import DB # pyright: ignore 
-def open_container_file():
-    container_file_title = "EAEC_NYU-Langone Health_Container File"
+def get_NYU_doc(doc_title):
+    
+
+    
     for opened_doc in REVIT_APPLICATION.get_top_revit_docs():
-        if opened_doc.Title == container_file_title:
+        if opened_doc.Title == doc_title:
             return opened_doc
 
     
@@ -18,14 +20,14 @@ def open_container_file():
     REVIT_EVENT.set_open_hook_depressed(True)
     warnings = ""
     with ErrorSwallower() as swallower:
-        open_doc_siliently(container_file_title, data)
+        open_doc_siliently(doc_title, data)
         errors = swallower.get_swallowed_errors()
         #print errors
         if len(errors) != 0:
             warnings += "\n\n{}".format(errors)
         
         
-        model_path = tuple_to_model_path(data.get(container_file_title, None))
+        model_path = tuple_to_model_path(data.get(doc_title, None))
         if not model_path:
             NOTIFICATION.messenger("Cannot find the container file path, ask SZ for help.")
         REVIT_APPLICATION.open_and_active_project(model_path)
@@ -33,7 +35,7 @@ def open_container_file():
 
     REVIT_EVENT.set_open_hook_depressed(False)
 
-    container_doc = [x for x in REVIT_APPLICATION.get_top_revit_docs() if x.Title == container_file_title][0]
+    container_doc = [x for x in REVIT_APPLICATION.get_top_revit_docs() if x.Title == doc_title][0]
     return container_doc
 
         

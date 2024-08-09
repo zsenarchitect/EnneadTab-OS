@@ -2,8 +2,7 @@ import os
 import winshell
 import subprocess
 import ctypes
-import sys
-import _Exe_Util  # Assuming _Exe_Util contains the try_catch_error decorator
+import _Exe_Util 
 
 def is_admin():
     try:

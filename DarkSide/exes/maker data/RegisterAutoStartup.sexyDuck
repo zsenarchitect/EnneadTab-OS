@@ -52,7 +52,15 @@
   {
    "optionDest": "bootloader_ignore_signals",
    "value": false
-  }
+  },
+   {
+    "optionDest": "hidden-import",
+    "value": "ctypes"
+   },
+   {
+    "optionDest": "hidden-import",
+    "value": "winshell"
+   }
  ],
  "nonPyinstallerOptions": {
   "increaseRecursionLimit": true,

@@ -7,25 +7,23 @@ __title__ = "Match Container"
 import proDUCKtion # pyright: ignore 
 proDUCKtion.validify()
 
-from EnneadTab import ERROR_HANDLE, LOG
-# from EnneadTab.REVIT import REVIT_APPLICATION
+from EnneadTab import ERROR_HANDLE, LOG, DATA_FILE, NOTIFICATION
+from EnneadTab.REVIT import REVIT_APPLICATION, REVIT_EVENT
 from Autodesk.Revit import DB # pyright: ignore 
 
 # UIDOC = REVIT_APPLICATION.get_uidoc()
 # DOC = REVIT_APPLICATION.get_doc()
-
+import container_file as CF
 
 @LOG.log(__file__, __title__)
 @ERROR_HANDLE.try_catch_error()
 def match_container():
-    pass
+    container_doc = CF.open_container_file()
+    print (container_doc)
 
+    # 
 
-    # t = DB.Transaction(DOC, __title__)
-    # t.Start()
-    # pass
-    # t.Commit()
-
+    
 
 
 ################## main code below #####################
